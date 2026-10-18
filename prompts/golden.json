@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "max_interrogation_turns": 5,
+  "cases": [
+    {
+      "id": "pirate-ub",
+      "label": "creature type — Pirate, UB",
+      "brief": {
+        "theme": "pirate",
+        "angle": "Treasure tokens and stealing opponents' permanents",
+        "colors": "UB",
+        "budget_total": 150,
+        "bracket": 2,
+        "commander_query": "is:commander t:pirate f:commander",
+        "flavor_terms": ["treasure", "ship", "gold"]
+      },
+      "theme_must_resolve": true
+    },
+    {
+      "id": "flying-wu",
+      "label": "keyword — Flying, WU",
+      "brief": {
+        "theme": "flying",
+        "angle": "Flying creature tempo and combat damage",
+        "colors": "WU",
+        "budget_total": 120,
+        "bracket": 2,
+        "commander_query": "is:commander keyword:flying f:commander",
+        "flavor_terms": ["sky", "wings", "bird"]
+      },
+      "theme_must_resolve": true
+    },
+    {
+      "id": "lifegain-wb",
+      "label": "unresolvable theme — lifegain (text fallback)",
+      "brief": {
+        "theme": "lifegain",
+        "angle": "Incremental life gain and staying alive",
+        "colors": "WB",
+        "budget_total": 100,
+        "bracket": 2,
+        "commander_query": "is:commander o:lifegain f:commander",
+        "flavor_terms": ["healing", "angel"]
+      },
+      "theme_must_resolve": false,
+      "commander_query_must_hit": false
+    },
+    {
+      "id": "first-strike-rw",
+      "label": "multi-word keyword — First Strike, RW",
+      "brief": {
+        "theme": "first strike",
+        "angle": "First strike combat damage and aggressive creatures",
+        "colors": "RW",
+        "budget_total": 130,
+        "bracket": 2,
+        "commander_query": "is:commander keyword:\"first strike\" f:commander",
+        "flavor_terms": ["combat", "warrior", "blade"]
+      },
+      "theme_must_resolve": true
+    },
+    {
+      "id": "colorless-artifact",
+      "label": "colorless commander — Artifact",
+      "brief": {
+        "theme": "artifact",
+        "angle": "Colorless artifact synergy and ramp",
+        "colors": "",
+        "budget_total": 200,
+        "bracket": 2,
+        "commander_query": "is:commander id=C f:commander",
+        "flavor_terms": ["machine", "construct", "metal"]
+      },
+      "theme_must_resolve": true
+    },
+    {
+      "id": "zombie-ub",
+      "label": "creature type — Zombie, UB",
+      "brief": {
+        "theme": "zombie",
+        "angle": "Graveyard recursion and zombie tokens",
+        "colors": "UB",
+        "budget_total": 150,
+        "bracket": 2,
+        "commander_query": "is:commander t:zombie f:commander",
+        "flavor_terms": ["graveyard", "undead", "tomb"]
+      },
+      "theme_must_resolve": true
+    },
+    {
+      "id": "interrogate-pirate",
+      "label": "interrogator — pirate deck conversation",
+      "conversation": [
+        {"role": "user", "content": "I want to build a pirate deck with my husband"}
+      ],
+      "follow_ups": [
+        "Treasure tokens and stealing stuff from opponents",
+        "Blue and black, around $150, casual power level"
+      ],
+      "theme_must_resolve": true
+    },
+    {
+      "id": "interrogate-flying",
+      "label": "interrogator — flying creatures conversation",
+      "conversation": [
+        {"role": "user", "content": "A deck full of flying creatures that attack in the air"}
+      ],
+      "follow_ups": [
+        "White and blue, budget around $120",
+        "Just casual kitchen table, nothing cEDH"
+      ],
+      "theme_must_resolve": true
+    }
+  ]
+}

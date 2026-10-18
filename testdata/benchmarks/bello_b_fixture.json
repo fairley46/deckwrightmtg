@@ -1,0 +1,266 @@
+{
+  "commander": "Bello, Bard of the Brambles",
+  "commander_card": {
+    "name": "Bello, Bard of the Brambles",
+    "cmc": 3.0,
+    "type_line": "Legendary Creature \u2014 Raccoon Bard",
+    "oracle_text": "During your turn, each non-Equipment artifact and non-Aura enchantment you control with mana value 4 or greater is a 4/4 Elemental creature in addition to its other types and has indestructible, haste, and \"Whenever this creature deals combat damage to a player, draw a card.\"",
+    "text": "During your turn, each non-Equipment artifact and non-Aura enchantment you control with mana value 4 or greater is a 4/4 Elemental creature in addition to its other types and has indestructible, haste, and \"Whenever this creature deals combat damage to a player, draw a card.\"",
+    "color_identity": [
+      "G",
+      "R"
+    ]
+  },
+  "commander_strategy": {
+    "status": "ok",
+    "commander": "Bello, Bard of the Brambles",
+    "inputs": [
+      {
+        "event": "combat_damage",
+        "supplier": "self"
+      }
+    ],
+    "outputs": [
+      {
+        "kind": "draw",
+        "magnitude": {
+          "mode": "unbound"
+        },
+        "once_each_turn": false
+      }
+    ],
+    "bounds": [
+      {
+        "subject": "artifact_mv",
+        "op": "geq",
+        "bound": {
+          "mode": "static",
+          "value": 4
+        }
+      }
+    ],
+    "rate": {
+      "supplier": "self",
+      "growth_2p_to_4p": 1
+    },
+    "weights": {
+      "scaling": 0.15,
+      "resilience": 0.2,
+      "explosive": 0.1,
+      "soft_combo": 0.0,
+      "free_value": 0.15,
+      "hidden_power": 0.0,
+      "multi_engine": 0.1,
+      "value_to_turn": 0.15
+    },
+    "primary_axis": "threshold",
+    "clock": "unknown",
+    "unscoreable": [
+      "soft_combo",
+      "hidden_power"
+    ]
+  },
+  "deck": [
+    {
+      "name": "Sol Ring",
+      "cmc": 1.0,
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add {C}{C}.",
+      "text": "{T}: Add {C}{C}.",
+      "type": "Artifact",
+      "mana_cost": "{1}",
+      "edhrec_rank": 1,
+      "steer_vote": -1,
+      "bound_ok": "false",
+      "feeds_input": false
+    },
+    {
+      "name": "Arcane Signet",
+      "cmc": 2.0,
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add one mana of any color in your commander's color identity.",
+      "text": "{T}: Add one mana of any color in your commander's color identity.",
+      "type": "Artifact",
+      "mana_cost": "{2}",
+      "edhrec_rank": 3,
+      "steer_vote": -1,
+      "bound_ok": "false",
+      "feeds_input": false
+    },
+    {
+      "name": "Mind Stone",
+      "cmc": 2.0,
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+      "text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+      "type": "Artifact",
+      "mana_cost": "{2}",
+      "edhrec_rank": 32,
+      "steer_vote": -1,
+      "bound_ok": "false",
+      "feeds_input": false
+    },
+    {
+      "name": "Thought Vessel",
+      "cmc": 2.0,
+      "type_line": "Artifact",
+      "oracle_text": "You have no maximum hand size.\n{T}: Add {C}.",
+      "text": "You have no maximum hand size.\n{T}: Add {C}.",
+      "type": "Artifact",
+      "mana_cost": "{2}",
+      "edhrec_rank": 21,
+      "steer_vote": -1,
+      "bound_ok": "false",
+      "feeds_input": false
+    },
+    {
+      "name": "Esika's Chariot",
+      "cmc": 4.0,
+      "type_line": "Legendary Artifact \u2014 Vehicle",
+      "oracle_text": "When Esika's Chariot enters, create two 2/2 green Cat creature tokens.\nWhenever Esika's Chariot attacks, create a token that's a copy of target token you control.\nCrew 4",
+      "text": "When Esika's Chariot enters, create two 2/2 green Cat creature tokens.\nWhenever Esika's Chariot attacks, create a token that's a copy of target token you control.\nCrew 4",
+      "type": "Legendary Artifact \u2014 Vehicle",
+      "mana_cost": "{3}{G}",
+      "edhrec_rank": 2957,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Thran Dynamo",
+      "cmc": 4.0,
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add {C}{C}{C}.",
+      "text": "{T}: Add {C}{C}{C}.",
+      "type": "Artifact",
+      "mana_cost": "{4}",
+      "edhrec_rank": 200,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Gilded Lotus",
+      "cmc": 5.0,
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add three mana of any one color.",
+      "text": "{T}: Add three mana of any one color.",
+      "type": "Artifact",
+      "mana_cost": "{5}",
+      "edhrec_rank": 412,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Rolling Hamsphere",
+      "cmc": 7.0,
+      "type_line": "Artifact \u2014 Vehicle",
+      "oracle_text": "This Vehicle gets +1/+1 for each Hamster you control.\nWhenever this Vehicle attacks, create three 1/1 red Hamster creature tokens, then it deals X damage to any target, where X is the number of Hamsters you control.\nCrew 3",
+      "text": "This Vehicle gets +1/+1 for each Hamster you control.\nWhenever this Vehicle attacks, create three 1/1 red Hamster creature tokens, then it deals X damage to any target, where X is the number of Hamsters you control.\nCrew 3",
+      "type": "Artifact \u2014 Vehicle",
+      "mana_cost": "{7}",
+      "edhrec_rank": 4053,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Berserkers' Onslaught",
+      "cmc": 5.0,
+      "type_line": "Enchantment",
+      "oracle_text": "Attacking creatures you control have double strike.",
+      "text": "Attacking creatures you control have double strike.",
+      "type": "Enchantment",
+      "mana_cost": "{3}{R}{R}",
+      "edhrec_rank": 2331,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Alchemist's Talent",
+      "cmc": 4.0,
+      "type_line": "Enchantment \u2014 Class",
+      "oracle_text": "(Gain the next level as a sorcery to add its ability.)\nWhen this Class enters, create two tapped Treasure tokens.\n{1}{R}: Level 2\nTreasures you control have \"{T}, Sacrifice this artifact: Add two mana of any one color.\"\n{4}{R}: Level 3\nWhenever you cast a spell, if mana from a Treasure was spent to cast it, this Class deals damage equal to that spell's mana value to each opponent.",
+      "text": "(Gain the next level as a sorcery to add its ability.)\nWhen this Class enters, create two tapped Treasure tokens.\n{1}{R}: Level 2\nTreasures you control have \"{T}, Sacrifice this artifact: Add two mana of any one color.\"\n{4}{R}: Level 3\nWhenever you cast a spell, if mana from a Treasure was spent to cast it, this Class deals damage equal to that spell's mana value to each opponent.",
+      "type": "Enchantment \u2014 Class",
+      "mana_cost": "{3}{R}",
+      "edhrec_rank": 2218,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Greater Good",
+      "cmc": 4.0,
+      "type_line": "Enchantment",
+      "oracle_text": "Sacrifice a creature: Draw cards equal to the sacrificed creature's power, then discard three cards.",
+      "text": "Sacrifice a creature: Draw cards equal to the sacrificed creature's power, then discard three cards.",
+      "type": "Enchantment",
+      "mana_cost": "{2}{G}{G}",
+      "edhrec_rank": 643,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Garruk's Uprising",
+      "cmc": 3.0,
+      "type_line": "Enchantment",
+      "oracle_text": "When this enchantment enters, if you control a creature with power 4 or greater, draw a card.\nCreatures you control have trample. (Each of those creatures can deal excess combat damage to the player or planeswalker it's attacking.)\nWhenever a creature you control with power 4 or greater enters, draw a card.",
+      "text": "When this enchantment enters, if you control a creature with power 4 or greater, draw a card.\nCreatures you control have trample. (Each of those creatures can deal excess combat damage to the player or planeswalker it's attacking.)\nWhenever a creature you control with power 4 or greater enters, draw a card.",
+      "type": "Enchantment",
+      "mana_cost": "{2}{G}",
+      "edhrec_rank": 91,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Grumgully, the Generous",
+      "cmc": 3.0,
+      "type_line": "Legendary Creature \u2014 Goblin Shaman",
+      "oracle_text": "Each other non-Human creature you control enters with an additional +1/+1 counter on it.",
+      "text": "Each other non-Human creature you control enters with an additional +1/+1 counter on it.",
+      "type": "Legendary Creature \u2014 Goblin Shaman",
+      "mana_cost": "{1}{R}{G}",
+      "edhrec_rank": 4226,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Cultivate",
+      "cmc": 3.0,
+      "type_line": "Sorcery",
+      "oracle_text": "Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle.",
+      "text": "Search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle.",
+      "type": "Sorcery",
+      "mana_cost": "{2}{G}",
+      "edhrec_rank": 20,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    },
+    {
+      "name": "Command Tower",
+      "cmc": 0.0,
+      "type_line": "Land",
+      "oracle_text": "{T}: Add one mana of any color in your commander's color identity.",
+      "text": "{T}: Add one mana of any color in your commander's color identity.",
+      "type": "Land",
+      "mana_cost": "",
+      "edhrec_rank": 2,
+      "steer_vote": 0,
+      "bound_ok": "ok",
+      "feeds_input": false
+    }
+  ],
+  "fixture_note": "Synthetic B-stamped mini deck for CON-322 B-vs-C compare. NOT a full Bello B build \u2014 re-run on the demo host against real B output JSON (box/gate4b-integration-validated @ e44e92d). Stamps applied via strategy_steer.stamp_votes under DECKWRIGHT_CANDIDATE=B.",
+  "source": {
+    "precon_id": "8497473",
+    "b_tip": "box/gate4b-integration-validated@e44e92d",
+    "cardfacts_tip": "cursor/con-322-cardfacts-ready-3a49"
+  }
+}

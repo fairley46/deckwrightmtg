@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+
+# never commit the venv (a stray worktree symlink clobbered it once)
+.venv/
+.venv
+
+# Local runtime data (lives under ~/.deckwright)
+.deckwright/
+
+# Tunnel / TLS credentials if present locally
+.cloudflared/
+*.pem
+cert.pem
+**/credentials.json
+
+# Regenerable snapshots (not for the public tree)
+data/benchmarks/edhrec/*.json
+data/precons/*.json
+
+# Schemathesis scratch output
+.schemathesis/
+node_modules/

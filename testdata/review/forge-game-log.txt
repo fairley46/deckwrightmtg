@@ -1,0 +1,770 @@
+Error handling registered!
+10:16:08 [INFO ] GuiBase: ##########################################
+10:16:08 [INFO ] GuiBase: APP: Forge v.2.0.13-SNAPSHOT-06.22
+10:16:08 [INFO ] GuiBase: Java: 26.0.2 (Homebrew)
+10:16:08 [INFO ] GuiBase: OS: Mac OS X 26.3 aarch64
+10:16:08 [INFO ] GuiBase: RAM: 2048 MB max, 8 CPUs
+10:16:08 [INFO ] GuiBase: ##########################################
+Language 'en-US' loaded successfully.
+(ThreadUtil first call): Running with priority 5
+Read cards: 33319 archived files in 0 ms (25 parts) using thread pool
+Upcoming set Star Trek (TRK) dated in the future. All `upcoming` cards will be added to this set with unknown rarity.
+Upcoming set Star Trek (TRK) dated in the future. All `upcoming` cards will be added to this set with unknown rarity.
+Read cards: 821 files in 0 ms (8 parts) using thread pool
+Simulation mode
+Ai(1)-Abzan Siege vs Ai(2)-Aerodoom - one game of Constructed
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/Users/demo/Applications/forge/forge-gui-desktop-2.0.13-jar-with-dependencies.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+Mulligan: Ai(2)-Aerodoom has kept a hand of 7 cards
+Mulligan: Ai(1)-Abzan Siege has kept a hand of 7 cards
+Turn: Turn 1 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Island (80)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 2 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Replacement Effect: Sandsteppe Citadel enters tapped.
+Land: Ai(1)-Abzan Siege played Sandsteppe Citadel (9)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 3 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Swamp (86)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 4 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Replacement Effect: Blossoming Sands enters tapped.
+Land: Ai(1)-Abzan Siege played Blossoming Sands (14)
+Add To Stack: Ai(1)-Abzan Siege triggered Blossoming Sands
+Life: Life: Ai(1)-Abzan Siege 20 > 21
+Resolve Stack: When Blossoming Sands enters, you gain 1 life. [Zone Changer: Blossoming Sands (14)]
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 5 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Island (109)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (109) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Fog Elemental
+Resolve Stack: Fog Elemental - Creature 4 / 4
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 6 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Swamp (43)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Add To Stack: Ai(1)-Abzan Siege cast Abzan Falconer
+Resolve Stack: Abzan Falconer - Creature 2 / 3
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 7 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Island (77)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Combat: Ai(2)-Aerodoom assigned Fog Elemental (72) to attack Ai(1)-Abzan Siege.
+Add To Stack: Ai(2)-Aerodoom triggered Fog Elemental
+Resolve Stack: Whenever Fog Elemental attacks or blocks, sacrifice it at end of combat. [Attacker: Fog Elemental (72)]
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Combat: Ai(1)-Abzan Siege didn't block Fog Elemental (72).
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Damage: Fog Elemental (72) deals 4 combat damage to Ai(1)-Abzan Siege.
+Life: Life: Ai(1)-Abzan Siege 21 > 17
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Add To Stack: Ai(2)-Aerodoom triggered Fog Elemental
+Zone Change: Fog Elemental (72) was put into Graveyard from Battlefield.
+Resolve Stack: Sacrifice Fog Elemental at end of combat. [Phase: Ai(2)-Aerodoom]
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Mana: Island (77) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Gravedigger
+Resolve Stack: Gravedigger - Creature 2 / 2
+Add To Stack: Ai(2)-Aerodoom triggered Gravedigger targeting [Fog Elemental (72)]
+Resolve Stack: When Gravedigger enters, you may return target creature card from your graveyard to your hand. (Targeting: [[Fog Elemental (72)]]) [Zone Changer: Gravedigger (93)]
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 8 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Forest (20)
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (43) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege cast Abzan Falconer
+Resolve Stack: Abzan Falconer - Creature 2 / 3
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned Abzan Falconer (52) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom didn't block Abzan Falconer (52).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Damage: Abzan Falconer (52) deals 2 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(2)-Aerodoom 20 > 18
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 9 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Replacement Effect: Remote Isle enters tapped.
+Land: Ai(2)-Aerodoom played Remote Isle (61)
+Mana: Island (80) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (109) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Fog Elemental
+Resolve Stack: Fog Elemental - Creature 4 / 4
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 10 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Forest (20) - {T}: Add {G}.
+Add To Stack: Ai(1)-Abzan Siege cast Abzan Charm
+Zone Change: Fog Elemental (72) was put into Exile from Battlefield.
+Resolve Stack: Abzan Charm (24) -  Exile target creature with power 3 or greater. (Targeting: Fog Elemental (72))
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Plains (2)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned Abzan Falconer (52) and Abzan Falconer (53) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom didn't block Abzan Falconer (52).
+Ai(2)-Aerodoom didn't block Abzan Falconer (53).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Damage: Abzan Falconer (52) deals 2 combat damage to Ai(2)-Aerodoom.
+Damage: Abzan Falconer (53) deals 2 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(2)-Aerodoom 18 > 14
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 11 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (109) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Gaseous Form targeting [Abzan Falconer (52)]
+Resolve Stack: Gaseous Form (110) -  Attach to Abzan Falconer (52)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Combat: Ai(2)-Aerodoom assigned Gravedigger (93) to attack Ai(1)-Abzan Siege.
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Combat: Ai(1)-Abzan Siege didn't block Gravedigger (93).
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Damage: Gravedigger (93) deals 2 combat damage to Ai(1)-Abzan Siege.
+Life: Life: Ai(1)-Abzan Siege 17 > 15
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 12 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Swamp (44)
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Plains (2) - {T}: Add {W}.
+Add To Stack: Ai(1)-Abzan Siege cast Hunt the Weak targeting [Abzan Falconer (52)] [Gravedigger (93)]
+Damage: Abzan Falconer (52) deals 3 damage to Gravedigger (93).
+Damage: Gravedigger (93) deals 2 damage to Abzan Falconer (52).
+Resolve Stack: Hunt the Weak (36) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (52). Abzan Falconer (52) fights Gravedigger (93).
+Zone Change: Gravedigger (93) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned Abzan Falconer (53) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom didn't block Abzan Falconer (53).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Damage: Abzan Falconer (53) deals 2 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(2)-Aerodoom 14 > 12
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Falconer
+Resolve Stack: Abzan Falconer (52) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (52).
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 13 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Island (102)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Mana: Island (77) - {T}: Add {U}.
+Mana: Remote Isle (61) - {T}: Add {U}.
+Mana: Island (102) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Add To Stack: Ai(2)-Aerodoom cast Mahamoti Djinn
+Resolve Stack: Mahamoti Djinn - Creature 5 / 6
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 14 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Forest (23)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (44) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege cast Salt Road Patrol
+Resolve Stack: Salt Road Patrol - Creature 2 / 5
+Mana: Forest (23) - {T}: Add {G}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Add To Stack: Ai(1)-Abzan Siege cast Abzan Banner
+Resolve Stack: Abzan Banner
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 15 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Mana: Island (77) - {T}: Add {U}.
+Mana: Remote Isle (61) - {T}: Add {U}.
+Mana: Island (102) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Add To Stack: Ai(2)-Aerodoom cast Cloud Djinn
+Resolve Stack: Cloud Djinn - Creature 5 / 4
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 16 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Replacement Effect: Scoured Barrens enters tapped.
+Land: Ai(1)-Abzan Siege played Scoured Barrens (41)
+Add To Stack: Ai(1)-Abzan Siege triggered Scoured Barrens
+Life: Life: Ai(1)-Abzan Siege 15 > 16
+Resolve Stack: When Scoured Barrens enters, you gain 1 life. [Zone Changer: Scoured Barrens (41)]
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Swamp (44) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege cast Longshot Squad
+Resolve Stack: Longshot Squad - Creature 3 / 3
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Forest (23) - {T}: Add {G}.
+Add To Stack: Ai(1)-Abzan Siege activated Salt Road Patrol
+Resolve Stack: Salt Road Patrol (35) - Ai(1)-Abzan Siege puts a +1/+1 counter on Salt Road Patrol (35).
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Falconer
+Resolve Stack: Abzan Falconer (53) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (53).
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 17 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Land: Ai(2)-Aerodoom played Island (104)
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Swamp (86) - {T}: Add {B}.
+Add To Stack: Ai(2)-Aerodoom cast Dark Ritual
+Resolve Stack: Dark Ritual (67) - Ai(2)-Aerodoom adds {B}{B}{B}.
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Sengir Vampire
+Resolve Stack: Sengir Vampire - Creature 4 / 4
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 18 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Plains (2) - {T}: Add {W}.
+Zone Change: Abzan Banner (56) was put into Graveyard from Battlefield.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Banner
+Resolve Stack: Abzan Banner (56) - Ai(1)-Abzan Siege draws a card.
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Mana: Forest (23) - {T}: Add {G}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Add To Stack: Ai(1)-Abzan Siege cast Incremental Growth targeting [Abzan Falconer (52)] [Salt Road Patrol (35)] [Abzan Falconer (53)]
+Mana: Island (77) - {T}: Add {U}.
+Mana: Remote Isle (61) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Power Sink targeting [Put a +1/+1 counter on target creature, two +1/+1 counters on another target creature, and three +1/+1 counters on a third target creature.  ]
+Zone Change: Send countered spell to Graveyard
+Resolve Stack: Power Sink (119) - Countering [Put a +1/+1 counter on target creature, two +1/+1 counters on another target creature, and three +1/+1 counters on a third target creature.  ] unless Ai(1)-Abzan Siege pays X. If Ai(1)-Abzan Siege doesn't, that player taps all lands with mana abilities they control and Ai(1)-Abzan Siege loses all unspent mana. (X=1)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 19 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (80) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Diabolic Vision
+Resolve Stack: Diabolic Vision (85) - Ai(2)-Aerodoom looks at the top five cards of their library. They put one of them into their hand and put the rest on the bottom of their library in any order.
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 20 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Swamp (43) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege cast Ainok Bond-Kin
+Resolve Stack: Ainok Bond-Kin - Creature 2 / 1
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Forest (23) - {T}: Add {G}.
+Add To Stack: Ai(1)-Abzan Siege cast High Sentinels of Arashin
+Resolve Stack: High Sentinels of Arashin - Creature 3 / 4
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Falconer
+Resolve Stack: Abzan Falconer (53) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (53).
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 21 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (77) - {T}: Add {U}.
+Mana: Remote Isle (61) - {T}: Add {U}.
+Mana: Island (102) - {T}: Add {U}.
+Mana: Island (104) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Blizzard Elemental
+Resolve Stack: Blizzard Elemental - Creature 5 / 5
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 22 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned High Sentinels of Arashin (33) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom assigned Sengir Vampire (120) and Blizzard Elemental (117) to block High Sentinels of Arashin (33).
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Forest (23) - {T}: Add {G}.
+Mana: Swamp (43) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [High Sentinels of Arashin (33)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on High Sentinels of Arashin (33).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Damage: High Sentinels of Arashin (33) deals 5 damage to Blizzard Elemental (117).
+Damage: High Sentinels of Arashin (33) deals 2 damage to Sengir Vampire (120).
+Zone Change: Blizzard Elemental (117) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Damage: Sengir Vampire (120) deals 4 damage to High Sentinels of Arashin (33).
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Add To Stack: Ai(1)-Abzan Siege cast Child of Night
+Resolve Stack: Child of Night - Creature 2 / 1
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Add To Stack: Ai(1)-Abzan Siege activated Longshot Squad
+Resolve Stack: Longshot Squad (16) - Ai(1)-Abzan Siege puts a +1/+1 counter on Longshot Squad (16).
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 23 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Mana: Island (77) - {T}: Add {U}.
+Mana: Remote Isle (61) - {T}: Add {U}.
+Mana: Island (102) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Clockwork Avian
+Replacement Effect: Clockwork Avian enters with four +1/+0 counters on it.
+Resolve Stack: Clockwork Avian - Creature 0 / 4
+Phase: Ai(2)-Aerodoom's End step
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 24 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Swamp (46)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned High Sentinels of Arashin (33) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom assigned Sengir Vampire (120) to block High Sentinels of Arashin (33).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Damage: High Sentinels of Arashin (33) deals 8 damage to Sengir Vampire (120).
+Zone Change: Sengir Vampire (120) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Plains (2) - {T}: Add {W}.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Falconer
+Resolve Stack: Abzan Falconer (52) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (52).
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Swamp (43) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege activated Ainok Bond-Kin
+Resolve Stack: Ainok Bond-Kin (57) - Ai(1)-Abzan Siege puts a +1/+1 counter on Ainok Bond-Kin (57).
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 25 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Mana: Swamp (86) - {T}: Add {B}.
+Mana: Island (80) - {T}: Add {U}.
+Mana: Island (109) - {T}: Add {U}.
+Add To Stack: Ai(2)-Aerodoom cast Feral Shadow
+Resolve Stack: Feral Shadow - Creature 2 / 1
+Phase: Ai(2)-Aerodoom's End step
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Forest (23) - {T}: Add {G}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [High Sentinels of Arashin (33)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on High Sentinels of Arashin (33).
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 26 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned High Sentinels of Arashin (33) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom assigned Feral Shadow (92) to block High Sentinels of Arashin (33).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Damage: High Sentinels of Arashin (33) deals 10 damage to Feral Shadow (92).
+Zone Change: Feral Shadow (92) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Plains (2) - {T}: Add {W}.
+Add To Stack: Ai(1)-Abzan Siege cast Abzan Banner
+Resolve Stack: Abzan Banner
+Mana: Forest (23) - {T}: Add {G}.
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Mana: Swamp (44) - {T}: Add {B}.
+Zone Change: Abzan Banner (55) was put into Graveyard from Battlefield.
+Add To Stack: Ai(1)-Abzan Siege activated Abzan Banner
+Resolve Stack: Abzan Banner (55) - Ai(1)-Abzan Siege draws a card.
+Land: Ai(1)-Abzan Siege played Plains (6)
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 27 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Land: Ai(2)-Aerodoom played Swamp (115)
+Phase: Ai(2)-Aerodoom's End step
+Mana: Plains (6) - {T}: Add {W}.
+Mana: Swamp (46) - {T}: Add {B}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Sandsteppe Citadel (9) - {T}: Add {W}, {B}, or {G}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [High Sentinels of Arashin (33)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on High Sentinels of Arashin (33).
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 28 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned High Sentinels of Arashin (33), Abzan Falconer (53), Longshot Squad (16), Salt Road Patrol (35), Ainok Bond-Kin (57) and Child of Night (50) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom assigned Clockwork Avian (112) to block High Sentinels of Arashin (33).
+Ai(2)-Aerodoom assigned Cloud Djinn (68) to block Abzan Falconer (53).
+Ai(2)-Aerodoom assigned Mahamoti Djinn (76) to block Longshot Squad (16).
+Ai(2)-Aerodoom didn't block Salt Road Patrol (35).
+Ai(2)-Aerodoom didn't block Ainok Bond-Kin (57).
+Ai(2)-Aerodoom didn't block Child of Night (50).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Damage: High Sentinels of Arashin (33) deals 11 damage to Clockwork Avian (112).
+Damage: Abzan Falconer (53) deals 4 damage to Cloud Djinn (68).
+Damage: Longshot Squad (16) deals 4 damage to Mahamoti Djinn (76).
+Damage: Salt Road Patrol (35) deals 3 combat damage to Ai(2)-Aerodoom.
+Damage: Ainok Bond-Kin (57) deals 3 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(2)-Aerodoom 12 > 6
+Zone Change: Cloud Djinn (68) was put into Graveyard from Battlefield.
+Zone Change: Clockwork Avian (112) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's Combat Damage Step
+Damage: Child of Night (50) deals 2 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(1)-Abzan Siege 16 > 18
+Damage: Mahamoti Djinn (76) deals 5 damage to Longshot Squad (16).
+Life: Life: Ai(2)-Aerodoom 6 > 4
+Zone Change: Longshot Squad (16) was put into Graveyard from Battlefield.
+Phase: Ai(1)-Abzan Siege's End of Combat Step
+Phase: Ai(1)-Abzan Siege's Main phase, postcombat
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Swamp (44) - {T}: Add {B}.
+Mana: Forest (23) - {T}: Add {G}.
+Add To Stack: Ai(1)-Abzan Siege cast Ivorytusk Fortress
+Resolve Stack: Ivorytusk Fortress - Creature 5 / 7
+Phase: Ai(1)-Abzan Siege's End step
+Phase: Ai(1)-Abzan Siege's Cleanup step
+Turn: Turn 29 (Ai(2)-Aerodoom)
+Phase: Ai(2)-Aerodoom's Untap step
+Phase: Ai(2)-Aerodoom's Upkeep step
+Phase: Ai(2)-Aerodoom's Draw step
+Phase: Ai(2)-Aerodoom's Main phase, precombat
+Phase: Ai(2)-Aerodoom's Beginning of Combat Step
+Phase: Ai(2)-Aerodoom's Declare Attackers Step
+Phase: Ai(2)-Aerodoom's Declare Blockers Step
+Phase: Ai(2)-Aerodoom's First Strike Damage Step
+Phase: Ai(2)-Aerodoom's Combat Damage Step
+Phase: Ai(2)-Aerodoom's End of Combat Step
+Phase: Ai(2)-Aerodoom's Main phase, postcombat
+Phase: Ai(2)-Aerodoom's End step
+Mana: Plains (6) - {T}: Add {W}.
+Mana: Swamp (46) - {T}: Add {B}.
+Mana: Blossoming Sands (14) - {T}: Add {G} or {W}.
+Mana: Scoured Barrens (41) - {T}: Add {W} or {B}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [High Sentinels of Arashin (33)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on High Sentinels of Arashin (33).
+Phase: Ai(2)-Aerodoom's Cleanup step
+Turn: Turn 30 (Ai(1)-Abzan Siege)
+Phase: Ai(1)-Abzan Siege's Untap step
+Phase: Ai(1)-Abzan Siege's Upkeep step
+Phase: Ai(1)-Abzan Siege's Draw step
+Phase: Ai(1)-Abzan Siege's Main phase, precombat
+Land: Ai(1)-Abzan Siege played Plains (1)
+Phase: Ai(1)-Abzan Siege's Beginning of Combat Step
+Phase: Ai(1)-Abzan Siege's Declare Attackers Step
+Combat: Ai(1)-Abzan Siege assigned High Sentinels of Arashin (33), Ivorytusk Fortress (25), Abzan Falconer (53), Salt Road Patrol (35), Ainok Bond-Kin (57) and Child of Night (50) to attack Ai(2)-Aerodoom.
+Phase: Ai(1)-Abzan Siege's Declare Blockers Step
+Combat: Ai(2)-Aerodoom assigned Mahamoti Djinn (76) to block High Sentinels of Arashin (33).
+Ai(2)-Aerodoom didn't block Ivorytusk Fortress (25).
+Ai(2)-Aerodoom didn't block Abzan Falconer (53).
+Ai(2)-Aerodoom didn't block Salt Road Patrol (35).
+Ai(2)-Aerodoom didn't block Ainok Bond-Kin (57).
+Ai(2)-Aerodoom didn't block Child of Night (50).
+Mana: Plains (2) - {T}: Add {W}.
+Mana: Swamp (43) - {T}: Add {B}.
+Mana: Forest (20) - {T}: Add {G}.
+Mana: Swamp (44) - {T}: Add {B}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [Abzan Falconer (53)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (53).
+Mana: Plains (6) - {T}: Add {W}.
+Mana: Forest (23) - {T}: Add {G}.
+Mana: Swamp (46) - {T}: Add {B}.
+Mana: Plains (1) - {T}: Add {W}.
+Add To Stack: Ai(1)-Abzan Siege activated High Sentinels of Arashin targeting [Abzan Falconer (53)]
+Resolve Stack: High Sentinels of Arashin (33) - Ai(1)-Abzan Siege puts a +1/+1 counter on Abzan Falconer (53).
+Phase: Ai(1)-Abzan Siege's First Strike Damage Step
+Damage: High Sentinels of Arashin (33) deals 11 damage to Mahamoti Djinn (76).
+Damage: Abzan Falconer (53) deals 6 combat damage to Ai(2)-Aerodoom.
+Damage: Salt Road Patrol (35) deals 3 combat damage to Ai(2)-Aerodoom.
+Damage: Ainok Bond-Kin (57) deals 3 combat damage to Ai(2)-Aerodoom.
+Life: Life: Ai(2)-Aerodoom 4 > -8
+Player Control: Ai(1)-Abzan Siege has restored control over themself
+Player Control: Ai(2)-Aerodoom has restored control over themself
+Game Outcome: Turn 15
+Game Outcome: Ai(1)-Abzan Siege has won because all opponents have lost
+Game Outcome: Ai(2)-Aerodoom has lost because life total reached 0
+Match Result: Ai(1)-Abzan Siege: 1 Ai(2)-Aerodoom: 0 
+
+Game Result: Game 1 ended in 17384 ms. Ai(1)-Abzan Siege has won!
+

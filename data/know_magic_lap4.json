@@ -1,0 +1,76 @@
+{
+  "parent_loop": "CON-246",
+  "title": "Know Magic \u2014 lap 4 admission + remeasure (cleanup \u2192 maintenance)",
+  "closed_at": "2026-08-08",
+  "note": "Optional cleanup lap. Widens graveyard_recursion to hand-return shapes and ships ten thin unread clusters. Productive comprehension laps are done; further work is print-wave maintenance.",
+  "admitted": {
+    "graveyard_recursion_widen": "from your graveyard to your hand",
+    "oracle_signals": [
+      "stat_pump_eot",
+      "shrink_target",
+      "bounce_to_hand",
+      "prevent_damage",
+      "choose_color",
+      "put_on_library",
+      "discard_additional_cost",
+      "choose_two",
+      "leyline_start",
+      "upkeep_sac_unless"
+    ]
+  },
+  "coverage": {
+    "before_lap": {
+      "at_least_one_signal_pct": 70.1,
+      "signal_or_keyword_pct": 82.9,
+      "any_consumes_pct": 26.6,
+      "unread_no_signal_no_keyword_pct": 17.1,
+      "oracle_signals": 96
+    },
+    "after_lap": {
+      "at_least_one_signal_pct": 73.4,
+      "signal_or_keyword_pct": 85.0,
+      "any_consumes_pct": 28.8,
+      "unread_no_signal_no_keyword_pct": 15.0,
+      "oracle_signals": 106
+    },
+    "delta": {
+      "at_least_one_signal_pp": 3.3,
+      "signal_or_keyword_pp": 2.1,
+      "any_consumes_pp": 2.2,
+      "unread_pp": -2.1,
+      "precision_pp": 0.0
+    }
+  },
+  "precision": {
+    "before_pct": 89.9,
+    "after_pct": 89.9,
+    "floor_pct": 88.0,
+    "held": true
+  },
+  "unread_tail_top": [
+    {
+      "count": 12,
+      "line": "this creature can't attack unless defending player controls an island"
+    },
+    {
+      "count": 9,
+      "line": "cast this spell only during the declare attackers step and only if you've been attacked this step"
+    },
+    {
+      "count": 8,
+      "line": "draft this card face up"
+    },
+    {
+      "count": 7,
+      "line": "{M}, {M}: put a charge counter on this artifact"
+    },
+    {
+      "count": 6,
+      "line": "at the beginning of your upkeep, you may put a verse counter on this enchantment"
+    }
+  ],
+  "laps_remaining_estimate": {
+    "productive_laps_left": "0",
+    "reason": "Unread 15.0%. Remaining clusters are \u226412 cards each (landwalk locks, combat timing, draft, verse/charge oddities). Not worth another comprehension lap. Maintenance / print waves only. Not 100%."
+  }
+}

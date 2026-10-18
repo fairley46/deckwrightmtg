@@ -1,0 +1,9 @@
+{
+  "comment": "Hand overlay for release calendar (CON-137/218). Keys are Scryfall set codes. Fields override /sets when Scryfall has no date or the announced date differs. `mechanics` lists announced debut names for What's coming — real card words only, never invented.",
+  "sets": {
+    "hob": {
+      "released_at": "2026-08-14",
+      "mechanics": ["Storied"]
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "issue": "CON-260",
+  "measured_on": "2026-10-11",
+  "measured_at": "2026-10-11T09:00:47Z",
+  "wave": "cadence-reeval-2026-10-11",
+  "overall": "ok",
+  "refresh": null,
+  "coverage": {
+    "status": "ok",
+    "path": "data/oracle_coverage_report.json",
+    "measured_on": "2026-10-11",
+    "universe_commander_legal": 32116,
+    "unknown_unreadable": 0,
+    "graded": 32116,
+    "at_least_one_signal_pct": 73.6,
+    "at_least_one_signal_count": 23642,
+    "signal_or_keyword_pct": 85.1,
+    "signal_or_keyword_count": 27323,
+    "any_consumes_pct": 28.9,
+    "any_consumes_count": 9273,
+    "unread_pct": 14.9,
+    "unread_count": 4793,
+    "oracle_signal_count": 106,
+    "unread_lines_top": [
+      {
+        "count": 12,
+        "line": "this creature can't attack unless defending player controls an island"
+      },
+      {
+        "count": 9,
+        "line": "cast this spell only during the declare attackers step and only if you've been attacked this step"
+      },
+      {
+        "count": 8,
+        "line": "draft this card face up"
+      },
+      {
+        "count": 7,
+        "line": "{M}, {M}: put a charge counter on this artifact"
+      },
+      {
+        "count": 6,
+        "line": "at the beginning of your upkeep, you may put a verse counter on this enchantment"
+      },
+      {
+        "count": 5,
+        "line": "destroy target attacking creature"
+      },
+      {
+        "count": 5,
+        "line": "when this creature becomes the target of a spell or ability, sacrifice it"
+      },
+      {
+        "count": 5,
+        "line": "change the target of target spell with a single target"
+      },
+      {
+        "count": 5,
+        "line": "destroy target tapped creature"
+      },
+      {
+        "count": 5,
+        "line": "counter target creature spell"
+      },
+      {
+        "count": 5,
+        "line": "exile target artifact or enchantment"
+      },
+      {
+        "count": 5,
+        "line": "you may have this creature assign its combat damage as though it weren't blocked"
+      }
+    ],
+    "bulk_updated_at": "2026-10-10T21:01:55.638+00:00"
+  },
+  "playstyles": {
+    "status": "ok",
+    "fixture_rows": 57,
+    "scored": 57,
+    "excluded": 0,
+    "hit": 71,
+    "miss": 15,
+    "extra": 8,
+    "precision": 0.8987,
+    "precision_pct": 89.9,
+    "recall": 0.8256,
+    "recall_pct": 82.6,
+    "precision_floor": 0.88,
+    "precision_ok": true
+  },
+  "product_spot_checks": [
+    {
+      "test": "test_instrument_chat.py",
+      "status": "ok",
+      "ok": true,
+      "exit_code": 0,
+      "stderr_tail": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nOK\n"
+    },
+    {
+      "test": "test_way_preference.py",
+      "status": "ok",
+      "ok": true,
+      "exit_code": 0,
+      "stderr_tail": ""
+    },
+    {
+      "test": "test_thesis_glued.py",
+      "status": "ok",
+      "ok": true,
+      "exit_code": 0,
+      "stderr_tail": ""
+    },
+    {
+      "test": "test_precon_upgrade.py",
+      "status": "ok",
+      "ok": true,
+      "exit_code": 0,
+      "stderr_tail": ""
+    },
+    {
+      "test": "test_saved_ask_instrument.py",
+      "status": "ok",
+      "ok": true,
+      "exit_code": 0,
+      "stderr_tail": ""
+    }
+  ],
+  "gate1": {
+    "status": "green",
+    "path": "backend-review/playtests/2026-08-08-gate1-RETEST.md",
+    "unclassifiable": "0/0/0",
+    "note": "last recorded retest \u2014 live Playwright re-run is Claude-owned"
+  },
+  "next_actions": [
+    "Name the gap: 12\u00d7 unread line \"this creature can't attack unless defending player controls an island\" (see unread_lines_top).",
+    "If a real unread cluster moved after a named set dump: one small admit PR (exemplar + near-miss in test_synergy.py). Refuse keyword-catalog oracle_signals.",
+    "Update docs/KNOW-MAGIC-MAINTENANCE.md and docs/GA-FREEZE.md with these dated numbers \u2014 do not silently bump."
+  ]
+}

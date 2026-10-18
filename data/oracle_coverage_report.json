@@ -1,0 +1,549 @@
+{
+  "issue": "CON-251",
+  "measured_on": "2026-10-11",
+  "universe_commander_legal": 32116,
+  "unknown_unreadable": 0,
+  "graded": 32116,
+  "at_least_one_signal": {
+    "count": 23642,
+    "pct": 73.6
+  },
+  "at_least_one_keyword": {
+    "count": 16159,
+    "pct": 50.3
+  },
+  "keyword_only": {
+    "count": 3681,
+    "pct": 11.5
+  },
+  "signal_or_keyword": {
+    "count": 27323,
+    "pct": 85.1
+  },
+  "no_signal": {
+    "count": 8474,
+    "pct": 26.4
+  },
+  "unread_no_signal_no_keyword": {
+    "count": 4793,
+    "pct": 14.9
+  },
+  "any_consumes": {
+    "count": 9273,
+    "pct": 28.9
+  },
+  "oracle_signal_count": 106,
+  "signal_hit_counts": {
+    "enters": 5487,
+    "card_draw": 3870,
+    "token_create": 3721,
+    "counter_placement": 2836,
+    "creature_tokens": 2564,
+    "go_tall_payoff": 2389,
+    "creature_token_maker": 2385,
+    "attacks": 1976,
+    "stat_pump_eot": 1772,
+    "graveyard_recursion": 1671,
+    "grant_keyword_eot": 1669,
+    "lifegain_source": 1643,
+    "go_wide_payoff": 1325,
+    "dies_trigger": 1265,
+    "enchant_creature": 982,
+    "sacrifice_outlet": 853,
+    "enters_tapped": 787,
+    "drain": 756,
+    "cant_be_blocked": 727,
+    "resource_tokens": 694,
+    "artifact_matter": 653,
+    "tap_add_colored": 579,
+    "colorless_mana": 545,
+    "play_from_graveyard": 536,
+    "any_color_mana": 534,
+    "activated_pump_plus": 513,
+    "tribal_type_matter": 512,
+    "modal_choose_one": 498,
+    "dual_mana_ability": 451,
+    "cant_block": 428,
+    "destroy_target_creature": 417,
+    "leaves_battlefield": 350,
+    "tap_target": 337,
+    "treasure_tokens": 335,
+    "attach_to_commander": 334,
+    "blink": 311,
+    "counterspell": 308,
+    "firebreathing": 299,
+    "stays_tapped": 278,
+    "bounce_to_hand": 275,
+    "shrink_target": 242,
+    "exile_target_creature": 240,
+    "land_trigger": 209,
+    "instant_or_sorcery_cast": 171,
+    "prevent_damage": 152,
+    "explosive_ramp": 147,
+    "food_tokens": 143,
+    "poison_gain": 134,
+    "clue_tokens": 133,
+    "energy_gain": 128,
+    "must_attack": 122,
+    "uncounterable": 114,
+    "pain_mana": 106,
+    "choose_color": 102,
+    "energy_pay": 101,
+    "magecraft": 101,
+    "lifegain_trigger": 98,
+    "proliferate": 96,
+    "activated_ping": 93,
+    "choose_creature_type": 91,
+    "enchant_land": 89,
+    "destroy_target_land": 86,
+    "sacrifice_trigger": 83,
+    "land_sacrifice_value": 79,
+    "aura_or_equipment_cast": 77,
+    "put_on_library": 69,
+    "top_library_look": 63,
+    "symmetric_resource": 56,
+    "monarch_become": 56,
+    "modal_choose_one_or_both": 53,
+    "upkeep_sac_unless": 51,
+    "ring_tempts": 50,
+    "discard_additional_cost": 42,
+    "no_max_hand_size": 41,
+    "speed_care": 40,
+    "speed_start": 40,
+    "blood_tokens": 38,
+    "choose_two": 34,
+    "powerstone_tokens": 31,
+    "gained_life_this_turn": 31,
+    "citys_blessing_get": 28,
+    "pay_life_enter": 27,
+    "citys_blessing_have": 27,
+    "monarch_if": 26,
+    "poison_care": 24,
+    "initiative_take": 23,
+    "rad_gain": 22,
+    "leyline_start": 17,
+    "experience_care": 16,
+    "commander_matters": 16,
+    "experience_gain": 15,
+    "ring_care": 14,
+    "junk_tokens": 13,
+    "map_tokens": 11,
+    "filter_mana": 11,
+    "tax_opponent_spells": 9,
+    "creature_type_matter": 8,
+    "token_doubler": 7,
+    "commander_identity_mana": 6,
+    "rad_care": 6,
+    "initiative_if": 6,
+    "commander_free_cast": 5,
+    "gold_tokens": 4,
+    "etb_doubler": 4,
+    "dies_trigger_doubler": 3,
+    "spell_from_graveyard": 3
+  },
+  "keyword_hit_counts": {
+    "Flying": 3164,
+    "Enchant": 1241,
+    "Trample": 994,
+    "Vigilance": 727,
+    "Haste": 640,
+    "Flash": 608,
+    "Equip": 601,
+    "Mill": 581,
+    "Scry": 425,
+    "Reach": 424,
+    "Transform": 424,
+    "Cycling": 394,
+    "Menace": 382,
+    "First strike": 375,
+    "Lifelink": 362,
+    "Treasure": 350,
+    "Deathtouch": 329,
+    "Defender": 308,
+    "Regenerate": 271,
+    "Surveil": 252,
+    "Kicker": 226,
+    "Flashback": 215,
+    "Protection": 193,
+    "Ward": 192,
+    "Landfall": 185,
+    "Crew": 181,
+    "Morph": 153,
+    "Food": 150,
+    "Fight": 143,
+    "Investigate": 134,
+    "Devoid": 132,
+    "Double": 131,
+    "Partner": 129,
+    "Landwalk": 128,
+    "Double strike": 120,
+    "Indestructible": 111,
+    "Convoke": 104,
+    "Threshold": 104,
+    "Proliferate": 96,
+    "Prowess": 94
+  },
+  "unread_lines_ranked": [
+    {
+      "count": 12,
+      "line": "this creature can't attack unless defending player controls an island"
+    },
+    {
+      "count": 9,
+      "line": "cast this spell only during the declare attackers step and only if you've been attacked this step"
+    },
+    {
+      "count": 8,
+      "line": "draft this card face up"
+    },
+    {
+      "count": 7,
+      "line": "{M}, {M}: put a charge counter on this artifact"
+    },
+    {
+      "count": 6,
+      "line": "at the beginning of your upkeep, you may put a verse counter on this enchantment"
+    },
+    {
+      "count": 5,
+      "line": "destroy target attacking creature"
+    },
+    {
+      "count": 5,
+      "line": "when this creature becomes the target of a spell or ability, sacrifice it"
+    },
+    {
+      "count": 5,
+      "line": "change the target of target spell with a single target"
+    },
+    {
+      "count": 5,
+      "line": "destroy target tapped creature"
+    },
+    {
+      "count": 5,
+      "line": "counter target creature spell"
+    },
+    {
+      "count": 5,
+      "line": "exile target artifact or enchantment"
+    },
+    {
+      "count": 5,
+      "line": "you may have this creature assign its combat damage as though it weren't blocked"
+    },
+    {
+      "count": 5,
+      "line": "{M}: untap target land"
+    },
+    {
+      "count": 5,
+      "line": "{M}, remove any number of charge counters from this artifact: add {M}, then add an additional {M} for each charge counter removed this way"
+    },
+    {
+      "count": 5,
+      "line": "target creature deals damage to itself equal to its power"
+    },
+    {
+      "count": 4,
+      "line": "as an additional cost to cast this spell, pay x life"
+    },
+    {
+      "count": 4,
+      "line": "destroy all nonland permanents"
+    },
+    {
+      "count": 4,
+      "line": "all creatures able to block this creature do so"
+    },
+    {
+      "count": 4,
+      "line": "as an additional cost to cast this spell, sacrifice a land"
+    },
+    {
+      "count": 4,
+      "line": "target creature's owner puts it on their choice of the top or bottom of their library"
+    },
+    {
+      "count": 4,
+      "line": "you may play an additional land on each of your turns"
+    },
+    {
+      "count": 4,
+      "line": "{M}: you may put a land card from your hand onto the battlefield"
+    },
+    {
+      "count": 4,
+      "line": "whenever this creature becomes blocked, you may have it deal damage equal to its power to target creature. if you do, this creature assigns no combat damage this turn"
+    },
+    {
+      "count": 4,
+      "line": "take an extra turn after this one"
+    },
+    {
+      "count": 4,
+      "line": "during your turn, this creature has first strike"
+    },
+    {
+      "count": 4,
+      "line": "target creature you control deals damage equal to its power to target creature an opponent controls"
+    },
+    {
+      "count": 4,
+      "line": "each player can't cast more than one spell each turn"
+    },
+    {
+      "count": 4,
+      "line": "creatures your opponents control get -1/-0"
+    },
+    {
+      "count": 4,
+      "line": "sacrifice this creature: destroy target enchantment"
+    },
+    {
+      "count": 4,
+      "line": "skip your draw step"
+    },
+    {
+      "count": 4,
+      "line": "destroy target artifact or enchantment"
+    },
+    {
+      "count": 4,
+      "line": "when you control no islands, sacrifice this creature"
+    },
+    {
+      "count": 4,
+      "line": "this creature can't attack or block alone"
+    },
+    {
+      "count": 4,
+      "line": "sacrifice this creature: add {M}{M}"
+    },
+    {
+      "count": 4,
+      "line": "destroy all enchantments"
+    },
+    {
+      "count": 4,
+      "line": "at the beginning of the end step, if no creatures are on the battlefield, sacrifice this enchantment"
+    },
+    {
+      "count": 4,
+      "line": "you may cast this spell as though it had flash if you pay {M} more to cast it"
+    },
+    {
+      "count": 3,
+      "line": "search your library for a basic land card, put it onto the battlefield tapped, then shuffle"
+    },
+    {
+      "count": 3,
+      "line": "you have shroud"
+    },
+    {
+      "count": 3,
+      "line": "look at the top three cards of your library. put one of them into your hand and the rest into your graveyard"
+    },
+    {
+      "count": 3,
+      "line": "this artifact enters with three charge counters on it"
+    },
+    {
+      "count": 3,
+      "line": "target creature you control deals damage equal to its power to target creature or planeswalker you don't control"
+    },
+    {
+      "count": 3,
+      "line": "activated abilities of artifacts can't be activated"
+    },
+    {
+      "count": 3,
+      "line": "choose one. if you control a commander as you cast this spell, you may choose both instead"
+    },
+    {
+      "count": 3,
+      "line": "{M}: the next 1 damage that would be dealt to this creature this turn is dealt to target creature you control instead"
+    },
+    {
+      "count": 3,
+      "line": "destroy all creatures"
+    },
+    {
+      "count": 3,
+      "line": "search your library for up to two basic land cards, reveal those cards, put one onto the battlefield tapped and the other into your hand, then shuffle"
+    },
+    {
+      "count": 3,
+      "line": "{M}{M}, {M}: target player discards a card. activate only as a sorcery"
+    },
+    {
+      "count": 3,
+      "line": "search your library for a card, then shuffle and put that card on top. you lose 2 life"
+    },
+    {
+      "count": 3,
+      "line": "artifact spells you cast cost {M} less to cast"
+    },
+    {
+      "count": 3,
+      "line": "{M}: untap another target permanent"
+    },
+    {
+      "count": 3,
+      "line": "{M}: put a charge counter on this artifact"
+    },
+    {
+      "count": 3,
+      "line": "{M}: exile target card from a graveyard"
+    },
+    {
+      "count": 3,
+      "line": "destroy target attacking or blocking creature"
+    },
+    {
+      "count": 3,
+      "line": "artifacts, creatures, and lands your opponents control enter tapped"
+    },
+    {
+      "count": 3,
+      "line": "destroy all creatures. they can't be regenerated"
+    },
+    {
+      "count": 3,
+      "line": "take an extra turn after this one. at the beginning of that turn's end step, you lose the game"
+    },
+    {
+      "count": 3,
+      "line": "tap up to two target creatures. those creatures don't untap during their controller's next untap step"
+    },
+    {
+      "count": 3,
+      "line": "when there are no creatures on the battlefield, sacrifice this enchantment"
+    },
+    {
+      "count": 3,
+      "line": "{M}: this creature deals 1 damage to target player or planeswalker"
+    },
+    {
+      "count": 3,
+      "line": "this creature can block an additional creature each combat"
+    },
+    {
+      "count": 3,
+      "line": "destroy all islands"
+    },
+    {
+      "count": 3,
+      "line": "as this creature enters, choose an opponent"
+    },
+    {
+      "count": 3,
+      "line": "whenever you cast a spirit or arcane spell, you may put a ki counter on this creature"
+    },
+    {
+      "count": 3,
+      "line": "as this artifact enters, choose an opponent"
+    },
+    {
+      "count": 3,
+      "line": "roll a d20"
+    },
+    {
+      "count": 3,
+      "line": "this creature enters with three -1/-1 counters on it"
+    },
+    {
+      "count": 3,
+      "line": "all creatures have haste"
+    },
+    {
+      "count": 3,
+      "line": "all creatures able to block target creature this turn do so"
+    },
+    {
+      "count": 3,
+      "line": "{M}, {M}, sacrifice this artifact: search your library for a basic land card, reveal it, put it into your hand, then shuffle"
+    },
+    {
+      "count": 3,
+      "line": "target creature gains deathtouch and indestructible until end of turn"
+    },
+    {
+      "count": 3,
+      "line": "at the beginning of your draw step, draw an additional card"
+    },
+    {
+      "count": 3,
+      "line": "untap all creatures you control"
+    },
+    {
+      "count": 3,
+      "line": "end the turn"
+    },
+    {
+      "count": 3,
+      "line": "this spell costs {M} less to cast for each creature in your party"
+    },
+    {
+      "count": 3,
+      "line": "{M}, sacrifice this creature: destroy target artifact or enchantment"
+    },
+    {
+      "count": 3,
+      "line": "{M}, {M}, sacrifice this artifact: it deals 3 damage to target creature"
+    },
+    {
+      "count": 3,
+      "line": "you don't lose the game for having 0 or less life"
+    },
+    {
+      "count": 3,
+      "line": "{M}: untap this creature"
+    },
+    {
+      "count": 3,
+      "line": "whenever a player taps a land for mana, that player adds one mana of any type that land produced"
+    }
+  ],
+  "note": "CON-251: readable = oracle_signal OR Scryfall keyword catalog. Keywords are not invented signals and do not create produce/consume. Unread tail ranks lines on cards with neither. Unknown means we could not look (missing oracle).",
+  "bulk_updated_at": "2026-10-10T21:01:55.638+00:00",
+  "bulk_fetched_at": "2026-10-11T09:00:03.591354+00:00",
+  "comparison": {
+    "before": {
+      "commit_note": "end of Know Magic lap 2 (CON-251 / 85ae055)",
+      "oracle_signal_count": 89,
+      "at_least_one_signal_pct": 66.6,
+      "at_least_one_signal_count": 21200,
+      "signal_or_keyword_pct": 80.5,
+      "signal_or_keyword_count": 25612,
+      "any_consumes_pct": 24.9,
+      "any_consumes_count": 7918,
+      "unread_no_signal_no_keyword_pct": 19.5,
+      "playstyles_precision_pct": 89.9
+    },
+    "after": {
+      "oracle_signal_count": 106,
+      "at_least_one_signal_pct": 73.6,
+      "at_least_one_signal_count": 23642,
+      "any_consumes_pct": 28.9,
+      "any_consumes_count": 9273,
+      "no_signal_pct": 26.4,
+      "playstyles_precision_pct": 89.9
+    },
+    "delta": {
+      "at_least_one_signal_pp": 7.0,
+      "any_consumes_pp": 4.0,
+      "precision_pp": 0.0
+    },
+    "new_signals": [
+      "grant_keyword_eot",
+      "tap_target",
+      "exile_target_creature",
+      "choose_creature_type",
+      "destroy_target_land",
+      "stays_tapped",
+      "activated_ping"
+    ],
+    "note": "CON-252 lap 3 mid-tail. Precision 89.9% held."
+  }
+}

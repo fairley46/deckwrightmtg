@@ -1,0 +1,274 @@
+{
+  "hero": {
+    "id": "5775225",
+    "name": "Blood Rites",
+    "commander": "Clavile\u00f1o, First of the Blessed",
+    "cmc": 3
+  },
+  "n": 50,
+  "wins": 26,
+  "sim_runs": 600,
+  "seed": 163,
+  "sim_version": 8,
+  "measurable": [
+    "life_gained",
+    "life_drained",
+    "lands_in_play"
+  ],
+  "not_measurable": [
+    "cards_drawn",
+    "cards_in_hand",
+    "creatures_in_play",
+    "payoffs_in_play",
+    "mana_available",
+    "extra_land_drops",
+    "land_drops_this_turn",
+    "board_power"
+  ],
+  "table": [
+    {
+      "condition": "lands_in_play >= 5",
+      "turn": 6,
+      "sim": 66.5,
+      "forge": 72.0,
+      "delta": 5.5,
+      "n": 50
+    },
+    {
+      "condition": "lands_in_play >= 5",
+      "turn": 10,
+      "sim": 95.5,
+      "forge": 92.0,
+      "delta": -3.5,
+      "n": 50
+    },
+    {
+      "condition": "lands_in_play >= 6",
+      "turn": 6,
+      "sim": 40.0,
+      "forge": 32.0,
+      "delta": -8.0,
+      "n": 50
+    },
+    {
+      "condition": "lands_in_play >= 6",
+      "turn": 10,
+      "sim": 85.7,
+      "forge": 74.0,
+      "delta": -11.7,
+      "n": 50
+    },
+    {
+      "condition": "life_gained >= 6",
+      "turn": 6,
+      "sim": 9.8,
+      "forge": 6.0,
+      "delta": -3.8,
+      "n": 50
+    },
+    {
+      "condition": "life_gained >= 6",
+      "turn": 10,
+      "sim": 44.3,
+      "forge": 38.0,
+      "delta": -6.3,
+      "n": 50
+    },
+    {
+      "condition": "life_gained >= 8",
+      "turn": 6,
+      "sim": 8.8,
+      "forge": 4.0,
+      "delta": -4.8,
+      "n": 50
+    },
+    {
+      "condition": "life_gained >= 8",
+      "turn": 10,
+      "sim": 33.7,
+      "forge": 28.0,
+      "delta": -5.7,
+      "n": 50
+    },
+    {
+      "condition": "life_drained >= 4",
+      "turn": 6,
+      "sim": 16.8,
+      "forge": 78.0,
+      "delta": 61.2,
+      "n": 50
+    },
+    {
+      "condition": "life_drained >= 4",
+      "turn": 10,
+      "sim": 52.0,
+      "forge": 84.0,
+      "delta": 32.0,
+      "n": 50
+    },
+    {
+      "condition": "life_drained >= 6",
+      "turn": 6,
+      "sim": 10.0,
+      "forge": 66.0,
+      "delta": 56.0,
+      "n": 50
+    },
+    {
+      "condition": "life_drained >= 6",
+      "turn": 10,
+      "sim": 41.3,
+      "forge": 80.0,
+      "delta": 38.7,
+      "n": 50
+    }
+  ],
+  "sim_curves": {
+    "lands_in_play >= 5": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      53.5,
+      66.5,
+      78.5,
+      87.7,
+      91.8,
+      95.5
+    ],
+    "lands_in_play >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      40.0,
+      53.3,
+      66.3,
+      77.2,
+      85.7
+    ],
+    "life_gained >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      5.0,
+      9.8,
+      13.7,
+      23.3,
+      33.5,
+      44.3
+    ],
+    "life_gained >= 8": [
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      5.0,
+      8.8,
+      12.2,
+      15.7,
+      22.3,
+      33.7
+    ],
+    "life_drained >= 4": [
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      7.0,
+      16.8,
+      25.0,
+      36.5,
+      47.0,
+      52.0
+    ],
+    "life_drained >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      0.2,
+      5.0,
+      10.0,
+      15.0,
+      22.7,
+      31.3,
+      41.3
+    ]
+  },
+  "forge_curves": {
+    "lands_in_play >= 5": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      60.0,
+      72.0,
+      86.0,
+      88.0,
+      92.0,
+      92.0
+    ],
+    "lands_in_play >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      32.0,
+      48.0,
+      60.0,
+      70.0,
+      74.0
+    ],
+    "life_gained >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      4.0,
+      6.0,
+      12.0,
+      26.0,
+      32.0,
+      38.0
+    ],
+    "life_gained >= 8": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      4.0,
+      4.0,
+      4.0,
+      18.0,
+      22.0,
+      28.0
+    ],
+    "life_drained >= 4": [
+      0.0,
+      0.0,
+      6.0,
+      38.0,
+      58.0,
+      78.0,
+      82.0,
+      84.0,
+      84.0,
+      84.0
+    ],
+    "life_drained >= 6": [
+      0.0,
+      0.0,
+      0.0,
+      18.0,
+      46.0,
+      66.0,
+      74.0,
+      78.0,
+      80.0,
+      80.0
+    ]
+  }
+}

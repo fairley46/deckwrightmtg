@@ -1,0 +1,36 @@
+{
+  "loop": "Know Magic",
+  "laps": [
+    {
+      "lap": 1,
+      "artifact": "data/know_magic_lap.json",
+      "signal_pct": 64.0,
+      "consumes_pct": 23.8
+    },
+    {
+      "lap": 2,
+      "artifact": "data/know_magic_lap2.json",
+      "signal_pct": 66.6,
+      "signal_or_keyword_pct": 80.5,
+      "consumes_pct": 24.9
+    },
+    {
+      "lap": 3,
+      "artifact": "data/know_magic_lap3.json",
+      "signal_pct": 70.1,
+      "signal_or_keyword_pct": 82.9,
+      "consumes_pct": 26.6
+    },
+    {
+      "lap": 4,
+      "artifact": "data/know_magic_lap4.json",
+      "signal_pct": 73.4,
+      "signal_or_keyword_pct": 85.0,
+      "consumes_pct": 28.8
+    }
+  ],
+  "productive_laps_left_estimate": "0",
+  "mode": "maintenance",
+  "maintenance_doc": "docs/KNOW-MAGIC-MAINTENANCE.md",
+  "integration_doc": "docs/KNOW-MAGIC-INTEGRATION.md"
+}

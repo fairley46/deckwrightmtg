@@ -1,0 +1,523 @@
+{
+  "note": "Closed set. An object not here cannot form an edge.",
+  "objects": {
+    "+1/+1 counter": {
+      "from_catalog": "rules-structural",
+      "kind": "counter"
+    },
+    "abandon": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "activate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "adapt": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "airbend": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "amass": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "artifact": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "assemble": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "assimilate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "attach": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "attraction": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "battle": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "behold": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "blight": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "blood": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "bobblehead": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "bolster": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "book": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "boss": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "card": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "cast": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "city's blessing": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "clash": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "cloak": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "clue": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "collect evidence": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "conjure": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "connive": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "conspiracy": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "contraption": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "convert": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "counter": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "create": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "creature": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "destroy": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "detain": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "discard": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "discover": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "double": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "draft from a spellbook": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "dungeon": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "earthbend": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "emblem": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "empower jace": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "enchantment": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "endure": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "energy": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "equipment": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "event": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "exchange": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "exert": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "exile": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "experience": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "explore": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "face a dilemma": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "fateseal": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "fight": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "food": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "forage": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "fortification": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "goad": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "gold": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "harness": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "heal": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "heist": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "hero": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "incorporate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "incubate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "incubator": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "infinity": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "initiative": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "instant": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "investigate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "junk": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "kindred": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "land": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "learn": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "life": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "manifest": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "manifest dread": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "map": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "meld": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "mill": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "monarch": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "monstrosity": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "open an attraction": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "phenomenon": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "plane": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "planeswalk": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "planeswalker": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "play": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "plot": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "poison": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "populate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "powerstone": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "prepared": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "proliferate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "rad": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "recruit": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "regenerate": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "reveal": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "role token": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "roll to visit your attractions": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "sacrifice": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "scheme": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "scry": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "seek": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "set in motion": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "shuffle": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "sorcery": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "spacecraft": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "speed": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "stone": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "support": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "surveil": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "suspect": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "tap": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "terminus": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "the ring": {
+      "from_catalog": "rules-structural",
+      "kind": "resource"
+    },
+    "time travel": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "transform": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "treasure": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "triple": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "untap": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "vanguard": {
+      "from_catalog": "card-types",
+      "kind": "permanent_type"
+    },
+    "vehicle": {
+      "from_catalog": "artifact-types",
+      "kind": "artifact_subtype"
+    },
+    "venture into the dungeon": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "vote": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    },
+    "waterbend": {
+      "from_catalog": "keyword-actions",
+      "kind": "action"
+    }
+  },
+  "source": "derived from data/scryfall_grammar.json catalogs",
+  "version": 1
+}

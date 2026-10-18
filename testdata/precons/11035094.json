@@ -1,0 +1,3195 @@
+{
+ "analysis_version": 3,
+ "brief": {
+  "angle": "The deck's mana rocks (11 of them) and Servant of the Conduit get you to five mana by turn 4 in 93.7% of games, so Saheeli, Radiant Creator is reliably down on curve (97.6% by turn 6). From there, every artifact or Artificer spell \u2014 Sai, Master Thopterist, Pia Nalaar, Whirler Virtuoso, Whirler Rogue \u2014 feeds energy that either becomes Thopter tokens or fuels Saheeli's combat-trigger copy of your best permanent into a 5/5 hasty threat. Seven mana sources reach 57.5% by turn 6, which is when the bigger energy payoffs like Territorial Aetherkite and Aethersquall Ancient start coming down and dumping their own energy into damage or +1/+1 counters. Fifteen draw sources keep the hand full so the energy engine doesn't stall out even with an average mana value of 3.67.",
+  "mechanics": [
+   "draw",
+   "ramp",
+   "spot"
+  ],
+  "source": "precon",
+  "strategy": "Saheeli, Radiant Creator turns every artifact and Artificer you cast into energy, and this deck spends that energy to flood the board with Thopter and Servo tokens while copying its best permanent into a temporary 5/5 hasty attacker each combat.",
+  "theme": "artificer"
+ },
+ "commander": "Saheeli, Radiant Creator",
+ "commander_card": {
+  "art": "https://cards.scryfall.io/art_crop/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.jpg?1783907753",
+  "cmc": 4.0,
+  "color_identity": [
+   "G",
+   "R",
+   "U"
+  ],
+  "cost": "{1}{G}{U}{R}",
+  "edhrec_rank": 9955,
+  "gc": false,
+  "image": "https://cards.scryfall.io/normal/front/5/f/5fea0781-e933-47ef-9414-92c8652a7778.jpg?1783907753",
+  "keywords": [],
+  "layout": "normal",
+  "legal": "legal",
+  "name": "Saheeli, Radiant Creator",
+  "power": "4",
+  "produced_mana": [],
+  "purchase_uris": {
+   "cardhoarder": "https://www.cardhoarder.com/cards/137203?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+   "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807930&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+   "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F614353%3Fpage%3D1"
+  },
+  "text": "Whenever you cast an Artificer or artifact spell, you get {E} (an energy counter).\nAt the beginning of combat on your turn, you may pay {E}{E}{E}. When you do, create a token that's a copy of target permanent you control, except it's a 5/5 artifact creature in addition to its other types and has haste. Sacrifice it at the beginning of the next end step.",
+  "toughness": "4",
+  "type": "Legendary Creature \u2014 Human Artificer"
+ },
+ "deck": [
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/4/f4b46b1f-0cfe-42cc-aac5-e6912b2f9fd2.jpg?1783907754",
+   "cmc": 3.0,
+   "color_identity": [
+    "G",
+    "R",
+    "U"
+   ],
+   "cost": "{G}{U}{R}",
+   "edhrec_rank": 12629,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/4/f4b46b1f-0cfe-42cc-aac5-e6912b2f9fd2.jpg?1783907754",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Pia Nalaar, Chief Mechanic",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137201?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807929&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F614345%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Whenever one or more artifact creatures you control deal combat damage to a player, you get {E}{E} (two energy counters).\nAt the beginning of your end step, you may pay one or more {E}. If you do, create an X/X colorless Vehicle artifact token named Nalaar Aetherjet with flying and crew 2, where X is the amount of {E} paid this way.",
+   "toughness": "4",
+   "type": "Legendary Creature \u2014 Human Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/1/c1e2f2af-dbba-4e4c-9c60-ac4d245e1431.jpg?1783907750",
+   "cmc": 6.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{4}{R}{R}",
+   "edhrec_rank": 11459,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/1/c1e2f2af-dbba-4e4c-9c60-ac4d245e1431.jpg?1783907750",
+   "keywords": [
+    "Flying",
+    "Haste"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Territorial Aetherkite",
+   "power": "6",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137221?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807932&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615202%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Flying, haste\nWhen this creature enters, you get {E}{E} (two energy counters). Then you may pay one or more {E}. When you do, this creature deals that much damage to each other creature.",
+   "toughness": "5",
+   "type": "Creature \u2014 Cat Dragon"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/4/a471b306-4941-4e46-a0cb-d92895c16f8a.jpg?1783907750",
+   "cmc": 4.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{3}{G}",
+   "edhrec_rank": 7642,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/4/a471b306-4941-4e46-a0cb-d92895c16f8a.jpg?1783907750",
+   "keywords": [
+    "Landfall"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Nissa, Worldsoul Speaker",
+   "power": "3",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137223?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807933&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615195%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Landfall \u2014 Whenever a land you control enters, you get {E}{E} (two energy counters).\nYou may pay eight {E} rather than pay the mana cost for permanent spells you cast.",
+   "toughness": "3",
+   "type": "Legendary Creature \u2014 Elf Druid"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/5/d513e533-d3c5-45a1-a03c-2770b7b6832b.jpg?1783907749",
+   "cmc": 3.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{2}{G}",
+   "edhrec_rank": 9766,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/5/d513e533-d3c5-45a1-a03c-2770b7b6832b.jpg?1783907749",
+   "keywords": [
+    "Trample",
+    "Exhaust"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Peema Trailblazer",
+   "power": "3",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137225?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807934&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615160%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Trample\nWhenever this creature deals combat damage to a player, you get that many {E} (energy counters).\nExhaust \u2014 Pay six {E}: Put two +1/+1 counters on this creature. Then draw cards equal to the greatest power among creatures you control. (Activate each exhaust ability only once.)",
+   "toughness": "3",
+   "type": "Creature \u2014 Elephant Warrior"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/d/bd923b84-067b-4041-a0f8-e2083e0debe9.jpg?1783907749",
+   "cmc": 5.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{4}{G}",
+   "edhrec_rank": 8648,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/d/bd923b84-067b-4041-a0f8-e2083e0debe9.jpg?1783907749",
+   "keywords": [
+    "Trample",
+    "Ward"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Rampaging Aetherhood",
+   "power": "4",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137227?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807935&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615209%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Trample, ward {2}\nAt the beginning of your upkeep, you get an amount of {E} (energy counters) equal to this creature's power. Then you may pay one or more {E}. If you do, put that many +1/+1 counters on this creature.",
+   "toughness": "4",
+   "type": "Creature \u2014 Snake Hydra"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/1/6/1603aab8-731c-407a-bb44-625c36ace43e.jpg?1783907750",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 2165,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/1/6/1603aab8-731c-407a-bb44-625c36ace43e.jpg?1783907750",
+   "keywords": [
+    "Equip"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Adaptive Omnitool",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137229?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807936&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615159%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Equipped creature gets +1/+1 for each artifact you control.\nWhenever equipped creature attacks, look at the top six cards of your library. You may reveal an artifact card from among them and put it into your hand. Put the rest on the bottom of your library in a random order.\nEquip {3}",
+   "toughness": "",
+   "type": "Artifact \u2014 Equipment"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/d/dd9ac0f2-2d8f-40fc-97fb-d6e05633405d.jpg?1783907749",
+   "cmc": 6.0,
+   "color_identity": [],
+   "cost": "{6}",
+   "edhrec_rank": 5729,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/d/dd9ac0f2-2d8f-40fc-97fb-d6e05633405d.jpg?1783907749",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aetherflux Conduit",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137231?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807937&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615162%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Whenever you cast a spell, you get an amount of {E} (energy counters) equal to the amount of mana spent to cast that spell.\n{T}, Pay fifty {E}: Draw seven cards. You may cast any number of spells from your hand without paying their mana costs.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/2/1/21c33a91-b02c-43ec-a385-aa0349928f9c.jpg?1783907748",
+   "cmc": 3.0,
+   "color_identity": [],
+   "cost": "{3}",
+   "edhrec_rank": 2521,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/2/1/21c33a91-b02c-43ec-a385-aa0349928f9c.jpg?1783907748",
+   "keywords": [
+    "Double"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aetheric Amplifier",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137233?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807938&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615193%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "{T}: Add one mana of any color.\n{4}, {T}: Choose one. Activate only as a sorcery.\n\u2022 Double the number of each kind of counter on target permanent.\n\u2022 Double the number of each kind of counter you have.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/4/c/4c398d11-a2fc-43e2-96e9-7f3383e1a43c.jpg?1783907749",
+   "cmc": 3.0,
+   "color_identity": [],
+   "cost": "{3}",
+   "edhrec_rank": 1756,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/4/c/4c398d11-a2fc-43e2-96e9-7f3383e1a43c.jpg?1783907749",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Stridehangar Automaton",
+   "power": "1",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/137235?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=807940&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F615206%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Thopters you control get +1/+1.\nIf one or more artifact tokens would be created under your control, those tokens plus an additional 1/1 colorless Thopter artifact creature token with flying are created instead.",
+   "toughness": "4",
+   "type": "Artifact Creature \u2014 Construct"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/f/6f34d11e-8452-448f-be4f-838e0ace9904.jpg?1783903818",
+   "cmc": 4.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{2}{R}{R}",
+   "edhrec_rank": 702,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/f/6f34d11e-8452-448f-be4f-838e0ace9904.jpg?1783903818",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Chain Reaction",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/148713?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881443&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687442%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Chain Reaction deals X damage to each creature, where X is the number of creatures on the battlefield.",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/9/a95b7645-154f-4904-bf71-db7eb24d4df2.jpg?1783930087",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 474,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/9/a95b7645-154f-4904-bf71-db7eb24d4df2.jpg?1783930087",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Academy Ruins",
+   "power": "",
+   "produced_mana": [
+    "C"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/82652?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=483994&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F218575%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{1}{U}, {T}: Put target artifact card from your graveyard on top of your library.",
+   "toughness": "",
+   "type": "Legendary Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/e/9ecb184f-c282-42f3-9576-09781a116352.jpg?1783915408",
+   "cmc": 6.0,
+   "color_identity": [],
+   "cost": "{6}",
+   "edhrec_rank": 2844,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/e/9ecb184f-c282-42f3-9576-09781a116352.jpg?1783915408",
+   "keywords": [
+    "Imprint"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Duplicant",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/114233?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=723143&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F506665%3Fpage%3D1"
+   },
+   "role": "spot",
+   "text": "Imprint \u2014 When this creature enters, you may exile target nontoken creature.\nAs long as a card exiled with this creature is a creature card, this creature has the power, toughness, and creature types of the last creature card exiled with it. It's still a Shapeshifter.",
+   "toughness": "4",
+   "type": "Artifact Creature \u2014 Shapeshifter"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/0/9/096c2b28-3e29-4c27-998d-51bff0ba96c5.jpg?1783926244",
+   "cmc": 4.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{3}{G}",
+   "edhrec_rank": 2431,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/0/9/096c2b28-3e29-4c27-998d-51bff0ba96c5.jpg?1783926244",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Druid of Purification",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Druid+of+Purification&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=572206&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F243789%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "When this creature enters, starting with you, each player may choose an artifact or enchantment you don't control. Destroy each permanent chosen this way.",
+   "toughness": "3",
+   "type": "Creature \u2014 Human Druid"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/b/fb8d8106-b9bd-405c-886e-72fc301c65e1.jpg?1785759418",
+   "cmc": 3.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{2}{R}",
+   "edhrec_rank": 29,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/b/fb8d8106-b9bd-405c-886e-72fc301c65e1.jpg?1785759418",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Chaos Warp",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Chaos+Warp&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Chaos+Warp&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F709785%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "The owner of target permanent shuffles it into their library, then reveals the top card of their library. If it's a permanent card, they put it onto the battlefield.",
+   "toughness": "",
+   "type": "Instant"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/2/5/25f05814-a5a5-460f-9d29-0ab03efecf4c.jpg?1783936774",
+   "cmc": 3.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{1}{U}{U}",
+   "edhrec_rank": 1823,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/2/5/25f05814-a5a5-460f-9d29-0ab03efecf4c.jpg?1783936774",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Disallow",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62659?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294567&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126406%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Counter target spell, activated ability, or triggered ability. (Mana abilities can't be targeted.)",
+   "toughness": "",
+   "type": "Instant"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/d/ad0b5c09-5075-408e-84c5-1095354ac53e.jpg?1783915691",
+   "cmc": 3.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{2}{U}",
+   "edhrec_rank": 814,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/d/ad0b5c09-5075-408e-84c5-1095354ac53e.jpg?1783915691",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Sai, Master Thopterist",
+   "power": "1",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/115335?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=721857&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F503466%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Whenever you cast an artifact spell, create a 1/1 colorless Thopter artifact creature token with flying.\n{1}{U}, Sacrifice two artifacts: Draw a card.",
+   "toughness": "4",
+   "type": "Legendary Creature \u2014 Human Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/7/d/7d4b1d44-126e-4987-9a9f-f0f9627a09cb.jpg?1783903234",
+   "cmc": 9.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{8}{R}",
+   "edhrec_rank": 22,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/7/d/7d4b1d44-126e-4987-9a9f-f0f9627a09cb.jpg?1783903234",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Blasphemous Act",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150795?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=892420&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F698084%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "This spell costs {1} less to cast for each creature on the battlefield.\nBlasphemous Act deals 13 damage to each creature.",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/8/c80e620e-bece-4c48-9dd6-7bcdacabf521.jpg?1783909612",
+   "cmc": 6.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{4}{R}{R}",
+   "edhrec_rank": 1013,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/8/c80e620e-bece-4c48-9dd6-7bcdacabf521.jpg?1783909612",
+   "keywords": [
+    "First strike",
+    "Mill"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Combustible Gearhulk",
+   "power": "6",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/130949?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=788806&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F578969%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "First strike\nWhen this creature enters, target opponent may have you draw three cards. If the player doesn't, you mill three cards, then this creature deals damage to that player equal to the total mana value of those cards.",
+   "toughness": "6",
+   "type": "Artifact Creature \u2014 Construct"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/a/5aab5a55-0aee-4d8e-92b7-92b057a00509.jpg?1783917144",
+   "cmc": 4.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{2}{R}{R}",
+   "edhrec_rank": 8792,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/a/5aab5a55-0aee-4d8e-92b7-92b057a00509.jpg?1783917144",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Pia and Kiran Nalaar",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/111032?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=705819&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F491690%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "When Pia and Kiran Nalaar enters, create two 1/1 colorless Thopter artifact creature tokens with flying.\n{2}{R}, Sacrifice an artifact: Pia and Kiran Nalaar deals 2 damage to any target.",
+   "toughness": "2",
+   "type": "Legendary Creature \u2014 Human Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/7/b/7bc540f5-96a1-44d8-910d-914b9e61b2a5.jpg?1783937184",
+   "cmc": 3.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{2}{G}",
+   "edhrec_rank": 9172,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/7/b/7bc540f5-96a1-44d8-910d-914b9e61b2a5.jpg?1783937184",
+   "keywords": [
+    "Landfall"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Architect of the Untamed",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62015?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292469&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122641%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Landfall \u2014 Whenever a land you control enters, you get {E} (an energy counter).\nPay eight {E}: Create a 6/6 colorless Beast artifact creature token.",
+   "toughness": "3",
+   "type": "Creature \u2014 Elf Artificer Druid"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/8/0/80b5b7e1-52c2-4453-b3c0-efe2cebad6ce.jpg?1783923109",
+   "cmc": 6.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{5}{G}",
+   "edhrec_rank": 1927,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/8/0/80b5b7e1-52c2-4453-b3c0-efe2cebad6ce.jpg?1783923109",
+   "keywords": [
+    "Treasure"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Bootleggers' Stash",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/98487?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=652104&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F268940%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Lands you control have \"{T}: Create a Treasure token.\"",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/5/d51269cf-a333-4a64-94cd-245798d840d2.jpg?1783930678",
+   "cmc": 5.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{3}{G}{G}",
+   "edhrec_rank": 2335,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/5/d51269cf-a333-4a64-94cd-245798d840d2.jpg?1783930678",
+   "keywords": [
+    "Reach",
+    "Vigilance",
+    "Trample"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Elder Gargaroth",
+   "power": "6",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/81585?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=467089&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F215477%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Vigilance, reach, trample\nWhenever this creature attacks or blocks, choose one \u2014\n\u2022 Create a 3/3 green Beast creature token.\n\u2022 You gain 3 life.\n\u2022 Draw a card.",
+   "toughness": "6",
+   "type": "Creature \u2014 Beast"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/f/af2115e4-009e-4432-99bb-05e844bc18b6.jpg?1783908066",
+   "cmc": 5.0,
+   "color_identity": [],
+   "cost": "{5}",
+   "edhrec_rank": 485,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/f/af2115e4-009e-4432-99bb-05e844bc18b6.jpg?1783908066",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Conjurer's Closet",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/135950?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=805861&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F609970%3Fpage%3D1"
+   },
+   "role": "spot",
+   "text": "At the beginning of your end step, you may exile target creature you control, then return that card to the battlefield under your control.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/2/4/249aa94c-85ab-4606-aa2c-c902bd83ac21.jpg?1783908909",
+   "cmc": 3.0,
+   "color_identity": [],
+   "cost": "{3}",
+   "edhrec_rank": 2870,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/2/4/249aa94c-85ab-4606-aa2c-c902bd83ac21.jpg?1783908909",
+   "keywords": [
+    "Crew"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Cultivator's Caravan",
+   "power": "5",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/134676?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=796115&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F591077%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "{T}: Add one mana of any color.\nCrew 3 (Tap any number of creatures you control with total power 3 or more: This Vehicle becomes an artifact creature until end of turn.)",
+   "toughness": "5",
+   "type": "Artifact \u2014 Vehicle"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/d/5da578b8-19e6-4068-9336-e7cd33c585f1.jpg?1783934323",
+   "cmc": 1.0,
+   "color_identity": [],
+   "cost": "{1}",
+   "edhrec_rank": 4637,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/d/5da578b8-19e6-4068-9336-e7cd33c585f1.jpg?1783934323",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Retrofitter Foundry",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Retrofitter+Foundry&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=361706&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F170781%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "{3}: Untap this artifact.\n{2}, {T}: Create a 1/1 colorless Servo artifact creature token.\n{1}, {T}, Sacrifice a Servo: Create a 1/1 colorless Thopter artifact creature token with flying.\n{T}, Sacrifice a Thopter: Create a 4/4 colorless Construct artifact creature token.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/6/568dd5a6-86f4-4039-87d7-812120c8ab94.jpg?1783927584",
+   "cmc": 9.0,
+   "color_identity": [],
+   "cost": "{9}",
+   "edhrec_rank": 2213,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/6/568dd5a6-86f4-4039-87d7-812120c8ab94.jpg?1783927584",
+   "keywords": [
+    "Flying",
+    "Vigilance",
+    "Trample"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Triplicate Titan",
+   "power": "9",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/89901?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=558528&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F236072%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Flying, vigilance, trample\nWhen this creature dies, create a 3/3 colorless Golem artifact creature token with flying, a 3/3 colorless Golem artifact creature token with vigilance, and a 3/3 colorless Golem artifact creature token with trample.",
+   "toughness": "9",
+   "type": "Artifact Creature \u2014 Golem"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/1/d11c5fe0-1528-4c94-a8cc-42bcab9d7487.jpg?1785759427",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 9,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/1/d11c5fe0-1528-4c94-a8cc-42bcab9d7487.jpg?1785759427",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Exotic Orchard",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Exotic+Orchard&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Exotic+Orchard&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F709827%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add one mana of any color that a land an opponent controls could produce.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/e/ae705a26-5371-4236-904c-fe3e58b4721d.jpg?1783903201",
+   "cmc": 0.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 335,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/e/ae705a26-5371-4236-904c-fe3e58b4721d.jpg?1783903201",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Frostboil Snarl",
+   "power": "",
+   "produced_mana": [
+    "R",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150961?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891703&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697440%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "As this land enters, you may reveal an Island or Mountain card from your hand. If you don't, this land enters tapped.\n{T}: Add {U} or {R}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/8/9/892451a1-5527-4857-84f8-62028d147489.jpg?1783903199",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 99,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/8/9/892451a1-5527-4857-84f8-62028d147489.jpg?1783903199",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Hinterland Harbor",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150969?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891882&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697512%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped unless you control a Forest or an Island.\n{T}: Add {G} or {U}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/7/67198b97-bac2-480f-aea8-12841e8884de.jpg?1783906010",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": 218,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/7/67198b97-bac2-480f-aea8-12841e8884de.jpg?1783906010",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Karplusan Forest",
+   "power": "",
+   "produced_mana": [
+    "C",
+    "G",
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/142465?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=834139&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F642063%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{T}: Add {R} or {G}. This land deals 1 damage to you.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/3/6357d665-2b28-4747-ab43-b90176d78d42.jpg?1783903723",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 711,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/3/6357d665-2b28-4747-ab43-b90176d78d42.jpg?1783903723",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Overflowing Basin",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/149249?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881725&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687703%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{1}, {T}: Add {G}{U}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/4/2/42d174e5-b8c2-45eb-8e08-1b94fc27cbee.jpg?1783903194",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": 127,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/4/2/42d174e5-b8c2-45eb-8e08-1b94fc27cbee.jpg?1783903194",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Rootbound Crag",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150991?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891884&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697522%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped unless you control a Mountain or a Forest.\n{T}: Add {R} or {G}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": 636,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/d/ad7f87dd-1c43-4b6f-9d68-cc09ef76dbc2.jpg?1783904519",
+   "keywords": [
+    "Cycling"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Sheltered Thicket",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/146269?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865099&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671232%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "({T}: Add {R} or {G}.)\nThis land enters tapped.\nCycling {2} ({2}, Discard this card: Draw a card.)",
+   "toughness": "",
+   "type": "Land \u2014 Mountain Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/e/1/e13d0982-2542-4770-8e93-637478a0f84a.jpg?1783903720",
+   "cmc": 0.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 116,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/e/1/e13d0982-2542-4770-8e93-637478a0f84a.jpg?1783903720",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Shivan Reef",
+   "power": "",
+   "produced_mana": [
+    "C",
+    "R",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/149273?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881737&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687534%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{T}: Add {U} or {R}. This land deals 1 damage to you.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/3/5/35e9ec06-a848-4230-84a2-19cb8034e0f0.jpg?1783906004",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 391,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/3/5/35e9ec06-a848-4230-84a2-19cb8034e0f0.jpg?1783906004",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Spire of Industry",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "C",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/142503?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=834316&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F642867%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{T}, Pay 1 life: Add one mana of any color. Activate only if you control an artifact.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/7/c762f475-7e58-4477-839b-b3c55434b88f.jpg?1783903193",
+   "cmc": 0.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 80,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/7/c762f475-7e58-4477-839b-b3c55434b88f.jpg?1783903193",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Sulfur Falls",
+   "power": "",
+   "produced_mana": [
+    "R",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/151007?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891718&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697455%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped unless you control an Island or a Mountain.\n{T}: Add {U} or {R}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/c/cc63cd97-de9e-4d31-babb-aaad1277169e.jpg?1783903716",
+   "cmc": 0.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 281,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/c/cc63cd97-de9e-4d31-babb-aaad1277169e.jpg?1783903716",
+   "keywords": [
+    "Scry"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Temple of Epiphany",
+   "power": "",
+   "produced_mana": [
+    "R",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/149289?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881745&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687557%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped.\nWhen this land enters, scry 1. (Look at the top card of your library. You may put that card on the bottom.)\n{T}: Add {U} or {R}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/0/a0931eb3-b403-4b1a-ad46-a7b0a51bb9a4.jpg?1783926431",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 486,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/0/a0931eb3-b403-4b1a-ad46-a7b0a51bb9a4.jpg?1783926431",
+   "keywords": [
+    "Treasure"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Treasure Vault",
+   "power": "",
+   "produced_mana": [
+    "C"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/92024?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=571540&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F243386%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{X}{X}, {T}, Sacrifice this land: Create X Treasure tokens.",
+   "toughness": "",
+   "type": "Artifact Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/4/4/445bd162-b523-45f4-83d0-ffc702fc1fac.jpg?1783903715",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 533,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/4/4/445bd162-b523-45f4-83d0-ffc702fc1fac.jpg?1783903715",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Vineglimmer Snarl",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/149305?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881753&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687574%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "As this land enters, you may reveal a Forest or Island card from your hand. If you don't, this land enters tapped.\n{T}: Add {G} or {U}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/4/f4c1500b-1f4c-4d33-810c-25e3bb0a4666.jpg?1783903712",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 136,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/4/f4c1500b-1f4c-4d33-810c-25e3bb0a4666.jpg?1783903712",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Yavimaya Coast",
+   "power": "",
+   "produced_mana": [
+    "C",
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/149315?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881758&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687588%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add {C}.\n{T}: Add {G} or {U}. This land deals 1 damage to you.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/1/91fdb56b-54d5-4272-8319-505ff987fe9b.jpg?1783903215",
+   "cmc": 1.0,
+   "color_identity": [],
+   "cost": "{1}",
+   "edhrec_rank": 1,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/1/91fdb56b-54d5-4272-8319-505ff987fe9b.jpg?1783903215",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Sol Ring",
+   "power": "",
+   "produced_mana": [
+    "C"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150891?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891691&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697418%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "{T}: Add {C}{C}.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/6/b61634ae-05be-4b56-8ebb-9d4ade902e42.jpg?1783903217",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 13,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/6/b61634ae-05be-4b56-8ebb-9d4ade902e42.jpg?1783903217",
+   "keywords": [
+    "Equip"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Lightning Greaves",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150873?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891873&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697572%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Equipped creature has haste and shroud. (It can't be the target of spells or abilities.)\nEquip {0}",
+   "toughness": "",
+   "type": "Artifact \u2014 Equipment"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/0/5/0548fb60-c843-4f8f-a029-6f10efc63a41.jpg?1783903206",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 2,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/0/5/0548fb60-c843-4f8f-a029-6f10efc63a41.jpg?1783903206",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Command Tower",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150935?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891701&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697438%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}: Add one mana of any color in your commander's color identity.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/e/5eb843ef-b223-40d0-a461-54b16d188d0e.jpg?1783903242",
+   "cmc": 2.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{1}{U}",
+   "edhrec_rank": 54,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/e/5eb843ef-b223-40d0-a461-54b16d188d0e.jpg?1783903242",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Arcane Denial",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150763?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891666&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697184%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep.\nYou draw a card at the beginning of the next turn's upkeep.",
+   "toughness": "",
+   "type": "Instant"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/1/9/19f1673d-c92c-43be-8648-af7fbc790421.jpg?1783937220",
+   "cmc": 4.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{3}{U}",
+   "edhrec_rank": 5926,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/1/9/19f1673d-c92c-43be-8648-af7fbc790421.jpg?1783937220",
+   "keywords": [
+    "Scry"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Glimmer of Genius",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61921?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292809&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F123130%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Scry 2, then draw two cards. You get {E}{E} (two energy counters).",
+   "toughness": "",
+   "type": "Instant"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/1/d1054d2b-a424-466d-8ec6-36f014849e43.jpg?1783911934",
+   "cmc": 4.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{2}{U}{U}",
+   "edhrec_rank": 2196,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/1/d1054d2b-a424-466d-8ec6-36f014849e43.jpg?1783911934",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Whirler Rogue",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/124703?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=764826&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F545198%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "When this creature enters, create two 1/1 colorless Thopter artifact creature tokens with flying.\nTap two untapped artifacts you control: Target creature can't be blocked this turn.",
+   "toughness": "2",
+   "type": "Creature \u2014 Human Rogue Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/4/d4d469ea-824b-4eff-82e8-2a0b9b4c0e2d.jpg?1783907066",
+   "cmc": 2.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{1}{R}",
+   "edhrec_rank": 737,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/4/d4d469ea-824b-4eff-82e8-2a0b9b4c0e2d.jpg?1783907066",
+   "keywords": [
+    "Haste",
+    "Lieutenant"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Loyal Apprentice",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/138381?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=818821&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F624332%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Haste\nLieutenant \u2014 At the beginning of combat on your turn, if you control your commander, create a 1/1 colorless Thopter artifact creature token with flying. That token gains haste until end of turn.",
+   "toughness": "1",
+   "type": "Creature \u2014 Human Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/8/d/8de3fdf8-d55e-4ffc-8f8b-6314d4d467ce.jpg?1783909606",
+   "cmc": 4.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{3}{G}",
+   "edhrec_rank": 1209,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/8/d/8de3fdf8-d55e-4ffc-8f8b-6314d4d467ce.jpg?1783909606",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Explosive Vegetation",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/130979?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=788860&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F577820%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle.",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/3/2/32b0707d-241e-4ced-9251-b16af4fef2cb.jpg?1783937182",
+   "cmc": 1.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{G}",
+   "edhrec_rank": 8668,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/3/2/32b0707d-241e-4ced-9251-b16af4fef2cb.jpg?1783937182",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Attune with Aether",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61751?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292726&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122917%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Search your library for a basic land card, reveal it, put it into your hand, then shuffle. You get {E}{E} (two energy counters).",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/e/fe1bc709-2157-4711-a027-c0ff00ff2728.jpg?1783936741",
+   "cmc": 4.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{3}{G}",
+   "edhrec_rank": 12838,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/e/fe1bc709-2157-4711-a027-c0ff00ff2728.jpg?1783936741",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Peema Aether-Seer",
+   "power": "3",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62781?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294908&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126513%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "When this creature enters, you get an amount of {E} (energy counters) equal to the greatest power among creatures you control.\nPay {E}{E}{E}: Target creature blocks this turn if able.",
+   "toughness": "2",
+   "type": "Creature \u2014 Elf Druid"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/e/ae429806-28b5-4bee-b0e1-1bd876f282c2.jpg?1783937165",
+   "cmc": 3.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "{1}{U}{R}",
+   "edhrec_rank": 5806,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/e/ae429806-28b5-4bee-b0e1-1bd876f282c2.jpg?1783937165",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Whirler Virtuoso",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61773?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292724&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122939%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "When this creature enters, you get {E}{E}{E} (three energy counters).\nPay {E}{E}{E}: Create a 1/1 colorless Thopter artifact creature token with flying.",
+   "toughness": "3",
+   "type": "Creature \u2014 Vedalken Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/e/ce35a39a-6dcd-4bbc-b43b-bd1a5425cb05.jpg?1783915410",
+   "cmc": 3.0,
+   "color_identity": [
+    "R",
+    "U"
+   ],
+   "cost": "{1}{U/R}{U/R}",
+   "edhrec_rank": 2485,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/e/ce35a39a-6dcd-4bbc-b43b-bd1a5425cb05.jpg?1783915410",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Saheeli, Sublime Artificer",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/114211?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=723021&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F505783%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Whenever you cast a noncreature spell, create a 1/1 colorless Servo artifact creature token.\n\u22122: Target artifact you control becomes a copy of another target artifact or creature you control until end of turn, except it's an artifact in addition to its other types.",
+   "toughness": "",
+   "type": "Legendary Planeswalker \u2014 Saheeli"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/a/0/a0d50603-e31f-4cd7-b4b6-49847d99eb2e.jpg?1783904531",
+   "cmc": 3.0,
+   "color_identity": [],
+   "cost": "{3}",
+   "edhrec_rank": 48,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/a/0/a0d50603-e31f-4cd7-b4b6-49847d99eb2e.jpg?1783904531",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Commander's Sphere",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/146213?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865071&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671284%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "{T}: Add one mana of any color in your commander's color identity.\nSacrifice this artifact: Draw a card.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/2/5/25ea04d8-5d85-49d3-8d8d-7fe123d0ed6c.jpg?1783937144",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 3370,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/2/5/25ea04d8-5d85-49d3-8d8d-7fe123d0ed6c.jpg?1783937144",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aether Hub",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "C",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62091?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292593&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122738%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "When this land enters, you get {E} (an energy counter).\n{T}: Add {C}.\n{T}, Pay {E}: Add one mana of any color.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 19,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/0/c0318a48-30e4-4ef7-be3d-5e561c5ce428.jpg?1783903203",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Evolving Wilds",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150949?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891879&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697968%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/4/8/48810b27-0646-4ff9-9d4d-c6d09b2e0267.jpg?1783904530",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "R",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 393,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/4/8/48810b27-0646-4ff9-9d4d-c6d09b2e0267.jpg?1783904530",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Frontier Bivouac",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "R",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/146235?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=865082&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F671200%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped.\n{T}: Add {G}, {U}, or {R}.",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/1/b1aaa7b0-1cac-4a92-b880-7ef1ac00618f.jpg?1785759407",
+   "cmc": 0.0,
+   "color_identity": [],
+   "cost": "",
+   "edhrec_rank": 14,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/1/b1aaa7b0-1cac-4a92-b880-7ef1ac00618f.jpg?1785759407",
+   "keywords": [
+    "Scry"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Path of Ancestry",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Path+of+Ancestry&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Path+of+Ancestry&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F709828%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped.\n{T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1. (Look at the top card of your library. You may put that card on the bottom.)",
+   "toughness": "",
+   "type": "Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/e/5/e51b48e9-a75a-4acd-9462-5e1ac2b0d803.jpg?1783926793",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": 3245,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/e/5/e51b48e9-a75a-4acd-9462-5e1ac2b0d803.jpg?1783926793",
+   "keywords": [
+    "Indestructible"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Slagwoods Bridge",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/90893?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=566279&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F239717%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped.\nIndestructible\n{T}: Add {R} or {G}.",
+   "toughness": "",
+   "type": "Artifact Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/7/57d2b895-8921-4615-a674-fb85eed5ea3f.jpg?1783926793",
+   "cmc": 0.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": 3181,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/7/57d2b895-8921-4615-a674-fb85eed5ea3f.jpg?1783926793",
+   "keywords": [
+    "Indestructible"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Tanglepool Bridge",
+   "power": "",
+   "produced_mana": [
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/90895?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=566289&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F239720%3Fpage%3D1"
+   },
+   "role": "lands",
+   "text": "This land enters tapped.\nIndestructible\n{T}: Add {G} or {U}.",
+   "toughness": "",
+   "type": "Artifact Land"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Island",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900353&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708826%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {U}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Island"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Island",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900353&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708826%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {U}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Island"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Island",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900353&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708826%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {U}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Island"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Island",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900353&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708826%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {U}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Island"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "cmc": 0.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/6/c6aa89a8-3584-4906-b9a9-41ef2f021f8e.jpg?1785323353",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Island",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Island&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900353&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708826%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {U}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Island"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "cmc": 0.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Mountain",
+   "power": "",
+   "produced_mana": [
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900355&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708828%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {R}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Mountain"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "cmc": 0.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Mountain",
+   "power": "",
+   "produced_mana": [
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900355&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708828%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {R}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Mountain"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "cmc": 0.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Mountain",
+   "power": "",
+   "produced_mana": [
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900355&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708828%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {R}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Mountain"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "cmc": 0.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Mountain",
+   "power": "",
+   "produced_mana": [
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900355&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708828%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {R}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Mountain"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "cmc": 0.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/4/c49d378e-9549-4320-b3c6-1aeb216d1e98.jpg?1785323363",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Mountain",
+   "power": "",
+   "produced_mana": [
+    "R"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Mountain&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900355&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708828%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {R}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Mountain"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "cmc": 0.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "",
+   "edhrec_rank": null,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/c/3/c3e84b42-5423-4d4d-b8fc-cfbb2c53a4ca.jpg?1785323365",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Forest",
+   "power": "",
+   "produced_mana": [
+    "G"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Forest&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=900356&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F708829%3Fpage%3D1"
+   },
+   "role": "basic",
+   "text": "({T}: Add {G}.)",
+   "toughness": "",
+   "type": "Basic Land \u2014 Forest"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/4/f4907e7b-d6d5-4e9b-968f-bce34ae4a577.jpg?1783906018",
+   "cmc": 1.0,
+   "color_identity": [],
+   "cost": "{1}",
+   "edhrec_rank": 1353,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/4/f4907e7b-d6d5-4e9b-968f-bce34ae4a577.jpg?1783906018",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Soul-Guide Lantern",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/142423?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=834288&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F642839%3Fpage%3D1"
+   },
+   "role": "spot",
+   "text": "When this artifact enters, exile target card from a graveyard.\n{T}, Sacrifice this artifact: Exile each opponent's graveyard.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/3/63ffac51-62c4-4170-85b3-a43d7cfae7d7.jpg?1783937190",
+   "cmc": 2.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{1}{R}",
+   "edhrec_rank": 703,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/3/63ffac51-62c4-4170-85b3-a43d7cfae7d7.jpg?1783937190",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Reckless Fireweaver",
+   "power": "1",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61711?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292756&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F123071%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Whenever an artifact you control enters, this creature deals 1 damage to each opponent.",
+   "toughness": "3",
+   "type": "Creature \u2014 Human Artificer"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/8/8/884f6948-3e03-48c6-8be2-6f2539386c9d.jpg?1783937164",
+   "cmc": 4.0,
+   "color_identity": [],
+   "cost": "{4}",
+   "edhrec_rank": 3471,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/8/8/884f6948-3e03-48c6-8be2-6f2539386c9d.jpg?1783937164",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aetherworks Marvel",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61783?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292462&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122599%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Whenever a permanent you control is put into a graveyard, you get {E} (an energy counter).\n{T}, Pay six {E}: Look at the top six cards of your library. You may cast a spell from among them without paying its mana cost. Put the rest on the bottom of your library in a random order.",
+   "toughness": "",
+   "type": "Legendary Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/3/8/38722c25-13a7-47af-a4cd-90722f289499.jpg?1783936774",
+   "cmc": 6.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{4}{U}{U}",
+   "edhrec_rank": 8515,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/3/8/38722c25-13a7-47af-a4cd-90722f289499.jpg?1783936774",
+   "keywords": [
+    "Flying"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aethertide Whale",
+   "power": "6",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62651?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294822&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126426%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Flying\nWhen this creature enters, you get six {E} (energy counters).\nPay {E}{E}{E}{E}: Return this creature to its owner's hand.",
+   "toughness": "4",
+   "type": "Creature \u2014 Whale"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/f/a/fa04d5fa-6ba2-4833-8ea0-1941a03bd3e9.jpg?1783936746",
+   "cmc": 7.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{4}{G}{G}{G}",
+   "edhrec_rank": 11347,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/f/a/fa04d5fa-6ba2-4833-8ea0-1941a03bd3e9.jpg?1783936746",
+   "keywords": [
+    "Trample"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aetherwind Basker",
+   "power": "7",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62797?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294774&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126345%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Trample\nWhenever this creature enters or attacks, you get {E} (an energy counter) for each creature you control.\nPay {E}: This creature gets +1/+1 until end of turn.",
+   "toughness": "7",
+   "type": "Creature \u2014 Lizard"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/9/998d0cc8-ca2a-41c3-ab65-d05c26ab8278.jpg?1783921789",
+   "cmc": 4.0,
+   "color_identity": [],
+   "cost": "{4}",
+   "edhrec_rank": 263,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/9/998d0cc8-ca2a-41c3-ab65-d05c26ab8278.jpg?1783921789",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Panharmonicon",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/102104?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=665210&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F276873%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "If an artifact or creature entering causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/1/c/1cad1bd2-7c56-4ce0-99a6-b2a49c1288dd.jpg?1783903222",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 3,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/1/c/1cad1bd2-7c56-4ce0-99a6-b2a49c1288dd.jpg?1783903222",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Arcane Signet",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150851?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=891686&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F697413%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "{T}: Add one mana of any color in your commander's color identity.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/5/55127a25-dc64-4f26-ae50-ed7247c22ae6.jpg?1783937223",
+   "cmc": 7.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{5}{U}{U}",
+   "edhrec_rank": 6531,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/5/55127a25-dc64-4f26-ae50-ed7247c22ae6.jpg?1783937223",
+   "keywords": [
+    "Flying"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Aethersquall Ancient",
+   "power": "6",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61903?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292735&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122916%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Flying\nAt the beginning of your upkeep, you get {E}{E}{E} (three energy counters).\nPay eight {E}: Return all other creatures to their owners' hands. Activate only as a sorcery.",
+   "toughness": "6",
+   "type": "Creature \u2014 Leviathan"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/e/5/e5d9c7eb-dca4-4471-a91f-a5aad3a69c2f.jpg?1783936753",
+   "cmc": 5.0,
+   "color_identity": [
+    "R"
+   ],
+   "cost": "{3}{R}{R}",
+   "edhrec_rank": 4861,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/e/5/e5d9c7eb-dca4-4471-a91f-a5aad3a69c2f.jpg?1783936753",
+   "keywords": [
+    "Haste",
+    "Double strike"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Lightning Runner",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62755?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294824&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126432%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Double strike, haste\nWhenever this creature attacks, you get {E}{E} (two energy counters), then you may pay eight {E}. If you pay, untap all creatures you control, and after this phase, there is an additional combat phase.",
+   "toughness": "2",
+   "type": "Creature \u2014 Human Warrior"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/0/b08ae769-0070-47a6-aae0-1a3bcfd40d07.jpg?1783937159",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 4125,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/0/b08ae769-0070-47a6-aae0-1a3bcfd40d07.jpg?1783937159",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Decoction Module",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62041?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292532&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F122689%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Whenever a creature you control enters, you get {E} (an energy counter).\n{4}, {T}: Return target creature you control to its owner's hand.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/b/9b29492a-8bdd-4806-8d1b-3058ed277cc1.jpg?1785759423",
+   "cmc": 3.0,
+   "color_identity": [],
+   "cost": "{3}",
+   "edhrec_rank": 84,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/b/9b29492a-8bdd-4806-8d1b-3058ed277cc1.jpg?1785759423",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Chromatic Lantern",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Chromatic+Lantern&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Chromatic+Lantern&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F709821%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "Lands you control have \"{T}: Add one mana of any color.\"\n{T}: Add one mana of any color.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/0/b/0b3c33b7-5b15-4b61-bfd6-1ffa823eb28a.jpg?1783911941",
+   "cmc": 3.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{2}{U}",
+   "edhrec_rank": 625,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/0/b/0b3c33b7-5b15-4b61-bfd6-1ffa823eb28a.jpg?1783911941",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Midnight Clock",
+   "power": "",
+   "produced_mana": [
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/124659?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=764869&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F545292%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "{T}: Add {U}.\n{2}{U}: Put an hour counter on this artifact.\nAt the beginning of each upkeep, put an hour counter on this artifact.\nWhen the twelfth hour counter is put on this artifact, shuffle your hand and graveyard into your library, then draw seven cards. Exile this artifact.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/1/8/18bbdc6c-b6c9-4f89-8f0a-6266e53c1fb9.jpg?1783915400",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 221,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/1/8/18bbdc6c-b6c9-4f89-8f0a-6266e53c1fb9.jpg?1783915400",
+   "keywords": [
+    "Flying"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Ornithopter of Paradise",
+   "power": "0",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/114273?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=723158&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F506732%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "Flying\n{T}: Add one mana of any color.",
+   "toughness": "2",
+   "type": "Artifact Creature \u2014 Thopter"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/8/3/8388c4e8-bda1-47e5-8df2-ddec5babcaf9.jpg?1783912967",
+   "cmc": 2.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "{2}",
+   "edhrec_rank": 473,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/8/3/8388c4e8-bda1-47e5-8df2-ddec5babcaf9.jpg?1783912967",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Talisman of Curiosity",
+   "power": "",
+   "produced_mana": [
+    "C",
+    "G",
+    "U"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/122630?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=753461&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F535748%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "{T}: Add {C}.\n{T}: Add {G} or {U}. This artifact deals 1 damage to you.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/8/b87315b3-d3a3-4eef-8a20-90587b36f551.jpg?1783911243",
+   "cmc": 2.0,
+   "color_identity": [],
+   "cost": "{2}",
+   "edhrec_rank": 3204,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/8/b87315b3-d3a3-4eef-8a20-90587b36f551.jpg?1783911243",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Solar Transformer",
+   "power": "",
+   "produced_mana": [
+    "B",
+    "C",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/126441?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=772233&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F552865%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "This artifact enters tapped.\nWhen this artifact enters, you get {E}{E}{E} (three energy counters).\n{T}: Add {C}.\n{T}, Pay {E}: Add one mana of any color.",
+   "toughness": "",
+   "type": "Artifact"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/d/a/daafd816-f7c1-4630-9e5c-a1e5db570a35.jpg?1783903212",
+   "cmc": 4.0,
+   "color_identity": [],
+   "cost": "{4}",
+   "edhrec_rank": 38,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/d/a/daafd816-f7c1-4630-9e5c-a1e5db570a35.jpg?1783903212",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Solemn Simulacrum",
+   "power": "2",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/150899?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=892724&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F698217%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "When this creature enters, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.\nWhen this creature dies, you may draw a card.",
+   "toughness": "2",
+   "type": "Artifact Creature \u2014 Golem"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/c/9ce9cf30-4baa-4f28-84e8-b9b1168a40e0.jpg?1783937173",
+   "cmc": 2.0,
+   "color_identity": [
+    "G"
+   ],
+   "cost": "{1}{G}",
+   "edhrec_rank": 11774,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/c/9ce9cf30-4baa-4f28-84e8-b9b1168a40e0.jpg?1783937173",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Servant of the Conduit",
+   "power": "2",
+   "produced_mana": [
+    "B",
+    "G",
+    "R",
+    "U",
+    "W"
+   ],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61737?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292858&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F123165%3Fpage%3D1"
+   },
+   "role": "ramp",
+   "text": "When this creature enters, you get {E}{E} (two energy counters).\n{T}, Pay {E}: Add one mana of any color.",
+   "toughness": "2",
+   "type": "Creature \u2014 Elf Druid"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/3/f/3feccebc-c792-420d-b96c-51494b5c41db.jpg?1783911293",
+   "cmc": 4.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{3}{U}",
+   "edhrec_rank": 6414,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/3/f/3feccebc-c792-420d-b96c-51494b5c41db.jpg?1783911293",
+   "keywords": [
+    "Crew"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Bespoke Battlewagon",
+   "power": "5",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/126121?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=772456&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F553170%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "{T}: You get {E}{E} (two energy counters).\n{T}, Pay {E}{E}: Tap target creature.\n{T}, Pay {E}{E}{E}: Draw a card.\nPay {E}{E}{E}{E}: This Vehicle becomes an artifact creature until end of turn.\nCrew 4",
+   "toughness": "6",
+   "type": "Artifact \u2014 Vehicle"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/1/7/17f2aaf5-6c1f-4663-865f-6cdd5640485a.jpg?1783934583",
+   "cmc": 4.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{3}{U}",
+   "edhrec_rank": 2849,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/1/7/17f2aaf5-6c1f-4663-865f-6cdd5640485a.jpg?1783934583",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "One with the Machine",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/68293?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=360059&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F169114%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Draw cards equal to the greatest mana value among artifacts you control.",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/5/d/5dae3b1f-6a31-4a8a-9e44-063f8f670134.jpg?1783937223",
+   "cmc": 2.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{1}{U}",
+   "edhrec_rank": 7269,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/5/d/5dae3b1f-6a31-4a8a-9e44-063f8f670134.jpg?1783937223",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Era of Innovation",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61571?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292806&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F123120%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "Whenever an artifact or Artificer you control enters, you may pay {1}. If you do, you get {E}{E} (two energy counters).\nPay six {E}, Sacrifice this enchantment: Draw three cards.",
+   "toughness": "",
+   "type": "Enchantment"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/d/6daf453f-54be-4346-831d-a0434aa086fe.jpg?1783937222",
+   "cmc": 5.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{3}{U}{U}",
+   "edhrec_rank": 7560,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/d/6daf453f-54be-4346-831d-a0434aa086fe.jpg?1783937222",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Confiscation Coup",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/61637?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=292804&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F123102%3Fpage%3D1"
+   },
+   "role": "theme",
+   "text": "Choose target artifact or creature. You get {E}{E}{E}{E} (four energy counters), then you may pay an amount of {E} equal to that permanent's mana value. If you do, gain control of it.",
+   "toughness": "",
+   "type": "Sorcery"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/b/a/babc5799-31f3-452e-a61d-5c11f9f81bf9.jpg?1783917163",
+   "cmc": 4.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{2}{U}{U}",
+   "edhrec_rank": 923,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/b/a/babc5799-31f3-452e-a61d-5c11f9f81bf9.jpg?1783917163",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Thopter Spy Network",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/110930?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=705698&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F491650%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "At the beginning of your upkeep, if you control an artifact, create a 1/1 colorless Thopter artifact creature token with flying.\nWhenever one or more artifact creatures you control deal combat damage to a player, draw a card.",
+   "toughness": "",
+   "type": "Enchantment"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/6/1/618652b4-7ce9-4994-9d16-68d2cc8644ef.jpg?1783936736",
+   "cmc": 3.0,
+   "color_identity": [
+    "G",
+    "U"
+   ],
+   "cost": "{1}{G}{U}",
+   "edhrec_rank": 11583,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/6/1/618652b4-7ce9-4994-9d16-68d2cc8644ef.jpg?1783936736",
+   "keywords": [],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Rogue Refiner",
+   "power": "3",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/62827?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=294791&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F126420%3Fpage%3D1"
+   },
+   "role": "draw",
+   "text": "When this creature enters, draw a card and you get {E}{E} (two energy counters).",
+   "toughness": "2",
+   "type": "Creature \u2014 Human Rogue"
+  },
+  {
+   "art": "https://cards.scryfall.io/art_crop/front/9/2/920bb44e-aa7f-4ee9-ab19-30114f55ec9b.jpg?1783903791",
+   "cmc": 2.0,
+   "color_identity": [
+    "U"
+   ],
+   "cost": "{1}{U}",
+   "edhrec_rank": 277,
+   "gc": false,
+   "image": "https://cards.scryfall.io/normal/front/9/2/920bb44e-aa7f-4ee9-ab19-30114f55ec9b.jpg?1783903791",
+   "keywords": [
+    "Manifest"
+   ],
+   "layout": "normal",
+   "legal": "legal",
+   "name": "Reality Shift",
+   "power": "",
+   "produced_mana": [],
+   "purchase_uris": {
+    "cardhoarder": "https://www.cardhoarder.com/cards/148867?affiliate_id=scryfall&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall",
+    "cardmarket": "https://www.cardmarket.com/en/Magic/Products?idProduct=881519&referrer=scryfall&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+    "tcgplayer": "https://partner.tcgplayer.com/c/4931599/1830156/21018?subId1=api&u=https%3A%2F%2Fwww.tcgplayer.com%2Fproduct%2F687437%3Fpage%3D1"
+   },
+   "role": "spot",
+   "text": "Exile target creature. Its controller manifests the top card of their library. (That player puts the top card of their library onto the battlefield face down as a 2/2 creature. If it's a creature card, it can be turned face up any time for its mana cost.)",
+   "toughness": "",
+   "type": "Instant"
+  }
+ ],
+ "deck_hash": "f44a5c38332cc192697cb33ebefbaca758b51cd4c3966b28165c2fd650582c2d",
+ "id": "11035094",
+ "name": "Living Energy - Aetherdrift Commander",
+ "overview": {
+  "beats": [
+   {
+    "what": "Sol Ring, Arcane Signet, and Servant of the Conduit push mana out early while Sai, Master Thopterist and Pia Nalaar, Chief Mechanic start banking energy off every artifact you cast.",
+    "when": "Turns 1-3"
+   },
+   {
+    "what": "Saheeli, Radiant Creator lands \u2014 commander out 97.6% of games by turn 6, median turn 4 \u2014 so her combat-trigger copy engine (pay {E}{E}{E} for a 5/5 hasty copy) is online early.",
+    "when": "Turn 4"
+   },
+   {
+    "what": "Five mana sources hit 93.7% by turn 6 and seven mana reaches 57.5%, so Elder Gargaroth, Territorial Aetherkite, and Pia and Kiran Nalaar arrive on schedule and start converting energy into thopters, +1/+1 counters, or a wrath of damage.",
+    "when": "Turns 5-6"
+   },
+   {
+    "what": "Three payoffs in play climbs to 39.2% by turn 6 and 60.8% by turn 7, meaning the token-and-energy pieces are stacking together; Aetherflux Conduit's fifty-energy draw-seven-and-cast-for-free is the eventual payoff once the engine has run long enough.",
+    "when": "Turn 7 and on"
+   }
+  ],
+  "combos": [
+   {
+    "cards": [
+     "Stridehangar Automaton",
+     "Sai, Master Thopterist"
+    ],
+    "text": "Sai creates a 1/1 Thopter token whenever you cast an artifact spell, and Stridehangar Automaton turns every artifact token creation into that token plus an extra 1/1 flying Thopter."
+   },
+   {
+    "cards": [
+     "Panharmonicon",
+     "Territorial Aetherkite"
+    ],
+    "text": "Panharmonicon makes a second triggered ability copy fire whenever an artifact or creature enters, doubling the energy Territorial Aetherkite grants on entry so you can pay for its damage ability twice."
+   }
+  ],
+  "cons": [
+   {
+    "counts": {
+     "wipes": 0
+    },
+    "text": "0 board wipes in the deck \u2014 an opposing wide board just sits there."
+   },
+   {
+    "counts": {
+     "avg_cmc": 3.67
+    },
+    "text": "Average mana value 3.67 is slower than a low-curve deck around 2.4, so the payoff turns lag behind the ramp turns."
+   }
+  ],
+  "how_it_works": "The deck's mana rocks (11 of them) and Servant of the Conduit get you to five mana by turn 4 in 93.7% of games, so Saheeli, Radiant Creator is reliably down on curve (97.6% by turn 6). From there, every artifact or Artificer spell \u2014 Sai, Master Thopterist, Pia Nalaar, Whirler Virtuoso, Whirler Rogue \u2014 feeds energy that either becomes Thopter tokens or fuels Saheeli's combat-trigger copy of your best permanent into a 5/5 hasty threat. Seven mana sources reach 57.5% by turn 6, which is when the bigger energy payoffs like Territorial Aetherkite and Aethersquall Ancient start coming down and dumping their own energy into damage or +1/+1 counters. Fifteen draw sources keep the hand full so the energy engine doesn't stall out even with an average mana value of 3.67.",
+  "pros": [
+   {
+    "counts": {
+     "commander_out_t6": 97.6
+    },
+    "text": "Commander lands early \u2014 Saheeli, Radiant Creator is on the battlefield in 97.6% of games by turn 6, median turn 4."
+   },
+   {
+    "counts": {
+     "five_mana_t6": 93.7,
+     "land_ramp": 2,
+     "mana_rocks": 11
+    },
+    "text": "Mana comes online fast \u2014 93.7% of games have five mana by turn 6, backed by 11 mana rocks and 2 land-ramp pieces."
+   },
+   {
+    "counts": {
+     "draw": 15
+    },
+    "text": "15 draw sources keep the energy engine fed after any setback."
+   },
+   {
+    "counts": {
+     "counters": 2
+    },
+    "text": "2 counterspells let you stop something on the stack before it resolves."
+   }
+  ],
+  "roles": {
+   "draw": "15 sources like Sai's artifact-sacrifice draw, Aetherflux Conduit, and Thopter Spy Network keep cards flowing so casting artifacts for energy never runs the hand dry.",
+   "ramp": "11 mana rocks and 2 land-ramp pieces are why five mana shows up 93.7% of the time by turn 6 \u2014 the energy plan needs mana to keep casting artifacts every turn, not just once.",
+   "spot": "Duplicant, Conjurer's Closet, Soul-Guide Lantern, and Reality Shift pick off one problem creature at a time since the deck has no board wipe to fall back on."
+  },
+  "strategy": "Saheeli, Radiant Creator turns every artifact and Artificer you cast into energy, and this deck spends that energy to flood the board with Thopter and Servo tokens while copying its best permanent into a temporary 5/5 hasty attacker each combat."
+ },
+ "signals": {
+  "counts": {
+   "artifacts": 20,
+   "avg_cmc": 3.67,
+   "counters": 2,
+   "creatures": 27,
+   "draw": 15,
+   "enchant_answers": 1,
+   "enchantments": 2,
+   "instants": 5,
+   "instants_sorceries": 11,
+   "land_ramp": 2,
+   "lands": 38,
+   "mana_rocks": 11,
+   "spot": 4,
+   "wipes": 0
+  },
+  "strong": [
+   {
+    "counts": {
+     "counters": 2
+    },
+    "text": "2 counterspells \u2014 you can stop a spell on the stack."
+   },
+   {
+    "counts": {
+     "land_ramp": 2,
+     "mana_rocks": 11
+    },
+    "text": "11 mana rocks and 2 land-ramp \u2014 the plan comes online early."
+   },
+   {
+    "counts": {
+     "draw": 15
+    },
+    "text": "15 draw sources \u2014 you refill after a wipe."
+   }
+  ],
+  "watch": [
+   {
+    "counts": {
+     "wipes": 0
+    },
+    "text": "0 board wipes \u2014 a wide board sticks."
+   },
+   {
+    "counts": {
+     "avg_cmc": 3.67
+    },
+    "text": "average mana value 3.67 \u2014 slower than a low-curve deck around 2.4."
+   }
+  ]
+ },
+ "sim": {
+  "assumptions": "No opponent, no removal. Your commander is cast once and stays \u2014 real games tax every recast by 2 more. This answers whether the deck gets there on its own, not whether it survives contact.",
+  "bad_hand": [
+   {
+    "draw_turn": 1,
+    "name": "Loyal Apprentice",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 1,
+    "name": "Explosive Vegetation",
+    "played_turn": 10
+   },
+   {
+    "draw_turn": 1,
+    "name": "Reality Shift",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 1,
+    "name": "Hinterland Harbor",
+    "played_turn": 1
+   },
+   {
+    "draw_turn": 1,
+    "name": "Aetherworks Marvel",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 1,
+    "name": "Forest",
+    "played_turn": 2
+   },
+   {
+    "draw_turn": 1,
+    "name": "Chain Reaction",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 2,
+    "name": "Whirler Virtuoso",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 3,
+    "name": "Solemn Simulacrum",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 4,
+    "name": "Rogue Refiner",
+    "played_turn": 7
+   },
+   {
+    "draw_turn": 5,
+    "name": "Combustible Gearhulk",
+    "played_turn": null
+   }
+  ],
+  "conditions": [
+   {
+    "check": {
+     "commander_in_play": true
+    },
+    "label": "Commander out",
+    "note": "Your commander is on the battlefield."
+   },
+   {
+    "check": {
+     "payoffs_in_play": 5
+    },
+    "label": "5 payoffs",
+    "note": "5 plan cards in play."
+   },
+   {
+    "check": {
+     "mana_available": 7
+    },
+    "label": "Seven mana",
+    "note": "Seven mana sources on the battlefield."
+   }
+  ],
+  "curves": [
+   {
+    "label": "Commander out",
+    "median_turn": 4,
+    "note": "Your commander is on the battlefield.",
+    "points": [
+     0.0,
+     0.0,
+     31.6,
+     89.5,
+     95.3,
+     97.6,
+     98.8,
+     99.6,
+     99.9,
+     99.9
+    ]
+   },
+   {
+    "label": "5 payoffs",
+    "median_turn": null,
+    "note": "5 plan cards in play.",
+    "points": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.1,
+     1.3,
+     6.5,
+     16.6,
+     30.5,
+     42.7
+    ]
+   },
+   {
+    "label": "Seven mana",
+    "median_turn": 6,
+    "note": "Seven mana sources on the battlefield.",
+    "points": [
+     0.0,
+     0.0,
+     0.0,
+     2.8,
+     24.7,
+     57.5,
+     77.0,
+     87.1,
+     92.7,
+     96.1
+    ]
+   }
+  ],
+  "diagnostics": {
+   "avg_cmc": 3.67,
+   "extra_drops": 0,
+   "land_ramp": 2,
+   "lands": 38,
+   "mana_rocks": 11,
+   "payoffs": 20
+  },
+  "good_hand": [
+   {
+    "draw_turn": 1,
+    "name": "Frostboil Snarl",
+    "played_turn": 1
+   },
+   {
+    "draw_turn": 1,
+    "name": "Forest",
+    "played_turn": 2
+   },
+   {
+    "draw_turn": 1,
+    "name": "Arcane Signet",
+    "played_turn": 2
+   },
+   {
+    "draw_turn": 1,
+    "name": "Sheltered Thicket",
+    "played_turn": 3
+   },
+   {
+    "draw_turn": 1,
+    "name": "Decoction Module",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 1,
+    "name": "Rogue Refiner",
+    "played_turn": 4
+   },
+   {
+    "draw_turn": 1,
+    "name": "Forest",
+    "played_turn": 4
+   },
+   {
+    "draw_turn": 2,
+    "name": "Bespoke Battlewagon",
+    "played_turn": 7
+   },
+   {
+    "draw_turn": 3,
+    "name": "Elder Gargaroth",
+    "played_turn": 8
+   },
+   {
+    "draw_turn": 4,
+    "name": "Attune with Aether",
+    "played_turn": null
+   },
+   {
+    "draw_turn": 4,
+    "name": "Adaptive Omnitool",
+    "played_turn": 4
+   },
+   {
+    "draw_turn": 5,
+    "name": "Solar Transformer",
+    "played_turn": 5
+   }
+  ],
+  "payoff_cards": [
+   "Pia Nalaar, Chief Mechanic",
+   "Territorial Aetherkite",
+   "Nissa, Worldsoul Speaker",
+   "Peema Trailblazer",
+   "Rampaging Aetherhood",
+   "Adaptive Omnitool",
+   "Aetherflux Conduit",
+   "Aetheric Amplifier",
+   "Stridehangar Automaton",
+   "Chain Reaction",
+   "Druid of Purification",
+   "Chaos Warp",
+   "Disallow",
+   "Sai, Master Thopterist",
+   "Blasphemous Act",
+   "Combustible Gearhulk",
+   "Pia and Kiran Nalaar",
+   "Architect of the Untamed",
+   "Bootleggers' Stash",
+   "Elder Gargaroth"
+  ],
+  "runs": 1500,
+  "seed": 102001
+ },
+ "sim_version": 1,
+ "source": "https://archidekt.com/decks/11035094"
+}

@@ -1,0 +1,984 @@
+{
+  "version": 1,
+  "card": "CON-319",
+  "frozen": true,
+  "frozen_note": "Adding a commander later means re-running every contestant. Do not edit this list to help a candidate.",
+  "harvested_at": "2026-08-17",
+  "band_axis": "commander_rank",
+  "band_axis_note": "EDHREC commander page rank (popularity among commanders), not Scryfall card-level edhrec_rank. Card rank is dominated by staples; using it would put Atraxa in the tail and invert B.9.",
+  "bands": ["top_100", "101_1000", "1001_plus", "no_rank"],
+  "skeleton_nonland_n": 59,
+  "skeleton_lands": 38,
+  "budget_total": 150,
+  "bracket": 3,
+  "sim_seed": 319,
+  "illustration_decks_excluded": [
+    "Ratchet, Field Medic",
+    "Kastral, the Windcrested",
+    "Rocco, Street Chef",
+    "Ayli, Eternal Pilgrim",
+    "Ovika, Enigma Goliath",
+    "Jegantha, the Wellspring"
+  ],
+  "illustration_decks_note": "Commander Challenge demo lists. Illustrations of a method, not targets. They are not in this set.",
+  "commanders": [
+    {
+      "id": "ur-dragon",
+      "name": "The Ur-Dragon",
+      "scryfall_id": "10d42b35-844f-4a64-9981-c6118d45e826",
+      "color_identity": ["B", "G", "R", "U", "W"],
+      "cmc": 9,
+      "scryfall_edhrec_rank": 2607,
+      "commander_rank": 2,
+      "num_decks": 49810,
+      "edhrec_slug": "the-ur-dragon",
+      "spread": ["top_band", "five_color"],
+      "justification": "Five-colour staple; EDHREC commander rank 2 — the popularity ceiling E is expected to win.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "dragons",
+        "colors": "WUBRG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "cast dragons, attack with them, put permanents into play"
+      },
+      "inputs": [
+        {"id": "dragon_attack", "event": "attack", "supplier": "self", "match": {"kind": "subtype", "subtype": "Dragon"}}
+      ],
+      "outputs": [
+        {"id": "draw", "kind": "card", "match": {"kind": "draw"}},
+        {"id": "free_permanent", "kind": "deploy_without_cast", "match": {"kind": "oracle_re", "pattern": "onto the battlefield"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.8,
+        "soft_combos": 0,
+        "free_value": 0.7,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.6
+      }
+    },
+    {
+      "id": "edgar-markov",
+      "name": "Edgar Markov",
+      "scryfall_id": "a577ba08-0aa8-45be-aa83-d5078770127c",
+      "color_identity": ["B", "R", "W"],
+      "cmc": 6,
+      "scryfall_edhrec_rank": 3129,
+      "commander_rank": 3,
+      "num_decks": 49597,
+      "edhrec_slug": "edgar-markov",
+      "spread": ["top_band"],
+      "justification": "Eminence tribal; rank 3 — tests whether V2 can beat a solved popular list.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "vampires",
+        "colors": "WBR",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "cast vampires, make tokens, attack"
+      },
+      "inputs": [
+        {"id": "vampire_cast", "event": "cast_spell", "supplier": "self", "match": {"kind": "subtype", "subtype": "Vampire"}}
+      ],
+      "outputs": [
+        {"id": "vampire_tokens", "kind": "creature_token", "match": {"kind": "oracle_re", "pattern": "vampire|token"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.4,
+        "soft_combos": 0,
+        "free_value": 0.8,
+        "hidden_power": 0,
+        "multi_engine": 0.4,
+        "value_to_turn": 0.7
+      }
+    },
+    {
+      "id": "atraxa",
+      "name": "Atraxa, Praetors' Voice",
+      "scryfall_id": "d0d33d52-3d28-4635-b985-51e126289259",
+      "color_identity": ["B", "G", "U", "W"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 2470,
+      "commander_rank": 4,
+      "num_decks": 43665,
+      "edhrec_slug": "atraxa-praetors-voice",
+      "spread": ["top_band", "four_color"],
+      "justification": "Four-colour proliferate staple; rank 4. Mana effects and counter density both visible.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "proliferate",
+        "colors": "WUBG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "put counters on permanents and proliferate them"
+      },
+      "inputs": [
+        {"id": "counters", "event": "counter_present", "supplier": "self", "match": {"kind": "oracle_re", "pattern": "counter"}}
+      ],
+      "outputs": [
+        {"id": "proliferate", "kind": "counters", "match": {"kind": "oracle_re", "pattern": "proliferate|\\+1/\\+1 counter"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.2,
+        "resilience": 0.5,
+        "explosive_ramp": 0.3,
+        "soft_combos": 0,
+        "free_value": 0.4,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "krenko",
+      "name": "Krenko, Mob Boss",
+      "scryfall_id": "824b2d73-2151-4e5e-9f05-8f63e2bdcaa9",
+      "color_identity": ["R"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 1095,
+      "commander_rank": 5,
+      "num_decks": 43172,
+      "edhrec_slug": "krenko-mob-boss",
+      "spread": ["top_band", "mono"],
+      "justification": "Mono-red goblin engine; rank 5. Input is goblin density — easy to count, hard to fake.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "goblins",
+        "colors": "R",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "make goblin tokens and attack"
+      },
+      "inputs": [
+        {"id": "goblins", "event": "present_subtype", "supplier": "self", "match": {"kind": "subtype", "subtype": "Goblin"}}
+      ],
+      "outputs": [
+        {"id": "goblin_tokens", "kind": "creature_token", "match": {"kind": "oracle_re", "pattern": "goblin|create .* token"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.2,
+        "explosive_ramp": 0.5,
+        "soft_combos": 0,
+        "free_value": 0.6,
+        "hidden_power": 0,
+        "multi_engine": 0.3,
+        "value_to_turn": 0.8
+      }
+    },
+    {
+      "id": "bello",
+      "name": "Bello, Bard of the Brambles",
+      "scryfall_id": "31e4b7a1-b377-49d2-a92e-4bcb0db35f16",
+      "color_identity": ["G", "R"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 3476,
+      "commander_rank": 31,
+      "num_decks": 26385,
+      "edhrec_slug": "bello-bard-of-the-brambles",
+      "spread": ["top_band", "bound"],
+      "justification": "Hard MV bound: only non-Equipment artifacts and non-Aura enchantments with MV ≥ 4 become creatures.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "enchantments",
+        "colors": "RG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play expensive artifacts and enchantments that Bello turns into attackers"
+      },
+      "inputs": [
+        {"id": "animate_targets", "event": "present_type", "supplier": "self", "match": {"kind": "bello_permanent"}}
+      ],
+      "outputs": [
+        {"id": "combat_draw", "kind": "card", "match": {"kind": "draw"}}
+      ],
+      "bounds": [
+        {
+          "id": "mv_geq_4",
+          "kind": "mv_geq",
+          "applies_to": "bello_permanent",
+          "value": 4,
+          "note": "Bello only animates non-Equipment artifacts and non-Aura enchantments with mana value 4 or greater."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.4,
+        "explosive_ramp": 0.6,
+        "soft_combos": 0,
+        "free_value": 0.5,
+        "hidden_power": 0,
+        "multi_engine": 0.6,
+        "value_to_turn": 0.6
+      }
+    },
+    {
+      "id": "meren",
+      "name": "Meren of Clan Nel Toth",
+      "scryfall_id": "508b1442-bf2c-4ad6-9bcf-bd894e081ab6",
+      "color_identity": ["B", "G"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 1491,
+      "commander_rank": 51,
+      "num_decks": 21843,
+      "edhrec_slug": "meren-of-clan-nel-toth",
+      "spread": ["top_band", "bound"],
+      "justification": "Creature-death input plus a dynamic MV bound (experience). Popular enough that E has a real list.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "sacrifice",
+        "colors": "BG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "sacrifice creatures, stack experience, return them from the graveyard"
+      },
+      "inputs": [
+        {"id": "creature_dies", "event": "dies", "supplier": "self", "match": {"kind": "dies_feeder"}}
+      ],
+      "outputs": [
+        {"id": "reanimate", "kind": "recur_to_battlefield", "match": {"kind": "oracle_re", "pattern": "return .* (battlefield|graveyard)|reanimate"}}
+      ],
+      "bounds": [
+        {
+          "id": "mv_leq_experience",
+          "kind": "mv_leq",
+          "applies_to": "creature",
+          "value": 4,
+          "note": "Declared typical experience capacity of 4. Dynamic in play; unknown if value were omitted."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.9,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.5,
+        "hidden_power": 0,
+        "multi_engine": 0.4,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "teysa-karlov",
+      "name": "Teysa Karlov",
+      "scryfall_id": "cd14f1ce-7fcd-485c-b7ca-01c5b45fdc01",
+      "color_identity": ["B", "W"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 1289,
+      "commander_rank": 54,
+      "num_decks": 21095,
+      "edhrec_slug": "teysa-karlov",
+      "spread": ["top_band"],
+      "justification": "Doubles death triggers; input is dies-care in the 99, not a numeric bound.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "aristocrats",
+        "colors": "WB",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "creatures die, triggers fire twice, tokens have lifelink"
+      },
+      "inputs": [
+        {"id": "dies_triggers", "event": "dies", "supplier": "self", "match": {"kind": "oracle_re", "pattern": "dies|sacrific"}}
+      ],
+      "outputs": [
+        {"id": "extra_trigger", "kind": "trigger_doubler", "match": {"kind": "oracle_re", "pattern": "additional time|twice"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.2,
+        "resilience": 0.5,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.7,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "shorikai",
+      "name": "Shorikai, Genesis Engine",
+      "scryfall_id": "969ac7dd-f3aa-4888-9ff0-d16a31b5e7a9",
+      "color_identity": ["U", "W"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 2297,
+      "commander_rank": 60,
+      "num_decks": 20708,
+      "edhrec_slug": "shorikai-genesis-engine",
+      "spread": ["top_band"],
+      "justification": "Vehicle commander; crew 8 is a numeric activation floor, not a 99-card bound.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "vehicles",
+        "colors": "WU",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "draw, make pilots, crew vehicles"
+      },
+      "inputs": [
+        {"id": "crew", "event": "crew", "supplier": "self", "match": {"kind": "oracle_re", "pattern": "crew|vehicle|pilot"}}
+      ],
+      "outputs": [
+        {"id": "draw", "kind": "card", "match": {"kind": "draw"}},
+        {"id": "pilots", "kind": "creature_token", "match": {"kind": "oracle_re", "pattern": "create .* token"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.4,
+        "explosive_ramp": 0.3,
+        "soft_combos": 0,
+        "free_value": 0.6,
+        "hidden_power": 0,
+        "multi_engine": 0.7,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "urza",
+      "name": "Urza, Lord High Artificer",
+      "scryfall_id": "7b7a348a-51f7-4dc5-8fe7-1c70fea5e050",
+      "color_identity": ["U"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 803,
+      "commander_rank": 65,
+      "num_decks": 20130,
+      "edhrec_slug": "urza-lord-high-artificer",
+      "spread": ["top_band", "mono"],
+      "justification": "Mono-blue artifact engine; rank 65. Input is artifacts, output is mana and free spells.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "artifacts",
+        "colors": "U",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play artifacts, tap them for blue, exile and cast for free"
+      },
+      "inputs": [
+        {"id": "artifacts", "event": "present_type", "supplier": "self", "match": {"kind": "type", "type": "artifact"}}
+      ],
+      "outputs": [
+        {"id": "mana", "kind": "mana", "match": {"kind": "oracle_re", "pattern": "add \\{"}},
+        {"id": "free_cast", "kind": "deploy_without_cast", "match": {"kind": "oracle_re", "pattern": "without paying"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.7,
+        "soft_combos": 0,
+        "free_value": 0.9,
+        "hidden_power": 0,
+        "multi_engine": 0.8,
+        "value_to_turn": 0.7
+      }
+    },
+    {
+      "id": "magda",
+      "name": "Magda, Brazen Outlaw",
+      "scryfall_id": "079e6263-e54c-4899-a336-5315909b9322",
+      "color_identity": ["R"],
+      "cmc": 2,
+      "scryfall_edhrec_rank": 1288,
+      "commander_rank": 99,
+      "num_decks": 17439,
+      "edhrec_slug": "magda-brazen-outlaw",
+      "spread": ["top_band", "mono"],
+      "justification": "Mono-red dwarf/treasure engine on the top-100 edge. Tutor bound is artifact-or-Dragon.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "dwarves",
+        "colors": "R",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "tap dwarves, make treasures, tutor a dragon or artifact"
+      },
+      "inputs": [
+        {"id": "dwarves", "event": "present_subtype", "supplier": "self", "match": {"kind": "subtype", "subtype": "Dwarf"}}
+      ],
+      "outputs": [
+        {"id": "treasure", "kind": "treasure", "match": {"kind": "oracle_re", "pattern": "treasure"}}
+      ],
+      "bounds": [
+        {
+          "id": "tutor_artifact_or_dragon",
+          "kind": "subtype_or_type",
+          "applies_to": "tutor_target",
+          "types": ["artifact"],
+          "subtypes": ["Dragon"],
+          "note": "Magda's sink searches for an artifact or Dragon. Not applied to the whole 99 — only cards the deck treats as the sink target cannot be scored as a Magda hit if they match neither."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.8,
+        "soft_combos": 0,
+        "free_value": 0.6,
+        "hidden_power": 0,
+        "multi_engine": 0.7,
+        "value_to_turn": 0.6
+      }
+    },
+    {
+      "id": "omo",
+      "name": "Omo, Queen of Vesuva",
+      "scryfall_id": "e5d1c814-4c22-4917-95ae-dffaf491db32",
+      "color_identity": ["G", "U"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 4978,
+      "commander_rank": 153,
+      "num_decks": 13440,
+      "edhrec_slug": "omo-queen-of-vesuva",
+      "spread": ["mid_band"],
+      "justification": "Everything-counters shapeshifter; mid popularity, type-math without a hard numeric bound.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "lands",
+        "colors": "GU",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "put everything counters on lands and creatures so type payoffs hit"
+      },
+      "inputs": [
+        {"id": "attack_or_etb", "event": "etb_or_attack", "supplier": "self", "match": {"kind": "type", "type": "creature"}}
+      ],
+      "outputs": [
+        {"id": "type_overlay", "kind": "all_types", "match": {"kind": "oracle_re", "pattern": "every (land|creature) type|changeling|all creature types"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.4,
+        "soft_combos": 0,
+        "free_value": 0.4,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "sheoldred",
+      "name": "Sheoldred, the Apocalypse",
+      "scryfall_id": "d67be074-cdd4-41d9-ac89-0a0456c4e4b2",
+      "color_identity": ["B"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 457,
+      "commander_rank": 185,
+      "num_decks": 11897,
+      "edhrec_slug": "sheoldred-the-apocalypse",
+      "spread": ["mid_band", "mono", "opponent_input"],
+      "justification": "Opponent-draw trigger. The 99 does not have to feed that input; scoring 0 feeders would be a lie.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "draw",
+        "colors": "B",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "draw cards to gain life; punish opponents for drawing"
+      },
+      "inputs": [
+        {"id": "you_draw", "event": "draw", "supplier": "self", "match": {"kind": "draw"}},
+        {"id": "opponent_draw", "event": "draw", "supplier": "opponent", "match": {"kind": "opponent_draw"}}
+      ],
+      "outputs": [
+        {"id": "life", "kind": "life", "match": {"kind": "oracle_re", "pattern": "gain .* life|lifelink"}},
+        {"id": "drain", "kind": "drain", "match": {"kind": "oracle_re", "pattern": "loses? \\d+ life|drain"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.9,
+        "resilience": 0.5,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.6,
+        "hidden_power": 0,
+        "multi_engine": 0.6,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "sliver-overlord",
+      "name": "Sliver Overlord",
+      "scryfall_id": "3c16915b-c50d-4fb5-830f-9ca4597a9c0f",
+      "color_identity": ["B", "G", "R", "U", "W"],
+      "cmc": 5,
+      "scryfall_edhrec_rank": 5064,
+      "commander_rank": 210,
+      "num_decks": 10777,
+      "edhrec_slug": "sliver-overlord",
+      "spread": ["mid_band", "five_color", "bound"],
+      "justification": "Type bound: the tutor and steal only hit Slivers. Five-colour mana is visible.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "slivers",
+        "colors": "WUBRG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play slivers, tutor slivers, steal slivers"
+      },
+      "inputs": [
+        {"id": "slivers", "event": "present_subtype", "supplier": "self", "match": {"kind": "subtype", "subtype": "Sliver"}}
+      ],
+      "outputs": [
+        {"id": "tutor", "kind": "tutor", "match": {"kind": "oracle_re", "pattern": "search your library"}}
+      ],
+      "bounds": [
+        {
+          "id": "sliver_creatures",
+          "kind": "subtype_includes",
+          "applies_to": "creature",
+          "subtype": "Sliver",
+          "note": "Creature cards that are not Slivers cannot be tutored or stolen by the commander."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.4,
+        "explosive_ramp": 0.5,
+        "soft_combos": 0,
+        "free_value": 0.3,
+        "hidden_power": 0,
+        "multi_engine": 0.4,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "kudo",
+      "name": "Kudo, King Among Bears",
+      "scryfall_id": "585e4e02-4873-4a65-a9ad-30cf0d5b6f79",
+      "color_identity": ["G", "W"],
+      "cmc": 2,
+      "scryfall_edhrec_rank": 6543,
+      "commander_rank": 257,
+      "num_decks": 9326,
+      "edhrec_slug": "kudo-king-among-bears",
+      "spread": ["mid_band"],
+      "justification": "Recent type overlay (everything is a 2/2 Bear). No numeric bound; tests overlay-as-strategy.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "bears",
+        "colors": "GW",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play creatures, they are 2/2 bears, use bear and anthem payoffs"
+      },
+      "inputs": [
+        {"id": "creatures", "event": "present_type", "supplier": "self", "match": {"kind": "type", "type": "creature"}}
+      ],
+      "outputs": [
+        {"id": "bear_overlay", "kind": "subtype_overlay", "match": {"kind": "oracle_re", "pattern": "bear|2/2"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.3,
+        "soft_combos": 0,
+        "free_value": 0.3,
+        "hidden_power": 0,
+        "multi_engine": 0.4,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "tayam",
+      "name": "Tayam, Luminous Enigma",
+      "scryfall_id": "05b837a2-5773-4340-87f9-b4d6a43deb27",
+      "color_identity": ["B", "G", "W"],
+      "cmc": 4,
+      "scryfall_edhrec_rank": 9759,
+      "commander_rank": 277,
+      "num_decks": 8898,
+      "edhrec_slug": "tayam-luminous-enigma",
+      "spread": ["mid_band", "bound"],
+      "justification": "Hard numeric bound: return a permanent with mana value 3 or less from the graveyard.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "counters",
+        "colors": "WBG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "put counters on creatures, mill, return cheap permanents"
+      },
+      "inputs": [
+        {"id": "counters", "event": "counter_present", "supplier": "self", "match": {"kind": "oracle_re", "pattern": "counter"}}
+      ],
+      "outputs": [
+        {"id": "recur", "kind": "recur_to_battlefield", "match": {"kind": "oracle_re", "pattern": "return .* battlefield"}}
+      ],
+      "bounds": [
+        {
+          "id": "mv_leq_3",
+          "kind": "mv_leq",
+          "applies_to": "permanent",
+          "value": 3,
+          "note": "Tayam returns a permanent card with mana value 3 or less. Higher-MV permanents cannot be the return target."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.8,
+        "explosive_ramp": 0.3,
+        "soft_combos": 0,
+        "free_value": 0.5,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "shirei",
+      "name": "Shirei, Shizo's Caretaker",
+      "scryfall_id": "69848ec1-dba7-419f-a5f9-f934bebeeaa6",
+      "color_identity": ["B"],
+      "cmc": 5,
+      "scryfall_edhrec_rank": 9098,
+      "commander_rank": 347,
+      "num_decks": 7545,
+      "edhrec_slug": "shirei-shizos-caretaker",
+      "spread": ["mid_band", "mono", "bound"],
+      "justification": "Hard power bound: only creatures with power 1 or less recur. Mono-black.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "tiny creatures",
+        "colors": "B",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play power-1 creatures, let them die, get them back"
+      },
+      "inputs": [
+        {"id": "power_1_dies", "event": "dies", "supplier": "self", "match": {"kind": "dies_feeder"}}
+      ],
+      "outputs": [
+        {"id": "recur", "kind": "recur_to_battlefield", "match": {"kind": "oracle_re", "pattern": "return .* battlefield"}}
+      ],
+      "bounds": [
+        {
+          "id": "power_leq_1",
+          "kind": "power_leq",
+          "applies_to": "creature",
+          "value": 1,
+          "note": "Shirei only recurs creatures with power 1 or less."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.9,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.5,
+        "hidden_power": 0,
+        "multi_engine": 0.3,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "progenitus",
+      "name": "Progenitus",
+      "scryfall_id": "e77fbc87-d78e-4602-baa0-da9b0d464dfb",
+      "color_identity": ["B", "G", "R", "U", "W"],
+      "cmc": 10,
+      "scryfall_edhrec_rank": 6595,
+      "commander_rank": 481,
+      "num_decks": 5811,
+      "edhrec_slug": "progenitus",
+      "spread": ["mid_band", "five_color", "unread"],
+      "justification": "Protection from everything and a replacement GY effect. No trigger the 99 can feed — graceful-degradation case.",
+      "spec_status": "unread",
+      "brief": {
+        "theme": "big creatures",
+        "colors": "WUBRG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "cast a large protected attacker"
+      },
+      "inputs": [],
+      "outputs": [],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0,
+        "resilience": 0,
+        "explosive_ramp": 0,
+        "soft_combos": 0,
+        "free_value": 0,
+        "hidden_power": 0,
+        "multi_engine": 0,
+        "value_to_turn": 0
+      }
+    },
+    {
+      "id": "gix",
+      "name": "Gix, Yawgmoth Praetor",
+      "scryfall_id": "135c5948-4c95-4f24-b648-eda55ab637c8",
+      "color_identity": ["B"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 2004,
+      "commander_rank": 724,
+      "num_decks": 3644,
+      "edhrec_slug": "gix-yawgmoth-praetor",
+      "spread": ["mid_band", "mono", "opponent_input"],
+      "justification": "Trigger is combat damage to opponents — table-supplied. Also a free-cast sink from exile.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "discard",
+        "colors": "B",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "connect in combat so someone draws, then exile and cast from opponents' libraries"
+      },
+      "inputs": [
+        {"id": "combat_to_opponents", "event": "combat_damage", "supplier": "opponent", "match": {"kind": "type", "type": "creature"}}
+      ],
+      "outputs": [
+        {"id": "draw", "kind": "card", "match": {"kind": "draw"}},
+        {"id": "free_cast", "kind": "deploy_without_cast", "match": {"kind": "oracle_re", "pattern": "without paying|play .* exile"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.8,
+        "resilience": 0.3,
+        "explosive_ramp": 0.3,
+        "soft_combos": 0,
+        "free_value": 0.8,
+        "hidden_power": 0,
+        "multi_engine": 0.6,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "maralen",
+      "name": "Maralen of the Mornsong",
+      "scryfall_id": "ba98d363-194b-4bc0-b9fe-987c498ab6fa",
+      "color_identity": ["B"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 10164,
+      "commander_rank": 931,
+      "num_decks": 2587,
+      "edhrec_slug": "maralen-of-the-mornsong",
+      "spread": ["mid_band", "mono", "bound"],
+      "justification": "Replacement constraint: players can't draw. Tutors replace draw. A list full of 'draw a card' is a bound miss.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "tutors",
+        "colors": "B",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "nobody draws; search libraries instead"
+      },
+      "inputs": [],
+      "outputs": [
+        {"id": "tutor", "kind": "tutor", "match": {"kind": "oracle_re", "pattern": "search (your|their) library"}}
+      ],
+      "bounds": [
+        {
+          "id": "no_draw",
+          "kind": "oracle_forbids",
+          "applies_to": "any",
+          "pattern": "draw (a|two|three|that many) cards?",
+          "note": "Maralen replaces drawing. Cards whose only job is 'draw a card' cannot do that job."
+        }
+      ],
+      "weights": {
+        "multiplayer_scaling": 0.6,
+        "resilience": 0.3,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.4,
+        "hidden_power": 0,
+        "multi_engine": 0.3,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "kambal",
+      "name": "Kambal, Consul of Allocation",
+      "scryfall_id": "b3e47d49-e5b5-487b-a1ec-373dbf89b2ec",
+      "color_identity": ["B", "W"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 1297,
+      "commander_rank": 950,
+      "num_decks": 2504,
+      "edhrec_slug": "kambal-consul-of-allocation",
+      "spread": ["mid_band", "opponent_input"],
+      "justification": "Opponent casts a noncreature spell. The 99 cannot supply that input; feeder density must not read as zero.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "lifegain",
+        "colors": "WB",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "punish opponents' noncreature spells, gain life, drain"
+      },
+      "inputs": [
+        {"id": "opponent_noncreature", "event": "cast_noncreature", "supplier": "opponent", "match": {"kind": "noncreature_spell"}}
+      ],
+      "outputs": [
+        {"id": "life", "kind": "life", "match": {"kind": "oracle_re", "pattern": "gain .* life"}},
+        {"id": "drain", "kind": "drain", "match": {"kind": "oracle_re", "pattern": "loses? \\d+ life"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.95,
+        "resilience": 0.4,
+        "explosive_ramp": 0.2,
+        "soft_combos": 0,
+        "free_value": 0.7,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.4
+      }
+    },
+    {
+      "id": "cromat",
+      "name": "Cromat",
+      "scryfall_id": "7d9e0a23-d2a8-40a6-9076-ed6fb539141b",
+      "color_identity": ["B", "G", "R", "U", "W"],
+      "cmc": 5,
+      "scryfall_edhrec_rank": 16898,
+      "commander_rank": 1201,
+      "num_decks": 1745,
+      "edhrec_slug": "cromat",
+      "spread": ["tail", "five_color", "unread"],
+      "justification": "Five activated abilities, no trigger the 99 feeds. Graceful-degradation on a five-colour identity.",
+      "spec_status": "unread",
+      "brief": {
+        "theme": "five color",
+        "colors": "WUBRG",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "cast a five-colour attacker with activated abilities"
+      },
+      "inputs": [],
+      "outputs": [],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0,
+        "resilience": 0,
+        "explosive_ramp": 0,
+        "soft_combos": 0,
+        "free_value": 0,
+        "hidden_power": 0,
+        "multi_engine": 0,
+        "value_to_turn": 0
+      }
+    },
+    {
+      "id": "zimone",
+      "name": "Zimone, All-Questioning",
+      "scryfall_id": "ca09bb5f-feab-4754-ac6b-3f06327d3fe9",
+      "color_identity": ["G", "U"],
+      "cmc": 3,
+      "scryfall_edhrec_rank": 11501,
+      "commander_rank": 1222,
+      "num_decks": 1672,
+      "edhrec_slug": "zimone-all-questioning",
+      "spread": ["tail"],
+      "justification": "Recent, weak EDHREC. Landfall plus a prime-land-count gate — long-tail where oracle should beat popularity.",
+      "spec_status": "ok",
+      "brief": {
+        "theme": "lands",
+        "colors": "GU",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play extra lands, hit a prime land count, make a huge fractal"
+      },
+      "inputs": [
+        {"id": "landfall", "event": "etb_land", "supplier": "self", "match": {"kind": "land_feeder"}}
+      ],
+      "outputs": [
+        {"id": "fractal", "kind": "creature_token", "match": {"kind": "oracle_re", "pattern": "create .* token|\\+1/\\+1 counter"}}
+      ],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0.1,
+        "resilience": 0.3,
+        "explosive_ramp": 0.6,
+        "soft_combos": 0,
+        "free_value": 0.4,
+        "hidden_power": 0,
+        "multi_engine": 0.5,
+        "value_to_turn": 0.5
+      }
+    },
+    {
+      "id": "wilson",
+      "name": "Wilson, Refined Grizzly",
+      "scryfall_id": "dfe0daf8-43da-484b-baa1-76f8313c5a0c",
+      "color_identity": ["G"],
+      "cmc": 2,
+      "scryfall_edhrec_rank": 4147,
+      "commander_rank": 3048,
+      "num_decks": 135,
+      "edhrec_slug": "wilson-refined-grizzly",
+      "spread": ["tail", "mono", "unread"],
+      "justification": "135 decks. Keywords and Choose a Background — no engine for the 99. Obscure graceful-degradation.",
+      "spec_status": "unread",
+      "brief": {
+        "theme": "bears",
+        "colors": "G",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "attack with a cheap protected bear"
+      },
+      "inputs": [],
+      "outputs": [],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0,
+        "resilience": 0,
+        "explosive_ramp": 0,
+        "soft_combos": 0,
+        "free_value": 0,
+        "hidden_power": 0,
+        "multi_engine": 0,
+        "value_to_turn": 0
+      }
+    },
+    {
+      "id": "prismatic-piper",
+      "name": "The Prismatic Piper",
+      "scryfall_id": "c78c2713-39e7-4a6e-a132-027099a89665",
+      "color_identity": [],
+      "cmc": 5,
+      "scryfall_edhrec_rank": 28173,
+      "commander_rank": 3446,
+      "num_decks": 79,
+      "edhrec_slug": "the-prismatic-piper",
+      "spread": ["tail", "mono", "unread"],
+      "justification": "79 decks. Choose a colour, partner. Oracle yields no strategy. The unread case the bake-off must not invent a spec for.",
+      "spec_status": "unread",
+      "brief": {
+        "theme": "colorless",
+        "colors": "",
+        "budget_total": 150,
+        "bracket": 3,
+        "strategy": "play a colourless partner commander"
+      },
+      "inputs": [],
+      "outputs": [],
+      "bounds": [],
+      "weights": {
+        "multiplayer_scaling": 0,
+        "resilience": 0,
+        "explosive_ramp": 0,
+        "soft_combos": 0,
+        "free_value": 0,
+        "hidden_power": 0,
+        "multi_engine": 0,
+        "value_to_turn": 0
+      }
+    }
+  ]
+}

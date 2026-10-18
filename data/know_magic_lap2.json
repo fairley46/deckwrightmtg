@@ -1,0 +1,119 @@
+{
+  "parent_loop": "CON-246",
+  "title": "Know Magic \u2014 lap 2 admission + remeasure",
+  "closed_at": "2026-08-08",
+  "note": "Lap 2 admits Scryfall keyword catalogs into readability (signal\u2228keyword) without inventing keyword oracle_signals, and ships seven residual non-keyword signals from the new unread tail.",
+  "admitted": {
+    "keyword_catalog_reading": true,
+    "oracle_signals": [
+      "colorless_mana",
+      "filter_mana",
+      "cant_block",
+      "modal_choose_one_or_both",
+      "top_library_look",
+      "destroy_target_creature",
+      "activated_pump_plus"
+    ]
+  },
+  "coverage": {
+    "before_lap": {
+      "at_least_one_signal_pct": 64.0,
+      "signal_or_keyword_pct": null,
+      "any_consumes_pct": 23.8,
+      "note": "Lap 1 end; signal\u2228keyword not yet an official metric"
+    },
+    "after_lap": {
+      "at_least_one_signal_pct": 66.6,
+      "signal_or_keyword_pct": 80.5,
+      "any_consumes_pct": 24.9,
+      "unread_no_signal_no_keyword_pct": 19.5,
+      "oracle_signals": 89
+    },
+    "delta": {
+      "at_least_one_signal_pp": 2.6,
+      "signal_or_keyword_pp": 1.6,
+      "any_consumes_pp": 1.1,
+      "precision_pp": 0.0
+    }
+  },
+  "precision": {
+    "before_pct": 89.9,
+    "after_pct": 89.9,
+    "floor_pct": 88.0,
+    "held": true
+  },
+  "unread_tail_top": [
+    {
+      "count": 18,
+      "line": "{M}, {M}: tap target creature"
+    },
+    {
+      "count": 15,
+      "line": "this creature can't attack unless defending player controls an island"
+    },
+    {
+      "count": 14,
+      "line": "you may choose not to untap this creature during your untap step"
+    },
+    {
+      "count": 13,
+      "line": "{M}: this creature gains flying until end of turn"
+    },
+    {
+      "count": 13,
+      "line": "as this enchantment enters, choose a creature type"
+    },
+    {
+      "count": 13,
+      "line": "{M}: this creature gets +1/-1 until end of turn"
+    },
+    {
+      "count": 12,
+      "line": "cast this spell only during the declare attackers step and only if you've been attacked this step"
+    },
+    {
+      "count": 11,
+      "line": "if this card is in your opening hand, you may begin the game with it on the battlefield"
+    },
+    {
+      "count": 11,
+      "line": "{M}: this creature deals 1 damage to any target"
+    },
+    {
+      "count": 10,
+      "line": "as an additional cost to cast this spell, discard x cards"
+    },
+    {
+      "count": 10,
+      "line": "{M}: prevent the next 1 damage that would be dealt to any target this turn"
+    },
+    {
+      "count": 9,
+      "line": "destroy target land"
+    },
+    {
+      "count": 8,
+      "line": "{M}{M}: this creature gets +2/+0 until end of turn"
+    },
+    {
+      "count": 8,
+      "line": "when you control no islands, sacrifice this creature"
+    },
+    {
+      "count": 8,
+      "line": "draft this card face up"
+    }
+  ],
+  "laps_remaining_estimate": {
+    "productive_laps_left": "1\u20132",
+    "reason": "Unread is 19.5% and the tail is long/thin (islandwalk, tap-down, verse counters, draft text). One more oracle-pattern lap can still move consumes and residual combat/utility lines; after that, returns are maintenance / print-wave loops, not big coverage jumps. Not 100%."
+  },
+  "next_batch": [
+    "grant keyword until EOT ({M}: gains flying/first strike/trample)",
+    "tap target creature / freeze",
+    "choose a creature type (as enters)",
+    "exile target creature",
+    "landwalk / island-control constraints",
+    "sourced playstyles for signals-but-no-name commanders"
+  ]
+}

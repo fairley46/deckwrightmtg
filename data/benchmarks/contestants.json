@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "card": "CON-319",
+  "note": "Registration only — do not edit v2_benchmark.py to accommodate a contestant. CON-336 seed sweep defaults to E,BLUE,D (B/C retired from default enabled set).",
+  "contestants": [
+    {
+      "id": "E",
+      "kind": "edhrec_fixture",
+      "enabled": true,
+      "note": "EDHREC top-N from data/benchmarks/edhrec/. Harvested once; no runtime EDHREC calls."
+    },
+    {
+      "id": "BLUE",
+      "kind": "http_build",
+      "enabled": true,
+      "url_env": "DECKWRIGHT_GREEN_URL",
+      "url_default": "http://127.0.0.1:8001",
+      "note": "Green with DECKWRIGHT_CANDIDATE=off (V1 build). Never seed on this port."
+    },
+    {
+      "id": "A",
+      "kind": "callable",
+      "enabled": false,
+      "target": null,
+      "note": "CON-320. Set enabled true and target to 'module:function' when the candidate lands."
+    },
+    {
+      "id": "B",
+      "kind": "http_build",
+      "enabled": false,
+      "url_env": "DECKWRIGHT_GREEN_B_URL",
+      "url_default": "http://127.0.0.1:8002",
+      "note": "CON-321 Gate 4 — disabled for CON-336 seed sweep (measured no-better-than-V1). Re-enable explicitly if re-running B bake-offs."
+    },
+    {
+      "id": "C",
+      "kind": "http_build",
+      "enabled": false,
+      "url_env": "DECKWRIGHT_GREEN_C_URL",
+      "url_default": "http://127.0.0.1:8003",
+      "note": "CON-322 CardFacts — disabled for CON-336 seed sweep (measured worse than V1). Re-enable explicitly if re-running C bake-offs."
+    },
+    {
+      "id": "D",
+      "kind": "http_build",
+      "enabled": true,
+      "url_env": "DECKWRIGHT_GREEN_D_URL",
+      "url_default": "http://127.0.0.1:8004",
+      "note": "CON-336: green-d with DECKWRIGHT_EDHREC_SEED=1 (V1 + EDHREC pool seed). :8001 stays plain V1 for BLUE."
+    }
+  ]
+}

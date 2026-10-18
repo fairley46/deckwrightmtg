@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "recorded_at": "2026-08-03T23:05:42.416952+00:00",
+  "sim_runs": 800,
+  "cases": {
+    "pirate-ub": {
+      "properties": {
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": false
+      },
+      "metrics": {
+        "theme_kind": "type",
+        "theme_canon": "Pirate",
+        "commander_query_hits": 27,
+        "commander_picks": 5,
+        "commander": "Ragavan, Nimble Pilferer",
+        "deck_price": 87.69
+      }
+    },
+    "flying-wu": {
+      "properties": {
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": false
+      },
+      "metrics": {
+        "theme_kind": "keyword",
+        "theme_canon": "Flying",
+        "commander_query_hits": 581,
+        "commander_picks": 5,
+        "commander": "Niv-Mizzet, Parun",
+        "deck_price": 99.2
+      }
+    },
+    "lifegain-wb": {
+      "properties": {
+        "theme_classified": true,
+        "brief_schema": true,
+        "commander_query_valid": false,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": false
+      },
+      "metrics": {
+        "theme_kind": "text",
+        "theme_canon": "lifegain",
+        "commander_query_hits": 0,
+        "commander_picks": 5,
+        "commander": "Sheoldred, the Apocalypse",
+        "deck_price": 77.07
+      }
+    },
+    "first-strike-rw": {
+      "properties": {
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": true,
+        "thesis_cards_and_keys": true,
+        "thesis_demanding": true
+      },
+      "metrics": {
+        "theme_kind": "keyword",
+        "theme_canon": "First strike",
+        "commander_query_hits": 103,
+        "commander_picks": 5,
+        "commander": "Danitha Capashen, Paragon",
+        "deck_price": 90.38,
+        "thesis_conditions": 4,
+        "thesis_payoffs": 22,
+        "min_condition_rate_t5": 2.4
+      }
+    },
+    "colorless-artifact": {
+      "properties": {
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": true,
+        "thesis_cards_and_keys": true,
+        "thesis_demanding": true
+      },
+      "metrics": {
+        "theme_kind": "type",
+        "theme_canon": "Artifact",
+        "commander_query_hits": 58,
+        "commander_picks": 5,
+        "commander": "Marvin, Murderous Mimic",
+        "deck_price": 156.29,
+        "thesis_conditions": 4,
+        "thesis_payoffs": 17,
+        "min_condition_rate_t5": 51.1
+      }
+    },
+    "zombie-ub": {
+      "properties": {
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": false
+      },
+      "metrics": {
+        "theme_kind": "type",
+        "theme_canon": "Zombie",
+        "commander_query_hits": 58,
+        "commander_picks": 5,
+        "commander": "Neheb, the Eternal",
+        "deck_price": 96.99
+      }
+    },
+    "interrogate-pirate": {
+      "properties": {
+        "interrogator_brief_emitted": true,
+        "theme_resolves": true,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": true,
+        "thesis_cards_and_keys": true,
+        "thesis_demanding": true
+      },
+      "metrics": {
+        "interrogation_turns": 4,
+        "theme_kind": "type",
+        "theme_canon": "Pirate",
+        "commander_query_hits": 8,
+        "commander_picks": 5,
+        "commander": "Malcolm, Alluring Scoundrel",
+        "deck_price": 84.96,
+        "thesis_conditions": 4,
+        "thesis_payoffs": 19,
+        "min_condition_rate_t5": 19.1
+      }
+    },
+    "interrogate-flying": {
+      "properties": {
+        "interrogator_brief_emitted": true,
+        "theme_resolves": false,
+        "brief_schema": true,
+        "commander_query_valid": true,
+        "commander_pool_nonempty": true,
+        "commander_verifier": true,
+        "deck_complete": true,
+        "deck_legal": true,
+        "thesis_parseable": false
+      },
+      "metrics": {
+        "interrogation_turns": 4,
+        "theme_kind": "text",
+        "theme_canon": "wu flyers",
+        "commander_query_hits": 237,
+        "commander_picks": 5,
+        "commander": "Talrand, Sky Summoner",
+        "deck_price": 73.24
+      }
+    }
+  }
+}

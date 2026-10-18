@@ -1,0 +1,8351 @@
+{
+  "version": 1,
+  "updated": "2026-03",
+  "source": "play taxonomy menu \u2014 how they play, not CR implementation",
+  "notes": [
+    "Named mechanics only; paper cards only.",
+    "(E) evergreen, (D) deciduous.",
+    "how = game math in plain language; supports uses shapes and Scryfall queries, never card names.",
+    "Map is source of truth; mechanic_families.json reviews plan_role/math_kind; adapter merges.",
+    "supports.queries gated at build time against Scryfall (fail on HTTP 400 or zero cards); keyword:/t: healed to o: when search rejects the indexed form."
+  ],
+  "mechanics": [
+    {
+      "name": "+1/+1",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:\"+1/+1 counter\""
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "-1/-1",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:\"-1/-1 counter\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Abandon",
+      "path": [
+        "Formats",
+        "Archenemy"
+      ],
+      "how": "Format-specific keyword",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:abandon"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ability Counters",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:counter"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Absorb",
+      "path": [
+        "Protect Permanents",
+        "From Damage"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "o:absorb"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Activate",
+      "path": [
+        "Basic Actions"
+      ],
+      "how": "Core rules action word",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:activate"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Adamant",
+      "path": [
+        "Mana Spent to Cast"
+      ],
+      "how": "Value scales with colors or amount of mana spent",
+      "supports": {
+        "enablers": [
+          "multicolor mana"
+        ],
+        "payoffs": [
+          "sunburst/converge counters"
+        ],
+        "queries": [
+          "keyword:adamant"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Adapt",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Improve This Permanent"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:adapt"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Addendum",
+      "path": [
+        "Timing"
+      ],
+      "how": "Changes when you may cast or resolve",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "interaction windows"
+        ],
+        "queries": [
+          "keyword:addendum"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Adventure",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "t:adventure"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Affinity",
+      "path": [
+        "Variable Cost Reduction"
+      ],
+      "how": "Costs less for each artifact (or named type) you control",
+      "supports": {
+        "enablers": [
+          "artifacts",
+          "board presence"
+        ],
+        "payoffs": [
+          "big spells"
+        ],
+        "queries": [
+          "keyword:affinity"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Afflict",
+      "path": [
+        "Blocking / Not Blocking"
+      ],
+      "how": "Combat math when blocked or unblocked",
+      "supports": {
+        "enablers": [
+          "forced blocks"
+        ],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:afflict"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Afterlife",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Value on death \u2014 aristocrats math",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:afterlife"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Aftermath",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:aftermath"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Airbend",
+      "path": [
+        "Actions",
+        "Temporary Removal"
+      ],
+      "how": "Soft removal or goad \u2014 tempo, not hard exile",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "attack redirection"
+        ],
+        "queries": [
+          "keyword:airbend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Alliance",
+      "path": [
+        "Triggers",
+        "Other Creatures ETB"
+      ],
+      "how": "Trigger when another creature enters",
+      "supports": {
+        "enablers": [
+          "token makers",
+          "blink"
+        ],
+        "payoffs": [
+          "etb engines"
+        ],
+        "queries": [
+          "keyword:alliance"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Amass",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Actions"
+      ],
+      "how": "Put +1/+1 counters on an Army you control, or create one then do so",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:amass"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Amplify",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "If Conditions are Met"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:amplify"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Annihilator",
+      "path": [
+        "Attacking Triggers",
+        "Other"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:annihilator"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ante",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:ante"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ascend",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "keyword:ascend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Assemble",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "keyword:assemble"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Assist",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:assist"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Attach",
+      "path": [
+        "Manipulating Permanents"
+      ],
+      "how": "Changes attachment, control, or tap state",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:attach"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Attraction",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "t:attraction"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Augment",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:augment"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Aura",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:aura"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Aura Swap",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Swap Out"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:\"aura swap\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Awaken",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:awaken"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Backup",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:backup"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Banding",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Changes strike order, trample, or vigilance math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:banding"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Bargain",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:bargain"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Battalion",
+      "path": [
+        "Attacking Triggers",
+        "Conditional"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:battalion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Battle",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:battle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Battle Cry",
+      "path": [
+        "Attacking Triggers",
+        "Increase Power / Toughness"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:\"battle cry\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Behold",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:behold"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Bestow",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:bestow"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Blight",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:blight"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Blitz",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:blitz"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Bloodrush",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:bloodrush"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Bloodthirst",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "If Conditions are Met"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:bloodthirst"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Boast",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:boast"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Bolster",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:bolster"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Bushido",
+      "path": [
+        "Blocking / Not Blocking"
+      ],
+      "how": "Combat math when blocked or unblocked",
+      "supports": {
+        "enablers": [
+          "forced blocks"
+        ],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:bushido"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Buyback",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:buyback"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cascade",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Exile cards until you hit a cheaper spell and cast it",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:cascade"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Case",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:case"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cast",
+      "path": [
+        "Basic Actions"
+      ],
+      "how": "Core rules action word",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:cast"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Casualty",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:casualty"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Celebration",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:celebration"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Champion",
+      "path": [
+        "Triggers",
+        "This Enters the Battlefield",
+        "Remove Creature"
+      ],
+      "how": "ETB setup on this permanent",
+      "supports": {
+        "enablers": [
+          "blink",
+          "reanimate"
+        ],
+        "payoffs": [
+          "etb value"
+        ],
+        "queries": [
+          "keyword:champion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Changeling",
+      "path": [
+        "Subtypes and Properties",
+        "As a Tag"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:changeling"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Channel",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:channel"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Choose a Background",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Commander-format partner/background style rules",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "keyword:\"choose a background\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Chroma",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "keyword:chroma"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cipher",
+      "path": [
+        "Delayed Re-Cast"
+      ],
+      "how": "Cast once, get another use later",
+      "supports": {
+        "enablers": [
+          "cantrips"
+        ],
+        "payoffs": [
+          "recast value"
+        ],
+        "queries": [
+          "keyword:cipher"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Clash",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Orders or filters the top of the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:clash"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Class",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:class"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cleave",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:cleave"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cloak",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cheap face-down body or set-aside card; pay later to turn up / cast",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:cloak"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Clue",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"clue token\"",
+          "o:investigate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cohort",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:cohort"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Collect Evidence",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:\"collect evidence\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Commit a Crime",
+      "path": [
+        "Conditions",
+        "Batching"
+      ],
+      "how": "Targeting an opponent or their stuff \u2014 batching gate",
+      "supports": {
+        "enablers": [
+          "type density"
+        ],
+        "payoffs": [
+          "batch payoffs"
+        ],
+        "queries": [
+          "o:crime"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Companion",
+      "path": [
+        "Actions",
+        "Outside the Game"
+      ],
+      "how": "Touches sideboard / learning pile",
+      "supports": {
+        "enablers": [
+          "companion legal deck"
+        ],
+        "payoffs": [
+          "lessons"
+        ],
+        "queries": [
+          "keyword:companion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Compleated",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "o:compleated"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Connive",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Orders or filters the top of the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:connive"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Conspire",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:conspire"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Constellation",
+      "path": [
+        "Triggers",
+        "Other Permanents ETB"
+      ],
+      "how": "Trigger when a permanent (often enchantment/land) enters",
+      "supports": {
+        "enablers": [
+          "enchantments",
+          "lands"
+        ],
+        "payoffs": [
+          "landfall/constellation"
+        ],
+        "queries": [
+          "keyword:constellation"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Contraption",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "t:contraption"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Converge",
+      "path": [
+        "Mana Spent to Cast"
+      ],
+      "how": "Value scales with colors or amount of mana spent",
+      "supports": {
+        "enablers": [
+          "multicolor mana"
+        ],
+        "payoffs": [
+          "sunburst/converge counters"
+        ],
+        "queries": [
+          "keyword:converge"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Convoke",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Tap creatures to help pay mana cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:convoke"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Corrupted",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Other"
+      ],
+      "how": "State gate on a countable predicate",
+      "supports": {
+        "enablers": [
+          "setup pieces"
+        ],
+        "payoffs": [
+          "gated bonuses"
+        ],
+        "queries": [
+          "keyword:corrupted"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Council's Dilemma",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "keyword:\"council's dilemma\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Counter",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:counter"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Coven",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Battlefield"
+      ],
+      "how": "Board-state gate",
+      "supports": {
+        "enablers": [
+          "board presence"
+        ],
+        "payoffs": [
+          "threshold payoffs"
+        ],
+        "queries": [
+          "keyword:coven"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Craft",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Improve This Permanent"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:craft"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Create",
+      "path": [
+        "Basic Actions"
+      ],
+      "how": "Core rules action word",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:create"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Crew",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:crew",
+          "t:vehicle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cumulative Upkeep",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Negative"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:\"cumulative upkeep\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Curse",
+      "path": [
+        "Subtypes and Properties",
+        "As a Tag"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:curse"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cursed Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"cursed role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Cycling",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Discard this to draw a card for its cycling cost",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:cycling"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Dash",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:dash"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Day",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:day"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Daybound",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "keyword:daybound"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Deathtouch",
+      "path": [
+        "Damage Modification"
+      ],
+      "how": "Any amount of combat damage to a creature is enough to destroy it",
+      "supports": {
+        "enablers": [
+          "connectors"
+        ],
+        "payoffs": [
+          "lifegain",
+          "poison"
+        ],
+        "queries": [
+          "keyword:deathtouch"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Decayed",
+      "path": [
+        "End of Combat"
+      ],
+      "how": "End-of-combat liability or trigger",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:decayed"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Defender",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Can / Can't Attack"
+      ],
+      "how": "Controls attack/block legality or haste windows",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat connection"
+        ],
+        "queries": [
+          "keyword:defender"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Delirium",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Graveyard"
+      ],
+      "how": "Gate on four or more card types among cards in your graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard"
+        ],
+        "payoffs": [
+          "delirium/threshold payoffs"
+        ],
+        "queries": [
+          "keyword:delirium"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Delve",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Exile cards from graveyard to help pay generic mana",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:delve"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Demonstrate",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Extra value on cast \u2014 chains with spell velocity",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:demonstrate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Descend",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:descend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Descent",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Graveyard"
+      ],
+      "how": "Graveyard cardinality or diversity gate",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard"
+        ],
+        "payoffs": [
+          "delirium/threshold payoffs"
+        ],
+        "queries": [
+          "o:descent"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Destroy",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:destroy"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Detain",
+      "path": [
+        "Actions",
+        "Temporary Removal"
+      ],
+      "how": "Soft removal or goad \u2014 tempo, not hard exile",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "attack redirection"
+        ],
+        "queries": [
+          "keyword:detain"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Dethrone",
+      "path": [
+        "Attacking Triggers",
+        "Add +1/+1 Counter"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:dethrone"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Devoid",
+      "path": [
+        "Subtypes and Properties",
+        "As a Tag"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:devoid"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Devotion",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "o:devotion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Devour",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:devour"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Discard",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:discard"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Discover",
+      "path": [
+        "Actions",
+        "Cast Spells"
+      ],
+      "how": "Finds and casts a spell from a revealed set",
+      "supports": {
+        "enablers": [
+          "cascade-like"
+        ],
+        "payoffs": [
+          "free spells"
+        ],
+        "queries": [
+          "keyword:discover"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Disguise",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cast face down; turn face up for disguise cost with ward-like tax",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:disguise"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Disturb",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:disturb"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Doctor's Companion",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Commander-format partner/background style rules",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "keyword:\"doctor's companion\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Domain",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "keyword:domain"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Double",
+      "path": [
+        "Manipulating Permanents"
+      ],
+      "how": "Changes attachment, control, or tap state",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:double"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Double Agenda",
+      "path": [
+        "Formats",
+        "Conspiracy"
+      ],
+      "how": "Format-specific keyword",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:\"double agenda\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Double Strike",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Changes strike order, trample, or vigilance math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:\"double strike\""
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Draw",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:draw"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Dredge",
+      "path": [
+        "Activated",
+        "Return from Graveyard"
+      ],
+      "how": "Instead of drawing, return this from yard and mill equal to dredge N",
+      "supports": {
+        "enablers": [
+          "self-mill"
+        ],
+        "payoffs": [
+          "recursion loops"
+        ],
+        "queries": [
+          "keyword:dredge"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Earthbend",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:earthbend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Echo",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Negative"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:echo"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Eerie",
+      "path": [
+        "Triggers",
+        "Other Permanents ETB"
+      ],
+      "how": "Trigger when a permanent (often enchantment/land) enters",
+      "supports": {
+        "enablers": [
+          "enchantments",
+          "lands"
+        ],
+        "payoffs": [
+          "landfall/constellation"
+        ],
+        "queries": [
+          "keyword:eerie"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Embalm",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Exile from yard to create a token copy that is a Zombie",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:embalm"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Emerge",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:emerge"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Emerge from Artifact",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "o:\"emerge from artifact\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Eminence",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Commander-format partner/background style rules",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "keyword:eminence"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Enchant",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:enchant",
+          "t:aura"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Encore",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:encore"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Endure",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:endure"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Energy",
+      "path": [
+        "Counters",
+        "Players"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:energy"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Enlist",
+      "path": [
+        "Attacking Triggers",
+        "Increase Power / Toughness"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:enlist"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Enrage",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "keyword:enrage"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Entwine",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:entwine"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Enweb",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "o:web-slinging"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Epic",
+      "path": [
+        "Delayed Re-Cast"
+      ],
+      "how": "Cast once, get another use later",
+      "supports": {
+        "enablers": [
+          "cantrips"
+        ],
+        "payoffs": [
+          "recast value"
+        ],
+        "queries": [
+          "keyword:epic"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Equip",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:equip",
+          "t:equipment"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Equipment",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:equipment"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Escalate",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:escalate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Escape",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Repeatedly"
+      ],
+      "how": "Cast from yard by paying escape cost including exiling other yard cards",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:escape"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Eternalize",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:eternalize"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Evoke",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:evoke"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Evolve",
+      "path": [
+        "Triggers",
+        "Other Creatures ETB"
+      ],
+      "how": "Trigger when another creature enters",
+      "supports": {
+        "enablers": [
+          "token makers",
+          "blink"
+        ],
+        "payoffs": [
+          "etb engines"
+        ],
+        "queries": [
+          "keyword:evolve"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Exalted",
+      "path": [
+        "Attacking Triggers",
+        "Increase Power / Toughness"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:exalted"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Exchange",
+      "path": [
+        "Manipulating Permanents"
+      ],
+      "how": "Changes attachment, control, or tap state",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:exchange"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Exert",
+      "path": [
+        "Actions",
+        "Temporary Removal"
+      ],
+      "how": "Soft removal or goad \u2014 tempo, not hard exile",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "attack redirection"
+        ],
+        "queries": [
+          "keyword:exert"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Exhaust",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:exhaust"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Exile",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:exile"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Expend",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "o:expend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Experience",
+      "path": [
+        "Counters",
+        "Players"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:experience"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Exploit",
+      "path": [
+        "Triggers",
+        "This Enters the Battlefield",
+        "Remove Creature"
+      ],
+      "how": "ETB setup on this permanent",
+      "supports": {
+        "enablers": [
+          "blink",
+          "reanimate"
+        ],
+        "payoffs": [
+          "etb value"
+        ],
+        "queries": [
+          "keyword:exploit"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Explore",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Orders or filters the top of the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:explore"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Extort",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:extort"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fabricate",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:fabricate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fading",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Negative"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:fading"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fateful Hour",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Other"
+      ],
+      "how": "State gate on a countable predicate",
+      "supports": {
+        "enablers": [
+          "setup pieces"
+        ],
+        "payoffs": [
+          "gated bonuses"
+        ],
+        "queries": [
+          "keyword:\"fateful hour\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fateseal",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Orders or filters the top of the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:fateseal"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fathomless Descent",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "keyword:\"fathomless descent\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fear",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:fear"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ferocious",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Battlefield"
+      ],
+      "how": "Board-state gate",
+      "supports": {
+        "enablers": [
+          "board presence"
+        ],
+        "payoffs": [
+          "threshold payoffs"
+        ],
+        "queries": [
+          "keyword:ferocious"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fight",
+      "path": [
+        "Creature Related Actions"
+      ],
+      "how": "Creature-vs-creature fight",
+      "supports": {
+        "enablers": [
+          "fight targets"
+        ],
+        "payoffs": [
+          "removal"
+        ],
+        "queries": [
+          "keyword:fight"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Finality",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:finality"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Firebending",
+      "path": [
+        "Attacking Triggers",
+        "Other"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:firebending"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "First Strike",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Changes strike order, trample, or vigilance math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:\"first strike\""
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Flanking",
+      "path": [
+        "Blocking / Not Blocking"
+      ],
+      "how": "Combat math when blocked or unblocked",
+      "supports": {
+        "enablers": [
+          "forced blocks"
+        ],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:flanking"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Flash",
+      "path": [
+        "Timing"
+      ],
+      "how": "Changes when you may cast or resolve",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "interaction windows"
+        ],
+        "queries": [
+          "keyword:flash"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Flashback",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Cast from graveyard for flashback cost, then exile",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:flashback"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Flip",
+      "path": [
+        "Actions",
+        "Change Sides"
+      ],
+      "how": "Permanent changes face or merges",
+      "supports": {
+        "enablers": [
+          "transform payoffs"
+        ],
+        "payoffs": [
+          "etb on transform"
+        ],
+        "queries": [
+          "o:flip"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Flurry",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:flurry"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Flying",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Can only be blocked by creatures with flying or reach",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:flying"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Food",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:food"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "For Mirrodin!",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Actions"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"for mirrodin\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Forage",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:forage"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Forecast",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Repeatable"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:forecast"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Foretell",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cheap face-down body or set-aside card; pay later to turn up / cast",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:foretell"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Formidable",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Battlefield"
+      ],
+      "how": "Board-state gate",
+      "supports": {
+        "enablers": [
+          "board presence"
+        ],
+        "payoffs": [
+          "threshold payoffs"
+        ],
+        "queries": [
+          "keyword:formidable"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fortification",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:fortification"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fortify",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:fortify"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Frenzy",
+      "path": [
+        "Blocking / Not Blocking"
+      ],
+      "how": "Combat math when blocked or unblocked",
+      "supports": {
+        "enablers": [
+          "forced blocks"
+        ],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:frenzy"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Friends Forever",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Commander-format partner/background style rules",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "o:\"friends forever\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Fuse",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "o:fuse",
+          "is:split"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Gift",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:gift"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Goad",
+      "path": [
+        "Actions",
+        "Temporary Removal"
+      ],
+      "how": "Soft removal or goad \u2014 tempo, not hard exile",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "attack redirection"
+        ],
+        "queries": [
+          "keyword:goad"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Gold",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"gold token\"",
+          "o:gold"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Gotcha",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "o:gotcha"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Graft",
+      "path": [
+        "Triggers",
+        "Other Creatures ETB"
+      ],
+      "how": "Trigger when another creature enters",
+      "supports": {
+        "enablers": [
+          "token makers",
+          "blink"
+        ],
+        "payoffs": [
+          "etb engines"
+        ],
+        "queries": [
+          "keyword:graft"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Grandeur",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:grandeur"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Gravestorm",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Extra value on cast \u2014 chains with spell velocity",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:gravestorm"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Harmonize",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:harmonize"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Haste",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Can / Can't Attack"
+      ],
+      "how": "Controls attack/block legality or haste windows",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat connection"
+        ],
+        "queries": [
+          "keyword:haste"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Haunt",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Value on death \u2014 aristocrats math",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:haunt"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Hellbent",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Other"
+      ],
+      "how": "State gate on a countable predicate",
+      "supports": {
+        "enablers": [
+          "setup pieces"
+        ],
+        "payoffs": [
+          "gated bonuses"
+        ],
+        "queries": [
+          "keyword:hellbent"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Heroic",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "keyword:heroic"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Hexproof",
+      "path": [
+        "Protect Permanents",
+        "From Targeting"
+      ],
+      "how": "Can't be the target of spells or abilities opponents control",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:hexproof"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Hidden Agenda",
+      "path": [
+        "Formats",
+        "Conspiracy"
+      ],
+      "how": "Format-specific keyword",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:\"hidden agenda\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Hideaway",
+      "path": [
+        "Triggers",
+        "This Enters the Battlefield",
+        "Exile Card"
+      ],
+      "how": "ETB setup on this permanent",
+      "supports": {
+        "enablers": [
+          "blink",
+          "reanimate"
+        ],
+        "payoffs": [
+          "etb value"
+        ],
+        "queries": [
+          "keyword:hideaway"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Historic",
+      "path": [
+        "Conditions",
+        "Batching"
+      ],
+      "how": "Artifact, legendary, or Saga \u2014 type batch",
+      "supports": {
+        "enablers": [
+          "type density"
+        ],
+        "payoffs": [
+          "batch payoffs"
+        ],
+        "queries": [
+          "o:historic"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Horsemanship",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:horsemanship"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Host",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "o:host"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Impending",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:impending"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Imprint",
+      "path": [
+        "Triggers",
+        "This Enters the Battlefield",
+        "Exile Card"
+      ],
+      "how": "ETB setup on this permanent",
+      "supports": {
+        "enablers": [
+          "blink",
+          "reanimate"
+        ],
+        "payoffs": [
+          "etb value"
+        ],
+        "queries": [
+          "keyword:imprint"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Improvise",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:improvise"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Increment",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:increment"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Incubate",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:incubate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Incubator",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:incubate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Indestructible",
+      "path": [
+        "Protect Permanents",
+        "From Destruction"
+      ],
+      "how": "Can't be destroyed by damage or destroy effects",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:indestructible"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Infect",
+      "path": [
+        "Damage Modification"
+      ],
+      "how": "Changes what damage does (life, -1/-1, infect)",
+      "supports": {
+        "enablers": [
+          "connectors"
+        ],
+        "payoffs": [
+          "lifegain",
+          "poison"
+        ],
+        "queries": [
+          "keyword:infect"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Infusion",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:infusion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ingest",
+      "path": [
+        "Saboteur Abilities"
+      ],
+      "how": "Value on dealing combat damage to a player",
+      "supports": {
+        "enablers": [
+          "evasion"
+        ],
+        "payoffs": [
+          "poison",
+          "counters",
+          "exile"
+        ],
+        "queries": [
+          "keyword:ingest"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Initiative",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Venture on gain; undercity dungeon progress",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:initiative"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Inspired",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "keyword:inspired"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Intimidate",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:intimidate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Investigate",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Create a Clue token \u2014 pay to draw",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:investigate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Job Select",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Actions"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:\"job select\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Join Forces",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "keyword:\"join forces\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Jump-Start",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:jump-start"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Junk",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"junk token\"",
+          "o:junk"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Kicker",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Optionally pay extra for an additional effect",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:kicker"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Kinship",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Positive"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:kinship"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Lander",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:lander"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Landfall",
+      "path": [
+        "Triggers",
+        "Other Permanents ETB"
+      ],
+      "how": "Trigger whenever a land enters under your control",
+      "supports": {
+        "enablers": [
+          "enchantments",
+          "lands"
+        ],
+        "payoffs": [
+          "landfall/constellation"
+        ],
+        "queries": [
+          "keyword:landfall"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Landwalk",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:landwalk"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Learn",
+      "path": [
+        "Actions",
+        "Outside the Game"
+      ],
+      "how": "Touches sideboard / learning pile",
+      "supports": {
+        "enablers": [
+          "companion legal deck"
+        ],
+        "payoffs": [
+          "lessons"
+        ],
+        "queries": [
+          "keyword:learn"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Level Up",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Improve This Permanent"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:\"level up\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Lieutenant",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Commander-format partner/background style rules",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "keyword:lieutenant"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Lifelink",
+      "path": [
+        "Damage Modification"
+      ],
+      "how": "Damage dealt also causes you to gain that much life",
+      "supports": {
+        "enablers": [
+          "connectors"
+        ],
+        "payoffs": [
+          "lifegain",
+          "poison"
+        ],
+        "queries": [
+          "keyword:lifelink"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Living Metal",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "o:\"living metal\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Living Weapon",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Actions"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:\"living weapon\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Madness",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Play at Specific Time"
+      ],
+      "how": "Cast when discarded for madness cost",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:madness"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Magecraft",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:magecraft"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Manifest",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cheap face-down body or set-aside card; pay later to turn up / cast",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:manifest"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Manifest Dread",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cheap face-down body or set-aside card; pay later to turn up / cast",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:\"manifest dread\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Map",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"map token\"",
+          "o:map"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Mayhem",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Play at Specific Time"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:mayhem"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Megamorph",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cheap face-down body or set-aside card; pay later to turn up / cast",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:megamorph"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Meld",
+      "path": [
+        "Actions",
+        "Change Sides"
+      ],
+      "how": "Permanent changes face or merges",
+      "supports": {
+        "enablers": [
+          "transform payoffs"
+        ],
+        "payoffs": [
+          "etb on transform"
+        ],
+        "queries": [
+          "keyword:meld"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Melee",
+      "path": [
+        "Attacking Triggers",
+        "Increase Power / Toughness"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:melee"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Menace",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:menace"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Mentor",
+      "path": [
+        "Attacking Triggers",
+        "Add +1/+1 Counter"
+      ],
+      "how": "Attacking creature puts a +1/+1 counter on a weaker attacker",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:mentor"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Metalcraft",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Battlefield"
+      ],
+      "how": "Board-state gate",
+      "supports": {
+        "enablers": [
+          "board presence"
+        ],
+        "payoffs": [
+          "threshold payoffs"
+        ],
+        "queries": [
+          "keyword:metalcraft"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Mill",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:mill"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Miracle",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Play at Specific Time"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:miracle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Mobilize",
+      "path": [
+        "Attacking Triggers",
+        "Other"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:mobilize"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Modal Double-Faced Cards",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "is:mdfc"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Modified",
+      "path": [
+        "Conditions",
+        "Batching"
+      ],
+      "how": "Attached, equipped, or has a counter \u2014 board predicate",
+      "supports": {
+        "enablers": [
+          "type density"
+        ],
+        "payoffs": [
+          "batch payoffs"
+        ],
+        "queries": [
+          "o:modified"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Modular",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Value on death \u2014 aristocrats math",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:modular"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Monarch",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Designate the monarch \u2014 card draw at end of turn; combat can steal it",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:monarch"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Monster Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"monster role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Monstrosity",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Improve This Permanent"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:monstrosity"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Morbid",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:morbid"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "More Than Meets the Eye",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "o:\"more than meets the eye\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Morph",
+      "path": [
+        "Face-Down Cards"
+      ],
+      "how": "Cast face down as 2/2; turn face up for morph cost",
+      "supports": {
+        "enablers": [
+          "face-down payoffs"
+        ],
+        "payoffs": [
+          "etb on turn-face-up"
+        ],
+        "queries": [
+          "keyword:morph"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Multikicker",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:multikicker"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Mutagen",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:mutagen"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Mutate",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:mutate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Myriad",
+      "path": [
+        "Attacking Triggers",
+        "Other"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:myriad"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Night",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:night"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Nightbound",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "keyword:nightbound"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ninjutsu",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Play at Specific Time"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:ninjutsu"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Offering",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:offering"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Offspring",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:offspring"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Omen",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "t:omen"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Opus",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:opus"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Outlast",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Improve This Permanent"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:outlast"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Outlaw",
+      "path": [
+        "Conditions",
+        "Batching"
+      ],
+      "how": "Assassin, Mercenary, Pirate, Rogue, or Warlock \u2014 type batch",
+      "supports": {
+        "enablers": [
+          "type density"
+        ],
+        "payoffs": [
+          "batch payoffs"
+        ],
+        "queries": [
+          "o:outlaw"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Overload",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:overload"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Pack Tactics",
+      "path": [
+        "Attacking Triggers",
+        "Conditional"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:\"pack tactics\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Paradigm",
+      "path": [
+        "Delayed Re-Cast"
+      ],
+      "how": "Cast once, get another use later",
+      "supports": {
+        "enablers": [
+          "cantrips"
+        ],
+        "payoffs": [
+          "recast value"
+        ],
+        "queries": [
+          "keyword:paradigm"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Paradox",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:paradox"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Parley",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Orders or filters the top of the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:parley"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Partner",
+      "path": [
+        "Formats",
+        "Commander"
+      ],
+      "how": "Two legendary creatures as commander; color identity unions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "wider color identity"
+        ],
+        "queries": [
+          "keyword:partner"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Partner With",
+      "path": [
+        "Triggers",
+        "This Enters the Battlefield",
+        "Other"
+      ],
+      "how": "ETB setup on this permanent",
+      "supports": {
+        "enablers": [
+          "blink",
+          "reanimate"
+        ],
+        "payoffs": [
+          "etb value"
+        ],
+        "queries": [
+          "keyword:\"partner with\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Party",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "o:party"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Persist",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Returns with a -1/-1 counter when it dies without one",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:persist"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Phasing",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Negative"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:phasing"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Phyrexian Mana",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "o:/p",
+          "o:phyrexian"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Planeswalk",
+      "path": [
+        "Formats",
+        "Planechase"
+      ],
+      "how": "Format-specific keyword",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:planeswalk"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Play",
+      "path": [
+        "Basic Actions"
+      ],
+      "how": "Core rules action word",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:play"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Plot",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:plot"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Poison",
+      "path": [
+        "Counters",
+        "Players"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:poison"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Poisonous",
+      "path": [
+        "Saboteur Abilities"
+      ],
+      "how": "Combat damage to a player may give poison counters",
+      "supports": {
+        "enablers": [
+          "evasion"
+        ],
+        "payoffs": [
+          "poison",
+          "counters",
+          "exile"
+        ],
+        "queries": [
+          "o:poisonous"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Populate",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Actions"
+      ],
+      "how": "Create a token that's a copy of a creature token you control",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:populate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Power-up",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:power-up"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Powerstone",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "t:powerstone"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Prepared",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:prepared"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Proliferate",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Choose any number of players/permanents with counters; add one more of each kind",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:proliferate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Protection",
+      "path": [
+        "Protect Permanents",
+        "From a Few Things"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:protection"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Prototype",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:prototype"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Provoke",
+      "path": [
+        "Attacking Triggers",
+        "Other"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:provoke"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Prowess",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Gets +1/+1 until end of turn whenever you cast a noncreature spell",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:prowess"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Prowl",
+      "path": [
+        "Situational Reduced Costs"
+      ],
+      "how": "Cheaper when a combat or life condition is true",
+      "supports": {
+        "enablers": [
+          "aggression",
+          "life payment"
+        ],
+        "payoffs": [
+          "tempo spells"
+        ],
+        "queries": [
+          "keyword:prowl"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Rad",
+      "path": [
+        "Counters",
+        "Players"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:rad"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Radiance",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Extra value on cast \u2014 chains with spell velocity",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:radiance"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Raid",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:raid"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Rally",
+      "path": [
+        "Triggers",
+        "Other Creatures ETB"
+      ],
+      "how": "Trigger when another creature enters",
+      "supports": {
+        "enablers": [
+          "token makers",
+          "blink"
+        ],
+        "payoffs": [
+          "etb engines"
+        ],
+        "queries": [
+          "keyword:rally"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Rampage",
+      "path": [
+        "Blocking / Not Blocking"
+      ],
+      "how": "Combat math when blocked or unblocked",
+      "supports": {
+        "enablers": [
+          "forced blocks"
+        ],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:rampage"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ravenous",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:ravenous"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Reach",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:reach"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Read Ahead",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "o:\"read ahead\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Rebound",
+      "path": [
+        "Delayed Re-Cast"
+      ],
+      "how": "Cast once, get another use later",
+      "supports": {
+        "enablers": [
+          "cantrips"
+        ],
+        "payoffs": [
+          "recast value"
+        ],
+        "queries": [
+          "keyword:rebound"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Reconfigure",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Change Types"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:reconfigure"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Recover",
+      "path": [
+        "Activated",
+        "Return from Graveyard"
+      ],
+      "how": "Returns from yard without casting as the primary mode",
+      "supports": {
+        "enablers": [
+          "self-mill"
+        ],
+        "payoffs": [
+          "recursion loops"
+        ],
+        "queries": [
+          "keyword:recover"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Regenerate",
+      "path": [
+        "Protect Permanents",
+        "From Destruction"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:regenerate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Reinforce",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:reinforce"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Renew",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:renew"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Renown",
+      "path": [
+        "Saboteur Abilities"
+      ],
+      "how": "Value on dealing combat damage to a player",
+      "supports": {
+        "enablers": [
+          "evasion"
+        ],
+        "payoffs": [
+          "poison",
+          "counters",
+          "exile"
+        ],
+        "queries": [
+          "keyword:renown"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Repartee",
+      "path": [
+        "Triggers",
+        "You Cast a Spell"
+      ],
+      "how": "Trigger off casting \u2014 prowess family",
+      "supports": {
+        "enablers": [
+          "cantrips",
+          "noncreature spells"
+        ],
+        "payoffs": [
+          "prowess pumps"
+        ],
+        "queries": [
+          "keyword:repartee"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Replicate",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:replicate"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Retrace",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Repeatedly"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:retrace"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Reveal",
+      "path": [
+        "Information"
+      ],
+      "how": "Reveal information",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:reveal"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Revolt",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:revolt"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Riot",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:riot"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ripple",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Extra value on cast \u2014 chains with spell velocity",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:ripple"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"role token\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Room",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:room"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Royal Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"royal role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Sacrifice",
+      "path": [
+        "Movement Between Zones"
+      ],
+      "how": "Moves objects between zones",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:sacrifice"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Saddle",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Unified Cost / Situation"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:saddle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Saga",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:saga"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Scavenge",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Yard is a second hand \u2014 cast from graveyard",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:scavenge"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Scry",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Look at top cards; put any on bottom, rest on top in any order",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:scry"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Search",
+      "path": [
+        "Library Manipulation"
+      ],
+      "how": "Search or shuffle the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "tutors"
+        ],
+        "queries": [
+          "o:search"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Set In Motion",
+      "path": [
+        "Formats",
+        "Archenemy"
+      ],
+      "how": "Format-specific keyword",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "keyword:set in motion"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Shadow",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:shadow"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Shield",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:shield"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Shroud",
+      "path": [
+        "Protect Permanents",
+        "From Targeting"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:shroud"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Shuffle",
+      "path": [
+        "Library Manipulation"
+      ],
+      "how": "Search or shuffle the library",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "tutors"
+        ],
+        "queries": [
+          "o:shuffle"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Siege",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "o:siege"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Skulk",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "keyword:skulk"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Sneak",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:sneak"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Sorcerer Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"sorcerer role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Soulbond",
+      "path": [
+        "Triggers",
+        "Other Creatures ETB"
+      ],
+      "how": "Trigger when another creature enters",
+      "supports": {
+        "enablers": [
+          "token makers",
+          "blink"
+        ],
+        "payoffs": [
+          "etb engines"
+        ],
+        "queries": [
+          "keyword:soulbond"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Soulshift",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Value on death \u2014 aristocrats math",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:soulshift"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Space Sculptor",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Changes strike order, trample, or vigilance math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "o:\"space sculptor\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Spacecraft",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:spacecraft"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Spectacle",
+      "path": [
+        "Situational Reduced Costs"
+      ],
+      "how": "Cheaper when a combat or life condition is true",
+      "supports": {
+        "enablers": [
+          "aggression",
+          "life payment"
+        ],
+        "payoffs": [
+          "tempo spells"
+        ],
+        "queries": [
+          "keyword:spectacle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Spell Mastery",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Graveyard"
+      ],
+      "how": "Graveyard cardinality or diversity gate",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard"
+        ],
+        "payoffs": [
+          "delirium/threshold payoffs"
+        ],
+        "queries": [
+          "keyword:\"spell mastery\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Splice onto",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Repeatable"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "o:\"splice onto\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Split Cards",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "is:split"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Split Second",
+      "path": [
+        "Timing"
+      ],
+      "how": "Changes when you may cast or resolve",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "interaction windows"
+        ],
+        "queries": [
+          "keyword:\"split second\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Spree",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:spree"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Squad",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:squad"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Start Your Engines!",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:\"start your engines\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Station",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "keyword:station"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Stickers",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:sticker"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Storm",
+      "path": [
+        "When You Cast This"
+      ],
+      "how": "Copy this spell for each spell cast before it this turn",
+      "supports": {
+        "enablers": [
+          "cheap spells",
+          "rituals"
+        ],
+        "payoffs": [
+          "storm-like chains"
+        ],
+        "queries": [
+          "keyword:storm"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Strive",
+      "path": [
+        "Additional Costs",
+        "Variable"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:strive"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Stun",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:stun"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Sunburst",
+      "path": [
+        "Mana Spent to Cast"
+      ],
+      "how": "Value scales with colors or amount of mana spent",
+      "supports": {
+        "enablers": [
+          "multicolor mana"
+        ],
+        "payoffs": [
+          "sunburst/converge counters"
+        ],
+        "queries": [
+          "keyword:sunburst"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Support",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:support"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Surge",
+      "path": [
+        "Situational Reduced Costs"
+      ],
+      "how": "Cheaper when a combat or life condition is true",
+      "supports": {
+        "enablers": [
+          "aggression",
+          "life payment"
+        ],
+        "payoffs": [
+          "tempo spells"
+        ],
+        "queries": [
+          "keyword:surge"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Surveil",
+      "path": [
+        "Actions",
+        "Top of Library Manipulation"
+      ],
+      "how": "Look at top cards; put any in graveyard, rest on top in any order",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "hit lands/spells on time"
+        ],
+        "queries": [
+          "keyword:surveil"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Survival",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "keyword:survival"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Suspected",
+      "path": [
+        "Can / Can't Attack / Block",
+        "Evasion"
+      ],
+      "how": "Changes which blockers are legal",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "saboteur",
+          "connect damage"
+        ],
+        "queries": [
+          "o:suspected"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Suspend",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:suspend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Sweep",
+      "path": [
+        "Additional Costs",
+        "Non-Mana Costs"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:sweep"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Tap",
+      "path": [
+        "Manipulating Permanents"
+      ],
+      "how": "Changes attachment, control, or tap state",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:tap"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Tempting Offer",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "keyword:\"tempting offer\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "The Ring Tempts You",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:\"the ring tempts\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Threshold",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Graveyard"
+      ],
+      "how": "Graveyard cardinality or diversity gate",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard"
+        ],
+        "payoffs": [
+          "delirium/threshold payoffs"
+        ],
+        "queries": [
+          "keyword:threshold"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Tickets",
+      "path": [
+        "Counters",
+        "Permanents"
+      ],
+      "how": "Tracks counters on permanents or players",
+      "supports": {
+        "enablers": [
+          "proliferate"
+        ],
+        "payoffs": [
+          "counter payoffs"
+        ],
+        "queries": [
+          "o:ticket"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Tiered",
+      "path": [
+        "Additional Costs",
+        "Binary"
+      ],
+      "how": "Pay an extra cost for a mode or bonus",
+      "supports": {
+        "enablers": [
+          "mana",
+          "sacrifice fodder",
+          "tokens"
+        ],
+        "payoffs": [
+          "modal spells"
+        ],
+        "queries": [
+          "keyword:tiered"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Time Travel",
+      "path": [
+        "Actions",
+        "Distribute Counters"
+      ],
+      "how": "Moves or adds counters across permanents/players",
+      "supports": {
+        "enablers": [
+          "counter density"
+        ],
+        "payoffs": [
+          "proliferate loops"
+        ],
+        "queries": [
+          "keyword:\"time travel\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Totem Armor",
+      "path": [
+        "Protect Permanents",
+        "From Destruction"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:totem armor"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Toxic",
+      "path": [
+        "Saboteur Abilities"
+      ],
+      "how": "Combat damage to a player also gives that many poison counters",
+      "supports": {
+        "enablers": [
+          "evasion"
+        ],
+        "payoffs": [
+          "poison",
+          "counters",
+          "exile"
+        ],
+        "queries": [
+          "keyword:toxic"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Training",
+      "path": [
+        "Attacking Triggers",
+        "Add +1/+1 Counter"
+      ],
+      "how": "Value on attack declaration",
+      "supports": {
+        "enablers": [
+          "hasty bodies",
+          "go-wide"
+        ],
+        "payoffs": [
+          "attack triggers"
+        ],
+        "queries": [
+          "keyword:training"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Trample",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Excess combat damage may be assigned to the player/planeswalker",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:trample"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Transfigure",
+      "path": [
+        "Activated",
+        "Battlefield",
+        "Swap Out"
+      ],
+      "how": "Activated ability on a permanent already in play",
+      "supports": {
+        "enablers": [
+          "mana",
+          "tap outlets"
+        ],
+        "payoffs": [
+          "growth",
+          "swap"
+        ],
+        "queries": [
+          "keyword:transfigure"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Transform",
+      "path": [
+        "Actions",
+        "Change Sides"
+      ],
+      "how": "Permanent changes face or merges",
+      "supports": {
+        "enablers": [
+          "transform payoffs"
+        ],
+        "payoffs": [
+          "etb on transform"
+        ],
+        "queries": [
+          "keyword:transform"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": true
+    },
+    {
+      "name": "Transmute",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "keyword:transmute"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Trap",
+      "path": [
+        "Subtypes and Properties",
+        "As a Tag"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:trap"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Treasure",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Artifact token sacrifice for one mana of any color",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "keyword:treasure"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Tribal",
+      "path": [
+        "Subtypes and Properties",
+        "As a Tag"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "o:tribal"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Tribute",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:tribute"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Typecycling",
+      "path": [
+        "Activated",
+        "Hand Abilities",
+        "Discard for Alternate Effect"
+      ],
+      "how": "Use cards from hand without (or beside) casting them normally",
+      "supports": {
+        "enablers": [
+          "discard outlets"
+        ],
+        "payoffs": [
+          "yard fill",
+          "selection"
+        ],
+        "queries": [
+          "o:cycling",
+          "keyword:cycling"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Undaunted",
+      "path": [
+        "Variable Cost Reduction"
+      ],
+      "how": "Cost drops from a countable board/resource predicate",
+      "supports": {
+        "enablers": [
+          "artifacts",
+          "board presence"
+        ],
+        "payoffs": [
+          "big spells"
+        ],
+        "queries": [
+          "keyword:undaunted"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Undercity",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "o:undercity"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Undergrowth",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "keyword:undergrowth"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Undying",
+      "path": [
+        "Triggers",
+        "This Dies"
+      ],
+      "how": "Returns with a +1/+1 counter when it dies without one",
+      "supports": {
+        "enablers": [
+          "sacrifice outlets",
+          "tokens"
+        ],
+        "payoffs": [
+          "drain",
+          "recursion"
+        ],
+        "queries": [
+          "keyword:undying"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Unearth",
+      "path": [
+        "Activated",
+        "Cast from Graveyard",
+        "Once",
+        "Same as From Hand"
+      ],
+      "how": "Return from yard with haste; exile at end of turn",
+      "supports": {
+        "enablers": [
+          "self-mill",
+          "discard",
+          "loot"
+        ],
+        "payoffs": [
+          "spell-cast triggers",
+          "graveyard thresholds"
+        ],
+        "queries": [
+          "keyword:unearth"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Unleash",
+      "path": [
+        "Triggers",
+        "ETB with Counters",
+        "As a Choice"
+      ],
+      "how": "Enters with counters by condition or choice",
+      "supports": {
+        "enablers": [
+          "etb"
+        ],
+        "payoffs": [
+          "counter growth"
+        ],
+        "queries": [
+          "keyword:unleash"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Untap",
+      "path": [
+        "Manipulating Permanents"
+      ],
+      "how": "Changes attachment, control, or tap state",
+      "supports": {
+        "enablers": [],
+        "payoffs": [],
+        "queries": [
+          "o:untap"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Valiant",
+      "path": [
+        "Triggers",
+        "Unique Triggers"
+      ],
+      "how": "Niche trigger conditions",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "specialized"
+        ],
+        "queries": [
+          "keyword:valiant"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Vanishing",
+      "path": [
+        "Triggers",
+        "Start of Turn",
+        "Negative"
+      ],
+      "how": "Upkeep-shaped cost or kinship peek",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "upkeep value"
+        ],
+        "queries": [
+          "keyword:vanishing"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Vehicle",
+      "path": [
+        "Subtypes and Properties",
+        "With their own Rules"
+      ],
+      "how": "Type line rules baggage or tribal tag",
+      "supports": {
+        "enablers": [
+          "type tutors"
+        ],
+        "payoffs": [
+          "typal"
+        ],
+        "queries": [
+          "t:vehicle"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Venture into the Dungeon",
+      "path": [
+        "Actions",
+        "New Components"
+      ],
+      "how": "Introduces a tracked shared component",
+      "supports": {
+        "enablers": [
+          "component payoffs"
+        ],
+        "payoffs": [
+          "monarch/initiative value"
+        ],
+        "queries": [
+          "keyword:\"venture into the dungeon\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Vigilance",
+      "path": [
+        "Combat Rules Modification"
+      ],
+      "how": "Changes strike order, trample, or vigilance math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "combat damage"
+        ],
+        "queries": [
+          "keyword:vigilance"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Villainous Choice",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "o:\"villainous choice\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Virtuous Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"virtuous role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Vivid",
+      "path": [
+        "Conditions",
+        "Variables"
+      ],
+      "how": "Scalar read off game state",
+      "supports": {
+        "enablers": [
+          "pips",
+          "type diversity"
+        ],
+        "payoffs": [
+          "scaled effects"
+        ],
+        "queries": [
+          "keyword:vivid"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Void",
+      "path": [
+        "Conditions",
+        "Thresholds",
+        "Event Occurred this Turn"
+      ],
+      "how": "Something happened this turn",
+      "supports": {
+        "enablers": [
+          "attack",
+          "etb",
+          "death"
+        ],
+        "payoffs": [
+          "raid-like bonuses"
+        ],
+        "queries": [
+          "keyword:void"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Vote",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "o:vote"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Ward",
+      "path": [
+        "Protect Permanents",
+        "From Targeting"
+      ],
+      "how": "Keeps permanents alive through targeting, damage, or destroy",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "voltron",
+          "key pieces"
+        ],
+        "queries": [
+          "keyword:ward"
+        ]
+      },
+      "evergreen": true,
+      "deciduous": false
+    },
+    {
+      "name": "Warp",
+      "path": [
+        "Alternate Costs",
+        "Increased / Reduced Effect"
+      ],
+      "how": "Replace or reshape the mana price; often changes the effect",
+      "supports": {
+        "enablers": [
+          "alternate-cost enablers"
+        ],
+        "payoffs": [
+          "cheap threats"
+        ],
+        "queries": [
+          "keyword:warp"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Waterbend",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "keyword:waterbend"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Web-Slinging",
+      "path": [
+        "Alternatives to Mana"
+      ],
+      "how": "Spend non-mana resources (tap, exile, life) toward the cost",
+      "supports": {
+        "enablers": [
+          "creatures",
+          "artifacts",
+          "graveyard"
+        ],
+        "payoffs": [
+          "under-costed spells"
+        ],
+        "queries": [
+          "o:web-slinging"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Wicked Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"wicked role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Will of the Council",
+      "path": [
+        "Actions",
+        "Multiplayer / Opponent"
+      ],
+      "how": "Voting / offers \u2014 multiplayer politics math",
+      "supports": {
+        "enablers": [],
+        "payoffs": [
+          "vote payoffs"
+        ],
+        "queries": [
+          "keyword:\"will of the council\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Wither",
+      "path": [
+        "Damage Modification"
+      ],
+      "how": "Changes what damage does (life, -1/-1, infect)",
+      "supports": {
+        "enablers": [
+          "connectors"
+        ],
+        "payoffs": [
+          "lifegain",
+          "poison"
+        ],
+        "queries": [
+          "keyword:wither"
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    },
+    {
+      "name": "Young Hero Role",
+      "path": [
+        "Actions",
+        "Tokens",
+        "Token Types"
+      ],
+      "how": "Creates or manipulates tokens \u2014 creature vs resource is different math",
+      "supports": {
+        "enablers": [
+          "token makers"
+        ],
+        "payoffs": [
+          "anthems",
+          "aristocrats",
+          "convoke"
+        ],
+        "queries": [
+          "o:\"young hero role\""
+        ]
+      },
+      "evergreen": false,
+      "deciduous": false
+    }
+  ]
+}

@@ -1,0 +1,612 @@
+{
+  "note": "CON-181 validation set. Community classifications that can falsify CON-180. Every commander name verified against Scryfall card-names. Oracle text fetched from Scryfall /cards/collection and stored inline for offline checks. Disagreement is data \u2014 multi-label rows are not collapsed.",
+  "source_rule": "A row without a source is opinion. Disagreement is recorded, not resolved.",
+  "commanders": [
+    {
+      "commander": "Hei Bai, Spirit of Balance",
+      "playstyles": [
+        "aristocrats",
+        "counters",
+        "blink",
+        "voltron",
+        "tokens"
+      ],
+      "source": "Commander Challenge YJ8X8bO8jeY (expert sac\u2192counters\u2192leave on camera); EDHREC /commanders/hei-bai-spirit-of-balance tag_counts: +1/+1 Counters 49, Aristocrats 19, Tokens 19, Blink 10, Voltron 6",
+      "why": "Sac outlet + counters on enter/attack; leaves moves counters (blink payoff); grows tall for voltron",
+      "oracle_text": "Whenever Hei Bai enters or attacks, you may sacrifice another creature or artifact. If you do, put two +1/+1 counters on Hei Bai.\nWhen Hei Bai leaves the battlefield, put its counters on target creature you control.",
+      "type_line": "Legendary Creature \u2014 Bear Spirit",
+      "disagreement": "EDHREC splits across counters/aristocrats/tokens/blink/voltron. Expert video names sac/counters/leave(blink). All kept \u2014 decided=False."
+    },
+    {
+      "commander": "Teysa Karlov",
+      "playstyles": [
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/articles/deep-analysis-aristocrats",
+      "why": "Doubles death triggers; EDHREC's aristocrats deep-dive lead commander",
+      "oracle_text": "If a creature dying causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.\nCreature tokens you control have vigilance and lifelink.",
+      "type_line": "Legendary Creature \u2014 Human Advisor"
+    },
+    {
+      "commander": "Elenda, the Dusk Rose",
+      "playstyles": [
+        "aristocrats",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/elenda-the-dusk-rose",
+      "why": "Dies into a token swarm sized by death count \u2014 aristocrats that becomes tokens",
+      "oracle_text": "Lifelink\nWhenever another creature dies, put a +1/+1 counter on Elenda.\nWhen Elenda dies, create X 1/1 white Vampire creature tokens with lifelink, where X is Elenda's power.",
+      "type_line": "Legendary Creature \u2014 Vampire Knight"
+    },
+    {
+      "commander": "Yawgmoth, Thran Physician",
+      "playstyles": [
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/commanders/yawgmoth-thran-physician",
+      "why": "Activated sac outlet that draws and spreads -1/-1 counters",
+      "oracle_text": "Protection from Humans\nPay 1 life, Sacrifice another creature: Put a -1/-1 counter on up to one target creature and draw a card.\n{B}{B}, Discard a card: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+      "type_line": "Legendary Creature \u2014 Human Cleric"
+    },
+    {
+      "commander": "Elas il-Kor, Sadistic Pilgrim",
+      "playstyles": [
+        "aristocrats",
+        "lifegain"
+      ],
+      "source": "https://edhrec.com/commanders/elas-il-kor-sadistic-pilgrim",
+      "why": "ETB lifegain plus drain on death \u2014 aristocrats and lifegain share the card",
+      "oracle_text": "Deathtouch\nWhenever another creature you control enters, you gain 1 life.\nWhenever another creature you control dies, each opponent loses 1 life.",
+      "type_line": "Legendary Creature \u2014 Phyrexian Kor Cleric"
+    },
+    {
+      "commander": "Prossh, Skyraider of Kher",
+      "playstyles": [
+        "aristocrats",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/prossh-skyraider-of-kher",
+      "why": "Makes Kobolds then eats creatures for power \u2014 token fodder into sac",
+      "oracle_text": "When you cast this spell, create X 0/1 red Kobold creature tokens named Kobolds of Kher Keep, where X is the amount of mana spent to cast it.\nFlying\nSacrifice another creature: Prossh gets +1/+0 until end of turn.",
+      "type_line": "Legendary Creature \u2014 Dragon"
+    },
+    {
+      "commander": "Korvold, Fae-Cursed King",
+      "playstyles": [
+        "aristocrats",
+        "counters"
+      ],
+      "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; CON-180 vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here.",
+      "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
+      "oracle_text": "Flying\nWhenever Korvold enters or attacks, sacrifice another permanent.\nWhenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.",
+      "type_line": "Legendary Creature \u2014 Dragon Noble",
+      "disagreement": "EDHREC treasure > aristocrats for Korvold; vocab cannot name treasure yet."
+    },
+    {
+      "commander": "Ghave, Guru of Spores",
+      "playstyles": [
+        "counters",
+        "tokens",
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/commanders/ghave-guru-of-spores",
+      "why": "Counters, Saproling tokens, and a sac outlet on the same body \u2014 three legitimate builds",
+      "oracle_text": "Ghave enters with five +1/+1 counters on it.\n{1}, Remove a +1/+1 counter from a creature you control: Create a 1/1 green Saproling creature token.\n{1}, Sacrifice a creature: Put a +1/+1 counter on target creature.",
+      "type_line": "Legendary Creature \u2014 Fungus Shaman"
+    },
+    {
+      "commander": "Marchesa, the Black Rose",
+      "playstyles": [
+        "aristocrats",
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/marchesa-the-black-rose",
+      "why": "Dethrone counters plus recursion of creatures that die with counters",
+      "oracle_text": "Dethrone (Whenever this creature attacks the player with the most life or tied for most life, put a +1/+1 counter on it.)\nOther creatures you control have dethrone.\nWhenever a creature you control with a +1/+1 counter on it dies, return that card to the battlefield under your control at the beginning of the next end step.",
+      "type_line": "Legendary Creature \u2014 Human Wizard"
+    },
+    {
+      "commander": "Wilhelt, the Rotcleaver",
+      "playstyles": [
+        "tribal",
+        "tokens",
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/commanders/wilhelt-the-rotcleaver",
+      "why": "Zombie tribal that makes tokens and cares about nontoken deaths",
+      "oracle_text": "Whenever another Zombie you control dies, if it didn't have decayed, create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)\nAt the beginning of your end step, you may sacrifice a Zombie. If you do, draw a card.",
+      "type_line": "Legendary Creature \u2014 Zombie Warrior"
+    },
+    {
+      "commander": "Heliod, Sun-Crowned",
+      "playstyles": [
+        "lifegain",
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/heliod-sun-crowned",
+      "why": "Lifegain trigger puts +1/+1 counters; classic lifegain-counters hybrid",
+      "oracle_text": "Indestructible\nAs long as your devotion to white is less than five, Heliod isn't a creature.\nWhenever you gain life, put a +1/+1 counter on target creature or enchantment you control.\n{1}{W}: Another target creature gains lifelink until end of turn.",
+      "type_line": "Legendary Enchantment Creature \u2014 God"
+    },
+    {
+      "commander": "Breya, Etherium Shaper",
+      "playstyles": [
+        "artifacts",
+        "aristocrats",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/breya-etherium-shaper",
+      "why": "Artifact tokens she can sac for drain/draw/damage \u2014 artifacts\u00d7aristocrats",
+      "oracle_text": "When Breya enters, create two 1/1 blue Thopter artifact creature tokens with flying.\n{2}, Sacrifice two artifacts: Choose one \u2014\n\u2022 Breya deals 3 damage to target player or planeswalker.\n\u2022 Target creature gets -4/-4 until end of turn.\n\u2022 You gain 5 life.",
+      "type_line": "Legendary Artifact Creature \u2014 Human"
+    },
+    {
+      "commander": "Brago, King Eternal",
+      "playstyles": [
+        "blink"
+      ],
+      "source": "https://edhrec.com/commanders/brago-king-eternal",
+      "why": "Combat-damage blink of any number of your nonlands",
+      "oracle_text": "Flying\nWhenever Brago deals combat damage to a player, exile any number of target nonland permanents you control, then return those cards to the battlefield under their owner's control.",
+      "type_line": "Legendary Creature \u2014 Spirit Noble"
+    },
+    {
+      "commander": "Yorion, Sky Nomad",
+      "playstyles": [
+        "blink"
+      ],
+      "source": "https://edhrec.com/commanders/yorion-sky-nomad",
+      "why": "ETB blinks your other nonland permanents",
+      "oracle_text": "Companion \u2014 Your starting deck contains at least twenty cards more than the minimum deck size. (If this card is your chosen companion, you may put it into your hand from outside the game for {3} as a sorcery.)\nFlying\nWhen Yorion enters, exile any number of other nonland permanents you own and control. Return those cards to the battlefield at the beginning of the next end step.",
+      "type_line": "Legendary Creature \u2014 Bird Serpent"
+    },
+    {
+      "commander": "Aminatou, the Fateshifter",
+      "playstyles": [
+        "blink"
+      ],
+      "source": "https://edhrec.com/commanders/aminatou-the-fateshifter",
+      "why": "Minus ability blinks a permanent you own",
+      "oracle_text": "+1: Draw a card, then put a card from your hand on top of your library.\n\u22121: Exile another target permanent you own, then return it to the battlefield under your control.\n\u22126: Choose left or right. Each player gains control of all nonland permanents other than Aminatou controlled by the next player in the chosen direction.\nAminatou, the Fateshifter can be your commander.",
+      "type_line": "Legendary Planeswalker \u2014 Aminatou"
+    },
+    {
+      "commander": "Elesh Norn, Mother of Machines",
+      "playstyles": [
+        "blink"
+      ],
+      "source": "https://edhrec.com/commanders/elesh-norn-mother-of-machines",
+      "why": "Doubles ETBs \u2014 community builds her as the blink/ETB payoff commander",
+      "oracle_text": "Vigilance\nIf a permanent entering causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.\nPermanents entering don't cause abilities of permanents your opponents control to trigger.",
+      "type_line": "Legendary Creature \u2014 Phyrexian Praetor",
+      "disagreement": "She does not blink; she doubles enters. Sources also tag ETB. Recorded as blink because that is the shell she headlines; detector cannot see etb_doubler."
+    },
+    {
+      "commander": "Atraxa, Praetors' Voice",
+      "playstyles": [
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/atraxa-praetors-voice",
+      "why": "End-step proliferate \u2014 the default +1/+1 counters commander on EDHREC",
+      "oracle_text": "Flying, vigilance, deathtouch, lifelink\nAt the beginning of your end step, proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+      "type_line": "Legendary Creature \u2014 Phyrexian Angel Horror"
+    },
+    {
+      "commander": "Ezuri, Claw of Progress",
+      "playstyles": [
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/ezuri-claw-of-progress",
+      "why": "Experience counters into +1/+1 counters on a small creature",
+      "oracle_text": "Whenever a creature you control with power 2 or less enters, you get an experience counter.\nAt the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have.",
+      "type_line": "Legendary Creature \u2014 Phyrexian Elf Warrior"
+    },
+    {
+      "commander": "Hamza, Guardian of Arashin",
+      "playstyles": [
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/hamza-guardian-of-arashin",
+      "why": "Discounts creatures by your +1/+1 counter count",
+      "oracle_text": "This spell costs {1} less to cast for each creature you control with a +1/+1 counter on it.\nCreature spells you cast cost {1} less to cast for each creature you control with a +1/+1 counter on it.",
+      "type_line": "Legendary Creature \u2014 Elephant Warrior"
+    },
+    {
+      "commander": "Light-Paws, Emperor's Voice",
+      "playstyles": [
+        "voltron"
+      ],
+      "source": "https://edhrec.com/commanders/light-paws-emperors-voice",
+      "why": "Aura tutor-to-battlefield attached to herself \u2014 aura voltron",
+      "oracle_text": "Whenever an Aura you control enters, if you cast it, you may search your library for an Aura card with mana value less than or equal to that Aura and with a different name than each Aura you control, put that card onto the battlefield attached to Light-Paws, then shuffle.",
+      "type_line": "Legendary Creature \u2014 Fox Advisor"
+    },
+    {
+      "commander": "Sram, Senior Edificer",
+      "playstyles": [
+        "voltron"
+      ],
+      "source": "https://edhrec.com/commanders/sram-senior-edificer",
+      "why": "Draws off Aura/Equipment/Vehicle casts \u2014 equipment/aura voltron enabler",
+      "oracle_text": "Whenever you cast an Aura, Equipment, or Vehicle spell, draw a card.",
+      "type_line": "Legendary Creature \u2014 Dwarf Advisor"
+    },
+    {
+      "commander": "Wyleth, Soul of Steel",
+      "playstyles": [
+        "voltron"
+      ],
+      "source": "https://edhrec.com/commanders/wyleth-soul-of-steel",
+      "why": "Draws equal to attached Equipment and Auras when he attacks",
+      "oracle_text": "Trample\nWhenever Wyleth attacks, draw a card for each Aura and Equipment attached to it.",
+      "type_line": "Legendary Creature \u2014 Human Warrior"
+    },
+    {
+      "commander": "Krenko, Mob Boss",
+      "playstyles": [
+        "tokens",
+        "tribal"
+      ],
+      "source": "https://edhrec.com/commanders/krenko-mob-boss",
+      "why": "Tap to make Goblins equal to Goblins \u2014 token tribal poster child",
+      "oracle_text": "{T}: Create X 1/1 red Goblin creature tokens, where X is the number of Goblins you control.",
+      "type_line": "Legendary Creature \u2014 Goblin Warrior"
+    },
+    {
+      "commander": "Rhys the Redeemed",
+      "playstyles": [
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/rhys-the-redeemed",
+      "why": "Makes and doubles creature tokens",
+      "oracle_text": "{2}{G/W}, {T}: Create a 1/1 green and white Elf Warrior creature token.\n{4}{G/W}{G/W}, {T}: For each creature token you control, create a token that's a copy of that creature.",
+      "type_line": "Legendary Creature \u2014 Elf Warrior"
+    },
+    {
+      "commander": "Jetmir, Nexus of Revels",
+      "playstyles": [
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/jetmir-nexus-of-revels",
+      "why": "Go-wide combat payoffs at 3/6/9 creature thresholds",
+      "oracle_text": "Creatures you control get +1/+0 and have vigilance as long as you control three or more creatures.\nCreatures you control also get +1/+0 and have trample as long as you control six or more creatures.\nCreatures you control also get +1/+0 and have double strike as long as you control nine or more creatures.",
+      "type_line": "Legendary Creature \u2014 Cat Demon"
+    },
+    {
+      "commander": "Purphoros, God of the Forge",
+      "playstyles": [
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/purphoros-god-of-the-forge",
+      "why": "Pings on creature ETB \u2014 token swarm burn",
+      "oracle_text": "Indestructible\nAs long as your devotion to red is less than five, Purphoros isn't a creature.\nWhenever another creature you control enters, Purphoros deals 2 damage to each opponent.\n{2}{R}: Creatures you control get +1/+0 until end of turn.",
+      "type_line": "Legendary Enchantment Creature \u2014 God"
+    },
+    {
+      "commander": "Chatterfang, Squirrel General",
+      "playstyles": [
+        "tokens",
+        "tribal",
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/commanders/chatterfang-squirrel-general",
+      "why": "Doubles tokens as Squirrels and sacs them \u2014 tokens/tribal/aristocrats fork",
+      "oracle_text": "Forestwalk (This creature can't be blocked as long as defending player controls a Forest.)\nIf one or more tokens would be created under your control, those tokens plus that many 1/1 green Squirrel creature tokens are created instead.\n{B}, Sacrifice X Squirrels: Target creature gets +X/-X until end of turn.",
+      "type_line": "Legendary Creature \u2014 Squirrel Warrior"
+    },
+    {
+      "commander": "Omnath, Locus of Rage",
+      "playstyles": [
+        "landfall",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/omnath-locus-of-rage",
+      "why": "Landfall makes 5/5s; Elemental deaths burn",
+      "oracle_text": "Landfall \u2014 Whenever a land you control enters, create a 5/5 red and green Elemental creature token.\nWhenever Omnath or another Elemental you control dies, Omnath deals 3 damage to any target.",
+      "type_line": "Legendary Creature \u2014 Elemental"
+    },
+    {
+      "commander": "Aesi, Tyrant of Gyre Strait",
+      "playstyles": [
+        "landfall"
+      ],
+      "source": "https://edhrec.com/commanders/aesi-tyrant-of-gyre-strait",
+      "why": "Extra land drop plus draw on landfall",
+      "oracle_text": "You may play an additional land on each of your turns.\nLandfall \u2014 Whenever a land you control enters, you may draw a card.",
+      "type_line": "Legendary Creature \u2014 Serpent"
+    },
+    {
+      "commander": "Tatyova, Benthic Druid",
+      "playstyles": [
+        "landfall"
+      ],
+      "source": "https://edhrec.com/commanders/tatyova-benthic-druid",
+      "why": "Landfall draws and gains life",
+      "oracle_text": "Landfall \u2014 Whenever a land you control enters, you gain 1 life and draw a card.",
+      "type_line": "Legendary Creature \u2014 Merfolk Druid"
+    },
+    {
+      "commander": "Bristly Bill, Spine Sower",
+      "playstyles": [
+        "landfall",
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/bristly-bill-spine-sower",
+      "why": "Landfall puts +1/+1 counters; activate to double them",
+      "oracle_text": "Landfall \u2014 Whenever a land you control enters, put a +1/+1 counter on target creature.\n{3}{G}{G}: Double the number of +1/+1 counters on each creature you control.",
+      "type_line": "Legendary Creature \u2014 Plant Druid"
+    },
+    {
+      "commander": "Kess, Dissident Mage",
+      "playstyles": [
+        "spellslinger"
+      ],
+      "source": "https://edhrec.com/commanders/kess-dissident-mage",
+      "why": "Cast an instant or sorcery from the graveyard each turn",
+      "oracle_text": "Flying\nOnce during each of your turns, you may cast an instant or sorcery spell from your graveyard. If a spell cast this way would be put into your graveyard, exile it instead.",
+      "type_line": "Legendary Creature \u2014 Human Wizard"
+    },
+    {
+      "commander": "Niv-Mizzet, Parun",
+      "playstyles": [
+        "spellslinger"
+      ],
+      "source": "https://edhrec.com/commanders/niv-mizzet-parun",
+      "why": "Draws off instants/sorceries and burns off draws",
+      "oracle_text": "This spell can't be countered.\nFlying\nWhenever you draw a card, Niv-Mizzet deals 1 damage to any target.\nWhenever a player casts an instant or sorcery spell, you draw a card.",
+      "type_line": "Legendary Creature \u2014 Dragon Wizard"
+    },
+    {
+      "commander": "Veyran, Voice of Duality",
+      "playstyles": [
+        "spellslinger"
+      ],
+      "source": "https://edhrec.com/commanders/veyran-voice-of-duality",
+      "why": "Doubles magecraft-like triggers for instant/sorcery casts",
+      "oracle_text": "Magecraft \u2014 Whenever you cast or copy an instant or sorcery spell, Veyran gets +1/+1 until end of turn.\nIf you casting or copying an instant or sorcery spell causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time.",
+      "type_line": "Legendary Creature \u2014 Efreet Wizard"
+    },
+    {
+      "commander": "Stella Lee, Wild Card",
+      "playstyles": [
+        "spellslinger"
+      ],
+      "source": "https://edhrec.com/commanders/stella-lee-wild-card",
+      "why": "Second-spell impulse and copy once you cast three spells",
+      "oracle_text": "Whenever you cast your second spell each turn, exile the top card of your library. Until the end of your next turn, you may play that card.\n{T}: Copy target instant or sorcery spell you control. You may choose new targets for the copy. Activate only if you've cast three or more spells this turn.",
+      "type_line": "Legendary Creature \u2014 Human Rogue"
+    },
+    {
+      "commander": "Meren of Clan Nel Toth",
+      "playstyles": [
+        "reanimator",
+        "aristocrats"
+      ],
+      "source": "https://edhrec.com/commanders/meren-of-clan-nel-toth",
+      "why": "Experience from deaths reanimates creatures \u2014 aristocrats into reanimator",
+      "oracle_text": "Whenever another creature you control dies, you get an experience counter.\nAt the beginning of your end step, choose target creature card in your graveyard. If that card's mana value is less than or equal to the number of experience counters you have, return it to the battlefield. Otherwise, put it into your hand.",
+      "type_line": "Legendary Creature \u2014 Human Shaman"
+    },
+    {
+      "commander": "Chainer, Nightmare Adept",
+      "playstyles": [
+        "reanimator"
+      ],
+      "source": "https://edhrec.com/commanders/chainer-nightmare-adept",
+      "why": "Discard then cast creatures from graveyard with haste",
+      "oracle_text": "Discard a card: You may cast a creature spell from your graveyard this turn. Activate only once each turn.\nWhenever a nontoken creature you control enters, if you didn't cast it from your hand, it gains haste until your next turn.",
+      "type_line": "Legendary Creature \u2014 Human Minion"
+    },
+    {
+      "commander": "Karador, Ghost Chieftain",
+      "playstyles": [
+        "reanimator"
+      ],
+      "source": "https://edhrec.com/commanders/karador-ghost-chieftain",
+      "why": "Cast one creature from graveyard each turn",
+      "oracle_text": "This spell costs {1} less to cast for each creature card in your graveyard.\nOnce during each of your turns, you may cast a creature spell from your graveyard.",
+      "type_line": "Legendary Creature \u2014 Centaur Spirit"
+    },
+    {
+      "commander": "Muldrotha, the Gravetide",
+      "playstyles": [
+        "reanimator"
+      ],
+      "source": "https://edhrec.com/commanders/muldrotha-the-gravetide",
+      "why": "Play a permanent of each type from the graveyard each turn",
+      "oracle_text": "During each of your turns, you may play a land and cast a permanent spell of each permanent type from your graveyard. (If a card has multiple permanent types, choose one as you play it.)",
+      "type_line": "Legendary Creature \u2014 Elemental Avatar",
+      "disagreement": "Also built as lands-matter / value graveyard; reanimator is the community headline."
+    },
+    {
+      "commander": "Grand Arbiter Augustin IV",
+      "playstyles": [
+        "stax"
+      ],
+      "source": "https://edhrec.com/commanders/grand-arbiter-augustin-iv",
+      "why": "Taxes opponents and discounts your white/blue spells",
+      "oracle_text": "White spells you cast cost {1} less to cast.\nBlue spells you cast cost {1} less to cast.\nSpells your opponents cast cost {1} more to cast.",
+      "type_line": "Legendary Creature \u2014 Human Advisor"
+    },
+    {
+      "commander": "Phelddagrif",
+      "playstyles": [
+        "group_hug"
+      ],
+      "source": "https://edhrec.com/commanders/phelddagrif",
+      "why": "Activated abilities give opponents hippos, life, and cards",
+      "oracle_text": "{G}: Phelddagrif gains trample until end of turn. Target opponent creates a 1/1 green Hippo creature token.\n{W}: Phelddagrif gains flying until end of turn. Target opponent gains 2 life.\n{U}: Return Phelddagrif to its owner's hand. Target opponent may draw a card.",
+      "type_line": "Legendary Creature \u2014 Phelddagrif"
+    },
+    {
+      "commander": "Kwain, Itinerant Meddler",
+      "playstyles": [
+        "group_hug"
+      ],
+      "source": "https://edhrec.com/commanders/kwain-itinerant-meddler",
+      "why": "Each player may draw; you gain life when they do",
+      "oracle_text": "{T}: Each player may draw a card, then each player who drew a card this way gains 1 life.",
+      "type_line": "Legendary Creature \u2014 Rabbit Wizard"
+    },
+    {
+      "commander": "Ms. Bumbleflower",
+      "playstyles": [
+        "group_hug"
+      ],
+      "source": "https://edhrec.com/commanders/ms-bumbleflower",
+      "why": "Group draw with +1/+1 counters as the personal payoff",
+      "oracle_text": "Vigilance\nWhenever you cast a spell, target opponent draws a card. Put a +1/+1 counter on target creature. It gains flying until end of turn. If this is the second time this ability has resolved this turn, you draw two cards.",
+      "type_line": "Legendary Creature \u2014 Rabbit Citizen"
+    },
+    {
+      "commander": "Oloro, Ageless Ascetic",
+      "playstyles": [
+        "lifegain"
+      ],
+      "source": "https://edhrec.com/commanders/oloro-ageless-ascetic",
+      "why": "Gains life from the command zone; payoffs drain and draw",
+      "oracle_text": "At the beginning of your upkeep, you gain 2 life.\nWhenever you gain life, you may pay {1}. If you do, draw a card and each opponent loses 1 life.\nAt the beginning of your upkeep, if Oloro is in the command zone, you gain 2 life.",
+      "type_line": "Legendary Creature \u2014 Giant Soldier"
+    },
+    {
+      "commander": "Lathiel, the Bounteous Dawn",
+      "playstyles": [
+        "lifegain",
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/lathiel-the-bounteous-dawn",
+      "why": "Distributes +1/+1 counters equal to life gained each turn",
+      "oracle_text": "Lifelink\nAt the beginning of each end step, if you gained life this turn, distribute up to that many +1/+1 counters among any number of other target creatures.",
+      "type_line": "Legendary Creature \u2014 Unicorn"
+    },
+    {
+      "commander": "Urza, Lord High Artificer",
+      "playstyles": [
+        "artifacts"
+      ],
+      "source": "https://edhrec.com/commanders/urza-lord-high-artificer",
+      "why": "Taps artifacts for blue and makes Construct tokens",
+      "oracle_text": "When Urza enters, create a 0/0 colorless Construct artifact creature token with \"This token gets +1/+1 for each artifact you control.\"\nTap an untapped artifact you control: Add {U}.\n{5}: Shuffle your library, then exile the top card. Until end of turn, you may play that card without paying its mana cost.",
+      "type_line": "Legendary Creature \u2014 Human Artificer"
+    },
+    {
+      "commander": "Sharuum the Hegemon",
+      "playstyles": [
+        "artifacts",
+        "reanimator"
+      ],
+      "source": "https://edhrec.com/commanders/sharuum-the-hegemon",
+      "why": "ETB returns an artifact from yard \u2014 artifact reanimator",
+      "oracle_text": "Flying\nWhen Sharuum enters, you may return target artifact card from your graveyard to the battlefield.",
+      "type_line": "Legendary Artifact Creature \u2014 Sphinx"
+    },
+    {
+      "commander": "Edgar Markov",
+      "playstyles": [
+        "tribal",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/edgar-markov",
+      "why": "Eminence makes Vampire tokens; attack trigger grows Vampires",
+      "oracle_text": "Eminence \u2014 Whenever you cast another Vampire spell, if Edgar is in the command zone or on the battlefield, create a 1/1 black Vampire creature token.\nFirst strike, haste\nWhenever Edgar attacks, put a +1/+1 counter on each Vampire you control.",
+      "type_line": "Legendary Creature \u2014 Vampire Knight"
+    },
+    {
+      "commander": "The Ur-Dragon",
+      "playstyles": [
+        "tribal"
+      ],
+      "source": "https://edhrec.com/commanders/the-ur-dragon",
+      "why": "Eminence discounts Dragons; attack trigger draws and cheats permanents",
+      "oracle_text": "Eminence \u2014 As long as The Ur-Dragon is in the command zone or on the battlefield, other Dragon spells you cast cost {1} less to cast.\nFlying\nWhenever one or more Dragons you control attack, draw that many cards, then you may put a permanent card from your hand onto the battlefield.",
+      "type_line": "Legendary Creature \u2014 Dragon Avatar"
+    },
+    {
+      "commander": "Lathril, Blade of the Elves",
+      "playstyles": [
+        "tribal",
+        "tokens"
+      ],
+      "source": "https://edhrec.com/commanders/lathril-blade-of-the-elves",
+      "why": "Elf attack makes Elf tokens; sac Elves to drain",
+      "oracle_text": "Menace (This creature can't be blocked except by two or more creatures.)\nWhenever Lathril deals combat damage to a player, create that many 1/1 green Elf Warrior creature tokens.\n{T}, Tap ten untapped Elves you control: Each opponent loses 10 life and you gain 10 life.",
+      "type_line": "Legendary Creature \u2014 Elf Noble"
+    },
+    {
+      "commander": "Giada, Font of Hope",
+      "playstyles": [
+        "tribal",
+        "counters"
+      ],
+      "source": "https://edhrec.com/commanders/giada-font-of-hope",
+      "why": "Angels enter with +1/+1 counters for each Angel you control",
+      "oracle_text": "Flying, vigilance\nEach other Angel you control enters with an additional +1/+1 counter on it for each Angel you already control.\n{T}: Add {W}. Spend this mana only to cast an Angel spell.",
+      "type_line": "Legendary Creature \u2014 Angel"
+    },
+    {
+      "commander": "Athreos, God of Passage",
+      "playstyles": [
+        "aristocrats",
+        "reanimator"
+      ],
+      "source": "https://edhrec.com/commanders/athreos-god-of-passage",
+      "why": "Deaths tax opponents or return your creatures \u2014 aristocrats/reanimator edge",
+      "oracle_text": "Indestructible\nAs long as your devotion to white and black is less than seven, Athreos isn't a creature.\nWhenever another creature you own dies, return it to your hand unless target opponent pays 3 life.",
+      "type_line": "Legendary Enchantment Creature \u2014 God"
+    },
+    {
+      "commander": "Omnath, Locus of Creation",
+      "playstyles": [
+        "landfall"
+      ],
+      "source": "EDHREC Top Commanders landfall #1 (https://edhrec.com/themes/landfall)",
+      "why": "Landfall for card/land/life/damage. Near-miss vs Omnath, Locus of Rage (landfall without the token army).",
+      "near_miss_of": "Omnath, Locus of Rage",
+      "oracle_text": "When Omnath enters, draw a card.\nLandfall \u2014 Whenever a land you control enters, you gain 4 life if this is the first time this ability has resolved this turn. If it's the second time, add {R}{G}{W}{U}. If it's the third time, Omnath deals 4 damage to each opponent and each planeswalker you don't control.",
+      "type_line": "Legendary Creature \u2014 Elemental"
+    },
+    {
+      "commander": "Skullbriar, the Walking Grave",
+      "playstyles": [
+        "voltron",
+        "counters"
+      ],
+      "source": "EDHREC Top Commanders voltron + +1/+1 counters (https://edhrec.com/themes/voltron, https://edhrec.com/themes/plus-1-plus-1-counters)",
+      "why": "Keeps +1/+1 counters in every zone \u2014 counters-voltron. Near-miss vs Light-Paws (aura voltron).",
+      "near_miss_of": "Light-Paws, Emperor's Voice",
+      "disagreement": "EDHREC lists both voltron and +1/+1 counters in volume; both kept.",
+      "oracle_text": "Haste\nWhenever Skullbriar deals combat damage to a player, put a +1/+1 counter on it.\nCounters remain on Skullbriar as it moves to any zone other than a player's hand or library.",
+      "type_line": "Legendary Creature \u2014 Zombie Elemental"
+    },
+    {
+      "commander": "Animar, Soul of Elements",
+      "playstyles": [
+        "counters"
+      ],
+      "source": "EDHREC Top Commanders +1/+1 Counters (https://edhrec.com/themes/plus-1-plus-1-counters)",
+      "why": "Creature casts put +1/+1 counters on Animar and discount creature spells.",
+      "oracle_text": "Protection from white and from black\nWhenever you cast a creature spell, put a +1/+1 counter on Animar.\nCreature spells you cast cost {1} less to cast for each +1/+1 counter on Animar.",
+      "type_line": "Legendary Creature \u2014 Elemental"
+    },
+    {
+      "commander": "Derevi, Empyrial Tactician",
+      "playstyles": [
+        "stax"
+      ],
+      "source": "EDHREC Top Commanders stax (https://edhrec.com/themes/stax)",
+      "why": "Untaps on combat damage; enables Winter Orb / stax locks.",
+      "oracle_text": "Flying\nWhen Derevi enters and whenever a creature you control deals combat damage to a player, you may tap or untap target permanent.\n{1}{G}{W}{U}: Put Derevi onto the battlefield from the command zone.",
+      "type_line": "Legendary Creature \u2014 Bird Wizard"
+    },
+    {
+      "commander": "Winota, Joiner of Forces",
+      "playstyles": [
+        "stax"
+      ],
+      "source": "EDHREC Top Commanders stax (https://edhrec.com/themes/stax)",
+      "why": "Cheats Humans in on non-Human attacks; EDHREC classifies the dominant competitive shell as stax.",
+      "oracle_text": "Whenever a non-Human creature you control attacks, look at the top six cards of your library. You may put a Human creature card from among them onto the battlefield tapped and attacking. It gains indestructible until end of turn. Put the rest of the cards on the bottom of your library in a random order.",
+      "type_line": "Legendary Creature \u2014 Human Warrior"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "id": "edgar_vampires_wide",
+      "brief": {
+        "theme": "vampires",
+        "strategy": "Low-to-the-ground aggro with cheap Vampires and go wide on tokens.",
+        "mechanics": ["tokens", "lifelink", "aggro"],
+        "playstyle": "proactive"
+      },
+      "commander": {
+        "name": "Edgar Markov",
+        "type": "Legendary Creature — Vampire Knight",
+        "cmc": 5,
+        "cost": "{3}{W}{B}",
+        "text": "Eminence — Whenever you cast another Vampire spell, if Edgar Markov wasn't on the battlefield, create a 1/1 black Vampire creature token with lifelink.\nWhenever Edgar Markov attacks, if you attacked with three or more Vampires this combat, exile the top ten cards of target player's library and put a permanent card from among them onto the battlefield under your control."
+      }
+    },
+    {
+      "id": "oloro_lifegain",
+      "brief": {
+        "theme": "lifegain",
+        "strategy": "Gain life every turn and drain opponents with payoffs that care about life totals.",
+        "mechanics": ["lifegain", "drain"],
+        "playstyle": "grindy"
+      },
+      "commander": {
+        "name": "Oloro, Ageless Ascetic",
+        "type": "Legendary Creature — Giant Soldier",
+        "cmc": 5,
+        "cost": "{4}{W}{U}{B}",
+        "text": "At the beginning of your upkeep, if Oloro, Ageless Ascetic is in your command zone, you gain 2 life.\nPay 2 life: Draw a card."
+      }
+    },
+    {
+      "id": "tatyova_landfall",
+      "brief": {
+        "theme": "lands",
+        "strategy": "Ramp with extra land drops and landfall payoffs that refill your hand.",
+        "mechanics": ["landfall", "ramp"],
+        "playstyle": "proactive"
+      },
+      "commander": {
+        "name": "Tatyova, Benthic Druid",
+        "type": "Legendary Creature — Merfolk Druid",
+        "cmc": 5,
+        "cost": "{3}{G}{U}",
+        "text": "Landfall — Whenever a land enters the battlefield under your control, Tatyova, Benthic Druid explores, then you may return a land you control to its owner's hand."
+      }
+    },
+    {
+      "id": "provisional_mill_wish",
+      "brief": {
+        "theme": "necromancy",
+        "strategy": "Mill opponents and reanimate the best creatures from graveyards.",
+        "mechanics": ["mill", "graveyard"],
+        "playstyle": "grindy"
+      },
+      "commander": null
+    }
+  ]
+}

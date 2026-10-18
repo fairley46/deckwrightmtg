@@ -1,0 +1,253 @@
+{
+  "title": "Know Magic \u2014 lap 1 admission + remeasure",
+  "closed_at": "2026-08-08",
+  "note": "One full comprehension lap: read \u2192 gap \u2192 research \u2192 grammar + strategy \u2192 admit. Admitting means method + confidence recorded on the artifacts, not a silent vocabulary bump. Not 100% \u2014 done is a stated fraction + named remainder. No SQLite; bulk oracle cache + small vocabulary is the load model.",
+  "phases": {
+    "CON-245": {
+      "title": "Instrument + mana/land/commander/aura signals",
+      "pr": "https://github.com/fairley46/deckwright/pull/228",
+      "artifacts": [
+        "scripts/oracle_coverage.py",
+        "data/oracle_coverage_report.md",
+        "data/mechanic_families.json#oracle_signals"
+      ]
+    },
+    "CON-247": {
+      "title": "Research ranked unread gaps",
+      "pr": "https://github.com/fairley46/deckwright/pull/229",
+      "artifacts": [
+        "data/unread_gap_research.json",
+        "docs/UNREAD-GAP-RESEARCH.md"
+      ]
+    },
+    "CON-248": {
+      "title": "Scryfall grammar verified + nine signals",
+      "pr": "https://github.com/fairley46/deckwright/pull/230",
+      "artifacts": [
+        "data/unread_gap_grammar.json",
+        "docs/UNREAD-GAP-GRAMMAR.md"
+      ]
+    },
+    "CON-249": {
+      "title": "Strategy hooks (boosts, no invented playstyles)",
+      "pr": "https://github.com/fairley46/deckwright/pull/231",
+      "artifacts": [
+        "data/unread_gap_strategy.json",
+        "docs/UNREAD-GAP-STRATEGY.md",
+        "data/playstyles.json",
+        "data/commanders.json"
+      ]
+    },
+    "CON-250": {
+      "title": "Admit + remeasure lap",
+      "artifacts": [
+        "data/know_magic_lap.json",
+        "docs/KNOW-MAGIC-LAP.md",
+        "data/oracle_coverage_report.md"
+      ]
+    }
+  },
+  "admitted_oracle_signals": {
+    "CON-245": [
+      "enters_tapped",
+      "pay_life_enter",
+      "pain_mana",
+      "any_color_mana",
+      "commander_identity_mana",
+      "land_sacrifice_value",
+      "commander_free_cast",
+      "commander_matters",
+      "enchant_creature",
+      "no_max_hand_size"
+    ],
+    "CON-248": [
+      "cant_be_blocked",
+      "card_draw",
+      "dual_mana_ability",
+      "enchant_land",
+      "firebreathing",
+      "modal_choose_one",
+      "must_attack",
+      "tap_add_colored",
+      "uncounterable"
+    ]
+  },
+  "research_patterns": 38,
+  "grammar_all_searchable": true,
+  "coverage": {
+    "baselines": {
+      "c8c54da_600_sample": {
+        "at_least_one_signal_pct": 44.2,
+        "silent_pct": 55.8,
+        "any_consumes_pct": 20.6
+      },
+      "pre_con245_full_corpus": {
+        "at_least_one_signal_pct": 51.0,
+        "any_consumes_pct": 20.6,
+        "oracle_signals": 63
+      }
+    },
+    "after_lap": {
+      "universe_commander_legal": 31830,
+      "graded": 31830,
+      "unknown_unreadable": 0,
+      "at_least_one_signal_pct": 64.0,
+      "at_least_one_signal_count": 20365,
+      "any_consumes_pct": 23.8,
+      "any_consumes_count": 7582,
+      "silent_pct": 36.0,
+      "silent_count": 11465,
+      "oracle_signals": 82
+    },
+    "delta_vs_pre_con245_full": {
+      "at_least_one_signal_pp": 13.0,
+      "any_consumes_pp": 3.2,
+      "precision_pp": 0.0
+    }
+  },
+  "precision": {
+    "before_pct": 89.9,
+    "after_pct": 89.9,
+    "floor_pct": 88.0,
+    "held": true
+  },
+  "ways_to_play": {
+    "before": {
+      "empty_ways": 386,
+      "empty_ways_no_signals": 221,
+      "empty_ways_signals_no_playstyle": 165,
+      "ways_to_play": 2935,
+      "mechanics": 3321,
+      "playstyles_precision_pct": 89.9,
+      "note": "From data/commanders.json before Phase 4 playstyle boosts + mechanics-refresh."
+    },
+    "after": {
+      "empty_ways": 386,
+      "empty_ways_no_signals": 177,
+      "empty_ways_signals_no_playstyle": 209,
+      "ways_to_play": 2935,
+      "mechanics": 3321,
+      "playstyles_precision_pct": 89.9,
+      "mechanics_refresh_at": "2026-08-08",
+      "fetch_miss": 161,
+      "fetch_miss_note": "161 DFC/collection misses kept prior mechanics \u2014 unknown for those rows, not scored as newly readable."
+    },
+    "delta": {
+      "empty_ways": 0,
+      "empty_ways_no_signals": -44,
+      "empty_ways_signals_no_playstyle": 44,
+      "ways_to_play": 0
+    },
+    "finding": "New CON-248 signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback."
+  },
+  "unread_tail_top": [
+    {
+      "count": 895,
+      "line": "flying"
+    },
+    {
+      "count": 240,
+      "line": "trample"
+    },
+    {
+      "count": 152,
+      "line": "defender"
+    },
+    {
+      "count": 136,
+      "line": "{M}: add {M}"
+    },
+    {
+      "count": 135,
+      "line": "vigilance"
+    },
+    {
+      "count": 134,
+      "line": "haste"
+    },
+    {
+      "count": 120,
+      "line": "reach"
+    },
+    {
+      "count": 120,
+      "line": "flash"
+    },
+    {
+      "count": 116,
+      "line": "first strike"
+    },
+    {
+      "count": 107,
+      "line": "equip {M}"
+    },
+    {
+      "count": 78,
+      "line": "deathtouch"
+    },
+    {
+      "count": 78,
+      "line": "menace"
+    },
+    {
+      "count": 66,
+      "line": "lifelink"
+    },
+    {
+      "count": 61,
+      "line": "morph {M}{M}"
+    },
+    {
+      "count": 57,
+      "line": "devoid"
+    },
+    {
+      "count": 50,
+      "line": "convoke"
+    },
+    {
+      "count": 47,
+      "line": "flying, vigilance"
+    },
+    {
+      "count": 46,
+      "line": "{M}: regenerate this creature"
+    },
+    {
+      "count": 44,
+      "line": "prowess"
+    },
+    {
+      "count": 40,
+      "line": "this creature can't block"
+    }
+  ],
+  "next_batch": {
+    "priority": [
+      {
+        "line": "flying / trample / haste / vigilance / \u2026",
+        "why": "Keyword mountain. Admit via Scryfall keyword catalogs into scoring/theme density \u2014 do not invent oracle_signals."
+      },
+      {
+        "line": "{M}: add {M} residual (136 silent)",
+        "why": "tap_add_colored shipped; residual is other mana shapes (colorless, multi-symbol, non-tap costs). Research before widening."
+      },
+      {
+        "line": "equip {M}",
+        "why": "keyword:equip verified; voltron already requires aura/equipment cast. Catalog, not new signal."
+      },
+      {
+        "line": "signals-but-no-playstyle (209 commanders)",
+        "why": "Need sourced playstyle names or real composition gates \u2014 not fallback matching on enters/attacks."
+      }
+    ]
+  },
+  "load_model": {
+    "card_warehouse": false,
+    "sqlite": false,
+    "bulk_cache": "~/.deckwright/oracle_cards.jsonl",
+    "vocabulary": "data/mechanic_families.json oracle_signals + Scryfall catalogs",
+    "selection": "Scryfall queries still run; model never invents card names",
+    "note": "Knowing every card = small readable vocabulary over the bulk corpus, not a local card DB."
+  }
+}

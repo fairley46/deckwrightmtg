@@ -1,0 +1,413 @@
+{
+  "source": "youtube YJ8X8bO8jeY transcript, Commander Challenge",
+  "commander": "Hei Bai, Spirit of Balance",
+  "commander_colors": [
+    "W",
+    "B"
+  ],
+  "bracket": 2,
+  "method": "n-grams from the transcript matched against Scryfall's card-names catalog. Names come from Scryfall; the transcript only selects. Unmatched candidates dropped.",
+  "caveat": "Auto-generated subtitles mangle names (Hei Bai appears as Hayabusa/Haywire/Heiwei). This is a VERIFIED SUBSET of his deck, not the whole 99, and absence here is not evidence he omitted a card.",
+  "sections": {
+    "commander_selection": {
+      "start_phrase": "step one",
+      "end_phrase": "now that we have our commander",
+      "start": 685,
+      "end": 6053,
+      "video_window": "0:37-5:49"
+    }
+  },
+  "rules": [
+    {
+      "id": "rejected_commander",
+      "description": "First named inside the commander-selection section (step one \u2192 'now that we have our commander') and the card is a legendary creature other than the chosen commander."
+    },
+    {
+      "id": "counter_example",
+      "description": "Named near 'this is not \u2026 advantage' \u2014 the video's own counter-example (Faithless Looting), not a pick."
+    },
+    {
+      "id": "explicit_cut",
+      "description": "This card is the object of a cut/replace in the 50 characters before its name ('slot it in for this \u2026', 'end up cutting \u2026'). A wider window would also claim neighbouring keeps."
+    },
+    {
+      "id": "off_identity",
+      "description": "Color identity is not a subset of the commander's. Cannot legally sit in his 99; the transcript match is a concept mention or a rejected legend already caught above."
+    },
+    {
+      "id": "color_has_example",
+      "description": "Named as a per-color example ('white has Smothering Tithe'), not as a card going into this deck."
+    },
+    {
+      "id": "shadowed_name",
+      "description": "A longer verified name occupies the same transcript locus (e.g. 'Nine Lives' inside 'Nine-Lives Familiar'). The short match is an n-gram shadow, not a second card."
+    },
+    {
+      "id": "building_section",
+      "description": "First named at or after the end of commander selection \u2014 the building steps. Default bucket for a verified name that no rejection rule claimed."
+    },
+    {
+      "id": "pre_build_mention",
+      "description": "Appears only before building starts and is not a rejected legend. Mentioned, not chosen."
+    }
+  ],
+  "chosen": [
+    {
+      "name": "Aerial Extortionist",
+      "rule": "building_section",
+      "transcript_pos": 27916
+    },
+    {
+      "name": "Airbender Ascension",
+      "rule": "building_section",
+      "transcript_pos": 9818
+    },
+    {
+      "name": "Angel of Indemnity",
+      "rule": "building_section",
+      "transcript_pos": 10583
+    },
+    {
+      "name": "Arcane Signet",
+      "rule": "building_section",
+      "transcript_pos": 24308
+    },
+    {
+      "name": "Body Launderer",
+      "rule": "building_section",
+      "transcript_pos": 39592
+    },
+    {
+      "name": "Braids, Arisen Nightmare",
+      "rule": "building_section",
+      "transcript_pos": 18874
+    },
+    {
+      "name": "Come Back Wrong",
+      "rule": "building_section",
+      "transcript_pos": 28671
+    },
+    {
+      "name": "Day of Judgment",
+      "rule": "building_section",
+      "transcript_pos": 27225
+    },
+    {
+      "name": "Deadly Dispute",
+      "rule": "building_section",
+      "transcript_pos": 18563
+    },
+    {
+      "name": "Disciple of Bolas",
+      "rule": "building_section",
+      "transcript_pos": 19611
+    },
+    {
+      "name": "Dreadhorde Invasion",
+      "rule": "building_section",
+      "transcript_pos": 36941
+    },
+    {
+      "name": "Ethereal Haze",
+      "rule": "building_section",
+      "transcript_pos": 28356
+    },
+    {
+      "name": "Everflowing Chalice",
+      "rule": "building_section",
+      "transcript_pos": 24272
+    },
+    {
+      "name": "Faerie Bladecrafter",
+      "rule": "building_section",
+      "transcript_pos": 35337
+    },
+    {
+      "name": "Fanatical Offering",
+      "rule": "building_section",
+      "transcript_pos": 18582
+    },
+    {
+      "name": "Felidar Retreat",
+      "rule": "building_section",
+      "transcript_pos": 36924
+    },
+    {
+      "name": "Fellwar Stone",
+      "rule": "building_section",
+      "transcript_pos": 24293
+    },
+    {
+      "name": "Final Showdown",
+      "rule": "building_section",
+      "transcript_pos": 26467
+    },
+    {
+      "name": "Flare of Fortitude",
+      "rule": "building_section",
+      "transcript_pos": 26275
+    },
+    {
+      "name": "Gift of Immortality",
+      "rule": "building_section",
+      "transcript_pos": 38131
+    },
+    {
+      "name": "God-Eternal Bontu",
+      "rule": "building_section",
+      "transcript_pos": 20221
+    },
+    {
+      "name": "Infernal Offering",
+      "rule": "building_section",
+      "transcript_pos": 19988
+    },
+    {
+      "name": "Krav, the Unredeemed",
+      "rule": "building_section",
+      "transcript_pos": 20492
+    },
+    {
+      "name": "Lightning Greaves",
+      "rule": "building_section",
+      "transcript_pos": 28429
+    },
+    {
+      "name": "Marionette Master",
+      "rule": "building_section",
+      "transcript_pos": 33830
+    },
+    {
+      "name": "Martyr's Cause",
+      "rule": "building_section",
+      "transcript_pos": 36510
+    },
+    {
+      "name": "Mind Stone",
+      "rule": "building_section",
+      "transcript_pos": 24323
+    },
+    {
+      "name": "Nine-Lives Familiar",
+      "rule": "building_section",
+      "transcript_pos": 36903
+    },
+    {
+      "name": "Noble Heritage",
+      "rule": "building_section",
+      "transcript_pos": 37347
+    },
+    {
+      "name": "Noble's Purse",
+      "rule": "building_section",
+      "transcript_pos": 24568
+    },
+    {
+      "name": "Pitiless Plunderer",
+      "rule": "building_section",
+      "transcript_pos": 25177
+    },
+    {
+      "name": "Ravenous Chupacabra",
+      "rule": "building_section",
+      "transcript_pos": 27517
+    },
+    {
+      "name": "Rosie Cotton of South Lane",
+      "rule": "building_section",
+      "transcript_pos": 37572
+    },
+    {
+      "name": "Ruthless Technomancer",
+      "rule": "building_section",
+      "transcript_pos": 25277
+    },
+    {
+      "name": "Saw in Half",
+      "rule": "building_section",
+      "transcript_pos": 28655
+    },
+    {
+      "name": "Scavenger's Talent",
+      "rule": "building_section",
+      "transcript_pos": 33269
+    },
+    {
+      "name": "Seasoned Dungeoneer",
+      "rule": "building_section",
+      "transcript_pos": 37388
+    },
+    {
+      "name": "Solemn Simulacrum",
+      "rule": "building_section",
+      "transcript_pos": 24849
+    },
+    {
+      "name": "Storm of Souls",
+      "rule": "building_section",
+      "transcript_pos": 39472
+    },
+    {
+      "name": "Sun Titan",
+      "rule": "building_section",
+      "transcript_pos": 39304
+    },
+    {
+      "name": "Swords to Plowshares",
+      "rule": "building_section",
+      "transcript_pos": 26039
+    },
+    {
+      "name": "Together Forever",
+      "rule": "building_section",
+      "transcript_pos": 38335
+    },
+    {
+      "name": "Undying Malice",
+      "rule": "building_section",
+      "transcript_pos": 28477
+    },
+    {
+      "name": "Wayfarer's Bauble",
+      "rule": "building_section",
+      "transcript_pos": 24335
+    },
+    {
+      "name": "Woe Strider",
+      "rule": "building_section",
+      "transcript_pos": 36529
+    }
+  ],
+  "mentioned": [
+    {
+      "name": "Aang, A Lot to Learn",
+      "rule": "rejected_commander",
+      "transcript_pos": 4095
+    },
+    {
+      "name": "Break Down",
+      "rule": "off_identity",
+      "transcript_pos": 6913
+    },
+    {
+      "name": "Dimension X",
+      "rule": "off_identity",
+      "transcript_pos": 27587
+    },
+    {
+      "name": "Faithless Looting",
+      "rule": "counter_example",
+      "transcript_pos": 15995
+    },
+    {
+      "name": "Jet, Freedom Fighter",
+      "rule": "rejected_commander",
+      "transcript_pos": 3568
+    },
+    {
+      "name": "Nine Lives",
+      "rule": "shadowed_name",
+      "transcript_pos": 36903
+    },
+    {
+      "name": "Sanguinary Priest",
+      "rule": "explicit_cut",
+      "transcript_pos": 34097
+    },
+    {
+      "name": "Smellerbee, Rebel Fighter",
+      "rule": "rejected_commander",
+      "transcript_pos": 3326
+    },
+    {
+      "name": "Smothering Tithe",
+      "rule": "color_has_example",
+      "transcript_pos": 23712
+    },
+    {
+      "name": "Suki, Courageous Rescuer",
+      "rule": "rejected_commander",
+      "transcript_pos": 4288
+    },
+    {
+      "name": "Zuko, Seeking Honor",
+      "rule": "rejected_commander",
+      "transcript_pos": 4467
+    }
+  ],
+  "verified_multi_word": [
+    "Aang, A Lot to Learn",
+    "Aerial Extortionist",
+    "Airbender Ascension",
+    "Angel of Indemnity",
+    "Arcane Signet",
+    "Body Launderer",
+    "Braids, Arisen Nightmare",
+    "Break Down",
+    "Come Back Wrong",
+    "Day of Judgment",
+    "Deadly Dispute",
+    "Dimension X",
+    "Disciple of Bolas",
+    "Dreadhorde Invasion",
+    "Ethereal Haze",
+    "Everflowing Chalice",
+    "Faerie Bladecrafter",
+    "Faithless Looting",
+    "Fanatical Offering",
+    "Felidar Retreat",
+    "Fellwar Stone",
+    "Final Showdown",
+    "Flare of Fortitude",
+    "Gift of Immortality",
+    "God-Eternal Bontu",
+    "Infernal Offering",
+    "Jet, Freedom Fighter",
+    "Krav, the Unredeemed",
+    "Lightning Greaves",
+    "Marionette Master",
+    "Martyr's Cause",
+    "Mind Stone",
+    "Nine Lives",
+    "Nine-Lives Familiar",
+    "Noble Heritage",
+    "Noble's Purse",
+    "Pitiless Plunderer",
+    "Ravenous Chupacabra",
+    "Rosie Cotton of South Lane",
+    "Ruthless Technomancer",
+    "Sanguinary Priest",
+    "Saw in Half",
+    "Scavenger's Talent",
+    "Seasoned Dungeoneer",
+    "Smellerbee, Rebel Fighter",
+    "Smothering Tithe",
+    "Solemn Simulacrum",
+    "Storm of Souls",
+    "Suki, Courageous Rescuer",
+    "Sun Titan",
+    "Swords to Plowshares",
+    "Together Forever",
+    "Undying Malice",
+    "Wayfarer's Bauble",
+    "Woe Strider",
+    "Zuko, Seeking Honor"
+  ],
+  "verified_single_word": [
+    "Bloodtracker",
+    "Consider",
+    "Counterspell",
+    "Fortitude",
+    "Lifelink",
+    "Millikin",
+    "Nightmare",
+    "Panharmonicon",
+    "Personify",
+    "Reanimate",
+    "Sacrifice",
+    "Simulacrum",
+    "Technomancer",
+    "Victimize",
+    "Wellspring"
+  ]
+}

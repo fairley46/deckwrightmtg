@@ -1,0 +1,944 @@
+{
+  "Aang, A Lot to Learn": {
+    "name": "Aang, A Lot to Learn",
+    "text": "Aang has vigilance as long as there's a Lesson card in your graveyard.\nWhenever another creature you control dies, put a +1/+1 counter on Aang.",
+    "type_line": "Legendary Creature \u2014 Human Avatar Ally",
+    "card_faces": [],
+    "color_identity": [
+      "G",
+      "W"
+    ]
+  },
+  "Aerial Extortionist": {
+    "name": "Aerial Extortionist",
+    "text": "Flying\nWhenever this creature enters or deals combat damage to a player, exile up to one target nonland permanent. For as long as that card remains exiled, its owner may cast it.\nWhenever another player casts a spell from anywhere other than their hand, draw a card.",
+    "type_line": "Creature \u2014 Bird Soldier",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Airbender Ascension": {
+    "name": "Airbender Ascension",
+    "text": "When this enchantment enters, airbend up to one target creature.\nWhenever a creature you control enters, put a quest counter on this enchantment.\nAt the beginning of your end step, if this enchantment has four or more quest counters on it, exile up to one target creature you control, then return it to the battlefield under its owner's control.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Angel of Indemnity": {
+    "name": "Angel of Indemnity",
+    "text": "Flying, lifelink\nWhen this creature enters, return target permanent card with mana value 4 or less from your graveyard to the battlefield.\nEncore {6}{W}{W} ({6}{W}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)",
+    "type_line": "Creature \u2014 Angel Warrior",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Arcane Signet": {
+    "name": "Arcane Signet",
+    "text": "{T}: Add one mana of any color in your commander's color identity.",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Body Launderer": {
+    "name": "Body Launderer",
+    "text": "Deathtouch\nWhenever another nontoken creature you control dies, this creature connives.\nWhen this creature dies, return another target non-Rogue creature card with equal or lesser power from your graveyard to the battlefield.",
+    "type_line": "Creature \u2014 Ogre Rogue",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Braids, Arisen Nightmare": {
+    "name": "Braids, Arisen Nightmare",
+    "text": "At the beginning of your end step, you may sacrifice an artifact, creature, enchantment, land, or planeswalker. If you do, each opponent may sacrifice a permanent of their choice that shares a card type with it. For each opponent who doesn't, that player loses 2 life and you draw a card.",
+    "type_line": "Legendary Creature \u2014 Nightmare",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Break Down": {
+    "name": "Break Down",
+    "text": "Destroy target artifact or enchantment. Create a Junk token. (It's an artifact with \"{T}, Sacrifice this token: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.\")",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "G"
+    ]
+  },
+  "Come Back Wrong": {
+    "name": "Come Back Wrong",
+    "text": "Destroy target creature. If a creature card is put into a graveyard this way, return it to the battlefield under your control. Sacrifice it at the beginning of your next end step.",
+    "type_line": "Sorcery",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Day of Judgment": {
+    "name": "Day of Judgment",
+    "text": "Destroy all creatures.",
+    "type_line": "Sorcery",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Deadly Dispute": {
+    "name": "Deadly Dispute",
+    "text": "As an additional cost to cast this spell, sacrifice an artifact or creature.\nDraw two cards and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Dimension X": {
+    "name": "Dimension X",
+    "text": "This land enters tapped.\nWhen this land enters, you gain 1 life.\n{T}: Add {R} or {W}.",
+    "type_line": "Land",
+    "card_faces": [],
+    "color_identity": [
+      "R",
+      "W"
+    ]
+  },
+  "Disciple of Bolas": {
+    "name": "Disciple of Bolas",
+    "text": "When this creature enters, sacrifice another creature. You gain X life and draw X cards, where X is that creature's power.",
+    "type_line": "Creature \u2014 Human Wizard",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Dreadhorde Invasion": {
+    "name": "Dreadhorde Invasion",
+    "text": "At the beginning of your upkeep, you lose 1 life and amass Zombies 1. (Put a +1/+1 counter on an Army you control. It's also a Zombie. If you don't control an Army, create a 0/0 black Zombie Army creature token first.)\nWhenever a Zombie token you control with power 6 or greater attacks, it gains lifelink until end of turn.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Everflowing Chalice": {
+    "name": "Everflowing Chalice",
+    "text": "Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)\nThis artifact enters with a charge counter on it for each time it was kicked.\n{T}: Add {C} for each charge counter on this artifact.",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Faerie Bladecrafter": {
+    "name": "Faerie Bladecrafter",
+    "text": "Flying\nWhenever one or more Faeries you control deal combat damage to a player, put a +1/+1 counter on this creature.\nWhen this creature dies, each opponent loses X life and you gain X life, where X is its power.",
+    "type_line": "Creature \u2014 Faerie Rogue",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Faithless Looting": {
+    "name": "Faithless Looting",
+    "text": "Draw two cards, then discard two cards.\nFlashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)",
+    "type_line": "Sorcery",
+    "card_faces": [],
+    "color_identity": [
+      "R"
+    ]
+  },
+  "Fanatical Offering": {
+    "name": "Fanatical Offering",
+    "text": "As an additional cost to cast this spell, sacrifice an artifact or creature.\nDraw two cards and create a Map token. (It's an artifact with \"{1}, {T}, Sacrifice this token: Target creature you control explores. Activate only as a sorcery.\")",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Felidar Retreat": {
+    "name": "Felidar Retreat",
+    "text": "Landfall \u2014 Whenever a land you control enters, choose one \u2014\n\u2022 Create a 2/2 white Cat Beast creature token.\n\u2022 Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Fellwar Stone": {
+    "name": "Fellwar Stone",
+    "text": "{T}: Add one mana of any color that a land an opponent controls could produce.",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Final Showdown": {
+    "name": "Final Showdown",
+    "text": "Spree (Choose one or more additional costs.)\n+ {1} \u2014 All creatures lose all abilities until end of turn.\n+ {1} \u2014 Choose a creature you control. It gains indestructible until end of turn.\n+ {3}{W}{W} \u2014 Destroy all creatures.",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "God-Eternal Bontu": {
+    "name": "God-Eternal Bontu",
+    "text": "Menace\nWhen God-Eternal Bontu enters, sacrifice any number of other permanents, then draw that many cards.\nWhen God-Eternal Bontu dies or is put into exile from the battlefield, you may put it into its owner's library third from the top.",
+    "type_line": "Legendary Creature \u2014 Zombie God",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Infernal Offering": {
+    "name": "Infernal Offering",
+    "text": "Choose an opponent. You and that player each sacrifice a creature. Each player who sacrificed a creature this way draws two cards.\nChoose an opponent. Return a creature card from your graveyard to the battlefield, then that player returns a creature card from their graveyard to the battlefield.",
+    "type_line": "Sorcery",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Jet, Freedom Fighter": {
+    "name": "Jet, Freedom Fighter",
+    "text": "When Jet enters, he deals damage equal to the number of creatures you control to target creature an opponent controls.\nWhen Jet dies, put a +1/+1 counter on each of up to two target creatures.",
+    "type_line": "Legendary Creature \u2014 Human Rebel Ally",
+    "card_faces": [],
+    "color_identity": [
+      "R",
+      "W"
+    ]
+  },
+  "Krav, the Unredeemed": {
+    "name": "Krav, the Unredeemed",
+    "text": "Partner with Regna, the Redeemer (When this creature enters, target player may put Regna into their hand from their library, then shuffle.)\n{B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1/+1 counters on Krav.",
+    "type_line": "Legendary Creature \u2014 Demon",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Marionette Master": {
+    "name": "Marionette Master",
+    "text": "Fabricate 3 (When this creature enters, put three +1/+1 counters on it or create three 1/1 colorless Servo artifact creature tokens.)\nWhenever an artifact you control is put into a graveyard from the battlefield, target opponent loses life equal to this creature's power.",
+    "type_line": "Creature \u2014 Human Artificer",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Martyr's Cause": {
+    "name": "Martyr's Cause",
+    "text": "Sacrifice a creature: The next time a source of your choice would deal damage to any target this turn, prevent that damage.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Mind Stone": {
+    "name": "Mind Stone",
+    "text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this artifact: Draw a card.",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Nine Lives": {
+    "name": "Nine Lives",
+    "text": "Hexproof\nIf a source would deal damage to you, prevent that damage and put an incarnation counter on this enchantment.\nWhen there are nine or more incarnation counters on this enchantment, exile it.\nWhen this enchantment leaves the battlefield, you lose the game.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Nine-Lives Familiar": {
+    "name": "Nine-Lives Familiar",
+    "text": "This creature enters with eight revival counters on it if you cast it.\nWhen this creature dies, if it had a revival counter on it, return it to the battlefield with one fewer revival counter on it at the beginning of the next end step.",
+    "type_line": "Creature \u2014 Cat",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Noble Heritage": {
+    "name": "Noble Heritage",
+    "text": "Commander creatures you own have \"When this creature enters and at the beginning of your upkeep, each player may put two +1/+1 counters on a creature they control. For each opponent who does, you gain protection from that player until your next turn.\" (You can't be targeted, dealt damage, or enchanted by anything controlled by that player.)",
+    "type_line": "Legendary Enchantment \u2014 Background",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Noble's Purse": {
+    "name": "Noble's Purse",
+    "text": "This artifact enters tapped and with three coin counters on it.\n{T}, Remove a coin counter from this artifact: Create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Pitiless Plunderer": {
+    "name": "Pitiless Plunderer",
+    "text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "type_line": "Creature \u2014 Human Pirate",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Ravenous Chupacabra": {
+    "name": "Ravenous Chupacabra",
+    "text": "When this creature enters, destroy target creature an opponent controls.",
+    "type_line": "Creature \u2014 Beast Horror",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Rosie Cotton of South Lane": {
+    "name": "Rosie Cotton of South Lane",
+    "text": "When Rosie Cotton enters, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nWhenever you create a token, put a +1/+1 counter on target creature you control other than Rosie Cotton.",
+    "type_line": "Legendary Creature \u2014 Halfling Peasant",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Ruthless Technomancer": {
+    "name": "Ruthless Technomancer",
+    "text": "When this creature enters, you may sacrifice another creature you control. If you do, create a number of Treasure tokens equal to that creature's power.\n{2}{B}, Sacrifice X artifacts: Return target creature card with power X or less from your graveyard to the battlefield. X can't be 0.",
+    "type_line": "Creature \u2014 Human Wizard",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Sanguinary Priest": {
+    "name": "Sanguinary Priest",
+    "text": "Lifelink\nBlood Chalice \u2014 Whenever another creature you control dies, this creature deals 1 damage to any target.",
+    "type_line": "Creature \u2014 Astartes Cleric",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Saw in Half": {
+    "name": "Saw in Half",
+    "text": "Destroy target creature. If that creature dies this way, its controller creates two tokens that are copies of that creature, except their power is half that creature's power and their toughness is half that creature's toughness. Round up each time.",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Scavenger's Talent": {
+    "name": "Scavenger's Talent",
+    "text": "(Gain the next level as a sorcery to add its ability.)\nWhenever one or more creatures you control die, create a Food token. This ability triggers only once each turn.\n{1}{B}: Level 2\nWhenever you sacrifice a permanent, target player mills two cards.\n{2}{B}: Level 3\nAt the beginning of your end step, you may sacrifice three other nonland permanents. If you do, return a creature card from your graveyard to the battlefield with a finality counter on it.",
+    "type_line": "Enchantment \u2014 Class",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Seasoned Dungeoneer": {
+    "name": "Seasoned Dungeoneer",
+    "text": "When this creature enters, you take the initiative.\nWhenever you attack, target attacking Cleric, Rogue, Warrior, or Wizard gains protection from creatures until end of turn. It explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.)",
+    "type_line": "Creature \u2014 Human Warrior",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Smellerbee, Rebel Fighter": {
+    "name": "Smellerbee, Rebel Fighter",
+    "text": "First strike\nOther creatures you control have haste.\nWhenever Smellerbee attacks, you may discard your hand. If you do, draw cards equal to the number of attacking creatures.",
+    "type_line": "Legendary Creature \u2014 Human Rebel Ally",
+    "card_faces": [],
+    "color_identity": [
+      "R"
+    ]
+  },
+  "Solemn Simulacrum": {
+    "name": "Solemn Simulacrum",
+    "text": "When this creature enters, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.\nWhen this creature dies, you may draw a card.",
+    "type_line": "Artifact Creature \u2014 Golem",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Storm of Souls": {
+    "name": "Storm of Souls",
+    "text": "Return all creature cards from your graveyard to the battlefield. Each of them is a 1/1 Spirit with flying in addition to its other types. Exile Storm of Souls.",
+    "type_line": "Sorcery",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Suki, Courageous Rescuer": {
+    "name": "Suki, Courageous Rescuer",
+    "text": "Other creatures you control get +1/+0.\nWhenever another permanent you control leaves the battlefield during your turn, create a 1/1 white Ally creature token. This ability triggers only once each turn.",
+    "type_line": "Legendary Creature \u2014 Human Warrior Ally",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Sun Titan": {
+    "name": "Sun Titan",
+    "text": "Vigilance\nWhenever this creature enters or attacks, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield.",
+    "type_line": "Creature \u2014 Giant",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Swords to Plowshares": {
+    "name": "Swords to Plowshares",
+    "text": "Exile target creature. Its controller gains life equal to its power.",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Together Forever": {
+    "name": "Together Forever",
+    "text": "When this enchantment enters, support 2. (Put a +1/+1 counter on each of up to two target creatures.)\n{1}: Choose target creature with a counter on it. When that creature dies this turn, return that card to its owner's hand.",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Undying Malice": {
+    "name": "Undying Malice",
+    "text": "Until end of turn, target creature gains \"When this creature dies, return it to the battlefield tapped under its owner's control with a +1/+1 counter on it.\"",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Wayfarer's Bauble": {
+    "name": "Wayfarer's Bauble",
+    "text": "{2}, {T}, Sacrifice this artifact: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+    "type_line": "Artifact",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Woe Strider": {
+    "name": "Woe Strider",
+    "text": "When this creature enters, create a 0/1 white Goat creature token.\nSacrifice another creature: Scry 1.\nEscape\u2014{3}{B}{B}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)\nThis creature escapes with two +1/+1 counters on it.",
+    "type_line": "Creature \u2014 Horror",
+    "card_faces": [],
+    "color_identity": [
+      "B"
+    ]
+  },
+  "Sol Ring": {
+    "name": "Sol Ring",
+    "text": "{T}: Add {C}{C}.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Orzhov Signet": {
+    "name": "Orzhov Signet",
+    "text": "{1}, {T}: Add {W}{B}.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Talisman of Hierarchy": {
+    "name": "Talisman of Hierarchy",
+    "text": "{T}: Add {C}.\n{T}: Add {W} or {B}. This artifact deals 1 damage to you.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Ornithopter of Paradise": {
+    "name": "Ornithopter of Paradise",
+    "text": "Flying\n{T}: Add one mana of any color.",
+    "type_line": "Artifact Creature \u2014 Thopter",
+    "card_faces": []
+  },
+  "Gold Myr": {
+    "name": "Gold Myr",
+    "text": "{T}: Add {W}.",
+    "type_line": "Artifact Creature \u2014 Myr",
+    "card_faces": []
+  },
+  "Burnished Hart": {
+    "name": "Burnished Hart",
+    "text": "{3}, Sacrifice this creature: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle.",
+    "type_line": "Artifact Creature \u2014 Elk",
+    "card_faces": []
+  },
+  "Staff of Compleation": {
+    "name": "Staff of Compleation",
+    "text": "{T}, Pay 1 life: Destroy target permanent you own.\n{T}, Pay 2 life: Add one mana of any color.\n{T}, Pay 3 life: Proliferate.\n{T}, Pay 4 life: Draw a card.\n{5}: Untap this artifact.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Night's Whisper": {
+    "name": "Night's Whisper",
+    "text": "You draw two cards and lose 2 life.",
+    "type_line": "Sorcery",
+    "card_faces": []
+  },
+  "Village Rites": {
+    "name": "Village Rites",
+    "text": "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards.",
+    "type_line": "Instant",
+    "card_faces": []
+  },
+  "Sign in Blood": {
+    "name": "Sign in Blood",
+    "text": "Target player draws two cards and loses 2 life.",
+    "type_line": "Sorcery",
+    "card_faces": []
+  },
+  "Idol of Oblivion": {
+    "name": "Idol of Oblivion",
+    "text": "{T}: Draw a card. Activate only if you created a token this turn.\n{8}, {T}, Sacrifice this artifact: Create a 10/10 colorless Eldrazi creature token.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Phyrexian Arena": {
+    "name": "Phyrexian Arena",
+    "text": "At the beginning of your upkeep, you draw a card and you lose 1 life.",
+    "type_line": "Enchantment",
+    "card_faces": []
+  },
+  "Commander's Sphere": {
+    "name": "Commander's Sphere",
+    "text": "{T}: Add one mana of any color in your commander's color identity.\nSacrifice this artifact: Draw a card.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Morbid Opportunist": {
+    "name": "Morbid Opportunist",
+    "text": "Whenever one or more other creatures die, draw a card. This ability triggers only once each turn.",
+    "type_line": "Creature \u2014 Human Rogue",
+    "card_faces": []
+  },
+  "Toxic Deluge": {
+    "name": "Toxic Deluge",
+    "text": "As an additional cost to cast this spell, pay X life.\nAll creatures get -X/-X until end of turn.",
+    "type_line": "Sorcery",
+    "card_faces": []
+  },
+  "Path to Exile": {
+    "name": "Path to Exile",
+    "text": "Exile target creature. Its controller may search their library for a basic land card, put that card onto the battlefield tapped, then shuffle.",
+    "type_line": "Instant",
+    "card_faces": []
+  },
+  "Feed the Swarm": {
+    "name": "Feed the Swarm",
+    "text": "Destroy target creature or enchantment an opponent controls. You lose life equal to that permanent's mana value.",
+    "type_line": "Sorcery",
+    "card_faces": []
+  },
+  "Generous Gift": {
+    "name": "Generous Gift",
+    "text": "Destroy target permanent. Its controller creates a 3/3 green Elephant creature token.",
+    "type_line": "Instant",
+    "card_faces": []
+  },
+  "Damning Verdict": {
+    "name": "Damning Verdict",
+    "text": "Destroy all creatures with no counters on them.",
+    "type_line": "Sorcery",
+    "card_faces": []
+  },
+  "Viscera Seer": {
+    "name": "Viscera Seer",
+    "text": "Sacrifice a creature: Scry 1. (Look at the top card of your library. You may put that card on the bottom.)",
+    "type_line": "Creature \u2014 Vampire Wizard",
+    "card_faces": []
+  },
+  "Gollum, Patient Plotter": {
+    "name": "Gollum, Patient Plotter",
+    "text": "When Gollum leaves the battlefield, the Ring tempts you.\n{B}, Sacrifice a creature: Return this card from your graveyard to your hand. Activate only as a sorcery.",
+    "type_line": "Legendary Creature \u2014 Halfling Horror",
+    "card_faces": []
+  },
+  "Threefold Thunderhulk": {
+    "name": "Threefold Thunderhulk",
+    "text": "This creature enters with three +1/+1 counters on it.\nWhenever this creature enters or attacks, create a number of 1/1 colorless Gnome artifact creature tokens equal to its power.\n{2}, Sacrifice another artifact: Put a +1/+1 counter on this creature.",
+    "type_line": "Artifact Creature \u2014 Gnome",
+    "card_faces": []
+  },
+  "Priest of Forgotten Gods": {
+    "name": "Priest of Forgotten Gods",
+    "text": "{T}, Sacrifice two other creatures: Any number of target players each lose 2 life and sacrifice a creature of their choice. You add {B}{B} and draw a card.",
+    "type_line": "Creature \u2014 Human Cleric",
+    "card_faces": []
+  },
+  "Master of Dark Rites": {
+    "name": "Master of Dark Rites",
+    "text": "{T}, Sacrifice another creature: Add {B}{B}{B}. Spend this mana only to cast Vampire, Cleric, and/or Demon spells.",
+    "type_line": "Creature \u2014 Vampire Cleric",
+    "card_faces": []
+  },
+  "Chittering Witch": {
+    "name": "Chittering Witch",
+    "text": "When this creature enters, create a number of 1/1 black Rat creature tokens equal to the number of opponents you have.\n{1}{B}, Sacrifice a creature: Target creature gets -2/-2 until end of turn.",
+    "type_line": "Creature \u2014 Human Warlock",
+    "card_faces": []
+  },
+  "Arcbound Ravager": {
+    "name": "Arcbound Ravager",
+    "text": "Sacrifice an artifact: Put a +1/+1 counter on this creature.\nModular 1 (This creature enters with a +1/+1 counter on it. When it dies, you may put its +1/+1 counters on target artifact creature.)",
+    "type_line": "Artifact Creature \u2014 Beast",
+    "card_faces": []
+  },
+  "Smothering Abomination": {
+    "name": "Smothering Abomination",
+    "text": "Devoid (This card has no color.)\nFlying\nAt the beginning of your upkeep, sacrifice a creature.\nWhenever you sacrifice a creature, draw a card.",
+    "type_line": "Creature \u2014 Eldrazi",
+    "card_faces": []
+  },
+  "Piper of the Swarm": {
+    "name": "Piper of the Swarm",
+    "text": "Rats you control have menace.\n{1}{B}, {T}: Create a 1/1 black Rat creature token.\n{2}{B}{B}, {T}, Sacrifice three Rats: Gain control of target creature.",
+    "type_line": "Creature \u2014 Human Warlock",
+    "card_faces": []
+  },
+  "Fain, the Broker": {
+    "name": "Fain, the Broker",
+    "text": "{T}, Sacrifice a creature: Put two +1/+1 counters on target creature.\n{T}, Remove a counter from a creature you control: Create a Treasure token.\n{T}, Sacrifice an artifact: Create a 2/1 white and black Inkling creature token with flying.\n{3}{B}: Untap Fain.",
+    "type_line": "Legendary Creature \u2014 Human Warlock",
+    "card_faces": []
+  },
+  "Karlov of the Ghost Council": {
+    "name": "Karlov of the Ghost Council",
+    "text": "Whenever you gain life, put two +1/+1 counters on Karlov.\n{W}{B}, Remove six +1/+1 counters from Karlov: Exile target creature.",
+    "type_line": "Legendary Creature \u2014 Spirit Advisor",
+    "card_faces": []
+  },
+  "Elenda's Hierophant": {
+    "name": "Elenda's Hierophant",
+    "text": "Flying\nWhenever you gain life, put a +1/+1 counter on this creature.\nWhen this creature dies, create X 1/1 white Vampire creature tokens with lifelink, where X is its power.",
+    "type_line": "Creature \u2014 Vampire Cleric",
+    "card_faces": []
+  },
+  "Heliod, Sun-Crowned": {
+    "name": "Heliod, Sun-Crowned",
+    "text": "Indestructible\nAs long as your devotion to white is less than five, Heliod isn't a creature.\nWhenever you gain life, put a +1/+1 counter on target creature or enchantment you control.\n{1}{W}: Another target creature gains lifelink until end of turn.",
+    "type_line": "Legendary Enchantment Creature \u2014 God",
+    "card_faces": []
+  },
+  "Essence Channeler": {
+    "name": "Essence Channeler",
+    "text": "As long as you've lost life this turn, this creature has flying and vigilance.\nWhenever you gain life, put a +1/+1 counter on this creature.\nWhen this creature dies, put its counters on target creature you control.",
+    "type_line": "Creature \u2014 Bat Cleric",
+    "card_faces": []
+  },
+  "Ajani's Pridemate": {
+    "name": "Ajani's Pridemate",
+    "text": "Whenever you gain life, put a +1/+1 counter on this creature.",
+    "type_line": "Creature \u2014 Cat Soldier",
+    "card_faces": []
+  },
+  "Voice of the Blessed": {
+    "name": "Voice of the Blessed",
+    "text": "Whenever you gain life, put a +1/+1 counter on this creature.\nAs long as this creature has four or more +1/+1 counters on it, it has flying and vigilance.\nAs long as this creature has ten or more +1/+1 counters on it, it has indestructible.",
+    "type_line": "Creature \u2014 Spirit Cleric",
+    "card_faces": []
+  },
+  "Excalibur II": {
+    "name": "Excalibur II",
+    "text": "Whenever you gain life, put a charge counter on Excalibur II.\nEquipped creature gets +1/+1 for each charge counter on Excalibur II.\nEquip {3}",
+    "type_line": "Legendary Artifact \u2014 Equipment",
+    "card_faces": []
+  },
+  "Aerith Gainsborough": {
+    "name": "Aerith Gainsborough",
+    "text": "Lifelink\nWhenever you gain life, put a +1/+1 counter on Aerith Gainsborough.\nWhen Aerith Gainsborough dies, put X +1/+1 counters on each legendary creature you control, where X is the number of +1/+1 counters on Aerith Gainsborough.",
+    "type_line": "Legendary Creature \u2014 Human Cleric",
+    "card_faces": []
+  },
+  "Archangel of Thune": {
+    "name": "Archangel of Thune",
+    "text": "Flying\nLifelink (Damage dealt by this creature also causes you to gain that much life.)\nWhenever you gain life, put a +1/+1 counter on each creature you control.",
+    "type_line": "Creature \u2014 Angel",
+    "card_faces": []
+  },
+  "The Destined White Mage": {
+    "name": "The Destined White Mage",
+    "text": "Lifelink\n{W}, {T}: Another target creature you control gains lifelink until end of turn.\nWhenever you gain life, put a +1/+1 counter on target creature you control. If you have a full party, put three +1/+1 counters on that creature instead.",
+    "type_line": "Legendary Creature \u2014 Human Cleric",
+    "card_faces": []
+  },
+  "Exemplar of Light": {
+    "name": "Exemplar of Light",
+    "text": "Flying\nWhenever you gain life, put a +1/+1 counter on this creature.\nWhenever you put one or more +1/+1 counters on this creature, draw a card. This ability triggers only once each turn.",
+    "type_line": "Creature \u2014 Angel",
+    "card_faces": []
+  },
+  "Gravelighter": {
+    "name": "Gravelighter",
+    "text": "Flying\nWhen this creature enters, draw a card if a creature died this turn. Otherwise, each player sacrifices a creature of their choice.",
+    "type_line": "Creature \u2014 Spirit",
+    "card_faces": []
+  },
+  "Furious Forebear": {
+    "name": "Furious Forebear",
+    "text": "Whenever a creature you control dies while this card is in your graveyard, you may pay {1}{W}. If you do, return this card from your graveyard to your hand.",
+    "type_line": "Creature \u2014 Spirit Warrior",
+    "card_faces": []
+  },
+  "South Wind Avatar": {
+    "name": "South Wind Avatar",
+    "text": "Deathtouch\nWhenever another creature you control dies, you gain life equal to its toughness.\nWhenever you gain life, each opponent loses 1 life.",
+    "type_line": "Creature \u2014 Snake Spirit Avatar",
+    "card_faces": []
+  },
+  "Vito, Thorn of the Dusk Rose": {
+    "name": "Vito, Thorn of the Dusk Rose",
+    "text": "Whenever you gain life, target opponent loses that much life.\n{3}{B}{B}: Creatures you control gain lifelink until end of turn.",
+    "type_line": "Legendary Creature \u2014 Vampire Cleric",
+    "card_faces": []
+  },
+  "Sanguine Bond": {
+    "name": "Sanguine Bond",
+    "text": "Whenever you gain life, target opponent loses that much life.",
+    "type_line": "Enchantment",
+    "card_faces": []
+  },
+  "Spirited Companion": {
+    "name": "Spirited Companion",
+    "text": "When this creature enters, draw a card.",
+    "type_line": "Enchantment Creature \u2014 Dog",
+    "card_faces": []
+  },
+  "Searchlight Companion": {
+    "name": "Searchlight Companion",
+    "text": "Flying\nWhen this creature enters, create a 1/1 colorless Spirit creature token.",
+    "type_line": "Artifact Creature \u2014 Drone",
+    "card_faces": []
+  },
+  "Priest of the Blood Rite": {
+    "name": "Priest of the Blood Rite",
+    "text": "When this creature enters, create a 5/5 black Demon creature token with flying.\nAt the beginning of your upkeep, you lose 2 life.",
+    "type_line": "Creature \u2014 Human Cleric",
+    "card_faces": []
+  },
+  "Summoned Dromedary": {
+    "name": "Summoned Dromedary",
+    "text": "Vigilance\n{1}{W}: Return this card from your graveyard to your hand. Activate only as a sorcery.",
+    "type_line": "Creature \u2014 Spirit Camel",
+    "card_faces": []
+  },
+  "Doomed Necromancer": {
+    "name": "Doomed Necromancer",
+    "text": "{B}, {T}, Sacrifice this creature: Return target creature card from your graveyard to the battlefield.",
+    "type_line": "Creature \u2014 Human Cleric Mercenary",
+    "card_faces": []
+  },
+  "Fabled Passage": {
+    "name": "Fabled Passage",
+    "text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle. Then if you control four or more lands, untap that land.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Bojuka Bog": {
+    "name": "Bojuka Bog",
+    "text": "This land enters tapped.\nWhen this land enters, exile target player's graveyard.\n{T}: Add {B}.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Evolving Wilds": {
+    "name": "Evolving Wilds",
+    "text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Darksteel Citadel": {
+    "name": "Darksteel Citadel",
+    "text": "Indestructible\n{T}: Add {C}.",
+    "type_line": "Artifact Land",
+    "card_faces": []
+  },
+  "Path of Ancestry": {
+    "name": "Path of Ancestry",
+    "text": "This land enters tapped.\n{T}: Add one mana of any color in your commander's color identity. When that mana is spent to cast a creature spell that shares a creature type with your commander, scry 1. (Look at the top card of your library. You may put that card on the bottom.)",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Myriad Landscape": {
+    "name": "Myriad Landscape",
+    "text": "This land enters tapped.\n{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Search your library for up to two basic land cards that share a land type, put them onto the battlefield tapped, then shuffle.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Unclaimed Territory": {
+    "name": "Unclaimed Territory",
+    "text": "As this land enters, choose a creature type.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a creature spell of the chosen type.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Shattered Sanctum": {
+    "name": "Shattered Sanctum",
+    "text": "This land enters tapped unless you control two or more other lands.\n{T}: Add {W} or {B}.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Command Tower": {
+    "name": "Command Tower",
+    "text": "{T}: Add one mana of any color in your commander's color identity.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Reliquary Tower": {
+    "name": "Reliquary Tower",
+    "text": "You have no maximum hand size.\n{T}: Add {C}.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Rogue's Passage": {
+    "name": "Rogue's Passage",
+    "text": "{T}: Add {C}.\n{4}, {T}: Target creature can't be blocked this turn.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Temple of the False God": {
+    "name": "Temple of the False God",
+    "text": "{T}: Add {C}{C}. Activate only if you control five or more lands.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Temple of Silence": {
+    "name": "Temple of Silence",
+    "text": "This land enters tapped.\nWhen this land enters, scry 1. (Look at the top card of your library. You may put that card on the bottom.)\n{T}: Add {W} or {B}.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Buried Ruin": {
+    "name": "Buried Ruin",
+    "text": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Return target artifact card from your graveyard to your hand.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Caves of Koilos": {
+    "name": "Caves of Koilos",
+    "text": "{T}: Add {C}.\n{T}: Add {W} or {B}. This land deals 1 damage to you.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "War Room": {
+    "name": "War Room",
+    "text": "{T}: Add {C}.\n{3}, {T}, Pay life equal to the number of colors in your commanders' color identity: Draw a card.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Karn's Bastion": {
+    "name": "Karn's Bastion",
+    "text": "{T}: Add {C}.\n{4}, {T}: Proliferate. (Choose any number of permanents and/or players, then give each another counter of each kind already there.)",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Isolated Chapel": {
+    "name": "Isolated Chapel",
+    "text": "This land enters tapped unless you control a Plains or a Swamp.\n{T}: Add {W} or {B}.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Secluded Courtyard": {
+    "name": "Secluded Courtyard",
+    "text": "As this land enters, choose a creature type.\n{T}: Add {C}.\n{T}: Add one mana of any color. Spend this mana only to cast a creature spell of the chosen type or activate an ability of a creature source of the chosen type.",
+    "type_line": "Land",
+    "card_faces": []
+  },
+  "Plains": {
+    "name": "Plains",
+    "text": "({T}: Add {W}.)",
+    "type_line": "Basic Land \u2014 Plains",
+    "card_faces": []
+  },
+  "Swamp": {
+    "name": "Swamp",
+    "text": "({T}: Add {B}.)",
+    "type_line": "Basic Land \u2014 Swamp",
+    "card_faces": []
+  },
+  "Enduring Tenacity": {
+    "name": "Enduring Tenacity",
+    "text": "Whenever you gain life, target opponent loses that much life.\nWhen Enduring Tenacity dies, if it was a creature, return it to the battlefield under its owner's control. It's an enchantment. (It's not a creature.)",
+    "type_line": "Enchantment Creature \u2014 Snake Glimmer",
+    "card_faces": []
+  },
+  "Marauding Blight-Priest": {
+    "name": "Marauding Blight-Priest",
+    "text": "Whenever you gain life, each opponent loses 1 life.",
+    "type_line": "Creature \u2014 Vampire Cleric",
+    "card_faces": []
+  },
+  "Well of Lost Dreams": {
+    "name": "Well of Lost Dreams",
+    "text": "Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.",
+    "type_line": "Artifact",
+    "card_faces": []
+  },
+  "Cleric Class": {
+    "name": "Cleric Class",
+    "text": "(Gain the next level as a sorcery to add its ability.)\nIf you would gain life, you gain that much life plus 1 instead.\n{3}{W}: Level 2\nWhenever you gain life, put a +1/+1 counter on target creature you control.\n{4}{W}: Level 3\nWhen this Class becomes level 3, return target creature card from your graveyard to the battlefield. You gain life equal to that creature's toughness.",
+    "type_line": "Enchantment \u2014 Class",
+    "card_faces": []
+  },
+  "Ethereal Haze": {
+    "name": "Ethereal Haze",
+    "text": "Prevent all damage that would be dealt by creatures this turn.",
+    "type_line": "Instant \u2014 Arcane",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Flare of Fortitude": {
+    "name": "Flare of Fortitude",
+    "text": "You may sacrifice a nontoken white creature rather than pay this spell's mana cost.\nUntil end of turn, your life total can't change, and permanents you control gain hexproof and indestructible.",
+    "type_line": "Instant",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Gift of Immortality": {
+    "name": "Gift of Immortality",
+    "text": "Enchant creature\nWhen enchanted creature dies, return that card to the battlefield under its owner's control. Return this card to the battlefield attached to that creature at the beginning of the next end step.",
+    "type_line": "Enchantment \u2014 Aura",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Lightning Greaves": {
+    "name": "Lightning Greaves",
+    "text": "Equipped creature has haste and shroud. (It can't be the target of spells or abilities.)\nEquip {0}",
+    "type_line": "Artifact \u2014 Equipment",
+    "card_faces": [],
+    "color_identity": []
+  },
+  "Smothering Tithe": {
+    "name": "Smothering Tithe",
+    "text": "Whenever an opponent draws a card, that player may pay {2}. If the player doesn't, you create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")",
+    "type_line": "Enchantment",
+    "card_faces": [],
+    "color_identity": [
+      "W"
+    ]
+  },
+  "Zuko, Seeking Honor": {
+    "name": "Zuko, Seeking Honor",
+    "text": "Firebending 1 (Whenever this creature attacks, add {R}. This mana lasts until end of combat.)\nWhenever you cast a noncreature spell, Zuko gains first strike until end of turn.\nWhenever Zuko deals combat damage to a player, put a +1/+1 counter on him.",
+    "type_line": "Legendary Creature \u2014 Human Noble",
+    "card_faces": [],
+    "color_identity": [
+      "B",
+      "R"
+    ]
+  }
+}

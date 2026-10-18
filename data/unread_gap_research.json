@@ -1,0 +1,1543 @@
+{
+  "title": "Phase 2 \u2014 research ranked unread gaps",
+  "source_report": "data/oracle_coverage_report.md",
+  "researched_at": "2026-08-08",
+  "note": "Research only. No oracle_signals added in this card. Card names resolved via Scryfall search (paced) or already-committed fixtures (Mind Stone, Solemn Simulacrum, Lightning Greaves, Wild Growth). Keywords admit via Scryfall keyword catalogs \u2014 do not invent oracle_signals to raise coverage. Unknown verified_count stays null until Phase 3.",
+  "already_closed_in_con245": [
+    "enters_tapped",
+    "pay_life_enter",
+    "pain_mana",
+    "any_color_mana",
+    "commander_identity_mana",
+    "land_sacrifice_value",
+    "commander_free_cast",
+    "commander_matters",
+    "enchant_creature",
+    "no_max_hand_size"
+  ],
+  "baseline_after_con245": {
+    "at_least_one_signal_pct": 55.5,
+    "any_consumes_pct": 23.6,
+    "playstyles_precision_pct": 89.9,
+    "silent_cards": 14159
+  },
+  "patterns": [
+    {
+      "id": "flying",
+      "unread_line": "flying",
+      "silent_count": 1025,
+      "what_it_does": "Keyword ability: this creature can only be blocked by creatures with flying or reach.",
+      "what_deck_wants_it": "Combat plans that want unblockable-by-ground bodies, evasion for commander damage, or flying tribal/matter payoffs.",
+      "community_name": "flying",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Birds of Paradise",
+      "near_miss": "Six",
+      "grammar_candidate": {
+        "query": "keyword:flying",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 3285,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:flying) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Evasion keyword. Feeds combat/voltron density when we count keywords; do not invent an oracle_signal \u2014 catalog already has it."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:flying game:commander",
+        "exemplar_total": 3285,
+        "near_miss_query": "keyword:reach -keyword:flying game:commander",
+        "near_miss_total": 437
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "trample",
+      "unread_line": "trample",
+      "silent_count": 260,
+      "what_it_does": "Excess combat damage from this creature may be assigned to the defending player/planeswalker.",
+      "what_deck_wants_it": "Big-creature and go-tall combat decks that need damage to connect past chump blockers.",
+      "community_name": "trample",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Rampaging Baloths",
+      "near_miss": "Professional Face-Breaker",
+      "grammar_candidate": {
+        "query": "keyword:trample",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 1031,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:trample) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword. Not a distinct Commander playstyle by itself."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:trample game:commander",
+        "exemplar_total": 1031,
+        "near_miss_query": "keyword:menace -keyword:trample game:commander",
+        "near_miss_total": 395
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "haste",
+      "unread_line": "haste",
+      "silent_count": 163,
+      "what_it_does": "This permanent can attack and {T} as soon as it comes under your control.",
+      "what_deck_wants_it": "Aggro, token rush, and commanders that must act the turn they enter.",
+      "community_name": "haste",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Anger",
+      "near_miss": "Sun Titan",
+      "grammar_candidate": {
+        "query": "keyword:haste",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 670,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:haste) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "tokens",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Timing keyword. Tokens/aggro care; not a standalone playstyle."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:haste game:commander",
+        "exemplar_total": 670,
+        "near_miss_query": "keyword:vigilance -keyword:haste game:commander",
+        "near_miss_total": 706
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "vigilance",
+      "unread_line": "vigilance",
+      "silent_count": 155,
+      "what_it_does": "Attacking does not cause this creature to tap.",
+      "what_deck_wants_it": "Boards that want to attack and still block, or tap-outlet decks that keep attackers untapped.",
+      "community_name": "vigilance",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Sun Titan",
+      "near_miss": "Crashing Drawbridge",
+      "grammar_candidate": {
+        "query": "keyword:vigilance",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 746,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:vigilance) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword only."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:vigilance game:commander",
+        "exemplar_total": 746,
+        "near_miss_query": "keyword:defender -keyword:vigilance game:commander",
+        "near_miss_total": 309
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "defender",
+      "unread_line": "defender",
+      "silent_count": 172,
+      "what_it_does": "This creature cannot attack.",
+      "what_deck_wants_it": "Wall tribal, defender-matter payoffs, and high-toughness blockers.",
+      "community_name": "defender / walls",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Wall of Omens",
+      "near_miss": "Six",
+      "grammar_candidate": {
+        "query": "keyword:defender",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 311,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:defender) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Community wall/defender decks exist; we do not have a playstyle entry yet \u2014 do not invent one without sources."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:defender game:commander",
+        "exemplar_total": 311,
+        "near_miss_query": "keyword:reach -keyword:defender game:commander",
+        "near_miss_total": 423
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "flash",
+      "unread_line": "flash",
+      "silent_count": 145,
+      "what_it_does": "You may cast this spell any time you could cast an instant.",
+      "what_deck_wants_it": "Interactive boards, hold-up mana plans, and surprise blockers/answers.",
+      "community_name": "flash",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Orcish Bowmasters",
+      "near_miss": "Anger",
+      "grammar_candidate": {
+        "query": "keyword:flash",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 624,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:flash) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Timing keyword; not a playstyle."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:flash game:commander",
+        "exemplar_total": 624,
+        "near_miss_query": "keyword:haste -keyword:flash game:commander",
+        "near_miss_total": 664
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "reach",
+      "unread_line": "reach",
+      "silent_count": 136,
+      "what_it_does": "This creature can block creatures with flying.",
+      "what_deck_wants_it": "Ground boards that need to answer flyers without being flyers.",
+      "community_name": "reach",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Six",
+      "near_miss": "Birds of Paradise",
+      "grammar_candidate": {
+        "query": "keyword:reach",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 438,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:reach) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Near-miss for flying on purpose \u2014 reach is not flying."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:reach game:commander",
+        "exemplar_total": 438,
+        "near_miss_query": "keyword:flying -keyword:reach game:commander",
+        "near_miss_total": 3284
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "first_strike",
+      "unread_line": "first strike",
+      "silent_count": 126,
+      "what_it_does": "This creature deals combat damage before creatures without first strike / double strike.",
+      "what_deck_wants_it": "Combat tricks and bodies that win fights into larger toughness.",
+      "community_name": "first strike",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Knight of the White Orchid",
+      "near_miss": "Lizard Blades",
+      "grammar_candidate": {
+        "query": "keyword:\"first strike\"",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 396,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:\"first strike\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Double strike is a near-miss: different keyword, overlapping combat role."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:\"first strike\" game:commander",
+        "exemplar_total": 396,
+        "near_miss_query": "keyword:\"double strike\" -keyword:\"first strike\" game:commander",
+        "near_miss_total": 118
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "double_strike",
+      "unread_line": "double strike",
+      "silent_count": 40,
+      "what_it_does": "Deals both first-strike and regular combat damage.",
+      "what_deck_wants_it": "Voltron and equipment plans that multiply power into two combat damage steps.",
+      "community_name": "double strike",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Zetalpa, Primal Dawn",
+      "near_miss": "Knight of the White Orchid",
+      "grammar_candidate": {
+        "query": "keyword:\"double strike\"",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 123,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:\"double strike\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Strong voltron finisher keyword; still catalog, not a new oracle_signal."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:\"double strike\" game:commander",
+        "exemplar_total": 123,
+        "near_miss_query": "keyword:\"first strike\" -keyword:\"double strike\" game:commander",
+        "near_miss_total": 391
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "menace",
+      "unread_line": "menace",
+      "silent_count": 94,
+      "what_it_does": "This creature cannot be blocked except by two or more creatures.",
+      "what_deck_wants_it": "Aggro and go-wide pressure that punishes single blockers.",
+      "community_name": "menace",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Professional Face-Breaker",
+      "near_miss": "Rampaging Baloths",
+      "grammar_candidate": {
+        "query": "keyword:menace",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 407,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:menace) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Evasion keyword."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:menace game:commander",
+        "exemplar_total": 407,
+        "near_miss_query": "keyword:trample -keyword:menace game:commander",
+        "near_miss_total": 1019
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "deathtouch",
+      "unread_line": "deathtouch",
+      "silent_count": 93,
+      "what_it_does": "Any nonzero amount of damage this deals to a creature is enough to destroy it.",
+      "what_deck_wants_it": "Fight/bite packages, wither/infect adjacents, and small bodies that trade up.",
+      "community_name": "deathtouch",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Baleful Strix",
+      "near_miss": "Mangara, the Diplomat",
+      "grammar_candidate": {
+        "query": "keyword:deathtouch",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 346,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:deathtouch) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword; not lifegain."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:deathtouch game:commander",
+        "exemplar_total": 346,
+        "near_miss_query": "keyword:lifelink -keyword:deathtouch game:commander",
+        "near_miss_total": 353
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "lifelink",
+      "unread_line": "lifelink",
+      "silent_count": 74,
+      "what_it_does": "Damage dealt by this creature also causes you to gain that much life.",
+      "what_deck_wants_it": "Lifegain strategies and voltron bodies that pad life while attacking.",
+      "community_name": "lifelink",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Mangara, the Diplomat",
+      "near_miss": "Baleful Strix",
+      "grammar_candidate": {
+        "query": "keyword:lifelink",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 386,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:lifelink) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "lifegain",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Already noted in mechanic_families as keyword feeding lifegain; still no oracle_signal invent."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:lifelink game:commander",
+        "exemplar_total": 386,
+        "near_miss_query": "keyword:deathtouch -keyword:lifelink game:commander",
+        "near_miss_total": 313
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "hexproof",
+      "unread_line": "hexproof",
+      "silent_count": 43,
+      "what_it_does": "This permanent cannot be the target of spells or abilities opponents control.",
+      "what_deck_wants_it": "Protection for key permanents; voltron suits that must stick.",
+      "community_name": "hexproof",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Lotus Field",
+      "near_miss": "Argothian Enchantress",
+      "grammar_candidate": {
+        "query": "keyword:hexproof",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 97,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:hexproof) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Shroud is the near-miss \u2014 you cannot target your own shroud permanent either."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:hexproof game:commander",
+        "exemplar_total": 97,
+        "near_miss_query": "keyword:shroud -keyword:hexproof game:commander",
+        "near_miss_total": 35
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "indestructible",
+      "unread_line": "indestructible",
+      "silent_count": 33,
+      "what_it_does": "Effects that say destroy do not destroy this permanent; lethal damage does not destroy it.",
+      "what_deck_wants_it": "Protection packages and stax pieces that must survive board wipes.",
+      "community_name": "indestructible",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Mithril Coat",
+      "near_miss": "Lotus Field",
+      "grammar_candidate": {
+        "query": "keyword:indestructible",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 115,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:indestructible) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Protection keyword."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:indestructible game:commander",
+        "exemplar_total": 115,
+        "near_miss_query": "keyword:hexproof -keyword:indestructible game:commander",
+        "near_miss_total": 94
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "ward",
+      "unread_line": "ward {M}",
+      "silent_count": 33,
+      "what_it_does": "Whenever this permanent becomes the target of a spell or ability an opponent controls, counter it unless that player pays the ward cost.",
+      "what_deck_wants_it": "Soft protection for commanders and engines without full hexproof.",
+      "community_name": "ward",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Roaming Throne",
+      "near_miss": "Lotus Field",
+      "grammar_candidate": {
+        "query": "keyword:ward",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 211,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:ward) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Taxing protection; hexproof is near-miss."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:ward game:commander",
+        "exemplar_total": 211,
+        "near_miss_query": "keyword:hexproof -keyword:ward game:commander",
+        "near_miss_total": 97
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "shroud",
+      "unread_line": "shroud",
+      "silent_count": 30,
+      "what_it_does": "This permanent cannot be the target of spells or abilities.",
+      "what_deck_wants_it": "Hard protection; worse with auras/equipment you want to attach yourself.",
+      "community_name": "shroud",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Argothian Enchantress",
+      "near_miss": "Lotus Field",
+      "grammar_candidate": {
+        "query": "keyword:shroud",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 35,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:shroud) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Hexproof near-miss \u2014 different targeting rules for the controller."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:shroud game:commander",
+        "exemplar_total": 35,
+        "near_miss_query": "keyword:hexproof -keyword:shroud game:commander",
+        "near_miss_total": 97
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "prowess",
+      "unread_line": "prowess",
+      "silent_count": 49,
+      "what_it_does": "Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.",
+      "what_deck_wants_it": "Spellslinger boards that want creatures to grow off instants/sorceries.",
+      "community_name": "prowess",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Harmonic Prodigy",
+      "near_miss": "Storm-Kiln Artist",
+      "grammar_candidate": {
+        "query": "keyword:prowess",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 91,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:prowess) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "spellslinger",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Magecraft/instant_or_sorcery_cast already cover related payoffs; prowess itself is catalog keyword. Storm-Kiln is near-miss (magecraft, not prowess)."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:prowess game:commander",
+        "exemplar_total": 91,
+        "near_miss_query": "keyword:magecraft -keyword:prowess game:commander",
+        "near_miss_total": 31
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "convoke",
+      "unread_line": "convoke",
+      "silent_count": 56,
+      "what_it_does": "Your creatures can help cast this spell \u2014 each creature you tap while casting pays {1} or one mana of that creature's color.",
+      "what_deck_wants_it": "Go-wide token and creature-dense decks that cast expensive spells by tapping the board.",
+      "community_name": "convoke",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Chord of Calling",
+      "near_miss": "Dig Through Time",
+      "grammar_candidate": {
+        "query": "keyword:convoke",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 105,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:convoke) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "tokens",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Delve is cost-reduction near-miss, not the same mechanic."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:convoke game:commander",
+        "exemplar_total": 105,
+        "near_miss_query": "keyword:delve -keyword:convoke game:commander",
+        "near_miss_total": 27
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cycling",
+      "unread_line": "cycling {M}",
+      "silent_count": 145,
+      "what_it_does": "Pay the cycling cost, discard this card: draw a card.",
+      "what_deck_wants_it": "Decks that want flexible lands/spells and discard/cycle payoffs.",
+      "community_name": "cycling",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Ash Barrens",
+      "near_miss": "Faithless Looting",
+      "grammar_candidate": {
+        "query": "keyword:cycling",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 399,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:cycling) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Flashback is near-miss (graveyard cast, not cycle). No cycling playstyle yet \u2014 do not invent."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:cycling game:commander",
+        "exemplar_total": 399,
+        "near_miss_query": "keyword:flashback -keyword:cycling game:commander",
+        "near_miss_total": 209
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "morph",
+      "unread_line": "morph {M}{M}",
+      "silent_count": 62,
+      "what_it_does": "Cast face down as a 2/2 for {3}; turn face up any time for morph cost.",
+      "what_deck_wants_it": "Morph/manifest matters and cheap morphable bodies with face-up payoffs.",
+      "community_name": "morph",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Grim Haruspex",
+      "near_miss": "Reality Shift",
+      "grammar_candidate": {
+        "query": "keyword:morph",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 153,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:morph) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Manifest is near-miss. Community morph decks exist; no playstyle entry yet."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:morph game:commander",
+        "exemplar_total": 153,
+        "near_miss_query": "keyword:manifest -keyword:morph game:commander",
+        "near_miss_total": 64
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "kicker",
+      "unread_line": "kicker {M}",
+      "silent_count": 31,
+      "what_it_does": "You may pay an optional additional cost as you cast this spell for an upgraded effect.",
+      "what_deck_wants_it": "Flexible spells and mana-sink value turns.",
+      "community_name": "kicker",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Rite of Replication",
+      "near_miss": "Everflowing Chalice",
+      "grammar_candidate": {
+        "query": "keyword:kicker",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 239,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:kicker) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Multikicker near-miss. Not a playstyle."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:kicker game:commander",
+        "exemplar_total": 239,
+        "near_miss_query": "keyword:multikicker -keyword:kicker game:commander",
+        "near_miss_total": 19
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "devoid",
+      "unread_line": "devoid",
+      "silent_count": 68,
+      "what_it_does": "This card is colorless (color identity still from mana cost/identity rules as printed).",
+      "what_deck_wants_it": "Colorless-matter and devoid tribal/Eldrazi-adjacent plans.",
+      "community_name": "devoid",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Sowing Mycospawn",
+      "near_miss": "Urza, Lord High Artificer",
+      "grammar_candidate": {
+        "query": "keyword:devoid",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 132,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:devoid) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Colorless creatures without devoid are near-misses. No devoid playstyle in our 13."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:devoid game:commander",
+        "exemplar_total": 132,
+        "near_miss_query": "o:colorless -keyword:devoid t:creature game:commander",
+        "near_miss_total": 233
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "changeling",
+      "unread_line": "changeling",
+      "silent_count": 38,
+      "what_it_does": "This card is every creature type.",
+      "what_deck_wants_it": "Tribal decks that need universal type fillers.",
+      "community_name": "changeling",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Realmwalker",
+      "near_miss": "Mutavault",
+      "grammar_candidate": {
+        "query": "keyword:changeling",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 63,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:changeling) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": "tribal",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Mutavault is near-miss \u2014 becomes all types only when animated, no changeling keyword."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:changeling game:commander",
+        "exemplar_total": 63,
+        "near_miss_query": "o:\"all creature types\" -keyword:changeling game:commander",
+        "near_miss_total": 10
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "equip",
+      "unread_line": "equip {M}",
+      "silent_count": 123,
+      "what_it_does": "Pay equip cost: attach this Equipment to target creature you control. Equip only as a sorcery.",
+      "what_deck_wants_it": "Voltron and equipment-matter decks moving swords onto a threat.",
+      "community_name": "equipment / equip",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Lightning Greaves",
+      "near_miss": "Animate Dead",
+      "grammar_candidate": {
+        "query": "keyword:equip",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 617,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:equip) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Aura Enchant creature is near-miss. We already have enchant_creature + aura/equipment signals; equip keyword itself is catalog."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:/^Equip / game:commander",
+        "exemplar_total": 603,
+        "near_miss_query": "o:\"Enchant creature\" -o:/^Equip / game:commander",
+        "near_miss_total": 1024
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "draw_a_card",
+      "unread_line": "draw a card",
+      "silent_count": 203,
+      "what_it_does": "Instruction to draw one card \u2014 the primary card-advantage verb in oracle text.",
+      "what_deck_wants_it": "Every plan needs card flow; engines, rocks that replace themselves, and draw payoffs.",
+      "community_name": "card draw",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Mind Stone",
+      "near_miss": "Path of Ancestry",
+      "grammar_candidate": {
+        "query": "o:\"draw a card\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 2542,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"draw a card\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": "card",
+        "note": "No draw oracle_signal today \u2014 silent high-frequency line. Produce/consume should treat draw as card advantage object, not a new playstyle. Near-miss Path of Ancestry scries without drawing."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"draw a card\" game:commander",
+        "exemplar_total": 2542,
+        "near_miss_query": "o:\"put.*into your hand\" -o:draw game:commander",
+        "near_miss_total": 0
+      },
+      "oracle_signal_shipped": "card_draw"
+    },
+    {
+      "id": "modal_choose_one",
+      "unread_line": "choose one \u2014",
+      "silent_count": 146,
+      "what_it_does": "Modal spell: choose one among listed modes as you cast/resolve.",
+      "what_deck_wants_it": "Flexible answers and value spells that adapt to the board.",
+      "community_name": "modal / choose one",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Abrade",
+      "near_miss": "Austere Command",
+      "grammar_candidate": {
+        "query": "o:\"choose one \u2014\" OR o:\"choose one -\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 512,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"choose one \u2014\" OR o:\"choose one -\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Choose two / modal Escalate spells are near-misses. Not a playstyle \u2014 a card shape. Signal only if produce/consume or role tagging needs it."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"choose one \u2014\" OR o:\"choose one -\" game:commander",
+        "exemplar_total": 512,
+        "near_miss_query": "o:\"choose two\" -o:\"choose one\" game:commander",
+        "near_miss_total": 71
+      },
+      "oracle_signal_shipped": "modal_choose_one"
+    },
+    {
+      "id": "uncounterable",
+      "unread_line": "this spell can't be countered",
+      "silent_count": 63,
+      "what_it_does": "This spell cannot be countered (sometimes only by spells/abilities).",
+      "what_deck_wants_it": "Resolving key threats through interaction; tribal lands/creatures that guarantee casting.",
+      "community_name": "uncounterable / can't be countered",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Cavern of Souls",
+      "near_miss": "Counterspell",
+      "grammar_candidate": {
+        "query": "o:\"can't be countered\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 115,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"can't be countered\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Counterspell is near-miss (it counters; it is not uncounterable). Not stax and not a playstyle."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"can't be countered\" game:commander",
+        "exemplar_total": 115,
+        "near_miss_query": "o:\"counter target spell\" -o:\"can't be countered\" game:commander",
+        "near_miss_total": 293
+      },
+      "oracle_signal_shipped": "uncounterable"
+    },
+    {
+      "id": "tap_add_colored",
+      "unread_line": "{M}: add {M}",
+      "silent_count": 304,
+      "what_it_does": "Activated mana ability: {T}: Add one colored mana of a fixed color.",
+      "what_deck_wants_it": "Mana bases and rocks that produce specific colors \u2014 every deck.",
+      "community_name": "tap for {C} / colored source",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Hinterland Harbor",
+      "near_miss": "Command Tower",
+      "grammar_candidate": {
+        "query": "o:\"{T}: Add {\" t:land",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 977,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"{T}: Add {\" t:land) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "CON-245 shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"{T}: Add {G}\" t:land game:commander",
+        "exemplar_total": 131,
+        "near_miss_query": "o:\"Add one mana of any color\" t:land game:commander",
+        "near_miss_total": 114
+      },
+      "oracle_signal_shipped": "tap_add_colored"
+    },
+    {
+      "id": "dual_mana_ability",
+      "unread_line": "{M}: add {M} or {M}",
+      "silent_count": 46,
+      "what_it_does": "{T}: Add one mana of color A or color B.",
+      "what_deck_wants_it": "Two-color fixing without rainbow.",
+      "community_name": "dual land mana / check land",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Rootbound Crag",
+      "near_miss": "Command Tower",
+      "grammar_candidate": {
+        "query": "o:/{T}: Add {[WUBRG]} or {[WUBRG]}/",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 358,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:/{T}: Add {[WUBRG]} or {[WUBRG]}/) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Sibling of tap_add_colored. Command Tower remains near-miss."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"{T}: Add {G} or {W}\" OR o:\"{T}: Add {R} or {G}\" t:land game:commander",
+        "exemplar_total": 67,
+        "near_miss_query": "o:\"Add one mana of any color\" t:land game:commander",
+        "near_miss_total": 114
+      },
+      "oracle_signal_shipped": "dual_mana_ability"
+    },
+    {
+      "id": "firebreathing",
+      "unread_line": "{M}: this creature gets +1/+0 until end of turn",
+      "silent_count": 59,
+      "what_it_does": "Activated ability: pay mana, this creature gets +1/+0 until end of turn (classic firebreathing).",
+      "what_deck_wants_it": "Mana sinks on attackers; voltron and pump plans.",
+      "community_name": "firebreathing",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Steel Hellkite",
+      "near_miss": "Nirkana Revenant",
+      "grammar_candidate": {
+        "query": "o:\": this creature gets +1/+0 until end of turn\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 136,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\": this creature gets +1/+0 until end of turn\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "+1/+1 pump activations are near-miss (different pump)."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\": this creature gets +1/+0 until end of turn\" game:commander",
+        "exemplar_total": 136,
+        "near_miss_query": "o:\": this creature gets +1/+1 until end of turn\" -o:\"+1/+0\" game:commander",
+        "near_miss_total": 98
+      },
+      "oracle_signal_shipped": "firebreathing"
+    },
+    {
+      "id": "regenerate",
+      "unread_line": "{M}: regenerate this creature",
+      "silent_count": 49,
+      "what_it_does": "Pay cost: regenerate this permanent (replace destruction with tap/remove-from-combat/clear damage).",
+      "what_deck_wants_it": "Old resilience packages; largely replaced by indestructible in modern design.",
+      "community_name": "regenerate",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": false,
+      "exemplar": "Swarmyard",
+      "near_miss": "Pongify",
+      "grammar_candidate": {
+        "query": "o:regenerate",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 420,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:regenerate) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Pongify is near-miss (\"can't be regenerated\"). Low strategic priority vs keywords; mark searchable but do not force a playstyle. oracle_signal_recommended=false until a deck role needs it."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:regenerate game:commander",
+        "exemplar_total": 420,
+        "near_miss_query": "keyword:indestructible -o:regenerate game:commander",
+        "near_miss_total": 115
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "enchant_land",
+      "unread_line": "enchant land",
+      "silent_count": 45,
+      "what_it_does": "Aura spell ability: enchant land (Wild Growth class).",
+      "what_deck_wants_it": "Ramp auras and land-aura matter; not creature voltron.",
+      "community_name": "enchant land / wild growth",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Wild Growth",
+      "near_miss": "Animate Dead",
+      "grammar_candidate": {
+        "query": "o:\"enchant land\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 93,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"enchant land\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "playstyle",
+        "playstyle": "landfall",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "enchant_creature already shipped (CON-245). Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"enchant land\" game:commander",
+        "exemplar_total": 93,
+        "near_miss_query": "o:\"enchant creature\" -o:\"enchant land\" game:commander",
+        "near_miss_total": 1025
+      },
+      "oracle_signal_shipped": "enchant_land"
+    },
+    {
+      "id": "must_attack",
+      "unread_line": "this creature attacks each combat if able",
+      "silent_count": 39,
+      "what_it_does": "This creature attacks each combat if able.",
+      "what_deck_wants_it": "Forced-combat packages and goad-adjacent pressure; sometimes a drawback on big bodies.",
+      "community_name": "must attack",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Toski, Bearer of Secrets",
+      "near_miss": "Propaganda",
+      "grammar_candidate": {
+        "query": "o:\"attacks each combat if able\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 89,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"attacks each combat if able\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Propaganda (\"can't attack\") is near-miss. No playstyle \u2014 combat constraint object."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"attacks each combat if able\" game:commander",
+        "exemplar_total": 89,
+        "near_miss_query": "o:\"can't attack\" game:commander",
+        "near_miss_total": 298
+      },
+      "oracle_signal_shipped": "must_attack"
+    },
+    {
+      "id": "cant_block",
+      "unread_line": "this creature can't block",
+      "silent_count": 42,
+      "what_it_does": "This creature cannot block.",
+      "what_deck_wants_it": "Glass-cannon attackers; sometimes grant to opponents.",
+      "community_name": "can't block",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": false,
+      "exemplar": "Champion of Lambholt",
+      "near_miss": "Wall of Omens",
+      "grammar_candidate": {
+        "query": "o:\"can't block\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 394,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"can't block\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Defender is near-miss (cannot attack, can block). Low priority for scoring."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"can't block\" game:commander",
+        "exemplar_total": 394,
+        "near_miss_query": "keyword:defender -o:\"can't block\" game:commander",
+        "near_miss_total": 310
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cant_be_blocked",
+      "unread_line": "this creature can't be blocked",
+      "silent_count": 36,
+      "what_it_does": "This creature cannot be blocked (sometimes with conditions).",
+      "what_deck_wants_it": "Voltron and infect/commander-damage plans that need connection.",
+      "community_name": "unblockable",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": true,
+      "exemplar": "Rogue's Passage",
+      "near_miss": "Birds of Paradise",
+      "grammar_candidate": {
+        "query": "o:\"can't be blocked\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 560,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"can't be blocked\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Flying is near-miss \u2014 evasion, but still blockable by flying/reach. Community says \"unblockable\"."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"can't be blocked\" -keyword:flying game:commander",
+        "exemplar_total": 554,
+        "near_miss_query": "keyword:flying -o:\"can't be blocked\" game:commander",
+        "near_miss_total": 3279
+      },
+      "oracle_signal_shipped": "cant_be_blocked"
+    },
+    {
+      "id": "draw_upkeep",
+      "unread_line": "draw a card at the beginning of the next turn's upkeep",
+      "silent_count": 33,
+      "what_it_does": "Delayed draw: draw a card at the beginning of the next turn's upkeep.",
+      "what_deck_wants_it": "Cantrips with timing delay; older templating of card flow.",
+      "community_name": "cantrip (delayed)",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal_recommended": false,
+      "exemplar": "Mishra's Bauble",
+      "near_miss": "Mind Stone",
+      "grammar_candidate": {
+        "query": "o:\"draw a card at the beginning of the next turn's upkeep\"",
+        "operator": "o:",
+        "catalog": null,
+        "verified_count": 53,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(o:\"draw a card at the beginning of the next turn's upkeep\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": "card",
+        "note": "Sibling of draw_a_card. Immediate draw (Mind Stone) is near-miss for THIS line \u2014 still draw, different timing. Prefer covering under a careful draw signal rather than a separate playstyle."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "o:\"draw a card at the beginning of the next turn's upkeep\" game:commander",
+        "exemplar_total": 53,
+        "near_miss_query": "o:\"draw a card\" -o:\"next turn's upkeep\" game:commander",
+        "near_miss_total": 2489
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cumulative_upkeep",
+      "unread_line": "cumulative upkeep {M}",
+      "silent_count": 42,
+      "what_it_does": "At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter.",
+      "what_deck_wants_it": "Tax engines (Mystic Remora) and intentional sacrifice lands (Glacial Chasm).",
+      "community_name": "cumulative upkeep",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Mystic Remora",
+      "near_miss": "Karmic Guide",
+      "grammar_candidate": {
+        "query": "keyword:\"cumulative upkeep\"",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 82,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:\"cumulative upkeep\") game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Echo is near-miss. Remora is stax/tax adjacent but not our stax detect as written \u2014 do not stretch."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:\"cumulative upkeep\" game:commander",
+        "exemplar_total": 82,
+        "near_miss_query": "keyword:echo -keyword:\"cumulative upkeep\" game:commander",
+        "near_miss_total": 50
+      },
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "swampwalk",
+      "unread_line": "swampwalk",
+      "silent_count": 30,
+      "what_it_does": "This creature cannot be blocked if defending player controls a Swamp.",
+      "what_deck_wants_it": "Old evasion; landwalk package. Narrow in modern Commander.",
+      "community_name": "swampwalk / landwalk",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_recommended": false,
+      "exemplar": "Filth",
+      "near_miss": "Chatterfang, Squirrel General",
+      "grammar_candidate": {
+        "query": "keyword:swampwalk",
+        "operator": "keyword:",
+        "catalog": "keyword-abilities",
+        "verified_count": 41,
+        "searchable": true,
+        "note": "Phase 3 verifies count; null is unknown not zero.",
+        "unknown_reason": null,
+        "verified_at": "2026-08-08",
+        "query_scoped": "(keyword:swampwalk) game:commander"
+      },
+      "strategy_candidate": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Forestwalk near-miss. Low priority."
+      },
+      "scryfall_resolution": {
+        "exemplar_query": "keyword:swampwalk game:commander",
+        "exemplar_total": 41,
+        "near_miss_query": "keyword:forestwalk -keyword:swampwalk game:commander",
+        "near_miss_total": 27
+      },
+      "oracle_signal_shipped": null
+    }
+  ],
+  "still_unread_or_deferred": [
+    {
+      "pattern_id": "regenerate",
+      "reason": "Searchable and researched, but oracle_signal_recommended=false \u2014 modern design prefers indestructible; wait for a role that needs it."
+    },
+    {
+      "pattern_id": "cant_block",
+      "reason": "Researched; low scoring value; no playstyle hook."
+    },
+    {
+      "pattern_id": "draw_upkeep",
+      "reason": "Fold into careful draw_a_card work in Phase 3 rather than a separate detector \u2014 delayed cantrip is still draw."
+    },
+    {
+      "pattern_id": "defender",
+      "reason": "Catalog keyword researched; community wall decks exist but we lack sourced playstyle entry \u2014 none_yet."
+    },
+    {
+      "pattern_id": "morph",
+      "reason": "Catalog keyword researched; no sourced playstyle yet."
+    },
+    {
+      "pattern_id": "cycling",
+      "reason": "Catalog keyword researched; no sourced cycling playstyle yet."
+    },
+    {
+      "pattern_id": "devoid",
+      "reason": "Catalog keyword researched; no devoid playstyle in the 13."
+    },
+    {
+      "line": "flying, vigilance / flying, haste / flying, trample / trample, haste",
+      "reason": "Compound keyword lines \u2014 covered by admitting component keywords, not new patterns."
+    },
+    {
+      "line": "morph {M}{M}{M}",
+      "reason": "Same morph keyword with different cost length in the frequency bucket."
+    }
+  ],
+  "phase3_priority": [
+    "draw_a_card",
+    "tap_add_colored",
+    "dual_mana_ability",
+    "equip",
+    "enchant_land",
+    "cant_be_blocked",
+    "uncounterable",
+    "modal_choose_one",
+    "firebreathing",
+    "must_attack",
+    "flying",
+    "trample",
+    "haste",
+    "vigilance",
+    "flash",
+    "cycling"
+  ],
+  "phase3": {
+    "issue": "CON-248",
+    "verified_at": "2026-08-08",
+    "all_searchable": true,
+    "signals_shipped": [
+      "cant_be_blocked",
+      "card_draw",
+      "dual_mana_ability",
+      "enchant_land",
+      "firebreathing",
+      "modal_choose_one",
+      "must_attack",
+      "tap_add_colored",
+      "uncounterable"
+    ],
+    "note": "All 38 Phase 2 grammar candidates verified against Scryfall (game:commander). Keywords remain catalog-only. Nine oracle_signals shipped with exemplar+near-miss tests. verified_count null is gone \u2014 unknown failures would set searchable=false with reason."
+  }
+}

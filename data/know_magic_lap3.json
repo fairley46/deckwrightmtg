@@ -1,0 +1,91 @@
+{
+  "title": "Know Magic \u2014 lap 3 admission + remeasure",
+  "closed_at": "2026-08-08",
+  "admitted_oracle_signals": [
+    "grant_keyword_eot",
+    "tap_target",
+    "exile_target_creature",
+    "choose_creature_type",
+    "destroy_target_land",
+    "stays_tapped",
+    "activated_ping"
+  ],
+  "coverage": {
+    "before_lap": {
+      "signal_pct": 66.6,
+      "signal_or_keyword_pct": 80.5,
+      "consumes_pct": 24.9
+    },
+    "after_lap": {
+      "signal_pct": 70.1,
+      "signal_or_keyword_pct": 82.9,
+      "consumes_pct": 26.6,
+      "unread_pct": 17.1,
+      "oracle_signals": 96
+    },
+    "delta": {
+      "at_least_one_signal_pp": 3.5,
+      "signal_or_keyword_pp": 2.4,
+      "any_consumes_pp": 1.7,
+      "precision_pp": 0.0
+    }
+  },
+  "precision": {
+    "after_pct": 89.9,
+    "held": true
+  },
+  "unread_tail_top": [
+    {
+      "count": 12,
+      "line": "cast this spell only during the declare attackers step and only if you've been attacked this step"
+    },
+    {
+      "count": 12,
+      "line": "this creature can't attack unless defending player controls an island"
+    },
+    {
+      "count": 11,
+      "line": "{M}: this creature gets +1/-1 until end of turn"
+    },
+    {
+      "count": 10,
+      "line": "as an additional cost to cast this spell, discard x cards"
+    },
+    {
+      "count": 10,
+      "line": "if this card is in your opening hand, you may begin the game with it on the battlefield"
+    },
+    {
+      "count": 8,
+      "line": "{M}{M}: this creature gets +2/+0 until end of turn"
+    },
+    {
+      "count": 8,
+      "line": "{M}: prevent the next 1 damage that would be dealt to any target this turn"
+    },
+    {
+      "count": 8,
+      "line": "draft this card face up"
+    },
+    {
+      "count": 7,
+      "line": "return up to two target creature cards from your graveyard to your hand"
+    },
+    {
+      "count": 7,
+      "line": "at the beginning of your upkeep, you may put a verse counter on this enchantment"
+    },
+    {
+      "count": 7,
+      "line": "{M}, {M}: put a charge counter on this artifact"
+    },
+    {
+      "count": 6,
+      "line": "target creature gets -4/-4 until end of turn"
+    }
+  ],
+  "laps_remaining_estimate": {
+    "productive_laps_left": "0\u20131",
+    "reason": "Unread 17.1%. Tail is thin (combat-timing locks, landwalk, draft, verse counters, odd pumps). One optional cleanup lap can still pick off clusters; after that, maintenance / print waves only. Not 100%."
+  }
+}

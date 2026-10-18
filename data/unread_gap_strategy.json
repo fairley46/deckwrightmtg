@@ -1,0 +1,934 @@
+{
+  "title": "Phase 4 \u2014 strategy hooks for researched unread gaps",
+  "researched_at": "2026-08-08",
+  "source_research": "data/unread_gap_research.json",
+  "source_grammar": "data/unread_gap_grammar.json",
+  "note": "Connect mechanics to existing playstyles, synergy objects, or explicit none_yet. No new playstyle names without community sources. Boosts only where a signal ranks an already-matched style \u2014 requires_any not widened for generic enters/attacks. Empty-ways shrink is measured after mechanics-refresh; inventing names to force a shrink is forbidden.",
+  "before": {
+    "empty_ways": 386,
+    "empty_ways_no_signals": 221,
+    "empty_ways_signals_no_playstyle": 165,
+    "ways_to_play": 2935,
+    "mechanics": 3321,
+    "playstyles_precision_pct": 89.9,
+    "note": "From data/commanders.json before Phase 4 playstyle boosts + mechanics-refresh."
+  },
+  "after": {
+    "empty_ways": 386,
+    "empty_ways_no_signals": 177,
+    "empty_ways_signals_no_playstyle": 209,
+    "ways_to_play": 2935,
+    "mechanics": 3321,
+    "playstyles_precision_pct": 89.9,
+    "mechanics_refresh_at": "2026-08-08",
+    "fetch_miss": 161,
+    "fetch_miss_note": "161 DFC/collection misses kept prior mechanics \u2014 unknown for those rows, not scored as newly readable."
+  },
+  "hooks": [
+    {
+      "id": "flying",
+      "unread_line": "flying",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:flying",
+      "grammar_verified_count": 3285,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Evasion keyword. Feeds combat/voltron density when we count keywords; do not invent an oracle_signal \u2014 catalog already has it."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "trample",
+      "unread_line": "trample",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:trample",
+      "grammar_verified_count": 1031,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword. Not a distinct Commander playstyle by itself."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "haste",
+      "unread_line": "haste",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:haste",
+      "grammar_verified_count": 670,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "tokens",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Timing keyword. Tokens/aggro care; not a standalone playstyle."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "tokens",
+        "reason": "Timing keyword; tokens detect stays on token makers / go-wide."
+      }
+    },
+    {
+      "id": "vigilance",
+      "unread_line": "vigilance",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:vigilance",
+      "grammar_verified_count": 746,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword only."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "defender",
+      "unread_line": "defender",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:defender",
+      "grammar_verified_count": 311,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Community wall/defender decks exist; we do not have a playstyle entry yet \u2014 do not invent one without sources."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Community wall/defender decks exist; we do not have a playstyle entry yet \u2014 do not invent one without sources."
+      }
+    },
+    {
+      "id": "flash",
+      "unread_line": "flash",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:flash",
+      "grammar_verified_count": 624,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Timing keyword; not a playstyle."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "reach",
+      "unread_line": "reach",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:reach",
+      "grammar_verified_count": 438,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Near-miss for flying on purpose \u2014 reach is not flying."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "first_strike",
+      "unread_line": "first strike",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:\"first strike\"",
+      "grammar_verified_count": 396,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Double strike is a near-miss: different keyword, overlapping combat role."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "double_strike",
+      "unread_line": "double strike",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:\"double strike\"",
+      "grammar_verified_count": 123,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Strong voltron finisher keyword; still catalog, not a new oracle_signal."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "voltron",
+        "reason": "Keyword catalog feeds combat finishing; not a detect gate."
+      }
+    },
+    {
+      "id": "menace",
+      "unread_line": "menace",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:menace",
+      "grammar_verified_count": 407,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Evasion keyword."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "deathtouch",
+      "unread_line": "deathtouch",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:deathtouch",
+      "grammar_verified_count": 346,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Combat keyword; not lifegain."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "lifelink",
+      "unread_line": "lifelink",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:lifelink",
+      "grammar_verified_count": 386,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "lifegain",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Already noted in mechanic_families as keyword feeding lifegain; still no oracle_signal invent."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "lifegain",
+        "reason": "Keyword catalog; lifegain detect already keys off gain triggers. Do not invent lifelink oracle_signal."
+      }
+    },
+    {
+      "id": "hexproof",
+      "unread_line": "hexproof",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:hexproof",
+      "grammar_verified_count": 97,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Shroud is the near-miss \u2014 you cannot target your own shroud permanent either."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "voltron",
+        "reason": "Keyword catalog protection; not a detect gate."
+      }
+    },
+    {
+      "id": "indestructible",
+      "unread_line": "indestructible",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:indestructible",
+      "grammar_verified_count": 115,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Protection keyword."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "ward",
+      "unread_line": "ward {M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:ward",
+      "grammar_verified_count": 211,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Taxing protection; hexproof is near-miss."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "voltron",
+        "reason": "Keyword catalog protection; not a detect gate."
+      }
+    },
+    {
+      "id": "shroud",
+      "unread_line": "shroud",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:shroud",
+      "grammar_verified_count": 35,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Hexproof near-miss \u2014 different targeting rules for the controller."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "prowess",
+      "unread_line": "prowess",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:prowess",
+      "grammar_verified_count": 91,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "spellslinger",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Magecraft/instant_or_sorcery_cast already cover related payoffs; prowess itself is catalog keyword. Storm-Kiln is near-miss (magecraft, not prowess)."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "spellslinger",
+        "reason": "Keyword catalog; spellslinger already requires instant_or_sorcery_cast / magecraft."
+      }
+    },
+    {
+      "id": "convoke",
+      "unread_line": "convoke",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:convoke",
+      "grammar_verified_count": 105,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "tokens",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Delve is cost-reduction near-miss, not the same mechanic."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "tokens",
+        "reason": "Keyword catalog cost reduction for wide boards; not a detect gate."
+      }
+    },
+    {
+      "id": "cycling",
+      "unread_line": "cycling {M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:cycling",
+      "grammar_verified_count": 399,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Flashback is near-miss (graveyard cast, not cycle). No cycling playstyle yet \u2014 do not invent."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "morph",
+      "unread_line": "morph {M}{M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:morph",
+      "grammar_verified_count": 153,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Manifest is near-miss. Community morph decks exist; no playstyle entry yet."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Manifest is near-miss. Community morph decks exist; no playstyle entry yet."
+      }
+    },
+    {
+      "id": "kicker",
+      "unread_line": "kicker {M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:kicker",
+      "grammar_verified_count": 239,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Multikicker near-miss. Not a playstyle."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    },
+    {
+      "id": "devoid",
+      "unread_line": "devoid",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:devoid",
+      "grammar_verified_count": 132,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Colorless creatures without devoid are near-misses. No devoid playstyle in our 13."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Colorless creatures without devoid are near-misses. No devoid playstyle in our 13."
+      }
+    },
+    {
+      "id": "changeling",
+      "unread_line": "changeling",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:changeling",
+      "grammar_verified_count": 63,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": "tribal",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Mutavault is near-miss \u2014 becomes all types only when animated, no changeling keyword."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "tribal",
+        "reason": "Keyword catalog; tribal detect uses creature_type_matter / tribal_type_matter."
+      }
+    },
+    {
+      "id": "equip",
+      "unread_line": "equip {M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:equip",
+      "grammar_verified_count": 617,
+      "strategy": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Aura Enchant creature is near-miss. We already have enchant_creature + aura/equipment signals; equip keyword itself is catalog."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": "voltron",
+        "reason": "Already covered by aura_or_equipment_cast / attach_to_commander requires_any; keyword catalog."
+      }
+    },
+    {
+      "id": "draw_a_card",
+      "unread_line": "draw a card",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "card_draw",
+      "grammar_query": "o:\"draw a card\"",
+      "grammar_verified_count": 2542,
+      "strategy": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": "card",
+        "note": "No draw oracle_signal today \u2014 silent high-frequency line. Produce/consume should treat draw as card advantage object, not a new playstyle. Near-miss Path of Ancestry scries without drawing."
+      },
+      "playstyles_json_action": {
+        "action": "synergy_object",
+        "playstyle": null,
+        "reason": "card_draw signal produces synergy object \"card\". Not a playstyle."
+      }
+    },
+    {
+      "id": "modal_choose_one",
+      "unread_line": "choose one \u2014",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "modal_choose_one",
+      "grammar_query": "o:\"choose one \u2014\" OR o:\"choose one -\"",
+      "grammar_verified_count": 512,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Choose two / modal Escalate spells are near-misses. Not a playstyle \u2014 a card shape. Signal only if produce/consume or role tagging needs it."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": null,
+        "reason": "Card shape, not a way to play."
+      }
+    },
+    {
+      "id": "uncounterable",
+      "unread_line": "this spell can't be countered",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "uncounterable",
+      "grammar_query": "o:\"can't be countered\"",
+      "grammar_verified_count": 115,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Counterspell is near-miss (it counters; it is not uncounterable). Not stax and not a playstyle."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": null,
+        "reason": "Protection shape; not stax and not a playstyle."
+      }
+    },
+    {
+      "id": "tap_add_colored",
+      "unread_line": "{M}: add {M}",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "tap_add_colored",
+      "grammar_query": "o:\"{T}: Add {\" t:land",
+      "grammar_verified_count": 977,
+      "strategy": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "CON-245 shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": null,
+        "reason": "Mana reading for cohesion/scoring; every deck wants it \u2014 not a way-to-play name."
+      }
+    },
+    {
+      "id": "dual_mana_ability",
+      "unread_line": "{M}: add {M} or {M}",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "dual_mana_ability",
+      "grammar_query": "o:/{T}: Add {[WUBRG]} or {[WUBRG]}/",
+      "grammar_verified_count": 358,
+      "strategy": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Sibling of tap_add_colored. Command Tower remains near-miss."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": null,
+        "reason": "Mana reading; not a playstyle."
+      }
+    },
+    {
+      "id": "firebreathing",
+      "unread_line": "{M}: this creature gets +1/+0 until end of turn",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "firebreathing",
+      "grammar_query": "o:\": this creature gets +1/+0 until end of turn\"",
+      "grammar_verified_count": 136,
+      "strategy": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "+1/+1 pump activations are near-miss (different pump)."
+      },
+      "playstyles_json_action": {
+        "action": "boost",
+        "playstyle": "voltron",
+        "reason": "Mana-sink pump on a single body; boost only."
+      }
+    },
+    {
+      "id": "regenerate",
+      "unread_line": "{M}: regenerate this creature",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": null,
+      "grammar_query": "o:regenerate",
+      "grammar_verified_count": 420,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Pongify is near-miss (\"can't be regenerated\"). Low strategic priority vs keywords; mark searchable but do not force a playstyle. oracle_signal_recommended=false until a deck role needs it."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Pongify is near-miss (\"can't be regenerated\"). Low strategic priority vs keywords; mark searchable but do not force a playstyle. oracle_signal_recommended=false until a deck role needs it."
+      }
+    },
+    {
+      "id": "enchant_land",
+      "unread_line": "enchant land",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "enchant_land",
+      "grammar_query": "o:\"enchant land\"",
+      "grammar_verified_count": 93,
+      "strategy": {
+        "kind": "playstyle",
+        "playstyle": "landfall",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "enchant_creature already shipped (CON-245). Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
+      },
+      "playstyles_json_action": {
+        "action": "boost",
+        "playstyle": "landfall",
+        "reason": "Land auras feed land-centric ramp plans; boost only \u2014 enchant_land alone is not landfall."
+      }
+    },
+    {
+      "id": "must_attack",
+      "unread_line": "this creature attacks each combat if able",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "must_attack",
+      "grammar_query": "o:\"attacks each combat if able\"",
+      "grammar_verified_count": 89,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Propaganda (\"can't attack\") is near-miss. No playstyle \u2014 combat constraint object."
+      },
+      "playstyles_json_action": {
+        "action": "none",
+        "playstyle": null,
+        "reason": "Combat constraint; no sourced playstyle."
+      }
+    },
+    {
+      "id": "cant_block",
+      "unread_line": "this creature can't block",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": null,
+      "grammar_query": "o:\"can't block\"",
+      "grammar_verified_count": 394,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Defender is near-miss (cannot attack, can block). Low priority for scoring."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Defender is near-miss (cannot attack, can block). Low priority for scoring."
+      }
+    },
+    {
+      "id": "cant_be_blocked",
+      "unread_line": "this creature can't be blocked",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": "cant_be_blocked",
+      "grammar_query": "o:\"can't be blocked\"",
+      "grammar_verified_count": 560,
+      "strategy": {
+        "kind": "playstyle",
+        "playstyle": "voltron",
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Flying is near-miss \u2014 evasion, but still blockable by flying/reach. Community says \"unblockable\"."
+      },
+      "playstyles_json_action": {
+        "action": "boost",
+        "playstyle": "voltron",
+        "reason": "Evasion for commander-damage plans; boost only \u2014 not requires_any (too broad alone)."
+      }
+    },
+    {
+      "id": "draw_upkeep",
+      "unread_line": "draw a card at the beginning of the next turn's upkeep",
+      "method": "derived",
+      "admit_via": "oracle_signal",
+      "oracle_signal": null,
+      "grammar_query": "o:\"draw a card at the beginning of the next turn's upkeep\"",
+      "grammar_verified_count": 53,
+      "strategy": {
+        "kind": "synergy_object",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": "card",
+        "note": "Sibling of draw_a_card. Immediate draw (Mind Stone) is near-miss for THIS line \u2014 still draw, different timing. Prefer covering under a careful draw signal rather than a separate playstyle."
+      },
+      "playstyles_json_action": {
+        "action": "synergy_object",
+        "playstyle": null,
+        "reason": "Sibling of draw_a_card. Immediate draw (Mind Stone) is near-miss for THIS line \u2014 still draw, different timing. Prefer covering under a careful draw signal rather than a separate playstyle."
+      }
+    },
+    {
+      "id": "cumulative_upkeep",
+      "unread_line": "cumulative upkeep {M}",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:\"cumulative upkeep\"",
+      "grammar_verified_count": 82,
+      "strategy": {
+        "kind": "none_yet",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Echo is near-miss. Remora is stax/tax adjacent but not our stax detect as written \u2014 do not stretch."
+      },
+      "playstyles_json_action": {
+        "action": "none_yet",
+        "playstyle": null,
+        "reason": "Echo is near-miss. Remora is stax/tax adjacent but not our stax detect as written \u2014 do not stretch."
+      }
+    },
+    {
+      "id": "swampwalk",
+      "unread_line": "swampwalk",
+      "method": "both",
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal": null,
+      "grammar_query": "keyword:swampwalk",
+      "grammar_verified_count": 41,
+      "strategy": {
+        "kind": "keyword_family",
+        "playstyle": null,
+        "plan_commitment": null,
+        "synergy_object": null,
+        "note": "Forestwalk near-miss. Low priority."
+      },
+      "playstyles_json_action": {
+        "action": "catalog_only",
+        "playstyle": null,
+        "reason": "Scryfall keyword catalog \u2014 no oracle_signal, no detect invent."
+      }
+    }
+  ],
+  "playstyle_edits": [
+    {
+      "playstyle": "voltron",
+      "field": "detect.boosts",
+      "add": [
+        "cant_be_blocked",
+        "firebreathing"
+      ]
+    },
+    {
+      "playstyle": "landfall",
+      "field": "detect.boosts",
+      "add": [
+        "enchant_land"
+      ]
+    }
+  ],
+  "no_new_playstyles": [
+    {
+      "candidate": "walls/defender",
+      "reason": "Community exists; no sourced entry in our 13 \u2014 none_yet."
+    },
+    {
+      "candidate": "morph",
+      "reason": "No sourced playstyle entry."
+    },
+    {
+      "candidate": "cycling",
+      "reason": "No sourced playstyle entry."
+    },
+    {
+      "candidate": "devoid",
+      "reason": "No sourced playstyle entry."
+    }
+  ],
+  "delta": {
+    "empty_ways": 0,
+    "empty_ways_no_signals": -44,
+    "empty_ways_signals_no_playstyle": 44,
+    "ways_to_play": 0
+  },
+  "empty_ways_finding": {
+    "empty_ways_unchanged": true,
+    "reason": "New CON-248 signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback.",
+    "top_signals_among_signals_no_playstyle": [
+      [
+        "enters",
+        90
+      ],
+      [
+        "card_draw",
+        52
+      ],
+      [
+        "attacks",
+        49
+      ],
+      [
+        "go_wide_payoff",
+        27
+      ],
+      [
+        "cant_be_blocked",
+        17
+      ],
+      [
+        "token_create",
+        14
+      ],
+      [
+        "resource_tokens",
+        10
+      ],
+      [
+        "enters_tapped",
+        7
+      ],
+      [
+        "clue_tokens",
+        6
+      ],
+      [
+        "modal_choose_one",
+        6
+      ],
+      [
+        "tap_add_colored",
+        5
+      ],
+      [
+        "lifegain_source",
+        4
+      ],
+      [
+        "firebreathing",
+        4
+      ],
+      [
+        "food_tokens",
+        4
+      ],
+      [
+        "counterspell",
+        3
+      ]
+    ]
+  }
+}

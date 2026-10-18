@@ -1,0 +1,321 @@
+{
+  "source_research": "data/unread_gap_research.json",
+  "verified_at": "2026-08-08",
+  "patterns": [
+    {
+      "id": "flying",
+      "query": "keyword:flying",
+      "verified_count": 3285,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "trample",
+      "query": "keyword:trample",
+      "verified_count": 1031,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "haste",
+      "query": "keyword:haste",
+      "verified_count": 670,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "vigilance",
+      "query": "keyword:vigilance",
+      "verified_count": 746,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "defender",
+      "query": "keyword:defender",
+      "verified_count": 311,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "flash",
+      "query": "keyword:flash",
+      "verified_count": 624,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "reach",
+      "query": "keyword:reach",
+      "verified_count": 438,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "first_strike",
+      "query": "keyword:\"first strike\"",
+      "verified_count": 396,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "double_strike",
+      "query": "keyword:\"double strike\"",
+      "verified_count": 123,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "menace",
+      "query": "keyword:menace",
+      "verified_count": 407,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "deathtouch",
+      "query": "keyword:deathtouch",
+      "verified_count": 346,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "lifelink",
+      "query": "keyword:lifelink",
+      "verified_count": 386,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "hexproof",
+      "query": "keyword:hexproof",
+      "verified_count": 97,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "indestructible",
+      "query": "keyword:indestructible",
+      "verified_count": 115,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "ward",
+      "query": "keyword:ward",
+      "verified_count": 211,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "shroud",
+      "query": "keyword:shroud",
+      "verified_count": 35,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "prowess",
+      "query": "keyword:prowess",
+      "verified_count": 91,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "convoke",
+      "query": "keyword:convoke",
+      "verified_count": 105,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cycling",
+      "query": "keyword:cycling",
+      "verified_count": 399,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "morph",
+      "query": "keyword:morph",
+      "verified_count": 153,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "kicker",
+      "query": "keyword:kicker",
+      "verified_count": 239,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "devoid",
+      "query": "keyword:devoid",
+      "verified_count": 132,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "changeling",
+      "query": "keyword:changeling",
+      "verified_count": 63,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "equip",
+      "query": "keyword:equip",
+      "verified_count": 617,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "draw_a_card",
+      "query": "o:\"draw a card\"",
+      "verified_count": 2542,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "card_draw"
+    },
+    {
+      "id": "modal_choose_one",
+      "query": "o:\"choose one \u2014\" OR o:\"choose one -\"",
+      "verified_count": 512,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "modal_choose_one"
+    },
+    {
+      "id": "uncounterable",
+      "query": "o:\"can't be countered\"",
+      "verified_count": 115,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "uncounterable"
+    },
+    {
+      "id": "tap_add_colored",
+      "query": "o:\"{T}: Add {\" t:land",
+      "verified_count": 977,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "tap_add_colored"
+    },
+    {
+      "id": "dual_mana_ability",
+      "query": "o:/{T}: Add {[WUBRG]} or {[WUBRG]}/",
+      "verified_count": 358,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "dual_mana_ability"
+    },
+    {
+      "id": "firebreathing",
+      "query": "o:\": this creature gets +1/+0 until end of turn\"",
+      "verified_count": 136,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "firebreathing"
+    },
+    {
+      "id": "regenerate",
+      "query": "o:regenerate",
+      "verified_count": 420,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "enchant_land",
+      "query": "o:\"enchant land\"",
+      "verified_count": 93,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "enchant_land"
+    },
+    {
+      "id": "must_attack",
+      "query": "o:\"attacks each combat if able\"",
+      "verified_count": 89,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "must_attack"
+    },
+    {
+      "id": "cant_block",
+      "query": "o:\"can't block\"",
+      "verified_count": 394,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cant_be_blocked",
+      "query": "o:\"can't be blocked\"",
+      "verified_count": 560,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": "cant_be_blocked"
+    },
+    {
+      "id": "draw_upkeep",
+      "query": "o:\"draw a card at the beginning of the next turn's upkeep\"",
+      "verified_count": 53,
+      "searchable": true,
+      "admit_via": "oracle_signal",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "cumulative_upkeep",
+      "query": "keyword:\"cumulative upkeep\"",
+      "verified_count": 82,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    },
+    {
+      "id": "swampwalk",
+      "query": "keyword:swampwalk",
+      "verified_count": 41,
+      "searchable": true,
+      "admit_via": "scryfall_keyword_catalog",
+      "oracle_signal_shipped": null
+    }
+  ],
+  "signals_shipped": [
+    "cant_be_blocked",
+    "card_draw",
+    "dual_mana_ability",
+    "enchant_land",
+    "firebreathing",
+    "modal_choose_one",
+    "must_attack",
+    "tap_add_colored",
+    "uncounterable"
+  ]
+}

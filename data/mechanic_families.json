@@ -1,0 +1,2354 @@
+{
+  "version": 1,
+  "source": "https://docs.google.com/document/d/1zBMvmzgxIKdDxtRntJQrr8-GYAIJICIU7SHsspWp3sI/edit",
+  "notes": [
+    "Families group by how they play (game math), not CR implementation.",
+    "plan_role: condition | engine | enabler | payoff | modifier | cost | protection",
+    "math_kind names the equation the family changes.",
+    "New Scryfall catalog names missing here are unreviewed \u2014 place ~10-15/year by hand.",
+    "CON-129 (2026-08-06): remainder triage placed all 91 leftover catalog names. Generic CR action verbs (Play, Tap, Untap, Shuffle, Reveal) sit in timing; removal verbs (Exile, Sacrifice, Fight, Exchange, Sweep) in interaction \u2014 Scryfall catalog entries, not synergy keywords."
+  ],
+  "families": {
+    "thresholds_battlefield": {
+      "plan_role": "condition",
+      "math_kind": "threshold_count",
+      "description": "Board-state gates. Payoffs fire when a countable board predicate is true.",
+      "mechanics": [
+        "Coven",
+        "Metalcraft",
+        "Ferocious",
+        "Formidable"
+      ]
+    },
+    "thresholds_graveyard": {
+      "plan_role": "condition",
+      "math_kind": "threshold_count",
+      "description": "Graveyard cardinality / diversity gates.",
+      "mechanics": [
+        "Delirium",
+        "Threshold",
+        "Spell mastery",
+        "Descent",
+        "Fathomless Descent",
+        "Undergrowth",
+        "Survival"
+      ]
+    },
+    "thresholds_turn_event": {
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "Something happened this turn \u2014 binary or counted event gates.",
+      "mechanics": [
+        "Morbid",
+        "Raid",
+        "Revolt",
+        "Celebration",
+        "Descend",
+        "Expend",
+        "Void",
+        "Hellbent",
+        "Corrupted",
+        "Fateful hour",
+        "Underdog",
+        "Valiant",
+        "Solved"
+      ]
+    },
+    "batching": {
+      "plan_role": "condition",
+      "math_kind": "set_membership",
+      "description": "Card is in a named set (Historic, Modified, Outlaw). Lineage matters.",
+      "mechanics": [
+        "Historic",
+        "Modified",
+        "Commit a crime",
+        "Outlaw",
+        "Changeling",
+        "Devoid",
+        "Suspect",
+        "Heist"
+      ]
+    },
+    "variables": {
+      "plan_role": "condition",
+      "math_kind": "scalar",
+      "description": "Scalars read off the game state (devotion, domain, party).",
+      "mechanics": [
+        "Devotion",
+        "Party",
+        "Chroma",
+        "Domain",
+        "Vivid",
+        "Adamant",
+        "Converge",
+        "Sunburst",
+        "Max speed",
+        "Teamwork"
+      ]
+    },
+    "cast_from_graveyard": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Yard is a second hand \u2014 changes effective card advantage math.",
+      "mechanics": [
+        "Flashback",
+        "Jump-start",
+        "Escape",
+        "Retrace",
+        "Disturb",
+        "Aftermath",
+        "Unearth",
+        "Embalm",
+        "Eternalize",
+        "Encore",
+        "Scavenge",
+        "Renew",
+        "Harmonize",
+        "Assimilate",
+        "Freerunning",
+        "Hideaway",
+        "Opus"
+      ]
+    },
+    "return_from_graveyard": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Recursion to hand/battlefield without casting as the primary mode.",
+      "mechanics": [
+        "Dredge",
+        "Recover",
+        "Persist",
+        "Undying"
+      ]
+    },
+    "alternate_costs": {
+      "plan_role": "cost",
+      "math_kind": "cost_alt",
+      "description": "Replace or reshape the mana price of a spell.",
+      "mechanics": [
+        "Convoke",
+        "Improvise",
+        "Delve",
+        "Affinity",
+        "Emerge",
+        "Prototype",
+        "Evoke",
+        "Dash",
+        "Blitz",
+        "Warp",
+        "Suspend",
+        "Plot",
+        "Overload",
+        "Bestow",
+        "Mutate",
+        "Cleave",
+        "Spectacle",
+        "Prowl",
+        "Surge",
+        "Offering",
+        "Assist",
+        "Awaken",
+        "Compleated",
+        "Undaunted",
+        "Impending",
+        "Fuse",
+        "More Than Meets the Eye",
+        "Sneak",
+        "Specialize"
+      ]
+    },
+    "additional_costs": {
+      "plan_role": "cost",
+      "math_kind": "cost_add",
+      "description": "Pay something extra for a mode or bonus.",
+      "mechanics": [
+        "Kicker",
+        "Multikicker",
+        "Buyback",
+        "Entwine",
+        "Spree",
+        "Tiered",
+        "Casualty",
+        "Bargain",
+        "Collect evidence",
+        "Forage",
+        "Gift",
+        "Offspring",
+        "Replicate",
+        "Escalate",
+        "Strive",
+        "Squad",
+        "Ravenous",
+        "Conspire",
+        "Behold",
+        "Cumulative upkeep",
+        "Echo",
+        "Double",
+        "Convert",
+        "Exhaust",
+        "Triple",
+        "Intensity",
+        "Infusion"
+      ]
+    },
+    "delayed_recast": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Cast once, get another use later.",
+      "mechanics": [
+        "Rebound",
+        "Cipher",
+        "Epic"
+      ]
+    },
+    "when_you_cast": {
+      "plan_role": "payoff",
+      "math_kind": "cast_trigger",
+      "description": "Value scales with spell velocity / storm-like chains.",
+      "mechanics": [
+        "Storm",
+        "Cascade",
+        "Discover",
+        "Ripple",
+        "Gravestorm",
+        "Demonstrate",
+        "Cast",
+        "Splice"
+      ]
+    },
+    "evasion": {
+      "plan_role": "modifier",
+      "math_kind": "combat_filter",
+      "description": "Changes which blockers are legal \u2014 attack connection rate.",
+      "mechanics": [
+        "Flying",
+        "Reach",
+        "Shadow",
+        "Fear",
+        "Intimidate",
+        "Menace",
+        "Skulk",
+        "Horsemanship",
+        "Trample",
+        "Landwalk",
+        "Desertwalk",
+        "Forestwalk",
+        "Islandwalk",
+        "Mountainwalk",
+        "Plainswalk",
+        "Swampwalk",
+        "Nonbasic landwalk",
+        "Legendary landwalk"
+      ]
+    },
+    "combat_timing": {
+      "plan_role": "modifier",
+      "math_kind": "combat_order",
+      "description": "Strike order / vigilance \u2014 changes combat assignment math.",
+      "mechanics": [
+        "First strike",
+        "Double strike",
+        "Vigilance",
+        "Haste",
+        "Defender",
+        "Afflict",
+        "Banding",
+        "Bushido",
+        "Flanking",
+        "Frenzy",
+        "Rampage",
+        "Decayed",
+        "Airbend",
+        "Detain",
+        "Goad",
+        "Phasing"
+      ]
+    },
+    "attacking_triggers": {
+      "plan_role": "payoff",
+      "math_kind": "attack_trigger",
+      "description": "Value on attack declaration \u2014 rewards go-wide or go-tall aggression.",
+      "mechanics": [
+        "Exalted",
+        "Battle cry",
+        "Mentor",
+        "Training",
+        "Enlist",
+        "Melee",
+        "Battalion",
+        "Pack tactics",
+        "Myriad",
+        "Mobilize",
+        "Annihilator",
+        "Dethrone",
+        "Provoke",
+        "Firebending",
+        "Exert",
+        "Boast",
+        "Cohort",
+        "Double team",
+        "Enrage",
+        "Inspired",
+        "Lieutenant",
+        "Waterbend",
+        "Web-slinging",
+        "Radiance"
+      ]
+    },
+    "saboteur": {
+      "plan_role": "payoff",
+      "math_kind": "connect_trigger",
+      "description": "Value on dealing combat damage to a player.",
+      "mechanics": [
+        "Poisonous",
+        "Toxic",
+        "Renown",
+        "Ingest"
+      ]
+    },
+    "damage_modification": {
+      "plan_role": "modifier",
+      "math_kind": "rate",
+      "description": "Changes what damage does (life, counters, kill).",
+      "mechanics": [
+        "Lifelink",
+        "Deathtouch",
+        "Wither",
+        "Infect"
+      ]
+    },
+    "protection": {
+      "plan_role": "protection",
+      "math_kind": "survival",
+      "description": "Keeps permanents / player state alive through interaction.",
+      "mechanics": [
+        "Hexproof",
+        "Shroud",
+        "Ward",
+        "Indestructible",
+        "Protection",
+        "Totem armor",
+        "Absorb",
+        "Regenerate",
+        "Hexproof from",
+        "Umbra armor"
+      ]
+    },
+    "etb_triggers": {
+      "plan_role": "payoff",
+      "math_kind": "etb_trigger",
+      "description": "Enter-the-battlefield value \u2014 blink/reanimate multiply it.",
+      "mechanics": [
+        "Landfall",
+        "Constellation",
+        "Eerie",
+        "Rally",
+        "Alliance",
+        "Graft",
+        "Evolve",
+        "Soulbond",
+        "Champion",
+        "Exploit",
+        "Kinfall",
+        "Riot",
+        "Tribute"
+      ]
+    },
+    "spell_cast_triggers": {
+      "plan_role": "payoff",
+      "math_kind": "cast_trigger",
+      "description": "Triggers off casting \u2014 prowess family and cousins.",
+      "mechanics": [
+        "Prowess",
+        "Magecraft",
+        "Extort",
+        "Flurry",
+        "Paradox",
+        "Heroic"
+      ]
+    },
+    "dies_triggers": {
+      "plan_role": "payoff",
+      "math_kind": "death_trigger",
+      "description": "Value on death \u2014 aristocrats math (sac outlets \u00d7 drain).",
+      "mechanics": [
+        "Afterlife",
+        "Undying",
+        "Persist",
+        "Modular",
+        "Haunt",
+        "Soulshift"
+      ]
+    },
+    "counters_plus": {
+      "plan_role": "engine",
+      "math_kind": "counter_growth",
+      "description": "+1/+1 and related growth loops.",
+      "mechanics": [
+        "Adapt",
+        "Monstrosity",
+        "Outlast",
+        "Level up",
+        "Bolster",
+        "Support",
+        "Endure",
+        "Proliferate",
+        "Backup",
+        "Fabricate",
+        "Devour",
+        "Bloodthirst",
+        "Amplify",
+        "Blight",
+        "Counter",
+        "Craft",
+        "Earthbend",
+        "Fading",
+        "Increment",
+        "Unleash",
+        "Vanishing"
+      ]
+    },
+    "tokens": {
+      "plan_role": "enabler",
+      "math_kind": "board_count",
+      "description": "Creates bodies. Creature tokens feed go-wide (attackers, sac, convoke) and go-tall (anthem/counter payoffs). Resource tokens (Treasure, Clue, Food) are a different equation \u2014 mana/card/life, not board presence.",
+      "mechanics": [
+        "Investigate",
+        "Incubate",
+        "Amass",
+        "Populate",
+        "Living weapon",
+        "For Mirrodin!",
+        "Job select",
+        "Fabricate",
+        "Afterlife",
+        "Myriad",
+        "Mobilize",
+        "Embalm",
+        "Eternalize",
+        "Create",
+        "Food",
+        "Treasure",
+        "Role token",
+        "Prepared"
+      ]
+    },
+    "face_down": {
+      "plan_role": "cost",
+      "math_kind": "cost_alt",
+      "description": "Hidden information / cheap body now, pay later.",
+      "mechanics": [
+        "Morph",
+        "Megamorph",
+        "Manifest",
+        "Manifest dread",
+        "Disguise",
+        "Cloak",
+        "Foretell",
+        "Covercast",
+        "Living metal",
+        "Transform"
+      ]
+    },
+    "hand_abilities": {
+      "plan_role": "engine",
+      "math_kind": "card_selection",
+      "description": "Discard/cycle for effect \u2014 changes hand-as-resource math.",
+      "mechanics": [
+        "Cycling",
+        "Channel",
+        "Transmute",
+        "Madness",
+        "Mayhem",
+        "Ninjutsu",
+        "Miracle",
+        "Forecast",
+        "Bloodrush",
+        "Reinforce",
+        "Basic landcycling",
+        "Landcycling",
+        "Typecycling",
+        "Forestcycling",
+        "Islandcycling",
+        "Mountaincycling",
+        "Plainscycling",
+        "Swampcycling",
+        "Wizardcycling",
+        "Slivercycling",
+        "Commander ninjutsu",
+        "Discard",
+        "Grandeur",
+        "Learn",
+        "Transfigure"
+      ]
+    },
+    "library_manipulation": {
+      "plan_role": "engine",
+      "math_kind": "information",
+      "description": "Orders or filters the deck \u2014 reduces variance of draws.",
+      "mechanics": [
+        "Scry",
+        "Surveil",
+        "Connive",
+        "Explore",
+        "Clash",
+        "Fateseal",
+        "Parley",
+        "Kinship",
+        "Mill",
+        "Seek"
+      ]
+    },
+    "new_components": {
+      "plan_role": "engine",
+      "math_kind": "shared_resource",
+      "description": "Introduces a tracked component (monarch, initiative, dungeons).",
+      "mechanics": [
+        "Ascend",
+        "The monarch",
+        "Initiative",
+        "Venture into the dungeon",
+        "Daybound",
+        "Nightbound",
+        "The Ring tempts you",
+        "Start your engines!",
+        "Abandon",
+        "Assemble",
+        "Choose a background",
+        "Companion",
+        "Conjure",
+        "Council's dilemma",
+        "Doctor's companion",
+        "Double agenda",
+        "Draft from a spellbook",
+        "Eminence",
+        "Face a dilemma",
+        "Friends forever",
+        "Hidden agenda",
+        "Hero's Reward",
+        "Imprint",
+        "Join forces",
+        "Meld",
+        "Open an Attraction",
+        "Paradigm",
+        "Partner",
+        "Partner with",
+        "Planeswalk",
+        "Power-up",
+        "Read Ahead",
+        "Repartee",
+        "Roll to Visit Your Attractions",
+        "Secret council",
+        "Set in motion",
+        "Tempting offer",
+        "Time Travel",
+        "Vote",
+        "Will of the council",
+        "Will of the Planeswalkers",
+        "Legacy"
+      ]
+    },
+    "timing": {
+      "plan_role": "modifier",
+      "math_kind": "timing",
+      "description": "When you can cast \u2014 interaction windows.",
+      "mechanics": [
+        "Flash",
+        "Split second",
+        "Addendum",
+        "Activate",
+        "Disappear",
+        "Play",
+        "Reveal",
+        "Shuffle",
+        "Tap",
+        "Untap"
+      ]
+    },
+    "equipment_aura": {
+      "plan_role": "modifier",
+      "math_kind": "attachment",
+      "description": "Attachable bonuses \u2014 voltron / auras math.",
+      "mechanics": [
+        "Equip",
+        "Reconfigure",
+        "Fortify",
+        "Attach",
+        "Augment",
+        "Aura Swap",
+        "Crew",
+        "Enchant",
+        "Harness",
+        "Incorporate",
+        "Landship",
+        "Saddle",
+        "Station"
+      ]
+    },
+    "life_math": {
+      "plan_role": "engine",
+      "math_kind": "life_rate",
+      "description": "Lifegain / drain composition. Mostly oracle_signals; Lifelink keyword sits in damage_modification and also feeds this plan.",
+      "mechanics": [
+        "Heal"
+      ]
+    },
+    "energy": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Energy counters ({E}). Produce via get {E}; spend via pay {E}. No Scryfall catalog \u2014 oracle_signals only (CON-221).",
+      "mechanics": []
+    },
+    "poison": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Poison counters. Produce via infect/toxic/get poison; payoffs care about poison. Bare proliferate is not a poison consumer (CON-224).",
+      "mechanics": []
+    },
+    "rad": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Rad counters. Produce via get/give rad; consume via remove/care about rad (CON-224).",
+      "mechanics": []
+    },
+    "experience": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Experience counters. Get them; spend via 'experience counters you have' (CON-224).",
+      "mechanics": []
+    },
+    "speed": {
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Speed (Start your engines!). Produce via starting engines; payoffs read max speed / your speed. Reminder 'Max speed is 4' is not a payoff (CON-224).",
+      "mechanics": []
+    },
+    "monarch": {
+      "plan_role": "engine",
+      "math_kind": "shared_resource",
+      "description": "The monarch. Become the monarch; payoffs if you're the monarch (CON-224).",
+      "mechanics": []
+    },
+    "initiative": {
+      "plan_role": "engine",
+      "math_kind": "shared_resource",
+      "description": "The initiative. Take the initiative; payoffs if you have the initiative (CON-224).",
+      "mechanics": []
+    },
+    "citys_blessing": {
+      "plan_role": "engine",
+      "math_kind": "shared_resource",
+      "description": "City's blessing via Ascend. Get the blessing; payoffs if you have it. Object name is city's blessing (CON-224).",
+      "mechanics": []
+    },
+    "the_ring": {
+      "plan_role": "engine",
+      "math_kind": "shared_resource",
+      "description": "The Ring. Produce via 'the Ring tempts you' as an effect; consume via whenever-tempts / Ring-bearer care (CON-224).",
+      "mechanics": []
+    },
+    "interaction": {
+      "plan_role": "protection",
+      "math_kind": "interaction",
+      "description": "Permission and answers counted via oracle signals until keyword coverage is enough.",
+      "mechanics": [
+        "Destroy",
+        "Exchange",
+        "Exile",
+        "Fight",
+        "Sacrifice",
+        "Sweep"
+      ]
+    },
+    "go_wide_payoffs": {
+      "plan_role": "payoff",
+      "math_kind": "board_width",
+      "description": "Rewards many creatures \u2014 anthems, attack-for-each, lord effects. Token strategies often terminate here.",
+      "mechanics": [
+        "Battle cry",
+        "Mentor",
+        "Mobilize"
+      ]
+    },
+    "go_tall_payoffs": {
+      "plan_role": "payoff",
+      "math_kind": "board_height",
+      "description": "Concentrates power on few bodies \u2014 counters, equipment, single-target pumps. Tokens can feed this when one token is grown.",
+      "mechanics": [
+        "Adapt",
+        "Monstrosity",
+        "Outlast",
+        "Renown",
+        "Training",
+        "Mentor"
+      ]
+    }
+  },
+  "lineage": [
+    {
+      "from": "Ascend",
+      "to": "Storied",
+      "note": "City's Blessing structure reused; Historic-shaped card-type gate on the new name."
+    },
+    {
+      "from": "Threshold",
+      "to": "Delirium",
+      "note": "Graveyard cardinality \u2192 graveyard diversity. Same zone, stricter set condition."
+    },
+    {
+      "from": "Metalcraft",
+      "to": "Modified",
+      "note": "Board predicate on artifacts \u2192 board predicate on attached/countered creatures."
+    },
+    {
+      "from": "Flashback",
+      "to": "Disturb",
+      "note": "Cast-from-yard \u2192 cast-from-yard as the other face."
+    },
+    {
+      "from": "Morph",
+      "to": "Disguise",
+      "note": "Face-down cheap body; ward-like turn-face-up tax replaces morph cost pattern."
+    },
+    {
+      "from": "Prowess",
+      "to": "Magecraft",
+      "note": "Noncreature-spell trigger on a creature \u2192 same trigger as an ability word on any permanent/spell."
+    },
+    {
+      "from": "Raid",
+      "to": "Celebration",
+      "note": "Attacked this turn \u2192 two or more nonlands entered this turn. Event-gate family."
+    }
+  ],
+  "oracle_signals": {
+    "lifegain_trigger": {
+      "family": "life_math",
+      "plan_role": "payoff",
+      "math_kind": "life_rate",
+      "description": "Fires when you (or a player) gain life \u2014 payoff node on a lifegain plan.",
+      "patterns": [
+        "whenever you gain life(?!link)\\b",
+        "whenever a player gains life(?!link)\\b",
+        "whenever .* gains life(?!link)\\b"
+      ],
+      "consumes": [
+        "life"
+      ],
+      "produces": [],
+      "note": "CON-183/188: 'gains life' also matches 'gains lifelink'. Granting lifelink is not a lifegain trigger. Every life terminator needs (?!link)\\b \u2014 CON-183 fixed only the greedy pattern."
+    },
+    "lifegain_source": {
+      "family": "life_math",
+      "plan_role": "enabler",
+      "math_kind": "life_rate",
+      "description": "Causes life gain \u2014 enabler density for lifegain payoffs. Lifelink is also an enabler via keyword family.",
+      "patterns": [
+        "you gain \\d+ life(?!link)\\b",
+        "you gain life(?!link)\\b equal",
+        "you gain that much life(?!link)\\b",
+        "gain \\d+ life(?!link)\\b"
+      ],
+      "consumes": [],
+      "produces": [
+        "life"
+      ]
+    },
+    "drain": {
+      "family": "life_math",
+      "plan_role": "payoff",
+      "math_kind": "life_rate",
+      "description": "Opponent loses life \u2014 pairs with lifegain for drain loops.",
+      "patterns": [
+        "opponent loses?(?: \\d+)? life",
+        "each opponent loses",
+        "target (?:player|opponent) loses(?: \\d+| that much)? life",
+        "loses (?:that much|\\d+) life",
+        "loses life equal"
+      ],
+      "consumes": [],
+      "produces": []
+    },
+    "token_create": {
+      "family": "tokens",
+      "plan_role": "enabler",
+      "math_kind": "board_count",
+      "description": "Broad token creation (creature or resource). Prefer creature_tokens / resource_tokens for plan graphs.",
+      "patterns": [
+        "create .+ token"
+      ],
+      "consumes": [],
+      "produces": [
+        "creature",
+        "artifact"
+      ]
+    },
+    "sacrifice_outlet": {
+      "family": "dies_triggers",
+      "plan_role": "enabler",
+      "math_kind": "death_trigger",
+      "description": "Repeatable way to sacrifice permanents.",
+      "patterns": [
+        "sacrifice a creature",
+        "sacrifice another creature",
+        "sacrifice an artifact",
+        "sacrifice (?:two|three|\\d+|x) artifacts?",
+        "sacrifice another creature or artifact",
+        "sacrifice another .{0,30}(creature|artifact)",
+        "sacrifice (a|another) creature",
+        "sacrifice a creature:",
+        "sacrifice (?:two|three|\\d+|x) (?!(?:creature|artifact|enchantment|instant|sorcery|planeswalker|land|permanent|token|spell|card)\\b)[a-z]+s?"
+      ],
+      "consumes": [
+        "creature",
+        "artifact"
+      ],
+      "produces": [
+        "card",
+        "sacrifice"
+      ]
+    },
+    "counterspell": {
+      "family": "interaction",
+      "plan_role": "protection",
+      "math_kind": "interaction",
+      "description": "Hard permission \u2014 interaction density for hold-the-fort plans.",
+      "patterns": [
+        "counter target (spell|activated|triggered)"
+      ],
+      "consumes": [
+        "card"
+      ],
+      "produces": []
+    },
+    "creature_tokens": {
+      "family": "tokens",
+      "plan_role": "enabler",
+      "math_kind": "board_count",
+      "description": "Creates creature tokens \u2014 increases board width. Primary enabler for go-wide.",
+      "patterns": [
+        "create .+ creature tokens?",
+        "create .+ creatur(?:e|es) token",
+        "create a \\d+/\\d+ .+ token",
+        "create .+ tokens? that are .+ creatur"
+      ],
+      "consumes": [],
+      "produces": [
+        "creature"
+      ]
+    },
+    "resource_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Makes any Treasure/Clue/Food-style resource token. Detector only \u2014 produces are on the per-subtype signals (CON-221).",
+      "patterns": [
+        "create a treasure token",
+        "create .* treasure tokens?",
+        "create .+ treasure token",
+        "create .+ clue token",
+        "create .+ food token",
+        "create .+ blood token",
+        "create .+ map token",
+        "create .+ powerstone token",
+        "create .+ junk token",
+        "create .+ gold token"
+      ],
+      "consumes": [],
+      "produces": [],
+      "note": "CON-221: old produces claimed treasure for every Food/Clue maker."
+    },
+    "treasure_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Treasure tokens.",
+      "patterns": [
+        "create a treasure token",
+        "create .* treasure tokens?",
+        "create .+ treasure tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "treasure",
+        "artifact"
+      ]
+    },
+    "food_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Food tokens.",
+      "patterns": [
+        "create a food token",
+        "create .* food tokens?",
+        "create .+ food tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "food",
+        "artifact"
+      ]
+    },
+    "clue_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Clue tokens.",
+      "patterns": [
+        "create a clue token",
+        "create .* clue tokens?",
+        "create .+ clue tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "clue",
+        "artifact"
+      ]
+    },
+    "blood_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Blood tokens.",
+      "patterns": [
+        "create a blood token",
+        "create .* blood tokens?",
+        "create .+ blood tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "blood",
+        "artifact"
+      ]
+    },
+    "map_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Map tokens.",
+      "patterns": [
+        "create a map token",
+        "create .* map tokens?",
+        "create .+ map tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "map",
+        "artifact"
+      ]
+    },
+    "junk_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Junk tokens.",
+      "patterns": [
+        "create a junk token",
+        "create .* junk tokens?",
+        "create .+ junk tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "junk",
+        "artifact"
+      ]
+    },
+    "powerstone_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Powerstone tokens.",
+      "patterns": [
+        "create a powerstone token",
+        "create .* powerstone tokens?",
+        "create .+ powerstone tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "powerstone",
+        "artifact"
+      ]
+    },
+    "gold_tokens": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Creates Gold tokens.",
+      "patterns": [
+        "create a gold token",
+        "create .* gold tokens?",
+        "create .+ gold tokens?"
+      ],
+      "consumes": [],
+      "produces": [
+        "gold",
+        "artifact"
+      ]
+    },
+    "go_wide_payoff": {
+      "family": "go_wide_payoffs",
+      "plan_role": "payoff",
+      "math_kind": "board_width",
+      "description": "Scales with number of creatures you control \u2014 the wide half of token math.",
+      "patterns": [
+        "creatures you control get \\+",
+        "creature tokens you control get",
+        "other creatures you control get",
+        "for each (?:other )?creature (?:you control|on the battlefield)",
+        "equal to the number of creatures you control",
+        "creatures you control(?: gain| have)",
+        "whenever .+ attacks,? create",
+        "\\bpopulate\\b"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": []
+    },
+    "go_tall_payoff": {
+      "family": "go_tall_payoffs",
+      "plan_role": "payoff",
+      "math_kind": "board_height",
+      "description": "+1/+1 counter growth on a creature \u2014 the tall half of token math. CON-241: until-end-of-turn pumps are not counter placement; they stay honest empty rather than inventing counters.",
+      "patterns": [
+        "put (?:a |an |\\d+ )?\\+1/\\+1 counters? on",
+        "enters (?:the battlefield )?with .+ \\+1/\\+1 counters?",
+        "\\+1/\\+1 counters? would be put",
+        "that many plus one \\+1/\\+1",
+        "twice that many \\+1/\\+1",
+        "double (?:the number of )?(\\+1/\\+1 )?counters"
+      ],
+      "consumes": [],
+      "produces": [
+        "+1/+1 counter"
+      ]
+    },
+    "counter_placement": {
+      "family": "counters",
+      "plan_role": "payoff",
+      "description": "Puts +1/+1 counters on something.",
+      "consumes": [],
+      "produces": [
+        "+1/+1 counter"
+      ],
+      "patterns": [
+        "put (a|two|three|x|\\d+) \\+1/\\+1 counters? on",
+        "enters (?:the battlefield )?with .+ \\+1/\\+1 counters?"
+      ],
+      "note": "CON-196: 'enters with +1/+1 counters' places counters without saying put-on. Same shape as go_tall_payoff's enters-with arm; +1/+1 is required so charge/loyalty counters do not match."
+    },
+    "enters": {
+      "family": "etb_triggers",
+      "plan_role": "condition",
+      "description": "Triggers when a permanent enters the battlefield.",
+      "consumes": [],
+      "produces": [],
+      "patterns": [
+        "when(ever)? .{0,40}enters",
+        "when this creature enters"
+      ]
+    },
+    "attacks": {
+      "family": "combat_triggers",
+      "plan_role": "condition",
+      "description": "Triggers on attack.",
+      "consumes": [],
+      "produces": [],
+      "patterns": [
+        "whenever you attack\\b",
+        "when(ever)? .{0,40}attacks"
+      ],
+      "note": "Collective 'whenever you attack' (Adeline, Firemane Commando) is not covered by the '~ attacks' arm alone."
+    },
+    "dies_trigger": {
+      "family": "dies_triggers",
+      "plan_role": "condition",
+      "description": "Triggers when a creature dies.",
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "patterns": [
+        "when(ever)? .{0,40}dies"
+      ]
+    },
+    "leaves_battlefield": {
+      "family": "dies_triggers",
+      "plan_role": "condition",
+      "description": "Triggers on leaving the battlefield. Consumes the actions that CAUSE leaving \u2014 exile (blink) and sacrifice \u2014 not the leave phrase itself.",
+      "consumes": [
+        "exile",
+        "sacrifice"
+      ],
+      "produces": [],
+      "patterns": [
+        "leaves the battlefield"
+      ]
+    },
+    "blink": {
+      "family": "etb_triggers",
+      "plan_role": "enabler",
+      "description": "Exiles and returns permanents -- re-triggers enters abilities.",
+      "consumes": [],
+      "produces": [
+        "creature",
+        "exile"
+      ],
+      "patterns": [
+        "exile [\\s\\S]{0,100}?then return (it|that card|those cards|them)",
+        "exile [\\s\\S]{0,120}?return (it|that card|those cards|them) to the battlefield",
+        "exile [\\s\\S]{0,120}?until .+ leaves the battlefield"
+      ]
+    },
+    "graveyard_recursion": {
+      "family": "recursion",
+      "plan_role": "engine",
+      "description": "Returns cards from the graveyard.",
+      "consumes": [
+        "card"
+      ],
+      "produces": [
+        "card",
+        "creature"
+      ],
+      "patterns": [
+        "return target .{0,40}card from your graveyard",
+        "from your graveyard to the battlefield",
+        "cast .{0,40}from your graveyard",
+        "from your graveyard to your hand"
+      ],
+      "verified_on": "; hand-recursion widen (CON-253)"
+    },
+    "land_trigger": {
+      "family": "landfall",
+      "plan_role": "condition",
+      "description": "Cares about lands entering.",
+      "consumes": [
+        "land"
+      ],
+      "produces": [],
+      "patterns": [
+        "landfall",
+        "when(ever)? a land .{0,20}enters"
+      ]
+    },
+    "creature_token_maker": {
+      "family": "tokens",
+      "plan_role": "enabler",
+      "description": "Creates creature tokens -- sacrifice fodder and board width.",
+      "consumes": [],
+      "produces": [
+        "creature"
+      ],
+      "patterns": [
+        "create (a|x|two|three|\\d+) .{0,60}creature tokens?"
+      ]
+    },
+    "spell_from_graveyard": {
+      "family": "spellslinger",
+      "plan_role": "engine",
+      "description": "Casts instants/sorceries from the graveyard.",
+      "consumes": [
+        "card"
+      ],
+      "produces": [],
+      "patterns": [
+        "cast an instant or sorcery spell from your graveyard"
+      ]
+    },
+    "explosive_ramp": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Rituals, mana doublers, mass treasure \u2014 doubles a turn's mana. Curve-spec sibling of ordinary ramp rocks; counted by curve.ramp_split().",
+      "consumes": [],
+      "produces": [
+        "treasure",
+        "artifact"
+      ],
+      "patterns": [
+        "add \\{[wubrgc]\\}\\{[wubrgc]\\}\\{[wubrgc]\\}",
+        "untap all (?:lands|permanents)",
+        "lands? (?:you control )?tap for (?:an )?additional",
+        "double (?:your )?mana",
+        "twice as much mana",
+        "create (?:two|three|four|five|\\d+) treasure tokens?"
+      ]
+    },
+    "proliferate": {
+      "family": "counters",
+      "plan_role": "engine",
+      "description": "Adds to existing counters without placing new ones. Atraxa is the poster counters commander and counter_placement never fires on her.",
+      "consumes": [
+        "+1/+1 counter"
+      ],
+      "produces": [
+        "+1/+1 counter"
+      ],
+      "patterns": [
+        "\\bproliferate\\b"
+      ],
+      "verified_on": "Atraxa, Praetors' Voice (CON-184)"
+    },
+    "sacrifice_trigger": {
+      "family": "dies_triggers",
+      "plan_role": "payoff",
+      "description": "Rewards the act of sacrificing, which is not the same as owning an outlet or seeing a death.",
+      "consumes": [
+        "creature",
+        "artifact",
+        "permanent"
+      ],
+      "produces": [
+        "card"
+      ],
+      "patterns": [
+        "whenever you sacrifice",
+        "sacrifice another permanent"
+      ],
+      "verified_on": "Korvold, Fae-Cursed King (CON-184)"
+    },
+    "instant_or_sorcery_cast": {
+      "family": "spellslinger",
+      "plan_role": "condition",
+      "description": "Triggers on casting instants/sorceries. Bounded to one clause: 'whenever a player casts an instant' must hit, 'casts a creature spell' must not.",
+      "consumes": [
+        "card"
+      ],
+      "produces": [],
+      "patterns": [
+        "whenever [^.\\n]{0,26}casts? (an instant|a sorcery|an instant or sorcery)"
+      ],
+      "verified_on": "Niv-Mizzet, Parun (CON-184)"
+    },
+    "play_from_graveyard": {
+      "family": "cast_from_graveyard",
+      "plan_role": "engine",
+      "description": "Casts or plays cards from the graveyard as an ongoing permission, which graveyard_recursion's 'return target ... from your graveyard' never matches.",
+      "consumes": [
+        "graveyard_card"
+      ],
+      "produces": [
+        "creature",
+        "card"
+      ],
+      "patterns": [
+        "(cast|play) [^.\\n]{0,60}from your graveyard"
+      ],
+      "verified_on": "Muldrotha, the Gravetide (CON-184)"
+    },
+    "aura_or_equipment_cast": {
+      "family": "voltron",
+      "plan_role": "condition",
+      "description": "Rewards casting Auras/Equipment/Vehicles \u2014 the voltron engine.",
+      "consumes": [
+        "card"
+      ],
+      "produces": [],
+      "patterns": [
+        "cast an? (aura|equipment|vehicle)",
+        "(aura|equipment) attached",
+        "auras? and equipment attached"
+      ],
+      "verified_on": "Sram, Senior Edificer (CON-184); Wyleth, Soul of Steel (CON-242)"
+    },
+    "attach_to_commander": {
+      "family": "voltron",
+      "plan_role": "enabler",
+      "description": "Moves or lands auras/equipment onto a creature.",
+      "consumes": [],
+      "produces": [
+        "creature"
+      ],
+      "patterns": [
+        "(aura|equipment) you control enters",
+        "attach .{0,30}to target creature"
+      ],
+      "verified_on": "Light-Paws, Emperor's Voice (CON-184)"
+    },
+    "artifact_matter": {
+      "family": "artifacts",
+      "plan_role": "condition",
+      "description": "Counts or uses artifacts you control as a resource, not merely making one.",
+      "consumes": [
+        "artifact"
+      ],
+      "produces": [],
+      "patterns": [
+        "artifacts? you control",
+        "target artifact card",
+        "target artifact(?![ -])",
+        "sacrifice (?:two|three|\\d+|x) artifacts?"
+      ],
+      "verified_on": "Urza, Lord High Artificer (CON-184); Sharuum the Hegemon, Breya, Etherium Shaper (CON-242)"
+    },
+    "tax_opponent_spells": {
+      "family": "interaction",
+      "plan_role": "protection",
+      "description": "Raises opponents' costs \u2014 the stax axis.",
+      "consumes": [],
+      "produces": [],
+      "patterns": [
+        "spells your opponents cast cost .{0,14}more"
+      ],
+      "verified_on": "Grand Arbiter Augustin IV (CON-184)"
+    },
+    "symmetric_resource": {
+      "family": "group_hug",
+      "plan_role": "engine",
+      "description": "Gives opponents resources \u2014 the group hug axis.",
+      "consumes": [],
+      "produces": [
+        "card"
+      ],
+      "patterns": [
+        "target opponent (creates|gains|draws)",
+        "each player may draw"
+      ],
+      "verified_on": "Phelddagrif, Kwain (CON-184)"
+    },
+    "creature_type_matter": {
+      "family": "tribal",
+      "plan_role": "condition",
+      "description": "Rewards casting a specific creature TYPE. Generic card types are excluded -- 'another creature spell' is not tribal.",
+      "consumes": [],
+      "produces": [],
+      "patterns": [
+        "cast (another|other) (?!(?:creature|artifact|enchantment|instant|sorcery|planeswalker|land|permanent|noncreature)\\b)[a-z]+ spells?",
+        "(other|another) (?!(?:creature|artifact|enchantment|instant|sorcery|planeswalker|land|permanent|noncreature)\\b)[a-z]+ spells you cast"
+      ],
+      "verified_on": "Edgar Markov, The Ur-Dragon (CON-184)"
+    },
+    "dies_trigger_doubler": {
+      "family": "dies_triggers",
+      "plan_role": "engine",
+      "description": "Doubles death triggers without ever saying 'dies' the way dies_trigger matches.",
+      "consumes": [
+        "creature"
+      ],
+      "produces": [
+        "card"
+      ],
+      "patterns": [
+        "a creature dying causes a triggered ability"
+      ],
+      "verified_on": "Teysa Karlov (CON-184)"
+    },
+    "etb_doubler": {
+      "family": "etb_triggers",
+      "plan_role": "engine",
+      "description": "Doubles enters triggers without blinking anything itself.",
+      "consumes": [],
+      "produces": [
+        "creature"
+      ],
+      "patterns": [
+        "a (permanent|creature) entering causes a triggered ability"
+      ],
+      "verified_on": "Elesh Norn, Mother of Machines (CON-184)"
+    },
+    "token_doubler": {
+      "family": "tokens",
+      "plan_role": "engine",
+      "description": "Replaces token creation with more tokens; never says 'create', so creature_token_maker never fires.",
+      "consumes": [],
+      "produces": [
+        "creature",
+        "artifact"
+      ],
+      "patterns": [
+        "tokens would be created .{0,30}those tokens plus"
+      ],
+      "verified_on": "Chatterfang, Squirrel General (CON-184)"
+    },
+    "gained_life_this_turn": {
+      "family": "life_math",
+      "plan_role": "payoff",
+      "description": "Keys off life gained this turn rather than a gain trigger, so lifegain_trigger never fires.",
+      "consumes": [
+        "life"
+      ],
+      "produces": [
+        "+1/+1 counter"
+      ],
+      "patterns": [
+        "if you gained life this turn"
+      ],
+      "verified_on": "Lathiel, the Bounteous Dawn (CON-184)"
+    },
+    "tribal_type_matter": {
+      "family": "tribal",
+      "plan_role": "condition",
+      "description": "Cares about a specific creature TYPE you control, which is how most tribal commanders read -- Krenko counts Goblins, Wilhelt counts Zombies. creature_type_matter only caught the spell-casting shape.",
+      "consumes": [],
+      "produces": [],
+      "patterns": [
+        "another (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+ you control",
+        "other (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+ you control",
+        "each (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+ you already control",
+        "number of (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+s you control",
+        "untapped (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+s you control"
+      ],
+      "verified_on": "Krenko, Wilhelt (CON-184); Giada, Font of Hope, Lathril, Blade of the Elves (CON-242)"
+    },
+    "magecraft": {
+      "family": "spellslinger",
+      "plan_role": "condition",
+      "description": "Triggers on casting/copying instants and sorceries, including the named Magecraft keyword and 'first/second spell each turn'.",
+      "consumes": [
+        "card"
+      ],
+      "produces": [],
+      "patterns": [
+        "\\bmagecraft\\b",
+        "cast or copy an instant or sorcery",
+        "cast your (first|second) (instant or sorcery )?spell"
+      ],
+      "verified_on": "Veyran, Stella Lee (CON-184)"
+    },
+    "energy_gain": {
+      "family": "energy",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "You get energy counters ({E}).",
+      "patterns": [
+        "you get \\{e\\}",
+        "you get an amount of \\{e\\}",
+        "gets? \\{e\\}",
+        "get \\{e\\}"
+      ],
+      "consumes": [],
+      "produces": [
+        "energy"
+      ],
+      "note": "Oracle uses {E}; text is matched lowered so patterns use {e}."
+    },
+    "energy_pay": {
+      "family": "energy",
+      "plan_role": "payoff",
+      "math_kind": "resource_loop",
+      "description": "Pays energy counters ({E}).",
+      "patterns": [
+        "pay \\{e\\}",
+        "pay (?:one|two|three|four|five|six|seven|eight|nine|ten|\\d+)(?: or more)? \\{e\\}",
+        "pay one or more \\{e\\}"
+      ],
+      "consumes": [
+        "energy"
+      ],
+      "produces": []
+    },
+    "poison_gain": {
+      "family": "poison",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Gives players poison counters (infect, toxic, or explicit get).",
+      "patterns": [
+        "\\binfect\\b",
+        "\\btoxic \\d+\\b",
+        "gets? (?:a |an |\\d+ )?poison counters?",
+        "get (?:a |an |\\d+ )?poison counters?",
+        "gets? a number of poison counters",
+        "get a number of poison counters",
+        "also get (?:a |an |\\d+ )?poison counters?"
+      ],
+      "consumes": [],
+      "produces": [
+        "poison"
+      ]
+    },
+    "poison_care": {
+      "family": "poison",
+      "plan_role": "payoff",
+      "math_kind": "resource_loop",
+      "description": "Cares about poison counters on players. Bare proliferate is excluded on purpose.",
+      "patterns": [
+        "\\bcorrupted\\b",
+        "has (?:three or more |\\d+ or more |\\d+ )?poison counters",
+        "have (?:three or more |\\d+ or more |\\d+ )?poison counters",
+        "poison counters that player has",
+        "number of poison counters that"
+      ],
+      "consumes": [
+        "poison"
+      ],
+      "produces": [],
+      "note": "CON-224: proliferate alone is not poison-directed. 'number of poison counters equal' on givers is produce, not care."
+    },
+    "rad_gain": {
+      "family": "rad",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Gives players rad counters.",
+      "patterns": [
+        "gets? (?:a |an |\\d+|half x |that many |twice that many |x |four |two |three )?rad counters?",
+        "get (?:a |an |\\d+|half x |that many |twice that many |x |four |two |three )?rad counters?",
+        "give .{0,40}rad counters?",
+        "gets? a number of rad counters",
+        "get a number of rad counters"
+      ],
+      "consumes": [],
+      "produces": [
+        "rad"
+      ]
+    },
+    "rad_care": {
+      "family": "rad",
+      "plan_role": "payoff",
+      "math_kind": "resource_loop",
+      "description": "Removes rad counters or cares about rad/radiation on players.",
+      "patterns": [
+        "loses? all rad counters",
+        "lose all rad counters",
+        "rad counters? you have",
+        "has a rad counter",
+        "have (?:a |any )?rad counters?",
+        "rad counters among",
+        "from radiation"
+      ],
+      "consumes": [
+        "rad"
+      ],
+      "produces": []
+    },
+    "experience_gain": {
+      "family": "experience",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "You get experience counters.",
+      "patterns": [
+        "you get (?:an |a |\\d+ )?experience counters?",
+        "get (?:an |a |\\d+ )?experience counters?"
+      ],
+      "consumes": [],
+      "produces": [
+        "experience"
+      ]
+    },
+    "experience_care": {
+      "family": "experience",
+      "plan_role": "payoff",
+      "math_kind": "resource_loop",
+      "description": "Reads experience counters you have.",
+      "patterns": [
+        "experience counters? you have",
+        "for each experience counter",
+        "number of experience counters"
+      ],
+      "consumes": [
+        "experience"
+      ],
+      "produces": []
+    },
+    "speed_start": {
+      "family": "speed",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Start your engines! \u2014 begins tracking speed.",
+      "patterns": [
+        "start your engines!?"
+      ],
+      "consumes": [],
+      "produces": [
+        "speed"
+      ]
+    },
+    "speed_care": {
+      "family": "speed",
+      "plan_role": "payoff",
+      "math_kind": "resource_loop",
+      "description": "Max speed ability word, have max speed, or your speed scalar. Not reminder 'Max speed is 4'.",
+      "patterns": [
+        "max speed\\s*[\\u2014\\u2013\\-]",
+        "have max speed",
+        "\\byour speed\\b"
+      ],
+      "consumes": [
+        "speed"
+      ],
+      "produces": [],
+      "note": "CON-224: reminder text says 'Max speed is 4' without a dash \u2014 excluded."
+    },
+    "monarch_become": {
+      "family": "monarch",
+      "plan_role": "enabler",
+      "math_kind": "shared_resource",
+      "description": "You become the monarch.",
+      "patterns": [
+        "you become the monarch",
+        "become the monarch"
+      ],
+      "consumes": [],
+      "produces": [
+        "monarch"
+      ]
+    },
+    "monarch_if": {
+      "family": "monarch",
+      "plan_role": "payoff",
+      "math_kind": "shared_resource",
+      "description": "If/as long as you're the monarch \u2014 directed to you, not 'the monarch' as a noun alone.",
+      "patterns": [
+        "if you're the monarch",
+        "if you are the monarch",
+        "as long as you're the monarch",
+        "as long as you are the monarch"
+      ],
+      "consumes": [
+        "monarch"
+      ],
+      "produces": []
+    },
+    "initiative_take": {
+      "family": "initiative",
+      "plan_role": "enabler",
+      "math_kind": "shared_resource",
+      "description": "You take the initiative.",
+      "patterns": [
+        "you take the initiative",
+        "take the initiative"
+      ],
+      "consumes": [],
+      "produces": [
+        "initiative"
+      ]
+    },
+    "initiative_if": {
+      "family": "initiative",
+      "plan_role": "payoff",
+      "math_kind": "shared_resource",
+      "description": "If you have the initiative.",
+      "patterns": [
+        "if you have the initiative",
+        "you have the initiative"
+      ],
+      "consumes": [
+        "initiative"
+      ],
+      "produces": []
+    },
+    "citys_blessing_get": {
+      "family": "citys_blessing",
+      "plan_role": "enabler",
+      "math_kind": "shared_resource",
+      "description": "Ascend / get the city's blessing.",
+      "patterns": [
+        "\\bascend\\b",
+        "you get the city's blessing",
+        "get the city's blessing"
+      ],
+      "consumes": [],
+      "produces": [
+        "city's blessing"
+      ]
+    },
+    "citys_blessing_have": {
+      "family": "citys_blessing",
+      "plan_role": "payoff",
+      "math_kind": "shared_resource",
+      "description": "If you have the city's blessing.",
+      "patterns": [
+        "have the city's blessing",
+        "you have the city's blessing"
+      ],
+      "consumes": [
+        "city's blessing"
+      ],
+      "produces": []
+    },
+    "ring_tempts": {
+      "family": "the_ring",
+      "plan_role": "enabler",
+      "math_kind": "shared_resource",
+      "description": "The Ring tempts you as an effect \u2014 not the whenever-tempts trigger.",
+      "patterns": [
+        "(?<!whenever )the ring tempts you"
+      ],
+      "consumes": [],
+      "produces": [
+        "the ring"
+      ],
+      "note": "CON-224: lookbehind excludes 'whenever the Ring tempts you' payoffs."
+    },
+    "ring_care": {
+      "family": "the_ring",
+      "plan_role": "payoff",
+      "math_kind": "shared_resource",
+      "description": "Whenever the Ring tempts you, or Ring-bearer choice/control care.",
+      "patterns": [
+        "whenever the ring tempts you",
+        "as your ring-bearer",
+        "control a ring-bearer",
+        "your ring-bearer"
+      ],
+      "consumes": [
+        "the ring"
+      ],
+      "produces": []
+    },
+    "enters_tapped": {
+      "family": "landfall",
+      "plan_role": "modifier",
+      "math_kind": "resource_loop",
+      "description": "Permanent enters tapped \u2014 unconditional or conditional (unless / if you don't). Highest-frequency unread land line before CON-245.",
+      "patterns": [
+        "enters(?: the battlefield)? tapped"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Path of Ancestry, Botanical Sanctum (CON-245); near-miss Island, Walking Ballista enters-with-counters"
+    },
+    "pay_life_enter": {
+      "family": "life_math",
+      "plan_role": "cost",
+      "math_kind": "life_rate",
+      "description": "Shock-land payment: as it enters, pay life or it enters tapped. Not an activation-cost pay-life.",
+      "patterns": [
+        "as .{0,40}enters(?: the battlefield)?, you may pay \\d+ life",
+        "you may pay \\d+ life\\. if you don't, (?:it|this land) enters(?: the battlefield)? tapped"
+      ],
+      "consumes": [
+        "life"
+      ],
+      "produces": [],
+      "verified_on": "Blood Crypt (CON-245); near-miss Shadowcloak Vampire Pay 2 life activation"
+    },
+    "pain_mana": {
+      "family": "life_math",
+      "plan_role": "cost",
+      "math_kind": "life_rate",
+      "description": "Mana ability (or tap) deals damage to you \u2014 pain lands and talismans. Damage-to-you is not lose-life; produces/consumes stay empty on purpose.",
+      "patterns": [
+        "deals \\d+ damage to you\\b"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Karplusan Forest (CON-245); near-miss Lightning Bolt (any target)"
+    },
+    "any_color_mana": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Adds one mana of any color \u2014 fixed rainbow. Commander's color identity is a different signal.",
+      "patterns": [
+        "add one mana of any color(?! in your commander)"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Spire of Industry (CON-245); near-miss Command Tower, Temple of Epiphany dual"
+    },
+    "commander_identity_mana": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Adds mana of any color in your commander's color identity \u2014 Command Tower shape.",
+      "patterns": [
+        "add one mana of any color in your commander's color identity"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Command Tower (CON-245); near-miss Spire of Industry any-color"
+    },
+    "land_sacrifice_value": {
+      "family": "landfall",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Sacrifice this land for value \u2014 draw or fetch. Spell costs that sacrifice a land are excluded.",
+      "patterns": [
+        "sacrifice this land: draw a card",
+        "sacrifice this land: search your library"
+      ],
+      "consumes": [
+        "land"
+      ],
+      "produces": [
+        "card",
+        "land"
+      ],
+      "verified_on": "Horizon Canopy, Evolving Wilds (CON-245); near-miss Harrow, War Room"
+    },
+    "commander_free_cast": {
+      "family": "alternate_costs",
+      "plan_role": "cost",
+      "math_kind": "cost_alt",
+      "description": "If you control a commander, cast without paying mana cost \u2014 the free-cast cycle.",
+      "patterns": [
+        "if you control a commander, you may cast this spell without paying its mana cost"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Deadly Rollick (CON-245); near-miss can be your commander"
+    },
+    "commander_matters": {
+      "family": "alternate_costs",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "Cares about casting your commander or the command zone \u2014 not color identity and not 'can be your commander'.",
+      "patterns": [
+        "cast your commander",
+        "your commander from the command zone",
+        "times? (?:you've|you have) cast your commander",
+        "commander(?:s)? (?:you own )?in the command zone"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "cast-from-command-zone exemplar (CON-245); near-miss Command Tower, can-be-your-commander"
+    },
+    "enchant_creature": {
+      "family": "equipment_aura",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Aura enchant keyword targeting a creature. 'Enchanted creature' body text and Enchant land are near-misses.",
+      "patterns": [
+        "(?:^|\\n)enchant creature\\b"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Pacifism (CON-245); near-miss Wild Growth, enchanted-creature body text"
+    },
+    "no_max_hand_size": {
+      "family": "hand_abilities",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "You have no maximum hand size \u2014 Reliquary Tower / Thought Vessel.",
+      "patterns": [
+        "no maximum hand size"
+      ],
+      "consumes": [],
+      "produces": [
+        "card"
+      ],
+      "verified_on": "Reliquary Tower, Thought Vessel (CON-245); near-miss Storm Crow"
+    },
+    "card_draw": {
+      "family": "hand_abilities",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Draws cards \u2014 the primary card-advantage verb. Scry/tutor without draw is a near-miss.",
+      "patterns": [
+        "draw a card",
+        "draw (?:two|three|four|five|six|seven|x|\\d+) cards",
+        "draws? (?:a card|cards)"
+      ],
+      "consumes": [],
+      "produces": [
+        "card"
+      ],
+      "verified_on": "Mind Stone (CON-248); near-miss Path of Ancestry (scry)"
+    },
+    "tap_add_colored": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "{T}: Add one fixed colored mana. Dual 'or' and any-color are different signals.",
+      "patterns": [
+        "\\{t\\}: add \\{[wubrg]\\}(?! or \\{)"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Boseiju, Who Endures (CON-248); near-miss Hinterland Harbor, Command Tower"
+    },
+    "dual_mana_ability": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "{T}: Add color A or color B. Fixed single-color and rainbow are near-misses.",
+      "patterns": [
+        "\\{t\\}: add \\{[wubrg]\\} or \\{[wubrg]\\}"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Hinterland Harbor (CON-248); near-miss Boseiju, Spire of Industry"
+    },
+    "enchant_land": {
+      "family": "equipment_aura",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Aura Enchant land \u2014 Wild Growth class. Enchant creature is a near-miss.",
+      "patterns": [
+        "(?:^|\\n)enchant land\\b"
+      ],
+      "consumes": [
+        "land"
+      ],
+      "produces": [],
+      "verified_on": "Wild Growth (CON-248); near-miss Pacifism"
+    },
+    "cant_be_blocked": {
+      "family": "combat_triggers",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Unblockable \u2014 can't be blocked (optionally this turn / by \u2026). Flying reminder 'can't be blocked except by flying' is excluded.",
+      "patterns": [
+        "can't be blocked(?! except by)"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Rogue's Passage (CON-248); near-miss Birds of Paradise / flying reminder"
+    },
+    "uncounterable": {
+      "family": "interaction",
+      "plan_role": "protection",
+      "math_kind": "cost_alt",
+      "description": "Spell or ability text that can't be countered. Counterspell itself is a near-miss.",
+      "patterns": [
+        "can't be countered"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Cavern of Souls (CON-248); near-miss Counterspell"
+    },
+    "modal_choose_one": {
+      "family": "spellslinger",
+      "plan_role": "engine",
+      "math_kind": "threshold_event",
+      "description": "Modal choose-one spells. Choose two / choose three are near-misses.",
+      "patterns": [
+        "choose one\\s*[\u2014\u2013-]"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Abrade (CON-248); near-miss Austere Command (choose two)"
+    },
+    "firebreathing": {
+      "family": "voltron",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Activated +1/+0 until end of turn \u2014 classic firebreathing. +1/+1 pumps are near-misses.",
+      "patterns": [
+        ": (?:this creature|~) gets \\+1/\\+0 until end of turn",
+        "gets \\+1/\\+0 until end of turn"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Steel Hellkite (CON-248); near-miss Nirkana Revenant (+1/+1)"
+    },
+    "must_attack": {
+      "family": "combat_triggers",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "Attacks each combat if able. Tax/can't-attack effects are near-misses.",
+      "patterns": [
+        "attacks each combat if able"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Toski, Bearer of Secrets (CON-248); near-miss Propaganda"
+    },
+    "colorless_mana": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "{T}: Add {C} \u2014 colorless source. Fixed colored tap-add is a near-miss.",
+      "patterns": [
+        "\\{t\\}: add \\{c\\}"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Wastes (CON-251); near-miss Boseiju, Who Endures"
+    },
+    "filter_mana": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "resource_loop",
+      "description": "Pay mana (not {T}) to add a different color \u2014 filter abilities. Tap-add is a near-miss.",
+      "patterns": [
+        "\\{[wubrg0-9x]+\\}: add \\{[wubrg]\\}"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Agent of Stromgald (CON-251); near-miss Wastes"
+    },
+    "cant_block": {
+      "family": "combat_triggers",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "This creature can't block. Defender (can't attack) is a near-miss.",
+      "patterns": [
+        "can't block(?!ed)"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "can't-block shape (CON-251); near-miss Wall of Omens"
+    },
+    "modal_choose_one_or_both": {
+      "family": "spellslinger",
+      "plan_role": "engine",
+      "math_kind": "threshold_event",
+      "description": "Modal choose one or both. Plain choose one is a near-miss.",
+      "patterns": [
+        "choose one or both\\s*[\u2014\u2013-]"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "choose-one-or-both shape (CON-251); near-miss Abrade"
+    },
+    "top_library_look": {
+      "family": "hand_abilities",
+      "plan_role": "engine",
+      "math_kind": "resource_loop",
+      "description": "Ongoing permission to look at the top of the library. Scry alone is a near-miss.",
+      "patterns": [
+        "look at the top card of your library any time",
+        "play with the top card of your library revealed"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Oracle of Mul Daya (CON-251); near-miss Path of Ancestry"
+    },
+    "destroy_target_creature": {
+      "family": "interaction",
+      "plan_role": "payoff",
+      "math_kind": "threshold_event",
+      "description": "Targeted creature destruction. Mass 'destroy all creatures' is a near-miss.",
+      "patterns": [
+        "destroy target (?:non\\w+ )?creature"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Doom Blade (CON-251); near-miss Wrath of God"
+    },
+    "activated_pump_plus": {
+      "family": "voltron",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Activated +1/+1 until end of turn. Firebreathing +1/+0 is a near-miss.",
+      "patterns": [
+        ": (?:this creature|~) gets \\+1/\\+1 until end of turn",
+        "gets \\+1/\\+1 until end of turn"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Nirkana Revenant (CON-251); near-miss Steel Hellkite"
+    },
+    "grant_keyword_eot": {
+      "family": "combat_triggers",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Grants a keyword until end of turn. Static keyword lines are near-misses.",
+      "patterns": [
+        "gains? (?:flying|first strike|double strike|trample|menace|deathtouch|lifelink|vigilance|haste|hexproof|indestructible|reach|shadow|fear|intimidate) until end of turn"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "grant-flying shape (CON-252); near-miss Storm Crow"
+    },
+    "tap_target": {
+      "family": "interaction",
+      "plan_role": "enabler",
+      "math_kind": "threshold_event",
+      "description": "Tap target creature (often activated). Damage spells are near-misses.",
+      "patterns": [
+        "tap target creature"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Tapper Shape (CON-252); near-miss Lightning Bolt"
+    },
+    "exile_target_creature": {
+      "family": "interaction",
+      "plan_role": "payoff",
+      "math_kind": "threshold_event",
+      "description": "Exile target creature. Destroy-target is a near-miss.",
+      "patterns": [
+        "exile target (?:non\\w+ )?creature"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Path to Exile (CON-252); near-miss Doom Blade"
+    },
+    "choose_creature_type": {
+      "family": "tribal",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "As this permanent enters, choose a creature type. Bare changeling is a near-miss.",
+      "patterns": [
+        "choose a creature type"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Coat of Arms shape (CON-252); near-miss Changeling Outcast"
+    },
+    "destroy_target_land": {
+      "family": "interaction",
+      "plan_role": "payoff",
+      "math_kind": "threshold_event",
+      "description": "Destroy target land. Creature destruction is a near-miss.",
+      "patterns": [
+        "destroy target land"
+      ],
+      "consumes": [
+        "land"
+      ],
+      "produces": [],
+      "verified_on": "Strip Mine shape (CON-252); near-miss Doom Blade"
+    },
+    "stays_tapped": {
+      "family": "interaction",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "Doesn't untap / may choose not to untap \u2014 freeze. Ordinary creatures are near-misses.",
+      "patterns": [
+        "doesn't untap during",
+        "choose not to untap"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Claustrophobia shape (CON-252); near-miss Storm Crow"
+    },
+    "activated_ping": {
+      "family": "interaction",
+      "plan_role": "enabler",
+      "math_kind": "threshold_event",
+      "description": "Activated ability deals damage to any target. Instant Lightning Bolt is a near-miss.",
+      "patterns": [
+        "\\{[^}]+\\}: (?:this creature|~|[^\\n]{0,40}) deals \\d+ damage to any target"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Prodigal Sorcerer shape (CON-252); near-miss Lightning Bolt"
+    },
+    "stat_pump_eot": {
+      "family": "voltron",
+      "plan_role": "enabler",
+      "math_kind": "board_height",
+      "description": "Any +N/+M (or +N/-M) until end of turn. Shrink -N/-N is a near-miss.",
+      "patterns": [
+        "gets \\+[0-9xX]+/[+\\-]?[0-9xX]+ until end of turn"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Magma Sliver (CON-253); near-miss Throttle (-4/-4)"
+    },
+    "shrink_target": {
+      "family": "interaction",
+      "plan_role": "payoff",
+      "math_kind": "threshold_event",
+      "description": "Target creature gets -N/-N until end of turn. +N/+N pumps are near-misses.",
+      "patterns": [
+        "target creature gets -[0-9xX]+/-[0-9xX]+ until end of turn"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Throttle (CON-253); near-miss Giant Growth"
+    },
+    "bounce_to_hand": {
+      "family": "interaction",
+      "plan_role": "enabler",
+      "math_kind": "threshold_event",
+      "description": "Return a target permanent/creature to hand. Exile removal is a near-miss.",
+      "patterns": [
+        "return target .{0,60}to (?:its|their) owner's hand"
+      ],
+      "consumes": [
+        "creature"
+      ],
+      "produces": [],
+      "verified_on": "Flooded Shoreline (CON-253); near-miss Path to Exile"
+    },
+    "prevent_damage": {
+      "family": "interaction",
+      "plan_role": "protection",
+      "math_kind": "interaction",
+      "description": "Prevent next N damage or all combat damage this turn. Lifegain is a near-miss.",
+      "patterns": [
+        "prevent the next \\d+ damage",
+        "prevent all combat damage that would be dealt this turn"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Master Apothecary / Fog shape (CON-253); near-miss Healing Salve gain-life"
+    },
+    "choose_color": {
+      "family": "tribal",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "As this permanent enters, choose a color. Choose-a-creature-type is a near-miss.",
+      "patterns": [
+        "choose a color"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Caged Sun (CON-253); near-miss Coat of Arms shape (creature type)"
+    },
+    "put_on_library": {
+      "family": "interaction",
+      "plan_role": "enabler",
+      "math_kind": "threshold_event",
+      "description": "Put a target card/permanent on top or bottom of a library. Bounce to hand is a near-miss.",
+      "patterns": [
+        "put target .{0,60} on (?:top|bottom) of .{0,40}library"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Fallow Earth shape (CON-253); near-miss Unsummon"
+    },
+    "discard_additional_cost": {
+      "family": "alternate_costs",
+      "plan_role": "cost",
+      "math_kind": "cost_alt",
+      "description": "As an additional cost, discard cards. Pay-life additional costs are near-misses.",
+      "patterns": [
+        "as an additional cost to cast this spell, discard"
+      ],
+      "consumes": [
+        "card"
+      ],
+      "produces": [],
+      "verified_on": "Firestorm (CON-253); near-miss Fire Covenant (pay life)"
+    },
+    "choose_two": {
+      "family": "interaction",
+      "plan_role": "payoff",
+      "math_kind": "threshold_event",
+      "description": "Modal choose-two. Choose-one is a near-miss.",
+      "patterns": [
+        "choose two\\s*[\u2014\u2013-]"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Austere Command (CON-253); near-miss Abrade (choose one)"
+    },
+    "leyline_start": {
+      "family": "alternate_costs",
+      "plan_role": "enabler",
+      "math_kind": "threshold_event",
+      "description": "May begin the game with this on the battlefield from opening hand. Ordinary enchantments are near-misses.",
+      "patterns": [
+        "if .{0,80}in your opening hand, you may begin the game with it on the battlefield"
+      ],
+      "consumes": [],
+      "produces": [],
+      "verified_on": "Leyline of Sanctity (CON-253); near-miss Ghostly Prison"
+    },
+    "upkeep_sac_unless": {
+      "family": "interaction",
+      "plan_role": "condition",
+      "math_kind": "threshold_event",
+      "description": "Upkeep: sacrifice unless you pay. Ordinary upkeep triggers are near-misses.",
+      "patterns": [
+        "sacrifice this (?:creature|enchantment|artifact|permanent) unless you pay"
+      ],
+      "consumes": [],
+      "produces": [
+        "sacrifice"
+      ],
+      "verified_on": "Justice shape (CON-253); near-miss Rhystic Study (upkeep ask, no sac)"
+    }
+  },
+  "relations": [
+    {
+      "from": "tokens",
+      "to": "go_wide_payoffs",
+      "relation": "feeds",
+      "note": "Creature tokens increase board width; anthems / for-each spend that width."
+    },
+    {
+      "from": "tokens",
+      "to": "go_tall_payoffs",
+      "relation": "feeds",
+      "note": "A token can be the body counters and pumps grow."
+    },
+    {
+      "from": "tokens",
+      "to": "dies_triggers",
+      "relation": "feeds",
+      "note": "Tokens are cheap fuel for aristocrats sacrifice loops."
+    },
+    {
+      "from": "dies_triggers",
+      "to": "life_math",
+      "relation": "feeds",
+      "note": "Death triggers often drain or gain life."
+    },
+    {
+      "from": "life_math",
+      "to": "damage_modification",
+      "relation": "composes",
+      "note": "Lifelink is a rate modifier on the same life equation."
+    },
+    {
+      "from": "cast_from_graveyard",
+      "to": "thresholds_graveyard",
+      "relation": "feeds",
+      "note": "Yard casting / filling enables delirium and threshold."
+    },
+    {
+      "from": "return_from_graveyard",
+      "to": "thresholds_graveyard",
+      "relation": "feeds",
+      "note": "Recursion keeps yard relevant and can refill types."
+    },
+    {
+      "from": "alternate_costs",
+      "to": "tokens",
+      "relation": "spends",
+      "note": "Convoke / improvise spend boards and artifacts tokens help make."
+    },
+    {
+      "from": "hand_abilities",
+      "to": "cast_from_graveyard",
+      "relation": "feeds",
+      "note": "Discard outlets fill the yard for flashback-family engines."
+    },
+    {
+      "from": "library_manipulation",
+      "to": "when_you_cast",
+      "relation": "feeds",
+      "note": "Filtering finds the spells storm/cascade-like payoffs want."
+    },
+    {
+      "from": "attacking_triggers",
+      "to": "go_wide_payoffs",
+      "relation": "composes",
+      "note": "Attack triggers scale when many bodies connect."
+    },
+    {
+      "from": "saboteur",
+      "to": "evasion",
+      "relation": "needs",
+      "note": "Connect triggers need a way through blockers."
+    },
+    {
+      "from": "etb_triggers",
+      "to": "tokens",
+      "relation": "multiplies",
+      "note": "Token makers retrigger ETB value; blink does too."
+    },
+    {
+      "from": "interaction",
+      "to": "protection",
+      "relation": "composes",
+      "note": "Permission and hexproof/ward are both survival math."
+    },
+    {
+      "from": "equipment_aura",
+      "to": "tokens",
+      "relation": "pairs",
+      "note": "Skullclamp-class: +1/-1 equipment turns 1-toughness bodies into card advantage on death; token makers supply fodder."
+    },
+    {
+      "from": "equipment_aura",
+      "to": "go_tall_payoffs",
+      "relation": "pairs",
+      "note": "Voltron: equipment stacks on the same threat counters and pumps grow."
+    },
+    {
+      "from": "counters_plus",
+      "to": "equipment_aura",
+      "relation": "pairs",
+      "note": "EDH voltron/counters: grow one creature, then suit it up."
+    }
+  ]
+}

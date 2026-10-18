@@ -1,0 +1,2735 @@
+{
+  "runs": {
+    "angels-lifegain": {
+      "wish_id": "angels-lifegain",
+      "wish": "I want a lifegain deck with angels \u2014 white, maybe black too. Angels that gain me life and keep me alive.",
+      "status": "unknown",
+      "unknown_reason": "brief not ready: blockers=['terms']",
+      "brief": null,
+      "commander": null,
+      "commander_picks": [],
+      "commander_note": "",
+      "commander_query": "",
+      "deck_names": [],
+      "deck": [],
+      "plan": null,
+      "price": null,
+      "budget": null,
+      "elapsed_s": 158.31049609184265
+    },
+    "vampires-lifegain": {
+      "wish_id": "vampires-lifegain",
+      "wish": "I want a lifegain deck with vampires \u2014 black and white. Vampires that gain me life and drain the table.",
+      "status": "ok",
+      "unknown_reason": null,
+      "brief": {
+        "theme": "vampires",
+        "angle": "a wide board of vampires that trigger lifegain and drain opponents on combat damage",
+        "colors": "",
+        "mechanics": [
+          "lifegain",
+          "drain/damage-to-opponents on combat or ETB",
+          "go wide with creatures",
+          "aristocrats-adjacent triggers"
+        ],
+        "budget_total": 150,
+        "bracket": 2,
+        "commander_query": "is:commander t:vampire (o:\"whenever\" o:\"life\")",
+        "flavor_terms": [
+          "vampire",
+          "blood",
+          "night",
+          "feast",
+          "drain"
+        ],
+        "fantasy": "a board full of vampires swinging in together, draining life from the whole table every combat",
+        "playstyle": "proactive",
+        "commander_name": "",
+        "table": "casual kitchen table, nothing sweaty"
+      },
+      "commander": "Vito, Thorn of the Dusk Rose",
+      "commander_picks": [
+        "Vito, Thorn of the Dusk Rose",
+        "Mavren Fein, Dusk Apostle",
+        "Monoxa, Midway Manager",
+        "Elenda, the Dusk Rose",
+        "Ghalta and Mavren"
+      ],
+      "commander_note": "No colours were named, so these commanders span colour identities. Pick one and the deck will follow its colours.",
+      "commander_query": "f:commander is:commander (t:creature or o:\"can be your commander\") (t:vampire (o:\"whenever\" o:\"life\"))",
+      "deck_names": [
+        "Arcane Signet",
+        "Ash Barrens",
+        "Basilica Screecher",
+        "Bloodbond Vampire",
+        "Bojuka Bog",
+        "Braids, Arisen Nightmare",
+        "Buried Ruin",
+        "Chromatic Lantern",
+        "Command Tower",
+        "Commander's Sphere",
+        "Consuming Corruption",
+        "Crossway Troublemakers",
+        "Dark Ritual",
+        "Darksteel Citadel",
+        "Deadly Dispute",
+        "Defiant Bloodlord",
+        "Enduring Tenacity",
+        "Evolving Wilds",
+        "Excalibur II",
+        "Exotic Orchard",
+        "Fabled Passage",
+        "Fatal Push",
+        "Fell the Profane // Fell Mire",
+        "Fellwar Stone",
+        "Gifted Aetherborn",
+        "Go for the Throat",
+        "Idol of Oblivion",
+        "Indulgent Aristocrat",
+        "Infernal Grasp",
+        "K'rrik, Son of Yawgmoth",
+        "Kalastria Nightwatch",
+        "Karn's Bastion",
+        "Kindred Dominance",
+        "MACH-1, Swooping Scoundrel",
+        "Marauding Blight-Priest",
+        "Markov Baron",
+        "Metamorphosis Fanatic",
+        "Mind Stone",
+        "Morbid Opportunist",
+        "Murderous Rider // Swift End",
+        "Myriad Landscape",
+        "Night's Whisper",
+        "Nighthawk Scavenger",
+        "Nirkana Assassin",
+        "Nullpriest of Oblivion",
+        "Path of Ancestry",
+        "Phyrexian Arena",
+        "Qarsi Revenant",
+        "Read the Bones",
+        "Reliquary Tower",
+        "Rev, Tithe Extractor",
+        "Rogue's Passage",
+        "Sanctum Seeker",
+        "Sanguine Bond",
+        "Sanguine Syphoner",
+        "Scavenger Grounds",
+        "Scion of the Swarm",
+        "Secluded Courtyard",
+        "Sign in Blood",
+        "Sire of Seven Deaths",
+        "Sol Ring",
+        "Solemn Simulacrum",
+        "Starscape Cleric",
+        "Swamp",
+        "Temple of the False God",
+        "Terramorphic Expanse",
+        "Thought Vessel",
+        "Twilight Prophet",
+        "Unclaimed Territory",
+        "Valgavoth, Terror Eater",
+        "Vampire Nighthawk",
+        "Vampire of the Dire Moon",
+        "Vengeful Bloodwitch",
+        "Venomcrawler",
+        "Village Rites",
+        "War Room",
+        "Wayfarer's Bauble",
+        "Well of Lost Dreams",
+        "Withering Curse",
+        "Wurmcoil Engine",
+        "Zulaport Cutthroat"
+      ],
+      "deck": [
+        {
+          "name": "Sol Ring",
+          "role": "ramp"
+        },
+        {
+          "name": "Arcane Signet",
+          "role": "ramp"
+        },
+        {
+          "name": "Commander's Sphere",
+          "role": "ramp"
+        },
+        {
+          "name": "Mind Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Fellwar Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Chromatic Lantern",
+          "role": "ramp"
+        },
+        {
+          "name": "Deadly Dispute",
+          "role": "ramp"
+        },
+        {
+          "name": "Thought Vessel",
+          "role": "ramp"
+        },
+        {
+          "name": "Dark Ritual",
+          "role": "ramp"
+        },
+        {
+          "name": "Wayfarer's Bauble",
+          "role": "ramp"
+        },
+        {
+          "name": "Sign in Blood",
+          "role": "draw"
+        },
+        {
+          "name": "Morbid Opportunist",
+          "role": "draw"
+        },
+        {
+          "name": "Village Rites",
+          "role": "draw"
+        },
+        {
+          "name": "Night's Whisper",
+          "role": "draw"
+        },
+        {
+          "name": "Idol of Oblivion",
+          "role": "draw"
+        },
+        {
+          "name": "Phyrexian Arena",
+          "role": "draw"
+        },
+        {
+          "name": "Braids, Arisen Nightmare",
+          "role": "draw"
+        },
+        {
+          "name": "Solemn Simulacrum",
+          "role": "draw"
+        },
+        {
+          "name": "Read the Bones",
+          "role": "draw"
+        },
+        {
+          "name": "Consuming Corruption",
+          "role": "spot"
+        },
+        {
+          "name": "Fatal Push",
+          "role": "spot"
+        },
+        {
+          "name": "Murderous Rider // Swift End",
+          "role": "spot"
+        },
+        {
+          "name": "Infernal Grasp",
+          "role": "spot"
+        },
+        {
+          "name": "Go for the Throat",
+          "role": "spot"
+        },
+        {
+          "name": "Kindred Dominance",
+          "role": "wipe"
+        },
+        {
+          "name": "Withering Curse",
+          "role": "wipe"
+        },
+        {
+          "name": "Sanctum Seeker",
+          "role": "plan"
+        },
+        {
+          "name": "Markov Baron",
+          "role": "plan"
+        },
+        {
+          "name": "Vampire Nighthawk",
+          "role": "plan"
+        },
+        {
+          "name": "Gifted Aetherborn",
+          "role": "plan"
+        },
+        {
+          "name": "Indulgent Aristocrat",
+          "role": "plan"
+        },
+        {
+          "name": "Crossway Troublemakers",
+          "role": "plan"
+        },
+        {
+          "name": "Vampire of the Dire Moon",
+          "role": "plan"
+        },
+        {
+          "name": "Nighthawk Scavenger",
+          "role": "plan"
+        },
+        {
+          "name": "Vengeful Bloodwitch",
+          "role": "plan"
+        },
+        {
+          "name": "Qarsi Revenant",
+          "role": "plan"
+        },
+        {
+          "name": "Nullpriest of Oblivion",
+          "role": "plan"
+        },
+        {
+          "name": "Twilight Prophet",
+          "role": "plan"
+        },
+        {
+          "name": "Starscape Cleric",
+          "role": "theme"
+        },
+        {
+          "name": "Enduring Tenacity",
+          "role": "theme"
+        },
+        {
+          "name": "Sanguine Bond",
+          "role": "theme"
+        },
+        {
+          "name": "Scion of the Swarm",
+          "role": "theme"
+        },
+        {
+          "name": "Nirkana Assassin",
+          "role": "theme"
+        },
+        {
+          "name": "Excalibur II",
+          "role": "theme"
+        },
+        {
+          "name": "Well of Lost Dreams",
+          "role": "theme"
+        },
+        {
+          "name": "Bloodbond Vampire",
+          "role": "theme"
+        },
+        {
+          "name": "MACH-1, Swooping Scoundrel",
+          "role": "theme"
+        },
+        {
+          "name": "Kalastria Nightwatch",
+          "role": "theme"
+        },
+        {
+          "name": "Metamorphosis Fanatic",
+          "role": "theme"
+        },
+        {
+          "name": "Sire of Seven Deaths",
+          "role": "theme"
+        },
+        {
+          "name": "Valgavoth, Terror Eater",
+          "role": "theme"
+        },
+        {
+          "name": "K'rrik, Son of Yawgmoth",
+          "role": "theme"
+        },
+        {
+          "name": "Wurmcoil Engine",
+          "role": "theme"
+        },
+        {
+          "name": "Venomcrawler",
+          "role": "theme"
+        },
+        {
+          "name": "Marauding Blight-Priest",
+          "role": "deepcut"
+        },
+        {
+          "name": "Zulaport Cutthroat",
+          "role": "deepcut"
+        },
+        {
+          "name": "Defiant Bloodlord",
+          "role": "deepcut"
+        },
+        {
+          "name": "Sanguine Syphoner",
+          "role": "deepcut"
+        },
+        {
+          "name": "Basilica Screecher",
+          "role": "deepcut"
+        },
+        {
+          "name": "Fell the Profane // Fell Mire",
+          "role": "lands"
+        },
+        {
+          "name": "Fabled Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Terramorphic Expanse",
+          "role": "lands"
+        },
+        {
+          "name": "Reliquary Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Rogue's Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Myriad Landscape",
+          "role": "lands"
+        },
+        {
+          "name": "Temple of the False God",
+          "role": "lands"
+        },
+        {
+          "name": "Unclaimed Territory",
+          "role": "lands"
+        },
+        {
+          "name": "Path of Ancestry",
+          "role": "lands"
+        },
+        {
+          "name": "Secluded Courtyard",
+          "role": "lands"
+        },
+        {
+          "name": "Command Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Darksteel Citadel",
+          "role": "lands"
+        },
+        {
+          "name": "Ash Barrens",
+          "role": "lands"
+        },
+        {
+          "name": "Scavenger Grounds",
+          "role": "lands"
+        },
+        {
+          "name": "Evolving Wilds",
+          "role": "lands"
+        },
+        {
+          "name": "Buried Ruin",
+          "role": "lands"
+        },
+        {
+          "name": "Exotic Orchard",
+          "role": "lands"
+        },
+        {
+          "name": "War Room",
+          "role": "lands"
+        },
+        {
+          "name": "Bojuka Bog",
+          "role": "lands"
+        },
+        {
+          "name": "Karn's Bastion",
+          "role": "lands"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Rev, Tithe Extractor",
+          "role": "theme"
+        }
+      ],
+      "plan": {
+        "version": 1,
+        "archetype": {
+          "id": "aggro",
+          "label": "attack with it",
+          "candidates": [
+            "incremental",
+            "burst",
+            "aggro"
+          ],
+          "decided": true
+        },
+        "derived_from": {
+          "commander": "Vito, Thorn of the Dusk Rose",
+          "partner": null,
+          "brief_fields": [
+            "mechanics",
+            "playstyle",
+            "theme",
+            "angle"
+          ],
+          "sim_version": 8
+        },
+        "conditions": [
+          {
+            "id": "engine_online",
+            "label": "5 payoffs online",
+            "why": "One payoff is a card. Two is an engine.",
+            "check": {
+              "payoffs_in_play": 5
+            },
+            "by_turn": 5,
+            "weight": "core"
+          },
+          {
+            "id": "commander_out",
+            "label": "Commander is out",
+            "why": "Nothing else in the plan works until the commander has resolved and stuck.",
+            "check": {
+              "commander_in_play": true
+            },
+            "by_turn": 6,
+            "weight": "core"
+          },
+          {
+            "id": "board_width",
+            "label": "5 creatures on board",
+            "why": "Go-wide plans need bodies before payoffs can matter.",
+            "check": {
+              "creatures_in_play": 5
+            },
+            "by_turn": 6,
+            "weight": "supporting"
+          }
+        ],
+        "commitments": [
+          {
+            "id": "combat_piece_density",
+            "label": "creatures and triggers that reward attacking",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "Aggro plans need bodies that connect or trigger on attack."
+          },
+          {
+            "id": "lifegain_density",
+            "label": "enough lifegain to turn on the payoffs",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "The payoffs are dead cards without triggers to feed them."
+          },
+          {
+            "id": "sacrifice_density",
+            "label": "outlets and death triggers that close the loop",
+            "counts": {
+              "role": "plan",
+              "min": 8
+            },
+            "why": "Sacrifice payoffs need fodder and a way to sacrifice."
+          },
+          {
+            "id": "token_density",
+            "label": "enough token makers for the board to matter",
+            "counts": {
+              "role": "theme",
+              "min": 12
+            },
+            "why": "Width needs bodies to spend before payoffs can fire."
+          },
+          {
+            "id": "wide_payoff_density",
+            "label": "payoffs that scale with board width",
+            "counts": {
+              "role": "plan",
+              "min": 6
+            },
+            "why": "Tokens without a payoff are just chump blockers."
+          }
+        ],
+        "load_bearing": [
+          "Vito, Thorn of the Dusk Rose"
+        ],
+        "theme": {
+          "label": "vampires",
+          "source": "brief.theme",
+          "binding": false
+        }
+      },
+      "price": 207.63,
+      "budget": {
+        "total": 207.63,
+        "budget": 150.0,
+        "delta": 57.63,
+        "vs_brief": "$57.63 over the $150 brief",
+        "top": [
+          {
+            "name": "Rev, Tithe Extractor",
+            "usd": 21.29
+          },
+          {
+            "name": "Sire of Seven Deaths",
+            "usd": 19.27
+          },
+          {
+            "name": "Valgavoth, Terror Eater",
+            "usd": 17.74
+          }
+        ]
+      },
+      "elapsed_s": 332.9808828830719
+    },
+    "drain-incremental": {
+      "wish_id": "drain-incremental",
+      "wish": "I want vampires that drain the table with lots of small life-loss triggers every turn, grinding opponents down over time and steadily \u2014 not a combo finish, not one big swing.",
+      "status": "ok",
+      "unknown_reason": null,
+      "brief": {
+        "theme": "vampires",
+        "angle": "small repeated life-drain triggers every turn that grind opponents down through attrition, not a single big swing or combo",
+        "colors": "",
+        "mechanics": [
+          "lifegain-you/lifeloss-them triggers",
+          "go wide with small creatures",
+          "attack triggers",
+          "steady attrition rather than combo finish"
+        ],
+        "budget_total": 100,
+        "bracket": 2,
+        "commander_query": "is:commander (t:vampire or t:angel) (o:\"loses life\" or o:\"life total\" or o:\"drain\")",
+        "flavor_terms": [
+          "vampire",
+          "blood",
+          "drain",
+          "angel",
+          "life"
+        ],
+        "fantasy": "small drain triggers stacking up every turn, slowly bleeding the whole table out over the course of the game",
+        "playstyle": "grindy",
+        "commander_name": "",
+        "table": "casual kitchen table, nothing sweaty"
+      },
+      "commander": "Vito, Thorn of the Dusk Rose",
+      "commander_picks": [
+        "Vito, Thorn of the Dusk Rose",
+        "Edgar, Charmed Groom // Edgar Markov's Coffin",
+        "Bartolom\u00e9 del Presidio",
+        "Rodolf Duskbringer",
+        "Yahenni, Undying Partisan"
+      ],
+      "commander_note": "No colours were named, so these commanders span colour identities. Pick one and the deck will follow its colours.",
+      "commander_query": "f:commander is:commander (t:creature or o:\"can be your commander\") ((t:vampire or t:angel) (o:\"loses life\" or o:\"life total\" or o:\"drain\"))",
+      "deck_names": [
+        "Accursed Marauder",
+        "Agate-Blade Assassin",
+        "Arcane Signet",
+        "Ash Barrens",
+        "Blood Artist",
+        "Blood Money",
+        "Bojuka Bog",
+        "Buried Ruin",
+        "Chromatic Lantern",
+        "Command Tower",
+        "Commander's Sphere",
+        "Corrupted Conviction",
+        "Crux of Fate",
+        "Dark Ritual",
+        "Darksteel Citadel",
+        "Dawnsire, Sunstar Dreadnought",
+        "Deadly Dispute",
+        "Decree of Pain",
+        "Demolition Field",
+        "Enduring Tenacity",
+        "Epicure of Blood",
+        "Evolving Wilds",
+        "Exotic Orchard",
+        "Fabled Passage",
+        "Feed the Swarm",
+        "Fellwar Stone",
+        "Fleshbag Marauder",
+        "Geier Reach Sanitarium",
+        "Gixian Puppeteer",
+        "Go for the Throat",
+        "Hedron Archive",
+        "Ichor Wellspring",
+        "Idol of Oblivion",
+        "In Garruk's Wake",
+        "Infernal Grasp",
+        "Karn's Bastion",
+        "Marauding Blight-Priest",
+        "Mind Stone",
+        "Mirkwood Bats",
+        "Morbid Opportunist",
+        "Murder",
+        "Myriad Landscape",
+        "Nadier's Nightblade",
+        "Nevinyrral's Disk",
+        "Night's Whisper",
+        "Ophiomancer",
+        "Path of Ancestry",
+        "Phyrexian Arena",
+        "Plaguecrafter",
+        "Psychosis Crawler",
+        "Raven Eagle",
+        "Read the Bones",
+        "Rev, Tithe Extractor",
+        "Rogue's Passage",
+        "Sanguine Bond",
+        "Sanguine Syphoner",
+        "Scavenger Grounds",
+        "Secluded Courtyard",
+        "Sheoldred, the Apocalypse",
+        "Sign in Blood",
+        "Sol Ring",
+        "Solemn Simulacrum",
+        "South Wind Avatar",
+        "Spire of Industry",
+        "Starscape Cleric",
+        "Stensian Sanguinist // Exsanguinate",
+        "Swamp",
+        "Syr Konrad, the Grim",
+        "Temple of the False God",
+        "Terramorphic Expanse",
+        "Thought Vessel",
+        "Twilight Prophet",
+        "Unclaimed Territory",
+        "Unearth",
+        "Vengeful Bloodwitch",
+        "Village Rites",
+        "Viscera Seer",
+        "Wayfarer's Bauble",
+        "Withering Torment",
+        "Within Range",
+        "Yahenni, Undying Partisan",
+        "Zulaport Cutthroat"
+      ],
+      "deck": [
+        {
+          "name": "Mind Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Commander's Sphere",
+          "role": "ramp"
+        },
+        {
+          "name": "Deadly Dispute",
+          "role": "ramp"
+        },
+        {
+          "name": "Wayfarer's Bauble",
+          "role": "ramp"
+        },
+        {
+          "name": "Dark Ritual",
+          "role": "ramp"
+        },
+        {
+          "name": "Chromatic Lantern",
+          "role": "ramp"
+        },
+        {
+          "name": "Arcane Signet",
+          "role": "ramp"
+        },
+        {
+          "name": "Sol Ring",
+          "role": "ramp"
+        },
+        {
+          "name": "Fellwar Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Thought Vessel",
+          "role": "ramp"
+        },
+        {
+          "name": "Sign in Blood",
+          "role": "draw"
+        },
+        {
+          "name": "Unearth",
+          "role": "draw"
+        },
+        {
+          "name": "Ichor Wellspring",
+          "role": "draw"
+        },
+        {
+          "name": "Village Rites",
+          "role": "draw"
+        },
+        {
+          "name": "Corrupted Conviction",
+          "role": "draw"
+        },
+        {
+          "name": "Night's Whisper",
+          "role": "draw"
+        },
+        {
+          "name": "Morbid Opportunist",
+          "role": "draw"
+        },
+        {
+          "name": "Phyrexian Arena",
+          "role": "draw"
+        },
+        {
+          "name": "Idol of Oblivion",
+          "role": "draw"
+        },
+        {
+          "name": "Hedron Archive",
+          "role": "draw"
+        },
+        {
+          "name": "Read the Bones",
+          "role": "draw"
+        },
+        {
+          "name": "Solemn Simulacrum",
+          "role": "draw"
+        },
+        {
+          "name": "Go for the Throat",
+          "role": "spot"
+        },
+        {
+          "name": "Plaguecrafter",
+          "role": "spot"
+        },
+        {
+          "name": "Infernal Grasp",
+          "role": "spot"
+        },
+        {
+          "name": "Feed the Swarm",
+          "role": "spot"
+        },
+        {
+          "name": "Withering Torment",
+          "role": "spot"
+        },
+        {
+          "name": "Fleshbag Marauder",
+          "role": "spot"
+        },
+        {
+          "name": "Accursed Marauder",
+          "role": "spot"
+        },
+        {
+          "name": "Murder",
+          "role": "spot"
+        },
+        {
+          "name": "In Garruk's Wake",
+          "role": "wipe"
+        },
+        {
+          "name": "Nevinyrral's Disk",
+          "role": "wipe"
+        },
+        {
+          "name": "Decree of Pain",
+          "role": "wipe"
+        },
+        {
+          "name": "Crux of Fate",
+          "role": "wipe"
+        },
+        {
+          "name": "Blood Money",
+          "role": "wipe"
+        },
+        {
+          "name": "Yahenni, Undying Partisan",
+          "role": "plan"
+        },
+        {
+          "name": "Ophiomancer",
+          "role": "plan"
+        },
+        {
+          "name": "Nadier's Nightblade",
+          "role": "plan"
+        },
+        {
+          "name": "Twilight Prophet",
+          "role": "plan"
+        },
+        {
+          "name": "Viscera Seer",
+          "role": "plan"
+        },
+        {
+          "name": "Mirkwood Bats",
+          "role": "plan"
+        },
+        {
+          "name": "Blood Artist",
+          "role": "plan"
+        },
+        {
+          "name": "Syr Konrad, the Grim",
+          "role": "plan"
+        },
+        {
+          "name": "Marauding Blight-Priest",
+          "role": "plan"
+        },
+        {
+          "name": "Zulaport Cutthroat",
+          "role": "plan"
+        },
+        {
+          "name": "Starscape Cleric",
+          "role": "theme"
+        },
+        {
+          "name": "South Wind Avatar",
+          "role": "theme"
+        },
+        {
+          "name": "Psychosis Crawler",
+          "role": "theme"
+        },
+        {
+          "name": "Within Range",
+          "role": "theme"
+        },
+        {
+          "name": "Raven Eagle",
+          "role": "theme"
+        },
+        {
+          "name": "Enduring Tenacity",
+          "role": "theme"
+        },
+        {
+          "name": "Stensian Sanguinist // Exsanguinate",
+          "role": "theme"
+        },
+        {
+          "name": "Sanguine Bond",
+          "role": "theme"
+        },
+        {
+          "name": "Epicure of Blood",
+          "role": "theme"
+        },
+        {
+          "name": "Sheoldred, the Apocalypse",
+          "role": "theme"
+        },
+        {
+          "name": "Gixian Puppeteer",
+          "role": "theme"
+        },
+        {
+          "name": "Vengeful Bloodwitch",
+          "role": "deepcut"
+        },
+        {
+          "name": "Agate-Blade Assassin",
+          "role": "deepcut"
+        },
+        {
+          "name": "Sanguine Syphoner",
+          "role": "deepcut"
+        },
+        {
+          "name": "Fabled Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Evolving Wilds",
+          "role": "lands"
+        },
+        {
+          "name": "Karn's Bastion",
+          "role": "lands"
+        },
+        {
+          "name": "Path of Ancestry",
+          "role": "lands"
+        },
+        {
+          "name": "Ash Barrens",
+          "role": "lands"
+        },
+        {
+          "name": "Exotic Orchard",
+          "role": "lands"
+        },
+        {
+          "name": "Myriad Landscape",
+          "role": "lands"
+        },
+        {
+          "name": "Buried Ruin",
+          "role": "lands"
+        },
+        {
+          "name": "Scavenger Grounds",
+          "role": "lands"
+        },
+        {
+          "name": "Terramorphic Expanse",
+          "role": "lands"
+        },
+        {
+          "name": "Command Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Bojuka Bog",
+          "role": "lands"
+        },
+        {
+          "name": "Darksteel Citadel",
+          "role": "lands"
+        },
+        {
+          "name": "Spire of Industry",
+          "role": "lands"
+        },
+        {
+          "name": "Rogue's Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Temple of the False God",
+          "role": "lands"
+        },
+        {
+          "name": "Secluded Courtyard",
+          "role": "lands"
+        },
+        {
+          "name": "Geier Reach Sanitarium",
+          "role": "lands"
+        },
+        {
+          "name": "Unclaimed Territory",
+          "role": "lands"
+        },
+        {
+          "name": "Demolition Field",
+          "role": "lands"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Rev, Tithe Extractor",
+          "role": "theme"
+        },
+        {
+          "name": "Dawnsire, Sunstar Dreadnought",
+          "role": "theme"
+        }
+      ],
+      "plan": {
+        "version": 1,
+        "archetype": {
+          "id": "incremental",
+          "label": "grind it out",
+          "candidates": [
+            "incremental",
+            "burst",
+            "aggro"
+          ],
+          "decided": true
+        },
+        "derived_from": {
+          "commander": "Vito, Thorn of the Dusk Rose",
+          "partner": null,
+          "brief_fields": [
+            "mechanics",
+            "playstyle",
+            "theme",
+            "angle"
+          ],
+          "sim_version": 8
+        },
+        "conditions": [
+          {
+            "id": "engine_online",
+            "label": "5 payoffs online",
+            "why": "One payoff is a card. Two is an engine.",
+            "check": {
+              "payoffs_in_play": 5
+            },
+            "by_turn": 5,
+            "weight": "core"
+          },
+          {
+            "id": "commander_out",
+            "label": "Commander is out",
+            "why": "Nothing else in the plan works until the commander has resolved and stuck.",
+            "check": {
+              "commander_in_play": true
+            },
+            "by_turn": 6,
+            "weight": "core"
+          },
+          {
+            "id": "board_width",
+            "label": "5 creatures on board",
+            "why": "Go-wide plans need bodies before payoffs can matter.",
+            "check": {
+              "creatures_in_play": 5
+            },
+            "by_turn": 6,
+            "weight": "supporting"
+          }
+        ],
+        "commitments": [
+          {
+            "id": "combat_piece_density",
+            "label": "creatures and triggers that reward attacking",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "Aggro plans need bodies that connect or trigger on attack."
+          },
+          {
+            "id": "dig_density",
+            "label": "enough card selection and draw to find payoffs",
+            "counts": {
+              "role": "draw",
+              "min": 7
+            },
+            "why": "Grindy plans need to see the right cards more than once."
+          },
+          {
+            "id": "lifegain_density",
+            "label": "enough lifegain to turn on the payoffs",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "The payoffs are dead cards without triggers to feed them."
+          },
+          {
+            "id": "sacrifice_density",
+            "label": "outlets and death triggers that close the loop",
+            "counts": {
+              "role": "plan",
+              "min": 8
+            },
+            "why": "Sacrifice payoffs need fodder and a way to sacrifice."
+          },
+          {
+            "id": "token_density",
+            "label": "enough token makers for the board to matter",
+            "counts": {
+              "role": "theme",
+              "min": 12
+            },
+            "why": "Width needs bodies to spend before payoffs can fire."
+          },
+          {
+            "id": "wide_payoff_density",
+            "label": "payoffs that scale with board width",
+            "counts": {
+              "role": "plan",
+              "min": 6
+            },
+            "why": "Tokens without a payoff are just chump blockers."
+          }
+        ],
+        "load_bearing": [
+          "Vito, Thorn of the Dusk Rose"
+        ],
+        "theme": {
+          "label": "vampires",
+          "source": "brief.theme",
+          "binding": false
+        }
+      },
+      "price": 245.67,
+      "budget": {
+        "total": 245.67,
+        "budget": 100.0,
+        "delta": 145.67,
+        "vs_brief": "$145.67 over the $100 brief",
+        "top": [
+          {
+            "name": "Sheoldred, the Apocalypse",
+            "usd": 98.67
+          },
+          {
+            "name": "Rev, Tithe Extractor",
+            "usd": 21.29
+          },
+          {
+            "name": "Enduring Tenacity",
+            "usd": 12.02
+          }
+        ]
+      },
+      "elapsed_s": 365.72069239616394
+    },
+    "drain-burst": {
+      "wish_id": "drain-burst",
+      "wish": "I want vampires that drain with one big life swing \u2014 a burst turn that kills from nowhere in one turn, not a slow grind every turn.",
+      "status": "ok",
+      "unknown_reason": null,
+      "brief": {
+        "theme": "vampires",
+        "angle": "drains and accumulates life advantage, then converts it into one explosive finishing turn rather than winning through steady attrition",
+        "colors": "WB",
+        "mechanics": [
+          "lifegain-to-damage payoff",
+          "drain triggers (opponent loses life, you gain)",
+          "life total swing/burst finisher",
+          "vampire tribal synergy"
+        ],
+        "budget_total": 150,
+        "bracket": 2,
+        "commander_query": "is:commander t:vampire",
+        "flavor_terms": [
+          "vampire",
+          "blood",
+          "drain",
+          "life drain",
+          "gothic"
+        ],
+        "fantasy": "a turn where all the life you've been quietly draining comes back at once as a killing blow that seems to come from nowhere",
+        "playstyle": "proactive",
+        "commander_name": "",
+        "table": "casual kitchen table, nothing sweaty"
+      },
+      "commander": "Vito, Thorn of the Dusk Rose",
+      "commander_picks": [
+        "Vito, Thorn of the Dusk Rose",
+        "Edgar, Charmed Groom // Edgar Markov's Coffin",
+        "Bartolom\u00e9 del Presidio",
+        "Drana, the Last Bloodchief",
+        "Yahenni, Undying Partisan"
+      ],
+      "commander_note": "",
+      "commander_query": "f:commander is:commander (t:creature or o:\"can be your commander\") (t:vampire) id<=WB",
+      "deck_names": [
+        "Arcane Signet",
+        "Ash Barrens",
+        "Astral Cornucopia",
+        "Basalt Monolith",
+        "Blood Artist",
+        "Bloodbond Vampire",
+        "Bloodthirsty Aerialist",
+        "Bojuka Bog",
+        "Braids, Arisen Nightmare",
+        "Champion of Dusk",
+        "Charcoal Diamond",
+        "Citizen V, Helmut Zemo",
+        "Command Tower",
+        "Commander's Sphere",
+        "Deadly Dispute",
+        "Decree of Pain",
+        "Defiant Bloodlord",
+        "Demolition Field",
+        "Disciple of Bolas",
+        "Enduring Tenacity",
+        "Epicure of Blood",
+        "Everflowing Chalice",
+        "Evolving Wilds",
+        "Excalibur II",
+        "Exotic Orchard",
+        "Fabled Passage",
+        "Feed the Swarm",
+        "Fell the Profane // Fell Mire",
+        "Fellwar Stone",
+        "Geier Reach Sanitarium",
+        "Gingerbrute",
+        "Gray Merchant of Asphodel",
+        "Idol of Oblivion",
+        "Infernal Grasp",
+        "K'rrik, Son of Yawgmoth",
+        "Kalastria Nightwatch",
+        "Karn's Bastion",
+        "Kindred Dominance",
+        "Lich's Mastery",
+        "Malakir Familiar",
+        "Marauding Blight-Priest",
+        "Mind Stone",
+        "Morbid Opportunist",
+        "Murderous Rider // Swift End",
+        "Myriad Landscape",
+        "Nadier's Nightblade",
+        "Nazar, the Velvet Fang",
+        "Night's Whisper",
+        "Noxious Gearhulk",
+        "Path of Ancestry",
+        "Phyrexian Arena",
+        "Pristine Talisman",
+        "Reliquary Tower",
+        "Rogue's Passage",
+        "Sanguine Bond",
+        "Sanguine Syphoner",
+        "Scavenger Grounds",
+        "Scion of the Swarm",
+        "Secluded Courtyard",
+        "Seizan, Perverter of Truth",
+        "Sign in Blood",
+        "Sol Ring",
+        "Solemn Simulacrum",
+        "South Wind Avatar",
+        "Starscape Cleric",
+        "Swamp",
+        "Temple of the False God",
+        "Terramorphic Expanse",
+        "Thought Vessel",
+        "Toxic Deluge",
+        "Twilight Prophet",
+        "Unclaimed Territory",
+        "Vampire Nighthawk",
+        "Vampire Scrivener",
+        "Vengeful Bloodwitch",
+        "Village Rites",
+        "Wall of Limbs",
+        "War Room",
+        "Well of Lost Dreams",
+        "Withering Torment",
+        "Zulaport Cutthroat"
+      ],
+      "deck": [
+        {
+          "name": "Fellwar Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Sol Ring",
+          "role": "ramp"
+        },
+        {
+          "name": "Mind Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Pristine Talisman",
+          "role": "ramp"
+        },
+        {
+          "name": "Astral Cornucopia",
+          "role": "ramp"
+        },
+        {
+          "name": "Everflowing Chalice",
+          "role": "ramp"
+        },
+        {
+          "name": "Thought Vessel",
+          "role": "ramp"
+        },
+        {
+          "name": "Arcane Signet",
+          "role": "ramp"
+        },
+        {
+          "name": "Basalt Monolith",
+          "role": "ramp"
+        },
+        {
+          "name": "Charcoal Diamond",
+          "role": "ramp"
+        },
+        {
+          "name": "Sign in Blood",
+          "role": "draw"
+        },
+        {
+          "name": "Village Rites",
+          "role": "draw"
+        },
+        {
+          "name": "Deadly Dispute",
+          "role": "draw"
+        },
+        {
+          "name": "Night's Whisper",
+          "role": "draw"
+        },
+        {
+          "name": "Commander's Sphere",
+          "role": "draw"
+        },
+        {
+          "name": "Idol of Oblivion",
+          "role": "draw"
+        },
+        {
+          "name": "Solemn Simulacrum",
+          "role": "draw"
+        },
+        {
+          "name": "Morbid Opportunist",
+          "role": "draw"
+        },
+        {
+          "name": "Phyrexian Arena",
+          "role": "draw"
+        },
+        {
+          "name": "Braids, Arisen Nightmare",
+          "role": "spot"
+        },
+        {
+          "name": "Infernal Grasp",
+          "role": "spot"
+        },
+        {
+          "name": "Feed the Swarm",
+          "role": "spot"
+        },
+        {
+          "name": "Withering Torment",
+          "role": "spot"
+        },
+        {
+          "name": "Toxic Deluge",
+          "role": "spot"
+        },
+        {
+          "name": "Decree of Pain",
+          "role": "wipe"
+        },
+        {
+          "name": "Kindred Dominance",
+          "role": "wipe"
+        },
+        {
+          "name": "Blood Artist",
+          "role": "plan"
+        },
+        {
+          "name": "Zulaport Cutthroat",
+          "role": "plan"
+        },
+        {
+          "name": "Gray Merchant of Asphodel",
+          "role": "plan"
+        },
+        {
+          "name": "Nadier's Nightblade",
+          "role": "plan"
+        },
+        {
+          "name": "Noxious Gearhulk",
+          "role": "plan"
+        },
+        {
+          "name": "K'rrik, Son of Yawgmoth",
+          "role": "plan"
+        },
+        {
+          "name": "Twilight Prophet",
+          "role": "plan"
+        },
+        {
+          "name": "Disciple of Bolas",
+          "role": "plan"
+        },
+        {
+          "name": "Murderous Rider // Swift End",
+          "role": "plan"
+        },
+        {
+          "name": "Gingerbrute",
+          "role": "plan"
+        },
+        {
+          "name": "Vampire Nighthawk",
+          "role": "plan"
+        },
+        {
+          "name": "Vengeful Bloodwitch",
+          "role": "plan"
+        },
+        {
+          "name": "Sanguine Bond",
+          "role": "theme"
+        },
+        {
+          "name": "Enduring Tenacity",
+          "role": "theme"
+        },
+        {
+          "name": "Starscape Cleric",
+          "role": "theme"
+        },
+        {
+          "name": "South Wind Avatar",
+          "role": "theme"
+        },
+        {
+          "name": "Epicure of Blood",
+          "role": "theme"
+        },
+        {
+          "name": "Well of Lost Dreams",
+          "role": "theme"
+        },
+        {
+          "name": "Excalibur II",
+          "role": "theme"
+        },
+        {
+          "name": "Bloodthirsty Aerialist",
+          "role": "theme"
+        },
+        {
+          "name": "Bloodbond Vampire",
+          "role": "theme"
+        },
+        {
+          "name": "Scion of the Swarm",
+          "role": "theme"
+        },
+        {
+          "name": "Malakir Familiar",
+          "role": "theme"
+        },
+        {
+          "name": "Kalastria Nightwatch",
+          "role": "theme"
+        },
+        {
+          "name": "Nazar, the Velvet Fang",
+          "role": "theme"
+        },
+        {
+          "name": "Lich's Mastery",
+          "role": "theme"
+        },
+        {
+          "name": "Vampire Scrivener",
+          "role": "theme"
+        },
+        {
+          "name": "Citizen V, Helmut Zemo",
+          "role": "theme"
+        },
+        {
+          "name": "Marauding Blight-Priest",
+          "role": "deepcut"
+        },
+        {
+          "name": "Defiant Bloodlord",
+          "role": "deepcut"
+        },
+        {
+          "name": "Seizan, Perverter of Truth",
+          "role": "deepcut"
+        },
+        {
+          "name": "Champion of Dusk",
+          "role": "deepcut"
+        },
+        {
+          "name": "Sanguine Syphoner",
+          "role": "deepcut"
+        },
+        {
+          "name": "Fell the Profane // Fell Mire",
+          "role": "lands"
+        },
+        {
+          "name": "Myriad Landscape",
+          "role": "lands"
+        },
+        {
+          "name": "Command Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Temple of the False God",
+          "role": "lands"
+        },
+        {
+          "name": "Terramorphic Expanse",
+          "role": "lands"
+        },
+        {
+          "name": "Evolving Wilds",
+          "role": "lands"
+        },
+        {
+          "name": "Reliquary Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Fabled Passage",
+          "role": "lands"
+        },
+        {
+          "name": "War Room",
+          "role": "lands"
+        },
+        {
+          "name": "Secluded Courtyard",
+          "role": "lands"
+        },
+        {
+          "name": "Geier Reach Sanitarium",
+          "role": "lands"
+        },
+        {
+          "name": "Rogue's Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Scavenger Grounds",
+          "role": "lands"
+        },
+        {
+          "name": "Exotic Orchard",
+          "role": "lands"
+        },
+        {
+          "name": "Bojuka Bog",
+          "role": "lands"
+        },
+        {
+          "name": "Path of Ancestry",
+          "role": "lands"
+        },
+        {
+          "name": "Ash Barrens",
+          "role": "lands"
+        },
+        {
+          "name": "Demolition Field",
+          "role": "lands"
+        },
+        {
+          "name": "Karn's Bastion",
+          "role": "lands"
+        },
+        {
+          "name": "Unclaimed Territory",
+          "role": "lands"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Wall of Limbs",
+          "role": "theme"
+        }
+      ],
+      "plan": {
+        "version": 1,
+        "archetype": {
+          "id": "incremental",
+          "label": "grind it out",
+          "candidates": [
+            "incremental",
+            "burst",
+            "aggro"
+          ],
+          "decided": false
+        },
+        "derived_from": {
+          "commander": "Vito, Thorn of the Dusk Rose",
+          "partner": null,
+          "brief_fields": [
+            "mechanics",
+            "playstyle",
+            "theme",
+            "angle"
+          ],
+          "sim_version": 8
+        },
+        "conditions": [
+          {
+            "id": "engine_online",
+            "label": "2 payoffs online",
+            "why": "One payoff is a card. Two is an engine.",
+            "check": {
+              "payoffs_in_play": 2
+            },
+            "by_turn": 5,
+            "weight": "core"
+          },
+          {
+            "id": "commander_out",
+            "label": "Commander is out",
+            "why": "Nothing else in the plan works until the commander has resolved and stuck.",
+            "check": {
+              "commander_in_play": true
+            },
+            "by_turn": 6,
+            "weight": "core"
+          },
+          {
+            "id": "draw_engine",
+            "label": "6 extra cards drawn",
+            "why": "Card advantage has to clear setup cost before it counts as an engine.",
+            "check": {
+              "cards_drawn": 6
+            },
+            "by_turn": 10,
+            "weight": "supporting"
+          }
+        ],
+        "commitments": [
+          {
+            "id": "lifegain_density",
+            "label": "enough lifegain to turn on the payoffs",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "The payoffs are dead cards without triggers to feed them."
+          },
+          {
+            "id": "sacrifice_density",
+            "label": "outlets and death triggers that close the loop",
+            "counts": {
+              "role": "plan",
+              "min": 8
+            },
+            "why": "Sacrifice payoffs need fodder and a way to sacrifice."
+          }
+        ],
+        "load_bearing": [
+          "Vito, Thorn of the Dusk Rose"
+        ],
+        "theme": {
+          "label": "vampires",
+          "source": "brief.theme",
+          "binding": false
+        }
+      },
+      "price": 139.67,
+      "budget": {
+        "total": 139.67,
+        "budget": 150.0,
+        "delta": -10.33,
+        "vs_brief": "$10.33 under the $150 brief",
+        "top": [
+          {
+            "name": "Enduring Tenacity",
+            "usd": 12.02
+          },
+          {
+            "name": "Sanguine Bond",
+            "usd": 6.61
+          },
+          {
+            "name": "Basalt Monolith",
+            "usd": 4.44
+          }
+        ]
+      },
+      "elapsed_s": 464.047993183136
+    },
+    "vampires-steal": {
+      "wish_id": "vampires-steal",
+      "wish": "I want vampires that steal \u2014 take my opponents' creatures and permanents. Theft and control, black-blue if that fits.",
+      "status": "unknown",
+      "unknown_reason": "brief not ready: blockers=['terms', 'terms', 'terms']",
+      "brief": null,
+      "commander": null,
+      "commander_picks": [],
+      "commander_note": "",
+      "commander_query": "",
+      "deck_names": [],
+      "deck": [],
+      "plan": null,
+      "price": null,
+      "budget": null,
+      "elapsed_s": 61.22351121902466
+    },
+    "vampires-drain": {
+      "wish_id": "vampires-drain",
+      "wish": "I want vampires that drain \u2014 make opponents lose life whenever I gain life. Lifedrain, not stealing their cards.",
+      "status": "ok",
+      "unknown_reason": null,
+      "brief": {
+        "theme": "vampires",
+        "angle": "lifegain triggers drain: whenever you gain life, opponents lose life",
+        "colors": "WB",
+        "mechanics": [
+          "lifegain-triggered drain",
+          "life loss on opponents from own lifegain",
+          "vampire tribal synergy"
+        ],
+        "budget_total": 150,
+        "bracket": 2,
+        "commander_query": "is:commander t:vampire o:\"whenever you gain life\"",
+        "flavor_terms": [
+          "vampire",
+          "blood",
+          "drain",
+          "bat",
+          "night"
+        ],
+        "fantasy": "gaining life and watching opponents lose life for it, vampires feeding at the table",
+        "playstyle": "proactive",
+        "commander_name": "",
+        "table": "casual kitchen table, nothing sweaty"
+      },
+      "commander": "Vito, Thorn of the Dusk Rose",
+      "commander_picks": [
+        "Vito, Thorn of the Dusk Rose",
+        "Edgar, Charmed Groom // Edgar Markov's Coffin",
+        "Nazar, the Velvet Fang",
+        "Drana, the Last Bloodchief",
+        "Yahenni, Undying Partisan"
+      ],
+      "commander_note": "",
+      "commander_query": "f:commander is:commander (t:creature or o:\"can be your commander\") (t:vampire o:\"whenever you gain life\") id<=WB",
+      "deck_names": [
+        "Arcane Signet",
+        "Ash Barrens",
+        "Blood Artist",
+        "Bloodbond Vampire",
+        "Bloodthirsty Aerialist",
+        "Bojuka Bog",
+        "Braids, Arisen Nightmare",
+        "Buried Ruin",
+        "Cauldron Familiar",
+        "Charcoal Diamond",
+        "Citizen V, Helmut Zemo",
+        "Command Tower",
+        "Commander's Sphere",
+        "Consuming Corruption",
+        "Corrupted Conviction",
+        "Darksteel Citadel",
+        "Deadly Dispute",
+        "Deadly Tempest",
+        "Defiant Bloodlord",
+        "Dread Presence",
+        "Enduring Tenacity",
+        "Epicure of Blood",
+        "Evolving Wilds",
+        "Excalibur II",
+        "Exotic Orchard",
+        "Fabled Passage",
+        "Falkenrath Noble",
+        "Fatal Push",
+        "Fell the Profane // Fell Mire",
+        "Fellwar Stone",
+        "Glidedive Duo",
+        "Go for the Throat",
+        "Gray Merchant of Asphodel",
+        "Grim Haruspex",
+        "Hero's Downfall",
+        "Kalastria Nightwatch",
+        "Karn's Bastion",
+        "Leech Collector // Bloodletting",
+        "Lich's Mastery",
+        "MACH-1, Swooping Scoundrel",
+        "Malakir Familiar",
+        "Marauding Blight-Priest",
+        "Midnight Reaper",
+        "Mind Stone",
+        "Morbid Opportunist",
+        "Murderous Rider // Swift End",
+        "Myriad Landscape",
+        "Nazar, the Velvet Fang",
+        "Nighthawk Scavenger",
+        "Nirkana Assassin",
+        "Path of Ancestry",
+        "Pontiff of Blight",
+        "Prismatic Lens",
+        "Pristine Talisman",
+        "Reliquary Tower",
+        "Rogue's Passage",
+        "Sanctum Seeker",
+        "Sanguine Bond",
+        "Scavenger Grounds",
+        "Scion of the Swarm",
+        "Secluded Courtyard",
+        "Sol Ring",
+        "South Wind Avatar",
+        "Starscape Cleric",
+        "Swamp",
+        "Temple of the False God",
+        "Terramorphic Expanse",
+        "Thought Vessel",
+        "Thrull Parasite",
+        "Twilight Prophet",
+        "Unclaimed Territory",
+        "Vampire Scrivener",
+        "Vampiric Rites",
+        "Vengeful Bloodwitch",
+        "Village Rites",
+        "Vraan, Executioner Thane",
+        "Wall of Limbs",
+        "War Room",
+        "Well of Lost Dreams",
+        "Withering Curse",
+        "Worn Powerstone",
+        "Zulaport Cutthroat"
+      ],
+      "deck": [
+        {
+          "name": "Worn Powerstone",
+          "role": "ramp"
+        },
+        {
+          "name": "Arcane Signet",
+          "role": "ramp"
+        },
+        {
+          "name": "Commander's Sphere",
+          "role": "ramp"
+        },
+        {
+          "name": "Mind Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Fellwar Stone",
+          "role": "ramp"
+        },
+        {
+          "name": "Pristine Talisman",
+          "role": "ramp"
+        },
+        {
+          "name": "Charcoal Diamond",
+          "role": "ramp"
+        },
+        {
+          "name": "Thought Vessel",
+          "role": "ramp"
+        },
+        {
+          "name": "Sol Ring",
+          "role": "ramp"
+        },
+        {
+          "name": "Prismatic Lens",
+          "role": "ramp"
+        },
+        {
+          "name": "Well of Lost Dreams",
+          "role": "draw"
+        },
+        {
+          "name": "Vampiric Rites",
+          "role": "draw"
+        },
+        {
+          "name": "Braids, Arisen Nightmare",
+          "role": "draw"
+        },
+        {
+          "name": "Midnight Reaper",
+          "role": "draw"
+        },
+        {
+          "name": "Morbid Opportunist",
+          "role": "draw"
+        },
+        {
+          "name": "Grim Haruspex",
+          "role": "draw"
+        },
+        {
+          "name": "Deadly Dispute",
+          "role": "draw"
+        },
+        {
+          "name": "Village Rites",
+          "role": "draw"
+        },
+        {
+          "name": "Corrupted Conviction",
+          "role": "draw"
+        },
+        {
+          "name": "Consuming Corruption",
+          "role": "spot"
+        },
+        {
+          "name": "Murderous Rider // Swift End",
+          "role": "spot"
+        },
+        {
+          "name": "Go for the Throat",
+          "role": "spot"
+        },
+        {
+          "name": "Hero's Downfall",
+          "role": "spot"
+        },
+        {
+          "name": "Fatal Push",
+          "role": "spot"
+        },
+        {
+          "name": "Withering Curse",
+          "role": "wipe"
+        },
+        {
+          "name": "Deadly Tempest",
+          "role": "wipe"
+        },
+        {
+          "name": "South Wind Avatar",
+          "role": "plan"
+        },
+        {
+          "name": "Blood Artist",
+          "role": "plan"
+        },
+        {
+          "name": "Zulaport Cutthroat",
+          "role": "plan"
+        },
+        {
+          "name": "Vengeful Bloodwitch",
+          "role": "plan"
+        },
+        {
+          "name": "Twilight Prophet",
+          "role": "plan"
+        },
+        {
+          "name": "Falkenrath Noble",
+          "role": "plan"
+        },
+        {
+          "name": "Pontiff of Blight",
+          "role": "plan"
+        },
+        {
+          "name": "Dread Presence",
+          "role": "plan"
+        },
+        {
+          "name": "Gray Merchant of Asphodel",
+          "role": "plan"
+        },
+        {
+          "name": "Vraan, Executioner Thane",
+          "role": "plan"
+        },
+        {
+          "name": "Sanctum Seeker",
+          "role": "plan"
+        },
+        {
+          "name": "Cauldron Familiar",
+          "role": "plan"
+        },
+        {
+          "name": "Malakir Familiar",
+          "role": "theme"
+        },
+        {
+          "name": "Starscape Cleric",
+          "role": "theme"
+        },
+        {
+          "name": "Bloodthirsty Aerialist",
+          "role": "theme"
+        },
+        {
+          "name": "Citizen V, Helmut Zemo",
+          "role": "theme"
+        },
+        {
+          "name": "Excalibur II",
+          "role": "theme"
+        },
+        {
+          "name": "Leech Collector // Bloodletting",
+          "role": "theme"
+        },
+        {
+          "name": "Nirkana Assassin",
+          "role": "theme"
+        },
+        {
+          "name": "Scion of the Swarm",
+          "role": "theme"
+        },
+        {
+          "name": "Wall of Limbs",
+          "role": "theme"
+        },
+        {
+          "name": "Nazar, the Velvet Fang",
+          "role": "theme"
+        },
+        {
+          "name": "Sanguine Bond",
+          "role": "theme"
+        },
+        {
+          "name": "Bloodbond Vampire",
+          "role": "theme"
+        },
+        {
+          "name": "Vampire Scrivener",
+          "role": "theme"
+        },
+        {
+          "name": "Enduring Tenacity",
+          "role": "theme"
+        },
+        {
+          "name": "Epicure of Blood",
+          "role": "theme"
+        },
+        {
+          "name": "Lich's Mastery",
+          "role": "theme"
+        },
+        {
+          "name": "Glidedive Duo",
+          "role": "deepcut"
+        },
+        {
+          "name": "Nighthawk Scavenger",
+          "role": "deepcut"
+        },
+        {
+          "name": "Defiant Bloodlord",
+          "role": "deepcut"
+        },
+        {
+          "name": "Marauding Blight-Priest",
+          "role": "deepcut"
+        },
+        {
+          "name": "Thrull Parasite",
+          "role": "deepcut"
+        },
+        {
+          "name": "Unclaimed Territory",
+          "role": "lands"
+        },
+        {
+          "name": "Myriad Landscape",
+          "role": "lands"
+        },
+        {
+          "name": "War Room",
+          "role": "lands"
+        },
+        {
+          "name": "Karn's Bastion",
+          "role": "lands"
+        },
+        {
+          "name": "Exotic Orchard",
+          "role": "lands"
+        },
+        {
+          "name": "Terramorphic Expanse",
+          "role": "lands"
+        },
+        {
+          "name": "Evolving Wilds",
+          "role": "lands"
+        },
+        {
+          "name": "Command Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Ash Barrens",
+          "role": "lands"
+        },
+        {
+          "name": "Bojuka Bog",
+          "role": "lands"
+        },
+        {
+          "name": "Buried Ruin",
+          "role": "lands"
+        },
+        {
+          "name": "Temple of the False God",
+          "role": "lands"
+        },
+        {
+          "name": "Darksteel Citadel",
+          "role": "lands"
+        },
+        {
+          "name": "Fell the Profane // Fell Mire",
+          "role": "lands"
+        },
+        {
+          "name": "Reliquary Tower",
+          "role": "lands"
+        },
+        {
+          "name": "Rogue's Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Path of Ancestry",
+          "role": "lands"
+        },
+        {
+          "name": "Fabled Passage",
+          "role": "lands"
+        },
+        {
+          "name": "Secluded Courtyard",
+          "role": "lands"
+        },
+        {
+          "name": "Scavenger Grounds",
+          "role": "lands"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Swamp",
+          "role": "basic"
+        },
+        {
+          "name": "Kalastria Nightwatch",
+          "role": "theme"
+        },
+        {
+          "name": "MACH-1, Swooping Scoundrel",
+          "role": "theme"
+        }
+      ],
+      "plan": {
+        "version": 1,
+        "archetype": {
+          "id": "incremental",
+          "label": "grind it out",
+          "candidates": [
+            "incremental",
+            "burst",
+            "aggro"
+          ],
+          "decided": false
+        },
+        "derived_from": {
+          "commander": "Vito, Thorn of the Dusk Rose",
+          "partner": null,
+          "brief_fields": [
+            "mechanics",
+            "playstyle",
+            "theme",
+            "angle"
+          ],
+          "sim_version": 8
+        },
+        "conditions": [
+          {
+            "id": "engine_online",
+            "label": "3 payoffs online",
+            "why": "One payoff is a card. Two is an engine.",
+            "check": {
+              "payoffs_in_play": 3
+            },
+            "by_turn": 5,
+            "weight": "core"
+          },
+          {
+            "id": "commander_out",
+            "label": "Commander is out",
+            "why": "Nothing else in the plan works until the commander has resolved and stuck.",
+            "check": {
+              "commander_in_play": true
+            },
+            "by_turn": 6,
+            "weight": "core"
+          },
+          {
+            "id": "gain_events_online",
+            "label": "12 life gained",
+            "why": "The commander converts every gain, so the deck wants many small triggers rather than one big gain.",
+            "check": {
+              "life_gained": 12
+            },
+            "by_turn": 6,
+            "weight": "core"
+          }
+        ],
+        "commitments": [
+          {
+            "id": "lifegain_density",
+            "label": "enough lifegain to turn on the payoffs",
+            "counts": {
+              "role": "theme",
+              "min": 10
+            },
+            "why": "The payoffs are dead cards without triggers to feed them."
+          },
+          {
+            "id": "sacrifice_density",
+            "label": "outlets and death triggers that close the loop",
+            "counts": {
+              "role": "plan",
+              "min": 8
+            },
+            "why": "Sacrifice payoffs need fodder and a way to sacrifice."
+          }
+        ],
+        "load_bearing": [
+          "Vito, Thorn of the Dusk Rose"
+        ],
+        "theme": {
+          "label": "vampires",
+          "source": "brief.theme",
+          "binding": false
+        }
+      },
+      "price": 125.49,
+      "budget": {
+        "total": 125.49,
+        "budget": 150.0,
+        "delta": -24.51,
+        "vs_brief": "$24.51 under the $150 brief",
+        "top": [
+          {
+            "name": "Enduring Tenacity",
+            "usd": 12.02
+          },
+          {
+            "name": "Sanguine Bond",
+            "usd": 6.61
+          },
+          {
+            "name": "War Room",
+            "usd": 4.12
+          }
+        ]
+      },
+      "elapsed_s": 336.4324390888214
+    },
+    "vampires-cheap": {
+      "wish_id": "vampires-cheap",
+      "wish": "I want a vampire lifegain drain deck, and make it cheap \u2014 keep the whole list under about $50.",
+      "status": "unknown",
+      "unknown_reason": "brief not ready: blockers=['terms', 'terms']",
+      "brief": null,
+      "commander": null,
+      "commander_picks": [],
+      "commander_note": "",
+      "commander_query": "",
+      "deck_names": [],
+      "deck": [],
+      "plan": null,
+      "price": null,
+      "budget": null,
+      "elapsed_s": 100.08666181564331
+    },
+    "vampires-nobudget": {
+      "wish_id": "vampires-nobudget",
+      "wish": "I want a vampire lifegain drain deck. Build the strongest version you can; I'm not worried about price.",
+      "status": "unknown",
+      "unknown_reason": "brief not ready: blockers=['terms']",
+      "brief": null,
+      "commander": null,
+      "commander_picks": [],
+      "commander_note": "",
+      "commander_query": "",
+      "deck_names": [],
+      "deck": [],
+      "plan": null,
+      "price": null,
+      "budget": null,
+      "elapsed_s": 120.9432590007782
+    }
+  },
+  "pairs": [
+    {
+      "id": "tribe-angels-vs-vampires",
+      "checks": [
+        {
+          "name": "jaccard overlap",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 angels-lifegain: brief not ready: blockers=['terms']. A refused or missing build is UNKNOWN, not 'different'."
+        },
+        {
+          "name": "commander picks differ",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 angels-lifegain: brief not ready: blockers=['terms']. A refused or missing build is UNKNOWN, not 'different'."
+        },
+        {
+          "name": "membership",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 angels-lifegain: brief not ready: blockers=['terms']. A refused or missing build is UNKNOWN, not 'different'."
+        }
+      ],
+      "jaccard": null
+    },
+    {
+      "id": "archetype-incremental-vs-burst",
+      "checks": [
+        {
+          "name": "jaccard overlap",
+          "status": "PASS",
+          "detail": "Jaccard 41.7% (shared 48 / union 115) \u2014 upper bar not yet calibrated (CON-168: publish first)"
+        },
+        {
+          "name": "archetype differs",
+          "status": "FAIL",
+          "detail": "both sides chose 'incremental'; wanted 'incremental' vs 'burst'"
+        },
+        {
+          "name": "commitments differ",
+          "status": "PASS",
+          "detail": "['combat_piece_density', 'dig_density', 'lifegain_density', 'sacrifice_density', 'token_density', 'wide_payoff_density'] vs ['lifegain_density', 'sacrifice_density']"
+        },
+        {
+          "name": "commitments meet min",
+          "status": "PASS",
+          "detail": "each side meets its own stated min"
+        }
+      ],
+      "jaccard": 0.41739130434782606
+    },
+    {
+      "id": "behaviour-steal-vs-drain",
+      "checks": [
+        {
+          "name": "jaccard overlap",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 vampires-steal: brief not ready: blockers=['terms', 'terms', 'terms']. A refused or missing build is UNKNOWN, not 'different'."
+        },
+        {
+          "name": "commander picks differ",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 vampires-steal: brief not ready: blockers=['terms', 'terms', 'terms']. A refused or missing build is UNKNOWN, not 'different'."
+        },
+        {
+          "name": "membership",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 vampires-steal: brief not ready: blockers=['terms', 'terms', 'terms']. A refused or missing build is UNKNOWN, not 'different'."
+        }
+      ],
+      "jaccard": null
+    },
+    {
+      "id": "budget-cheap-vs-open",
+      "checks": [
+        {
+          "name": "jaccard overlap",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 vampires-cheap: brief not ready: blockers=['terms', 'terms']; vampires-nobudget: brief not ready: blockers=['terms']. A refused or missing build is UNKNOWN, not 'different'."
+        },
+        {
+          "name": "budget binds",
+          "status": "UNKNOWN",
+          "detail": "excluded from comparison \u2014 vampires-cheap: brief not ready: blockers=['terms', 'terms']; vampires-nobudget: brief not ready: blockers=['terms']. A refused or missing build is UNKNOWN, not 'different'."
+        }
+      ],
+      "jaccard": null
+    }
+  ],
+  "jaccard_max": null
+}

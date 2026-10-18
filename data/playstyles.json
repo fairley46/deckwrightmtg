@@ -1,0 +1,472 @@
+{
+  "version": 1,
+  "note": "CON-180. Community-named Commander playstyles as detectable compositions of oracle_signals. Names and exemplars are sourced; inventing neither. An entry with missing_signals cannot be detected until those signals exist \u2014 that is a finding, not a match.",
+  "playstyles": {
+    "aristocrats": {
+      "name": "aristocrats",
+      "says": "Sacrifice your own creatures for value, then cash in the deaths.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "dies_trigger",
+          "creature_token_maker",
+          "drain",
+          "leaves_battlefield"
+        ],
+        "requires_any": [
+          "dies_trigger",
+          "dies_trigger_doubler",
+          "sacrifice_outlet",
+          "sacrifice_trigger"
+        ]
+      },
+      "wants": [
+        "fodder",
+        "death payoffs",
+        "recursion",
+        "sacrifice outlets"
+      ],
+      "exemplars": [
+        "Teysa Karlov",
+        "Elenda, the Dusk Rose",
+        "Yawgmoth, Thran Physician",
+        "Prossh, Skyraider of Kher",
+        "Elas il-Kor, Sadistic Pilgrim"
+      ],
+      "not": {
+        "blink": "Both move creatures on and off the battlefield. Aristocrats wants them to DIE and stay dead for value; blink wants them to COME BACK to re-trigger enters."
+      },
+      "sources": [
+        "https://edhrec.com/tags/aristocrats",
+        "https://edhrec.com/articles/deep-analysis-aristocrats",
+        "https://edh.fandom.com/wiki/Aristocrats"
+      ],
+      "missing_signals": [
+        "dies_trigger_doubler \u2014 Teysa Karlov doubles death triggers without saying 'dies' in a way our dies_trigger pattern catches"
+      ]
+    },
+    "blink": {
+      "name": "blink",
+      "says": "Exile your own creatures and bring them back to reuse their enter-the-battlefield abilities.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "enters"
+        ],
+        "requires_any": [
+          "blink",
+          "etb_doubler"
+        ]
+      },
+      "wants": [
+        "etb creatures",
+        "blink outlets",
+        "flicker payoffs"
+      ],
+      "exemplars": [
+        "Brago, King Eternal",
+        "Yorion, Sky Nomad",
+        "Aminatou, the Fateshifter"
+      ],
+      "not": {
+        "aristocrats": "Both clear your board of creatures. Blink returns them to fire enters again; aristocrats needs the death itself as the resource."
+      },
+      "sources": [
+        "https://edhrec.com/tags/blink",
+        "https://edh.fandom.com/wiki/Blink",
+        "https://spellweave.app/guides/edh-archetypes"
+      ],
+      "missing_signals": [
+        "etb_doubler \u2014 Elesh Norn, Mother of Machines doubles enters without blinking anything herself",
+        "leaves_payoff_for_blink \u2014 Hei Bai pays you when he leaves; the community blinks him for that, but leaves_battlefield alone is not the blink action"
+      ]
+    },
+    "counters": {
+      "name": "+1/+1 counters",
+      "says": "Stack +1/+1 counters on your creatures and turn that growth into the win.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "go_tall_payoff",
+          "attacks"
+        ],
+        "requires_any": [
+          "counter_placement",
+          "proliferate",
+          "go_tall_payoff"
+        ]
+      },
+      "wants": [
+        "counter enablers",
+        "counter payoffs",
+        "proliferate"
+      ],
+      "exemplars": [
+        "Atraxa, Praetors' Voice",
+        "Ezuri, Claw of Progress",
+        "Hamza, Guardian of Arashin",
+        "Ghave, Guru of Spores",
+        "Heliod, Sun-Crowned"
+      ],
+      "not": {
+        "voltron": "Both make one creature huge. Counters grow any creature you choose and often a whole team; voltron suits up one body \u2014 usually the commander \u2014 with equipment and auras for commander damage."
+      },
+      "sources": [
+        "https://edhrec.com/tags/plus-1-plus-1-counters",
+        "https://edh.fandom.com/wiki/%2B1/%2B1_Counters",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    },
+    "voltron": {
+      "name": "voltron",
+      "says": "Pile equipment and auras on one creature \u2014 usually your commander \u2014 and win with commander damage.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "go_tall_payoff",
+          "attacks",
+          "enters",
+          "cant_be_blocked",
+          "firebreathing"
+        ],
+        "requires_any": [
+          "aura_or_equipment_cast",
+          "attach_to_commander"
+        ]
+      },
+      "wants": [
+        "equipment",
+        "auras",
+        "protection",
+        "evasion"
+      ],
+      "exemplars": [
+        "Light-Paws, Emperor's Voice",
+        "Sram, Senior Edificer",
+        "Wyleth, Soul of Steel",
+        "Ardenn, Intrepid Archaeologist"
+      ],
+      "not": {
+        "counters": "Both aim at a lethal attacker. Voltron is gear on one body for commander damage; counters is the +1/+1 counter engine, which can go tall or wide without caring about equipment."
+      },
+      "sources": [
+        "https://edhrec.com/tags/voltron",
+        "https://edhrec.com/tags/equipment",
+        "https://edh.fandom.com/wiki/Voltron",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    },
+    "spellslinger": {
+      "name": "spellslinger",
+      "says": "Cast a pile of instants and sorceries and get paid every time you do.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "graveyard_recursion"
+        ],
+        "requires_any": [
+          "instant_or_sorcery_cast",
+          "magecraft",
+          "spell_from_graveyard"
+        ]
+      },
+      "wants": [
+        "cantrips",
+        "spell payoffs",
+        "copy effects",
+        "rituals"
+      ],
+      "exemplars": [
+        "Kess, Dissident Mage",
+        "Niv-Mizzet, Parun",
+        "Veyran, Voice of Duality",
+        "Stella Lee, Wild Card"
+      ],
+      "not": {
+        "reanimator": "Both dig the graveyard. Spellslinger casts instants and sorceries from hand (and sometimes yard); reanimator cheats fat creatures onto the battlefield from the yard."
+      },
+      "sources": [
+        "https://edhrec.com/tags/spellslinger",
+        "https://edhrec.com/guides/edhrec-guide-to-spellslinger-in-commander",
+        "https://edh.fandom.com/wiki/Spellslinger"
+      ]
+    },
+    "landfall": {
+      "name": "landfall",
+      "says": "Every land that enters the battlefield under you pays you again.",
+      "detect": {
+        "requires": [
+          "land_trigger"
+        ],
+        "boosts": [
+          "creature_token_maker",
+          "enters",
+          "enchant_land"
+        ]
+      },
+      "wants": [
+        "ramp",
+        "extra land drops",
+        "landfall payoffs",
+        "land recursion"
+      ],
+      "exemplars": [
+        "Omnath, Locus of Rage",
+        "Aesi, Tyrant of Gyre Strait",
+        "Tatyova, Benthic Druid",
+        "Bristly Bill, Spine Sower"
+      ],
+      "not": {
+        "tokens": "Landfall often makes tokens, but the engine is the land entering. Tokens is about the army itself; a token deck does not need lands to keep entering."
+      },
+      "sources": [
+        "https://edhrec.com/tags/landfall",
+        "https://edh.fandom.com/wiki/Landfall",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    },
+    "tokens": {
+      "name": "tokens",
+      "says": "Make a wide board of creature tokens and overwhelm with numbers.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "creature_token_maker",
+          "go_wide_payoff",
+          "token_create"
+        ],
+        "requires_any": [
+          "creature_token_maker",
+          "creature_tokens",
+          "token_doubler"
+        ]
+      },
+      "wants": [
+        "token makers",
+        "anthems",
+        "populate",
+        "sacrifice outlets"
+      ],
+      "exemplars": [
+        "Krenko, Mob Boss",
+        "Rhys the Redeemed",
+        "Jetmir, Nexus of Revels",
+        "Purphoros, God of the Forge",
+        "Chatterfang, Squirrel General"
+      ],
+      "not": {
+        "aristocrats": "Both love cheap creatures. Tokens wants them alive on board for go-wide damage; aristocrats wants them dying for value."
+      },
+      "sources": [
+        "https://edhrec.com/tags/tokens",
+        "https://edh.fandom.com/wiki/Tokens",
+        "https://spellweave.app/guides/edh-archetypes"
+      ],
+      "missing_signals": [
+        "token_doubler \u2014 Chatterfang replaces token creation with extra Squirrels; creature_token_maker never fires because he never says 'create'"
+      ]
+    },
+    "reanimator": {
+      "name": "reanimator",
+      "says": "Put big creatures in the graveyard, then cheaply put them onto the battlefield.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "enters"
+        ],
+        "requires_any": [
+          "graveyard_recursion",
+          "play_from_graveyard"
+        ]
+      },
+      "wants": [
+        "self-mill",
+        "entomb",
+        "reanimation spells",
+        "fat creatures"
+      ],
+      "exemplars": [
+        "Meren of Clan Nel Toth",
+        "Chainer, Nightmare Adept",
+        "Karador, Ghost Chieftain",
+        "Muldrotha, the Gravetide"
+      ],
+      "not": {
+        "aristocrats": "Both use the graveyard. Reanimator wants the creature BACK as a threat; aristocrats wants the death trigger and is fine if the body stays gone."
+      },
+      "sources": [
+        "https://edhrec.com/tags/reanimator",
+        "https://edh.fandom.com/wiki/Reanimator",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    },
+    "stax": {
+      "name": "stax",
+      "says": "Tax and lock the table so opponents cannot play their game while you still can.",
+      "detect": {
+        "requires": [],
+        "boosts": [],
+        "requires_any": [
+          "tax_opponent_spells"
+        ]
+      },
+      "wants": [
+        "tax pieces",
+        "resource denial",
+        "mana rocks",
+        "rule-setting enchantments"
+      ],
+      "exemplars": [
+        "Grand Arbiter Augustin IV",
+        "Derevi, Empyrial Tactician"
+      ],
+      "not": {
+        "group_hug": "Both change how much everyone gets to do. Stax takes resources away asymmetrically; group hug gives everyone extras and wins through the politics that creates."
+      },
+      "sources": [
+        "https://edhrec.com/tags/stax",
+        "https://edh.fandom.com/wiki/Stax",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    },
+    "group_hug": {
+      "name": "group hug",
+      "says": "Give the whole table extra cards and mana, then win through the chaos and politics that creates.",
+      "detect": {
+        "requires": [],
+        "boosts": [],
+        "requires_any": [
+          "symmetric_resource"
+        ]
+      },
+      "wants": [
+        "symmetric draw",
+        "symmetric ramp",
+        "political payoffs",
+        "alternate wincons"
+      ],
+      "exemplars": [
+        "Phelddagrif",
+        "Kwain, Itinerant Meddler",
+        "Ms. Bumbleflower"
+      ],
+      "not": {
+        "stax": "Both are table-wide effects. Group hug gives; stax takes. The table feels the difference immediately."
+      },
+      "sources": [
+        "https://edhrec.com/tags/group-hug",
+        "https://edh.fandom.com/wiki/Group_Hug"
+      ]
+    },
+    "lifegain": {
+      "name": "lifegain",
+      "says": "Gain life over and over, then turn that life into cards, creatures, or drains.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "lifegain_source",
+          "drain",
+          "counter_placement"
+        ],
+        "requires_any": [
+          "gained_life_this_turn",
+          "lifegain_trigger"
+        ]
+      },
+      "wants": [
+        "lifegain sources",
+        "lifegain payoffs",
+        "drain",
+        "protection"
+      ],
+      "exemplars": [
+        "Oloro, Ageless Ascetic",
+        "Heliod, Sun-Crowned",
+        "Lathiel, the Bounteous Dawn",
+        "Elas il-Kor, Sadistic Pilgrim"
+      ],
+      "not": {
+        "aristocrats": "Both often drain life. Lifegain wants the gain event as fuel; aristocrats wants the death event. A drain payoff can sit in either deck for different reasons."
+      },
+      "sources": [
+        "https://edhrec.com/tags/lifegain",
+        "https://edh.fandom.com/wiki/Lifegain",
+        "https://spellweave.app/guides/edh-archetypes"
+      ],
+      "missing_signals": [
+        "gained_life_this_turn \u2014 Lathiel keys off 'if you gained life this turn' and has lifelink; lifegain_trigger never fires"
+      ]
+    },
+    "artifacts": {
+      "name": "artifacts",
+      "says": "Build around artifacts \u2014 rocks, constructs, and machines that feed each other.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "creature_token_maker",
+          "token_create",
+          "resource_tokens"
+        ],
+        "requires_any": [
+          "artifact_matter",
+          "treasure_tokens"
+        ]
+      },
+      "wants": [
+        "artifact ramp",
+        "artifact creatures",
+        "affinity payoffs",
+        "recursion"
+      ],
+      "exemplars": [
+        "Urza, Lord High Artificer",
+        "Breya, Etherium Shaper",
+        "Sharuum the Hegemon"
+      ],
+      "not": {
+        "tokens": "Artifact decks often make Construct or Thopter tokens. Artifacts is about the permanent type and its synergies; tokens is about the wide board regardless of type."
+      },
+      "sources": [
+        "https://edhrec.com/tags/artifacts",
+        "https://edh.fandom.com/wiki/Artifacts"
+      ]
+    },
+    "tribal": {
+      "name": "tribal",
+      "says": "Pick a creature type and fill the deck with that type so every lord and payoff hits.",
+      "detect": {
+        "requires": [],
+        "boosts": [
+          "creature_token_maker",
+          "go_wide_payoff",
+          "attacks"
+        ],
+        "requires_any": [
+          "creature_type_matter",
+          "tribal_type_matter"
+        ]
+      },
+      "wants": [
+        "lords",
+        "type payoffs",
+        "tribal tutors",
+        "token copies of the type"
+      ],
+      "exemplars": [
+        "Edgar Markov",
+        "The Ur-Dragon",
+        "Lathril, Blade of the Elves",
+        "Wilhelt, the Rotcleaver",
+        "Giada, Font of Hope"
+      ],
+      "not": {
+        "tokens": "Tribal can make tokens of its type. Tribal needs the creature type to matter; a generic token swarm with no type payoff is tokens, not tribal."
+      },
+      "sources": [
+        "https://edhrec.com/tags/tribes",
+        "https://edh.fandom.com/wiki/Tribal",
+        "https://spellweave.app/guides/edh-archetypes"
+      ]
+    }
+  }
+}

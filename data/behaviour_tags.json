@@ -1,0 +1,331 @@
+{
+  "version": 1,
+  "source": "verified otag: probes \u2014 CON-151; no /catalog endpoint exists",
+  "notes": [
+    "Behaviour vocabulary for resolve_term() \u2014 checked before type/keyword catalogs.",
+    "Every tag and alias was probed live; build fails on HTTP 404 or zero cards.",
+    "aliases share a card pool with the canonical tag (boardwipe/sweeper, flicker/blink).",
+    "synonyms are player words (steal \u2192 theft); dead guesses like stax are absent."
+  ],
+  "tags": [
+    {
+      "tag": "anthem",
+      "cards": 447,
+      "aliases": [],
+      "synonyms": [
+        "anthem",
+        "anthems"
+      ]
+    },
+    {
+      "tag": "boardwipe",
+      "cards": 934,
+      "aliases": [
+        "sweeper",
+        "wipe"
+      ],
+      "synonyms": [
+        "boardwipe",
+        "wipe",
+        "wrath",
+        "sweeper",
+        "boardwipes"
+      ]
+    },
+    {
+      "tag": "burn",
+      "cards": 3015,
+      "aliases": [],
+      "synonyms": [
+        "burn",
+        "burning"
+      ]
+    },
+    {
+      "tag": "cantrip",
+      "cards": 646,
+      "aliases": [],
+      "synonyms": [
+        "cantrip",
+        "cantrips"
+      ]
+    },
+    {
+      "tag": "clone",
+      "cards": 69,
+      "aliases": [],
+      "synonyms": [
+        "clone",
+        "clones",
+        "cloning"
+      ]
+    },
+    {
+      "tag": "copy",
+      "cards": 1016,
+      "aliases": [],
+      "synonyms": [
+        "copy",
+        "copying"
+      ]
+    },
+    {
+      "tag": "counterspell",
+      "cards": 546,
+      "aliases": [],
+      "synonyms": [
+        "counterspell",
+        "counterspells"
+      ]
+    },
+    {
+      "tag": "creature-removal",
+      "cards": 5478,
+      "aliases": [],
+      "synonyms": [
+        "creature-removal"
+      ]
+    },
+    {
+      "tag": "discard",
+      "cards": 573,
+      "aliases": [],
+      "synonyms": [
+        "discard",
+        "discarding"
+      ]
+    },
+    {
+      "tag": "draw",
+      "cards": 4216,
+      "aliases": [],
+      "synonyms": [
+        "draw",
+        "drawing",
+        "card draw",
+        "draws"
+      ]
+    },
+    {
+      "tag": "evasion",
+      "cards": 5250,
+      "aliases": [],
+      "synonyms": [
+        "evasion"
+      ]
+    },
+    {
+      "tag": "extra-turn",
+      "cards": 58,
+      "aliases": [],
+      "synonyms": [
+        "extra-turn",
+        "extra turns"
+      ]
+    },
+    {
+      "tag": "flicker",
+      "cards": 196,
+      "aliases": [
+        "blink"
+      ],
+      "synonyms": [
+        "flicker",
+        "flickering",
+        "blink",
+        "blinking"
+      ]
+    },
+    {
+      "tag": "graveyard-hate",
+      "cards": 419,
+      "aliases": [],
+      "synonyms": [
+        "graveyard-hate",
+        "gy hate"
+      ]
+    },
+    {
+      "tag": "group-hug",
+      "cards": 410,
+      "aliases": [],
+      "synonyms": [
+        "group-hug"
+      ]
+    },
+    {
+      "tag": "land-ramp",
+      "cards": 621,
+      "aliases": [],
+      "synonyms": [
+        "land-ramp"
+      ]
+    },
+    {
+      "tag": "landfall",
+      "cards": 279,
+      "aliases": [],
+      "synonyms": [
+        "landfall"
+      ]
+    },
+    {
+      "tag": "lifedrain",
+      "cards": 399,
+      "aliases": [],
+      "synonyms": [
+        "lifedrain",
+        "drain",
+        "draining"
+      ]
+    },
+    {
+      "tag": "lifegain",
+      "cards": 2586,
+      "aliases": [],
+      "synonyms": [
+        "lifegain",
+        "gain life",
+        "gaining life",
+        "gains life"
+      ]
+    },
+    {
+      "tag": "mill",
+      "cards": 1244,
+      "aliases": [],
+      "synonyms": [
+        "mill",
+        "milling"
+      ]
+    },
+    {
+      "tag": "pillowfort",
+      "cards": 60,
+      "aliases": [],
+      "synonyms": [
+        "pillowfort"
+      ]
+    },
+    {
+      "tag": "protection",
+      "cards": 1301,
+      "aliases": [],
+      "synonyms": [
+        "protection"
+      ]
+    },
+    {
+      "tag": "ramp",
+      "cards": 2280,
+      "aliases": [],
+      "synonyms": [
+        "ramp",
+        "ramping"
+      ]
+    },
+    {
+      "tag": "reanimate",
+      "cards": 1039,
+      "aliases": [],
+      "synonyms": [
+        "reanimate",
+        "reanimation",
+        "reanimating",
+        "reanimator"
+      ]
+    },
+    {
+      "tag": "recursion",
+      "cards": 2243,
+      "aliases": [],
+      "synonyms": [
+        "recursion"
+      ]
+    },
+    {
+      "tag": "removal",
+      "cards": 6408,
+      "aliases": [],
+      "synonyms": [
+        "removal",
+        "remove",
+        "removing",
+        "removes"
+      ]
+    },
+    {
+      "tag": "ritual",
+      "cards": 65,
+      "aliases": [],
+      "synonyms": [
+        "ritual",
+        "rituals"
+      ]
+    },
+    {
+      "tag": "sacrifice-outlet",
+      "cards": 1452,
+      "aliases": [],
+      "synonyms": [
+        "sacrifice-outlet",
+        "sac outlet"
+      ]
+    },
+    {
+      "tag": "spot-removal",
+      "cards": 4887,
+      "aliases": [],
+      "synonyms": [
+        "spot-removal"
+      ]
+    },
+    {
+      "tag": "tax",
+      "cards": 448,
+      "aliases": [],
+      "synonyms": [
+        "tax",
+        "taxes"
+      ]
+    },
+    {
+      "tag": "theft",
+      "cards": 716,
+      "aliases": [],
+      "synonyms": [
+        "theft",
+        "steal",
+        "stealing",
+        "steals"
+      ]
+    },
+    {
+      "tag": "tutor",
+      "cards": 1148,
+      "aliases": [],
+      "synonyms": [
+        "tutor",
+        "tutoring",
+        "tutors"
+      ]
+    },
+    {
+      "tag": "untapper",
+      "cards": 754,
+      "aliases": [],
+      "synonyms": [
+        "untapper"
+      ]
+    },
+    {
+      "tag": "wheel",
+      "cards": 148,
+      "aliases": [],
+      "synonyms": [
+        "wheel",
+        "wheels"
+      ]
+    }
+  ]
+}

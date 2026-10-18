@@ -1,0 +1,682 @@
+{
+  "note": "Real oracle text, for offline tests. Ground truth for Hei Bai and Angel of Indemnity comes from the tutorial YJ8X8bO8jeY.",
+  "cards": {
+    "Hei Bai, Spirit of Balance": {
+      "type_line": "Legendary Creature — Bear Spirit",
+      "oracle_text": "Whenever Hei Bai enters or attacks, you may sacrifice another creature or artifact. If you do, put two +1/+1 counters on Hei Bai.\nWhen Hei Bai leaves the battlefield, put its counters on target creature you control."
+    },
+    "Pitiless Plunderer": {
+      "type_line": "Creature — Human Pirate",
+      "oracle_text": "Whenever another creature you control dies, create a Treasure token."
+    },
+    "Sol Ring": {
+      "type_line": "Artifact",
+      "oracle_text": "{T}: Add {C}{C}."
+    },
+    "Storm Crow": {
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying"
+    },
+    "Wind Drake": {
+      "type_line": "Creature — Bird",
+      "oracle_text": "Flying"
+    },
+    "Angel of Indemnity": {
+      "type_line": "Creature — Angel",
+      "oracle_text": "Flying, lifelink\nWhen this creature enters, return target permanent card from your graveyard to the battlefield.\nEncore {6}{W}{W}"
+    },
+    "Krenko, Mob Boss": {
+      "type_line": "Legendary Creature — Goblin Warrior",
+      "oracle_text": "{T}: Create X 1/1 red Goblin creature tokens, where X is the number of Goblins you control."
+    },
+    "Omnath, Locus of Rage": {
+      "type_line": "Legendary Creature — Elemental",
+      "oracle_text": "Landfall — Whenever a land you control enters, create a 5/5 red and green Elemental creature token.\nWhenever an Elemental you control dies, this creature deals 3 damage to any target."
+    },
+    "Brago, King Eternal": {
+      "type_line": "Legendary Creature — Spirit",
+      "oracle_text": "Whenever Brago, King Eternal deals combat damage to a player, exile any number of target nonland permanents you control, then return those cards to the battlefield under their owner's control."
+    },
+    "Kess, Dissident Mage": {
+      "type_line": "Legendary Creature — Human Wizard",
+      "oracle_text": "Flying\nDuring each of your turns, you may cast an instant or sorcery spell from your graveyard. If a spell cast this way would be put into your graveyard, exile it instead."
+    },
+    "Shock": {
+      "type_line": "Instant",
+      "oracle_text": "Shock deals 2 damage to any target."
+    },
+    "Negate": {
+      "type_line": "Instant",
+      "oracle_text": "Counter target noncreature spell."
+    },
+    "Cloudshift": {
+      "type_line": "Instant",
+      "oracle_text": "Exile target creature you control, then return that card to the battlefield under your control."
+    },
+    "Ephemerate": {
+      "type_line": "Instant",
+      "oracle_text": "Exile target creature you control, then return it to the battlefield under its owner's control.\nRebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)"
+    },
+    "Felidar Guardian": {
+      "type_line": "Creature — Cat Beast",
+      "oracle_text": "When this creature enters, you may exile another target permanent you control, then return that card to the battlefield under its owner's control."
+    },
+    "Airbender Ascension": {
+      "type_line": "Enchantment",
+      "oracle_text": "When this enchantment enters, airbend up to one target creature.\nWhenever a creature you control enters, put a quest counter on this enchantment.\nAt the beginning of your end step, if this enchantment has four or more quest counters on it, exile up to one target creature you control, then return it to the battlefield under its owner's control."
+    },
+    "Conjurer's Closet": {
+      "type_line": "Artifact",
+      "oracle_text": "At the beginning of your end step, you may exile target creature you control, then return that card to the battlefield under your control."
+    },
+    "Teleportation Circle": {
+      "type_line": "Enchantment",
+      "oracle_text": "At the beginning of your end step, exile up to one target artifact or creature you control, then return that card to the battlefield under its owner's control."
+    },
+    "Restoration Angel": {
+      "type_line": "Creature — Angel",
+      "oracle_text": "Flash\nFlying\nWhen this creature enters, you may exile target non-Angel creature you control, then return that card to the battlefield under your control."
+    },
+    "Deadly Dispute": {
+      "type_line": "Instant",
+      "oracle_text": "As an additional cost to cast this spell, sacrifice an artifact or creature.\nDraw two cards and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+    },
+    "Village Rites": {
+      "type_line": "Instant",
+      "oracle_text": "As an additional cost to cast this spell, sacrifice a creature.\nDraw two cards."
+    },
+    "Braids, Arisen Nightmare": {
+      "type_line": "Legendary Creature — Nightmare",
+      "oracle_text": "At the beginning of your end step, you may sacrifice an artifact, creature, enchantment, land, or planeswalker. If you do, each opponent may sacrifice a permanent of their choice that shares a card type with it. For each opponent who doesn't, that player loses 2 life and you draw a card."
+    },
+    "Annex Sentry": {
+      "type_line": "Artifact Creature — Phyrexian Cleric",
+      "oracle_text": "Toxic 1 (Players dealt combat damage by this creature also get a poison counter.)\nWhen this creature enters, exile target artifact or creature an opponent controls with mana value 3 or less until this creature leaves the battlefield."
+    },
+    "Apostle of Invasion": {
+      "type_line": "Creature — Phyrexian Angel",
+      "oracle_text": "Flying\nCorrupted — As long as an opponent has three or more poison counters, this creature has double strike."
+    },
+    "Vraska, Betrayal's Sting": {
+      "type_line": "Legendary Planeswalker — Vraska",
+      "oracle_text": "Compleated ({B/P} can be paid with {B} or 2 life. If life was paid, this planeswalker enters with two fewer loyalty counters.)\n0: You draw a card and lose 1 life. Proliferate.\n−2: Target creature becomes a Treasure artifact with \"{T}, Sacrifice this artifact: Add one mana of any color\" and loses all other card types and abilities.\n−9: If target player has fewer than nine poison counters, they get a number of poison counters equal to the difference."
+    },
+    "Contaminated Drink": {
+      "type_line": "Instant",
+      "oracle_text": "Draw X cards, then you get half X rad counters, rounded up."
+    },
+    "Survivor's Med Kit": {
+      "type_line": "Artifact",
+      "oracle_text": "{1}, {T}: Choose one that hasn't been chosen —\n• Stimpak — Draw a card.\n• Fancy Lads Snack Cakes — Create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\n• RadAway — Target player loses all rad counters. Sacrifice this artifact."
+    },
+    "Nightkin Ambusher": {
+      "type_line": "Creature — Mutant Warrior",
+      "oracle_text": "Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)\nWhen this creature enters, target player gets four rad counters.\nThis creature can't be blocked as long as defending player has a rad counter."
+    },
+    "Ezuri, Claw of Progress": {
+      "type_line": "Legendary Creature — Phyrexian Elf Warrior",
+      "oracle_text": "Whenever a creature you control with power 2 or less enters, you get an experience counter.\nAt the beginning of combat on your turn, put X +1/+1 counters on another target creature you control, where X is the number of experience counters you have."
+    },
+    "Daxos the Returned": {
+      "type_line": "Legendary Creature — Zombie Soldier",
+      "oracle_text": "Whenever you cast an enchantment spell, you get an experience counter.\n{1}{W}{B}: Create a white and black Spirit enchantment creature token. It has \"This creature's power and toughness are each equal to the number of experience counters you have.\""
+    },
+    "Point the Way": {
+      "type_line": "Enchantment",
+      "oracle_text": "Start your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\n{3}{G}, Sacrifice this enchantment: Search your library for up to X basic land cards, where X is your speed. Put those cards onto the battlefield tapped, then shuffle."
+    },
+    "Hazoret, Godseeker": {
+      "type_line": "Legendary Creature — God",
+      "oracle_text": "Indestructible, haste\nStart your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\n{1}, {T}: Target creature with power 2 or less can't be blocked this turn.\nHazoret can't attack or block unless you have max speed."
+    },
+    "Amonkhet Raceway": {
+      "type_line": "Land",
+      "oracle_text": "Start your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\n{T}: Add {C}.\nMax speed — {T}: Target creature gains haste until end of turn."
+    },
+    "Aragorn, King of Gondor": {
+      "type_line": "Legendary Creature — Human Noble",
+      "oracle_text": "Vigilance, lifelink\nWhen Aragorn enters, you become the monarch.\nWhenever Aragorn attacks, up to one target creature can't block this turn. If you're the monarch, creatures can't block this turn."
+    },
+    "Azure Fleet Admiral": {
+      "type_line": "Creature — Human Pirate",
+      "oracle_text": "When this creature enters, you become the monarch.\nThis creature can't be blocked by creatures the monarch controls."
+    },
+    "Feywild Caretaker": {
+      "type_line": "Creature — Orc Wizard",
+      "oracle_text": "When this creature enters, you take the initiative.\nAt the beginning of your end step, if you have the initiative, create a 1/1 blue Faerie Dragon creature token with flying."
+    },
+    "Imoen, Mystic Trickster": {
+      "type_line": "Legendary Creature — Human Rogue Wizard",
+      "oracle_text": "Ward {2} (Whenever this creature becomes the target of a spell or ability an opponent controls, counter it unless that player pays {2}.)\nAt the beginning of your end step, if you have the initiative, draw a card. Draw another card if you've completed a dungeon.\nChoose a Background (You can have a Background as a second commander.)"
+    },
+    "Arch of Orazca": {
+      "type_line": "Land",
+      "oracle_text": "Ascend (If you control ten or more permanents, you get the city's blessing for the rest of the game.)\n{T}: Add {C}.\n{5}, {T}: Draw a card. Activate only if you have the city's blessing."
+    },
+    "Birthday Escape": {
+      "type_line": "Sorcery",
+      "oracle_text": "Draw a card. The Ring tempts you."
+    },
+    "Call of the Ring": {
+      "type_line": "Enchantment",
+      "oracle_text": "At the beginning of your upkeep, the Ring tempts you.\nWhenever you choose a creature as your Ring-bearer, you may pay 2 life. If you do, draw a card."
+    },
+    "Aragorn, Company Leader": {
+      "type_line": "Legendary Creature — Human Half-Elf",
+      "oracle_text": "Whenever the Ring tempts you, if you chose a creature other than Aragorn as your Ring-bearer, put your choice of a counter from among first strike, vigilance, deathtouch, and lifelink on Aragorn.\nWhenever you put one or more counters on Aragorn, put one of each of those kinds of counters on up to one other target creature."
+    }
+  },
+  "moxfield_hei_bai_bracket2": {
+    "source": "https://moxfield.com/decks/DZDT-M5knkO4FQm2eJ-3EQ",
+    "note": "Tutorial bracket-2 Hei Bai 99. Validation only — never training.",
+    "commander": "Hei Bai, Spirit of Balance",
+    "cards": [
+      {
+        "name": "Arcane Signet",
+        "type_line": "Artifact",
+        "oracle_text": "{T}: Add one mana of any color in your commander's color identity."
+      },
+      {
+        "name": "Command Tower",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add one mana of any color in your commander's color identity."
+      },
+      {
+        "name": "Martyr's Cause",
+        "type_line": "Enchantment",
+        "oracle_text": "Sacrifice a creature: The next time a source of your choice would deal damage to any target this turn, prevent that damage."
+      },
+      {
+        "name": "Millikin",
+        "type_line": "Artifact Creature — Construct",
+        "oracle_text": "{T}, Mill a card: Add {C}. (To mill a card, put the top card of your library into your graveyard.)"
+      },
+      {
+        "name": "Mind Stone",
+        "type_line": "Artifact",
+        "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this artifact: Draw a card."
+      },
+      {
+        "name": "Orzhov Basilica",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\nWhen this land enters, return a land you control to its owner's hand.\n{T}: Add {W}{B}."
+      },
+      {
+        "name": "Ravenous Chupacabra",
+        "type_line": "Creature — Beast Horror",
+        "oracle_text": "When this creature enters, destroy target creature an opponent controls."
+      },
+      {
+        "name": "Scoured Barrens",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\nWhen this land enters, you gain 1 life.\n{T}: Add {W} or {B}."
+      },
+      {
+        "name": "Solemn Simulacrum",
+        "type_line": "Artifact Creature — Golem",
+        "oracle_text": "When this creature enters, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle.\nWhen this creature dies, you may draw a card."
+      },
+      {
+        "name": "Swords to Plowshares",
+        "type_line": "Instant",
+        "oracle_text": "Exile target creature. Its controller gains life equal to its power."
+      },
+      {
+        "name": "Temple of the False God",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add {C}{C}. Activate only if you control five or more lands."
+      },
+      {
+        "name": "Temple of Silence",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\nWhen this land enters, scry 1. (Look at the top card of your library. You may put that card on the bottom.)\n{T}: Add {W} or {B}."
+      },
+      {
+        "name": "Evolving Wilds",
+        "type_line": "Land",
+        "oracle_text": "{T}, Sacrifice this land: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle."
+      },
+      {
+        "name": "Ichor Wellspring",
+        "type_line": "Artifact",
+        "oracle_text": "When this artifact enters or is put into a graveyard from the battlefield, draw a card."
+      },
+      {
+        "name": "Sun Titan",
+        "type_line": "Creature — Giant",
+        "oracle_text": "Vigilance\nWhenever this creature enters or attacks, you may return target permanent card with mana value 3 or less from your graveyard to the battlefield."
+      },
+      {
+        "name": "Wayfarer's Bauble",
+        "type_line": "Artifact",
+        "oracle_text": "{2}, {T}, Sacrifice this artifact: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle."
+      },
+      {
+        "name": "Ethereal Haze",
+        "type_line": "Instant — Arcane",
+        "oracle_text": "Prevent all damage that would be dealt by creatures this turn."
+      },
+      {
+        "name": "Krav, the Unredeemed",
+        "type_line": "Legendary Creature — Demon",
+        "oracle_text": "Partner with Regna, the Redeemer (When this creature enters, target player may put Regna into their hand from their library, then shuffle.)\n{B}, Sacrifice X creatures: Target player draws X cards and gains X life. Put X +1/+1 counters on Krav."
+      },
+      {
+        "name": "Dreadhorde Invasion",
+        "type_line": "Enchantment",
+        "oracle_text": "At the beginning of your upkeep, you lose 1 life and amass Zombies 1. (Put a +1/+1 counter on an Army you control. It's also a Zombie. If you don't control an Army, create a 0/0 black Zombie Army creature token first.)\nWhenever a Zombie token you control with power 6 or greater attacks, it gains lifelink until end of turn."
+      },
+      {
+        "name": "God-Eternal Bontu",
+        "type_line": "Legendary Creature — Zombie God",
+        "oracle_text": "Menace\nWhen God-Eternal Bontu enters, sacrifice any number of other permanents, then draw that many cards.\nWhen God-Eternal Bontu dies or is put into exile from the battlefield, you may put it into its owner's library third from the top."
+      },
+      {
+        "name": "Disciple of Bolas",
+        "type_line": "Creature — Human Wizard",
+        "oracle_text": "When this creature enters, sacrifice another creature. You gain X life and draw X cards, where X is that creature's power."
+      },
+      {
+        "name": "Exotic Orchard",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add one mana of any color that a land an opponent controls could produce."
+      },
+      {
+        "name": "Together Forever",
+        "type_line": "Enchantment",
+        "oracle_text": "When this enchantment enters, support 2. (Put a +1/+1 counter on each of up to two target creatures.)\n{1}: Choose target creature with a counter on it. When that creature dies this turn, return that card to its owner's hand."
+      },
+      {
+        "name": "Buried Ruin",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Return target artifact card from your graveyard to your hand."
+      },
+      {
+        "name": "Woe Strider",
+        "type_line": "Creature — Horror",
+        "oracle_text": "When this creature enters, create a 0/1 white Goat creature token.\nSacrifice another creature: Scry 1.\nEscape—{3}{B}{B}, Exile four other cards from your graveyard. (You may cast this card from your graveyard for its escape cost.)\nThis creature escapes with two +1/+1 counters on it."
+      },
+      {
+        "name": "Lightning Greaves",
+        "type_line": "Artifact — Equipment",
+        "oracle_text": "Equipped creature has haste and shroud. (It can't be the target of spells or abilities.)\nEquip {0}"
+      },
+      {
+        "name": "Fellwar Stone",
+        "type_line": "Artifact",
+        "oracle_text": "{T}: Add one mana of any color that a land an opponent controls could produce."
+      },
+      {
+        "name": "Bloodtracker",
+        "type_line": "Creature — Vampire Wizard",
+        "oracle_text": "Flying\n{B}, Pay 2 life: Put a +1/+1 counter on this creature.\nWhen this creature leaves the battlefield, draw a card for each +1/+1 counter on it."
+      },
+      {
+        "name": "Isolated Chapel",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped unless you control a Plains or a Swamp.\n{T}: Add {W} or {B}."
+      },
+      {
+        "name": "Felidar Retreat",
+        "type_line": "Enchantment",
+        "oracle_text": "Landfall — Whenever a land you control enters, choose one —\n• Create a 2/2 white Cat Beast creature token.\n• Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn."
+      },
+      {
+        "name": "Everflowing Chalice",
+        "type_line": "Artifact",
+        "oracle_text": "Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.)\nThis artifact enters with a charge counter on it for each time it was kicked.\n{T}: Add {C} for each charge counter on this artifact."
+      },
+      {
+        "name": "Sol Ring",
+        "type_line": "Artifact",
+        "oracle_text": "{T}: Add {C}{C}."
+      },
+      {
+        "name": "Infernal Offering",
+        "type_line": "Sorcery",
+        "oracle_text": "Choose an opponent. You and that player each sacrifice a creature. Each player who sacrificed a creature this way draws two cards.\nChoose an opponent. Return a creature card from your graveyard to the battlefield, then that player returns a creature card from their graveyard to the battlefield."
+      },
+      {
+        "name": "Ancient Den",
+        "type_line": "Artifact Land",
+        "oracle_text": "{T}: Add {W}."
+      },
+      {
+        "name": "Marionette Master",
+        "type_line": "Creature — Human Artificer",
+        "oracle_text": "Fabricate 3 (When this creature enters, put three +1/+1 counters on it or create three 1/1 colorless Servo artifact creature tokens.)\nWhenever an artifact you control is put into a graveyard from the battlefield, target opponent loses life equal to this creature's power."
+      },
+      {
+        "name": "Undying Malice",
+        "type_line": "Instant",
+        "oracle_text": "Until end of turn, target creature gains \"When this creature dies, return it to the battlefield tapped under its owner's control with a +1/+1 counter on it.\""
+      },
+      {
+        "name": "Storm of Souls",
+        "type_line": "Sorcery",
+        "oracle_text": "Return all creature cards from your graveyard to the battlefield. Each of them is a 1/1 Spirit with flying in addition to its other types. Exile Storm of Souls."
+      },
+      {
+        "name": "Body Launderer",
+        "type_line": "Creature — Ogre Rogue",
+        "oracle_text": "Deathtouch\nWhenever another nontoken creature you control dies, this creature connives.\nWhen this creature dies, return another target non-Rogue creature card with equal or lesser power from your graveyard to the battlefield."
+      },
+      {
+        "name": "Aerial Extortionist",
+        "type_line": "Creature — Bird Soldier",
+        "oracle_text": "Flying\nWhenever this creature enters or deals combat damage to a player, exile up to one target nonland permanent. For as long as that card remains exiled, its owner may cast it.\nWhenever another player casts a spell from anywhere other than their hand, draw a card."
+      },
+      {
+        "name": "Noble Heritage",
+        "type_line": "Legendary Enchantment — Background",
+        "oracle_text": "Commander creatures you own have \"When this creature enters and at the beginning of your upkeep, each player may put two +1/+1 counters on a creature they control. For each opponent who does, you gain protection from that player until your next turn.\" (You can't be targeted, dealt damage, or enchanted by anything controlled by that player.)"
+      },
+      {
+        "name": "Noble's Purse",
+        "type_line": "Artifact",
+        "oracle_text": "This artifact enters tapped and with three coin counters on it.\n{T}, Remove a coin counter from this artifact: Create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+      },
+      {
+        "name": "Seasoned Dungeoneer",
+        "type_line": "Creature — Human Warrior",
+        "oracle_text": "When this creature enters, you take the initiative.\nWhenever you attack, target attacking Cleric, Rogue, Warrior, or Wizard gains protection from creatures until end of turn. It explores. (Reveal the top card of your library. Put that card into your hand if it's a land. Otherwise, put a +1/+1 counter on the creature, then put the card back or put it into your graveyard.)"
+      },
+      {
+        "name": "Panharmonicon",
+        "type_line": "Artifact",
+        "oracle_text": "If an artifact or creature entering causes a triggered ability of a permanent you control to trigger, that ability triggers an additional time."
+      },
+      {
+        "name": "Bojuka Bog",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\nWhen this land enters, exile target player's graveyard.\n{T}: Add {B}."
+      },
+      {
+        "name": "Shineshadow Snarl",
+        "type_line": "Land",
+        "oracle_text": "As this land enters, you may reveal a Plains or Swamp card from your hand. If you don't, this land enters tapped.\n{T}: Add {W} or {B}."
+      },
+      {
+        "name": "Breach the Multiverse",
+        "type_line": "Sorcery",
+        "oracle_text": "Each player mills ten cards. For each player, choose a creature or planeswalker card in that player's graveyard. Put those cards onto the battlefield under your control. Then each creature you control becomes a Phyrexian in addition to its other types."
+      },
+      {
+        "name": "Victimize",
+        "type_line": "Sorcery",
+        "oracle_text": "Choose two target creature cards in your graveyard. Sacrifice a creature. If you do, return the chosen cards to the battlefield tapped."
+      },
+      {
+        "name": "Rosie Cotton of South Lane",
+        "type_line": "Legendary Creature — Halfling Peasant",
+        "oracle_text": "When Rosie Cotton enters, create a Food token. (It's an artifact with \"{2}, {T}, Sacrifice this token: You gain 3 life.\")\nWhenever you create a token, put a +1/+1 counter on target creature you control other than Rosie Cotton."
+      },
+      {
+        "name": "Lotho, Corrupt Shirriff",
+        "type_line": "Legendary Creature — Halfling Rogue",
+        "oracle_text": "Whenever a player casts their second spell each turn, you lose 1 life and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+      },
+      {
+        "name": "Shrine of the Forsaken Gods",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add {C}.\n{T}: Add {C}{C}. Spend this mana only to cast colorless spells. Activate only if you control seven or more lands."
+      },
+      {
+        "name": "Faerie Bladecrafter",
+        "type_line": "Creature — Faerie Rogue",
+        "oracle_text": "Flying\nWhenever one or more Faeries you control deal combat damage to a player, put a +1/+1 counter on this creature.\nWhen this creature dies, each opponent loses X life and you gain X life, where X is its power."
+      },
+      {
+        "name": "Myriad Landscape",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\n{T}: Add {C}.\n{2}, {T}, Sacrifice this land: Search your library for up to two basic land cards that share a land type, put them onto the battlefield tapped, then shuffle."
+      },
+      {
+        "name": "Altar of the Wretched // Wretched Bonemass",
+        "type_line": "Artifact // Creature — Skeleton Horror",
+        "oracle_text": "When this artifact enters, you may sacrifice a nontoken creature. If you do, draw X cards, then mill X cards, where X is that creature's power.\nCraft with one or more creatures {2}{B}{B}\n{2}{B}: Return this card from your graveyard to your hand.\nWretched Bonemass's power and toughness are each equal to the total power of the exiled cards used to craft it.\nThis creature has flying as long as an exiled card used to craft it has flying. The same is true for first strike, double strike, deathtouch, haste, hexproof, indestructible, lifelink, menace, protection, reach, trample, and vigilance."
+      },
+      {
+        "name": "Fanatical Offering",
+        "type_line": "Instant",
+        "oracle_text": "As an additional cost to cast this spell, sacrifice an artifact or creature.\nDraw two cards and create a Map token. (It's an artifact with \"{1}, {T}, Sacrifice this token: Target creature you control explores. Activate only as a sorcery.\")"
+      },
+      {
+        "name": "Mephitic Draught",
+        "type_line": "Artifact",
+        "oracle_text": "When this artifact enters or is put into a graveyard from the battlefield, you draw a card and you lose 1 life."
+      },
+      {
+        "name": "Volatile Fault",
+        "type_line": "Land — Cave",
+        "oracle_text": "{T}: Add {C}.\n{1}, {T}, Sacrifice this land: Destroy target nonbasic land an opponent controls. That player may search their library for a basic land card, put it onto the battlefield, then shuffle. You create a Treasure token."
+      },
+      {
+        "name": "Deadly Dispute",
+        "type_line": "Instant",
+        "oracle_text": "As an additional cost to cast this spell, sacrifice an artifact or creature.\nDraw two cards and create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+      },
+      {
+        "name": "Mister Gutsy",
+        "type_line": "Artifact Creature — Robot Soldier",
+        "oracle_text": "Whenever you cast an Aura or Equipment spell, put a +1/+1 counter on this creature.\nWhen this creature dies, create X Junk tokens, where X is the number of +1/+1 counters on it. (They're artifacts with \"{T}, Sacrifice this token: Exile the top card of your library. You may play that card this turn. Activate only as a sorcery.\")"
+      },
+      {
+        "name": "Final Showdown",
+        "type_line": "Instant",
+        "oracle_text": "Spree (Choose one or more additional costs.)\n+ {1} — All creatures lose all abilities until end of turn.\n+ {1} — Choose a creature you control. It gains indestructible until end of turn.\n+ {3}{W}{W} — Destroy all creatures."
+      },
+      {
+        "name": "Pitiless Carnage",
+        "type_line": "Sorcery",
+        "oracle_text": "Sacrifice any number of permanents you control, then draw that many cards.\nPlot {1}{B}{B} (You may pay {1}{B}{B} and exile this card from your hand. Cast it as a sorcery on a later turn without paying its mana cost. Plot only as a sorcery.)"
+      },
+      {
+        "name": "Flare of Fortitude",
+        "type_line": "Instant",
+        "oracle_text": "You may sacrifice a nontoken white creature rather than pay this spell's mana cost.\nUntil end of turn, your life total can't change, and permanents you control gain hexproof and indestructible."
+      },
+      {
+        "name": "Nesting Grounds",
+        "type_line": "Land",
+        "oracle_text": "{T}: Add {C}.\n{1}, {T}: Move a counter from target permanent you control onto a second target permanent. Activate only as a sorcery."
+      },
+      {
+        "name": "Day of Judgment",
+        "type_line": "Sorcery",
+        "oracle_text": "Destroy all creatures."
+      },
+      {
+        "name": "Nine-Lives Familiar",
+        "type_line": "Creature — Cat",
+        "oracle_text": "This creature enters with eight revival counters on it if you cast it.\nWhen this creature dies, if it had a revival counter on it, return it to the battlefield with one fewer revival counter on it at the beginning of the next end step."
+      },
+      {
+        "name": "Come Back Wrong",
+        "type_line": "Sorcery",
+        "oracle_text": "Destroy target creature. If a creature card is put into a graveyard this way, return it to the battlefield under your control. Sacrifice it at the beginning of your next end step."
+      },
+      {
+        "name": "Scavenger's Talent",
+        "type_line": "Enchantment — Class",
+        "oracle_text": "(Gain the next level as a sorcery to add its ability.)\nWhenever one or more creatures you control die, create a Food token. This ability triggers only once each turn.\n{1}{B}: Level 2\nWhenever you sacrifice a permanent, target player mills two cards.\n{2}{B}: Level 3\nAt the beginning of your end step, you may sacrifice three other nonland permanents. If you do, return a creature card from your graveyard to the battlefield with a finality counter on it."
+      },
+      {
+        "name": "Saw in Half",
+        "type_line": "Instant",
+        "oracle_text": "Destroy target creature. If that creature dies this way, its controller creates two tokens that are copies of that creature, except their power is half that creature's power and their toughness is half that creature's toughness. Round up each time."
+      },
+      {
+        "name": "Pitiless Plunderer",
+        "type_line": "Creature — Human Pirate",
+        "oracle_text": "Whenever another creature you control dies, create a Treasure token. (It's an artifact with \"{T}, Sacrifice this token: Add one mana of any color.\")"
+      },
+      {
+        "name": "Reluctant Role Model",
+        "type_line": "Creature — Human Survivor",
+        "oracle_text": "Survival — At the beginning of your second main phase, if this creature is tapped, put a flying, lifelink, or +1/+1 counter on it.\nWhenever this creature or another creature you control dies, if it had counters on it, put those counters on up to one target creature."
+      },
+      {
+        "name": "Ruthless Technomancer",
+        "type_line": "Creature — Human Wizard",
+        "oracle_text": "When this creature enters, you may sacrifice another creature you control. If you do, create a number of Treasure tokens equal to that creature's power.\n{2}{B}, Sacrifice X artifacts: Return target creature card with power X or less from your graveyard to the battlefield. X can't be 0."
+      },
+      {
+        "name": "Amonkhet Raceway",
+        "type_line": "Land",
+        "oracle_text": "Start your engines! (If you have no speed, it starts at 1. It increases once on each of your turns when an opponent loses life. Max speed is 4.)\n{T}: Add {C}.\nMax speed — {T}: Target creature gains haste until end of turn."
+      },
+      {
+        "name": "Eumidian Hatchery",
+        "type_line": "Land",
+        "oracle_text": "{T}, Pay 1 life: Add {B}. Put a hatchling counter on this land.\nWhen this land is put into a graveyard from the battlefield, for each hatchling counter on it, create a 1/1 black Insect creature token with flying."
+      },
+      {
+        "name": "Braids, Arisen Nightmare",
+        "type_line": "Legendary Creature — Nightmare",
+        "oracle_text": "At the beginning of your end step, you may sacrifice an artifact, creature, enchantment, land, or planeswalker. If you do, each opponent may sacrifice a permanent of their choice that shares a card type with it. For each opponent who doesn't, that player loses 2 life and you draw a card."
+      },
+      {
+        "name": "Airbender Ascension",
+        "type_line": "Enchantment",
+        "oracle_text": "When this enchantment enters, airbend up to one target creature.\nWhenever a creature you control enters, put a quest counter on this enchantment.\nAt the beginning of your end step, if this enchantment has four or more quest counters on it, exile up to one target creature you control, then return it to the battlefield under its owner's control."
+      },
+      {
+        "name": "Misty Palms Oasis",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped.\n{T}: Add {W} or {B}.\n{4}, {T}, Sacrifice this land: Draw a card."
+      },
+      {
+        "name": "Personify",
+        "type_line": "Instant",
+        "oracle_text": "Exile target creature you control, then return that card to the battlefield under its owner's control. Create a 1/1 colorless Shapeshifter creature token with changeling. (It's every creature type.)"
+      },
+      {
+        "name": "Dimension X Pizzasaur",
+        "type_line": "Artifact Creature — Food Alien Mutant",
+        "oracle_text": "When this creature enters, put two +1/+1 counters on target creature. When you do, destroy up to one target creature with mana value less than or equal to the number of counters among permanents you control.\n{2}, {T}, Sacrifice this creature: You gain 3 life and each opponent loses 3 life."
+      },
+      {
+        "name": "Jadar, Ghoulcaller of Nephalia",
+        "type_line": "Legendary Creature — Human Wizard",
+        "oracle_text": "At the beginning of your end step, if you control no creatures with decayed, create a 2/2 black Zombie creature token with decayed. (It can't block. When it attacks, sacrifice it at end of combat.)"
+      },
+      {
+        "name": "Gift of Immortality",
+        "type_line": "Enchantment — Aura",
+        "oracle_text": "Enchant creature\nWhen enchanted creature dies, return that card to the battlefield under its owner's control. Return this card to the battlefield attached to that creature at the beginning of the next end step."
+      },
+      {
+        "name": "Angel of Indemnity",
+        "type_line": "Creature — Angel Warrior",
+        "oracle_text": "Flying, lifelink\nWhen this creature enters, return target permanent card with mana value 4 or less from your graveyard to the battlefield.\nEncore {6}{W}{W} ({6}{W}{W}, Exile this card from your graveyard: For each opponent, create a token copy that attacks that opponent this turn if able. They gain haste. Sacrifice them at the beginning of the next end step. Activate only as a sorcery.)"
+      },
+      {
+        "name": "Breena, the Demagogue",
+        "type_line": "Legendary Creature — Bird Warlock",
+        "oracle_text": "Flying\nWhenever a player attacks one of your opponents, if that opponent has more life than another of your opponents, that attacking player draws a card and you put two +1/+1 counters on a creature you control."
+      },
+      {
+        "name": "Shattered Sanctum",
+        "type_line": "Land",
+        "oracle_text": "This land enters tapped unless you control two or more other lands.\n{T}: Add {W} or {B}."
+      },
+      {
+        "name": "Plains",
+        "type_line": "Basic Land — Plains",
+        "oracle_text": "({T}: Add {W}.)"
+      },
+      {
+        "name": "Swamp",
+        "type_line": "Basic Land — Swamp",
+        "oracle_text": "({T}: Add {B}.)"
+      }
+    ],
+    "quantities": {
+      "Arcane Signet": 1,
+      "Command Tower": 1,
+      "Martyr's Cause": 1,
+      "Millikin": 1,
+      "Mind Stone": 1,
+      "Orzhov Basilica": 1,
+      "Ravenous Chupacabra": 1,
+      "Scoured Barrens": 1,
+      "Solemn Simulacrum": 1,
+      "Swords to Plowshares": 1,
+      "Temple of the False God": 1,
+      "Temple of Silence": 1,
+      "Evolving Wilds": 1,
+      "Ichor Wellspring": 1,
+      "Sun Titan": 1,
+      "Wayfarer's Bauble": 1,
+      "Ethereal Haze": 1,
+      "Krav, the Unredeemed": 1,
+      "Dreadhorde Invasion": 1,
+      "God-Eternal Bontu": 1,
+      "Disciple of Bolas": 1,
+      "Exotic Orchard": 1,
+      "Together Forever": 1,
+      "Buried Ruin": 1,
+      "Woe Strider": 1,
+      "Lightning Greaves": 1,
+      "Fellwar Stone": 1,
+      "Bloodtracker": 1,
+      "Isolated Chapel": 1,
+      "Felidar Retreat": 1,
+      "Everflowing Chalice": 1,
+      "Sol Ring": 1,
+      "Infernal Offering": 1,
+      "Ancient Den": 1,
+      "Marionette Master": 1,
+      "Undying Malice": 1,
+      "Storm of Souls": 1,
+      "Body Launderer": 1,
+      "Aerial Extortionist": 1,
+      "Noble Heritage": 1,
+      "Noble's Purse": 1,
+      "Seasoned Dungeoneer": 1,
+      "Panharmonicon": 1,
+      "Bojuka Bog": 1,
+      "Shineshadow Snarl": 1,
+      "Breach the Multiverse": 1,
+      "Victimize": 1,
+      "Rosie Cotton of South Lane": 1,
+      "Lotho, Corrupt Shirriff": 1,
+      "Shrine of the Forsaken Gods": 1,
+      "Faerie Bladecrafter": 1,
+      "Myriad Landscape": 1,
+      "Altar of the Wretched // Wretched Bonemass": 1,
+      "Fanatical Offering": 1,
+      "Mephitic Draught": 1,
+      "Volatile Fault": 1,
+      "Deadly Dispute": 1,
+      "Mister Gutsy": 1,
+      "Final Showdown": 1,
+      "Pitiless Carnage": 1,
+      "Flare of Fortitude": 1,
+      "Nesting Grounds": 1,
+      "Day of Judgment": 1,
+      "Nine-Lives Familiar": 1,
+      "Come Back Wrong": 1,
+      "Scavenger's Talent": 1,
+      "Saw in Half": 1,
+      "Pitiless Plunderer": 1,
+      "Reluctant Role Model": 1,
+      "Ruthless Technomancer": 1,
+      "Amonkhet Raceway": 1,
+      "Eumidian Hatchery": 1,
+      "Braids, Arisen Nightmare": 1,
+      "Airbender Ascension": 1,
+      "Misty Palms Oasis": 1,
+      "Personify": 1,
+      "Dimension X Pizzasaur": 1,
+      "Jadar, Ghoulcaller of Nephalia": 1,
+      "Gift of Immortality": 1,
+      "Angel of Indemnity": 1,
+      "Breena, the Demagogue": 1,
+      "Shattered Sanctum": 1,
+      "Plains": 8,
+      "Swamp": 9
+    }
+  }
+}
