@@ -73,7 +73,9 @@ def parse_cost(cost: str) -> dict:
     pips["generic"] = 0
     if not cost:
         return pips
-    for sym in re.findall(r"\{([^}]+)\}", cost):
+    # [^{}] rather than [^}]: an unclosed "{" can no longer make each later
+    # "{" rescan the rest of the string. Real mana costs never nest braces.
+    for sym in re.findall(r"\{([^{}]+)\}", cost):
         if sym in pips:
             pips[sym] += 1
         elif sym.isdigit():
@@ -110,6 +112,25 @@ def source_colors(card: dict) -> set:
     return colors
 
 
+_ACTIVATION_COST = re.compile(r"(?:\{t\}|sacrifice [^.:]{1,60}):")
+_LIBRARY_SEARCH = "search your library for"
+
+
+def _activated_library_search(t: str) -> bool:
+    """True when a "{t}:" or "sacrifice …:" cost leads to a library search.
+
+    Same result as matching (cost):[^.]*search your library for, but checked
+    one sentence at a time: the cost has to appear before the last search in
+    a sentence with no period between them. The single regex rescanned the
+    text from every cost it found, which is quadratic on long input.
+    """
+    for sentence in t.split("."):
+        at = sentence.rfind(_LIBRARY_SEARCH)
+        if at > 0 and _ACTIVATION_COST.search(sentence, 0, at):
+            return True
+    return False
+
+
 def mechanics(card: dict, payoff_names: set) -> dict:
     """Derive simulation-relevant mechanics from oracle text."""
     t = (card.get("text") or "").lower()
@@ -121,9 +142,9 @@ def mechanics(card: dict, payoff_names: set) -> dict:
 
     if not m["land"]:
         # "Add {C}{C}" -> count the symbols in the largest single Add clause
-        syms = re.findall(r"add ((?:\{[^}]+\}\s*)+)", t)
+        syms = re.findall(r"add ((?:\{[^{}]+\}\s*)+)", t)
         if syms:
-            m["produces"] = max(len(re.findall(r"\{[^}]+\}", s)) for s in syms)
+            m["produces"] = max(len(re.findall(r"\{[^{}]+\}", s)) for s in syms)
         else:
             w = re.search(r"add (one|two|three) mana", t)
             if w:
@@ -142,14 +163,13 @@ def mechanics(card: dict, payoff_names: set) -> dict:
                 t,
             )
         )
-        activated_fetch = bool(re.search(
-            r"(?:\{t\}|sacrifice [^.:]{1,60}):[^.]*search your library for",
-            t,
-        ))
+        activated_fetch = _activated_library_search(t)
         if land_search and "onto the battlefield" in t and not activated_fetch:
             fetch = 0
+            # {0,40} rather than *: same matches on real oracle text, but no
+            # quadratic rescan when "put one" repeats in very long input.
             for put in re.finditer(
-                r"put (one|two|three|four) (?:\w+ )*onto the battlefield", t
+                r"put (one|two|three|four) (?:\w+ ){0,40}onto the battlefield", t
             ):
                 fetch += WORD_NUM[put.group(1)]
             if re.search(r"put them onto the battlefield", t):

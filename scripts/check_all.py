@@ -187,6 +187,7 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_corpus.py"],  # local Scryfall corpus — offline
     ["test_import_empty_message.py"],  # empty import says the real cause
     ["test_import_punctuation.py"],  # curly apostrophes resolve on import
+    ["test_security_hardening.py"],  # path ids, error bodies, regex speed
     ["test_backrow_labels.py"],  # no twin Start over on failure screens
     ["test_import_persist.py"],  # import persists; Save failure is visible
     ["test_green_isolation.py"],  # green SAVE_DIR / corpus / badge / plist

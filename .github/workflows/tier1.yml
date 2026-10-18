@@ -8,6 +8,7 @@ on:
   push:
     branches: [main]
 
+# Least privilege: the job only checks out code and runs tests.
 permissions:
   contents: read
 
@@ -29,4 +30,3 @@ jobs:
         run: |
           . .venv/bin/activate
           python scripts/check_all.py --tier 1
-
