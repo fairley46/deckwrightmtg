@@ -25,3 +25,8 @@ data/precons/*.json
 # Schemathesis scratch output
 .schemathesis/
 node_modules/
+
+# Python packaging output
+build/
+dist/
+*.egg-info/

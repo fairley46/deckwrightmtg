@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/fairley46/deckwrightmtg/security/advisories/new
+    about: Please report vulnerabilities privately, not in a public issue.
+  - name: Read the docs
+    url: https://github.com/fairley46/deckwrightmtg/tree/main/docs
+    about: How DeckWright works, how to run it, and known limits.
