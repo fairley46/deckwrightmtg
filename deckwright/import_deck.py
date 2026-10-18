@@ -44,7 +44,7 @@ _SIDEBOARD_SECTIONS = frozenset({"sideboard", "maybeboard"})
 # 1 Sol Ring | 1x Sol Ring | 18 Island | - 1 Sol Ring
 # Applied to a stripped line: optional bullet, then an optional quantity.
 _QTY_PREFIX_RE = re.compile(
-    r"(?:[-*]\s*)?"
+    r"^(?:[-*]\s*)?"
     r"(?:(\d+)(?:\s*x\s+|\s+))?",   # "2 ", "2x ", "2 x "
     re.I,
 )
@@ -104,7 +104,7 @@ def _split_qty_line(raw: str) -> tuple[str | None, str]:
         name_at = len(after) - len(after.lstrip())
         if name_at and after[name_at:]:
             return m.group(1), _strip_set_suffix(after[name_at:], allow_start=False)
-        dash = re.match(r"[-*]\s*", s)
+        dash = re.match(r"^[-*]\s*", s)
         remainder = s[dash.end():] if dash else s
         return None, _strip_set_suffix(remainder, allow_start=False)
     if trailing >= 1:
