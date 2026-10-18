@@ -36,20 +36,80 @@ def normalize_name_for_lookup(name: str) -> str:
 _SECTION_RE = re.compile(
     r"^\s*(?://\s*)?(commander|maindeck|main|deck|lands?|creatures?|"
     r"artifacts?|enchantments?|planeswalkers?|spells?|instants?|sorceries?|"
-    r"sideboard|maybeboard)\s*:?\s*$",
+    r"sideboard|maybeboard)\s*(?::\s*)?$",
     re.I,
 )
 _SIDEBOARD_SECTIONS = frozenset({"sideboard", "maybeboard"})
 
 # 1 Sol Ring | 1x Sol Ring | 18 Island | - 1 Sol Ring
-_QTY_LINE_RE = re.compile(
-    r"^\s*(?:[-*]\s*)?"
-    r"(?:(\d+)\s*x?\s+)?"           # optional quantity
-    r"(.+?)"                         # card name (trimmed below)
-    r"(?:\s*\([A-Za-z0-9]+\)(?:\s+\S+)?)?"  # optional (SET) collector
-    r"\s*$",
+# Applied to a stripped line: optional bullet, then an optional quantity.
+_QTY_PREFIX_RE = re.compile(
+    r"(?:[-*]\s*)?"
+    r"(?:(\d+)(?:\s*x\s+|\s+))?",   # "2 ", "2x ", "2 x "
     re.I,
 )
+_SET_CODE_RE = re.compile(r"[A-Za-z0-9]+")
+
+
+def _set_suffix_start(s: str, allow_start: bool) -> int | None:
+    """Index where a trailing "(SET)" or "(SET) collector" begins in `s`.
+
+    `s` has no trailing whitespace. Returns the earliest such position, or
+    None. With allow_start False the suffix may not begin at index 0 (a name
+    must be left in front of it).
+    """
+    heads = [s]                      # "... (SET)"
+    parts = s.rsplit(None, 1)
+    if len(parts) == 2:
+        heads.append(parts[0])       # "... (SET) collector"
+    found: list[int] = []
+    for head in heads:
+        if head.endswith(")"):
+            o = head.rfind("(")
+            if o >= 0 and _SET_CODE_RE.fullmatch(head, o + 1, len(head) - 1):
+                found.append(o)
+    found = [o for o in found if allow_start or o > 0]
+    return min(found) if found else None
+
+
+def _strip_set_suffix(name: str, allow_start: bool = True) -> str:
+    """Drop one trailing "(SET)" / "(SET) collector" from a card name."""
+    name = name.rstrip()
+    at = _set_suffix_start(name, allow_start)
+    return name[:at] if at is not None else name
+
+
+def _split_qty_line(raw: str) -> tuple[str | None, str]:
+    """(quantity digits or None, card name) for one decklist line.
+
+    Gives the same answer as the old single regex
+    ^\\s*(?:[-*]\\s*)?(?:(\\d+)\\s*x?\\s+)?(.+?)(?:\\s*\\(SET\\)(?:\\s+\\S+)?)?\\s*$,
+    including its handling of lines that are only a bullet or a number
+    followed by spaces, without that pattern's backtracking.
+    """
+    s = raw.lstrip()
+    m = _QTY_PREFIX_RE.match(s)
+    rest = s[m.end():]
+    if rest:
+        return m.group(1), _strip_set_suffix(rest, allow_start=False)
+    # The prefix swallowed the whole line. The old pattern then gave back
+    # characters so the name had at least one: a trailing space when there
+    # was one to spare, otherwise the quantity or bullet itself.
+    trailing = len(s) - len(s.rstrip())
+    if m.group(1) is not None:
+        if trailing >= 2:
+            return m.group(1), ""
+        # "2 x ": drop the "x" reading and keep it as the name instead.
+        after = s[m.end(1):]
+        name_at = len(after) - len(after.lstrip())
+        if name_at and after[name_at:]:
+            return m.group(1), _strip_set_suffix(after[name_at:], allow_start=False)
+        dash = re.match(r"[-*]\s*", s)
+        remainder = s[dash.end():] if dash else s
+        return None, _strip_set_suffix(remainder, allow_start=False)
+    if trailing >= 1:
+        return None, ""
+    return None, s
 
 
 def parse_decklist(text: str) -> dict:
@@ -72,15 +132,11 @@ def parse_decklist(text: str) -> dict:
             continue
         if section in _SIDEBOARD_SECTIONS:
             continue
-        m = _QTY_LINE_RE.match(raw)
-        if not m:
-            entries.append({"line": i, "name": line, "qty": 1, "section": section,
-                            "parse_error": True})
-            continue
-        name = m.group(2).strip()
-        # Strip trailing set notation the regex may have left on unusual formats.
-        name = re.sub(r"\s*\([A-Za-z0-9]+\)(?:\s+\S+)?\s*$", "", name).strip()
-        qty = int(m.group(1) or 1)
+        qty_digits, name = _split_qty_line(raw)
+        name = name.strip()
+        # Strip trailing set notation left on unusual formats.
+        name = _strip_set_suffix(name).strip()
+        qty = int(qty_digits or 1)
         entries.append({"line": i, "name": name, "qty": qty, "section": section})
         if section == "commander":
             # Archidekt often has one commander under the header; remaining lines are the 99.

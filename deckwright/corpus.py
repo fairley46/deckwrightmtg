@@ -512,7 +512,7 @@ def _lex(q: str) -> list[_Tok]:
             continue
         # field op value  OR  bare / quoted atom
         m = re.match(
-            r"([A-Za-z_]+)(!?=|<=|>=|<|>|:)(\"[^\"]*\"|'[^']*'|[^\s()]+)",
+            r"^([A-Za-z_]+)(!?=|<=|>=|<|>|:)(\"[^\"]*\"|'[^']*'|[^\s()]+)",
             s[i:],
         )
         if m:

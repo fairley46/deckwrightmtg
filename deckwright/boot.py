@@ -31,6 +31,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Awaitable
 
+from deckwright import errors
 from deckwright import instance
 
 REPO = Path(__file__).resolve().parents[1]
@@ -64,10 +65,11 @@ class BootStatus:
             from deckwright import corpus as _corpus
             corpus_status = _corpus.get_corpus().status()
         except Exception as e:
+            print(f"  [boot] corpus status failed: {type(e).__name__}: {e}")
             corpus_status = {
                 "loaded": False,
                 "card_count": None,
-                "error": f"{type(e).__name__}: {e}",
+                "error": f"corpus status unavailable ({type(e).__name__})",
             }
         return {
             "ready": self.ready,
@@ -191,9 +193,10 @@ def load_understanding_summary(
     try:
         data = json.loads(path.read_text())
     except (OSError, json.JSONDecodeError) as e:
+        print(f"  [boot] print-wave report unreadable: {type(e).__name__}: {e}")
         return {
             "status": "unknown",
-            "detail": f"Could not read print-wave report: {e}",
+            "detail": "Could not read print-wave report",
             "needs_admit": False,
             "action": "Re-run scripts/print_wave_reeval.py",
         }
@@ -278,7 +281,8 @@ def _run_cadence_refresh() -> tuple[bool, str]:
             check=False,
         )
     except (OSError, subprocess.TimeoutExpired) as e:
-        return False, f"cadence failed: {e}"
+        print(f"  [boot] cadence failed: {type(e).__name__}: {e}")
+        return False, f"cadence failed ({type(e).__name__})"
     if proc.returncode != 0:
         tail = (proc.stderr or proc.stdout or "").strip().splitlines()
         tip = tail[-1] if tail else f"exit {proc.returncode}"
@@ -308,7 +312,8 @@ def _run_understanding_reeval() -> tuple[bool, str]:
             check=False,
         )
     except (OSError, subprocess.TimeoutExpired) as e:
-        return False, f"understanding reeval failed: {e}"
+        print(f"  [boot] understanding reeval failed: {type(e).__name__}: {e}")
+        return False, f"understanding reeval failed ({type(e).__name__})"
     if proc.returncode != 0:
         tail = (proc.stderr or proc.stdout or "").strip().splitlines()
         tip = tail[-1] if tail else f"exit {proc.returncode}"
@@ -354,16 +359,17 @@ async def _run_card_source_probe(
         # Probe callables may raise ScryfallError or return a dict. Either way
         # we never invent "ok" — unknown is not ready-for-build. app's probe
         # returns a dict; tests may raise. Avoid importing app from boot.
-        kind = getattr(e, "kind", None) or "transport"
+        errors.log_exception("boot card source probe", e)
+        kind = errors.known_kind(getattr(e, "kind", None), _CARD_SOURCE_COPY)
         what, how = _CARD_SOURCE_COPY.get(kind, _CARD_SOURCE_COPY["transport"])
         return {
             "ok": False,
             "kind": kind,
-            "status": getattr(e, "status", 0) or 0,
+            "status": errors.plain_status(getattr(e, "status", 0)),
             "what": what,
             "how": how,
             "error": "scryfall_refused",
-            "detail": f"{type(e).__name__}: {e}",
+            "detail": f"card source probe failed ({type(e).__name__})",
         }
     if isinstance(result, dict):
         return result
@@ -386,10 +392,11 @@ async def run_boot(
         try:
             await warm()
         except Exception as e:
+            print(f"  [boot] warm-up failed: {type(e).__name__}: {e}")
             cs = await _run_card_source_probe(card_source_probe)
             _set(
                 phase="degraded", detail="Started with a warm-up warning",
-                error=str(e), ready=True, finished_at=time.time(),
+                error=f"warm-up failed ({type(e).__name__})", ready=True, finished_at=time.time(),
                 understanding=load_understanding_summary(),
                 card_source=cs,
             )

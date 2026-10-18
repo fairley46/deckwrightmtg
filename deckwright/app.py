@@ -60,6 +60,8 @@ from pydantic import BaseModel
 
 from deckwright import instance
 from deckwright import demo_guard
+from deckwright import safe_paths
+from deckwright import errors
 
 MODEL = "claude-sonnet-5"
 SCRYFALL = "https://api.scryfall.com"
@@ -172,15 +174,21 @@ def scryfall_refusal_copy(kind: str) -> dict[str, str]:
 
 def scryfall_refusal_payload(err: "ScryfallError") -> dict:
     """Structured body for API + UI. Distinct kinds, never a generic 500."""
-    copy = scryfall_refusal_copy(err.kind)
+    # The raw error text (transport messages, URLs) goes to the server log
+    # only; the body carries the known kind, the HTTP status and fixed copy.
+    errors.log_exception("scryfall", err)
+    kind = errors.known_kind(err.kind, SCRYFALL_REFUSAL_COPY, default="unreachable")
+    status = errors.plain_status(err.status)
+    copy = scryfall_refusal_copy(kind)
     return {
         "ok": False,
         "error": "scryfall_refused",
-        "kind": err.kind,
-        "status": err.status,
+        "kind": kind,
+        "status": status,
         "what": copy["what"],
         "how": copy["how"],
-        "detail": str(err),
+        "detail": f"Scryfall refused ({kind}, HTTP {status})" if status
+                  else f"Scryfall refused ({kind})",
     }
 
 
@@ -372,6 +380,7 @@ async def probe_card_source() -> dict:
             "error": payload["error"],
         }
     except Exception as e:
+        errors.log_exception("scryfall probe", e)
         return {
             "ok": False,
             "kind": "transport",
@@ -379,7 +388,7 @@ async def probe_card_source() -> dict:
             "what": scryfall_refusal_copy("transport")["what"],
             "how": scryfall_refusal_copy("transport")["how"],
             "error": "scryfall_refused",
-            "detail": f"{type(e).__name__}: {e}",
+            "detail": f"Scryfall probe failed ({type(e).__name__})",
         }
     name = (j or {}).get("name") if isinstance(j, dict) else None
     if not name:
@@ -923,13 +932,26 @@ def theme_segments(theme: str) -> list[str]:
     theme = (theme or "").strip()
     if not theme:
         return []
-    chunks = [c.strip() for c in re.split(r"\s*,\s*", theme) if c.strip()]
+    # Plain string splitting and a word scan instead of regex splits with
+    # \s* / \s+ on both sides, which were quadratic on long runs of spaces.
+    chunks = [c.strip() for c in theme.split(",") if c.strip()]
     out: list[str] = []
     for chunk in chunks:
-        parts = re.split(
-            r"\s+(?=(?:that|who|which|and|with)\s)", chunk, flags=re.IGNORECASE)
-        out.extend(p.strip() for p in parts if p.strip())
+        out.extend(p.strip() for p in _split_on_connectors(chunk) if p.strip())
     return out
+
+
+# A new span starts at one of these words when it sits between two others.
+_THEME_CONNECTORS = frozenset({"that", "who", "which", "and", "with"})
+
+
+def _split_on_connectors(chunk: str) -> list[str]:
+    """Split before each connector word that has a word before and after it."""
+    words = list(re.finditer(r"\S+", chunk))
+    cuts = [w.start() for i, w in enumerate(words)
+            if 0 < i < len(words) - 1 and w.group().lower() in _THEME_CONNECTORS]
+    bounds = [0, *cuts, len(chunk)]
+    return [chunk[a:b] for a, b in zip(bounds, bounds[1:])]
 
 
 def color_phrase(ci: str) -> str:
@@ -5897,7 +5919,7 @@ Return only a json array of exact names."""
     try:
         cohesion = synergy.cohesion(deck, cmdr_card)
     except Exception as e:
-        notes.append(f"cohesion: {type(e).__name__}: {e}")
+        notes.append(errors.failure_note("cohesion", e))
     # theme/strategy accounting — every card names its job.
     theme_label = brief_theme(brief) or "theme"
     tribes = theme_creature_types(brief)
@@ -5912,7 +5934,7 @@ Return only a json array of exact names."""
             if isinstance(composed.get("count"), int):
                 theme_legal = composed["count"]
     except Exception as e:
-        notes.append(f"accounting pool: {type(e).__name__}: {e}")
+        notes.append(errors.failure_note("accounting pool", e))
     accounting = why_card.account_deck(
         deck,
         commander=cmdr_card,
@@ -5936,7 +5958,7 @@ Return only a json array of exact names."""
             client, MODEL, cmdr_label, cmdr_card, deck, brief, signals, sim_out,
             for_model, parse_json_list, partner_card=partner_card)
     except Exception as e:
-        notes.append(f"overview: {type(e).__name__}: {e}")
+        notes.append(errors.failure_note("overview", e))
         overview_data = {"how_it_works": "", "combos": [], "pros": [], "cons": []}
 
     text = "\n".join(f"1 {c['name']}" for c in zone) + "\n" + "\n".join(
@@ -6030,7 +6052,7 @@ Return only a json array of exact names."""
             ],
         }
     except Exception as e:
-        notes.append(f"curve_report: {type(e).__name__}: {e}")
+        notes.append(errors.failure_note("curve_report", e))
     # her interrogation turns, verbatim. Display already reads this.
     conversation = conversation_from_payload(payload)
     if conversation is not None:
@@ -6115,7 +6137,7 @@ async def analyze_imported_deck(
         sim_out = await asyncio.to_thread(
             overview.run_build_sim, deck, cmdr_cmc)
     except Exception as e:
-        out["notes"].append(f"sim: {type(e).__name__}: {e}")
+        out["notes"].append(errors.failure_note("sim", e))
 
     overview_data = {"how_it_works": "", "combos": [], "pros": [], "cons": []}
     cmdr_label = (f"{cmdr_name} / {partner_card['name']}"
@@ -6328,9 +6350,11 @@ async def list_precons():
     try:
         catalog = await precons.get_catalog()
     except precons.PreconsUnavailable as e:
+        errors.log_exception("precons", e)
         return JSONResponse(
             status_code=503,
-            content={"available": False, "message": str(e), "precons": []},
+            content={"available": False, "message": precons.PASTE_FALLBACK,
+                     "precons": []},
         )
     return {"available": True, "precons": catalog}
 
@@ -6686,11 +6710,17 @@ _NOT_DECKS = {"vocab", "symbols", "precons", "mechanics"}
 
 
 def saved_deck_path(slug: str, directory: pathlib.Path | None = None) -> pathlib.Path | None:
-    """Resolve a saved-deck file. Returns None for bad slugs or missing files."""
+    """Resolve a saved-deck file. Returns None for bad slugs or missing files.
+
+    The slug must be a bare file stem and the resolved path must stay inside
+    the save directory (see safe_paths.safe_child_path).
+    """
     directory = directory or SAVE_DIR
     if not slug or not _SLUG_RE.fullmatch(slug) or slug in _NOT_DECKS:
         return None
-    p = directory / f"{slug}.json"
+    p = safe_paths.safe_child_path(directory, slug)
+    if p is None:
+        return None
     return p if p.exists() else None
 
 
@@ -7022,8 +7052,9 @@ async def christen_deck(payload: dict):
             ctx.get("overview") or {}, ctx.get("curves") or [],
             parse_json_list)
     except Exception as e:
+        errors.log_exception("christen", e)
         return {"names": [], "theme": "", "primer": "",
-                "note": f"{type(e).__name__}: {e}"}
+                "note": f"Could not suggest names right now ({type(e).__name__})."}
     return out
 
 
@@ -7835,10 +7866,14 @@ def perform_swap(data: dict, remove: str, add: str, *,
     deck = list(data.get("deck") or [])
     role_pools = data.get("role_pools") or {}
     ci = _ci_from_saved(data)
+    problem = swap.swap_problem(deck, remove, add, role_pools, ci=ci)
+    if problem:
+        return {"ok": False, "error": problem}
     try:
         result = swap.apply_swap(deck, remove, add, role_pools, ci=ci)
     except swap.SwapError as e:
-        return {"ok": False, "error": str(e)}
+        errors.log_exception("swap", e)
+        return {"ok": False, "error": swap.REFUSED}
 
     new_deck = result["deck"]
     data["deck"] = new_deck
@@ -8193,11 +8228,15 @@ async def edit_saved_deck(name: str, payload: dict):
     add_card = found[0]
     # Dry-run legality on a hypothetical post-approve list.
     ci = _ci_from_saved(data)
+    current = list(data.get("deck") or [])
+    problem = swap.swap_card_problem(current, cut, add_card, ci=ci)
+    if problem:
+        return JSONResponse({"ok": False, "error": problem}, status_code=400)
     try:
-        preview = swap.apply_swap_card(list(data.get("deck") or []), cut, add_card,
-                                       ci=ci)
+        preview = swap.apply_swap_card(current, cut, add_card, ci=ci)
     except swap.SwapError as e:
-        return JSONResponse({"ok": False, "error": str(e)}, status_code=400)
+        errors.log_exception("swap preview", e)
+        return JSONResponse({"ok": False, "error": swap.REFUSED}, status_code=400)
     cmdr = data.get("commander_card") or {}
     report = validate_deck(cmdr, preview["deck"],
                            partner=data.get("partner_card"),
@@ -8325,7 +8364,9 @@ async def calendar_feed(
             fetch_mechanics=counts,
         )
     except release_calendar.CalendarUnavailable as e:
-        return JSONResponse({"error": str(e)}, status_code=503)
+        errors.log_exception("calendar", e)
+        return JSONResponse({"error": release_calendar.UNAVAILABLE_MESSAGE},
+                            status_code=503)
 
 
 @app.get("/api/calendar/enrich")
@@ -8349,7 +8390,9 @@ async def calendar_enrich(codes: str = ""):
         filled = await release_calendar.enrich_released_mechanics(
             scry, rows, fetch_art=True)
     except release_calendar.CalendarUnavailable as e:
-        return JSONResponse({"error": str(e)}, status_code=503)
+        errors.log_exception("calendar", e)
+        return JSONResponse({"error": release_calendar.UNAVAILABLE_MESSAGE},
+                            status_code=503)
     return {
         "codes": wanted,
         "sets": [
@@ -8597,7 +8640,8 @@ async def report_bug(payload: dict):
     if linear.get("ok") and linear.get("linear"):
         out["linear"] = linear["linear"]
     elif linear.get("error"):
-        out["linear_error"] = linear["error"]
+        # The full reason is stamped on the saved report on disk.
+        out["linear_error"] = "Could not file the report in Linear; it is saved on disk."
     return out
 
 

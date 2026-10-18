@@ -8,6 +8,10 @@ on:
   push:
     branches: [main]
 
+# Least privilege: the job only checks out code and runs tests.
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
