@@ -44,9 +44,7 @@ flowchart LR
 
    <img src="docs/assets/landing.png" alt="Landing page with starter prompts and saved decks" width="640">
 
-   The **How to play** door opens a short primer on Commander for new players:
-
-   ![The in-app How to play primer](docs/assets/ui-walkthrough.gif)
+   The **How to play** door opens a short primer on Commander for new players.
 
 2. **Chat.** You describe the deck in plain words ("something with dragons", "I want to durdle and gain life"). The app asks a few follow-up questions and keeps asking until it understands the theme well enough to search for it.
 
@@ -60,13 +58,17 @@ flowchart LR
 
 7. **Simulate.** The app plays thousands of solitaire goldfish games and reports how often the plan comes together and by which turn. It also calls out what it cannot model, such as effects that depend on opponents.
 
-   ![Turn plan and solitaire odds for whether the plan happens](docs/assets/plan.png)
+   <img src="docs/assets/plan.png" alt="Turn-by-turn plan, the odds that it happens, and sample games that worked and did not" width="720">
 
 8. **Deck page.** You see the commander, legality and price, the plan, the odds, and the 99 grouped by role. The deck is saved to `~/.deckwright/` as soon as it is built. (The screenshot at the top of this README is a deck page.)
 
 9. **Ask / save / export.** You can ask questions about the deck, stage card swaps from the same real card pools and approve or reject them, rename and keep notes, and export the list as text, an Archidekt import, or a shopping list.
 
-   ![The 99 grouped by role, with prices and export actions](docs/assets/decklist.png)
+   <img src="docs/assets/decklist.png" alt="The 99 grouped by role with prices, plus export, naming, and price total" width="720">
+
+   The conversation keeps going after the build. Ask why a card is there or what a number means, or ask for a change; swaps are shown first and wait for you to approve them.
+
+   <img src="docs/assets/ask.png" alt="Still talking: ask about the deck or request changes" width="720">
 
 **Side door: Precon / import.** From the landing page you can open a preconstructed Commander deck or paste a list you already own. The app analyzes it the same way and lands on the same deck page, with suggested upgrades.
 
