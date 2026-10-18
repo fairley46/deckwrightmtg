@@ -1,10 +1,26 @@
 # DeckWright
 
+[![tier1](https://github.com/fairley46/deckwrightmtg/actions/workflows/tier1.yml/badge.svg?branch=main)](https://github.com/fairley46/deckwrightmtg/actions/workflows/tier1.yml)
+[![Latest release](https://img.shields.io/github/v/release/fairley46/deckwrightmtg?label=release)](https://github.com/fairley46/deckwrightmtg/releases)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 ![Mister Negative deck page: commander art, legality and price, and how the deck plays](docs/assets/hero.png)
 
 DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. You describe the deck you want in plain English. It asks a few questions, offers real commanders, builds a legal 99 from Scryfall searches (never from card names the model remembers), and estimates how often the deck's plan comes together in solitaire goldfish games.
 
 It runs on your own machine: one FastAPI process and one HTML page, with no build step and no database. It is not a hosted service.
+
+## Features
+
+- **Plain-English brief.** Say what you want ("dragons", "durdle and gain life"); it asks follow-ups and reads back each term with the Scryfall search behind it.
+- **Real commanders.** Five legal picks that fit, with colours, themes, and ways to play, plus partner pairs where the rules allow.
+- **No invented cards.** The 99 is built role by role from Scryfall search results; any name the model suggests that Scryfall did not return is dropped.
+- **A plan you can check.** A short thesis names the cards that carry the plan, and thousands of solitaire goldfish games estimate how often it comes together.
+- **Edit with guard rails.** Ask about the deck, stage swaps from the same verified pools, approve or reject them, and keep notes.
+- **Precons and imports.** Open a preconstructed Commander deck or paste your own list, and get upgrade suggestions.
+- **Export.** Plain text, Archidekt import, or a shopping list.
+- **Local.** Decks live in `~/.deckwright/`; the server binds to `127.0.0.1` by default.
 
 ## How it works
 
@@ -93,6 +109,29 @@ Settings are read from the environment or a local `.env` file (see `.env.example
 
 More operational detail (data refresh, what is stored on disk, failure modes) is in [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
+## Troubleshooting
+
+Start with `python -m deckwright.check`. It tests Scryfall, the model, and the simulator one at a time and tells you which one is failing.
+
+| Symptom | What to do |
+|---|---|
+| `run.sh` says `Need Python 3.12+ on PATH` | Install Python 3.12 or newer. If an old `.venv` exists, delete it (`rm -rf .venv`) and run `./run.sh` again. |
+| The first launch sits on the loading screen | On first run the app downloads Scryfall's bulk card data and builds its vocabularies. Later launches are quick. |
+| Model calls fail | Install and sign in to the `claude` CLI, or set `ANTHROPIC_API_KEY` in `.env`. Set `DECKWRIGHT_LLM=api` to force the API. |
+| A build stops with a Scryfall message (challenge, rate limit, maintenance) | Building needs the live Scryfall API. The message says which refusal it was; wait a few minutes and try again. Saved decks still open. |
+| Precons do not load | Archidekt is unreachable. Building and saved decks are unaffected; the catalogue is cached for 30 days once it loads. |
+| `Address already in use` | Another process has port 8000. Start with `PORT=8001 ./run.sh`. |
+| The pressure test is missing | The Forge pressure test is optional and stays hidden until Java and Forge are installed (see [docs/OPERATIONS.md](docs/OPERATIONS.md)). |
+
+## Known limits
+
+- Building a deck needs the live Scryfall API; a local copy covers lookups and saved decks only.
+- The simulator plays goldfish games with no opponent, so interaction and opponent-dependent effects are reported as unmodelled.
+- Only an Anthropic Claude adapter is included. Other models need an adapter in `deckwright/llm.py`.
+- The page loads its fonts from Google Fonts and falls back to system fonts offline.
+
+See [docs/STATUS.md](docs/STATUS.md) and the [changelog](CHANGELOG.md) for what has shipped.
+
 ## Project layout
 
 | Path | What it holds |
@@ -113,7 +152,8 @@ More operational detail (data refresh, what is stored on disk, failure modes) is
 - [How it connects](docs/HOW-IT-CONNECTS.md): the request path from the UI through the API to each module
 - [How a wish becomes a deck](docs/DERIVATION.md)
 - [Operations](docs/OPERATIONS.md) and [operating model](docs/OPERATING-MODEL.md)
-- [Contributing](docs/CONTRIBUTING.md)
+- [Contributing](docs/CONTRIBUTING.md), [code of conduct](CODE_OF_CONDUCT.md), and [security policy](SECURITY.md)
+- [Changelog](CHANGELOG.md)
 
 ## Data sources and credits
 

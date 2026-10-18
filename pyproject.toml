@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deckwright"
+dynamic = ["version", "dependencies"]
+description = "Local Commander (EDH) deckbuilder: describe a deck in plain English, get a Scryfall-grounded 99 and solitaire goldfish odds."
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Brad Fairley" }]
+keywords = ["magic-the-gathering", "mtg", "commander", "edh", "deckbuilding", "scryfall", "fastapi"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Games/Entertainment",
+]
+
+[project.urls]
+Homepage = "https://github.com/fairley46/deckwrightmtg"
+Documentation = "https://github.com/fairley46/deckwrightmtg/tree/main/docs"
+Changelog = "https://github.com/fairley46/deckwrightmtg/blob/main/CHANGELOG.md"
+Issues = "https://github.com/fairley46/deckwrightmtg/issues"
+
+# DeckWright runs from a checkout with ./run.sh; this metadata describes the
+# project and pins one version. The package is the deckwright/ directory only.
+[tool.setuptools]
+packages = ["deckwright"]
+
+[tool.setuptools.dynamic]
+version = { attr = "deckwright.__version__" }
+dependencies = { file = ["requirements.txt"] }
