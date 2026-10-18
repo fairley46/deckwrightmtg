@@ -5,7 +5,7 @@
 
 anthropic>=1.14.0,<2.0        # 0.120.2
 fastapi>=0.143.1,<1.0         # 0.141.1
-uvicorn>=0.32,<1.0          # 0.52.1
+uvicorn>=0.54.0,<1.0          # 0.52.1
 httpx>=0.28.1,<1.0            # 0.28.1
 
 # Transitive, listed so a break can be traced without a lock file:
