@@ -1,96 +1,61 @@
-# Documentation map
+# Documentation
 
-This is the index for living docs. Historical plans are stamped **ARCHIVED** at
-the top of each file. Do not treat those as current system-of-record.
+Start with the [project README](../README.md) for what DeckWright is and how to
+run it. The docs below go deeper. Code is the final word; if a doc disagrees
+with it, the doc is out of date.
 
-**Project status:** [STATUS.md](STATUS.md). Local tool; not a hosted service.
+## Reading order
 
-## New reader path
-
-Read in this order. Each step has one job.
-
-| Step | Doc | Job |
+| Step | Doc | What it covers |
 |---|---|---|
-| 1 | [../README.md](../README.md) | What it is, why it exists, how to run, honest limits |
-| 2 | **This file** | Docs map, where files live, where to contribute |
-| 3 | [HOW-IT-CONNECTS.md](HOW-IT-CONNECTS.md) | Connection spine: journey, modules, verifiers, frozen vs recomputed |
-| 4 | [ARCHITECTURE.md](ARCHITECTURE.md) | Shape diagrams (points at HOW-IT-CONNECTS for detail) |
-| 5 | [OPERATING-MODEL.md](OPERATING-MODEL.md) | How work becomes a change, what stops a bad one |
-| 6 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributor rules and the verify gate |
+| 1 | [../README.md](../README.md) | What it is, how it works, quick start, configuration |
+| 2 | [HOW-IT-CONNECTS.md](HOW-IT-CONNECTS.md) | The request path from the UI through each API route to the modules behind it |
+| 3 | [ARCHITECTURE.md](ARCHITECTURE.md) | Shape diagrams and the one rule |
+| 4 | [DERIVATION.md](DERIVATION.md) | How a wish becomes a deck, stage by stage, with the checks for each stage |
+| 5 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributor rules and the test gate |
 
-Then open [OPERATIONS.md](OPERATIONS.md) when you need dependencies, the LLM
-adapter, cadence, or sanctity.
+## Running it
 
-## Where things live
-
-### Top-level folders
-
-| Path | Job |
+| Doc | What it covers |
 |---|---|
-| `docs/` | Living docs, contracts, product notes, screenshots under `docs/assets/` |
-| `data/` | Checked-in bakes and reports (grammar, coverage, playstyles). Precon and EDHREC benchmark JSON are regenerated locally |
-| `scripts/` | Gates and offline jobs (`check_all.py`, print-wave, bakes, refresh) |
-| `deckwright/` | Application package (FastAPI app and supporting modules) |
-| `tests/` | Offline and live `test_*.py` files |
-| `config/` | Optional helpers |
-| `prompts/` | Golden-set fixtures for `test_prompts.py` |
-| `testdata/` | Fixtures for offline tests (corpus samples, benchmarks, review fixtures) |
-| `.github/` | CI workflows (tier 1 on every PR) |
+| [OPERATIONS.md](OPERATIONS.md) | Dependencies, health checks, data refresh, state on disk, load-bearing parts |
+| [OPERATING-MODEL.md](OPERATING-MODEL.md) | The test gate, access, and what happens when Scryfall is unavailable |
+| [STATUS.md](STATUS.md) | What works today |
 
-Runtime state stays under `~/.deckwright/` (saved decks, local Scryfall corpus,
-prices, precon catalog cache). That path is not in the repo. See
-[OPERATIONS.md](OPERATIONS.md).
+## Design contracts
 
-### Load-bearing files
+| Doc | What it covers |
+|---|---|
+| [SCRYFALL-GRAMMAR.md](SCRYFALL-GRAMMAR.md) | How words become Scryfall queries |
+| [SCRYFALL-CONTRACT.md](SCRYFALL-CONTRACT.md) | Which fields are kept from a Scryfall card object |
+| [PLAN-GRAPH-SCHEMA.md](PLAN-GRAPH-SCHEMA.md) | The shape of a deck plan and `THESIS_KEYS` |
+| [SCORING-CONTRACT.md](SCORING-CONTRACT.md) | How cards are scored by simulated lift, with the measurements behind it |
+| [VOCABULARIES.md](VOCABULARIES.md) | The two playstyle vocabularies and why they stay separate |
+| [KNOW-MAGIC-INTEGRATION.md](KNOW-MAGIC-INTEGRATION.md) | How card-text understanding feeds the build |
+| [KNOW-MAGIC-MAINTENANCE.md](KNOW-MAGIC-MAINTENANCE.md) | Keeping card understanding current after new sets |
+
+## Other folders
+
+| Path | What it holds |
+|---|---|
+| `assets/` | Screenshots used in the README |
+| `calibration/` | Forge calibration data referenced by the scoring contract |
+| [archive/](archive/README.md) | Historical development notes (benchmarks, bake-off plans, research logs); not current documentation |
+
+## Where things live in the code
 
 | File | Job |
 |---|---|
 | `deckwright/app.py` | FastAPI routes, query ladders, the three verifiers, persistence |
 | `index.html` | Single-page frontend, vanilla JS, no build step |
-| `deckwright/llm.py` | Anthropic Claude adapter (CLI or API); other models are one adapter away |
+| `deckwright/llm.py` | Anthropic Claude adapter (CLI or API) |
 | `deckwright/corpus.py` | Local Scryfall bulk index; `scry()` reads here first |
-| `deckwright/resolve.py` / `synergy.py` / `plan_graph.py` / `playstyles.py` / `commanders.py` | Grammar → edges → plan → ways |
-| `deckwright/curve.py` / `mana.py` | Live skeleton shaping and mana base |
+| `deckwright/resolve.py` / `synergy.py` / `plan_graph.py` / `playstyles.py` / `commanders.py` | Grammar → edges → plan → ways to play |
+| `deckwright/curve.py` / `mana.py` | Deck skeleton and mana base |
 | `deckwright/card_score.py` | Ranks role pools by simulated lift |
-| `deckwright/sim.py` | Oracle-text extraction and goldfish Monte Carlo |
+| `deckwright/sim.py` | Oracle-text extraction and goldfish simulation |
 | `deckwright/check.py` / `run.sh` | Preflight (`python -m deckwright.check`) and launch |
-| `scripts/check_all.py` | Merge gate (`--tier 1`) |
+| `scripts/check_all.py` | The test gate (`--tier 1`) |
 
-Public entry and run instructions: [../README.md](../README.md). Hop-by-hop spine:
-[HOW-IT-CONNECTS.md](HOW-IT-CONNECTS.md).
-
-## Start here (ops)
-
-| Doc | Job |
-|---|---|
-| [STATUS.md](STATUS.md) | What the project is today |
-| [OPERATIONS.md](OPERATIONS.md) | Dependencies, LLM adapter, Archidekt precon fetch, cadence |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Short contributor start and the verify gate |
-
-## Product / understanding
-
-| Doc | Job |
-|---|---|
-| [product/SHIP-V2.md](product/SHIP-V2.md) | V2 design notes |
-| [product/EDHREC-SEED.md](product/EDHREC-SEED.md) | Seed product path |
-| [DERIVATION.md](DERIVATION.md) | Wish → deck stages + QC checks |
-| [KNOW-MAGIC-MAINTENANCE.md](KNOW-MAGIC-MAINTENANCE.md) | Coverage maintenance + print-wave |
-| [KNOW-MAGIC-INTEGRATION.md](KNOW-MAGIC-INTEGRATION.md) | How understanding joins the product |
-
-## Contracts
-
-| Doc | Job |
-|---|---|
-| [SCRYFALL-CONTRACT.md](SCRYFALL-CONTRACT.md) | Scryfall honesty |
-| [SCRYFALL-GRAMMAR.md](SCRYFALL-GRAMMAR.md) | Grammar / catalogs |
-| [SCORING-CONTRACT.md](SCORING-CONTRACT.md) | Scoring math |
-| [PLAN-GRAPH-SCHEMA.md](PLAN-GRAPH-SCHEMA.md) | Plan shape + `THESIS_KEYS` |
-| [VOCABULARIES.md](VOCABULARIES.md) | Playstyle / signal vocabularies |
-
-## Maps
-
-| Doc | Job |
-|---|---|
-| [HOW-IT-CONNECTS.md](HOW-IT-CONNECTS.md) | Prefer this for "how does A call B?" |
-| [SYSTEM-MAP.md](SYSTEM-MAP.md) | Deep inventory / harness notes. Secondary; code wins |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Shape diagrams |
+Saved decks and caches live under `~/.deckwright/` (or `DECKWRIGHT_HOME`), not
+in the repository. See [OPERATIONS.md](OPERATIONS.md#state-on-disk).

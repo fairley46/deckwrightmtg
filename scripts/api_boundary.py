@@ -44,7 +44,7 @@ ENDPOINTS: dict[str, dict] = {
         },
         "server_only": {
             "still_asking": (
-                "UI infers the three the chat envelope states from brief / brief_error / "
+                "UI infers the three chat envelope states from brief / brief_error / "
                 "readiness; still_asking stays on the wire for the model envelope"
             ),
             "instrument": (
@@ -146,7 +146,7 @@ ENDPOINTS: dict[str, dict] = {
         },
         "server_only": {
             "still_asking": (
-                "Same the chat envelope as chat; askChange branches on brief / "
+                "Same chat envelope as chat; askChange branches on brief / "
                 "brief_error"
             ),
             "instrument": (
@@ -276,11 +276,11 @@ CARD_KEYS = {
 # Fields the UI may read defensively even when an older save omits them.
 UI_OPTIONAL: dict[str, str] = {
     "simulation": "Absent on fresh builds until goldfish runs; page guards",
-    "match_notes": "the match notes; absent until first note",
-    "pending": "the pending change sets; absent until a change set stages",
-    "version": "the pending change sets; defaults to 1 when absent",
+    "match_notes": "match notes; absent until first note",
+    "pending": "pending change sets; absent until a change set stages",
+    "version": "pending change sets; defaults to 1 when absent",
     "parent_version": "fork pointer; absent on v1",
-    "history": "the pending change sets; absent until first approve",
+    "history": "pending change sets; absent until first approve",
     "favorite": "PATCH may set; older saves omit",
     "theme": "Christen / PATCH; older saves omit",
     "primer": "Christen; older saves omit",
@@ -312,7 +312,7 @@ DATA_ATTR_KEEP: dict[str, str] = {
     "bucket": (
         "Per-card accounting provenance (theme_strategy / theme_only / …). "
         "Aggregate counts paint in renderAccountingBlock; row filter by "
-        "bucket is the same shape as data-axis keep the "
+        "bucket has the same shape as data-axis; keep the "
         "attribute so a filter can land without re-plumbing the row"
     ),
     "tilt": "Landing / masthead parallax amplitude",

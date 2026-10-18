@@ -481,7 +481,7 @@ def test_validate_contestant_registry_rejects_collisions():
 
 
 def test_build_timeout_floor():
-    print("\nDEFAULT_BUILD_TIMEOUT must stay ≥ 1800 (PR #322 hole)")
+    print("\nDEFAULT_BUILD_TIMEOUT must stay ≥ 1800 (regression guard)")
     eq("constant ≥ 1800", vb.DEFAULT_BUILD_TIMEOUT >= 1800.0, True)
     eq("default_build_timeout() ≥ 1800", vb.default_build_timeout() >= 1800.0, True)
     # build_http default kwarg must bind the constant, not a bare 300.

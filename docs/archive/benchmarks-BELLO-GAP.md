@@ -1,7 +1,7 @@
 # Bello gap — B 8 vs E 4
 
 Source measurement: `GATE5B-BELLO-20260825T003009Z.md` on tip
-`box/gate4b-integration-validated` @ `e44e92d`. Harness metric: `mv_geq_4` on
+the validated B build. Harness metric: `mv_geq_4` on
 `bello_permanent` (non-Equipment artifacts and non-Aura enchantments).
 
 | contestant | violations | feeder density |

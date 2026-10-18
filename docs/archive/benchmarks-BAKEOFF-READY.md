@@ -12,7 +12,7 @@ What the maintainer does on the demo host **after** the dual-floor and LLM-timeo
 | 1 | The dual-floor and LLM-timeout fix merged | green + green-b templates include `DECKWRIGHT_LLM_TIMEOUT=600` |
 | 2 | The MV floor bounds merged | `python scripts/bound_coverage.py` → `SEEN=6 NONE=0` |
 | 3 | #314 rebased onto that tip | green-c plist also carries `DECKWRIGHT_LLM_TIMEOUT=600` |
-| 4 | #314 merged only when Brad says wire C | draft until then — do not promote |
+| 4 | #314 merged only once wiring C is decided | draft until then — do not promote |
 
 ## Demo host deploy (green worktree only)
 

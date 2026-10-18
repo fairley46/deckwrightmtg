@@ -278,7 +278,7 @@ def test_green_plist_and_install_script():
     true("blue plist unchanged label",
          "com.deckwright</string>" in blue_text)
     true("blue still :8000 default (no 8001)", "8001" not in blue_text)
-    # Blue production timeout is Brad's call; do not require it here.
+    # The production timeout is an operator choice; do not require it here.
 
     root = ET.parse(plist).getroot()
     d = root.find("dict")

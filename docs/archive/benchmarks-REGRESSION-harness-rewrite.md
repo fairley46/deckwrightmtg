@@ -2,7 +2,6 @@
 
 **Found:** 2026-09-02, validating the E/BLUE/D seed sweep.
 **Run affected:** `docs/benchmarks/runs/20260902T172439Z` — **VOID, do not read as a result.**
-**Linear:** to file as a card (MCP token expired at time of writing).
 
 ---
 

@@ -867,7 +867,7 @@
   },
   "empty_ways_finding": {
     "empty_ways_unchanged": true,
-    "reason": "New the unread-gap signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback.",
+    "reason": "New unread-gap signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback.",
     "top_signals_among_signals_no_playstyle": [
       [
         "enters",

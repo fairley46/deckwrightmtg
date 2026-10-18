@@ -50,7 +50,7 @@ def reload_paths() -> None:
 
 reload_paths()
 
-UA = "Deckwright/1.0 (local; the local card corpus)"
+UA = "Deckwright/1.0 (local card corpus)"
 BULK_INDEX = "https://api.scryfall.com/bulk-data"
 PAGE_SIZE = 175
 

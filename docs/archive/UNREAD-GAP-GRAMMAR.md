@@ -2,8 +2,8 @@
 
 Phase 3 of Know Magic.
 
-**Artifact:** [`data/unread_gap_grammar.json`](../data/unread_gap_grammar.json)  
-**Research:** [`data/unread_gap_research.json`](../data/unread_gap_research.json)
+**Artifact:** [`data/unread_gap_grammar.json`](../../data/unread_gap_grammar.json)  
+**Research:** [`data/unread_gap_research.json`](../../data/unread_gap_research.json)
 
 ## What this is
 

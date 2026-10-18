@@ -32,7 +32,7 @@ VOCAB = ROOT / "data" / "playstyles.json"
 KB_PATH = ROOT / "data" / "commanders.json"
 GRAMMAR = ROOT / "data" / "scryfall_grammar.json"
 
-# App's own legal-commander definition — matches legal_commanders_only() / the commander knowledge base.
+# App's own legal-commander definition — matches legal_commanders_only() in the commander knowledge base.
 LEGAL_QUERY = '((t:legendary t:creature) or o:"can be your commander") f:commander'
 
 

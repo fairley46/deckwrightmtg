@@ -145,7 +145,7 @@ def test_tcgplayer_mass_entry():
 
 
 def test_commander_selection():
-    """labels/Partner + the colour-identity ladder scoping colour identity on the ladder."""
+    """labels/Partner + colour-identity scoping on the commander ladder."""
     print("\ncommander selection  — ladder, labels, Partner")
 
     # when she named colours, every search rung carries id<=.
@@ -1190,7 +1190,7 @@ async def test_suggested_name_never_overwrites_hers():
             eq("and the name is written", stored("a")["name"], "Dawn of the Charge")
             eq("marked as ours", stored("a")["named_by"], "auto")
 
-            # The playtest sort fix's sort must survive the name — otherwise every playtest
+            # The playtest sort must survive the name — otherwise every playtest
             # starts looking like a deck she kept.
             eq("an auto-named deck is still an auto-save",
                app.is_auto_saved_deck(stored("a")), True)
@@ -1535,7 +1535,7 @@ def test_sim_baseline_cache():
         "review": {"sound": True, "caveat": ""},
     }
 
-    # bake.fresh is the shared gate the precon bake will reuse.
+    # bake.fresh is the shared freshness gate, also used by the precon bake.
     stamped = bake.stamp({"curves": sim_out["curves"]}, deck_a, 1)
     eq("fresh when stamps match", bake.fresh(stamped, deck_a, 1), True)
     eq("stale on hash mismatch", bake.fresh(stamped, deck_b, 1), False)
@@ -2056,7 +2056,7 @@ def test_substitution():
 def test_land_ramp_policy():
     """any land-type pick counts against the land slot, for every role."""
     print("\nland-slot policy  — (all roles)")
-    land_target = 36  # fixture size for the land-slot policy slot policy, not curve-derived
+    land_target = 36  # fixture size for the land-slot policy, not curve-derived
     ramp_target = next(t for r, t, _ in app.ROLES if r == "ramp")
     draw_target = next(t for r, t, _ in app.ROLES if r == "draw")
 
@@ -3819,7 +3819,7 @@ def test_sim_sees_graveyard():
     eq("Millikin self_mill", sim.mechanics(millikin, set())["self_mill"], 1)
     eq("Dread Return gy_return", sim.mechanics(dread, set())["gy_return"], 1)
     eq("Traverse delirium", sim.mechanics(traverse, set())["delirium"] > 0, True)
-    # No new THESIS_KEY without Box — flashback second cast feeds cards_drawn.
+    # No new THESIS_KEY without a reviewed change — flashback second cast feeds cards_drawn.
     eq("no gy_card_types thesis key", "gy_card_types" in sim.THESIS_KEYS, False)
     eq("no cards_in_graveyard thesis key", "cards_in_graveyard" in sim.THESIS_KEYS, False)
 
@@ -3882,7 +3882,7 @@ def test_card_score_marginal():
                 "text": "Big creature.", "role": "theme"}
 
     # Score against payoffs — harder floors keep headroom at TARGET_TURN=10
-    #; "3 payoffs" saturates by T10 on these scaffolds.
+    # because "3 payoffs" saturates by T10 on these scaffolds.
     conds = [
         {"label": "Commander out", "check": {"commander_in_play": True}},
         {"label": "5 payoffs", "check": {"payoffs_in_play": 5}},
@@ -4160,7 +4160,7 @@ def test_enforce_payoff_floors():
         _card("Filler Spell", typ="Instant", text="Draw a card."),
     ]
     # Two separate floors — Bond half alone must not satisfy the Exquisite half.
-    # A single OR floor with min:6 was the archetype-search fix miss that let Bond clones
+    # A single OR floor with min:6 was the earlier miss that let Bond clones
     # fill the quota and drop the card that closes the loop.
     floors = [
         {"id": "archetype_burst", "min": 6,
@@ -4197,7 +4197,7 @@ def test_enforce_tribe_floor():
     Angels+lifegain found the tribe at commander select, then filled theme with
     behaviour payoffs (`o:"whenever you gain life"`) that are not angels. The
     vampire twin kept its tribe because drain payoffs *are* vampires. Honour a
-    tribe floor the way the archetype payoff floors honours archetype floors — after payoffs, without
+    tribe floor the way enforce_payoff_floors honours archetype floors — after payoffs, without
     inventing cards, without stealing protected loop pieces.
     """
     print("\nenforce_tribe_floor  — tribe survives payoff reservation")
@@ -5359,7 +5359,7 @@ def test_apply_tweak():
         (ok if c.get("name") and c.get("type") else bad)(
             "no blank stand-in", c)
 
-    # Composition target is the seam for the single-card swap / the rebuild work rebuilds.
+    # Composition target is the seam for card swaps and composition rebuilds.
     for axis in tw.COMPOSITION_AXES:
         (ok if axis in after else bad)(f"composition has {axis}", after)
 
@@ -5380,7 +5380,7 @@ def test_apply_tweak():
     # The fixture above has a single Island, so a singleton check on raw names
     # passed here while raising on all fifteen saved decks. A crash inside
     # /api/simulate takes the whole panel down, sliders included, which is how
-    # this reached Brad as "the sliders are gone".
+    # this showed up in playtesting as "the sliders are gone".
     real = [dict(c) for c in deck] + [full("Island", "Basic Land — Island", "basic")
                                       for _ in range(12)]
     many = tw.apply_tweak(real, {"creatures": 1}, role_pools)
@@ -5884,7 +5884,7 @@ async def test_commander_ladder():
         cards, used = await app.search_ladder(
             ladder, limit=25, floor=app.COMMANDER_FLOOR)
     except app.ScryfallError as e:
-        live_skip("commander ladder the commander ladder fix", e)
+        live_skip("commander ladder", e)
         return
     names = [c["name"] for c in cards]
     types = " ".join(c.get("type") or "" for c in cards).lower()

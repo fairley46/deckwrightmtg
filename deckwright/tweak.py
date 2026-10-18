@@ -7,7 +7,7 @@ stop and say so — the curves then describe a deck that could actually be built
 
 Axes match the deck rail: lands, creatures, instants & sorceries, artifacts,
 enchantments. The post-tweak composition dict is the rebuild target for
-The single-card swap / the rebuild work.
+Used by card swaps and composition rebuilds.
 """
 
 from __future__ import annotations
@@ -49,7 +49,7 @@ def card_axis(card: dict) -> str | None:
 
 
 def composition_of(deck: list) -> dict[str, int]:
-    """Count the 99 by composition axis. Rebuild target for the single-card swap / the rebuild work."""
+    """Count the 99 by composition axis. Rebuild target for card swaps and composition rebuilds."""
     counts = {a: 0 for a in COMPOSITION_AXES}
     for c in deck:
         ax = card_axis(c)

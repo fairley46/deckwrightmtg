@@ -126,7 +126,7 @@ body.landing #art{will-change:transform,opacity}
    The reason it was dimmed was readability. That is solved by giving the text
    something to sit on instead of taking the art away: the panels below are
    translucent and blurred, so the art reads through them without competing. */
-/* Brad: "lost the picture in the back of this page". It was never gone, but at
+/* Playtest note: "lost the picture in the back of this page". It was never gone, but at
    .82 behind opaque panels it had stopped reading as art. Brighter and less
    blurred so the deck's own card is visibly back there. */
 /* .82 read as no art at all behind opaque panels; .95 read as art competing with
@@ -146,7 +146,7 @@ body.landing #veil{background:
 /* inset:-32px, not 0. The veil drifts with the pointer like the art does, but
    unlike the art it has no overscan to spend — #art is scale(1.12), so it can
    move 14px and still cover the viewport, while a veil pinned at inset:0
-   uncovers a strip the moment it moves at all. That strip is the bleed Brad
+   uncovers a strip the moment it moves at all. That strip is the bleed playtesting
    saw: unveiled art at the window edge, worst on a narrow window where there
    is least margin anywhere. 32px is more than double the largest drift. */
 #veil{position:fixed;inset:-32px;z-index:-1;pointer-events:none;
@@ -339,7 +339,7 @@ body.landing #veil{will-change:transform}
   .ways{transform:none;transition:none;will-change:auto}
 }
 /* Masthead destinations only. (Calendar's "Show older sets" is .ghost — do
-   not reuse .way outside the bar; the ways-to-play work already burned that once.) */
+   not reuse .way outside the bar; the ways-to-play picker already burned that once.) */
 .bar .way{position:relative;background:transparent;border:1px solid transparent;
   /* Bone mixed toward mute — pure --mute on the glass washed out; this still
      reads secondary to the lit cell without falling below ~4.5:1 on the bar. */
@@ -513,7 +513,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* already tracked the dec
 
 /* ── starters ─────────────────────────────────────────────────────────── */
 /* These are example prompts you click to use, and they looked like nothing else
-   on the page — dark boxes in italic serif, so Brad's question was fair: what do
+   on the page — dark boxes in italic serif, so the playtest question was fair: what do
    they do? They are buttons, so they now look like the ghost buttons everywhere
    else (same tint, same border, same sans face) and carry a mark that says the
    text goes into the box. */
@@ -613,7 +613,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
   color:#1A1208;background:linear-gradient(180deg,#E6CF9C,var(--gold));padding:3px var(--s2);
   border-radius:2px;margin-bottom:var(--s2);box-shadow:0 1px 5px rgba(198,164,106,.28)}
 .catch{color:var(--mute);font-size:var(--t2);font-family:var(--serif);font-style:italic}
-/* The ways-to-play work. Named .wtp, NOT .ways/.way — those are the nav bar's
+/* Ways to play. Named .wtp, NOT .ways/.way — those are the nav bar's
    (line ~192), and redefining them here set the nav to flex-direction:column,
    stacking the five nav items down the right edge and inflating the header to
    267px. Later rule wins; the nav lost. Generic names are already claimed. */
@@ -673,8 +673,8 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
 /* The swap arrow carries the direction so the sentence does not have to. */
 .beef-list .beef-swap .beef-out{color:var(--warn);font-style:normal;padding-right:2px}
 /* A buy link had no rule at all here, so it fell through to the browser's blue
-   underline — the one colour in the app that belongs to no token. The 99 has
-   answered this bone, no underline, hover to the deck's accent.
+   underline — the one colour in the app that belongs to no token. The 99 has long
+   answered this: bone, no underline, hover to the deck's accent.
    No border-bottom, because the peek under it already draws the dotted rule
    that says "there is a card behind this word". */
 .beef-list a{color:var(--bone);text-decoration:none}
@@ -834,7 +834,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
    the rules text as two unexplained words. */
 .abilrow{display:flex;flex-wrap:wrap;gap:var(--s1);margin:0 0 var(--s3)}
 /* The text takes the LIFTED accent, not the raw one. Using --a1 here repeated
-   exactly the mistake the focus-ring fix removed from the focus ring: the raw deck colours are
+   exactly the mistake an earlier fix removed from the focus ring: the raw deck colours are
    dark, so on a dark chip they measured 3.37 (blue), 3.27 (black), 3.18 (red)
    and 2.93 (green) against a 4.5 floor — four of five decks shipped chips you
    could barely read. --btn is the same hue with the lightness raised, so the
@@ -1582,7 +1582,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
    overflow-x:auto forces overflow-y to auto too, which would clip the -14px
    hover lift. The padding/negative-margin pair gives that lift somewhere to go
    without moving the block. */
-/* The phone-scroll fix contained this below 820px on the assumption that desktop always had
+/* An earlier phone-scroll fix contained this below 820px on the assumption that desktop always had
    room for seven cards. It does not: at 1185px the second hand ran 88px past its
    own column, so cards sat on top of the neighbouring text. The containment is
    unconditional now, and the cards shrink with the column so the scroll is a
@@ -1738,7 +1738,7 @@ table{width:100%;border-collapse:collapse;font-size:var(--t3)}
 /* This was `9px 8px 10px` — the vertical rhythm of the densest, most-read
    surface in the app, on 61 rows, and neither number on the scale (--s2 is 10).
    It was also asymmetric top-to-bottom by 1px for no reason anyone could state.
-   Horizontal padding stays at 8 for now; that is the padding pass's problem. */
+   Horizontal padding stays at 8 for now. */
 td{padding:var(--s2) var(--s2);border-bottom:1px solid var(--line);vertical-align:top;line-height:var(--lh-snug)}
 td.r{color:var(--mute);font:500 var(--t1) var(--sans);text-transform:uppercase;letter-spacing:.09em;
   width:78px;padding-top:13px}
@@ -1903,7 +1903,7 @@ a.oppchip:hover{border-color:var(--edge)}
   background-size:cover;background-position:center;background-color:var(--stone-2)}
 .chipn{font-family:var(--serif);font-size:var(--t4);line-height:var(--lh-tight);display:block}
 
-/* Brad: the explanation runs the same width as the three boxes above it. */
+/* The explanation runs the same width as the three boxes above it. */
 .fineprint{margin-top:var(--s5);padding-top:var(--s3);
   border-top:1px dashed var(--line);color:var(--mute);
   font-size:var(--t2);line-height:var(--lh-body)}
@@ -2857,7 +2857,7 @@ function colorIdentityOf(d){
 /* Older saves (and a few import paths) ship a commander name with no
    color_identity. Without it the page paints colourless and the colour line
    claims Malcolm has no colour — which is wrong, and which kills the
-   signature the saved-deck identity backfill is for. Ask Scryfall once; stamp what comes back onto the
+   signature this backfill is for. Ask Scryfall once; stamp what comes back onto the
    in-memory deck so paint/renderDeck/colourLine all see the same field. */
 async function ensureIdentity(d){
   const have = colorIdentityOf(d);
@@ -3227,7 +3227,7 @@ function bubble(who, text){
   if(who === 'user'){ d.textContent = text; }
   else {
     d.innerHTML = mdish(text);
-    /* Brad: a reply "is just response" — nothing marks the moment the answer
+    /* Playtest note: a reply "is just response" — nothing marks the moment the answer
        arrived. One bloom in the deck's own accent, then it settles and stops.
        Momentary on purpose: this is an instrument, and anything still moving
        while she reads competes with what it is trying to show her. */
@@ -3269,7 +3269,7 @@ function clearBuildProgress(){
 }
 /* The stages promise something real — pulling cards, checking legality,
    playing 3,000 games — and then the old code just stopped: clearBuildProgress()
-   and the deck was suddenly there. Brad: "it just kind of like cut from that
+   and the deck was suddenly there. Playtest note: "it just kind of like cut from that
    screen right over." After being told the app is playing three thousand games
    on her behalf, the games never visibly finished.
 
@@ -3606,7 +3606,7 @@ async function loadSavedDeck(id){
        load — so the page told her the deck predated the reasoning, refused to
        simulate, and offered "Simulate it anyway" on a deck built an hour ago.
        Falls back to the stub only for lists that genuinely have no brief:
-       pasted decklists and, lands, precons. */
+       pasted decklists and precons without a baked brief. */
     brief = d.brief || brief
           || {theme: '', card_pool: d.card_pool || CARD_POOL_TOURNAMENT};
     /* older saves omit color_identity. Resolve it before paint so a
@@ -3859,7 +3859,7 @@ function versionHint(d){
    not a relapse of the squint finding, it is the reason for it. The group
    carries the mass now, and hairlines are the right weight for sub-structure
    inside something that already reads as a block. */
-/* Brad, playtesting: "I don't even know what that box is for, like, what the
+/* Playtest note: "I don't even know what that box is for, like, what the
    point is" — and, of the accounting, "you asked for this so we filled with
    that. The player doesn't know any of that stuff."
 
@@ -3900,7 +3900,7 @@ function renderSelectionBlock(d){
 }
 
 function renderPlanBlock(d){
-  /* The plan-on-build work returns plan on the build; older saves omit it. Unknown ≠ guess. */
+  /* The build returns its plan; older saves omit it. Unknown ≠ guess. */
   const plan = d && d.plan;
   if(!plan) return '';
   const arch = plan.archetype || {};
@@ -3942,7 +3942,7 @@ function renderPlanBlock(d){
   </div>`;
 }
 
-/* The first review follow-ups UX: budget is advisory — say when we went over before she digs in. */
+/* Budget is advisory — say when we went over before she digs in. */
 function renderBudgetNote(d){
   const b = d && d.budget || {};
   const delta = Number(b.delta);
@@ -5179,7 +5179,7 @@ function renderClarityBlock(d){
       <p class="hint">The 99 is the usual build path. Soft combos and hidden power — we do not score this.</p>
     </div>`;
   }
-  /* Box: the extractor's field names are its own vocabulary — board_count,
+  /* The extractor's field names are its own vocabulary — board_count,
      recur_to_battlefield. A beginner reads the deck page, not the schema, so
      every value is spoken here. An unmapped key falls through to the raw key
      rather than disappearing: a gap should look like a gap. */
@@ -5250,7 +5250,7 @@ function renderClarityBlock(d){
     `${v.name} (mv ${v.cmc} > ${v.limit})`);
   const unk = (a.bound_unknown || []).map(u => u.reason || u.subject);
   const rate = s.rate || a.rate || {};
-  /* Box: who has to act decides what the goldfish can honestly measure.
+  /* Who has to act decides what the goldfish can honestly measure.
      Self-supplied triggers a solitaire game can produce; opponent-supplied
      ones it cannot, and we say so rather than scoring an imagined table. */
   const rateLine = rate.supplier === 'opponent'
@@ -6601,7 +6601,7 @@ const CAL_SET_TYPE = {
   expansion:'Expansion', commander:'Commander decks', masters:'Masters',
   core:'Core set', draft_innovation:'Draft innovation',
 };
-/* CAL_PIP + calPipColor removed — colour pips died with the release-calendar mechanics work's
+/* CAL_PIP + calPipColor removed — colour pips died with the mechanics calendar's
    sets×decks enrich; nothing called the helper after. */
 
 function calSetType(t){
@@ -7373,7 +7373,7 @@ function axisStory(deck, axis){
 /* The build's own account of what went wrong. This is the most honest thing on
    the page — it is where the deck admits a theme returned nothing and basics
    were padded in to reach 99 — and it was printed as an eight-line log dump
-   under the card table. Brad's words: "I dunno what this is."
+   under the card table. Playtest note: "I dunno what this is."
 
    Three kinds of line, and they are not equal. The padding warning changes what
    she should do; the per-role shortfalls explain why; the Karsten basis line is
@@ -7579,7 +7579,7 @@ function toggleRole(el){
   el.setAttribute('aria-expanded', shut ? 'false' : 'true');
 }
 /* browse Scryfall on a saved deck. No model — /api/search returns
-   trimmed, verified cards. Editor staging (cut/add) is the editor staging work; this panel
+   trimmed, verified cards. Editor staging (cut/add) is a separate panel; this panel
    only surfaces the pool she would pick from. */
 let cardSearchTimer = null;
 let cardSearchSeq = 0;
@@ -7986,7 +7986,7 @@ function renderDeck(d){
         aria-pressed="${d.favorite ? 'true' : 'false'}">${d.favorite ? '★' : '☆'}</button>
     </div>
     ${typeLines}
-    ${/* Brad: this belongs up here. Legal, price, size and budget are the deck's
+    ${/* This belongs up here. Legal, price, size and budget are the deck's
           vital signs — the first things you check — and they were buried below
           the oracle text and the colour footnote, after everything you were
           reading to find out whether the deck was even valid. */''}
@@ -8074,10 +8074,10 @@ function planParagraphs(text){
       const fits = (brief || {}).fits;
       /* A precon was bought, not asked for. Saying "what you asked for" back at
          someone who picked a deck off a shelf and handing them its own product
-         name is the tool mishearing them out loud. The precon brief bake flags the source;
+         name is the tool mishearing them out loud. The precon bake flags the source;
          this reads it. */
       const bought = ((brief || {}).source === 'precon');
-      /* Her own turns, read back to her on the deck page. Brad: "the player
+      /* Her own turns, read back to her on the deck page. Playtest note: "the player
          doesn't know any of that stuff… you asked for Spiderman, and it's like
          Spiderman together." She said it minutes ago and the deck is named
          after it — repeating a transcript is the app talking about the
@@ -8086,7 +8086,7 @@ function planParagraphs(text){
          What survives is `fits`: why THIS commander answers what she wanted.
          That is about the deck and it is the one line here she did not write.
          A bought precon keeps its own framing, since she never asked for
-         anything and the precon brief bake flags that case. */
+         anything and the precon bake flags that case. */
       const wanted = fits ? `<div class="wanted">
         <div class="pc-h">${bought ? 'The deck you bought' : 'Why this one'}</div>
         <p class="fitline">${prose(fits)}</p>
@@ -8186,7 +8186,7 @@ function planParagraphs(text){
         ${(d.signals.watch||[]).map(s => `<div class="hint">! ${esc(s.text)}</div>`).join('')}
       ` : ''}
       ${/* This was a bare run of card names under "Almost nobody runs
-             these", and it read as a second, unexplained list of cards — Brad's
+             these", and it read as a second, unexplained list of cards — the playtest
              question was literally "why are they here". The answer was never on
              screen: they are ALREADY IN THE 99. That is the whole point, and it
              was the one fact the panel omitted.
@@ -8550,8 +8550,8 @@ async function runThesis(){
        what decides which conditions the thesis measures. Sending the module-level
        `brief` sent the version from before a commander existed — so the deck was
        graded against a generic plan rather than the one she picked, and on a
-       saved deck against nothing at all. Cursor flagged this seam when it
-       finished the strategy-driven build; the backend has been reading `strategy` since. */
+       saved deck against nothing at all. This seam was flagged when the
+       strategy-driven build landed; the backend has been reading `strategy` since. */
     /* Prefer the plan that built the 99. The server goldfishes those
        conditions against this list — any plan shape — instead of inventing
        a second thesis. Older saves without a plan still fall back to the
@@ -8776,7 +8776,7 @@ const syncScrollbarWidth = () => {
    popover past the fold — even at opacity:0, which is enough to make the
    page scroll sideways. Measure each host against the viewport and open the
    popover toward the side that fits, capping width to the free space. */
-/* The keyword popover fix solved this for keyword popovers; the popover clamp fix found the identical bug on
+/* An earlier fix solved this for keyword popovers; the same bug turned up on
    card-image peeks (`left:50%` + `translate(-50%)`, nothing clamping it to the
    viewport — 11px of horizontal scroll at 390). Two independent positioners for
    one problem is how they drift, so the clamp takes a selector and a width. */

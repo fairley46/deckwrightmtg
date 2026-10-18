@@ -135,7 +135,7 @@ async def test_budget_warn_not_block():
 
 
 async def test_colors_do_not_block():
-    """The interrogator reply-length work / INTERROGATOR: colours come from the commander. Missing colours
+    """INTERROGATOR: colours come from the commander. Missing colours
     must not force a question — that would fight the sacred prompt."""
     print("\ncheck_readiness()  — missing colours do not block")
     await app.load_vocab()

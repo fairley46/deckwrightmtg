@@ -202,7 +202,7 @@ def test_build_gate_refuses_dead_and_zero():
 
 
 def test_norm_term():
-    """Lookup keys strip punctuation the same way the Scryfall grammar lookup will."""
+    """Lookup keys strip punctuation the same way the grammar lookup does."""
     print("\nnorm_term  — shared normalisation")
     eq("board wipe", app.norm_term("board wipe"), "boardwipe")
     eq("extra-turn", app.norm_term("extra-turn"), "extraturn")

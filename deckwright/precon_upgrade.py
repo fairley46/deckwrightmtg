@@ -28,7 +28,7 @@ _CUT_PROTECTED_ROLES = frozenset({"lands", "basic", "ramp"})
 
 
 def ways_for_precon(commander_card: dict | None, *, limit: int = 3) -> dict[str, Any]:
-    """Ways-to-play for a precon commander — same merge/detect path as the ways-to-play work.
+    """Ways-to-play for a precon commander — same merge/detect path as the commander picker.
 
     Returns:
       {

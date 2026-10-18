@@ -1,4 +1,4 @@
-"""The CardFacts work Candidate C — ServeReport from CardFacts + CommanderStrategy.
+"""Candidate C (experimental) — ServeReport from CardFacts + CommanderStrategy.
 
 Active only when ``DECKWRIGHT_CANDIDATE=C``. Bound math stays in
 ``strategy_audit.card_bound_ok`` (shared with B). Missing CardFacts lookup
@@ -37,7 +37,7 @@ _CONCEPT_KEYS = (
     "value_to_turn",
 )
 
-# Concepts 4 and 6 stay computable:false, weight 0 (v2 design / the CardFacts work).
+# Concepts 4 and 6 stay computable:false, weight 0 (per the V2 design).
 _UNSCOREABLE_CONCEPTS = frozenset({"soft_combo", "hidden_power"})
 
 

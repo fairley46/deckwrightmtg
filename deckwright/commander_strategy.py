@@ -1,6 +1,6 @@
 """CommanderStrategy from one card's oracle text.
 
-Layer 2 of docs/product/v2-design.md. Clause-level extraction on the
+Layer 2 of the V2 design. Clause-level extraction on the
 commander only. Unreadable text → status unread, empty arrays, honesty note.
 Never invent a strategy. No named-commander branches.
 """
@@ -443,7 +443,7 @@ def _mv_floor_subjects(text: str, match_start: int) -> list[tuple[str, list[str]
 
     Pattern-only: 'non-Equipment artifact' / 'non-Aura enchantment' emit typed
     floors with exclusions. Dual phrasing yields two bounds so cheap
-    enchantments are visible to steer (/ Bello gap).
+    enchantments are visible to steer (the Bello gap).
     """
     window = text[max(0, match_start - 120):match_start]
     found: list[tuple[str, list[str]]] = []

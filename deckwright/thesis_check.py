@@ -180,7 +180,7 @@ def key_support(conditions: list, deck: list,
     """Do engine keys have at least one extractable contributor?
 
     a `life_drained` condition with no drain text is grading a
-    question the goldfish will answer 0% forever. The commander on-cast modelling applies commander
+    question the goldfish will answer 0% forever. Commander on-cast modelling applies commander
     oracle on cast, so the commander counts as support when its mechanics
     contribute — except opponent-only effects (life exchange), which still
     extract as zeros.

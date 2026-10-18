@@ -205,7 +205,7 @@ def test_pending_version_fork():
 
 
 def test_change_set_d1_contract():
-    """The pending change sets / D1: suggestions are a pending change set.
+    """Suggestions are a pending change set.
 
     Approve forks vN → vN+1. Reject leaves version + 99 alone.
     Mixed suggest + editor sets reject/approve independently.

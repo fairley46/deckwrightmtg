@@ -37,7 +37,7 @@ _OTAG_TO_PLAYSTYLE: dict[str, str] = {
     "reanimate": "reanimator",
 }
 
-# Phrases she says → playstyle. Includes the beginner alias pack dead behaviours that still
+# Phrases she says → playstyle. Includes beginner-alias dead behaviours that still
 # name a detectable way (go wide → tokens) and direct id/community labels.
 # Longer keys win. Never invent an id outside playstyles.json.
 _PHRASE_TO_PLAYSTYLE: dict[str, str] = {
@@ -202,7 +202,7 @@ def map_way_playstyle(way_preference: str | None,
                       path: pathlib.Path | None = None) -> str | None:
     """Her scene words → one detectable playstyle id, or None.
 
-    Deterministic. Uses phrase aliases, then the beginner alias pack otag resolution, then
+    Deterministic. Uses phrase aliases, then beginner-alias otag resolution, then
     exact playstyle id. Never invents an id outside playstyles.json.
     otag:theft and friends with no playstyle mapping stay None — unknown is
     not a guess.

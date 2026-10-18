@@ -36,7 +36,7 @@ for arch, spec in plan_graph._ARCHETYPES.items():
         TARGETS.append((f"{arch}[{i}]", q))
 
 # Probe each pattern BOTH bare and as the build actually uses it — wrapped and
-# colour-scoped. Cursor found that `q OR r id<=WB` binds the identity filter to
+# colour-scoped. Review found that `q OR r id<=WB` binds the identity filter to
 # r alone under Scryfall precedence, so one arm returned colour-illegal cards
 # and Thassa's Oracle reached a white-black deck. The bare probe cannot see
 # that: the bug only exists once id<= is appended. A gate that tests a query in

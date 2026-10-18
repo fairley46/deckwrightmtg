@@ -5,7 +5,6 @@
   "phases": {
     "instrument": {
       "title": "Instrument + mana/land/commander/aura signals",
-      "pr": "https://github.com/fairley46/deckwright/pull/228",
       "artifacts": [
         "scripts/oracle_coverage.py",
         "data/oracle_coverage_report.md",
@@ -14,26 +13,23 @@
     },
     "research": {
       "title": "Research ranked unread gaps",
-      "pr": "https://github.com/fairley46/deckwright/pull/229",
       "artifacts": [
         "data/unread_gap_research.json",
-        "docs/UNREAD-GAP-RESEARCH.md"
+        "docs/archive/UNREAD-GAP-RESEARCH.md"
       ]
     },
     "grammar": {
       "title": "Scryfall grammar verified + nine signals",
-      "pr": "https://github.com/fairley46/deckwright/pull/230",
       "artifacts": [
         "data/unread_gap_grammar.json",
-        "docs/UNREAD-GAP-GRAMMAR.md"
+        "docs/archive/UNREAD-GAP-GRAMMAR.md"
       ]
     },
     "strategy": {
       "title": "Strategy hooks (boosts, no invented playstyles)",
-      "pr": "https://github.com/fairley46/deckwright/pull/231",
       "artifacts": [
         "data/unread_gap_strategy.json",
-        "docs/UNREAD-GAP-STRATEGY.md",
+        "docs/archive/UNREAD-GAP-STRATEGY.md",
         "data/playstyles.json",
         "data/commanders.json"
       ]
@@ -138,7 +134,7 @@
       "empty_ways_signals_no_playstyle": 44,
       "ways_to_play": 0
     },
-    "finding": "New the unread-gap signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback."
+    "finding": "New unread-gap signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback."
   },
   "unread_tail_top": [
     {

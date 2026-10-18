@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """backRow labels must not collide with the built-in Start over.
 
-Brad's playtest: import failure showed `← Start over` next to `Start over` —
+In playtesting, an import failure showed `← Start over` next to `Start over` —
 same words, different handlers (showLanding vs restart). A control says what
 it does; two identically-named exits where one clears the deck is the hazard.
 
@@ -157,7 +157,7 @@ def buttons_in(html: str) -> list[tuple[str, str]]:
 
 def norm_label(text: str) -> str:
     """Strip the decorative back-arrow so `← Start over` and `Start over`
-    compare as the same visible action name — the bug Brad screenshot."""
+    compare as the same visible action name — the bug seen in playtesting."""
     return re.sub(r"^←\s*", "", text).strip().lower()
 
 

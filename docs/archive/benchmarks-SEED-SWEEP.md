@@ -3,7 +3,7 @@
 Three-way bake-off over the frozen 24. **Not** a five-way — B and C are
 disabled in `contestants.json` (measured no-better-than-V1).
 
-Ship design: [`docs/product/SHIP-V2.md`](../product/SHIP-V2.md).
+Ship design: [`docs/product/SHIP-V2.md`](product-SHIP-V2.md).
 
 ## Harness
 

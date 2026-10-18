@@ -116,7 +116,7 @@ def test_theme_and_strategy_are_separate():
 
 
 def test_theme_fit_tokenizes_multi_word():
-    """multi-word themes must tokenize — same defect class as #157."""
+    """multi-word themes must tokenize — same defect class as the strategy-fit phrase bug."""
     print("\ntheme_fit — multi-word themes tokenize to real type hits")
     ragavan = {
         "name": "Ragavan, Nimble Pilferer",
@@ -166,7 +166,7 @@ def test_theme_fit_tokenizes_multi_word():
 
 
 def test_strategy_fit_reads_angle_sentences():
-    """Brad: whole-phrase match scored 0 on every real brief. Tokenize."""
+    """Whole-phrase match scored 0 on every real brief. Tokenize."""
     print("\nstrategy_fit — angle sentences match known ways")
     strat = commanders.strategy_fit(TEYSA, SACRIFICE_BRIEF)
     eq("teysa status ok", strat.get("status"), "ok")

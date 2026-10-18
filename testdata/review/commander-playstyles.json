@@ -76,7 +76,7 @@
         "aristocrats",
         "counters"
       ],
-      "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here.",
+      "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here.",
       "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
       "oracle_text": "Flying\nWhenever Korvold enters or attacks, sacrifice another permanent.\nWhenever you sacrifice a permanent, put a +1/+1 counter on Korvold and draw a card.",
       "type_line": "Legendary Creature \u2014 Dragon Noble",

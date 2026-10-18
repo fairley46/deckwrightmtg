@@ -42,7 +42,7 @@ _FAMILY_ALIASES = {
 }
 
 # Brief phrase → seed family ids. Explicit match only — relation expand was
-# removed because it invented commitments with no basis in the
+# was removed because it invented commitments with no basis in the
 # commander or the brief.
 _PHRASE_FAMILIES: dict[str, tuple[str, ...]] = {
     "lifegain": ("life_math",),
@@ -443,7 +443,7 @@ def _build_conditions(
             "weight": "core",
         })
     elif "life_math" in families:
-        # lifegain perception landed with the lifegain perception work and life_gained /
+        # lifegain perception landed and life_gained /
         # life_drained are live THESIS_KEYS, but no condition used them — so a
         # lifegain deck was scored on mana and the scorer had no reason to
         # prefer a payoff over an enabler. A real build came back 26 enablers
@@ -599,7 +599,7 @@ def serves_activation_multiplier(
 ) -> bool:
     """Card is plan-relevant as a tempo/activation multiplier for commander.
 
-    Thin the timing-multiplier work link: combat-triggered commander + timing_multiplier card.
+    Thin timing-multiplier link: combat-triggered commander + timing_multiplier card.
     Does not add combat/turn as synergy objects or invent produce→consume edges.
     """
     if not wants_activation_multiplier(commander_card):
@@ -675,7 +675,7 @@ def _derive_core(
     # back no candidates for most commanders — generalising the gate surfaced
     # it immediately as "decided=False, label='grind it out'".
     #
-    # Candidates stay populated: the commander header shows her what the commander
+    # Candidates stay populated: the plan header shows her what the commander
     # supports when we could not choose. A label would read as a choice.
     if not _decided:
         _label = None
@@ -739,7 +739,7 @@ def derive_provisional(brief: dict) -> dict[str, Any]:
 # A small honest map beats an elegant one that returns nothing.
 #
 # Every pattern is probed at build time (scripts/check_payoff_queries.py) the
-# way the taxonomy query verification gates the taxonomy: a dead pattern fails loudly rather than
+# way the taxonomy query gate checks the taxonomy: a dead pattern fails loudly rather than
 # returning an empty pool the builder silently pads around.
 _PAYOFF_QUERIES: dict[str, str] = {
     "life_math":             'o:"whenever you gain life"',
@@ -770,7 +770,7 @@ _PAYOFF_QUERIES: dict[str, str] = {
 #
 # A commander is a seed, not a plan. Vito supports three decks that share
 # almost no cards: incremental drain (many small gain triggers), burst combo
-# (one huge gain converted to lethal), and lifelink aggro. The commander-aware plan work made the
+# (one huge gain converted to lethal), and lifelink aggro. Commander-aware plans made the
 # plan read the commander but only moved a threshold — same strategy, different
 # number. This is the layer where a different strategy means different CARDS.
 #
@@ -861,7 +861,7 @@ def archetypes_for(commander_mech: dict | None, families: list[str]) -> list[str
         # allowed a commander body alone to yield candidates, and that broke
         # immediately: Tatyova and an empty brief both came back
         # decided=False while carrying id='incremental' and the label "grind
-        # it out". A label without a decision is exactly the lie the empty-brief refusal
+        # it out". A label without a decision is exactly the lie the empty-brief refusal guards against
         # exists to prevent. The archetype answers "how does this PLAN win",
         # so no plan means no answer.
         return out

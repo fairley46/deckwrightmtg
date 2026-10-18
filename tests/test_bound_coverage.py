@@ -113,7 +113,7 @@ def test_coverage_row_seen_none_unknown():
     true("lifegain extracted_n >= 1", (seen["extracted_n"] or 0) >= 1)
 
     floor = bc.coverage_row("Fixture MV Floor", card=MV_FLOOR)
-    eq("floor status SEEN (post the MV floor bounds floors)", floor["status"], "SEEN")
+    eq("floor status SEEN (with MV floor bounds)", floor["status"], "SEEN")
     eq("floor extracted_n 1", floor["extracted_n"], 1)
 
     unk = bc.coverage_row(

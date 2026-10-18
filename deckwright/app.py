@@ -265,7 +265,7 @@ async def _scryfall_request(method: str, path: str, **kwargs) -> dict:
                     else:
                         r = await c.post(url, headers=UA, **kwargs)
             except httpx.TimeoutException as e:
-                # No new retries — timeouts never retried.
+                # No new retries — timeouts were never retried.
                 raise ScryfallError(0, "timed out", kind="timeout") from e
             except httpx.HTTPError as e:
                 raise ScryfallError(
@@ -294,7 +294,7 @@ async def _scryfall_request(method: str, path: str, **kwargs) -> dict:
         # keeps the taxonomy: a caller has to be able to tell a
         # challenge from a rate limit from a plain unreachable, because they
         # clear on completely different timescales and deserve different words.
-        # The local card corpus's separate 403 branch is not needed — _is_cloudflare_challenge
+        # The corpus path's separate 403 branch is not needed — _is_cloudflare_challenge
         # above already catches cf-mitigated before this point.
         raise ScryfallError(
             r.status_code, f"HTTP {r.status_code}", kind="unreachable")
@@ -458,7 +458,7 @@ async def load_vocab(force: bool = False) -> dict[str, dict[str, str]]:
 
 
 def norm_term(word: str) -> str:
-    """Lowercase and strip non-alphanumerics — shared with the Scryfall grammar lookup set lookup."""
+    """Lowercase and strip non-alphanumerics — shared with the grammar's set lookup."""
     return "".join(ch for ch in (word or "").lower() if ch.isalnum())
 
 
@@ -501,7 +501,7 @@ def resolve_term(word: str) -> dict[str, Any]:
     checked *before* type/keyword catalogs — otherwise "steal" becomes the
     one-card Final Fantasy keyword instead of otag:theft.
 
-    Catalog fall-through beyond type/keyword is the Scryfall grammar lookup; until then an unknown
+    Catalog fall-through beyond type/keyword is resolve_term() in resolve.py; without it an unknown
     is unresolved, not a guessed o:/otag:.
     """
     load_behaviour_tags()
@@ -525,7 +525,7 @@ def resolve_term(word: str) -> dict[str, Any]:
             }
 
     # 2. Thing catalogs currently loaded (type / keyword). Full precedence
-    #    table (sets, watermarks, …) lands with the Scryfall grammar lookup.
+    #    table (sets, watermarks, …) is handled by resolve_term().
     for cand in _morph_singulars(raw):
         if cand in _vocab.get("type", {}):
             return {
@@ -551,7 +551,7 @@ def resolve_term(word: str) -> dict[str, Any]:
     # behaviours, types and keywords; resolve.py additionally knows SETS,
     # watermarks, card names and artists. Without this hand-off "spiderman"
     # reports "no match in Scryfall" while resolve.resolve_term places it on
-    # set:spm — two resolvers disagreeing, which is what the Scryfall grammar lookup said not to
+    # set:spm — two resolvers disagreeing, which is what docs/SCRYFALL-GRAMMAR.md says not to
     # build. Behaviour-first ordering is preserved because it is checked above.
     # Only catalogs THIS function does not cover. Types and keywords are
     # handled above by exact form on purpose: resolve.py matches morphological
@@ -810,9 +810,9 @@ def theme_clauses(theme: str) -> list[str]:
             # otag:control 400, which reads as "no cards" and pads silently —
             # one layer up), and not an o: either.
             #
-            # I ruled the other way integrating #93, keeping an o: attempt on
+            # An earlier integration ruled the other way, keeping an o: attempt on
             # the grounds that search_ladder reports which rung it landed on.
-            # That was wrong twice over: it contradicted the Scryfall grammar lookup's own tests,
+            # That was wrong twice over: it contradicted the grammar's own tests,
             # and o:"heists" matches whatever happens to print that word, which
             # is not what she asked for. An unknown is not a zero AND a
             # fallback is not a match — the second half is this line.
@@ -878,7 +878,7 @@ def theme_clauses(theme: str) -> list[str]:
 # we chose underneath, a live Scryfall count on the right. Unresolved says
 # "no match in Scryfall" — never 0, never silently dropped.
 #
-# Placement prefers the Scryfall grammar lookup's resolve_term when present. Until then a provisional
+# Placement prefers resolve_term when present. Without it, a provisional
 # placer covers types, exact keywords, and a small behaviour alias map so this
 # screen stays honest without owning role_query / theme_clauses / INTERROGATOR.
 
@@ -888,7 +888,7 @@ READBACK_THIN = 10
 # Kept on the display span; stripped before lookup ("that steal" → steal).
 _READBACK_CONNECTORS = frozenset({"that", "who", "which", "and", "with"})
 
-# Provisional behaviour aliases (will replace this with a verified file).
+# Provisional behaviour aliases (to be replaced by a verified file).
 # Checked before catalogs so "steal" reaches otag:theft, not keyword:steal.
 _BEHAVIOUR_ALIASES = {
     "steal": "theft", "stealing": "theft", "theft": "theft",
@@ -955,7 +955,7 @@ def _lookup_text(said: str) -> str:
 
 
 def _place_provisional(word: str) -> dict | None:
-    """Provisional placement resolve_term lands.
+    """Provisional placement, used when resolve_term is unavailable.
 
     Returns {operator, query} or None. Behaviour first, then types (with morph),
     then keywords by exact form only — so 'heists' stays unresolved rather than
@@ -1034,7 +1034,7 @@ def place_theme_word(said: str) -> dict:
 
     placed: dict | None = None
     rt = globals().get("resolve_term")
-    # When the Scryfall grammar lookup's resolve_term is present, trust a positive hit. An
+    # When resolve_term is present, trust a positive hit. An
     # unresolved single-term result may still compose via resolve_theme
     # below — do not treat unresolved as final for multi-word spans.
     if callable(rt):
@@ -1429,7 +1429,7 @@ def ensure_closing_instrument_readback(text: str, instrument: dict | None,
 # Between "we understand your wish" and the picker, size the *commander* forks
 # she is about to choose among — not the theme card pool. Data comes from the
 # commanders KB (ways_to_play) + theme_fit / strategy_fit. Names only from
-# Scryfall cards we already fetched. INTERROGATOR prompt text stays Box-owned;
+# Scryfall cards we already fetched. INTERROGATOR prompt text is unchanged;
 # this is the payload a narrowing turn would consume.
 
 NARROWING_COUNT = 3
@@ -1561,7 +1561,7 @@ async def build_narrowing_turn(
       empty    — looked; none
       unknown  — could not look (commander_count is None, never 0)
 
-    INTERROGATOR does not consume this yet — Box owns that prompt edit.
+    INTERROGATOR does not consume this yet; that needs a deliberate prompt edit.
     Shape is stable for injection beside [instrument] later.
     """
     brief = brief if isinstance(brief, dict) else {}
@@ -1685,7 +1685,7 @@ def ensure_closing_narrowing(text: str, narrowing: dict | None) -> str:
 # finished — the app does, from facts: terms resolve, pool has depth, strategy
 # is present. A self-reported confidence percentage never appears.
 #
-# Colours are intentionally not a blocker. INTERROGATOR / the interrogator reply-length work leave colours
+# Colours are intentionally not a blocker. The INTERROGATOR prompt leaves colours
 # to the commander; forcing a colour question here would fight that rule. When
 # she volunteers colours, pool depth uses them.
 #
@@ -2104,8 +2104,8 @@ def enforce_type_targets(role: str, chosen: list, pool: list, target: int,
 def leave_enabler_floor(blink_cards: list[dict], *, minimum: int = 1) -> dict:
     """Payoff-floor descriptor for cards that cause the commander to leave.
 
-    put otag:blink into the theme pool; the chosen/mentioned split measured that zero of
-    those candidates still reached the 99. Same shape as recall into
+    put otag:blink into the theme pool; the expert-deck comparison measured that zero of
+    those candidates still reached the 99. Same shape as the archetype payoff floors: recall into
     the pool is not enough when the goldfish cannot see the card. Reserve at
     least `minimum` blink names via enforce_payoff_floors. Never invents a
     name — the floor's set is exactly the Scryfall response.
@@ -3323,7 +3323,7 @@ def extract_brief_payload(
 ) -> dict:
     """Pull prose + brief out of a model reply. Never a silent null.
 
-    Three states the caller can tell apart (/ DERIVATION.md):
+    Three states the caller can tell apart (see docs/DERIVATION.md):
       brief present      → brief is a dict, still_asking False, brief_error None
       still interrogating → brief None, still_asking True, brief_error None
       extraction failed   → brief None, still_asking False, brief_error set
@@ -4804,8 +4804,8 @@ PLAYSTYLE_SHIFT = {
 
 # A deck that never had a conversation still has a shape. Precons and pasted
 # lists carry no `playstyle` — it comes from the interrogation — but their own
-# analysis describes how they play, and these are the words it uses. Cursor
-# found this gap on the play-preference skeleton work; the phrase lists are its idea, narrowed to the one
+# analysis describes how they play, and these are the words it uses. This gap
+# was found while shaping the skeleton by play preference; the phrase lists are narrowed to the one
 # axis this codebase already tests.
 _PLAYSTYLE_HINTS = {
     # "counter" alone is a trap: +1/+1 counters are everywhere and mean the
@@ -5966,7 +5966,7 @@ Return only a json array of exact names."""
            # unused ladder cards the sliders swap from. Persisted with
            # the deck so /api/simulate can move composition without inventing.
            "role_pools": role_pools,
-           # card-type counts — the rebuild target seam for the single-card swap / the rebuild work.
+           # card-type counts — the rebuild target for card swaps and composition rebuilds.
            "composition": tweak_mod.composition_of(deck),
            # at the group level. The query that filled a role is the
            # honest answer to "why these cards" for the whole group, and it was
@@ -5989,9 +5989,9 @@ Return only a json array of exact names."""
         out["edhrec_seed"] = seed_bundle.as_response()
     # the plan that chose the cards. Explains; does not grade.
     #
-    # Restored after a conflict resolution dropped it. The plan-on-build work and the archetype payoff floors both
+    # Restored after a conflict resolution dropped it. Plan-on-build and the archetype payoff floors both
     # restructured the block above; composing them lost this line, and the only
-    # thing that caught it was the plan-on-build work's own test.
+    # thing that caught it was the plan-on-build test.
     #
     # decided:true with no label / empty commitments is a lie in data.
     # derive() makes that structurally impossible; refuse if it ever reappears.
@@ -6294,7 +6294,7 @@ async def cards_by_name(payload: dict):
 # two different things were called "resolve". `resolve.py` maps her
 # WORDS onto Scryfall operators (theme resolution). This endpoint takes a pasted
 # DECKLIST and resolves card names against Scryfall. Same verb, unrelated jobs —
-# the SYSTEM-MAP recorded the collision as a finding.
+# an earlier system audit recorded the collision as a finding.
 #
 # /api/import is the honest name and the one to use. /api/resolve stays for the
 # frontend and any saved bookmark; both are the same handler, not a redirect, so
@@ -7092,7 +7092,7 @@ def deck_context(data: dict) -> dict:
 
     Accepts a saved-deck dict or a fresh build dict — same shape. Fields that
     were never written stay absent; the prompt layer says so rather than
-    inventing a fill. The shared ask context.
+    inventing a fill. Part of the shared ask context.
 
     projects way_preference / way_playstyle (remapped via alias table)
     so ask/improve can steer from the scene she picked when the deck was built.
@@ -7406,7 +7406,7 @@ def deck_record_for_ask(payload: dict,
     # Live curves from the open page (slider run) overlay the stored baseline.
     if payload.get("curves"):
         data = {**data, "curves": payload["curves"]}
-    # A build that saved has no transcript on disk; the client
+    # A build saved by an older version has no transcript on disk; the client
     # may still hold her turns from this session.
     if not data.get("conversation") and payload.get("conversation"):
         data = {**data, "conversation": payload["conversation"]}
@@ -7708,7 +7708,7 @@ async def pressure_start(payload: dict):
 
     games = int(payload.get("games") or pressure.DEFAULT_GAMES)
     if games < 1 or games > 10:
-        # Cap at ten until wall-clock is measured.
+        # Cap at ten games until wall-clock time is measured.
         games = min(max(games, 1), 10)
 
     return pressure.STORE.start(commander=commander, deck=deck, games=games)
@@ -7763,7 +7763,7 @@ async def simulate(payload: dict):
         commander_card=info)
 
     # Composition counts — always. Post-tweak this is the rebuild target for
-    # The single-card swap / the rebuild work; without a tweak it is the deck as built.
+    # Composition tweak; without a tweak it is the deck as built.
     out["composition"] = (
         tweak_result["composition"] if tweak_result
         else tweak_mod.composition_of(deck))
@@ -7798,7 +7798,7 @@ def apply_tweak(deck: list, tweak: dict, role_pools: dict | None = None) -> dict
 
 # ---------------------------------------------------------------- card swap
 #
-# Replace one card with a verified pool alternate. Brad decided 2026-08-03:
+# Replace one card with a verified pool alternate. Design decision:
 # every swap re-runs the simulation automatically — stale numbers are worse
 # than none. Overview / per-card rationale go stale and are marked, not left
 # describing a deck that changed.

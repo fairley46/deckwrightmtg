@@ -59,7 +59,7 @@ GRAMMAR = REPO / "data" / "scryfall_grammar.json"
 # Graded looks (ok + missing) below this are too small to judge a rate.
 _EDHREC_RATE_MIN_GRADED = 500
 # Above this missing fraction among graded looks, a 403-throttle is more
-# likely than EDHREC simply lacking pages. Measured the commander knowledge base run was ~6%.
+# likely than EDHREC simply lacking pages. Measured on a full knowledge-base run: ~6%.
 _EDHREC_MISSING_RATE_FAIL = 0.25
 # Failed (unknown) fraction of attempted fetches that means the transport
 # did not complete — not a catalogue gap.

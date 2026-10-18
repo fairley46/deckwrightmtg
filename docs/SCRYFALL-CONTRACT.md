@@ -1,6 +1,6 @@
 # Scryfall card contract
 
-What Deckwright keeps from a Scryfall card object, and what it deliberately drops.
+What DeckWright keeps from a Scryfall card object, and what it deliberately drops.
 `trim_card()` in `app.py` is the only place that projects a raw card. Adding a field
 means updating this document and `trim_card()` together.
 
@@ -32,7 +32,7 @@ These ride into every model prompt via `for_model()`.
 
 | Trim key | Scryfall source | Why |
 |---|---|---|
-| `keywords` | `keywords` | Scryfall's parsed list. Beats regexing oracle text. Feeds the deck overview / the type-floor work. |
+| `keywords` | `keywords` | Scryfall's parsed list. Beats regexing oracle text. Feeds the deck overview and type floors. |
 | `produced_mana` | `produced_mana` | Colored-mana modelling. Absent on non-producers. |
 | `layout` | `layout` | Tells you when other fields lie. Keep always. |
 | `power` | `power` via `_face_field` | **String.** Printed values include `*`, `1+*`, `X`. Do not coerce to int. |
@@ -45,7 +45,7 @@ These ride into every model prompt via `for_model()`.
 | Trim key | Scryfall source | Why |
 |---|---|---|
 | `purchase_uris` | `purchase_uris` | Buy links. |
-| `image` | `image_uris.normal` (or `card_faces[0].image_uris.normal` on DFCs) | The buy-links work. **Only** the `normal` size — not all six. |
+| `image` | `image_uris.normal` (or `card_faces[0].image_uris.normal` on DFCs) | Card images. **Only** the `normal` size — not all six. |
 | `edhrec_rank` | `edhrec_rank` | The "most played" label needs a source. |
 
 `for_model()` strips these three before any `json.dumps` into a prompt.
@@ -56,7 +56,7 @@ These ride into every model prompt via `for_model()`.
 
 | Field | Why deferred |
 |---|---|
-| `all_parts` | Tokens / meld. Speculative exists. |
+| `all_parts` | Tokens / meld. Speculative. |
 
 ---
 

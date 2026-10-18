@@ -4,11 +4,11 @@
 connection spine** (which route calls which module, verifiers, frozen vs recomputed)
 see [`HOW-IT-CONNECTS.md`](HOW-IT-CONNECTS.md).
 
-Four designs were written separately; this says how the *ideas* join:
+The four stages were designed separately; this says how the *ideas* join:
 
 | stage | owns | document |
 |---|---|---|
-| 1. what she wants | her words → real cards | [`SCRYFALL-GRAMMAR.md`](SCRYFALL-GRAMMAR.md) |
+| 1. what the player wants | their words → real cards | [`SCRYFALL-GRAMMAR.md`](SCRYFALL-GRAMMAR.md) |
 | 2. what a card *is* | mechanic → role in a plan | `data/mechanic_taxonomy.json` + `mechanic_families.json` |
 | 3. what has to be true | plan → measurable conditions | [`PLAN-GRAPH-SCHEMA.md`](PLAN-GRAPH-SCHEMA.md) |
 | 4. which card is better | lift on those conditions | [`SCORING-CONTRACT.md`](SCORING-CONTRACT.md) |
@@ -21,16 +21,16 @@ side. Similar names, unrelated jobs.
 
 ## The one sentence
 
-**The grammar decides what she could have. The plan decides what she needs. The math decides
+**The grammar decides what the player could have. The plan decides what they need. The math decides
 which of those two sets overlap best. The graph decides which of them hold together. The curve
-decides whether she can actually play them.**
+decides whether they can actually play them.**
 
 Everything below is that sentence with the joins made explicit.
 
 ## The chain
 
 ```
-  her words
+  the player's words
      │  INTERROGATOR                      model interprets
      ▼
   brief { theme, strategy, mechanics, playstyle, colors }
@@ -60,7 +60,7 @@ overview, ask) — but it **never invents a card name**. It writes queries or ch
 a provided Scryfall list; verifiers drop inventions. That is what makes the one rule in
 CONTRIBUTING.md enforceable rather than aspirational.
 
-## Stage 1 — her words become real cards
+## Stage 1 — the player's words become real cards
 
 Two vocabularies, because a word is either a **thing** or a **behaviour**:
 
@@ -97,7 +97,7 @@ ceiling on how much of a pool we can currently classify, and it rises with every
 | `cards_drawn >= 2` | **71.0%** | 64.0% |
 | `cards_drawn >= 6` | 16.3% | **50.2%** |
 
-They are not interchangeable, and which one she wants depends entirely on where the plan sets
+They are not interchangeable, and which one the player wants depends entirely on where the plan sets
 its bar. A taxonomy that only said "these are card draw" would rank them identically and be
 wrong half the time.
 
@@ -127,12 +127,12 @@ checked.
 each condition's probability. That architecture was always right; it was **blind**, because
 `sim.py` could only reliably extract mana.
 
-That is what tonight fixed. The gate:
+Fixing perception was measured against a fixed set of card pairs:
 
 ```
-session start   3 of  9 blind
-after the target-player draw fix   4 of  9 blind     <- got WORSE, on purpose: a false green was exposed
-after the graveyard perception work   0 of 10 blind     <- with the threshold corrected
+starting point                    3 of  9 blind
+after the target-player draw fix  4 of  9 blind   <- got WORSE, on purpose: a false green was exposed
+after graveyard perception        0 of 10 blind   <- with the threshold corrected
 ```
 
 The middle row matters more than the last. The Arena-vs-Sign-in-Blood pair had been passing by
@@ -153,7 +153,7 @@ stages in the chain, and the only one where a mistake looks like success.
 
 > **An unknown is not a zero, and a fallback is not a match.**
 
-It appeared independently on four surfaces in one session:
+It appeared independently on four surfaces:
 
 | surface | the lie it prevents |
 |---|---|
@@ -162,7 +162,7 @@ It appeared independently on four surfaces in one session:
 | unresolved term | "nothing matched your theme" when we mis-parsed the word |
 | unclassified mechanic | "3 engines" read as "only 3 exist" |
 
-Four cards were cut for the same defect before anyone noticed it was one defect. **Treat it as
+Four separate fixes were made for the same defect before anyone noticed it was one defect. **Treat it as
 a house rule, not four fixes.** Any layer that returns an empty result must distinguish
 *"there are none"* from *"I could not look."*
 
@@ -180,8 +180,8 @@ A stage passes only if its check passes *and* it does not break the house rule.
 
 | # | check | how |
 |---|---|---|
-| 1.1 | Every term she can say resolves to a real operator or is reported unresolved | fixture set; `pirates`→`t:`, `steal`→`otag:theft`, `spiderman`→`set:spm`, `heists`→unresolved |
-| 1.2 | No emitted expression returns zero from live Scryfall | build-time gate, same as the taxonomy query verification's 394/394 |
+| 1.1 | Every term the player can say resolves to a real operator or is reported unresolved | fixture set; `pirates`→`t:`, `steal`→`otag:theft`, `spiderman`→`set:spm`, `heists`→unresolved |
+| 1.2 | No emitted expression returns zero from live Scryfall | build-time gate, same as the taxonomy query check (394/394) |
 | 1.3 | `steal` never resolves to `keyword:steal` | the 1-card trap; behaviour is checked before things |
 | 1.4 | A theme that *is* a creature type still reaches `t:` | `pirates` must not be swallowed by a set-name match |
 
@@ -242,7 +242,7 @@ One case, run whole:
 1. resolves to `t:pirate otag:theft id<=UB` — not zero, not padded
 2. the readback places both terms with live counts (empty/unknown/thin labelled;
    healthy pool sizes suppressed) and a commander-narrowing beat
-   before she picks
+   before the player picks
 3. the plan's conditions are all in `THESIS_KEYS`, thresholds above the floors
 4. the 99 is chosen by measured lift; every model-chosen name passed a verifier
 5. every card in the deck came back from a real Scryfall response
@@ -252,10 +252,10 @@ however green the suite looks.
 
 ---
 
-## What she sees
+## What the player sees
 
-None of this. She says *"feels slow"* and gets three specific cards and a reason.
+None of this. The player says *"feels slow"* and gets three specific cards and a reason.
 
 The percentages, roles, thresholds and tags are how we reason — not what we show. Count inside,
-meaning outside. The one number that reaches her is the kind she can act on: *"adding this
+meaning outside. The one number that reaches the player is the kind they can act on: *"adding this
 raises 'engine online by turn 5' from 61% to 68%."*

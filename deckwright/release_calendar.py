@@ -32,7 +32,7 @@ from deckwright import mechanics
 SAVE_DIR = instance.home_dir()
 OVERLAY_PATH = pathlib.Path(__file__).resolve().parents[1] / "data" / "release_overlay.json"
 SETS_CACHE_PATH = SAVE_DIR / "calendar_sets.json"
-COUNTS_CACHE_PATH = SAVE_DIR / "calendar_counts.json"  # legacy the old calendar counts; unused path
+COUNTS_CACHE_PATH = SAVE_DIR / "calendar_counts.json"  # legacy calendar counts; unused path
 MECHANICS_CACHE_PATH = SAVE_DIR / "calendar_mechanics.json"
 
 SETS_MAX_AGE = 7 * 86400          # set list changes on release, not daily
@@ -459,7 +459,7 @@ def cached_hit_entry(counts_cache: dict, set_code: str, identity: str):
             return _MISSING
         if entry.get("status") == "unknown":
             return None
-        # Pre- cache: known colour count without roles — not reusable.
+        # Older cache format: known colour count without roles — not reusable.
         if "roles" not in entry:
             return _MISSING
         return entry
@@ -804,7 +804,7 @@ def _slice_released(released_rows: list[dict], limit: int, offset: int) -> tuple
 def _set_shell(row: dict, *, future: bool, art_url: str | None = None,
                mechanics: dict | None = None,
                decks: list[dict] | None = None) -> dict:
-    # decks kept empty for back-compat with old clients; the release-calendar mechanics work content is mechanics.
+    # decks kept empty for back-compat with old clients; the panel content is mechanics.
     return {
         "name": row.get("name"),
         "code": row.get("code") or "",
@@ -1001,7 +1001,7 @@ async def enrich_released_counts(
     *,
     fetch_art: bool = True,
 ) -> dict[str, dict]:
-    """Deprecated the old calendar counts path — kept for callers/tests; prefer mechanics.
+    """Deprecated calendar counts path — kept for callers/tests; prefer mechanics.
 
     calendar no longer uses this. Still honest: unknown ≠ zero.
     """

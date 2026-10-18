@@ -350,7 +350,7 @@ def _oracle_for(names: list[str]) -> dict[str, dict]:
     if not missing:
         return out
 
-    # Live fill for CI when the cache predates the chosen/mentioned split. Uses the repo client.
+    # Live fill for CI when the cache predates the chosen/mentioned fields. Uses the repo client.
     import asyncio
     sys.path.insert(0, str(REPO))
     from deckwright import app  # noqa: WPS433

@@ -140,7 +140,7 @@ class EdhrecSeedTests(unittest.TestCase):
             self.assertEqual(es.edhrec_base(), "http://127.0.0.1:9/pages")
 
     def test_thin_bundle_has_empty_meta(self):
-        """Thin-data must not carry cardlists for paint — Box green-d probe."""
+        """Thin-data must not carry cardlists for paint."""
         cmd = {
             "container": {
                 "json_dict": {

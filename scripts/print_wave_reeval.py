@@ -44,13 +44,13 @@ GATE1_RETEST = (
 )
 PRECISION_FLOOR = 0.88
 
-# Offline the core product spec surface — no model calls.
+# Offline core product checks — no model calls.
 SPOT_CHECKS = (
     "test_instrument_chat.py",
     "test_way_preference.py",
     "test_thesis_glued.py",
     "test_precon_upgrade.py",
-    "test_saved_ask_instrument.py",  # The saved-deck ask instrument; skip if absent
+    "test_saved_ask_instrument.py",  # saved-deck ask instrument; skip if absent
 )
 
 

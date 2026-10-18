@@ -56,7 +56,7 @@ def true(label, cond, extra=""):
         bad(label, extra or "expected truthy")
 
 
-# Wild paste every line that vanished had a curly apostrophe.
+# A real-world paste where every line that vanished had a curly apostrophe.
 WILD_CURLY = [
     f"Angrath{CURLY_APOS}s Marauders",
     f"Trailblazer{CURLY_APOS}s Boots",

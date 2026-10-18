@@ -559,9 +559,9 @@ def leave_enabler_queries(commander: dict) -> list[str]:
 
     When the commander triggers on leaving the battlefield, sac outlets and
     blink both pay it off. Sac arrives via dies_triggers / sacrifice theme
-    search; blink does not. The leave-causation probe measured zero blink in a Hei Bai 99 while
+    search; blink does not. A leave-causation probe measured zero blink in a Hei Bai 99 while
     otag:blink returns 102 cards in WB — recall, not ranking (same shape as
-    The archetype payoff floors). An unknown commander asks for nothing; we could not look.
+    the archetype payoff floors). An unknown commander asks for nothing; we could not look.
 
     also reachable through synergy_recall_queries(); keep this entry
     point so the Hei Bai blink floor does not regress.

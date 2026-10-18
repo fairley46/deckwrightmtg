@@ -1,7 +1,7 @@
 """
 function_coverage.py — do we cover what his deck DOES, not what it contains?
 
-Brad, 2026-08-07:
+Design note:
 
     "that person made a choice. Those are his choices. They may not be
     mathematically correct, but it's how he chose the deck. What we're looking

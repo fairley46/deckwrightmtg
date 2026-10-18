@@ -2,9 +2,9 @@
 
 Phase 2 of Know Magic.
 
-**Artifact:** [`data/unread_gap_research.json`](../data/unread_gap_research.json)
+**Artifact:** [`data/unread_gap_research.json`](../../data/unread_gap_research.json)
 
-Source instrument: [`data/oracle_coverage_report.md`](../data/oracle_coverage_report.md).
+Source instrument: [`data/oracle_coverage_report.md`](../../data/oracle_coverage_report.md).
 
 ## What this is
 

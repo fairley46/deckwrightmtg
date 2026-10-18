@@ -363,7 +363,7 @@ def test_hei_bai_demands_leave_causes():
 
 def test_leave_enabler_queries():
     print("\nsynergy — leave-enabler recall queries")
-    # Same failure mode as the piece exists and the graph can see it,
+    # Same failure mode as the archetype payoff floors: the piece exists and the graph can see it,
     # but the role ladder never searched for it. Ranking cannot fix absence.
     hei = _card("Hei Bai, Spirit of Balance")
     qs = synergy.leave_enabler_queries(hei)

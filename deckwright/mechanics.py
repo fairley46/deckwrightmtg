@@ -98,7 +98,7 @@ CATALOG_KEYS = (
     ("ability_words", "ability-words"),
 )
 
-# plan_role allowlist — keep tight; Box extends via taxonomy, not free text.
+# plan_role allowlist — keep tight; extend via the taxonomy, not free text.
 PLAN_ROLES = frozenset({
     "condition",   # metalcraft, raid, delirium — state gate
     "engine",      # flashback, landfall loops — repeatable resource
@@ -605,7 +605,7 @@ def attach_mechanics(data: dict, families: dict[str, Any] | None = None) -> dict
 # ---------------------------------------------------------------- relations
 #
 # Lineage (Storied ← Ascend) and explicit family edges (tokens → go_wide) are
-# how plans compose. related_* helpers are what the token perception work / the commander difficulty sentence read — never a
+# how plans compose. related_* helpers are what token perception and the commander difficulty sentence read — never a
 # free-text guess at "what synergizes."
 
 
@@ -792,7 +792,7 @@ def _card_type_line(card: dict) -> str:
 def card_matches_taxonomy_query(card: dict, query: str) -> bool:
     """Evaluate one verified taxonomy query against a Scryfall card dict.
 
-    Supports the shapes the taxonomy query verification gates: keyword:, o:, t:, is:. Unknown shapes
+    Supports the shapes the taxonomy query gate checks: keyword:, o:, t:, is:. Unknown shapes
     are not matches — an unknown is not a zero, and a fallback is not a match.
     """
     q = (query or "").strip()

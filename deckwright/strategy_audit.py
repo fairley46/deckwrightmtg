@@ -236,7 +236,7 @@ def _static_mv_limit(bound: dict) -> float | None:
 
 
 def _produces_mana(card: dict) -> bool:
-    """Coarse ramp detector for the ramp/payoff bound tagging bound-violation tagging."""
+    """Coarse ramp detector for ramp vs payoff bound-violation tagging."""
     t = _text(card)
     if re.search(r"\{T\}:\s*Add\b", t, re.I):
         return True

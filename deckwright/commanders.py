@@ -58,7 +58,7 @@ EDHREC_TAG_TO_PLAYSTYLE: dict[str, str] = {
 }
 # Below this deck-count, a tag is noise on a thin page — not a playstyle claim.
 # Floor restored to 5: Akroma Voltron=4 / Arcades Auras=3 drop again —
-# Brad authorized the restore over keeping those thin tags.
+# The restore was chosen over keeping those thin tags.
 EDHREC_TAG_MIN_COUNT = 5
 WAYS_MAX = 5
 
@@ -496,7 +496,7 @@ def themes_from_type_line(type_line: str) -> list[str]:
 
 
 # Connectors / filler in conversational themes ("pirates that steal",
-# "horses and knights"). Same defect class as strategy #157 — the whole
+# "horses and knights"). Same defect class as the strategy-fit phrase bug — the whole
 # phrase must not be the only term.
 _THEME_STOPWORDS = frozenset({
     "a", "an", "and", "for", "in", "my", "of", "on", "or", "our", "team",
@@ -808,7 +808,7 @@ def relational_copy(
             opener = f"Fits your {her} strategy"
         parts.append(f"{opener}: {says}")
         others = [p for p in (w.get("playstyle") for w in ways) if p and p != lead]
-        # Cap at two alternates — will surface the full switcher.
+        # Cap at two alternates; a fuller switcher may come later.
         alts = []
         for pid in others[:2]:
             alt_says = (vocab.get(pid) or {}).get("says") or pid

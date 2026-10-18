@@ -2,8 +2,8 @@
 
 > Part of the derivation chain — see [`DERIVATION.md`](DERIVATION.md) for how this stage joins the others.
 
-**Owner:** Box. Consumed (deterministic pass), the payoff-pool work (build selection),
-(scoring), the suggest path, and `/api/thesis` → goldfish
+**Consumed by:** the deterministic derivation pass, build selection (payoff pools),
+scoring, the suggest path, and `/api/thesis` → goldfish
 (`plan_graph.thesis_from_plan` — conditions measured on the 99; model thesis
 only when no measurable plan exists).
 
@@ -11,7 +11,7 @@ only when no measurable plan exists).
 
 ## What a plan is, and what it is not
 
-A plan is **the set of things that must be true for this deck to be doing the thing she
+A plan is **the set of things that must be true for this deck to be doing the thing the player
 pictured, and by when.**
 
 It is not a theme. "Elves" is a theme; "eight or more mana available by turn five, with a
@@ -69,7 +69,7 @@ perception queue, not something to fake with an adjacent key.
   "conditions": [
     {
       "id": "commander_out",
-      "label": "Commander is out",           // shown to her, in her language
+      "label": "Commander is out",           // shown to the player, in their language
       "why": "Nothing else in the plan works until he has resolved and stuck.",
       "check": { "commander_in_play": true },
       "by_turn": 6,
@@ -100,7 +100,7 @@ perception queue, not something to fake with an adjacent key.
   "load_bearing": ["Mister Negative"],
 
   "theme": {
-    "label": "Spider-Man villains",           // her words, not ours
+    "label": "Spider-Man villains",           // the player's words, not ours
     "source": "brief.theme",
     "binding": false                          // flavour never overrides legality or the plan
   }
@@ -122,7 +122,7 @@ property of the 99 — a count that must not fall below a floor. Conditions answ
 plan happen*; commitments answer *is this still the same deck*. The suggest path reads
 commitments; the simulator reads conditions.
 
-**`theme.binding: false` is deliberate.** Flavour is why she wants the deck and it must
+**`theme.binding: false` is deliberate.** Flavour is why the player wants the deck and it must
 never be allowed to make the deck illegal or incoherent. A Spider-Man deck that cannot cast
 its commander is not a win for theme.
 
@@ -150,7 +150,7 @@ make opponents discard" is a wish; Gonti turns it into a plan with turns in it.
 - **A coherence score.** Deliberately absent. Two axes — synergy plan and fantasy theme —
   is the right model, but a number invites the app to print it, and "coherence: 72%" is a
   claim we cannot defend. The axes rank and explain; they do not score.
-- **Anything she sees.** The plan graph is machinery. She says "feels slow" and gets three
+- **Anything the player sees.** The plan graph is machinery. The player says "feels slow" and gets three
   specific cards and a reason. Count inside, meaning outside.
 
 ## The test that matters

@@ -1,7 +1,7 @@
 # EDHREC-seeded build
 
 **Status:** V2 green product on `:8004`. Blue `:8000` stays V1 until the
-promotion PR in [`SHIP-V2.md`](SHIP-V2.md).  
+promotion PR in [`SHIP-V2.md`](product-SHIP-V2.md).  
 **Supersedes:** candidate B/C selection (measured; neither wins).
 
 ## Split
@@ -32,7 +32,7 @@ invalidate every prior sweep (same class as the per-contestant URL scoping).
 | Provenance + inclusion on deck page | `index.html` |
 | Green-d instance | `(local launchd label)` + `install-green-d-launchd.sh` |
 | Harness contestant D | `data/benchmarks/contestants.json` |
-| Ship gate | [`SHIP-V2.md`](SHIP-V2.md) |
+| Ship gate | [`SHIP-V2.md`](product-SHIP-V2.md) |
 
 ## Deploy (demo host — green worktree)
 

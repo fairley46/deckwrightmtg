@@ -70,7 +70,7 @@ def test_gap_is_detectable():
         bad("phantom path clear", f"{phantom.name} already exists")
         return
     try:
-        phantom.write_text("# temporary should never stay\n", encoding="utf-8")
+        phantom.write_text("# probe — temporary, should never stay\n", encoding="utf-8")
         missing = ca.unregistered_offline_tests(root)
         eq("phantom appears in unregistered_offline_tests",
            "test_unregistered_phantom.py" in missing, True)

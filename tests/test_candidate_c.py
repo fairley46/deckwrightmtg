@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The CardFacts work Candidate C — CardFacts wired into audit/steer behind flag only.
+"""Candidate C (experimental) — CardFacts wired into audit/steer behind a flag only.
 
     python test_candidate_c.py
 

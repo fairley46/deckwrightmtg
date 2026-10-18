@@ -2,12 +2,9 @@
 
 ![Mister Negative deck page: commander art, legality and price, and how the deck plays](docs/assets/hero.png)
 
-DeckWright turns a plain-English Commander idea into a legal 99-card list grounded in Scryfall. You describe how the deck should feel. It asks a few questions, offers real commanders, builds the 99 from Scryfall queries (not invented card names), and measures how often the plan fires in solitaire goldfish games.
+DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. You describe the deck you want in plain English. It asks a few questions, offers real commanders, builds a legal 99 from Scryfall searches (never from card names the model remembers), and estimates how often the deck's plan comes together in solitaire goldfish games.
 
-Needs an LLM. Ships with an Anthropic Claude adapter (API key or `claude` CLI); all model calls go through `deckwright/llm.py`, so another frontier model is one adapter away.
-
-This is a **local** app: one FastAPI process, one HTML file, no build step, no database. It is not a hosted public service.
-
+It runs on your own machine: one FastAPI process and one HTML page, with no build step and no database. It is not a hosted service.
 
 ## How it works
 
@@ -60,48 +57,72 @@ flowchart LR
 ## Quick start
 
 ```bash
-# Python 3.12+, plus either ANTHROPIC_API_KEY or the `claude` CLI on PATH
-cp .env.example .env   # optional; defaults bind localhost
-./run.sh               # http://127.0.0.1:8000
+git clone https://github.com/fairley46/deckwrightmtg.git
+cd deckwrightmtg
+cp .env.example .env   # optional; set ANTHROPIC_API_KEY here if you are not using the claude CLI
+./run.sh               # creates .venv, installs requirements, serves http://127.0.0.1:8000
 ```
 
-Open that URL in a browser. Preflight and the offline gate:
+Open http://127.0.0.1:8000 in a browser. To check the install:
 
 ```bash
-python -m deckwright.check
-python scripts/check_all.py --tier 1
+python -m deckwright.check             # preflight: Scryfall, model, simulator
+python scripts/check_all.py --tier 1   # offline test gate (the same one CI runs)
 ```
 
-## What you get
+## Requirements
 
-After a build, the deck is written under `~/.deckwright/` and kept on the open page. You can ask about the plan and numbers, stage card swaps, re-run the odds, and export a list you can take to a shop.
+- **Python 3.12+.** `run.sh` looks for a 3.12+ interpreter and refuses to start on anything older.
+- **An LLM.** DeckWright needs a language model for the conversation, commander picks, and deck plan. It ships with an Anthropic Claude adapter that uses either the `claude` CLI or an `ANTHROPIC_API_KEY`. All model calls go through `deckwright/llm.py`, so supporting another model means writing one adapter; no other adapters are included.
+- **Internet access to Scryfall.** Building a deck needs the live Scryfall API. Saved decks and ordinary card lookups also work from a local copy of Scryfall's bulk data, which the app downloads on first launch.
+- **Optional: Java and [Forge](https://github.com/Card-Forge/forge)** for a ten-game pressure test against AI opponents. Without it the feature is hidden.
 
+## Configuration
 
+Settings are read from the environment or a local `.env` file (see `.env.example`). The `.env` file is gitignored; never commit a key.
 
-Copy the list, print a shopping list, or import it to Archidekt.
+| Variable | Default | What it does |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | unset | Use the Anthropic API instead of the `claude` CLI. |
+| `DECKWRIGHT_LLM` | `cli` | Set to `api` to force the API even when the CLI is installed. When the CLI is present, `run.sh` otherwise unsets the API key so nothing is billed by accident. |
+| `DECKWRIGHT_LLM_TIMEOUT` | `180` | Seconds to wait for one model call. Large builds can need more. |
+| `HOST` / `PORT` | `127.0.0.1` / `8000` | Where the server listens. Use `HOST=0.0.0.0` only if you want other devices on your network to reach it. |
+| `DECKWRIGHT_HOME` | `~/.deckwright` | Where saved decks, the card corpus, and caches live. |
+| `DECKWRIGHT_FORGE` | auto-detected | Path to the Forge desktop jar for the optional pressure test. |
+| `DECKWRIGHT_PULL_ON_LAUNCH` | off | Set to `1` to `git pull --ff-only` each time `run.sh` starts. |
 
-## Where things live
+More operational detail (data refresh, what is stored on disk, failure modes) is in [docs/OPERATIONS.md](docs/OPERATIONS.md).
 
-| Path | Job |
+## Project layout
+
+| Path | What it holds |
 |---|---|
-| `deckwright/` | FastAPI app package (`python -m deckwright`) |
-| `index.html` | Single-page UI |
-| `tests/` | Offline and live test files |
-| `scripts/` | Merge gate and offline jobs |
-| `config/` | Optional install helpers |
-| `data/` | Checked-in bakes and reports (precon bakes are fetched/baked locally) |
-| `docs/` | Living docs — start at the [docs map](docs/README.md) |
+| `deckwright/` | The FastAPI app package (`python -m deckwright`) |
+| `index.html` | The single-page UI (vanilla JS, no build step) |
+| `tests/` | Offline and live tests |
+| `scripts/` | The test gate, data refresh, and offline maintenance jobs |
+| `data/` | Checked-in vocabularies, grammar, and reports |
+| `testdata/` | Fixtures for the offline tests |
+| `prompts/` | Golden-set prompts for the prompt harness |
+| `docs/` | Design and operations docs; start at the [docs index](docs/README.md) |
+| `run.sh` / `update.sh` | Start the app; optional maintenance (forced restart, data refresh) |
 
-How the pieces connect: [docs/HOW-IT-CONNECTS.md](docs/HOW-IT-CONNECTS.md). Contributor notes: [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md).
+## Links
 
-## Data sources
+- [Docs index](docs/README.md)
+- [How it connects](docs/HOW-IT-CONNECTS.md): the request path from the UI through the API to each module
+- [How a wish becomes a deck](docs/DERIVATION.md)
+- [Operations](docs/OPERATIONS.md) and [operating model](docs/OPERATING-MODEL.md)
+- [Contributing](docs/CONTRIBUTING.md)
 
-- **Scryfall** — card data, legality, prices, images. Required for builds.
-- **EDHREC** — optional popularity / average-deck hints. The benchmark's EDHREC fixtures (`data/benchmarks/edhrec/`) are not committed and no script in this tree regenerates them; without them the benchmark reports the E contestant as unknown.
-- **Archidekt** — precon catalog and lists via their public read JSON API. DeckWright identifies with a descriptive `User-Agent`, stays under ~8 req/s, and caches the catalog for 30 days under `~/.deckwright/precons.json`. Lists are fetched at runtime (and optionally baked with `scripts/bake_precons.py`); baked JSON is not committed. Please [link back to Archidekt](https://archidekt.com/) when you republish deck data. See [docs/OPERATIONS.md](docs/OPERATIONS.md).
+## Data sources and credits
 
-Card data from Scryfall; popularity hints from EDHREC; precon lists from Archidekt. Unofficial fan content. Not approved or endorsed by Wizards of the Coast.
+- **[Scryfall](https://scryfall.com/)**: card data, legality, prices, and images. Required for builds. Requests use a descriptive `User-Agent` and stay under Scryfall's rate limit.
+- **[EDHREC](https://edhrec.com/)**: optional popularity hints. If it is unreachable, deep-cut picks get less accurate and nothing fails.
+- **[Archidekt](https://archidekt.com/)**: the precon catalogue and lists, read from its public JSON API at runtime and cached for 30 days. Please link back to Archidekt if you republish deck data.
+
+DeckWright is unofficial fan content. It is not approved or endorsed by Wizards of the Coast. Magic: The Gathering is a trademark of Wizards of the Coast.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

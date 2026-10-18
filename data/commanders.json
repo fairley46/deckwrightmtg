@@ -61918,14 +61918,14 @@
           "confidence": "high",
           "method": "both",
           "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
-          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
+          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
         },
         {
           "playstyle": "aristocrats",
           "confidence": "high",
           "method": "both",
           "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
-          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
+          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
         }
       ],
       "themes": [

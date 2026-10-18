@@ -5,7 +5,7 @@ Every other check asks whether the chain ran. This one asks whether two
 adjacent wishes produce different decks *for the reason the plan claims*.
 
 Tier 3 — real model quota, real Scryfall, several minutes. Before ship, not
-per commit. See the tiered test pipeline.
+per commit. See scripts/check_all.py.
 
     # needs ANTHROPIC_API_KEY (or claude CLI) + network
     python scripts/differential_harness.py
@@ -85,7 +85,7 @@ WISHES: dict[str, str] = {
         "I want vampires that drain — make opponents lose life whenever I "
         "gain life. Lifedrain, not stealing their cards."
     ),
-    # "cheap" means mana value, not dollars. Brad: price is hard to
+    # "cheap" means mana value, not dollars. Price is hard to
     # control and Scryfall totals are ballparks, never receipts.
     "vampires-lowcurve": (
         "I want a vampire lifegain drain deck that is cheap and fast, low "
@@ -756,7 +756,7 @@ async def _chat_until_brief(wish: str, chat_fn) -> tuple[dict | None, str]:
             # chat response". The harness was contradicting the very wish it
             # was testing.
             #
-            # Same lifegain blind spot the archetype-axis fix found in archetypes_for, one
+            # Same lifegain blind spot an earlier fix found in archetypes_for, one
             # layer out: the instrument assumed the theme it was built on.
             # The answer must not assert a theme — the WISH already did.
             reply = (f"{q} — for my part: stick with what I already said, "
@@ -883,7 +883,7 @@ def _refuse_or_error(stage: str, e: BaseException) -> str:
     FastAPI HTTPException carries status_code + detail (422).
     Anthropic SDK errors also carry status_code; those are transport/quota
     failures, not brief refusals — label them as errors so the report does
-    not read like a successful the empty-brief refusal guard.
+    not read like a successful empty-brief refusal.
     """
     code = getattr(e, "status_code", None)
     detail = getattr(e, "detail", None)

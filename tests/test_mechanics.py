@@ -233,7 +233,7 @@ def test_pairing_relations():
 
 
 def test_legacy_saved_deck_loads_without_mechanics():
-    """Box 2026-08-06: old saves without a mechanics stamp must still load."""
+    """Old saves without a mechanics stamp must still load."""
     print("\nlegacy saved deck  — no mechanics stamp")
     import tempfile
     from pathlib import Path
@@ -263,7 +263,7 @@ def test_legacy_saved_deck_loads_without_mechanics():
 
 
 def test_signal_fixtures_known_tricky():
-    """Box: every signal needs a known-tricky fixture — Azusa-class misses.
+    """Every signal needs a known-tricky fixture — Azusa-class misses.
 
     These are the silent-wrong cases: near-miss wording, negations, and
     Treasure-vs-creature splits.
@@ -283,7 +283,7 @@ def test_signal_fixtures_known_tricky():
          {"name": "Sulfuric Vortex", "type": "Enchantment", "keywords": [],
           "text": "If a player would gain life, that player gains no life instead."},
          "lifegain_source", False),
-        # "gains lifelink" is not a lifegain trigger. The lifelink false-positive fix fixed the
+        # "gains lifelink" is not a lifegain trigger. An earlier lifelink fix covered the
         # greedy .* pattern; the two literal patterns still prefix-matched.
         ("gains lifelink is not a lifegain trigger",
          {"name": "False Lifegain", "type": "Creature", "keywords": [],
@@ -535,8 +535,8 @@ def test_merge_preserves_reviewed_and_adds_map():
 
 
 def test_taxonomy_query_emit_and_gate():
-    """The taxonomy apostrophe fix / #69: right operator, apostrophes kept, heal path exists."""
-    print("\ntaxonomy query emit  — Box #69 gate")
+    """Taxonomy query emit: right operator, apostrophes kept, heal path exists."""
+    print("\ntaxonomy query emit  — build gate")
     mod = _load_taxonomy_builder()
     vocab = {
         "keyword": {
@@ -581,7 +581,7 @@ def test_taxonomy_query_emit_and_gate():
     eq("heal t:gold → oracle",
        mod.heal_candidates("t:gold")[0].startswith("o:"), True)
 
-    # Checked-in map matches the three classes Box named.
+    # Checked-in map matches the three named classes.
     tax = mechanics.load_taxonomy()
     by = {m["name"].lower(): m for m in mechanics.taxonomy_leaves(tax)}
     for name, prefix in (

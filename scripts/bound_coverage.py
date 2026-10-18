@@ -4,7 +4,7 @@
 Sign-off before the next E,BLUE,B sweep. Prints whether derive extracts any
 bounds for every harness commander that *declares* bounds.
 
-Run AFTER the MV floor bounds floor-bounds land. Expect NONE → nonempty for floor
+Run after MV floor bounds are in place. Expect NONE → nonempty for floor
 commanders (Bello, Tayam, Shirei, Maralen, …). This script only *reads*
 derive — it does not edit the extractor.
 

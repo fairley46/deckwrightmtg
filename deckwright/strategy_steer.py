@@ -3,7 +3,7 @@
 Deprioritise bound_ok == false, prefer cards feeding strategy.inputs.
 bound_ok == unknown is neither a violation nor a steer pass (unknown ≠ zero).
 
-The CardFacts work Candidate C: when ``DECKWRIGHT_CANDIDATE=C``, CardFacts may enrich
+Candidate C (experimental): when ``DECKWRIGHT_CANDIDATE=C``, CardFacts may enrich
 feeder detection and stamp ServeReport fields. Bound math stays shared via
 ``strategy_audit.card_bound_ok``. Missing CardFacts → fall back to B oracle
 feeders (C includes B); ServeReport marks CF fields unknown, never zero.
@@ -94,7 +94,7 @@ def steer_vote(
 def cmp_votes(va: int | None, vb: int | None) -> int:
     """Compare strategy steer votes for ranking (caveat 2).
 
-    None (bound unknown) sorts as neutral 0 — not as the timing-multiplier work edge 'no vote'.
+    None (bound unknown) sorts as neutral 0 — not as the timing-multiplier edge 'no vote'.
     Hard violators (-1) demote; among non-violators, feeder (+1) beats
     neutral and unknown. Bound demotion must not outrank feeder prefer
     except when bound_ok is actually false.

@@ -2,8 +2,8 @@
 
 > Part of the derivation chain — see [`DERIVATION.md`](DERIVATION.md) for how this stage joins the others.
 
-**Owner:** Box. Consumed (perception fixtures), the payoff-pool work (build
-selection), the plan graph.
+**Consumed by:** the perception fixtures, build selection (payoff pools), and
+the plan graph.
 
 Every number in this file was **measured**, not chosen. The measurement shell is stated so
 the numbers can be reproduced and argued with. Where perception cannot yet see a role, this
@@ -171,7 +171,7 @@ Shell: 36 Mountains, 6 Sol Ring, enchantment filler to 99, `cmdr_cmc=3`,
 draw 2). One-shot = sorcery `{R}` "Draw two cards." with no flashback
 (same CMC as Looting — a `{1}{R}` one-shot understates the table by ~3 pts).
 
-**No new `THESIS_KEYS`.** Delirium type-counts need Box approval first.
+**No new `THESIS_KEYS`.** Delirium type-counts would need a new, reviewed `THESIS_KEY` first.
 Flashback's second cast feeds existing `cards_drawn`. Extraction rates
 (`flashback`, `self_mill`, `gy_return`, `delirium`) are eyes for ranking.
 
@@ -199,7 +199,7 @@ on `>= 4` (measured 30.0). Bare shells score **exact 0.0%**.
 
 Extraction: `flashback` / `flashback_draws` / `self_mill` / `gy_return` /
 `delirium`. `gy_return` goldfish-proxies +1 body when cast. Delirium is a rate
-for eyes only until a GY-type `THESIS_KEY` is Box-approved.
+for eyes only until a graveyard-type `THESIS_KEY` is added.
 
 ## Rules that hold regardless of role
 
@@ -228,8 +228,8 @@ points. Any asserted margin should be ≥ 10 points, or raise the run count. A 3
 - **A single card score.** There isn't one. A card's value is its lift on *this plan's*
   conditions, and the same card is excellent or worthless depending on the threshold — which
   is the whole finding above.
-- **A coherence number.** Still deliberately absent (`BOX-RESPONSE-2026-08-06.md`).
-- **Anything she sees.** Percentages are machinery. She gets "adding this raises 'engine
+- **A coherence number.** Still deliberately absent.
+- **Anything the player sees.** Percentages are machinery. The player gets "adding this raises 'engine
   online by turn 6' from 61% to 68%" — a sentence, with the number as evidence rather than
   as the point.
 

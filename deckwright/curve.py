@@ -6,7 +6,7 @@ graph asks whether cards hold together. This is the remaining clause:
 
     The curve decides whether she can actually play them.
 
-Brad: average cost vs ramp vs lands vs explosive ramp — can the player play
+Playtest question: average cost vs ramp vs lands vs explosive ramp — can the player play
 the plan every turn? A deck can be perfectly connected and uncastable.
 
 No model. Pure functions over decks + the existing goldfish.
@@ -29,7 +29,7 @@ UNKNOWN = "unknown"
 # (never invents low/high from an empty brief).
 SKELETON_LIVE = True
 
-# Phrases that name a curve preference. Scored like the fixture-brief archetype work's archetype
+# Phrases that name a curve preference. Scored like the plan graph's archetype
 # picker: every field that survives commander overwrite is in play, and a
 # nearby negation ("not cheap") does not elect the opposite.
 _LOW_PHRASES = (
@@ -207,7 +207,7 @@ def castable_curve(
 ) -> dict[str, Any]:
     """Per-turn fraction of goldfish runs where she cast a non-land spell.
 
-    Not win rate — Brad's standing constraint. "Was she able to act."
+    Not win rate — a standing design constraint. "Was she able to act."
     """
     reason = _deck_measurable(deck)
     if reason:

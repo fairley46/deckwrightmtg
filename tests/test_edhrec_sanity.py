@@ -62,7 +62,7 @@ def test_missing_rate():
     eq("small sample is skip", v["status"], "ok")
     eq("small sample not suspicious", v["suspicious"], False)
 
-    # Measured the commander knowledge base shape: ~6% missing is catalogue, not throttle.
+    # Measured on the commander knowledge base: ~6% missing is catalogue, not throttle.
     v = bkb.edhrec_transport_check(ok=3113, missing=208, failed=0)
     eq("6% missing is ok", v["status"], "ok")
     eq("6% not suspicious", v["suspicious"], False)

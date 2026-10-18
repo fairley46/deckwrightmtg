@@ -21,10 +21,10 @@ Every pair below is: same cost, same stated effect, genuinely different value.
 No trick cards, no corner cases — if the perception layer cannot separate these
 it cannot separate anything.
 
-The pairs are ordered by the sequence Cursor is farming: draw, then lifegain and
+The pairs are ordered by the sequence perception was built in: draw, then lifegain and
 drain, then tokens. Each pair asserts a DIRECTION, never a magnitude, because
 magnitudes are a scoring decision and this file must not quietly become the
-scoring contract (that is the scoring contract, and it belongs to Box).
+scoring contract (that lives in docs/SCORING-CONTRACT.md).
 
     python test_perception.py            # run the gate
     python test_perception.py --verbose  # show every extracted mechanic
@@ -97,7 +97,7 @@ differs(
     "the whole ramp axis depends on this and it is the one thing that works",
 )
 
-# ── draw: the draw perception work ────────────────────────────────────────────────────────────
+# ── draw perception ────────────────────────────────────────────────────────────
 section("draw")
 
 differs(
@@ -176,7 +176,7 @@ differs(
 )
 
 
-# ── graveyard / flashback: the graveyard perception work ───────────────────────────────────────────
+# ── graveyard / flashback perception ───────────────────────────────────────────
 section("graveyard — flashback family")
 
 differs(
@@ -214,7 +214,7 @@ def condition_lift(label, better, worse, why):
     """better must fire cards_drawn>=2 by turn 8 more often than worse.
 
     Turn 8, not 5: a 3-mana engine has to resolve and then tick. Direction
-    only — magnitudes are Box (scoring contract).
+    only — magnitudes belong to the scoring contract.
     """
     # Threshold 4, not 2 — and this is the whole point of the scoring contract.
     # At >=2 the one-shot legitimately WINS (Arena 7.3% vs Sign 11.0% @T8):
@@ -271,7 +271,7 @@ differs(
 )
 
 
-# ── the scoring-math QC adversarial misses (one wrong card per signal) ───────────────────
+# ── adversarial extraction misses from the scoring-math audit (one wrong card per signal) ───────────────────
 section("adversarial — cards the regex got wrong")
 
 differs(

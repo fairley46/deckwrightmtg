@@ -1,7 +1,7 @@
 """
 resolve.py — one function that turns her words into the right Scryfall operator.
 
-The Scryfall grammar lookup / docs/SCRYFALL-GRAMMAR.md
+See docs/SCRYFALL-GRAMMAR.md
 
 Scryfall publishes ~62k enumerable catalog terms and ~1k sets. Resolution is a
 lookup against that vocabulary, not a guess at whether a word is a creature
@@ -791,7 +791,7 @@ def resolve_theme(theme: str) -> dict[str, Any]:
             unresolved.append(w)
 
     # every named tribe stays in parts — compose_expressions ORs them.
-    # kept [primary_types[0]] here; that is the pre- behaviour
+    # kept [primary_types[0]] here; that was the earlier behaviour
     # and would drop sibling tribes ("horses and knights" -> horses only), so
     # main's list form wins. The alias pack feeds this, it does not narrow it.
     primary_types = type_things or broad

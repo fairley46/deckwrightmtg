@@ -37,7 +37,7 @@
       "enabled": false,
       "url_env": "DECKWRIGHT_GREEN_C_URL",
       "url_default": "http://127.0.0.1:8003",
-      "note": "the CardFacts work — disabled for the EDHREC seed sweep (measured worse than V1). Re-enable explicitly if re-running C bake-offs."
+      "note": "CardFacts candidate — disabled for the EDHREC seed sweep (measured worse than V1). Re-enable explicitly if re-running C bake-offs."
     },
     {
       "id": "D",

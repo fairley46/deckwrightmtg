@@ -2,7 +2,7 @@
 
 Phase 4 of Know Magic.
 
-**Artifact:** [`data/unread_gap_strategy.json`](../data/unread_gap_strategy.json)
+**Artifact:** [`data/unread_gap_strategy.json`](../../data/unread_gap_strategy.json)
 
 ## What this is
 

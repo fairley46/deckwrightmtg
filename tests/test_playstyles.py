@@ -103,7 +103,7 @@ def test_detect_empty_requires_never_matches():
     print("\ndetect — a detectable playstyle matches; an undetectable one never defaults")
     # Grand Arbiter is classic stax. This test used to assert he matched
     # NOTHING, because stax had empty requires and could not fire — it was
-    # documenting a limitation, not a desired behaviour. The playstyle signal work added
+    # documenting a limitation, not a desired behaviour. A later signal change added
     # tax_opponent_spells ("spells your opponents cast cost {1} more"), so the
     # textbook stax commander now matches stax, which is the fix working.
     #
@@ -124,7 +124,7 @@ def test_detect_empty_requires_never_matches():
     true("stax now matched — tax_opponent_spells fires", "stax" in r["matched"])
 
     # The half that must never regress: no signal at all means no match, not
-    # a sensible-looking default. a fallback is not a match.
+    # a sensible-looking default. A fallback is not a match.
     blank = {"name": "Vanilla Bear", "type_line": "Legendary Creature — Bear",
              "oracle_text": "Trample"}
     rb = playstyles.detect(blank)
@@ -509,7 +509,7 @@ def test_fixture_shape():
         for k in ("commander", "playstyles", "source", "why", "oracle_text"):
             true(f"{row.get('commander')} has {k}", bool(row.get(k)))
         styles_seen.update(row.get("playstyles") or [])
-    # Structural diversity guard — same spirit as the fixture-brief diversity work's unlike commanders.
+    # Structural diversity guard — same spirit as the unlike commanders in the fixture briefs.
     for need in ("aristocrats", "blink", "counters", "voltron", "spellslinger",
                  "landfall", "tokens", "reanimator", "stax", "group_hug",
                  "lifegain", "artifacts", "tribal"):

@@ -1,20 +1,19 @@
-# How Deckwright connects
+# How DeckWright connects
 
-**Source of truth for the connection spine.** Re-checked against `main` on
-2026-08-09 (GA wrap · the thesis honesty fix on tip). If this file and `SYSTEM-MAP.md` disagree,
-**trust this file, then the code.**
+How a request travels from the UI through the API to each module. If this file
+and the code disagree, **trust the code** and fix this file.
 
 Companions: [README.md](README.md) (docs map · where things live) ·
 [ARCHITECTURE.md](ARCHITECTURE.md) (shape) · [DERIVATION.md](DERIVATION.md)
 (QC stages) ·
-[OPERATIONS.md](OPERATIONS.md) (LLM adapter, sanctity) ·
+[OPERATIONS.md](OPERATIONS.md) (LLM adapter, load-bearing parts) ·
 [CONTRIBUTING.md](CONTRIBUTING.md) (contributor rules).
 
 ---
 
 ## One sentence
 
-Her words become live Scryfall counts, a brief, five real commanders, a verified
+The player's words become live Scryfall counts, a brief, five real commanders, a verified
 99 (prefer cards we can read and that glue to the commander), a thesis we can
 measure, 3,000 goldfish games, and a shopping list — and ask on a saved deck
 **recomputes** the instrument instead of trusting frozen counts.
@@ -28,10 +27,10 @@ instrument → understand → Scryfall queries → real cards
 
 | Hop | Code | What it does |
 |---|---|---|
-| **Instrument** | `build_readback` → `build_instrument` → `messages_with_instrument` | Scryfall counts for what she said (local corpus first). Status: `ok` / `empty` / `unknown`. Unknown ≠ zero. |
+| **Instrument** | `build_readback` → `build_instrument` → `messages_with_instrument` | Scryfall counts for what the player said (local corpus first). Status: `ok` / `empty` / `unknown`. Unknown ≠ zero. |
 | **Understand** | `INTERROGATOR` → `extract_brief_payload` → `apply_way_fields` → `check_readiness`; commanders: `theme_fit` / `strategy_fit` / ways; build: `plan_graph.derive` | Brief + way_preference → way_playstyle; plan commitments. |
 | **Queries** | `resolve.resolve_theme` / `theme_clauses` / `commander_ladder` / `role_query` / `plan_graph.payoff_searches` / `synergy.synergy_recall_queries` → `search_ladder` | Real Scryfall syntax. Never invent card names here. |
-| **Real cards** | `scry()` / `search()` → **local corpus** (`corpus.py`, `~/.deckwright/oracle_cards.jsonl`) first; live API for `otag:`/`art:` (Tagger) and anything the index cannot parse → model chooses **names from the pool** | Verifier drops anything not in the response. Local data is still real data. Unsupported ≠ empty. The composite-query split splits composite AND-conjuncts — local content serves from disk; unevaluated `otag:`/`art:` marks the result incomplete, not a smaller match. **Build still needs live Scryfall** — role ladders are `otag:`-heavy; corpus protects reads, not `/api/build`. |
+| **Real cards** | `scry()` / `search()` → **local corpus** (`corpus.py`, `~/.deckwright/oracle_cards.jsonl`) first; live API for `otag:`/`art:` (Tagger) and anything the index cannot parse → model chooses **names from the pool** | Verifier drops anything not in the response. Local data is still real data. Unsupported ≠ empty. Composite queries are split into AND-conjuncts: local content serves from disk; unevaluated `otag:`/`art:` marks the result incomplete, not a smaller match. **Build still needs live Scryfall** — role ladders are `otag:`-heavy; corpus protects reads, not `/api/build`. |
 | **Prefer** | `synergy.prefer_glued`, `prefer_way_playstyle`, `precon_upgrade.card_is_readable`, thesis glued allowlist | Soft prefer — not a hard filter that invents coverage. |
 | **Rank** | `card_score.rank_for_role` (sim lift + edge steer); EDHREC as backfill order | Measured lift for the plan, not popularity alone. |
 
@@ -61,11 +60,11 @@ flowchart LR
 | API | `GET /`, `GET /api/saved`, `GET /api/boot` |
 | State | Empty brief; optional saved decks from `~/.deckwright/` |
 
-**Desktop boot:** `run.sh` fail-open pulls code; process lifespan runs
+**Boot:** `run.sh` optionally pulls code (fail-open); process lifespan runs
 `boot.run_boot` — warm vocab; if data stale: cadence `--kb` (new words / synergy
 objects / commander mechanics) then `print_wave_reeval` (coverage + playstyles).
-Does not admit new signals or strategies. Brand veil waits on `/api/boot`
-(`refreshing` → `understanding` → `ready`); skipped when KeepAlive is already warm.
+Does not admit new signals or strategies. The loading screen waits on `/api/boot`
+(`refreshing` → `understanding` → `ready`); it is skipped when the server is already warm.
 Boot also probes live Scryfall into `card_source`. A Cloudflare
 challenge / rate limit / timeout is named on the landing; `ready` stays true so
 saved decks still open. Build/search surface the same kinds — never a generic
@@ -80,16 +79,16 @@ saved decks still open. Build/search surface the same kinds — never a generic
 | Pipeline | `theme_hint_for_instrument` → `build_instrument` → `messages_with_instrument` → model (`INTERROGATOR`) → `extract_brief_payload` → `apply_way_fields` → `check_readiness` → `strip_pool_magnitudes_for_handoff` → `build_narrowing_turn` → closing empty/unknown honesty + narrowing prose |
 | Out | `{text, brief, still_asking, readiness, instrument, narrowing}` |
 
-Healthy theme-pool magnitudes are suppressed at handoff (builder
+Healthy theme-pool sizes are not shown at handoff (they are a builder
 diagnostic). Empty/unknown stay graded. Narrowing names a few real commanders
-that differ by `ways_to_play` — not a card-pool size. `INTERROGATOR` prompt
-text is unchanged (Box); the payload shape is ready for a later prompt edit.
+that differ by `ways_to_play` — not a card-pool size. The `INTERROGATOR` prompt
+does not read the narrowing payload yet; the payload shape is ready for a later prompt edit.
 
 **Brief fields that load the rest of the spine:** `theme`, `angle`, `colors`,
 `mechanics`, `playstyle`, **`way_preference` / `way_playstyle`**, `budget_total`,
 `bracket`, `commander_query`, `flavor_terms`.
 
-If `readiness.ready` is false, she stays in chat — the app does not pretend a
+If `readiness.ready` is false, the player stays in chat — the app does not pretend a
 thin theme is ready.
 
 ### 3. Readback
@@ -114,7 +113,7 @@ surfaces a few Scryfall-real commanders that differ by way to play.
 | Pipeline | `apply_way_fields` → `commander_ladder` → `search_primary_rung` / `search_paginated` (`total_cards`, never fetch-cap as total) → `prefer_way_playstyle` → `rank_commanders_pool` → `page_commanders` → KB fit / ways / `picker_differs` → optional model blurbs on page 0 only, **verifier-filtered**; `fits` is write-up only (`writeup_missing` when absent) |
 | Out | Five picks + `differs` + `rung_total` / `shown_of` / `has_more` / `rung_exhausted`; exhausted does not silently descend |
 
-**Colour:** identity is usually an *output* of the commander — but if she named
+**Colour:** identity is usually an *output* of the commander — but if the player named
 colours in the brief, `brief_color_identity` scopes the commander ladder.
 
 ### 5. Build the 99
@@ -153,7 +152,7 @@ draw 9, spot 7, wipe 3, plan 10, theme 15, deepcut 5. Live skeleton may reshape
 | Action | API | Connection rule |
 |---|---|---|
 | **Ask** | `POST /api/ask` | `enrich_ask_context` **recomputes** instrument + improve candidates from `role_pools`; `ask_prompt_facts` → `DECKTALK`. Never invent upgrade names. |
-| **Swap / suggest** | `/api/swap`, `/api/suggest` | Alternates only from real pools. Suggest stages a pending change set (`set_id`); `/pending/approve` forks `vN→vN+1`; `/pending/reject` drops the set and leaves the 99 alone (D1). |
+| **Swap / suggest** | `/api/swap`, `/api/suggest` | Alternates only from real pools. Suggest stages a pending change set (`set_id`); `/pending/approve` forks `vN→vN+1`; `/pending/reject` drops the set and leaves the 99 alone. |
 | **Christen / save** | `/api/christen`, `PATCH /api/saved/{id}` | Identity on disk; sim baseline separate |
 | **Match notes** | `GET/POST /api/saved/{id}/notes`, `DELETE …/notes/{note_id}` | Post-game notes on disk via `deck_state` — no model |
 | **Export** | (strings on deck record) | Archidekt text + TCGplayer mass-entry. Moxfield is **import** shape. |
@@ -214,32 +213,14 @@ only touch `role_pools`.
 
 ### On disk: `~/.deckwright/{slug}.json`
 
-Frozen when she saves / auto-save after build:
+Frozen on save (decks auto-save after a build):
 
 - The 99, commander, brief, plan, `role_pools`, conversation, overview prose
 - Optional `simulation` baseline stamped with `deck_hash` + `sim.SIM_VERSION`
 
-**Green** is a second process (`(local launchd label)`,
-`:8001`, `DECKWRIGHT_HOME=~/.deckwright-green`). It shares
-`oracle_cards.jsonl` read-only. It is not a spine hop. Production `:8000` is
-never the experiment. Install: `./config/install-green-launchd.sh`. Details in
-[OPERATIONS.md](OPERATIONS.md).
-
-**B clarity:** when green runs `DECKWRIGHT_CANDIDATE=B`,
-`/api/build` and import attach `commander_strategy` + `strategy_audit` and
-paint `#clarity`. Candidate `off` on `:8001` keeps **BLUE** = V1 for the bake-off.
-
-**B steer:** same flag, when the commander reads, soft-steers
-the 99 during build (backfill, placement, sim tiebreak, flex fill). Never drops
-cards. `bound_ok == unknown` is neutral. Unread → V1 path. Harness contestant
-**B** hits `:8002`; **BLUE** hits `:8001` with `off`. Bound `op` is `leq` or
-`geq` (floors); steer and audit share one checker.
-
-**C ServeReport:** when green runs `DECKWRIGHT_CANDIDATE=C` (`:8003`),
-same B clarity + steer, plus per-card `serve_report` from `cardfacts.lookup`
-(`feeds_input` / `consumes_output` / `bound_ok` / `concept_hits` /
-`weighted_serve`). Missing facts → unknown, not zero. Harness contestant **C**
-→ `DECKWRIGHT_GREEN_C_URL` default `:8003`. Not the default path.
+Experimental build candidates (the `DECKWRIGHT_CANDIDATE` flag on a separate
+staging process) are off by default and not part of this path. See
+[archive/STAGING-NOTES.md](archive/STAGING-NOTES.md).
 
 **Not frozen as truth:**
 
@@ -268,16 +249,12 @@ via `scripts/bake_precons.py`; baked JSON is not committed). Cadence:
    `llm.can_call` gates overview without requiring an API key. All model calls
    go through `deckwright/llm.py`.
 
-### CardFacts — bake offline; serve on candidate C only
+### CardFacts (experimental)
 
-`cardfacts.extract` + `scripts/bake_cardfacts.py` bake structured facts offline
-from the local corpus into `cardfacts.json` (resume/skip-existing +
-checkpoints for a full demo-host bake). `scripts/cardfacts_status.py` reports
-store tallies. Build reads CardFacts only behind `DECKWRIGHT_CANDIDATE=C`
-(`serve_report` / CF-informed steer). BLUE and B do not. Gate: no B
-promotion, no C-as-default, no CardFacts in `app.py` / `card_score`.
-Offline B-vs-C compare: [`docs/benchmarks/B-VS-C.md`](benchmarks/B-VS-C.md).
-Remaining: [`docs/product/C-REMAINING.md`](product/C-REMAINING.md).
+`cardfacts.extract` + `scripts/bake_cardfacts.py` bake structured per-card
+facts offline from the local corpus into `cardfacts.json`, and
+`scripts/cardfacts_status.py` reports store tallies. The default build path
+does not read CardFacts; only the experimental candidate C does.
 
 ---
 
@@ -297,11 +274,10 @@ When you change a route or a through-line hop:
 
 1. Update **this file** in the same PR.
 2. Do not invent a parallel "system map" section that contradicts it.
-3. `SYSTEM-MAP.md` is a deep inventory — useful, but secondary. Its banner points here.
-4. QC stage checks still live in `DERIVATION.md`.
+3. QC stage checks still live in `DERIVATION.md`.
 
 ```bash
 # Sanity: routes and helpers still exist
-rg -n "def (chat|readback|commanders|build|thesis|simulate|ask|enrich_ask_context|build_instrument)\b" app.py
-rg -n "prefer_glued|glued_payoff_candidates|map_way_playstyle" synergy.py playstyles.py
+rg -n "def (chat|readback|commanders|build|thesis|simulate|ask|enrich_ask_context|build_instrument)\b" deckwright/app.py
+rg -n "prefer_glued|glued_payoff_candidates|map_way_playstyle" deckwright/synergy.py deckwright/playstyles.py
 ```

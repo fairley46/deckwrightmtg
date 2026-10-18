@@ -736,7 +736,7 @@
         "life"
       ],
       "produces": [],
-      "note": "'gains life' also matches 'gains lifelink'. Granting lifelink is not a lifegain trigger. Every life terminator needs (?!link)\\b \u2014 the lifelink false-positive fix fixed only the greedy pattern."
+      "note": "'gains life' also matches 'gains lifelink'. Granting lifelink is not a lifegain trigger. Every life terminator needs (?!link)\\b \u2014 an earlier fix covered only the greedy pattern."
     },
     "lifegain_source": {
       "family": "life_math",

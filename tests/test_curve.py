@@ -1,5 +1,5 @@
 """
-test_curve.py — can she actually play the plan? (/ curve spec)
+test_curve.py — can she actually play the plan?
 
 Offline. No model calls, no network. Run:
 

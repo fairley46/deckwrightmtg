@@ -1,18 +1,16 @@
 # Two playstyle vocabularies, and why they stay apart
 
-Decision: keep both vocabularies, named apart.
-
-Deckwright carries two things both called "playstyle." They are not redundant
+DeckWright carries two things both called "playstyle." They are not redundant
 and **they must not be merged.** They answer different questions, come from
 different sources, and drive different machinery. Anyone who collapses them will
 silently break either the curve or the plan.
 
-## `brief.playstyle` — how fast she wants to act
+## `brief.playstyle` — how fast the player wants to act
 
 | | |
 |---|---|
 | **Values** | `proactive` · `reactive` · `grindy` |
-| **Source** | The interrogation. Her words about tempo, inferred by `infer_playstyle(brief)`. |
+| **Source** | The interrogation. The player's words about tempo, inferred by `infer_playstyle(brief)`. |
 | **Consumes** | Nothing — it is an input. |
 | **Drives** | `PLAYSTYLE_SHIFT` in `app.py`, which shifts the `ROLES` skeleton: a reactive deck wants more interaction, a grindy one more card advantage. |
 | **Question it answers** | *How many of each kind of card?* |
@@ -22,7 +20,7 @@ silently break either the curve or the plan.
 | | |
 |---|---|
 | **Values** | Ids from `data/playstyles.json` — `aristocrats` · `blink` · `tokens` · `voltron` · `stax` · `counters` · `tribal` · `spellslinger` · `landfall` · `reanimator` · `lifegain` · `artifacts` · `group_hug` |
-| **Source** | The commander KB (`ways_to_play`), chosen by her on the commander card (#173 / the ways-to-play work). Community research and the mechanics detector, method recorded. |
+| **Source** | The commander KB (`ways_to_play`), chosen by the player on the commander card. Community research and the mechanics detector, method recorded. |
 | **Consumes** | The chosen commander. |
 | **Drives** | `plan_graph.derive` → plan commitments, and through them which cards the build recalls and scores. Switching it measurably changes the 99. |
 | **Question it answers** | *Which cards, and why those?* |
@@ -48,4 +46,4 @@ picker read. Renaming either would be a migration, not a cleanup.
 
 When writing about them, say **tempo** for `brief.playstyle` and **way to play**
 for `brief.way_to_play`. The UI already says "Ways to play" on the commander
-card and never shows the word `playstyle` to her.
+card and never shows the word `playstyle` to the player.

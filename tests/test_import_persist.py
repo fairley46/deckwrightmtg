@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """imported decks must persist; Save must not swallow a failed write.
 
-Brad imported a list, tapped Save, and the button said Saving… then quietly
+A playtester imported a list, tapped Save, and the button said Saving… then quietly
 went back to Save. Root cause: analyze_imported_deck never called
 persist_deck, so the response had no id; PATCH /api/saved/{id} 404'd into a
 catch that said nothing.
@@ -231,7 +231,7 @@ def test_build_still_persists_once():
 
 
 def _extract_save_helpers(html: str) -> str:
-    """Pull the import save fix save-failure helpers out of index.html for node eval."""
+    """Pull the save-failure helpers out of index.html for node eval."""
     start = html.find("const SAVE_FAIL_WHAT")
     if start < 0:
         # Fall back: function saveFailureCopy
@@ -239,7 +239,7 @@ def _extract_save_helpers(html: str) -> str:
     if start < 0:
         raise AssertionError("saveFailureCopy / SAVE_FAIL_WHAT missing from index.html")
     # Take through saveIdentity's closing brace — stop before next major fn.
-    end = html.find("/* ── ", start)
+    end = html.find("/* ── the other two ways in", start)
     if end < 0:
         end = html.find("async function resolvePasted", start)
     if end < 0:

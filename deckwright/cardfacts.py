@@ -130,7 +130,7 @@ _KEYWORD_SPECS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\benchant\b", re.I), "counters"),
 ]
 
-# --- extract patterns (mirror commander_strategy the strategy steer work / the MV floor bounds; local copy so
+# --- extract patterns (mirror commander_strategy steer and MV floor bounds; local copy so
 # this branch does not depend on the green B stack being merged) ----------------
 
 _TRIGGER_SPECS: list[tuple[re.Pattern[str], str, str]] = [

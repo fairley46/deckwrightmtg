@@ -2,7 +2,7 @@
 
 > **Secondary map.** For the live connection spine (chat → build → thesis → ask,
 > through-line, verifiers, frozen vs recomputed) read
-> **[`HOW-IT-CONNECTS.md`](HOW-IT-CONNECTS.md)** first. This file is a deep
+> **[`HOW-IT-CONNECTS.md`](../HOW-IT-CONNECTS.md)** first. This file is a deep
 > inventory / harness catalogue. Where it disagrees with HOW-IT-CONNECTS or the
 > code, **the code wins**, then HOW-IT-CONNECTS.
 
@@ -13,11 +13,11 @@ Read from the code on 2026-08-07; **re-check code before trusting a row**.
 > **stale**. Corrections table and the CLOSED list later in this file are right:
 > KB on-path, cohesion / `explain_edges` wired, `SKELETON_LIVE=True`,
 > and the glue steer is on the build path.
-> Prefer [`HOW-IT-CONNECTS.md`](HOW-IT-CONNECTS.md) for the live spine.
+> Prefer [`HOW-IT-CONNECTS.md`](../HOW-IT-CONNECTS.md) for the live spine.
 
-Related docs (do not duplicate them): [`ARCHITECTURE.md`](ARCHITECTURE.md) shape,
-[`DERIVATION.md`](DERIVATION.md) stage joins, [`SCORING-CONTRACT.md`](SCORING-CONTRACT.md)
-scoring math, [`PLAN-GRAPH-SCHEMA.md`](PLAN-GRAPH-SCHEMA.md) plan shape.
+Related docs (do not duplicate them): [`ARCHITECTURE.md`](../ARCHITECTURE.md) shape,
+[`DERIVATION.md`](../DERIVATION.md) stage joins, [`SCORING-CONTRACT.md`](../SCORING-CONTRACT.md)
+scoring math, [`PLAN-GRAPH-SCHEMA.md`](../PLAN-GRAPH-SCHEMA.md) plan shape.
 
 ---
 
@@ -688,7 +688,7 @@ an opinion for freeze decisions, not a delete order.
 ### `scripts/check_playstyles.py` — **KEEP as research; do not gate**
 - **Measures.** Community fixture (57) vs `playstyles.detect()` — hit/miss/extra.
   Exit 0 always; no pass bar.
-- **Found.** Gap to the "95%" named in CURSOR-BRIEF (Wyleth, Winota, Purphoros,
+- **Found.** Gap to the "95%" named in the original brief (Wyleth, Winota, Purphoros,
   …). The playstyle signal work false "NOT DETECTABLE." exemplars ≠ acceptance tests.
 - **Cost.** Offline seconds.
 - **Redundancy.** `test_playstyles.py` = vocabulary contracts; this = community

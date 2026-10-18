@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """API boundary gate — unread emits and unsent reads fail.
 
-Mirrors the guard that catches the class is the one thing that must
-run. A deliberate unread response key makes this red.
+Mirrors the unit registry: the guard that catches the class is the one thing
+that must run. A deliberate unread response key makes this red.
 
     python test_api_boundary.py
 """

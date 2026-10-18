@@ -21,6 +21,6 @@ python -m deckwright.check pirate UB
 python tests/test_deckwright.py --unit
 ```
 
-Leave the sacred core alone unless a change explicitly owns the tradeoff: the three verifiers, the `INTERROGATOR` and `THESIS` prompts, the `ROLES` skeleton and budget policy, and what `sim.py` models (as opposed to an extraction fix against a stated expected value).
+Leave the load-bearing core alone unless a change explicitly owns the tradeoff: the three verifiers, the `INTERROGATOR` and `THESIS` prompts, the `ROLES` skeleton and budget policy, and what `sim.py` models (as opposed to an extraction fix against a stated expected value).
 
-How work becomes a change: [OPERATING-MODEL.md](OPERATING-MODEL.md).
+What the gate checks and what it protects: [OPERATING-MODEL.md](OPERATING-MODEL.md).

@@ -49,7 +49,7 @@ REPORT_DIR = ROOT / "docs" / "benchmarks" / "runs"
 
 # measured BLUE builds exceed 300s on the demo host (~377s for Krenko).
 # Transport timeout must allow collection; UNKNOWN on genuine timeout stays honest.
-# PR #322 rewrite silently reverted this to 300 — pinned by test_v2_benchmark.
+# A harness rewrite once silently reverted this to 300 — pinned by test_v2_benchmark.
 DEFAULT_BUILD_TIMEOUT = 1800.0
 
 # Bello (floor case) hit the Claude CLI default of 180s. The harness cannot
@@ -1224,7 +1224,7 @@ def http_build_url(
     """Resolve one http_build row. CLI overrides are per-contestant.
 
     `--green-url` applies to BLUE only. Never cross-apply to B/C/D — that is
-    the per-contestant URL scoping class bug that silently collapsed ports.
+    the per-contestant URL scoping bug that once silently collapsed ports.
     """
     cid = row["id"]
     override = None

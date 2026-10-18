@@ -198,7 +198,7 @@ COLOR_SECTIONS = [("W", "White"), ("U", "Blue"), ("B", "Black"),
 def bucket(c: dict) -> str:
     """Which shop box this card lives in.
 
-    Brad's correction, and it beats my first guess: shops file singles by
+    A playtest correction that beat the first guess: shops file singles by
     colour and then alphabetically, not by card type. Sorting a shopping list
     by type meant scanning eight sections for every card she picked up.
 

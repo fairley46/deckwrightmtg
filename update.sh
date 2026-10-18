@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# optional maintenance extras. Code updates on every desktop launch
+# update.sh: optional maintenance extras. Code updates on every desktop launch
 # (run.sh → pull_on_launch + /api/boot brand veil). Use this for a forced
 # restart, an out-of-band cadence run, or a print-wave re-eval.
 set -euo pipefail

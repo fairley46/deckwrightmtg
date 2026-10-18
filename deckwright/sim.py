@@ -164,7 +164,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
     if d:
         m["drop"] = WORD_NUM.get(d.group(1), 1)
 
-    # Card draw — eyes, not a dictionary; the target-player draw fix phrasing.
+    # Card draw — eyes, not a dictionary; includes "target player draws" phrasing.
     #
     # Three fields:
     #   draws        — cards drawn on resolution (Divination, cantrips)
@@ -242,7 +242,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
 
     # Graveyard / flashback-family. Extraction rates for eyes;
     # flashback's second cast feeds existing cards_drawn (no new THESIS_KEY —
-    # delirium type-counts need Box approval before they become conditions).
+    # delirium type-counts need a reviewed THESIS_KEY before they become conditions).
     kw = " ".join(card.get("keywords") or []).lower()
     m["flashback"] = 0
     m["flashback_draws"] = 0
@@ -802,7 +802,7 @@ def run(deck, cmdr_cmc, payoff_names, conditions, runs=3000, seed=None,
 
     pass `commander_card` (Scryfall-shaped dict) so on-cast commander
     oracle applies. Omit it and commander cast only flips commander_in_play —
-    the pre- behaviour, kept for callers that have no oracle.
+    the earlier behaviour, kept for callers that have no oracle.
     """
     rng_state = None
     if seed is not None:

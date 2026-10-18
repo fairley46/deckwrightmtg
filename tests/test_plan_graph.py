@@ -268,8 +268,8 @@ def test_derive_provisional_no_commander():
 def test_archetype_changes_the_pool():
     """the archetype must change WHICH CARDS are searched.
 
-    The commander-aware plan work's test passes on a threshold-only change — that is exactly the
-    shallowness Brad called out. This one asserts the payoff SEARCHES differ,
+    A commander-aware plan test can pass on a threshold-only change — that is exactly the
+    shallowness playtesting called out. This one asserts the payoff SEARCHES differ,
     so moving a number cannot satisfy it.
     """
     print("\narchetype changes the pool")

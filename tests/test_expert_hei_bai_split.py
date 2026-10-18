@@ -238,7 +238,7 @@ def test_reproducibility_band():
 
 
 def test_blink_floor_shape():
-    print("\nleave-enabler floor — blink reserved like the archetype payoff floors payoffs")
+    print("\nleave-enabler floor — blink reserved like archetype payoffs")
     # The build path must expose blink names as a payoff floor so a card that
     # is only in the pool can still be forced into theme. Pure unit check on
     # the helper that builds that floor — no live Scryfall.

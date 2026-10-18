@@ -138,12 +138,12 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_curve.py"],    # curve / playability — offline, no model
     ["test_hei_bai_baseline_probes.py"],  # leave-cause probes — offline
     # test_expert_hei_bai_split.py was listed twice (here and above).
-    # The system audit D2 recorded it as dropped; the code still had both. The map read
+    # A system audit recorded it as dropped; the code still had both. The map read
     # the code instead of the card and caught the drift. One entry, line 121.
     ["test_commanders_kb.py"],  # commander knowledge base — offline
     ["test_edhrec_sanity.py"],  # missing-rate is transport, not catalogue
     ["test_differential_harness.py"],  # was offline and unlisted
-    # #185 added this file and did not register it, so tier 1 reported
+    # This file was once added without being registered, so tier 1 reported
     # green while it never ran. test_check_all caught it. Same shape as the
     # finding where the runner said 3 pass with a P1 regression live.
     ["test_precon_upgrade.py"],  # precon ways + beef-it-up — offline
@@ -153,8 +153,8 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_backfill_order.py"],  # glued backfill + singleton placement
 
     # Registered in one sweep after test_check_all.py was run by hand during
-    # the #260/#261/#262 integration (sixteen offline files missing
-    # is the structural fix — test_unit_registry.py now gates the list).
+    # one integration (sixteen offline files were missing; the structural
+    # fix is test_unit_registry.py, which now gates the list).
     ["test_instrument_chat.py"],
     ["test_narrowing.py"],
     ["test_know_magic_lap.py"],
@@ -165,15 +165,15 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_print_wave_reeval.py"],
     ["test_saved_ask_instrument.py"],
     ["test_thesis_glued.py"],
-    ["test_thesis_goldfish_honesty.py"],   # shipped unregistered with the thesis honesty fix
+    ["test_thesis_goldfish_honesty.py"],   # once shipped unregistered
     ["test_goldfish_plan_compute.py"],     # plan thesis conditions must move
     ["test_unread_gap_research.py"],
     ["test_unread_gap_strategy.py"],
     ["test_way_preference.py"],
-    ["test_commander_oracle_cast.py"],     # The commander on-cast modelling / #260
-    ["test_commander_paging.py"],          # The commander paging work / #262
+    ["test_commander_oracle_cast.py"],     # commander on-cast modelling
+    ["test_commander_paging.py"],          # commander paging
     ["test_commander_differs.py"],         # picker differs without prose
-    ["test_parse_json_peel.py"],           # The JSON peel fix / #261
+    ["test_parse_json_peel.py"],           # JSON trailing-prose peel
 
     # registry coverage — no ca.main() / run_tier, safe in this list.
     ["test_unit_registry.py"],
@@ -548,7 +548,7 @@ def run_forge_calibration() -> Result:
 # registry
 # ---------------------------------------------------------------------------
 
-# This exists because it already happened: #173 committed conflict
+# This exists because it already happened: a merge committed conflict
 # markers into scripts/check_all.py, GitHub still reported the PR MERGEABLE
 # because it merged cleanly against main, and tier 1 could not parse the file.
 # A marker in a tracked source file is never intentional and costs nothing to

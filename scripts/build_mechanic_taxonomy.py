@@ -2,7 +2,7 @@
 """
 Build data/mechanic_taxonomy.json from the play-structure menu.
 
-Source: Brad's mechanics menu (named mechanics only, paper, Mar 2026).
+Source: a hand-curated mechanics menu (named mechanics only, paper, Mar 2026).
 Categorized by how they play, not CR implementation.
 
 Each leaf carries:
@@ -504,7 +504,7 @@ def scry_term(s: str) -> str:
 
 
 def normalize_lookup(name: str) -> str:
-    """Lowercase catalog key. Keep apostrophes — stripping them is the taxonomy apostrophe fix bug."""
+    """Lowercase catalog key. Keep apostrophes — stripping them was an earlier taxonomy bug."""
     return name.lower().replace("!", "").strip()
 
 
@@ -782,8 +782,8 @@ def load_build_vocab() -> dict[str, dict[str, str]]:
 async def probe_query(q: str) -> str:
     """Hit Scryfall once. Returns ok | zero | bad_request | unknown.
 
-    Box/#69 gate: fail the build on 400-or-zero. Network/throttle failures are
-    unknown — never scored as zero (same rule as the full-sweep vocabulary grading / test_deckwright).
+    Build gate: fail the build on 400-or-zero. Network/throttle failures are
+    unknown — never scored as zero (same rule as the full vocabulary sweep in test_deckwright).
     """
     import time
 
