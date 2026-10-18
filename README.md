@@ -126,7 +126,7 @@ Start with `python -m deckwright.check`. It tests Scryfall, the model, and the s
 ## Known limits
 
 - Building a deck needs the live Scryfall API; a local copy covers lookups and saved decks only.
-- The simulator plays goldfish games with no opponent, so interaction and opponent-dependent effects are reported as unmodelled.
+- The built-in simulator plays goldfish games with no opponent, so interaction and opponent-dependent effects are reported as unmodelled. The optional Forge pressure test is the only check against opponents.
 - Only an Anthropic Claude adapter is included. Other models need an adapter in `deckwright/llm.py`.
 - The page loads its fonts from Google Fonts and falls back to system fonts offline.
 
