@@ -14,8 +14,16 @@ import copy
 from deckwright import substitution
 
 
+# Shown when a refusal is found only after the list is rebuilt (a duplicate).
+REFUSED = "That swap would leave the deck invalid."
+
+
 class SwapError(ValueError):
-    """Raised when a swap cannot legally proceed. str(e) is the client message."""
+    """Raised when a swap cannot legally proceed.
+
+    The message is the same sentence swap_problem / swap_card_problem return;
+    API code shows those return values rather than reading the exception.
+    """
 
 
 def pool_for_role(role_pools: dict[str, list[dict]] | None, role: str) -> list[dict]:
@@ -62,6 +70,65 @@ def alternatives(card: dict, role_pools: dict[str, list[dict]], deck: list[dict]
     return out
 
 
+def _common_problem(deck: list[dict], remove: str,
+                    add: str) -> tuple[str | None, dict | None]:
+    """Checks shared by both swap paths. Returns (problem, card being removed)."""
+    if remove == add:
+        return f"{remove} is already in that slot", None
+    old = find_in_deck(deck, remove)
+    if not old:
+        return f"{remove} is not in the deck", None
+    role = old.get("role") or "theme"
+    if substitution.REPLACEABILITY.get(role, "flexible") == "core":
+        return (f"{remove} is a core strategy piece — come back for it "
+                "rather than swapping"), old
+    if add in {c["name"] for c in deck}:
+        return f"{add} is already in the deck (singleton)", old
+    return None, old
+
+
+def _outside_identity(add: str, card_ci: list | None, ci: str) -> str | None:
+    if ci and not set(card_ci or []) <= set(ci):
+        return f"{add} is outside this commander's colour identity"
+    return None
+
+
+def swap_problem(deck: list[dict], remove: str, add: str,
+                 role_pools: dict[str, list[dict]] | None,
+                 *, ci: str = "") -> str | None:
+    """Why apply_swap would refuse, as the sentence shown to the player.
+
+    Returns None when the swap can go ahead. Callers show this text directly,
+    so it never has to be read back out of an exception.
+    """
+    if not remove or not add:
+        return "remove and add are required"
+    problem, old = _common_problem(deck, remove, add)
+    if problem:
+        return problem
+    role = old.get("role") or "theme"
+    pool = pool_for_role(role_pools, role)
+    if not pool:
+        return f"no candidate pool for role '{role}' — rebuild the deck"
+    replacement = find_in_pool(add, pool)
+    if not replacement:
+        # Verifier: inventing a name outside the Scryfall pool is refused.
+        return f"{add} is not in the {role} pool"
+    return _outside_identity(add, replacement.get("color_identity"), ci)
+
+
+def swap_card_problem(deck: list[dict], remove: str, replacement: dict,
+                      *, ci: str = "") -> str | None:
+    """Why apply_swap_card would refuse, or None when the swap can go ahead."""
+    if not remove or not isinstance(replacement, dict) or not replacement.get("name"):
+        return "remove and a real replacement card are required"
+    add = replacement["name"]
+    problem, _old = _common_problem(deck, remove, add)
+    if problem:
+        return problem
+    return _outside_identity(add, replacement.get("color_identity"), ci)
+
+
 def _slot_fields(old: dict, replacement: dict) -> dict:
     """Build the card that occupies the old slot — keep role, take Scryfall fields."""
     card = copy.deepcopy(replacement)
@@ -79,38 +146,12 @@ def apply_swap(deck: list[dict], remove: str, add: str,
 
     Returns {"deck", "removed", "added", "role"}. Raises SwapError on refusal.
     """
-    if not remove or not add:
-        raise SwapError("remove and add are required")
-    if remove == add:
-        raise SwapError(f"{remove} is already in that slot")
-
+    problem = swap_problem(deck, remove, add, role_pools, ci=ci)
+    if problem:
+        raise SwapError(problem)
     old = find_in_deck(deck, remove)
-    if not old:
-        raise SwapError(f"{remove} is not in the deck")
-
     role = old.get("role") or "theme"
-    if substitution.REPLACEABILITY.get(role, "flexible") == "core":
-        raise SwapError(
-            f"{remove} is a core strategy piece — come back for it rather than swapping")
-
-    names = {c["name"] for c in deck}
-    if add in names:
-        raise SwapError(f"{add} is already in the deck (singleton)")
-
-    pool = pool_for_role(role_pools, role)
-    if not pool:
-        raise SwapError(f"no candidate pool for role '{role}' — rebuild the deck")
-
-    replacement = find_in_pool(add, pool)
-    if not replacement:
-        # Verifier: inventing a name outside the Scryfall pool is refused.
-        raise SwapError(f"{add} is not in the {role} pool")
-
-    if ci:
-        allowed = set(ci)
-        card_ci = set(replacement.get("color_identity") or [])
-        if not card_ci <= allowed:
-            raise SwapError(f"{add} is outside this commander's colour identity")
+    replacement = find_in_pool(add, pool_for_role(role_pools, role))
 
     new_card = _slot_fields(old, replacement)
     out = []
@@ -149,30 +190,11 @@ def apply_swap_card(deck: list[dict], remove: str, replacement: dict,
     add does not have to already sit in role_pools — the caller verified it
     against a live Scryfall response before staging.
     """
-    if not remove or not isinstance(replacement, dict) or not replacement.get("name"):
-        raise SwapError("remove and a real replacement card are required")
-    add = replacement["name"]
-    if remove == add:
-        raise SwapError(f"{remove} is already in that slot")
-
+    problem = swap_card_problem(deck, remove, replacement, ci=ci)
+    if problem:
+        raise SwapError(problem)
     old = find_in_deck(deck, remove)
-    if not old:
-        raise SwapError(f"{remove} is not in the deck")
-
     role = old.get("role") or "theme"
-    if substitution.REPLACEABILITY.get(role, "flexible") == "core":
-        raise SwapError(
-            f"{remove} is a core strategy piece — come back for it rather than swapping")
-
-    names = {c["name"] for c in deck}
-    if add in names:
-        raise SwapError(f"{add} is already in the deck (singleton)")
-
-    if ci:
-        allowed = set(ci)
-        card_ci = set(replacement.get("color_identity") or [])
-        if not card_ci <= allowed:
-            raise SwapError(f"{add} is outside this commander's colour identity")
 
     new_card = _slot_fields(old, replacement)
     out = []

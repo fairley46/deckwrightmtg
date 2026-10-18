@@ -188,18 +188,25 @@ def approve_pending(data: dict, *,
     new_deck = list(old_deck)
     applied = []
     for p in pending:
+        add_card = p.get("add_card")
+        by_card = isinstance(add_card, dict) and add_card.get("name") == p.get("add")
+        if not by_card and not role_pools:
+            return {"ok": False,
+                    "error": "no role_pools — cannot verify adds"}
+        # The refusal sentence comes from the check, not from the exception.
+        problem = (swap.swap_card_problem(new_deck, p["cut"], add_card, ci=ci)
+                   if by_card else
+                   swap.swap_problem(new_deck, p["cut"], p["add"], role_pools, ci=ci))
+        if problem:
+            return {"ok": False, "error": problem, "failed": p}
         try:
-            add_card = p.get("add_card")
-            if isinstance(add_card, dict) and add_card.get("name") == p.get("add"):
-                result = swap.apply_swap_card(new_deck, p["cut"], add_card, ci=ci)
-                new_deck = result["deck"]
+            if by_card:
+                new_deck = swap.apply_swap_card(new_deck, p["cut"], add_card, ci=ci)["deck"]
             else:
-                if not role_pools:
-                    return {"ok": False,
-                            "error": "no role_pools — cannot verify adds"}
                 new_deck = _apply_one(new_deck, p["cut"], p["add"], role_pools, ci)
         except swap.SwapError as e:
-            return {"ok": False, "error": str(e), "failed": p}
+            print(f"  [approve] swap refused: {e}")
+            return {"ok": False, "error": swap.REFUSED, "failed": p}
         applied.append(p)
 
     # Snapshot the pre-approve tip into history.

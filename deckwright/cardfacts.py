@@ -221,7 +221,9 @@ _BOARD_COUNT = re.compile(
 )
 _MANA_SYMBOL = re.compile(r"\{[WUBRGC0-9]+\}", re.I)
 _TAP_ADD_LINE = re.compile(
-    r"\{T\}(?:,[^:]+)*:\s*Add\b",
+    # One optional ", cost" run: the old (?:,[^:]+)* matched the same text but
+    # could backtrack exponentially, since [^:] also matches commas.
+    r"\{T\}(?:,[^:]+)?:\s*Add\b",
     re.I,
 )
 _ACTIVATED_COST = re.compile(

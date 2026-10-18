@@ -30,6 +30,7 @@ from deckwright import bake
 from deckwright import card_score
 from deckwright import overview
 from deckwright import sheet
+from deckwright import safe_paths
 from deckwright import sim
 
 # Bump when OVERVIEW prompt text, verify_overview shape, deck_signals()
@@ -50,13 +51,18 @@ _PLAN_ROLES = frozenset({"theme", "deepcut", "plan"})
 _RACE_CHAFF = frozenset({"Human", "Kor", "Vedalken"})
 
 
-def bake_path(precon_id: str, directory: pathlib.Path | None = None) -> pathlib.Path:
-    return (directory or DATA_DIR) / f"{precon_id}.json"
+def bake_path(precon_id: str, directory: pathlib.Path | None = None) -> pathlib.Path | None:
+    """Path of one baked precon, or None when the id is not a safe file stem.
+
+    Precon ids come from request URLs, so the id must be a bare name and the
+    resolved path must stay inside the bake directory.
+    """
+    return safe_paths.safe_child_path(directory or DATA_DIR, str(precon_id))
 
 
 def read_bake(precon_id: str, directory: pathlib.Path | None = None) -> dict | None:
     path = bake_path(precon_id, directory)
-    if not path.is_file():
+    if path is None or not path.is_file():
         return None
     try:
         data = json.loads(path.read_text())
@@ -70,6 +76,8 @@ def write_bake(payload: dict, directory: pathlib.Path | None = None) -> pathlib.
     directory.mkdir(parents=True, exist_ok=True)
     precon_id = str(payload["id"])
     path = bake_path(precon_id, directory)
+    if path is None:
+        raise ValueError(f"invalid precon id: {precon_id!r}")
     path.write_text(json.dumps(payload, indent=1, sort_keys=True) + "\n")
     return path
 

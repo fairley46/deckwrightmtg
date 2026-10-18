@@ -49,6 +49,9 @@ _WUBRG = "WUBRG"
 _MISSING = object()
 
 
+UNAVAILABLE_MESSAGE = "Scryfall /sets unreachable and no cache on disk"
+
+
 class CalendarUnavailable(Exception):
     """Set list cannot be loaded and there is no usable cache."""
 
@@ -532,7 +535,7 @@ async def get_merged_sets(scry: ScryFn, *, force: bool = False) -> list[dict]:
         cached = read_sets_cache()
         if cached and cached.get("sets"):
             return list(cached["sets"])
-        raise CalendarUnavailable("Scryfall /sets unreachable and no cache on disk")
+        raise CalendarUnavailable(UNAVAILABLE_MESSAGE)
 
     merged = [merge_set_record(s, overlay) for s in raw]
     prev = read_sets_cache() or {}
