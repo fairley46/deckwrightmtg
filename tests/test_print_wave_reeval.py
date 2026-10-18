@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-test_print_wave_reeval.py — CON-260 print-wave path (offline).
+test_print_wave_reeval.py — print-wave path (offline).
 
 No network. Exercises report assembly, Gate 1 doc parse, precision floor.
 """

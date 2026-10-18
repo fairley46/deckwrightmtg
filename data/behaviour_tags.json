@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "source": "verified otag: probes \u2014 CON-151; no /catalog endpoint exists",
+  "source": "verified otag: probes \u2014 the verified otag vocabulary; no /catalog endpoint exists",
   "notes": [
     "Behaviour vocabulary for resolve_term() \u2014 checked before type/keyword catalogs.",
     "Every tag and alias was probed live; build fails on HTTP 404 or zero cards.",

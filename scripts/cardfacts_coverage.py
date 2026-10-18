@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: CardFacts extract coverage report (offline).
+"""CardFacts extract coverage report (offline).
 
     python scripts/cardfacts_coverage.py
     python scripts/cardfacts_coverage.py --jsonl ~/.deckwright/oracle_cards.jsonl

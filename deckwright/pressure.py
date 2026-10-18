@@ -1,5 +1,5 @@
 """
-pressure.py — Forge pressure test (CON-114).
+pressure.py — Forge pressure test.
 
 Opt-in whole-deck validation against three fixed precon opponents. Separate
 from the goldfish: nothing on the build path imports or calls this unless the

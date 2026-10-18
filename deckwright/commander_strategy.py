@@ -1,4 +1,4 @@
-"""CON-321 Gate 2 — CommanderStrategy from one card's oracle text.
+"""CommanderStrategy from one card's oracle text.
 
 Layer 2 of docs/product/v2-design.md. Clause-level extraction on the
 commander only. Unreadable text → status unread, empty arrays, honesty note.
@@ -74,7 +74,7 @@ _TRIGGER_SPECS: list[tuple[re.Pattern[str], str, str]] = [
     (re.compile(
         r"at the beginning of (?:your |each )?end step",
         re.I), "end_step", "self"),
-    # Non-greedy — greedy `.+` overshoots past "enters" (CON-322 coverage).
+    # Non-greedy — greedy `.+` overshoots past "enters" (coverage).
     (re.compile(
         r"when(?:ever)? .+? enters(?: the battlefield)?(?=[,.\s]|$)",
         re.I), "etb_creature", "self"),
@@ -217,7 +217,7 @@ _MV_LEQ_LIFE = re.compile(
     re.I | re.S,
 )
 
-# CON-331: static MV floor / ceiling. op lives on the bound entry (leq|geq).
+# static MV floor / ceiling. op lives on the bound entry (leq|geq).
 _MV_FLOOR = re.compile(
     r"mana value (?:(\d+) or greater|greater than or equal to (\d+))",
     re.I,
@@ -232,20 +232,20 @@ _MV_DYNAMIC_TAIL = re.compile(
     re.I,
 )
 
-# CON-331: MV ≤ experience counters (Meren-shaped). Parallel to life capacity.
+# MV ≤ experience counters (Meren-shaped). Parallel to life capacity.
 _MV_LEQ_EXPERIENCE = re.compile(
     r"mana value (?:is )?(?:less than or equal to|≤|<=) .{0,80}?"
     r"(?:the )?number of experience counters?",
     re.I | re.S,
 )
 
-# CON-331: power ceiling (Shirei-shaped).
+# power ceiling (Shirei-shaped).
 _POWER_CEILING = re.compile(
     r"power (?:(\d+) or less|less than or equal to (\d+))",
     re.I,
 )
 
-# CON-331: global draw forbid (Maralen-shaped).
+# global draw forbid (Maralen-shaped).
 _FORBID_DRAW = re.compile(
     r"(?:players?|you) can't draw cards?",
     re.I,
@@ -443,7 +443,7 @@ def _mv_floor_subjects(text: str, match_start: int) -> list[tuple[str, list[str]
 
     Pattern-only: 'non-Equipment artifact' / 'non-Aura enchantment' emit typed
     floors with exclusions. Dual phrasing yields two bounds so cheap
-    enchantments are visible to steer (CON-334 / Bello gap).
+    enchantments are visible to steer (/ Bello gap).
     """
     window = text[max(0, match_start - 120):match_start]
     found: list[tuple[str, list[str]]] = []
@@ -658,7 +658,7 @@ def _looks_like_reminder_only(text: str) -> bool:
     stripped = re.sub(r"\([^)]*\)", "", text).strip()
     if not stripped:
         return True
-    # MV floor/ceiling phrases are ability text (CON-331), even without a
+    # MV floor/ceiling phrases are ability text, even without a
     # classic trigger verb ("with mana value 4 or greater is a creature…").
     if (
         _MV_FLOOR.search(stripped)

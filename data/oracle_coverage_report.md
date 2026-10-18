@@ -28,7 +28,7 @@ Unread (no signal and no keyword): 4,793 (14.9%). Unknown is not unread.
 - `stays_tapped` — 278 commander-legal hits
 - `activated_ping` — 93 commander-legal hits
 
-CON-252 lap 3 mid-tail. Precision 89.9% held.
+lap 3 mid-tail. Precision 89.9% held.
 
 ## Remaining unread tail (no signal and no keyword)
 

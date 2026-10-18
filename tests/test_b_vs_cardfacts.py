@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: B-stamped deck vs CardFacts compare — offline.
+"""B-stamped deck vs CardFacts compare — offline.
 
     python test_b_vs_cardfacts.py
 """
@@ -208,7 +208,7 @@ def test_bake_missing_jsonl_unknown():
 
 
 def main() -> int:
-    print("test_b_vs_cardfacts.py — CON-322 B vs CardFacts compare")
+    print("test_b_vs_cardfacts.py — B vs CardFacts compare")
     test_fixture_present()
     test_missing_cf_is_unknown_not_disagree()
     test_bake_and_agree_on_cheap_rocks()

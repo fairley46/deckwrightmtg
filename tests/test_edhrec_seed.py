@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-336: EDHREC seed client + pool injection — offline tests."""
+"""EDHREC seed client + pool injection — offline tests."""
 
 from __future__ import annotations
 

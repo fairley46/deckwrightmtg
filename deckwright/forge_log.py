@@ -1,12 +1,12 @@
 """
-forge_log.py — turn a Forge game log into a per-turn timeline (CON-160).
+forge_log.py — turn a Forge game log into a per-turn timeline.
 
 Forge plays real games. `sim.py` is a goldfish with no opponent, no removal
 and no interaction. Every threshold in `docs/SCORING-CONTRACT.md` was measured
 against the goldfish, so the numbers are self-consistent and unvalidated —
 **the gap between the two is the correction signal.**
 
-`pressure.py` has been receiving the whole log since CON-114 and throwing it
+`pressure.py` has been receiving the whole log and throwing it
 away one line into parsing:
 
     def parse_sim_output(text, hero_name):

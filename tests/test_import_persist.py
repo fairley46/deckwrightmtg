@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-309: imported decks must persist; Save must not swallow a failed write.
+"""imported decks must persist; Save must not swallow a failed write.
 
 Brad imported a list, tapped Save, and the button said Saving… then quietly
 went back to Save. Root cause: analyze_imported_deck never called
@@ -129,7 +129,7 @@ async def _analyze(result, brief=None, card_pool="tournament_legal", **kw):
 
 def test_import_persists_and_patchable():
     """Import → file in SAVE_DIR, id/saved_at on response, PATCH renames."""
-    print("\nimport persist  — CON-309 analyze_imported_deck writes a saved deck")
+    print("\nimport persist  — analyze_imported_deck writes a saved deck")
     from deckwright import app
     from fastapi.testclient import TestClient
 
@@ -183,7 +183,7 @@ def test_import_persists_and_patchable():
 
 def test_missing_commander_does_not_persist():
     """Ambiguous / missing commander is not a saved deck."""
-    print("\nimport persist  — CON-309 no persist when commander not found")
+    print("\nimport persist  — no persist when commander not found")
     from deckwright import app
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -201,7 +201,7 @@ def test_missing_commander_does_not_persist():
 
 def test_build_still_persists_once():
     """/api/build persistence unchanged — one write, not a double stamp."""
-    print("\nimport persist  — CON-309 /api/build still single persist_deck")
+    print("\nimport persist  — api/build still single persist_deck")
     from deckwright import app
 
     src = Path(app.__file__).read_text(encoding="utf-8")
@@ -231,7 +231,7 @@ def test_build_still_persists_once():
 
 
 def _extract_save_helpers(html: str) -> str:
-    """Pull CON-309 save-failure helpers out of index.html for node eval."""
+    """Pull the import save fix save-failure helpers out of index.html for node eval."""
     start = html.find("const SAVE_FAIL_WHAT")
     if start < 0:
         # Fall back: function saveFailureCopy
@@ -239,7 +239,7 @@ def _extract_save_helpers(html: str) -> str:
     if start < 0:
         raise AssertionError("saveFailureCopy / SAVE_FAIL_WHAT missing from index.html")
     # Take through saveIdentity's closing brace — stop before next major fn.
-    end = html.find("/* ── CON-97 / CON-98:", start)
+    end = html.find("/* ── ", start)
     if end < 0:
         end = html.find("async function resolvePasted", start)
     if end < 0:
@@ -249,7 +249,7 @@ def _extract_save_helpers(html: str) -> str:
 
 def test_save_failure_ui_message():
     """Failed Save must say so — assert the message, not that nothing threw."""
-    print("\nsaveIdentity  — CON-309 failed write is visible")
+    print("\nsaveIdentity  — failed write is visible")
     html = (ROOT / "index.html").read_text(encoding="utf-8")
 
     true("saveFailureCopy defined", "function saveFailureCopy" in html)

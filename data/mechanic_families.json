@@ -6,7 +6,7 @@
     "plan_role: condition | engine | enabler | payoff | modifier | cost | protection",
     "math_kind names the equation the family changes.",
     "New Scryfall catalog names missing here are unreviewed \u2014 place ~10-15/year by hand.",
-    "CON-129 (2026-08-06): remainder triage placed all 91 leftover catalog names. Generic CR action verbs (Play, Tap, Untap, Shuffle, Reveal) sit in timing; removal verbs (Exile, Sacrifice, Fight, Exchange, Sweep) in interaction \u2014 Scryfall catalog entries, not synergy keywords."
+    "(2026-08-06): remainder triage placed all 91 leftover catalog names. Generic CR action verbs (Play, Tap, Untap, Shuffle, Reveal) sit in timing; removal verbs (Exile, Sacrifice, Fight, Exchange, Sweep) in interaction \u2014 Scryfall catalog entries, not synergy keywords."
   ],
   "families": {
     "thresholds_battlefield": {
@@ -596,55 +596,55 @@
     "energy": {
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Energy counters ({E}). Produce via get {E}; spend via pay {E}. No Scryfall catalog \u2014 oracle_signals only (CON-221).",
+      "description": "Energy counters ({E}). Produce via get {E}; spend via pay {E}. No Scryfall catalog \u2014 oracle_signals only.",
       "mechanics": []
     },
     "poison": {
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Poison counters. Produce via infect/toxic/get poison; payoffs care about poison. Bare proliferate is not a poison consumer (CON-224).",
+      "description": "Poison counters. Produce via infect/toxic/get poison; payoffs care about poison. Bare proliferate is not a poison consumer.",
       "mechanics": []
     },
     "rad": {
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Rad counters. Produce via get/give rad; consume via remove/care about rad (CON-224).",
+      "description": "Rad counters. Produce via get/give rad; consume via remove/care about rad.",
       "mechanics": []
     },
     "experience": {
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Experience counters. Get them; spend via 'experience counters you have' (CON-224).",
+      "description": "Experience counters. Get them; spend via 'experience counters you have'.",
       "mechanics": []
     },
     "speed": {
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Speed (Start your engines!). Produce via starting engines; payoffs read max speed / your speed. Reminder 'Max speed is 4' is not a payoff (CON-224).",
+      "description": "Speed (Start your engines!). Produce via starting engines; payoffs read max speed / your speed. Reminder 'Max speed is 4' is not a payoff.",
       "mechanics": []
     },
     "monarch": {
       "plan_role": "engine",
       "math_kind": "shared_resource",
-      "description": "The monarch. Become the monarch; payoffs if you're the monarch (CON-224).",
+      "description": "The monarch. Become the monarch; payoffs if you're the monarch.",
       "mechanics": []
     },
     "initiative": {
       "plan_role": "engine",
       "math_kind": "shared_resource",
-      "description": "The initiative. Take the initiative; payoffs if you have the initiative (CON-224).",
+      "description": "The initiative. Take the initiative; payoffs if you have the initiative.",
       "mechanics": []
     },
     "citys_blessing": {
       "plan_role": "engine",
       "math_kind": "shared_resource",
-      "description": "City's blessing via Ascend. Get the blessing; payoffs if you have it. Object name is city's blessing (CON-224).",
+      "description": "City's blessing via Ascend. Get the blessing; payoffs if you have it. Object name is city's blessing.",
       "mechanics": []
     },
     "the_ring": {
       "plan_role": "engine",
       "math_kind": "shared_resource",
-      "description": "The Ring. Produce via 'the Ring tempts you' as an effect; consume via whenever-tempts / Ring-bearer care (CON-224).",
+      "description": "The Ring. Produce via 'the Ring tempts you' as an effect; consume via whenever-tempts / Ring-bearer care.",
       "mechanics": []
     },
     "interaction": {
@@ -736,7 +736,7 @@
         "life"
       ],
       "produces": [],
-      "note": "CON-183/188: 'gains life' also matches 'gains lifelink'. Granting lifelink is not a lifegain trigger. Every life terminator needs (?!link)\\b \u2014 CON-183 fixed only the greedy pattern."
+      "note": "'gains life' also matches 'gains lifelink'. Granting lifelink is not a lifegain trigger. Every life terminator needs (?!link)\\b \u2014 the lifelink false-positive fix fixed only the greedy pattern."
     },
     "lifegain_source": {
       "family": "life_math",
@@ -841,7 +841,7 @@
       "family": "tokens",
       "plan_role": "engine",
       "math_kind": "resource_loop",
-      "description": "Makes any Treasure/Clue/Food-style resource token. Detector only \u2014 produces are on the per-subtype signals (CON-221).",
+      "description": "Makes any Treasure/Clue/Food-style resource token. Detector only \u2014 produces are on the per-subtype signals.",
       "patterns": [
         "create a treasure token",
         "create .* treasure tokens?",
@@ -856,7 +856,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "note": "CON-221: old produces claimed treasure for every Food/Clue maker."
+      "note": "old produces claimed treasure for every Food/Clue maker."
     },
     "treasure_tokens": {
       "family": "tokens",
@@ -1010,7 +1010,7 @@
       "family": "go_tall_payoffs",
       "plan_role": "payoff",
       "math_kind": "board_height",
-      "description": "+1/+1 counter growth on a creature \u2014 the tall half of token math. CON-241: until-end-of-turn pumps are not counter placement; they stay honest empty rather than inventing counters.",
+      "description": "+1/+1 counter growth on a creature \u2014 the tall half of token math. until-end-of-turn pumps are not counter placement; they stay honest empty rather than inventing counters.",
       "patterns": [
         "put (?:a |an |\\d+ )?\\+1/\\+1 counters? on",
         "enters (?:the battlefield )?with .+ \\+1/\\+1 counters?",
@@ -1036,7 +1036,7 @@
         "put (a|two|three|x|\\d+) \\+1/\\+1 counters? on",
         "enters (?:the battlefield )?with .+ \\+1/\\+1 counters?"
       ],
-      "note": "CON-196: 'enters with +1/+1 counters' places counters without saying put-on. Same shape as go_tall_payoff's enters-with arm; +1/+1 is required so charge/loyalty counters do not match."
+      "note": "'enters with +1/+1 counters' places counters without saying put-on. Same shape as go_tall_payoff's enters-with arm; +1/+1 is required so charge/loyalty counters do not match."
     },
     "enters": {
       "family": "etb_triggers",
@@ -1118,7 +1118,7 @@
         "cast .{0,40}from your graveyard",
         "from your graveyard to your hand"
       ],
-      "verified_on": "; hand-recursion widen (CON-253)"
+      "verified_on": "; hand-recursion widen"
     },
     "land_trigger": {
       "family": "landfall",
@@ -1189,7 +1189,7 @@
       "patterns": [
         "\\bproliferate\\b"
       ],
-      "verified_on": "Atraxa, Praetors' Voice (CON-184)"
+      "verified_on": "Atraxa, Praetors' Voice"
     },
     "sacrifice_trigger": {
       "family": "dies_triggers",
@@ -1207,7 +1207,7 @@
         "whenever you sacrifice",
         "sacrifice another permanent"
       ],
-      "verified_on": "Korvold, Fae-Cursed King (CON-184)"
+      "verified_on": "Korvold, Fae-Cursed King"
     },
     "instant_or_sorcery_cast": {
       "family": "spellslinger",
@@ -1220,7 +1220,7 @@
       "patterns": [
         "whenever [^.\\n]{0,26}casts? (an instant|a sorcery|an instant or sorcery)"
       ],
-      "verified_on": "Niv-Mizzet, Parun (CON-184)"
+      "verified_on": "Niv-Mizzet, Parun"
     },
     "play_from_graveyard": {
       "family": "cast_from_graveyard",
@@ -1236,7 +1236,7 @@
       "patterns": [
         "(cast|play) [^.\\n]{0,60}from your graveyard"
       ],
-      "verified_on": "Muldrotha, the Gravetide (CON-184)"
+      "verified_on": "Muldrotha, the Gravetide"
     },
     "aura_or_equipment_cast": {
       "family": "voltron",
@@ -1251,7 +1251,7 @@
         "(aura|equipment) attached",
         "auras? and equipment attached"
       ],
-      "verified_on": "Sram, Senior Edificer (CON-184); Wyleth, Soul of Steel (CON-242)"
+      "verified_on": "Sram, Senior Edificer; Wyleth, Soul of Steel"
     },
     "attach_to_commander": {
       "family": "voltron",
@@ -1265,7 +1265,7 @@
         "(aura|equipment) you control enters",
         "attach .{0,30}to target creature"
       ],
-      "verified_on": "Light-Paws, Emperor's Voice (CON-184)"
+      "verified_on": "Light-Paws, Emperor's Voice"
     },
     "artifact_matter": {
       "family": "artifacts",
@@ -1281,7 +1281,7 @@
         "target artifact(?![ -])",
         "sacrifice (?:two|three|\\d+|x) artifacts?"
       ],
-      "verified_on": "Urza, Lord High Artificer (CON-184); Sharuum the Hegemon, Breya, Etherium Shaper (CON-242)"
+      "verified_on": "Urza, Lord High Artificer; Sharuum the Hegemon, Breya, Etherium Shaper"
     },
     "tax_opponent_spells": {
       "family": "interaction",
@@ -1292,7 +1292,7 @@
       "patterns": [
         "spells your opponents cast cost .{0,14}more"
       ],
-      "verified_on": "Grand Arbiter Augustin IV (CON-184)"
+      "verified_on": "Grand Arbiter Augustin IV"
     },
     "symmetric_resource": {
       "family": "group_hug",
@@ -1306,7 +1306,7 @@
         "target opponent (creates|gains|draws)",
         "each player may draw"
       ],
-      "verified_on": "Phelddagrif, Kwain (CON-184)"
+      "verified_on": "Phelddagrif, Kwain"
     },
     "creature_type_matter": {
       "family": "tribal",
@@ -1318,7 +1318,7 @@
         "cast (another|other) (?!(?:creature|artifact|enchantment|instant|sorcery|planeswalker|land|permanent|noncreature)\\b)[a-z]+ spells?",
         "(other|another) (?!(?:creature|artifact|enchantment|instant|sorcery|planeswalker|land|permanent|noncreature)\\b)[a-z]+ spells you cast"
       ],
-      "verified_on": "Edgar Markov, The Ur-Dragon (CON-184)"
+      "verified_on": "Edgar Markov, The Ur-Dragon"
     },
     "dies_trigger_doubler": {
       "family": "dies_triggers",
@@ -1333,7 +1333,7 @@
       "patterns": [
         "a creature dying causes a triggered ability"
       ],
-      "verified_on": "Teysa Karlov (CON-184)"
+      "verified_on": "Teysa Karlov"
     },
     "etb_doubler": {
       "family": "etb_triggers",
@@ -1346,7 +1346,7 @@
       "patterns": [
         "a (permanent|creature) entering causes a triggered ability"
       ],
-      "verified_on": "Elesh Norn, Mother of Machines (CON-184)"
+      "verified_on": "Elesh Norn, Mother of Machines"
     },
     "token_doubler": {
       "family": "tokens",
@@ -1360,7 +1360,7 @@
       "patterns": [
         "tokens would be created .{0,30}those tokens plus"
       ],
-      "verified_on": "Chatterfang, Squirrel General (CON-184)"
+      "verified_on": "Chatterfang, Squirrel General"
     },
     "gained_life_this_turn": {
       "family": "life_math",
@@ -1375,7 +1375,7 @@
       "patterns": [
         "if you gained life this turn"
       ],
-      "verified_on": "Lathiel, the Bounteous Dawn (CON-184)"
+      "verified_on": "Lathiel, the Bounteous Dawn"
     },
     "tribal_type_matter": {
       "family": "tribal",
@@ -1390,7 +1390,7 @@
         "number of (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+s you control",
         "untapped (?!(?:creature|creatures|artifact|artifacts|enchantment|enchantments|instant|instants|sorcery|sorceries|planeswalker|planeswalkers|land|lands|permanent|permanents|token|tokens|spell|spells|card|cards)\\b)[a-z]+s you control"
       ],
-      "verified_on": "Krenko, Wilhelt (CON-184); Giada, Font of Hope, Lathril, Blade of the Elves (CON-242)"
+      "verified_on": "Krenko, Wilhelt; Giada, Font of Hope, Lathril, Blade of the Elves"
     },
     "magecraft": {
       "family": "spellslinger",
@@ -1405,7 +1405,7 @@
         "cast or copy an instant or sorcery",
         "cast your (first|second) (instant or sorcery )?spell"
       ],
-      "verified_on": "Veyran, Stella Lee (CON-184)"
+      "verified_on": "Veyran, Stella Lee"
     },
     "energy_gain": {
       "family": "energy",
@@ -1474,7 +1474,7 @@
         "poison"
       ],
       "produces": [],
-      "note": "CON-224: proliferate alone is not poison-directed. 'number of poison counters equal' on givers is produce, not care."
+      "note": "proliferate alone is not poison-directed. 'number of poison counters equal' on givers is produce, not care."
     },
     "rad_gain": {
       "family": "rad",
@@ -1568,7 +1568,7 @@
         "speed"
       ],
       "produces": [],
-      "note": "CON-224: reminder text says 'Max speed is 4' without a dash \u2014 excluded."
+      "note": "reminder text says 'Max speed is 4' without a dash \u2014 excluded."
     },
     "monarch_become": {
       "family": "monarch",
@@ -1669,7 +1669,7 @@
       "produces": [
         "the ring"
       ],
-      "note": "CON-224: lookbehind excludes 'whenever the Ring tempts you' payoffs."
+      "note": "lookbehind excludes 'whenever the Ring tempts you' payoffs."
     },
     "ring_care": {
       "family": "the_ring",
@@ -1691,13 +1691,13 @@
       "family": "landfall",
       "plan_role": "modifier",
       "math_kind": "resource_loop",
-      "description": "Permanent enters tapped \u2014 unconditional or conditional (unless / if you don't). Highest-frequency unread land line before CON-245.",
+      "description": "Permanent enters tapped \u2014 unconditional or conditional (unless / if you don't). Highest-frequency unread land line.",
       "patterns": [
         "enters(?: the battlefield)? tapped"
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Path of Ancestry, Botanical Sanctum (CON-245); near-miss Island, Walking Ballista enters-with-counters"
+      "verified_on": "Path of Ancestry, Botanical Sanctum; near-miss Island, Walking Ballista enters-with-counters"
     },
     "pay_life_enter": {
       "family": "life_math",
@@ -1712,7 +1712,7 @@
         "life"
       ],
       "produces": [],
-      "verified_on": "Blood Crypt (CON-245); near-miss Shadowcloak Vampire Pay 2 life activation"
+      "verified_on": "Blood Crypt; near-miss Shadowcloak Vampire Pay 2 life activation"
     },
     "pain_mana": {
       "family": "life_math",
@@ -1724,7 +1724,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Karplusan Forest (CON-245); near-miss Lightning Bolt (any target)"
+      "verified_on": "Karplusan Forest; near-miss Lightning Bolt (any target)"
     },
     "any_color_mana": {
       "family": "alternate_costs",
@@ -1736,7 +1736,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Spire of Industry (CON-245); near-miss Command Tower, Temple of Epiphany dual"
+      "verified_on": "Spire of Industry; near-miss Command Tower, Temple of Epiphany dual"
     },
     "commander_identity_mana": {
       "family": "alternate_costs",
@@ -1748,7 +1748,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Command Tower (CON-245); near-miss Spire of Industry any-color"
+      "verified_on": "Command Tower; near-miss Spire of Industry any-color"
     },
     "land_sacrifice_value": {
       "family": "landfall",
@@ -1766,7 +1766,7 @@
         "card",
         "land"
       ],
-      "verified_on": "Horizon Canopy, Evolving Wilds (CON-245); near-miss Harrow, War Room"
+      "verified_on": "Horizon Canopy, Evolving Wilds; near-miss Harrow, War Room"
     },
     "commander_free_cast": {
       "family": "alternate_costs",
@@ -1778,7 +1778,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Deadly Rollick (CON-245); near-miss can be your commander"
+      "verified_on": "Deadly Rollick; near-miss can be your commander"
     },
     "commander_matters": {
       "family": "alternate_costs",
@@ -1793,7 +1793,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "cast-from-command-zone exemplar (CON-245); near-miss Command Tower, can-be-your-commander"
+      "verified_on": "cast-from-command-zone exemplar; near-miss Command Tower, can-be-your-commander"
     },
     "enchant_creature": {
       "family": "equipment_aura",
@@ -1807,7 +1807,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Pacifism (CON-245); near-miss Wild Growth, enchanted-creature body text"
+      "verified_on": "Pacifism; near-miss Wild Growth, enchanted-creature body text"
     },
     "no_max_hand_size": {
       "family": "hand_abilities",
@@ -1821,7 +1821,7 @@
       "produces": [
         "card"
       ],
-      "verified_on": "Reliquary Tower, Thought Vessel (CON-245); near-miss Storm Crow"
+      "verified_on": "Reliquary Tower, Thought Vessel; near-miss Storm Crow"
     },
     "card_draw": {
       "family": "hand_abilities",
@@ -1837,7 +1837,7 @@
       "produces": [
         "card"
       ],
-      "verified_on": "Mind Stone (CON-248); near-miss Path of Ancestry (scry)"
+      "verified_on": "Mind Stone; near-miss Path of Ancestry (scry)"
     },
     "tap_add_colored": {
       "family": "alternate_costs",
@@ -1849,7 +1849,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Boseiju, Who Endures (CON-248); near-miss Hinterland Harbor, Command Tower"
+      "verified_on": "Boseiju, Who Endures; near-miss Hinterland Harbor, Command Tower"
     },
     "dual_mana_ability": {
       "family": "alternate_costs",
@@ -1861,7 +1861,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Hinterland Harbor (CON-248); near-miss Boseiju, Spire of Industry"
+      "verified_on": "Hinterland Harbor; near-miss Boseiju, Spire of Industry"
     },
     "enchant_land": {
       "family": "equipment_aura",
@@ -1875,7 +1875,7 @@
         "land"
       ],
       "produces": [],
-      "verified_on": "Wild Growth (CON-248); near-miss Pacifism"
+      "verified_on": "Wild Growth; near-miss Pacifism"
     },
     "cant_be_blocked": {
       "family": "combat_triggers",
@@ -1887,7 +1887,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Rogue's Passage (CON-248); near-miss Birds of Paradise / flying reminder"
+      "verified_on": "Rogue's Passage; near-miss Birds of Paradise / flying reminder"
     },
     "uncounterable": {
       "family": "interaction",
@@ -1899,7 +1899,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Cavern of Souls (CON-248); near-miss Counterspell"
+      "verified_on": "Cavern of Souls; near-miss Counterspell"
     },
     "modal_choose_one": {
       "family": "spellslinger",
@@ -1911,7 +1911,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Abrade (CON-248); near-miss Austere Command (choose two)"
+      "verified_on": "Abrade; near-miss Austere Command (choose two)"
     },
     "firebreathing": {
       "family": "voltron",
@@ -1924,7 +1924,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Steel Hellkite (CON-248); near-miss Nirkana Revenant (+1/+1)"
+      "verified_on": "Steel Hellkite; near-miss Nirkana Revenant (+1/+1)"
     },
     "must_attack": {
       "family": "combat_triggers",
@@ -1936,7 +1936,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Toski, Bearer of Secrets (CON-248); near-miss Propaganda"
+      "verified_on": "Toski, Bearer of Secrets; near-miss Propaganda"
     },
     "colorless_mana": {
       "family": "alternate_costs",
@@ -1948,7 +1948,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Wastes (CON-251); near-miss Boseiju, Who Endures"
+      "verified_on": "Wastes; near-miss Boseiju, Who Endures"
     },
     "filter_mana": {
       "family": "alternate_costs",
@@ -1960,7 +1960,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Agent of Stromgald (CON-251); near-miss Wastes"
+      "verified_on": "Agent of Stromgald; near-miss Wastes"
     },
     "cant_block": {
       "family": "combat_triggers",
@@ -1972,7 +1972,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "can't-block shape (CON-251); near-miss Wall of Omens"
+      "verified_on": "can't-block shape; near-miss Wall of Omens"
     },
     "modal_choose_one_or_both": {
       "family": "spellslinger",
@@ -1984,7 +1984,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "choose-one-or-both shape (CON-251); near-miss Abrade"
+      "verified_on": "choose-one-or-both shape; near-miss Abrade"
     },
     "top_library_look": {
       "family": "hand_abilities",
@@ -1997,7 +1997,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Oracle of Mul Daya (CON-251); near-miss Path of Ancestry"
+      "verified_on": "Oracle of Mul Daya; near-miss Path of Ancestry"
     },
     "destroy_target_creature": {
       "family": "interaction",
@@ -2011,7 +2011,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Doom Blade (CON-251); near-miss Wrath of God"
+      "verified_on": "Doom Blade; near-miss Wrath of God"
     },
     "activated_pump_plus": {
       "family": "voltron",
@@ -2024,7 +2024,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Nirkana Revenant (CON-251); near-miss Steel Hellkite"
+      "verified_on": "Nirkana Revenant; near-miss Steel Hellkite"
     },
     "grant_keyword_eot": {
       "family": "combat_triggers",
@@ -2036,7 +2036,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "grant-flying shape (CON-252); near-miss Storm Crow"
+      "verified_on": "grant-flying shape; near-miss Storm Crow"
     },
     "tap_target": {
       "family": "interaction",
@@ -2050,7 +2050,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Tapper Shape (CON-252); near-miss Lightning Bolt"
+      "verified_on": "Tapper Shape; near-miss Lightning Bolt"
     },
     "exile_target_creature": {
       "family": "interaction",
@@ -2064,7 +2064,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Path to Exile (CON-252); near-miss Doom Blade"
+      "verified_on": "Path to Exile; near-miss Doom Blade"
     },
     "choose_creature_type": {
       "family": "tribal",
@@ -2076,7 +2076,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Coat of Arms shape (CON-252); near-miss Changeling Outcast"
+      "verified_on": "Coat of Arms shape; near-miss Changeling Outcast"
     },
     "destroy_target_land": {
       "family": "interaction",
@@ -2090,7 +2090,7 @@
         "land"
       ],
       "produces": [],
-      "verified_on": "Strip Mine shape (CON-252); near-miss Doom Blade"
+      "verified_on": "Strip Mine shape; near-miss Doom Blade"
     },
     "stays_tapped": {
       "family": "interaction",
@@ -2103,7 +2103,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Claustrophobia shape (CON-252); near-miss Storm Crow"
+      "verified_on": "Claustrophobia shape; near-miss Storm Crow"
     },
     "activated_ping": {
       "family": "interaction",
@@ -2115,7 +2115,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Prodigal Sorcerer shape (CON-252); near-miss Lightning Bolt"
+      "verified_on": "Prodigal Sorcerer shape; near-miss Lightning Bolt"
     },
     "stat_pump_eot": {
       "family": "voltron",
@@ -2127,7 +2127,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Magma Sliver (CON-253); near-miss Throttle (-4/-4)"
+      "verified_on": "Magma Sliver; near-miss Throttle (-4/-4)"
     },
     "shrink_target": {
       "family": "interaction",
@@ -2141,7 +2141,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Throttle (CON-253); near-miss Giant Growth"
+      "verified_on": "Throttle; near-miss Giant Growth"
     },
     "bounce_to_hand": {
       "family": "interaction",
@@ -2155,7 +2155,7 @@
         "creature"
       ],
       "produces": [],
-      "verified_on": "Flooded Shoreline (CON-253); near-miss Path to Exile"
+      "verified_on": "Flooded Shoreline; near-miss Path to Exile"
     },
     "prevent_damage": {
       "family": "interaction",
@@ -2168,7 +2168,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Master Apothecary / Fog shape (CON-253); near-miss Healing Salve gain-life"
+      "verified_on": "Master Apothecary / Fog shape; near-miss Healing Salve gain-life"
     },
     "choose_color": {
       "family": "tribal",
@@ -2180,7 +2180,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Caged Sun (CON-253); near-miss Coat of Arms shape (creature type)"
+      "verified_on": "Caged Sun; near-miss Coat of Arms shape (creature type)"
     },
     "put_on_library": {
       "family": "interaction",
@@ -2192,7 +2192,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Fallow Earth shape (CON-253); near-miss Unsummon"
+      "verified_on": "Fallow Earth shape; near-miss Unsummon"
     },
     "discard_additional_cost": {
       "family": "alternate_costs",
@@ -2206,7 +2206,7 @@
         "card"
       ],
       "produces": [],
-      "verified_on": "Firestorm (CON-253); near-miss Fire Covenant (pay life)"
+      "verified_on": "Firestorm; near-miss Fire Covenant (pay life)"
     },
     "choose_two": {
       "family": "interaction",
@@ -2218,7 +2218,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Austere Command (CON-253); near-miss Abrade (choose one)"
+      "verified_on": "Austere Command; near-miss Abrade (choose one)"
     },
     "leyline_start": {
       "family": "alternate_costs",
@@ -2230,7 +2230,7 @@
       ],
       "consumes": [],
       "produces": [],
-      "verified_on": "Leyline of Sanctity (CON-253); near-miss Ghostly Prison"
+      "verified_on": "Leyline of Sanctity; near-miss Ghostly Prison"
     },
     "upkeep_sac_unless": {
       "family": "interaction",
@@ -2244,7 +2244,7 @@
       "produces": [
         "sacrifice"
       ],
-      "verified_on": "Justice shape (CON-253); near-miss Rhystic Study (upkeep ask, no sac)"
+      "verified_on": "Justice shape; near-miss Rhystic Study (upkeep ask, no sac)"
     }
   },
   "relations": [

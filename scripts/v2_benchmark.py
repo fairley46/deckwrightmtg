@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-319: V2 bake-off harness.
+"""V2 bake-off harness.
 
 Frozen before any candidate exists. Measures E (EDHREC fixture) and BLUE
 (/api/build on green) today; A/B/C later by registration only.
@@ -47,7 +47,7 @@ CONTESTANTS_PATH = DATA / "contestants.json"
 EDHREC_DIR = DATA / "edhrec"
 REPORT_DIR = ROOT / "docs" / "benchmarks" / "runs"
 
-# CON-328: measured BLUE builds exceed 300s on the demo host (~377s for Krenko).
+# measured BLUE builds exceed 300s on the demo host (~377s for Krenko).
 # Transport timeout must allow collection; UNKNOWN on genuine timeout stays honest.
 # PR #322 rewrite silently reverted this to 300 — pinned by test_v2_benchmark.
 DEFAULT_BUILD_TIMEOUT = 1800.0
@@ -62,7 +62,7 @@ NONLAND_N = 59
 LANDS_N = 38
 DECK_N = 99
 SIM_SEED = 319
-UA = "Deckwright/1.0 (CON-319 V2 benchmark harness)"
+UA = "Deckwright/1.0 (V2 benchmark harness)"
 
 # Concepts 4 and 6 are not computable without a rules/threat engine (v2-design B.1).
 UNCOMPUTABLE = frozenset({"soft_combos", "hidden_power"})
@@ -105,7 +105,7 @@ def validate_contestant_registry(reg: dict) -> list[str]:
     """Registry shape + port/env uniqueness. Enable flags are data, not contract.
 
     Toggle contestants by editing contestants.json — tests should not pin
-    which ids are enabled (CON-332 class).
+    which ids are enabled (class).
     """
     errors: list[str] = []
     rows = reg.get("contestants")
@@ -507,7 +507,7 @@ def list_divergence(left: list[str], right: list[str]) -> dict:
 def overlap_with_e(candidate_names: list[str], e_names: list[str]) -> dict:
     """Fraction of E's harvested list present in the candidate 99.
 
-    CON-336 sanity check only — D is seeded from the same corpus as E, so high
+    sanity check only — D is seeded from the same corpus as E, so high
     overlap confirms the seed reached the deck; it is not a product-quality signal.
     """
     a = {n for n in candidate_names if n}
@@ -944,7 +944,7 @@ def concept_scores(spec: dict, cards: list[dict], goldfish: dict) -> dict:
         "value": sval,
         "weight": weights.get("multiplayer_scaling", 0),
         "class": scaling,
-        "note": "Structural / commander-level until CON-316 table rates.",
+        "note": "Structural / commander-level table rates.",
     }
 
     # Value-to-turn: goldfish act-by-turn-N vs 2N baseline. Solitaire only.
@@ -1221,10 +1221,10 @@ def http_build_url(
     green_c_url: str | None = None,
     green_d_url: str | None = None,
 ) -> str:
-    """Resolve one http_build row. CLI overrides are per-contestant (CON-330).
+    """Resolve one http_build row. CLI overrides are per-contestant.
 
     `--green-url` applies to BLUE only. Never cross-apply to B/C/D — that is
-    the CON-330 class bug that silently collapsed ports.
+    the per-contestant URL scoping class bug that silently collapsed ports.
     """
     cid = row["id"]
     override = None
@@ -1533,7 +1533,7 @@ def slots_names(row: dict) -> list[str]:
 def contestant_urls(registry: dict) -> dict[str, str]:
     """HTTP build endpoints from registry/env — no CLI overrides.
 
-    Prefer collect_http_urls() when CLI overrides may apply (CON-330).
+    Prefer collect_http_urls() when CLI overrides may apply.
     """
     out: dict[str, str] = {}
     for row in registry.get("contestants") or []:
@@ -1548,7 +1548,7 @@ def render_report(doc: dict) -> str:
     h = doc["header"]
     contestants = h.get("contestants") or []
     seed_sweep = "D" in contestants
-    lines.append("# V2 bake-off report (CON-319)")
+    lines.append("# V2 bake-off report")
     lines.append("")
     lines.append(f"- commit: `{h.get('commit')}`")
     lines.append(f"- generated: {h.get('generated_at')}")
@@ -1561,7 +1561,7 @@ def render_report(doc: dict) -> str:
     lines.append(f"- commanders: {h.get('commander_count')}")
     lines.append("")
     if seed_sweep:
-        lines.append("**CON-336 seed sweep.** Judge on **input feeder density** (commander "
+        lines.append("**The EDHREC seed sweep.** Judge on **input feeder density** (commander "
                      "serve quality) and **keepable hand %** vs BLUE (castability). "
                      "Gate C baselines in `top_100`: E ≈ 0.381, V1 (BLUE) ≈ 0.308. "
                      "A genuine win is D landing near E's feeder density while holding "
@@ -1735,7 +1735,6 @@ def run_benchmark(
         "sim_seed": SIM_SEED,
         "sim_runs": sim_runs,
         "commander_count": len(commanders),
-        "card": "CON-319",
         "solitaire": True,
     }
     return {
@@ -1758,7 +1757,7 @@ def write_outputs(doc: dict, out_dir: Path, pairs: list, key: dict) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description="CON-319 V2 bake-off harness")
+    p = argparse.ArgumentParser(description="V2 bake-off harness")
     p.add_argument("--validate", action="store_true",
                    help="check the frozen set only; no builds")
     p.add_argument("--contestants", default="",
@@ -1810,7 +1809,7 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  - {e}")
             return 1
         enabled = enabled_resolveable_ids(registry)
-        print(f"CON-319 set ok: {n} commanders  bands={dict(bands)}")
+        print(f"set ok: {n} commanders  bands={dict(bands)}")
         print(f"registry ok: enabled resolveable {','.join(enabled)}")
         print(f"DEFAULT_BUILD_TIMEOUT={DEFAULT_BUILD_TIMEOUT:g}")
         print(f"commit {git_sha()}")

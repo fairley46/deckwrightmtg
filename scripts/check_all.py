@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-169: one entry point for the three check tiers.
+"""one entry point for the three check tiers.
 
     python scripts/check_all.py --tier 1   # every commit — seconds, no network
     python scripts/check_all.py --tier 2   # every PR — network, no model quota
@@ -52,7 +52,7 @@ class Layer:
     tier: int
     summary: str
     run: Callable[[], Result]
-    # CON-204: opt-in layers do not run unless asked. The ship gate is
+    # opt-in layers do not run unless asked. The ship gate is
     # differential + Forge; e2e_flow is a cheaper single-wish smoke that
     # duplicates the chain differential already walks. Keeping it in the
     # default tier 3 spent model quota to re-answer a question differential
@@ -111,7 +111,7 @@ def _which(name: str) -> str | None:
 # Offline unit files. test_perception.py is a separate Tier-1 layer.
 # Flags keep each file off the network.
 #
-# CON-273: every tests/test_*.py must land in ONE of two places —
+# every tests/test_*.py must land in ONE of two places —
 #   1. _UNIT_COMMANDS  — it runs in tier 1
 #   2. _UNIT_EXCLUDED  — named opt-out with a reason
 # test_unit_registry.py (listed below) asserts that split. It does not call
@@ -129,31 +129,31 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_readiness.py", "--unit"],
     ["test_readback.py", "--unit"],
     ["test_forge_log.py"],
-    ["test_con163_calibrate.py"],
+    ["test_forge_calibrate.py"],
     ["test_prompts.py", "--offline"],
-    ["test_con167_empty_brief.py"],   # CON-178: tier 1 missed a P1 regression
-    ["test_playstyles.py"],           # CON-180 vocabulary — offline
-    ["test_expert_hei_bai_split.py"], # CON-177 chosen/mentioned — offline
-    ["test_synergy.py"],  # CON-173 synergy graph — offline, no model
-    ["test_curve.py"],    # CON-175 curve / playability — offline, no model
-    ["test_hei_bai_baseline_probes.py"],  # CON-174 leave-cause probes — offline
-    # CON-193: test_expert_hei_bai_split.py was listed twice (here and above).
-    # CON-188 D2 recorded it as dropped; the code still had both. The map read
+    ["test_empty_brief_refusal.py"],   # tier 1 missed a P1 regression
+    ["test_playstyles.py"],           # vocabulary — offline
+    ["test_expert_hei_bai_split.py"], # chosen/mentioned — offline
+    ["test_synergy.py"],  # synergy graph — offline, no model
+    ["test_curve.py"],    # curve / playability — offline, no model
+    ["test_hei_bai_baseline_probes.py"],  # leave-cause probes — offline
+    # test_expert_hei_bai_split.py was listed twice (here and above).
+    # The system audit D2 recorded it as dropped; the code still had both. The map read
     # the code instead of the card and caught the drift. One entry, line 121.
-    ["test_commanders_kb.py"],  # CON-190 commander knowledge base — offline
-    ["test_edhrec_sanity.py"],  # CON-194: missing-rate is transport, not catalogue
-    ["test_differential_harness.py"],  # CON-188: was offline and unlisted
-    # CON-204: #185 added this file and did not register it, so tier 1 reported
+    ["test_commanders_kb.py"],  # commander knowledge base — offline
+    ["test_edhrec_sanity.py"],  # missing-rate is transport, not catalogue
+    ["test_differential_harness.py"],  # was offline and unlisted
+    # #185 added this file and did not register it, so tier 1 reported
     # green while it never ran. test_check_all caught it. Same shape as the
-    # CON-188 finding where the runner said 3 pass with a P1 regression live.
-    ["test_precon_upgrade.py"],  # CON-217 precon ways + beef-it-up — offline
-    ["test_commander_fit.py"],  # CON-191 theme+strategy fit — offline
-    ["test_way_to_play.py"],    # CON-179 way_to_play binds plan — offline
-    ["test_deck_accounting.py"],   # CON-192 theme/strategy buckets — offline
-    ["test_backfill_order.py"],  # CON-230/243 glued backfill + singleton placement
+    # finding where the runner said 3 pass with a P1 regression live.
+    ["test_precon_upgrade.py"],  # precon ways + beef-it-up — offline
+    ["test_commander_fit.py"],  # theme+strategy fit — offline
+    ["test_way_to_play.py"],    # way_to_play binds plan — offline
+    ["test_deck_accounting.py"],   # theme/strategy buckets — offline
+    ["test_backfill_order.py"],  # glued backfill + singleton placement
 
     # Registered in one sweep after test_check_all.py was run by hand during
-    # the #260/#261/#262 integration (sixteen offline files missing; CON-273
+    # the #260/#261/#262 integration (sixteen offline files missing
     # is the structural fix — test_unit_registry.py now gates the list).
     ["test_instrument_chat.py"],
     ["test_narrowing.py"],
@@ -165,39 +165,39 @@ _UNIT_COMMANDS: list[list[str]] = [
     ["test_print_wave_reeval.py"],
     ["test_saved_ask_instrument.py"],
     ["test_thesis_glued.py"],
-    ["test_thesis_goldfish_honesty.py"],   # shipped unregistered with CON-267
+    ["test_thesis_goldfish_honesty.py"],   # shipped unregistered with the thesis honesty fix
     ["test_goldfish_plan_compute.py"],     # plan thesis conditions must move
     ["test_unread_gap_research.py"],
     ["test_unread_gap_strategy.py"],
     ["test_way_preference.py"],
-    ["test_commander_oracle_cast.py"],     # CON-268 / #260
-    ["test_commander_paging.py"],          # CON-189 / #262
-    ["test_commander_differs.py"],         # CON-286 picker differs without prose
-    ["test_parse_json_peel.py"],           # CON-187 / #261
+    ["test_commander_oracle_cast.py"],     # The commander on-cast modelling / #260
+    ["test_commander_paging.py"],          # The commander paging work / #262
+    ["test_commander_differs.py"],         # picker differs without prose
+    ["test_parse_json_peel.py"],           # The JSON peel fix / #261
 
-    # CON-273: registry coverage — no ca.main() / run_tier, safe in this list.
+    # registry coverage — no ca.main() / run_tier, safe in this list.
     ["test_unit_registry.py"],
-    # CON-291: API boundary — unread emits / unsent reads / inert data-*.
+    # API boundary — unread emits / unsent reads / inert data-*.
     ["test_api_boundary.py"],
-    # CON-293: bug reports — disk first, Linear stamp / linear_error.
+    # bug reports — disk first, Linear stamp / linear_error.
     ["test_bug_report.py"],
     ["test_demo_guard.py"],
     ["test_footer_logo.py"],  # quiet footer shows DeckWright logo lockup
-    ["test_scryfall_refusal.py"],  # CON-295: name challenge / rate limit / timeout
-    ["test_corpus.py"],  # CON-294 local Scryfall corpus — offline
-    ["test_import_empty_message.py"],  # CON-306: empty import says the real cause
-    ["test_import_punctuation.py"],  # CON-310: curly apostrophes resolve on import
-    ["test_backrow_labels.py"],  # CON-307: no twin Start over on failure screens
-    ["test_import_persist.py"],  # CON-309: import persists; Save failure is visible
-    ["test_green_isolation.py"],  # CON-315: green SAVE_DIR / corpus / badge / plist
-    ["test_commander_strategy.py"],  # CON-321 Gate 2: B clarity extractors + audit
-    ["test_strategy_steer.py"],  # CON-321 Gate 4: soft steer + otag rollup
-    ["test_bound_coverage.py"],  # CON-331: derive bound coverage sign-off
-    ["test_cardfacts.py"],  # CON-322: CardFacts extract/bake/lookup — offline
-    ["test_edhrec_seed.py"],  # CON-336: EDHREC seed client + pool injection
-    ["test_v2_benchmark.py"],  # CON-319/336: bake-off harness offline
-    ["test_b_vs_cardfacts.py"],  # CON-322: B stamps vs CardFacts compare — offline
-    ["test_candidate_c.py"],  # CON-322: Candidate C CardFacts audit/steer wire
+    ["test_scryfall_refusal.py"],  # name challenge / rate limit / timeout
+    ["test_corpus.py"],  # local Scryfall corpus — offline
+    ["test_import_empty_message.py"],  # empty import says the real cause
+    ["test_import_punctuation.py"],  # curly apostrophes resolve on import
+    ["test_backrow_labels.py"],  # no twin Start over on failure screens
+    ["test_import_persist.py"],  # import persists; Save failure is visible
+    ["test_green_isolation.py"],  # green SAVE_DIR / corpus / badge / plist
+    ["test_commander_strategy.py"],  # B clarity extractors + audit
+    ["test_strategy_steer.py"],  # soft steer + otag rollup
+    ["test_bound_coverage.py"],  # derive bound coverage sign-off
+    ["test_cardfacts.py"],  # CardFacts extract/bake/lookup — offline
+    ["test_edhrec_seed.py"],  # EDHREC seed client + pool injection
+    ["test_v2_benchmark.py"],  # bake-off harness offline
+    ["test_b_vs_cardfacts.py"],  # B stamps vs CardFacts compare — offline
+    ["test_candidate_c.py"],  # Candidate C CardFacts audit/steer wire
 
     # NOT test_check_all.py — see _UNIT_EXCLUDED. The house-rule suite still
     # exists; run it directly: `python tests/test_check_all.py`.
@@ -205,7 +205,7 @@ _UNIT_COMMANDS: list[list[str]] = [
 
 
 # tests/test_*.py files that must NOT appear in _UNIT_COMMANDS. Value = why.
-# CON-273: adding a new offline test and skipping both lists fails tier 1 via
+# adding a new offline test and skipping both lists fails tier 1 via
 # test_unit_registry.py. Touch this map only for a deliberate opt-out.
 _UNIT_EXCLUDED: dict[str, str] = {
     "test_check_all.py": (
@@ -219,7 +219,7 @@ _UNIT_EXCLUDED: dict[str, str] = {
 def unregistered_offline_tests(root: Path | None = None) -> list[str]:
     """Offline test_*.py names in neither _UNIT_COMMANDS nor _UNIT_EXCLUDED.
 
-    CON-273: the merge gate runs this via test_unit_registry.py. An unknown
+    the merge gate runs this via test_unit_registry.py. An unknown
     file is a gap, not a silent pass.
     """
     base = root if root is not None else TESTS_DIR
@@ -474,7 +474,7 @@ def run_e2e_flow() -> Result:
 
 
 def run_differential() -> Result:
-    """CON-168 harness. Absent today — that is SKIP, never a silent pass."""
+    """harness. Absent today — that is SKIP, never a silent pass."""
     candidates = [
         ROOT / "scripts" / "differential_harness.py",
         ROOT / "scripts" / "e2e_differential.py",
@@ -484,7 +484,7 @@ def run_differential() -> Result:
     if script is None:
         return Result(
             "differential", SKIP,
-            "differential harness not present (CON-168)",
+            "differential harness not present",
             0.0,
         )
     if not os.environ.get("ANTHROPIC_API_KEY") and not _which("claude"):
@@ -511,9 +511,9 @@ def run_differential() -> Result:
 
 def run_forge_calibration() -> Result:
     t0 = time.monotonic()
-    script = ROOT / "scripts" / "con163_calibrate_forge.py"
+    script = ROOT / "scripts" / "calibrate_forge.py"
     if not script.is_file():
-        return Result("forge_calibration", SKIP, "scripts/con163_calibrate_forge.py missing", 0.0)
+        return Result("forge_calibration", SKIP, "scripts/calibrate_forge.py missing", 0.0)
     # Detect via the same helper the app uses.
     sys.path.insert(0, str(ROOT))
     try:
@@ -548,7 +548,7 @@ def run_forge_calibration() -> Result:
 # registry
 # ---------------------------------------------------------------------------
 
-# CON-204. This exists because it already happened: #173 committed conflict
+# This exists because it already happened: #173 committed conflict
 # markers into scripts/check_all.py, GitHub still reported the PR MERGEABLE
 # because it merged cleanly against main, and tier 1 could not parse the file.
 # A marker in a tracked source file is never intentional and costs nothing to
@@ -653,7 +653,7 @@ def run_tier(tier: int, runners: dict[str, Callable[[], Result]] | None = None,
              include_optional: bool = False) -> int:
     """Run every layer at or below `tier`. Return an EXIT_* code.
 
-    CON-204: opt-in layers are excluded unless `include_optional`. The ship
+    opt-in layers are excluded unless `include_optional`. The ship
     gate is differential + Forge; e2e_flow is a smoke run, not a second gate.
     """
     selected = layers_for(tier, include_optional)
@@ -679,12 +679,12 @@ def run_tier(tier: int, runners: dict[str, Callable[[], Result]] | None = None,
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(
-        description="Run Deckwright's check tiers (CON-169).",
+        description="Run Deckwright's check tiers.",
         exit_on_error=False,
     )
     ap.add_argument(
         "--with-optional", action="store_true",
-        help="also run opt-in layers (e2e_flow). CON-204: not part of the gate.",
+        help="also run opt-in layers (e2e_flow). not part of the gate.",
     )
     ap.add_argument(
         "--tier", type=int, required=True, choices=(1, 2, 3),

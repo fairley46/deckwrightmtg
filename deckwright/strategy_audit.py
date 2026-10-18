@@ -1,4 +1,4 @@
-"""CON-321 Gate 2 — audit a 99 against CommanderStrategy. No selection steer.
+"""audit a 99 against CommanderStrategy. No selection steer.
 
 Membership of the deck list is never changed. Unknown capacity is not a
 violation and not a silent pass (unknown ≠ zero).
@@ -167,7 +167,7 @@ def _mv_subject_applies(
     """True when the card is in-scope for subject, honouring type excludes.
 
     excludes are type-line tokens (e.g. equipment, aura) from oracle phrasing
-    like 'non-Equipment artifact' / 'non-Aura enchantment' (CON-334).
+    like 'non-Equipment artifact' / 'non-Aura enchantment'.
     """
     if subject == "artifact_mv":
         if not _is_artifact(card):
@@ -236,7 +236,7 @@ def _static_mv_limit(bound: dict) -> float | None:
 
 
 def _produces_mana(card: dict) -> bool:
-    """Coarse ramp detector for CON-335 bound-violation tagging."""
+    """Coarse ramp detector for the ramp/payoff bound tagging bound-violation tagging."""
     t = _text(card)
     if re.search(r"\{T\}:\s*Add\b", t, re.I):
         return True
@@ -250,7 +250,7 @@ def _produces_mana(card: dict) -> bool:
 
 
 def _bound_violation_kind(card: dict, subject: str, op: str) -> str:
-    """Ramp vs payoff — cheap mana rocks are not 'wrong payoffs' (CON-335)."""
+    """Ramp vs payoff — cheap mana rocks are not 'wrong payoffs'."""
     if (op or "leq").lower() == "geq" and subject in _MV_SUBJECTS:
         if _produces_mana(card):
             return "ramp"
@@ -258,7 +258,7 @@ def _bound_violation_kind(card: dict, subject: str, op: str) -> str:
 
 
 def card_bound_ok(card: dict, strategy: dict, deck_so_far: list[dict]) -> str:
-    """Per-card bound check shared by audit and steer (CON-329 / CON-331).
+    """Per-card bound check shared by audit and steer.
 
     Returns 'ok', 'false', or 'unknown'. Unknown ≠ zero: no silent pass.
     """

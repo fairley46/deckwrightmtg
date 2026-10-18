@@ -112,19 +112,19 @@ def functions(cards: list[dict]) -> dict[str, list[str]]:
 # A function the expert expresses this few times is a coin-flip in the score,
 # not a signal about deck quality. Measured: with his lifegain_trigger at 1,
 # our 0-vs-2 flipped that function between "covered" and "gap" and moved the
-# headline 6 points across three runs of identical code (CON-183).
+# headline 6 points across three runs of identical code.
 FRAGILE_AT = 2
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--deck", action="append", default=None,
-                    help="deck json; repeat for a band (CON-183)")
+                    help="deck json; repeat for a band")
     args = ap.parse_args()
     decks = args.deck or ["/tmp/hb_now.json"]
 
     expert_payload = json.loads(EXPERT.read_text())
-    # CON-177: score functions against chosen, not the contaminated 50.
+    # score functions against chosen, not the contaminated 50.
     chosen_rows = expert_payload.get("chosen") or []
     expert_names = [r["name"] for r in chosen_rows] or list(
         expert_payload.get("verified_multi_word") or [])

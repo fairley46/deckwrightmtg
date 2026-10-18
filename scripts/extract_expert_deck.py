@@ -17,7 +17,7 @@ n-grams lifted from the transcript and matched against Scryfall's own
 Scryfall supplies every name; the transcript only chooses among them. Anything
 that does not match a real card is dropped, not guessed.
 
-CON-177: the raw verified list is "cards named in the video", not "cards in
+the raw verified list is "cards named in the video", not "cards in
 his deck". It includes rejected commanders and Faithless Looting (named as a
 counter-example). Split into `chosen` / `mentioned` from transcript position
 plus card type, and record which rule classified each card. Score only against
@@ -350,7 +350,7 @@ def _oracle_for(names: list[str]) -> dict[str, dict]:
     if not missing:
         return out
 
-    # Live fill for CI when the cache predates CON-177. Uses the repo client.
+    # Live fill for CI when the cache predates the chosen/mentioned split. Uses the repo client.
     import asyncio
     sys.path.insert(0, str(REPO))
     from deckwright import app  # noqa: WPS433

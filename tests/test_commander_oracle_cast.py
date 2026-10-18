@@ -1,7 +1,7 @@
 """
-CON-268: goldfish applies commander oracle on cast.
+goldfish applies commander oracle on cast.
 
-Mister Negative's "draw that many" floors to 1 in extraction (CON-267).
+Mister Negative's "draw that many" floors to 1 in extraction.
 Until this card, play_one only flipped commander_in_play — so cards_drawn
 never moved from the commander. Life exchange with an opponent stays
 unmodelled (no opponent invented).
@@ -105,7 +105,7 @@ def _mana_shell(n_rocks=20, n_lands=36) -> list[dict]:
 
 
 def test_mn_draw_fires_on_commander_cast():
-    print("\nCON-268 — Mister Negative draw that many fires on cast")
+    print("\nMister Negative draw that many fires on cast")
     deck = _mana_shell()
     cond = [{"label": "refuel", "note": "drew off the flip",
              "check": {"cards_drawn": 1}}]
@@ -124,7 +124,7 @@ def test_mn_draw_fires_on_commander_cast():
 
 
 def test_life_exchange_not_invented():
-    print("\nCON-268 — life exchange stays unmodelled (no opponent)")
+    print("\nlife exchange stays unmodelled (no opponent)")
     deck = _mana_shell()
     cond = [{"label": "pad", "note": "life exchange padded you",
              "check": {"life_gained": 1}}]
@@ -135,7 +135,7 @@ def test_life_exchange_not_invented():
 
 
 def test_scryfall_shape_oracle_text_only():
-    print("\nCON-268 — raw Scryfall shape (oracle_text/type_line) still draws")
+    print("\nraw Scryfall shape (oracle_text/type_line) still draws")
     deck = _mana_shell()
     cond = [{"label": "refuel", "note": "drew",
              "check": {"cards_drawn": 1}}]
@@ -155,7 +155,7 @@ def test_scryfall_shape_oracle_text_only():
 
 
 def test_assumptions_name_the_proxy():
-    print("\nCON-268 — ASSUMPTIONS state commander on-cast + no exchange")
+    print("\nASSUMPTIONS state commander on-cast + no exchange")
     true("assumptions mention commander on-cast effects",
          "on cast" in sim.ASSUMPTIONS.lower()
          or "commander" in sim.ASSUMPTIONS.lower())
@@ -166,7 +166,7 @@ def test_assumptions_name_the_proxy():
 
 
 def test_refuel_story_ok_after_oracle_cast():
-    print("\nCON-268 — refuel-off-the-flip is sound once MN draws on cast")
+    print("\nrefuel-off-the-flip is sound once MN draws on cast")
     deck = [{"name": "Consider", "role": "plan",
              "text": "Surveil 1, then draw a card.",
              "oracle_text": "Surveil 1, then draw a card.",
@@ -193,7 +193,7 @@ def test_refuel_story_ok_after_oracle_cast():
 
 
 def test_exchange_life_gained_still_flagged():
-    print("\nCON-268 — exchange→life_gained story still flagged")
+    print("\nexchange→life_gained story still flagged")
     deck = [{"name": "Consider", "role": "plan",
              "text": "Draw a card.", "oracle_text": "Draw a card.",
              "type": "Instant", "type_line": "Instant",

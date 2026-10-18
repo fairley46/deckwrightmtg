@@ -1,7 +1,7 @@
-"""CON-336 — EDHREC-seeded build (product path).
+"""EDHREC-seeded build (product path).
 
 Thin live client for commander page + average deck (~2 GETs per build).
-CON-194 semantics: ok / missing / unknown — never `{}` on failure.
+semantics: ok / missing / unknown — never `{}` on failure.
 
 Pool injection happens before the model shortlist (not steer-only). Seed lands
 are ignored; V1 curve / mana base unchanged.

@@ -1,4 +1,4 @@
-"""CON-321 Gate 2 — B clarity: CommanderStrategy + audit, no steer.
+"""B clarity: CommanderStrategy + audit, no steer.
 
 Offline fixtures only. Pattern texts, not named-commander product branches.
 """
@@ -95,7 +95,7 @@ NOISE_ONLY = {
     "cmc": 2,
 }
 
-# CON-327: board-count token engine (Krenko-shaped, pattern text only).
+# board-count token engine (Krenko-shaped, pattern text only).
 TOKEN_BOARD_COUNT = {
     "name": "Fixture Token Board Count",
     "text": (
@@ -106,7 +106,7 @@ TOKEN_BOARD_COUNT = {
     "cmc": 3,
 }
 
-# CON-327: subtype-filter cast trigger (Edgar-shaped, pattern text only).
+# subtype-filter cast trigger (Edgar-shaped, pattern text only).
 CAST_SUBTYPE = {
     "name": "Fixture Cast Subtype",
     "text": (
@@ -125,7 +125,7 @@ TOKENS_ONLY = {
     "cmc": 2,
 }
 
-# CON-331: static MV floor (Bello-shaped). Pattern text only.
+# static MV floor (Bello-shaped). Pattern text only.
 MV_FLOOR_OR_GREATER = {
     "name": "Fixture MV Floor Or Greater",
     "text": (
@@ -137,7 +137,7 @@ MV_FLOOR_OR_GREATER = {
     "cmc": 3,
 }
 
-# CON-331: alternate floor phrasing.
+# alternate floor phrasing.
 MV_FLOOR_GEQ = {
     "name": "Fixture MV Floor GEQ",
     "text": (
@@ -148,7 +148,7 @@ MV_FLOOR_GEQ = {
     "cmc": 4,
 }
 
-# CON-331: static MV ceiling (Tayam-shaped numeric "or less", not life capacity).
+# static MV ceiling (Tayam-shaped numeric "or less", not life capacity).
 MV_CEILING_OR_LESS = {
     "name": "Fixture MV Ceiling Or Less",
     "text": (
@@ -159,7 +159,7 @@ MV_CEILING_OR_LESS = {
     "cmc": 3,
 }
 
-# CON-331 remaining: power ceiling (Shirei-shaped). Pattern text only.
+# remaining: power ceiling (Shirei-shaped). Pattern text only.
 POWER_CEILING_OR_LESS = {
     "name": "Fixture Power Ceiling",
     "oracle_text": (
@@ -171,7 +171,7 @@ POWER_CEILING_OR_LESS = {
     "cmc": 3,
 }
 
-# CON-331 remaining: forbid draw (Maralen-shaped).
+# remaining: forbid draw (Maralen-shaped).
 FORBID_DRAW = {
     "name": "Fixture Forbid Draw",
     "oracle_text": (
@@ -183,7 +183,7 @@ FORBID_DRAW = {
     "cmc": 3,
 }
 
-# CON-331 remaining: subtype tutor / steal (Sliver Overlord-shaped).
+# remaining: subtype tutor / steal (Sliver Overlord-shaped).
 SUBTYPE_TUTOR = {
     "name": "Fixture Subtype Tutor",
     "oracle_text": (
@@ -195,7 +195,7 @@ SUBTYPE_TUTOR = {
     "cmc": 5,
 }
 
-# CON-331 remaining: experience-capacity MV ceiling (Meren-shaped).
+# remaining: experience-capacity MV ceiling (Meren-shaped).
 MV_LEQ_EXPERIENCE = {
     "name": "Fixture Experience Capacity",
     "oracle_text": (
@@ -211,7 +211,7 @@ MV_LEQ_EXPERIENCE = {
 
 
 def test_power_ceiling_extracts():
-    print("\nGate 2 / CON-331 — power 'N or less' extracts creature_power leq")
+    print("\nGate 2 / power 'N or less' extracts creature_power leq")
     from deckwright import commander_strategy as cs
     s = cs.derive(POWER_CEILING_OR_LESS)
     powers = [
@@ -228,7 +228,7 @@ def test_power_ceiling_extracts():
 
 
 def test_forbid_draw_extracts():
-    print("\nGate 2 / CON-331 — 'can't draw cards' extracts draw forbid")
+    print("\nGate 2 / 'can't draw cards' extracts draw forbid")
     from deckwright import commander_strategy as cs
     s = cs.derive(FORBID_DRAW)
     forbids = [
@@ -239,7 +239,7 @@ def test_forbid_draw_extracts():
 
 
 def test_subtype_tutor_extracts():
-    print("\nGate 2 / CON-331 — tutor/steal subtype extracts creature_subtype")
+    print("\nGate 2 / tutor/steal subtype extracts creature_subtype")
     from deckwright import commander_strategy as cs
     s = cs.derive(SUBTYPE_TUTOR)
     subs = [
@@ -254,7 +254,7 @@ def test_subtype_tutor_extracts():
 
 
 def test_experience_capacity_extracts():
-    print("\nGate 2 / CON-331 — MV ≤ experience counters extracts event_capacity")
+    print("\nGate 2 / MV ≤ experience counters extracts event_capacity")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_LEQ_EXPERIENCE)
     caps = [
@@ -271,7 +271,7 @@ def test_experience_capacity_extracts():
 
 
 def test_audit_power_ceiling_and_subtype():
-    print("\nGate 2 / CON-331 — audit honour power leq + subtype in_set")
+    print("\nGate 2 / audit honour power leq + subtype in_set")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
     power_s = cs.derive(POWER_CEILING_OR_LESS)
@@ -288,7 +288,7 @@ def test_audit_power_ceiling_and_subtype():
 
 
 def test_single_non_equipment_floor_excludes_equipment():
-    print("\nGate 2 / CON-334 — non-Equipment artifact floor carries excludes")
+    print("\nGate 2 / non-Equipment artifact floor carries excludes")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_FLOOR_OR_GREATER)
     floors = [b for b in s["bounds"] if b.get("op") == "geq"]
@@ -297,7 +297,7 @@ def test_single_non_equipment_floor_excludes_equipment():
 
 
 def test_mv_floor_or_greater_extracts():
-    print("\nGate 2 / CON-331 — MV floor 'N or greater' extracts geq static")
+    print("\nGate 2 / MV floor 'N or greater' extracts geq static")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_FLOOR_OR_GREATER)
     bounds = s["bounds"]
@@ -314,7 +314,7 @@ def test_mv_floor_or_greater_extracts():
 
 
 def test_mv_floor_geq_phrasing_extracts():
-    print("\nGate 2 / CON-331 — MV floor 'greater than or equal to N'")
+    print("\nGate 2 / MV floor 'greater than or equal to N'")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_FLOOR_GEQ)
     floors = [b for b in s["bounds"] if b.get("op") == "geq"]
@@ -328,7 +328,7 @@ def test_mv_floor_geq_phrasing_extracts():
 
 
 def test_mv_static_ceiling_or_less_extracts():
-    print("\nGate 2 / CON-331 — static MV ceiling 'N or less' still leq")
+    print("\nGate 2 / static MV ceiling 'N or less' still leq")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_CEILING_OR_LESS)
     ceilings = [
@@ -348,7 +348,7 @@ def test_mv_static_ceiling_or_less_extracts():
 
 
 
-# CON-334: Bello-shaped dual floor — non-Equipment artifacts AND non-Aura enchantments.
+# Bello-shaped dual floor — non-Equipment artifacts AND non-Aura enchantments.
 MV_FLOOR_BELLO_SHAPED = {
     "name": "Fixture Dual Animate Floor",
     "text": (
@@ -362,7 +362,7 @@ MV_FLOOR_BELLO_SHAPED = {
 
 
 def test_bello_shaped_floor_emits_artifact_and_enchantment():
-    print("\nGate 2 / CON-334 — dual non-Equipment / non-Aura floor subjects")
+    print("\nGate 2 / dual non-Equipment / non-Aura floor subjects")
     from deckwright import commander_strategy as cs
     s = cs.derive(MV_FLOOR_BELLO_SHAPED)
     floors = [b for b in s["bounds"] if b.get("op") == "geq"]
@@ -379,7 +379,7 @@ def test_bello_shaped_floor_emits_artifact_and_enchantment():
 
 
 def test_audit_equipment_and_aura_exempt_from_bello_floor():
-    print("\nGate 2 / CON-334 — Equipment/Aura exempt; cheap enchantment flagged")
+    print("\nGate 2 / Equipment/Aura exempt; cheap enchantment flagged")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -403,7 +403,7 @@ def test_audit_equipment_and_aura_exempt_from_bello_floor():
 
 
 def test_audit_floor_flags_below_not_above():
-    print("\nGate 2 / CON-331 — audit flags cards below floor when subject matches")
+    print("\nGate 2 / audit flags cards below floor when subject matches")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -485,7 +485,7 @@ def test_bird_type_strategy():
 
 
 def test_token_board_count_strategy():
-    print("\nGate 2 / CON-327 — board-count token engine")
+    print("\nGate 2 / board-count token engine")
     from deckwright import commander_strategy as cs
     s = cs.derive(TOKEN_BOARD_COUNT)
     eq("status ok", s["status"], "ok")
@@ -505,7 +505,7 @@ def test_token_board_count_strategy():
 
 
 def test_cast_subtype_strategy():
-    print("\nGate 2 / CON-327 — cast another subtype spell")
+    print("\nGate 2 / cast another subtype spell")
     from deckwright import commander_strategy as cs
     s = cs.derive(CAST_SUBTYPE)
     eq("status ok", s["status"], "ok")
@@ -521,7 +521,7 @@ def test_cast_subtype_strategy():
 
 
 def test_outputs_without_inputs_is_partial():
-    print("\nGate 2 / CON-327 — outputs without inputs is partial, not ok")
+    print("\nGate 2 / outputs without inputs is partial, not ok")
     from deckwright import commander_strategy as cs
     s = cs.derive(TOKENS_ONLY)
     eq("status partial", s["status"], "partial")
@@ -534,7 +534,7 @@ def test_outputs_without_inputs_is_partial():
 
 
 def test_audit_skips_feeder_line_when_no_inputs():
-    print("\nGate 2 / CON-327 — no feeder audit when inputs empty")
+    print("\nGate 2 / no feeder audit when inputs empty")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -549,7 +549,7 @@ def test_audit_skips_feeder_line_when_no_inputs():
 
 
 def test_board_count_feeders():
-    print("\nGate 2 / CON-327 — board-count feeders match subtype creatures")
+    print("\nGate 2 / board-count feeders match subtype creatures")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -567,7 +567,7 @@ def test_board_count_feeders():
 
 
 def test_cast_subtype_feeders():
-    print("\nGate 2 / CON-327 — subtype cast feeders match tribe on type line")
+    print("\nGate 2 / subtype cast feeders match tribe on type line")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -726,13 +726,13 @@ def test_sim_version_untouched():
     # Gate 2 must not bump the sim model. Pin current public contract size.
     true("THESIS_KEYS is a sequence", hasattr(sim, "THESIS_KEYS"))
     true("SIM_VERSION present", hasattr(sim, "SIM_VERSION"))
-    # Life keys already exist (CON-121); Gate 2 does not add new ones.
+    # Life keys already exist; Gate 2 does not add new ones.
     for k in ("life_gained", "life_drained"):
         true(f"{k} already allowlisted", k in sim.THESIS_KEYS)
 
 
-def test_con335_ramp_violations_tagged_separately():
-    print("\nCON-335 — mana rocks tagged ramp; payoff count excludes them")
+def test_ramp_violations_tagged_separately():
+    print("\nmana rocks tagged ramp; payoff count excludes them")
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
 
@@ -779,7 +779,7 @@ def main() -> int:
     test_audit_unknown_capacity_not_violation()
     test_attach_clarity_does_not_change_membership()
     test_unread_attach_honesty()
-    test_con335_ramp_violations_tagged_separately()
+    test_ramp_violations_tagged_separately()
     test_no_named_commander_branches()
     test_sim_version_untouched()
     print()

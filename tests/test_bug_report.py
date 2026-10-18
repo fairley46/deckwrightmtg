@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-293: bug reports land on disk first; Linear is enrichment that may fail.
+"""bug reports land on disk first; Linear is enrichment that may fail.
 
 Offline. No network. The Linear client is injected so a missing Keychain key,
 a refused create, and a successful stamp are all graded without calling out.
@@ -218,8 +218,8 @@ def test_endpoint_stamps_linear_on_success():
         try:
             with patch("deckwright.bug_report.read_linear_api_key", return_value="k"), \
                  patch("deckwright.bug_report.create_linear_issue",
-                       return_value={"id": "u", "identifier": "CON-1",
-                                     "url": "https://linear.app/x/CON-1"}):
+                       return_value={"id": "u", "identifier": "BUG-1",
+                                     "url": "https://linear.app/x/BUG-1"}):
                 client = TestClient(app.app)
                 r = client.post("/api/bug", json={
                     "note": "footer overlap on mobile",
@@ -227,7 +227,7 @@ def test_endpoint_stamps_linear_on_success():
                 })
             eq("HTTP 200", r.status_code, 200)
             rec = json.loads(next((save / "bugs").glob("*.json")).read_text())
-            eq("linear id", rec["linear"]["id"], "CON-1")
+            eq("linear id", rec["linear"]["id"], "BUG-1")
             true("no error stamp", "linear_error" not in rec)
             true("app_version recorded", "app_version" in rec)
         finally:
@@ -244,7 +244,7 @@ def test_sync_walks_unstamped_only():
         failed = root / "c.json"
         synced.write_text(json.dumps({
             **sample_record(id="a"),
-            "linear": {"id": "CON-1", "url": "https://linear.app/x/CON-1"},
+            "linear": {"id": "BUG-1", "url": "https://linear.app/x/BUG-1"},
         }))
         pending.write_text(json.dumps(sample_record(id="b", note="pending one")))
         failed.write_text(json.dumps({

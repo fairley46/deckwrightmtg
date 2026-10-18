@@ -1,6 +1,6 @@
-"""CON-321 Gate 4 — tier-1 otag membership lookups for the 99.
+"""tier-1 otag membership lookups for the 99.
 
-Reads an optional baked membership map (CON-303 path). Missing file or
+Reads an optional baked membership map (path). Missing file or
 missing card → unknown, never zero tags.
 """
 

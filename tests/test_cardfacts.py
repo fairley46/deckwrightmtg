@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: CardFacts lookup + extract/bake — unknown ≠ zero.
+"""CardFacts lookup + extract/bake — unknown ≠ zero.
 
     python test_cardfacts.py
 """
@@ -465,7 +465,7 @@ def test_extract_opponent_cast():
 
 
 def test_extract_mv_floor_geq():
-    print("\nCardFacts extract — MV floor geq (CON-331 pattern)")
+    print("\nCardFacts extract — MV floor geq (pattern)")
     facts = cf.extract(_MV_FLOOR)
     floors = [b for b in facts["bounds"] if b.get("op") == "geq"]
     true("has geq floor", len(floors) >= 1, str(facts["bounds"]))
@@ -476,7 +476,7 @@ def test_extract_mv_floor_geq():
 
 
 def test_extract_mv_ceiling_leq():
-    print("\nCardFacts extract — MV ceiling leq (CON-331 pattern)")
+    print("\nCardFacts extract — MV ceiling leq (pattern)")
     facts = cf.extract(_MV_CEILING)
     ceilings = [
         b for b in facts["bounds"]

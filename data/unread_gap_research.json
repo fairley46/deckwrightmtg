@@ -3,7 +3,7 @@
   "source_report": "data/oracle_coverage_report.md",
   "researched_at": "2026-08-08",
   "note": "Research only. No oracle_signals added in this card. Card names resolved via Scryfall search (paced) or already-committed fixtures (Mind Stone, Solemn Simulacrum, Lightning Greaves, Wild Growth). Keywords admit via Scryfall keyword catalogs \u2014 do not invent oracle_signals to raise coverage. Unknown verified_count stays null until Phase 3.",
-  "already_closed_in_con245": [
+  "already_closed_in": [
     "enters_tapped",
     "pay_life_enter",
     "pain_mana",
@@ -15,7 +15,7 @@
     "enchant_creature",
     "no_max_hand_size"
   ],
-  "baseline_after_con245": {
+  "baseline_after": {
     "at_least_one_signal_pct": 55.5,
     "any_consumes_pct": 23.6,
     "playstyles_precision_pct": 89.9,
@@ -1076,7 +1076,7 @@
         "playstyle": null,
         "plan_commitment": null,
         "synergy_object": null,
-        "note": "CON-245 shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
+        "note": "shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
       },
       "scryfall_resolution": {
         "exemplar_query": "o:\"{T}: Add {G}\" t:land game:commander",
@@ -1228,7 +1228,7 @@
         "playstyle": "landfall",
         "plan_commitment": null,
         "synergy_object": null,
-        "note": "enchant_creature already shipped (CON-245). Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
+        "note": "enchant_creature already shipped. Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
       },
       "scryfall_resolution": {
         "exemplar_query": "o:\"enchant land\" game:commander",
@@ -1524,7 +1524,6 @@
     "cycling"
   ],
   "phase3": {
-    "issue": "CON-248",
     "verified_at": "2026-08-08",
     "all_searchable": true,
     "signals_shipped": [

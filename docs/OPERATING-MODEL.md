@@ -65,7 +65,7 @@ tier** — a check that did not run is not a check that passed.
 land.
 
 **Branch protection on `main`:** required status check `check` (this workflow),
-`strict: true`, force-pushes and deletions denied. Verified under CON-297 by a
+`strict: true`, force-pushes and deletions denied. Verified by a
 real force-push rejection. **`enforce_admins` is deliberately `false`** — the operator
 keeps an emergency hatch to push without the check. That is a household
 escape, not a second merge path for ordinary work. Using it to land red Tier 1
@@ -142,15 +142,15 @@ Scryfall is the only runtime dependency that can take the product down. On
 2026-08-09 it did twice — a Cloudflare challenge caused by our own request
 volume, then Scryfall's own maintenance window.
 
-**Corpus-first (CON-294) protects what she reads, not what she builds
-(CON-303).** Card lookups serve from `~/.deckwright/oracle_cards.jsonl` first.
+**Corpus-first protects what she reads, not what she builds.**
+Card lookups serve from `~/.deckwright/oracle_cards.jsonl` first.
 That is real resilience for named lookup, ordinary `q=` search, saved decks,
 landing, and precons. It is **not** resilience for `/api/build`.
 
 Role ladders lean on `otag:` (Tagger function tags). Those fields are not in
 Scryfall bulk data, so `corpus.needs_live()` sends every one of them to the
 live client by design — unsupported ≠ empty. Function tags are also the
-correct index for roles (CON-113); that choice stands. The honest survival
+correct index for roles; that choice stands. The honest survival
 table:
 
 | Path | Survives Scryfall being down |
@@ -166,13 +166,13 @@ Source map (same fact, by query class):
 |---|---|
 | Ordinary `q=` search / named / collection | Local corpus when loaded |
 | `otag:` / `art:` alone (Tagger — not in bulk) | Live only — **this is the build path** |
-| Composite `t:… otag:…` (CON-308) | Local conjuncts from corpus; live for `otag:`/`art:`. Partial = incomplete, not a smaller match |
+| Composite `t:… otag:…` | Local conjuncts from corpus; live for `otag:`/`art:`. Partial = incomplete, not a smaller match |
 | Query the local index cannot parse | Live only |
 | Images / set catalog / bulk refresh | Live |
 
 A warm corpus and a stopped build on the same evening are not a contradiction.
 The product path still needs live Scryfall until tag membership is cached
-locally (backlog under CON-303 / option 1). Until then: say so at build time —
+locally (backlog / option 1). Until then: say so at build time —
 saved decks still open; a new build waits on the card source.
 
 A missing corpus falls through to live unless `DECKWRIGHT_CORPUS=local-only`,
@@ -180,11 +180,11 @@ which raises unknown rather than inventing empty. Unsupported ≠ empty.
 
 **Boot must fetch a missing corpus.** Grammar/KB can be fresh while
 `oracle_cards.jsonl` was never downloaded — that left every lookup on the live
-API (CON-296 re-sign-off). `boot._should_refresh()` is true when the bulk file
+API (re-sign-off). `boot._should_refresh()` is true when the bulk file
 is absent, so launch cadence runs `python -m corpus` before anything else.
 Sunday cadence still refreshes it weekly; first install no longer waits for Sunday.
 
-**Named refusals (CON-295 / CON-296).** Failures are kinds, not a generic 500:
+**Named refusals.** Failures are kinds, not a generic 500:
 
 | Kind | What she sees | Retry? |
 |---|---|---|
@@ -230,7 +230,7 @@ stay inside the free-plan limit. It is the ledger behind the board.
 
 ## 7. Release — how code reaches the house
 
-**Settled (CON-296): the shared install tracks a release tag, not live `main`.**
+**Settled: the shared install tracks a release tag, not live `main`.**
 
 `run.sh` → `scripts/pull_on_launch.sh` updates code on every launch (including
 KeepAlive restarts). The script is careful: ff-only / fetch+checkout, skips a
@@ -246,14 +246,13 @@ dirty tree, skips without git, never blocks startup.
 1. Tier 1 green on the tip you intend to ship — confirm the **commit SHA** has
    a green `check` run on GitHub (or a local `python scripts/check_all.py
    --tier 1` you just ran on that tree). The tag workflow does **not** enforce
-   this; the human does (CON-297 residual).
+   this; the human does (residual).
 2. Tag it: `git tag -a ga-YYYYMMDD -m "…" && git push origin ga-YYYYMMDD`.
 3. **Cut a branch at the same commit and push it:**
    `git branch release/ga-YYYYMMDD ga-YYYYMMDD^{commit} && git push origin release/ga-YYYYMMDD`.
    Not optional. Review tooling checks out **branches**, so a tag alone makes
-   the shipped artifact unreadable by the reviewer that gates it — CON-297's
-   first session died on `Branch ga-20260810 does not exist` and reviewed
-   nothing. While the tag equals `main` the gap is invisible; once `main`
+   the shipped artifact unreadable by the reviewer that gates it — one review
+   session died on a missing release branch and reviewed nothing. While the tag equals `main` the gap is invisible; once `main`
    drifts, "review `main`" and "review what ships" are different questions and
    only the branch can answer the second.
 4. Set `DECKWRIGHT_RELEASE_REF=ga-YYYYMMDD` on the demo host LaunchAgent (or export

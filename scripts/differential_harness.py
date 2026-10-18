@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""CON-168: differential harness — did the app listen?
+"""differential harness — did the app listen?
 
 Every other check asks whether the chain ran. This one asks whether two
 adjacent wishes produce different decks *for the reason the plan claims*.
 
 Tier 3 — real model quota, real Scryfall, several minutes. Before ship, not
-per commit. See CON-169.
+per commit. See the tiered test pipeline.
 
     # needs ANTHROPIC_API_KEY (or claude CLI) + network
     python scripts/differential_harness.py
@@ -14,7 +14,7 @@ per commit. See CON-169.
 
 House rule (same as scripts/e2e_flow.py): an unknown is not a zero, and a
 vacuous check is not a passing check. A wish that fails to produce a brief,
-or that CON-167 correctly refuses, is UNKNOWN and excluded from comparison.
+or that the empty-brief refusal correctly refuses, is UNKNOWN and excluded from comparison.
 Never let a refused build count as "different".
 """
 from __future__ import annotations
@@ -74,7 +74,7 @@ WISHES: dict[str, str] = {
     # reported pool:5 and the pair sat UNKNOWN for the whole session.
     #
     # A wish nobody could build is not a test of behaviour discrimination, it
-    # is a test of refusal, which CON-167 already covers. Dropping the tribe
+    # is a test of refusal, which the empty-brief refusal already covers. Dropping the tribe
     # takes the pool from 5 to 88 (otag:theft t:creature id<=WB) and lets the
     # pair measure what it was written to measure.
     "creatures-steal": (
@@ -85,7 +85,7 @@ WISHES: dict[str, str] = {
         "I want vampires that drain — make opponents lose life whenever I "
         "gain life. Lifedrain, not stealing their cards."
     ),
-    # CON-172: "cheap" means mana value, not dollars. Brad: price is hard to
+    # "cheap" means mana value, not dollars. Brad: price is hard to
     # control and Scryfall totals are ballparks, never receipts.
     "vampires-lowcurve": (
         "I want a vampire lifegain drain deck that is cheap and fast, low "
@@ -113,7 +113,7 @@ PAIRS: list[dict[str, Any]] = [
         },
     },
     {
-        # CON-185: the archetype axis was gated on life_math and dead for
+        # the archetype axis was gated on life_math and dead for
         # twelve of thirteen playstyles -- and EVERY pair here was lifegain-
         # flavoured, so it was only ever exercised where it worked. Every test
         # passed while the axis was inert. This pair is deliberately
@@ -121,7 +121,7 @@ PAIRS: list[dict[str, Any]] = [
         "id": "archetype-sacrifice-incremental-vs-burst",
         "a": "sac-incremental",
         "b": "sac-burst",
-        "distinguishes": "tempo on a NON-lifegain theme (CON-185 blind spot)",
+        "distinguishes": "tempo on a NON-lifegain theme (blind spot)",
         "expect": {
             "jaccard": True,
             "archetypes": ("incremental", "burst"),
@@ -133,7 +133,7 @@ PAIRS: list[dict[str, Any]] = [
         "id": "archetype-incremental-vs-burst",
         "a": "drain-incremental",
         "b": "drain-burst",
-        "distinguishes": "same tribe, different archetype (CON-138 split)",
+        "distinguishes": "same tribe, different archetype (split)",
         "expect": {
             "jaccard": True,
             "archetypes": ("incremental", "burst"),
@@ -169,14 +169,14 @@ PAIRS: list[dict[str, Any]] = [
 
 # Jaccard: both directions matter. Identical decks (1.0) mean it did not
 # listen; disjoint decks with the same commander mean it is random.
-# CON-168: publish the measured number; do not invent an upper bar first.
+# publish the measured number; do not invent an upper bar first.
 # JACCARD_MAX is filled in after a measured run (or left None = report only).
 JACCARD_MAX: float | None = None
 JACCARD_MIN = 0.0  # exclusive — zero with shared commander fails separately
 
 MAX_CHAT_TURNS = 5
 SCRYFALL = "https://api.scryfall.com"
-USER_AGENT = "DeckwrightDifferentialHarness/0.1 (CON-168; local)"
+USER_AGENT = "DeckwrightDifferentialHarness/0.1 (local)"
 
 
 # ---------------------------------------------------------------------------
@@ -351,7 +351,7 @@ def _check_jaccard(a: WishRun, b: WishRun, jaccard_max: float | None) -> Check:
     detail = f"Jaccard {pct} (shared {len(a.deck_names & b.deck_names)} / "
     detail += f"union {len(a.deck_names | b.deck_names)})"
     if jaccard_max is None:
-        detail += " — upper bar not yet calibrated (CON-168: publish first)"
+        detail += " — upper bar not yet calibrated (publish first)"
     return Check("jaccard overlap", "PASS", detail)
 
 
@@ -401,7 +401,7 @@ def _check_archetypes(a: WishRun, b: WishRun,
 
 
 def _check_commitments_differ(a: WishRun, b: WishRun) -> Check:
-    # CON-186: compare (id, min), not id alone. Two plans that ask for the same
+    # compare (id, min), not id alone. Two plans that ask for the same
     # FAMILIES but different AMOUNTS are different plans — "13 lifegain cards"
     # and "7 lifegain cards" are not the same instruction.
     #
@@ -532,13 +532,13 @@ def deck_curve_stats(deck: list[dict]) -> dict[str, float | int] | None:
 
 
 def _check_curve(a: WishRun, b: WishRun) -> Check:
-    """CON-172/175: low-curve side (a) must have lower avg MV and more MV≤2 cards."""
+    """low-curve side (a) must have lower avg MV and more MV≤2 cards."""
     sa, sb = deck_curve_stats(a.deck), deck_curve_stats(b.deck)
     if sa is None or sb is None:
         return Check(
             "curve binds", "UNKNOWN",
             "mana value missing on at least one side — not a zero average")
-    # CON-175: surface what the plan heard — if both are mid, the ear failed
+    # surface what the plan heard — if both are mid, the ear failed
     # upstream and the skeleton's fixed MV≤2 count is all that remains.
     pref_a = (a.plan or {}).get("curve")
     pref_b = (b.plan or {}).get("curve")
@@ -688,7 +688,7 @@ def deck_membership_via_query(deck_names: set[str], query: str) -> set[str] | No
 
 
 def format_readiness_blockers(blockers: list[dict] | None) -> list[str]:
-    """CON-170: name the term, not just the signal category.
+    """name the term, not just the signal category.
 
     'terms' alone hid whether vampire, drain the table, or stax blocked.
     """
@@ -756,7 +756,7 @@ async def _chat_until_brief(wish: str, chat_fn) -> tuple[dict | None, str]:
             # chat response". The harness was contradicting the very wish it
             # was testing.
             #
-            # Same lifegain blind spot CON-185 found in archetypes_for, one
+            # Same lifegain blind spot the archetype-axis fix found in archetypes_for, one
             # layer out: the instrument assumed the theme it was built on.
             # The answer must not assert a theme — the WISH already did.
             reply = (f"{q} — for my part: stick with what I already said, "
@@ -840,14 +840,14 @@ async def run_wish(wish_id: str, wish: str, api) -> WishRun:
     commander_card = build.get("commander_card") if isinstance(
         build.get("commander_card"), dict) else None
     arch = (plan or {}).get("archetype") or {}
-    # CON-176: source says whether strategy_shape or phrases decided.
+    # source says whether strategy_shape or phrases decided.
     print(f"  build: {len(deck)} cards, ${price}, "
           f"archetype={arch.get('id')!r} decided={arch.get('decided')} "
           f"source={arch.get('source')!r} "
           f"strategy_shape={(brief or {}).get('strategy_shape')!r}",
           flush=True)
 
-    # CON-173: cohesion is the horizontal clause — report it on every build.
+    # cohesion is the horizontal clause — report it on every build.
     if deck and commander_card:
         try:
             from deckwright import synergy
@@ -880,10 +880,10 @@ async def run_wish(wish_id: str, wish: str, api) -> WishRun:
 def _refuse_or_error(stage: str, e: BaseException) -> str:
     """Classify a chain failure for UNKNOWN reporting.
 
-    FastAPI HTTPException carries status_code + detail (CON-167 422).
+    FastAPI HTTPException carries status_code + detail (422).
     Anthropic SDK errors also carry status_code; those are transport/quota
     failures, not brief refusals — label them as errors so the report does
-    not read like a successful CON-167 guard.
+    not read like a successful the empty-brief refusal guard.
     """
     code = getattr(e, "status_code", None)
     detail = getattr(e, "detail", None)
@@ -987,7 +987,7 @@ def load_runs_from_dump(path: Path, wish_ids: list[str]) -> dict[str, WishRun]:
 
 
 async def async_main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="CON-168 differential harness")
+    ap = argparse.ArgumentParser(description="differential harness")
     ap.add_argument("--pair", action="append", dest="pairs",
                     help="Run only this pair id (repeatable)")
     ap.add_argument("--base", default="",

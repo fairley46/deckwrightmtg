@@ -131,8 +131,8 @@ That is what tonight fixed. The gate:
 
 ```
 session start   3 of  9 blind
-after CON-146   4 of  9 blind     <- got WORSE, on purpose: a false green was exposed
-after CON-123   0 of 10 blind     <- with the threshold corrected
+after the target-player draw fix   4 of  9 blind     <- got WORSE, on purpose: a false green was exposed
+after the graveyard perception work   0 of 10 blind     <- with the threshold corrected
 ```
 
 The middle row matters more than the last. The Arena-vs-Sign-in-Blood pair had been passing by
@@ -157,10 +157,10 @@ It appeared independently on four surfaces in one session:
 
 | surface | the lie it prevents |
 |---|---|
-| `scry()` throttled (CON-145) | "no cards match" when Scryfall just refused |
-| unreleased set (CON-135/137) | "0 cards for your deck" when the set is not spoiled |
-| unresolved term (CON-149) | "nothing matched your theme" when we mis-parsed the word |
-| unclassified mechanic (CON-147) | "3 engines" read as "only 3 exist" |
+| `scry()` throttled | "no cards match" when Scryfall just refused |
+| unreleased set | "0 cards for your deck" when the set is not spoiled |
+| unresolved term | "nothing matched your theme" when we mis-parsed the word |
+| unclassified mechanic | "3 engines" read as "only 3 exist" |
 
 Four cards were cut for the same defect before anyone noticed it was one defect. **Treat it as
 a house rule, not four fixes.** Any layer that returns an empty result must distinguish
@@ -180,8 +180,8 @@ A stage passes only if its check passes *and* it does not break the house rule.
 
 | # | check | how |
 |---|---|---|
-| 1.1 | Every term she can say resolves to a real operator or is reported unresolved | fixture set in CON-149; `pirates`→`t:`, `steal`→`otag:theft`, `spiderman`→`set:spm`, `heists`→unresolved |
-| 1.2 | No emitted expression returns zero from live Scryfall | build-time gate, same as CON-144's 394/394 |
+| 1.1 | Every term she can say resolves to a real operator or is reported unresolved | fixture set; `pirates`→`t:`, `steal`→`otag:theft`, `spiderman`→`set:spm`, `heists`→unresolved |
+| 1.2 | No emitted expression returns zero from live Scryfall | build-time gate, same as the taxonomy query verification's 394/394 |
 | 1.3 | `steal` never resolves to `keyword:steal` | the 1-card trap; behaviour is checked before things |
 | 1.4 | A theme that *is* a creature type still reaches `t:` | `pirates` must not be swallowed by a set-name match |
 
@@ -241,7 +241,7 @@ One case, run whole:
 
 1. resolves to `t:pirate otag:theft id<=UB` — not zero, not padded
 2. the readback places both terms with live counts (empty/unknown/thin labelled;
-   healthy pool sizes suppressed — CON-287) and a commander-narrowing beat
+   healthy pool sizes suppressed) and a commander-narrowing beat
    before she picks
 3. the plan's conditions are all in `THESIS_KEYS`, thresholds above the floors
 4. the 99 is chosen by measured lift; every model-chosen name passed a verifier

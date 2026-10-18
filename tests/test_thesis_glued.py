@@ -1,5 +1,5 @@
 """
-test_thesis_glued.py — CON-258 glued payoff allowlist + key discipline.
+test_thesis_glued.py — glued payoff allowlist + key discipline.
 
 Offline. No model. No Scryfall.
 

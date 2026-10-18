@@ -1,9 +1,9 @@
-# The plan graph — schema and contract (CON-140)
+# The plan graph — schema and contract
 
 > Part of the derivation chain — see [`DERIVATION.md`](DERIVATION.md) for how this stage joins the others.
 
-**Owner:** Box. Consumed by CON-136 (deterministic pass), CON-139 (build selection),
-CON-138 (scoring), the suggest path, and `/api/thesis` → goldfish
+**Owner:** Box. Consumed (deterministic pass), the payoff-pool work (build selection),
+(scoring), the suggest path, and `/api/thesis` → goldfish
 (`plan_graph.thesis_from_plan` — conditions measured on the 99; model thesis
 only when no measurable plan exists).
 
@@ -109,7 +109,7 @@ perception queue, not something to fake with an adjacent key.
 
 ### Field notes
 
-**`weight`** is the only lever the scoring contract (CON-138) needs from this file. `core`
+**`weight`** is the only lever the scoring contract needs from this file. `core`
 conditions are what the deck IS; `supporting` conditions make them more likely; `nice` is
 texture. A suggestion may trade a `nice` for a `core` and never the reverse.
 
@@ -126,7 +126,7 @@ commitments; the simulator reads conditions.
 never be allowed to make the deck illegal or incoherent. A Spider-Man deck that cannot cast
 its commander is not a win for theme.
 
-## How it is derived (CON-136)
+## How it is derived
 
 **Deterministic. No model call.** Two inputs, joined by code:
 
@@ -146,7 +146,7 @@ make opponents discard" is a wish; Gonti turns it into a plan with turns in it.
 
 ## What this file does not decide
 
-- **Magnitudes.** How much a card advancing a condition is worth is CON-138.
+- **Magnitudes.** How much a card advancing a condition is worth is the scoring contract.
 - **A coherence score.** Deliberately absent. Two axes — synergy plan and fantasy theme —
   is the right model, but a number invites the app to print it, and "coherence: 72%" is a
   claim we cannot defend. The axes rank and explain; they do not score.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-306: empty import deck must say the true cause, not invent a zero.
+"""empty import deck must say the true cause, not invent a zero.
 
 finishImport used to treat every empty `deck` as "nothing resolved". The
 response already distinguishes unresolved lines, commander-pick failure, and
@@ -62,7 +62,7 @@ def true(label, cond, extra=""):
 
 
 def _extract_helpers(html: str) -> str:
-    """Pull the CON-306 pure helpers out of index.html for node evaluation."""
+    """Pull the empty-import message fix pure helpers out of index.html for node evaluation."""
     start = html.find("const IMPORT_NOTHING_RESOLVED")
     if start < 0:
         raise AssertionError("IMPORT_NOTHING_RESOLVED missing from index.html")
@@ -261,7 +261,7 @@ def test_message_branches():
 
 
 def test_wiring_in_index_html():
-    print("\nindex.html  — finishImport / afterImport wire CON-306 helpers")
+    print("\nindex.html  — finishImport / afterImport wire the empty-import message fix helpers")
     html = (ROOT / "index.html").read_text(encoding="utf-8")
 
     true("importEmptyFailure defined", "function importEmptyFailure" in html)

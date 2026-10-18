@@ -1,5 +1,5 @@
 """
-test_backend_spine.py — CON-121/122/125/126/127/134/140 offline + light checks.
+test_backend_spine.py — offline + light checks.
 
     python test_backend_spine.py
 """
@@ -118,7 +118,7 @@ def test_mechanic_relations():
 
 
 def test_goal_spec_uses_relations():
-    print("\ngoal spec  — CON-134 expansion")
+    print("\ngoal spec  — expansion")
     spec = suggest.goal_spec("more_tokens_wide")
     (ok if spec and "tokens" in spec["families"] else bad)("has tokens", str(spec))
     (ok if "go_wide_payoffs" in (spec or {}).get("families", []) else bad)(
@@ -127,7 +127,7 @@ def test_goal_spec_uses_relations():
 
 
 def test_suggest_plan_verified():
-    print("\nsuggest plan  — CON-122 verified adds")
+    print("\nsuggest plan  — verified adds")
     pools = _toy_pools()
     deck = _toy_deck(pools)
     data = {
@@ -150,7 +150,7 @@ def test_suggest_plan_verified():
 
 
 def test_match_notes():
-    print("\nmatch notes  — CON-121")
+    print("\nmatch notes")
     data = {"deck": [], "commander": "X"}
     n = deck_state.add_match_note(data, {
         "opponent_plan": "combo", "result": "loss",
@@ -163,7 +163,7 @@ def test_match_notes():
 
 
 def test_pending_version_fork():
-    print("\npending + version  — CON-126/127")
+    print("\npending + version")
     pools = _toy_pools()
     # Deck must contain a cut target and pools must contain the add.
     cut = {"name": "Flavor Text", "type": "Creature", "cmc": 2, "usd": "0.10",
@@ -205,12 +205,12 @@ def test_pending_version_fork():
 
 
 def test_change_set_d1_contract():
-    """CON-271 / D1: suggestions are a pending change set.
+    """The pending change sets / D1: suggestions are a pending change set.
 
     Approve forks vN → vN+1. Reject leaves version + 99 alone.
     Mixed suggest + editor sets reject/approve independently.
     """
-    print("\nchange set D1  — CON-271")
+    print("\nchange set D1")
     pools = _toy_pools()
     flavor = {"name": "Flavor Text", "type": "Creature", "cmc": 2, "usd": "0.10",
               "keywords": [], "text": "Vigilance", "color_identity": ["W"],
@@ -291,7 +291,7 @@ def test_change_set_d1_contract():
 
 
 def test_apply_swap_card_editor():
-    print("\neditor swap card  — CON-141 path")
+    print("\neditor swap card  — path")
     deck = [{
         "name": "Flavor Text", "type": "Creature", "cmc": 2, "role": "theme",
         "keywords": [], "text": "", "color_identity": ["W"], "legal": "legal",
@@ -307,7 +307,7 @@ def test_apply_swap_card_editor():
 
 
 def test_precon_delta_help_hurt():
-    print("\nprecon delta  — CON-125")
+    print("\nprecon delta")
     base = [
         {"name": "A", "type": "Creature", "keywords": [],
          "text": "Whenever Hanweir attacks, create two 1/1 red Human creature tokens."},
@@ -331,7 +331,7 @@ def test_precon_delta_help_hurt():
 
 
 def test_versions_api_smoke():
-    print("\nversions API  — CON-127")
+    print("\nversions API")
     from fastapi.testclient import TestClient
     pools = _toy_pools()
     cut = {"name": "Flavor Text", "type": "Creature", "cmc": 2, "usd": "0.10",
@@ -423,8 +423,8 @@ def test_persist_notes_and_pending():
 
 
 def test_api_suggest_pending_smoke():
-    """CON-126: HTTP suggest → pending → approve/reject without model key."""
-    print("\napi suggest/pending  — CON-126 smoke")
+    """HTTP suggest → pending → approve/reject without model key."""
+    print("\napi suggest/pending  — smoke")
     from starlette.testclient import TestClient
 
     pools = _toy_pools()
@@ -487,8 +487,8 @@ def test_api_suggest_pending_smoke():
 
 
 def test_api_reject_leaves_deck_alone():
-    """CON-271: HTTP reject clears pending without bumping version or 99."""
-    print("\napi reject leaves alone  — CON-271")
+    """HTTP reject clears pending without bumping version or 99."""
+    print("\napi reject leaves alone")
     from starlette.testclient import TestClient
 
     pools = _toy_pools()

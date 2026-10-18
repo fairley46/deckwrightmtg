@@ -107,7 +107,7 @@ async def main():
                 print(f"{DIM}API path failed — install the `claude` CLI and "
                       f"restart with ./run.sh (it prefers the CLI).{OFF}")
 
-    # --- mechanics catalogs (CON-130) ---
+    # --- mechanics catalogs ---
     print()
     try:
         from deckwright import mechanics

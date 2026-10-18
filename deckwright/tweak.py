@@ -1,5 +1,5 @@
 """
-tweak.py — composition sliders for /api/simulate (CON-75).
+tweak.py — composition sliders for /api/simulate.
 
 Swap real cards from the build's role_pools by card type. Never invent a
 stand-in, never duplicate a singleton name. If the pool cannot cover a step,
@@ -7,7 +7,7 @@ stop and say so — the curves then describe a deck that could actually be built
 
 Axes match the deck rail: lands, creatures, instants & sorceries, artifacts,
 enchantments. The post-tweak composition dict is the rebuild target for
-CON-77 / CON-95.
+The single-card swap / the rebuild work.
 """
 
 from __future__ import annotations
@@ -49,7 +49,7 @@ def card_axis(card: dict) -> str | None:
 
 
 def composition_of(deck: list) -> dict[str, int]:
-    """Count the 99 by composition axis. Rebuild target for CON-77 / CON-95."""
+    """Count the 99 by composition axis. Rebuild target for the single-card swap / the rebuild work."""
     counts = {a: 0 for a in COMPOSITION_AXES}
     for c in deck:
         ax = card_axis(c)

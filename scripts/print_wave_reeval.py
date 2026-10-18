@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-print_wave_reeval.py — CON-260 print-wave update path.
+print_wave_reeval.py — print-wave update path.
 
 One command after a major set / precon dump (or when someone claims a mechanic
 is missing from reading). Refreshes understanding numbers, holds the precision
@@ -44,13 +44,13 @@ GATE1_RETEST = (
 )
 PRECISION_FLOOR = 0.88
 
-# Offline CON-255 product surface — no model calls.
+# Offline the core product spec surface — no model calls.
 SPOT_CHECKS = (
     "test_instrument_chat.py",
     "test_way_preference.py",
     "test_thesis_glued.py",
     "test_precon_upgrade.py",
-    "test_saved_ask_instrument.py",  # CON-261; skip if absent
+    "test_saved_ask_instrument.py",  # The saved-deck ask instrument; skip if absent
 )
 
 
@@ -207,7 +207,6 @@ def assemble_report(
         overall = "fail"
 
     return {
-        "issue": "CON-260",
         "measured_on": _today(),
         "measured_at": _now_iso(),
         "wave": wave or "baseline-reeval",
@@ -291,7 +290,7 @@ def render_markdown(report: dict[str, Any]) -> str:
     lines = [
         f"# Print-wave re-eval — {report['measured_on']}",
         "",
-        f"**Issue:** {report['issue']} · **wave:** `{report['wave']}` · "
+        f"**wave:** `{report['wave']}` · "
         f"**overall:** `{report['overall']}`",
         "",
         "## Coverage",

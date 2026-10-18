@@ -1,7 +1,7 @@
 """
 commander_difficulty.py — one plain sentence for how hard a commander is to pilot.
 
-CON-134: derive from countable oracle/keyword facts (flash, hold-up, resource
+derive from countable oracle/keyword facts (flash, hold-up, resource
 tracking). Not a 1–5 rating. Not a label chip. Deterministic, no model call.
 """
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-check_playstyles.py — CON-181 falsification instrument for CON-180.
+check_playstyles.py — falsification instrument for the playstyle vocabulary.
 
 For each fixture row, run playstyles.detect() against the commander's oracle
 and compare with the community's classification. Report hit / miss / extra
@@ -9,12 +9,12 @@ separately. Never collapse them into one accuracy number.
     python scripts/check_playstyles.py
     python scripts/check_playstyles.py --json
 
-Honesty rules (from CON-181):
+Honesty rules:
   * match-nothing → unknown, never a default playstyle
   * unreadable / unverified commander → excluded and counted, not scored as miss
   * publish measured numbers; do not invent a pass bar
 
-CON-196 floor: precision ≥ 88% on this validated set → exit 1 when below.
+floor: precision ≥ 88% on this validated set → exit 1 when below.
 """
 
 from __future__ import annotations
@@ -178,7 +178,7 @@ def print_report(result: dict[str, Any]) -> None:
               f"miss={c['miss']} extra={c['extra']}")
 
     print()
-    print("=== totals (CON-181 / CON-196) ===")
+    print("=== totals ===")
     print(f"  fixture rows:     {result['fixture_rows']}")
     print(f"  scored:           {result['scored']}")
     print(f"  excluded:         {result['excluded']}  (unknown ≠ miss)")
@@ -187,20 +187,20 @@ def print_report(result: dict[str, Any]) -> None:
     print(f"  MISS:             {result['miss']}")
     print(f"  EXTRA:            {result['extra']}")
     # Precision = of the playstyles we name, how many the community also names.
-    # CON-196 floor is 88% on this validated set. Recall is reported separately;
+    # floor is 88% on this validated set. Recall is reported separately;
     # never collapse them.
     print(f"  precision:         {result['precision']:.1%}  (HIT / HIT+EXTRA)  "
           f"floor {int(PRECISION_FLOOR * 100)}%")
     print(f"  recall:           {result['recall']:.1%}  (HIT / HIT+MISS)")
     if result["scored"] and not result["precision_ok"]:
-        print("  PRECISION BELOW 88% — CON-196 bar failed")
+        print("  PRECISION BELOW 88% — bar failed")
 
     print()
-    print("=== vocabulary missing_signals (CON-180 findings) ===")
+    print("=== vocabulary missing_signals (findings) ===")
     for pid, entry in sorted(vocab.items()):
         missing = entry.get("missing_signals") or []
         det = entry.get("detect") or {}
-        # CON-184: requires_any lists alternative shapes of one mechanic, and a
+        # requires_any lists alternative shapes of one mechanic, and a
         # playstyle detected solely through it has an empty `requires`. Reading
         # only `requires` reported nine working playstyles as NOT DETECTABLE —
         # a false negative in our own reporting, which is the same class of

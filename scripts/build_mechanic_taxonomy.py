@@ -9,7 +9,7 @@ Each leaf carries:
   name, path, how, supports{enablers, payoffs, queries}, evergreen, deciduous
 
 Queries are Scryfall-facing shapes, never card names. Default emission picks
-`keyword:` / `t:` / `o:` from Scryfall's catalogs (CON-143) — never invents a
+`keyword:` / `t:` / `o:` from Scryfall's catalogs — never invents a
 `keyword:` for a type or a non-indexed mechanic. Apostrophes stay (Council's
 Dilemma → keyword:"council's dilemma"). The build fails if any emitted
 `keyword:` or `t:` term is absent from those catalogs.
@@ -504,7 +504,7 @@ def scry_term(s: str) -> str:
 
 
 def normalize_lookup(name: str) -> str:
-    """Lowercase catalog key. Keep apostrophes — stripping them is the CON-143 bug."""
+    """Lowercase catalog key. Keep apostrophes — stripping them is the taxonomy apostrophe fix bug."""
     return name.lower().replace("!", "").strip()
 
 
@@ -783,7 +783,7 @@ async def probe_query(q: str) -> str:
     """Hit Scryfall once. Returns ok | zero | bad_request | unknown.
 
     Box/#69 gate: fail the build on 400-or-zero. Network/throttle failures are
-    unknown — never scored as zero (same rule as CON-56 / test_deckwright).
+    unknown — never scored as zero (same rule as the full-sweep vocabulary grading / test_deckwright).
     """
     import time
 

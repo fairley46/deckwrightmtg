@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-oracle_coverage.py — CON-245 instrument: how much of Magic can we read?
+oracle_coverage.py — instrument: how much of Magic can we read?
 
 One Scryfall bulk oracle_cards fetch, offline detectors, no model. Reports:
 
@@ -49,7 +49,7 @@ _WS = re.compile(r"\s+")
 def ensure_bulk(*, offline: bool) -> dict[str, Any]:
     """Return meta; ensure CACHE_JSONL exists.
 
-    CON-294: delegates to corpus.ensure_oracle_cards so coverage and the
+    delegates to corpus.ensure_oracle_cards so coverage and the
     serving path share one on-disk file under ~/.deckwright.
     """
     from deckwright import corpus as _corpus
@@ -150,7 +150,6 @@ def analyze(cards: Iterator[dict]) -> dict[str, Any]:
         for line, c in line_counts.most_common(80)
     ]
     return {
-        "issue": "CON-251",
         "measured_on": date.today().isoformat(),
         "universe_commander_legal": n_legal,
         "unknown_unreadable": n_unknown,
@@ -189,7 +188,7 @@ def analyze(cards: Iterator[dict]) -> dict[str, Any]:
         "keyword_hit_counts": dict(keyword_hits.most_common(40)),
         "unread_lines_ranked": top_unread,
         "note": (
-            "CON-251: readable = oracle_signal OR Scryfall keyword catalog. "
+            "readable = oracle_signal OR Scryfall keyword catalog. "
             "Keywords are not invented signals and do not create produce/consume. "
             "Unread tail ranks lines on cards with neither. "
             "Unknown means we could not look (missing oracle)."
@@ -203,7 +202,7 @@ def render_text(report: dict[str, Any]) -> str:
     unread = report.get("unread_no_signal_no_keyword") or report["no_signal"]
     c = report["any_consumes"]
     lines = [
-        f"CON-251 oracle coverage — {report['measured_on']}",
+        f"oracle coverage — {report['measured_on']}",
         f"commander-legal: {report['universe_commander_legal']:,}"
         f"  graded: {report['graded']:,}"
         f"  unknown: {report['unknown_unreadable']:,}",

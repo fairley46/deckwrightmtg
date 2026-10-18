@@ -1,4 +1,4 @@
-"""CON-331 — bound_coverage helpers, offline pattern fixtures.
+"""bound_coverage helpers, offline pattern fixtures.
 
 No live corpus required. Does not edit commander_strategy.
 """
@@ -61,7 +61,7 @@ LIFEGAIN_BOUND = {
     "type_line": "Legendary Creature — Vampire Cleric",
 }
 
-# MV floor — CON-331 floors express this as static geq (expect SEEN).
+# MV floor — floors express this as static geq (expect SEEN).
 MV_FLOOR = {
     "name": "Fixture MV Floor",
     "oracle_text": (
@@ -113,7 +113,7 @@ def test_coverage_row_seen_none_unknown():
     true("lifegain extracted_n >= 1", (seen["extracted_n"] or 0) >= 1)
 
     floor = bc.coverage_row("Fixture MV Floor", card=MV_FLOOR)
-    eq("floor status SEEN (post CON-331 floors)", floor["status"], "SEEN")
+    eq("floor status SEEN (post the MV floor bounds floors)", floor["status"], "SEEN")
     eq("floor extracted_n 1", floor["extracted_n"], 1)
 
     unk = bc.coverage_row(

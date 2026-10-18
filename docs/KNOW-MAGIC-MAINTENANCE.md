@@ -1,10 +1,10 @@
 # Know Magic — maintenance (after lap 4)
 
-Comprehension laps are closed. Coverage is **stated with a number**, unread is **named**, precision held. Not 100% — and that is the exit condition CON-246 asked for.
+Comprehension laps are closed. Coverage is **stated with a number**, unread is **named**, precision held. Not 100% — and that is the exit condition the Know Magic loop asked for.
 
 Broader post-GA Auto lane (picker, ways maps, honesty joins): .
 
-## How this relates to desktop boot (CON-285)
+## How this relates to desktop boot
 
 | Automatic on stale launch / Sunday cadence | Still this doc (admit PR) |
 |---|---|
@@ -21,7 +21,7 @@ named set, run the admit loop below.
 
 After a major Magic print wave (set / commander precon dump), or when someone claims a new mechanic is "missing" from reading.
 
-Linear card: CON-260. One command
+One command
 (also `./update.sh --print-wave NAME` on the demo host):
 
 ```bash
@@ -41,7 +41,7 @@ Gate 1 live Playwright retest stays Claude-owned; the script records the last re
 
 ## What to do with a new unread cluster
 
-Same loop as CON-246, smaller:
+Same loop as the Know Magic loop, smaller:
 
 1. **Name the gap** — count + exemplar line from the report.
 2. **Research** — what it does, who plays it (`method: both | community | derived`).
@@ -57,7 +57,7 @@ Refuse:
 
 ## Current band
 
-**Restated 2026-08-08** via `scripts/print_wave_reeval.py` (`wave=baseline-reeval-2026-08-08`, overall `ok`). Same band as end of CON-253 — no new admit this run.
+**Restated 2026-08-08** via `scripts/print_wave_reeval.py` (`wave=baseline-reeval-2026-08-08`, overall `ok`). Same band as end of no new admit this run.
 
 | metric | value |
 |---|---:|

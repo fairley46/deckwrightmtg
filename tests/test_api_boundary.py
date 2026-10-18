@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""CON-291: API boundary gate — unread emits and unsent reads fail.
+"""API boundary gate — unread emits and unsent reads fail.
 
-Mirrors CON-273: the guard that catches the class is the one thing that must
+Mirrors the guard that catches the class is the one thing that must
 run. A deliberate unread response key makes this red.
 
     python test_api_boundary.py
@@ -47,7 +47,7 @@ def true(label, cond, detail=""):
 
 
 def test_contract_clean():
-    print("\napi boundary — contract is clean (CON-291)")
+    print("\napi boundary — contract is clean")
     gaps = ab.all_gaps()
     for name, items in gaps.items():
         eq(f"{name} empty", items, [])
@@ -66,7 +66,7 @@ def test_unread_emit_is_detectable():
     """Failure mode: a new unread response key makes the gate red."""
     print("\napi boundary — unread emit is a gap, not a silent pass")
     ep = "/api/chat"
-    phantom = "con291_unread_phantom"
+    phantom = "unread_phantom"
     if phantom in ab.ENDPOINTS[ep]["emits"]:
         bad("phantom path clear", f"{phantom} already in emits")
         return
@@ -88,7 +88,7 @@ def test_unsent_read_is_detectable():
     """Failure mode: UI reading a key the endpoint never sends."""
     print("\napi boundary — unsent read is a gap, not a silent pass")
     ep = "/api/chat"
-    phantom = "con291_unsent_phantom"
+    phantom = "unsent_phantom"
     if phantom in ab.ENDPOINTS[ep]["ui_reads"]:
         bad("phantom path clear", f"{phantom} already in ui_reads")
         return
@@ -107,32 +107,32 @@ def test_unsent_read_is_detectable():
 
 def test_inert_data_attr_is_detectable():
     print("\napi boundary — inert data-* attribute is a gap")
-    html = '<div data-con291-phantom="1"></div>'
+    html = '<div data-test-phantom="1"></div>'
     gaps = ab.inert_data_attrs(html)
-    true("phantom data attr listed", "con291-phantom" in gaps, f"gaps={gaps!r}")
+    true("phantom data attr listed", "test-phantom" in gaps, f"gaps={gaps!r}")
     # Keep reason clears it
-    ab.DATA_ATTR_KEEP["con291-phantom"] = "probe"
+    ab.DATA_ATTR_KEEP["test-phantom"] = "probe"
     try:
         eq("keep reason clears gap", ab.inert_data_attrs(html), [])
     finally:
-        ab.DATA_ATTR_KEEP.pop("con291-phantom", None)
+        ab.DATA_ATTR_KEEP.pop("test-phantom", None)
 
 
 def test_server_only_requires_reason():
     print("\napi boundary — allowlist entries need reasons")
     ep = "/api/chat"
-    ab.ENDPOINTS[ep]["server_only"]["con291_empty_reason"] = "   "
-    ab.ENDPOINTS[ep]["emits"].add("con291_empty_reason")
+    ab.ENDPOINTS[ep]["server_only"]["empty_reason"] = "   "
+    ab.ENDPOINTS[ep]["emits"].add("empty_reason")
     try:
         missing = ab.allowlist_reasons_missing()
         true(
             "empty reason flagged",
-            f"{ep}:server_only:con291_empty_reason" in missing,
+            f"{ep}:server_only:empty_reason" in missing,
             f"missing={missing!r}",
         )
     finally:
-        ab.ENDPOINTS[ep]["server_only"].pop("con291_empty_reason", None)
-        ab.ENDPOINTS[ep]["emits"].discard("con291_empty_reason")
+        ab.ENDPOINTS[ep]["server_only"].pop("empty_reason", None)
+        ab.ENDPOINTS[ep]["emits"].discard("empty_reason")
 
 
 def main() -> int:

@@ -76,7 +76,7 @@ all_of("every deck card is a real named card", deck,
 
 print("\n4. THE PLAN  (the plan decides what she needs)", flush=True)
 plan = build.get("plan")
-check("build returns a plan", plan is not None, "CON-158")
+check("build returns a plan", plan is not None, "the plan-on-build work")
 if plan:
     arch = plan.get("archetype") or {}
     check("archetype present", bool(arch.get("label") or arch.get("candidates")),

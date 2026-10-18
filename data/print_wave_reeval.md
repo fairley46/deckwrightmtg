@@ -1,6 +1,6 @@
 # Print-wave re-eval — 2026-10-11
 
-**Issue:** CON-260 · **wave:** `cadence-reeval-2026-10-11` · **overall:** `ok`
+**wave:** `cadence-reeval-2026-10-11` · **overall:** `ok`
 
 ## Coverage
 
@@ -57,7 +57,7 @@
 
 - Name the gap: 12× unread line "this creature can't attack unless defending player controls an island" (see unread_lines_top).
 - If a real unread cluster moved after a named set dump: one small admit PR (exemplar + near-miss in test_synergy.py). Refuse keyword-catalog oracle_signals.
-- Update docs/KNOW-MAGIC-MAINTENANCE.md and docs/GA-FREEZE.md with these dated numbers — do not silently bump.
+- Update docs/KNOW-MAGIC-MAINTENANCE.md with these dated numbers — do not silently bump.
 
 ## Re-run
 

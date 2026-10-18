@@ -22,7 +22,7 @@ bake-offs. Do not revive them for the product path.
 | `:8002` / `:8003` | B / C | stopped; plists on disk (stop ≠ retirement) |
 | `:8004` | **V2 green product** | `DECKWRIGHT_EDHREC_SEED=1` |
 
-Putting seed on `:8001` invalidates every prior sweep (CON-330 class).
+Putting seed on `:8001` invalidates every prior sweep (class).
 
 ## How we judge (one clean sweep, then stop)
 
@@ -42,7 +42,7 @@ cite it.
 
 Ship to `:8000` when **either**:
 
-1. **One clean E/BLUE/D sweep** after harness CON-328/330 restore — D moves
+1. **One clean E/BLUE/D sweep** after harness the build-timeout floor / the per-contestant URL scoping restore — D moves
    feeder density toward E on `top_100` / `101_1000` without keepable regression, **or**
 2. **Explicit human call** — "ship without sweep" — then skip the bake-off.
 
@@ -61,7 +61,7 @@ Do not flip blue as a side effect of a harness or docs PR.
 - Green-d launchd on `:8004`
 - Thin-data honesty (no inclusion % when not `seeded`)
 - Harness contestant D + feeder/keepable report framing
-- CON-328 timeout ≥ 1800 + CON-330 per-contestant URL scoping + regression tests
+- timeout ≥ 1800 + the per-contestant URL scoping + regression tests
 
 ## What is closed
 
@@ -76,7 +76,7 @@ Do not flip blue as a side effect of a harness or docs PR.
 1. Quit Chrome (or reboot) — 8GB demo host cannot sweep under ~4GB Chrome pressure
 2. Confirm `:8001` has no `EDHREC_SEED`; `:8004` has `=1`
 3. `python scripts/v2_benchmark.py --validate` prints `DEFAULT_BUILD_TIMEOUT=1800`
-4. `python test_v2_benchmark.py` green (includes CON-328/330 pins)
+4. `python test_v2_benchmark.py` green (includes the build-timeout floor / the per-contestant URL scoping pins)
 5. Launch without `--green-url`:
 
 ```bash

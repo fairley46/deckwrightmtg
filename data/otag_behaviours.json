@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "CON-149 behaviour vocabulary; CON-212 beginner alias pack. Aliases she types → verified otag: tags or keyword: abilities. No /catalog endpoint — every otag was probed live; dead tags are absent. keyword_aliases target only catalogued keyword abilities/actions. Refresh by re-probing candidates, never invent at query time.",
+  "note": "behaviour vocabulary; the beginner alias pack. Aliases she types → verified otag: tags or keyword: abilities. No /catalog endpoint — every otag was probed live; dead tags are absent. keyword_aliases target only catalogued keyword abilities/actions. Refresh by re-probing candidates, never invent at query time.",
   "aliases": {
     "steal": "theft",
     "theft": "theft",

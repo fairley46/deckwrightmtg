@@ -1,18 +1,16 @@
 # Bake-off readiness — E / BLUE / B / C
 
-What the maintainer does on the demo host **after** CON-334 + CON-331 land on `main`,
+What the maintainer does on the demo host **after** the dual-floor and LLM-timeout fix the MV floor bounds land on `main`,
 **before** treating the four-way sweep as a fair contest.
 
-Linear: CON-334 ·
-CON-331 ·
-CON-322 (#314 C wire).
+
 
 ## Product prereqs (repo)
 
 | # | Check | Evidence |
 |---|---|---|
-| 1 | CON-334 merged | green + green-b templates include `DECKWRIGHT_LLM_TIMEOUT=600` |
-| 2 | CON-331 merged | `python scripts/bound_coverage.py` → `SEEN=6 NONE=0` |
+| 1 | The dual-floor and LLM-timeout fix merged | green + green-b templates include `DECKWRIGHT_LLM_TIMEOUT=600` |
+| 2 | The MV floor bounds merged | `python scripts/bound_coverage.py` → `SEEN=6 NONE=0` |
 | 3 | #314 rebased onto that tip | green-c plist also carries `DECKWRIGHT_LLM_TIMEOUT=600` |
 | 4 | #314 merged only when Brad says wire C | draft until then — do not promote |
 
@@ -27,7 +25,7 @@ git fetch origin && git checkout main && git pull origin main
 # After #314 merges:
 ./config/install-green-c-launchd.sh     # :8003 candidate=C
 
-# Confirm timeout on every green process (CON-334):
+# Confirm timeout on every green process:
 #   ps eww <pid> | tr ' ' '\n' | grep DECKWRIGHT_LLM_TIMEOUT
 # Expect 600 on :8001, :8002, and :8003.
 
@@ -37,7 +35,7 @@ curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8002/
 curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8003/   # after C install
 ```
 
-## Bound coverage (CON-331)
+## Bound coverage
 
 ```bash
 source .venv/bin/activate
@@ -47,7 +45,7 @@ python scripts/bound_coverage.py
 Expect all six bound-declaring commanders **SEEN**. Meren's experience
 capacity remains unknown at audit time (honest); extract is still SEEN.
 
-## CardFacts coverage (CON-322 — before re-sweep)
+## CardFacts coverage (before re-sweep)
 
 ```bash
 python scripts/cardfacts_coverage.py --reextract
@@ -63,7 +61,7 @@ further). Vanilla creatures and lands stay `unread` by design — not failures.
 **Do not** run `bake_cardfacts.py --force` without `DECKWRIGHT_HOME` — that
 writes into blue's `~/.deckwright`.
 
-Bound column for ranking: use `violation_count_payoff` (CON-335), not raw
+Bound column for ranking: use `violation_count_payoff`, not raw
 `violation_count` (ramp rocks count as floor violations but are load-bearing).
 
 ## Sweep
@@ -73,10 +71,10 @@ Contestants: **E, BLUE, B, C**.
 - BLUE → `:8001` off
 - B → `:8002`
 - C → `:8003`
-- **No `--green-url` on multi-contestant sweeps** (CON-330) — that collapses
+- **No `--green-url` on multi-contestant sweeps** — that collapses
   ports onto one process and invents agreement.
 
-Harness checkout (CON-319 line) once product + C wire are on one tree:
+Harness checkout (line) once product + C wire are on one tree:
 
 ```bash
 python scripts/v2_benchmark.py --contestants E,BLUE,B,C

@@ -1,5 +1,5 @@
 """
-test_v2_benchmark.py — CON-319 offline harness checks.
+test_v2_benchmark.py — offline harness checks.
 
 No model. No Scryfall. No EDHREC. The bake-off is only as honest as this file.
 
@@ -438,7 +438,7 @@ def test_report_deterministic_order():
     eq("row order", ids, want)
     md = vb.render_report(doc)
     (ok if md.index("E") < md.index("BLUE") or True else bad)("markdown renders", "")
-    (ok if "CON-319" in md else bad)("card in header", "")
+    (ok if "# V2 bake-off report" in md else bad)("title in header", "")
     (ok if doc["header"]["sim_seed"] == 319 else bad)("seed in header", "")
 
 
@@ -480,8 +480,8 @@ def test_validate_contestant_registry_rejects_collisions():
     eq("env collision reported", any("url_env collision" in e for e in errs2), True)
 
 
-def test_con328_build_timeout_floor():
-    print("\nCON-328 — DEFAULT_BUILD_TIMEOUT must stay ≥ 1800 (PR #322 hole)")
+def test_build_timeout_floor():
+    print("\nDEFAULT_BUILD_TIMEOUT must stay ≥ 1800 (PR #322 hole)")
     eq("constant ≥ 1800", vb.DEFAULT_BUILD_TIMEOUT >= 1800.0, True)
     eq("default_build_timeout() ≥ 1800", vb.default_build_timeout() >= 1800.0, True)
     # build_http default kwarg must bind the constant, not a bare 300.
@@ -492,8 +492,8 @@ def test_con328_build_timeout_floor():
     eq("build_http timeout default ≥ 1800", default >= 1800.0, True)
 
 
-def test_con330_green_url_does_not_cross_apply():
-    print("\nCON-330 — --green-url scopes to BLUE only; B/C/D keep own ports")
+def test_green_url_does_not_cross_apply():
+    print("\n--green-url scopes to BLUE only; B/C/D keep own ports")
     reg = {
         "contestants": [
             {"id": "BLUE", "kind": "http_build", "enabled": True,
@@ -534,7 +534,7 @@ def test_con330_green_url_does_not_cross_apply():
 
 
 def test_overlap_with_e_metric():
-    print("\noverlap_with_e — CON-336 sanity check (not primary win metric)")
+    print("\noverlap_with_e — sanity check (not primary win metric)")
     ov = vb.overlap_with_e(["A", "B", "C"], ["B", "C", "D", "E"])
     eq("status ok", ov["status"], vb.OK)
     eq("pct_of_e", ov["pct_of_e"], 50.0)
@@ -584,8 +584,8 @@ def main() -> int:
     test_report_deterministic_order()
     test_registry_consistency()
     test_validate_contestant_registry_rejects_collisions()
-    test_con328_build_timeout_floor()
-    test_con330_green_url_does_not_cross_apply()
+    test_build_timeout_floor()
+    test_green_url_does_not_cross_apply()
     test_overlap_with_e_metric()
     test_band_aggregation_unknowns()
     print(f"\n{GREEN}{passed} passed{OFF}"

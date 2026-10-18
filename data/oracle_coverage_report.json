@@ -1,5 +1,4 @@
 {
-  "issue": "CON-251",
   "measured_on": "2026-10-11",
   "universe_commander_legal": 32116,
   "unknown_unreadable": 0,
@@ -505,12 +504,12 @@
       "line": "whenever a player taps a land for mana, that player adds one mana of any type that land produced"
     }
   ],
-  "note": "CON-251: readable = oracle_signal OR Scryfall keyword catalog. Keywords are not invented signals and do not create produce/consume. Unread tail ranks lines on cards with neither. Unknown means we could not look (missing oracle).",
+  "note": "readable = oracle_signal OR Scryfall keyword catalog. Keywords are not invented signals and do not create produce/consume. Unread tail ranks lines on cards with neither. Unknown means we could not look (missing oracle).",
   "bulk_updated_at": "2026-10-10T21:01:55.638+00:00",
   "bulk_fetched_at": "2026-10-11T09:00:03.591354+00:00",
   "comparison": {
     "before": {
-      "commit_note": "end of Know Magic lap 2 (CON-251 / 85ae055)",
+      "commit_note": "end of Know Magic lap 2",
       "oracle_signal_count": 89,
       "at_least_one_signal_pct": 66.6,
       "at_least_one_signal_count": 21200,
@@ -544,6 +543,6 @@
       "stays_tapped",
       "activated_ping"
     ],
-    "note": "CON-252 lap 3 mid-tail. Precision 89.9% held."
+    "note": "lap 3 mid-tail. Precision 89.9% held."
   }
 }

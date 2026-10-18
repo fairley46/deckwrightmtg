@@ -36,7 +36,7 @@ WISH = ("I want to build Hei Bai, Spirit of Balance. Sacrifice creatures and "
 
 # What the tutorial derives from the card, as oracle-text probes.
 #
-# CON-174: "leaves the battlefield" greps cards that TRIGGER on leaving.
+# "leaves the battlefield" greps cards that TRIGGER on leaving.
 # Hei Bai needs cards that CAUSE him to leave. Measure causation separately;
 # keep the phrase probe so a real leave-trigger in the 99 is still visible.
 PROBES = [

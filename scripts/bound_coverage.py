@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""CON-331 bound coverage — does `commander_strategy.derive` see harness bounds?
+"""bound coverage — does `commander_strategy.derive` see harness bounds?
 
 Sign-off before the next E,BLUE,B sweep. Prints whether derive extracts any
 bounds for every harness commander that *declares* bounds.
 
-Run AFTER CON-331 floor-bounds land. Expect NONE → nonempty for floor
+Run AFTER the MV floor bounds floor-bounds land. Expect NONE → nonempty for floor
 commanders (Bello, Tayam, Shirei, Maralen, …). This script only *reads*
 derive — it does not edit the extractor.
 
@@ -28,7 +28,7 @@ sys.path.insert(0, str(REPO))
 
 DEFAULT_FROZEN = REPO / "data" / "benchmarks" / "commanders.json"
 
-# Gate 5 / CON-331 — six bound-declaring names when frozen set is absent.
+# Gate 5 / six bound-declaring names when frozen set is absent.
 GATE5_BOUND_NAMES: tuple[str, ...] = (
     "Bello, Bard of the Brambles",
     "Shirei, Shizo's Caretaker",

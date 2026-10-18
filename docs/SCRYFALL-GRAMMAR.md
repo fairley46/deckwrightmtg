@@ -18,10 +18,10 @@ different hat:
 
 | card | symptom | same disease |
 |---|---|---|
-| CON-110 | a theme Scryfall can't search becomes basic lands | guessed `t:` |
-| CON-111 | the ladder skips the rung that would have worked | no way to say what the rung is |
-| CON-144 | 63 taxonomy queries named things Scryfall doesn't index | guessed `keyword:` |
-| CON-148 | "spiderman" finds 0 next to a Spider-Man commander | guessed `t:`, never tried `set:` |
+| The basic-land padding fix | a theme Scryfall can't search becomes basic lands | guessed `t:` |
+| The commander ladder fix | the ladder skips the rung that would have worked | no way to say what the rung is |
+| The taxonomy query verification | 63 taxonomy queries named things Scryfall doesn't index | guessed `keyword:` |
+| The set-search fix | "spiderman" finds 0 next to a Spider-Man commander | guessed `t:`, never tried `set:` |
 
 Patching them one at a time is hunting in the dark. **The fix is to know the option space.**
 
@@ -153,7 +153,7 @@ Probed live — several plausible tags do not exist:
 ```
 
 A wrong tag returns HTTP 404, which the app reads as an empty result and pads around. So every
-`otag:` we emit needs the **same build-time verification as CON-144** — probe it once, fail
+`otag:` we emit needs the **same build-time verification as the taxonomy query verification** — probe it once, fail
 loudly, cache the ones that work. Build the behaviour vocabulary by verifying candidates, not
 by guessing them at query time.
 
@@ -216,8 +216,8 @@ list down and convert it" move rather than a per-theme guess.
 ## The rule that must not be lost
 
 **A term that resolves to nothing must say so.** Never silently degrade to a generic query and
-present the result as if it matched. That is CON-110's failure and CON-148's copy bug, and it
-is the same shape as `scry()` returning empty for a throttled request (CON-145):
+present the result as if it matched. That is the basic-land padding fix's failure and the set-search fix's copy bug, and it
+is the same shape as `scry()` returning empty for a throttled request:
 
 > An unknown is not a zero, and a fallback is not a match.
 

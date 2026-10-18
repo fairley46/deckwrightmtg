@@ -1,4 +1,4 @@
-"""CON-256 — instrumented chat readback (unit / offline)."""
+"""instrumented chat readback (unit / offline)."""
 from __future__ import annotations
 
 
@@ -177,7 +177,7 @@ class InstrumentChat(unittest.TestCase):
         )
 
     def test_closing_readback_does_not_force_ok_pool_count(self):
-        # CON-287: healthy pool size is a builder diagnostic — not her handoff.
+        # healthy pool size is a builder diagnostic — not her handoff.
         inst = {
             "spans": [{"said": "pirates", "count": 180, "status": "ok",
                        "operator": "t:pirate"}],

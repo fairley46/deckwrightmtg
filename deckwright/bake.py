@@ -1,7 +1,7 @@
 """
 bake.py — stamps that mark a cached analysis valid or stale.
 
-Shared by saved-deck simulation cache (CON-108) and precon bake (CON-102).
+Shared by saved-deck simulation cache and precon bake.
 A hash mismatch means the card list changed; a version bump means our own
 engine changed. Either one means recompute — never serve numbers from an
 engine we no longer run.

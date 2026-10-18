@@ -1,7 +1,7 @@
 """
 overview.py — deck overview grounded in the list and the simulation.
 
-CON-68: how it works, combos, pros, cons. Every claim must trace to a card in
+how it works, combos, pros, cons. Every claim must trace to a card in
 the 99 or a number from sim.diagnose() / deck_signals(). The model phrases;
 it does not recall Magic facts.
 """
@@ -11,8 +11,8 @@ import re
 
 from deckwright import sim
 
-# CON-102: bump when OVERVIEW / verify_overview change what baked prose means.
-# CON-116: also bump when precon brief_from_analysis shape changes — same stamp.
+# bump when OVERVIEW / verify_overview change what baked prose means.
+# also bump when precon brief_from_analysis shape changes — same stamp.
 # precon_bake.ANALYSIS_VERSION travels with each entry; keep the two in lockstep.
 ANALYSIS_VERSION = 3
 
@@ -76,7 +76,7 @@ MATCHUP_BANNED = re.compile(
     re.I,
 )
 
-# CON-205: there are two goldfish runs in this app and they answer different
+# there are two goldfish runs in this app and they answer different
 # questions. Naming them the same thing ("the sim") is how a number from one
 # gets read as evidence for the other.
 #
@@ -124,7 +124,7 @@ def run_overview_sim(deck: list, cmdr_cmc: int, runs: int = 1500,
     return sim.run(deck, cmdr_cmc, payoffs, OVERVIEW_CONDITIONS, runs=runs, seed=seed)
 
 
-# Old name, kept one release. Identical behaviour — CON-205 renamed, not rewired.
+# Old name, kept one release. Identical behaviour — renamed, not rewired.
 run_build_sim = run_overview_sim
 
 
@@ -219,7 +219,7 @@ def _curve_by_turn(curves: list, label: str, turn: int = 6) -> float | None:
 def from_counts(commander: str, deck: list, signals: dict, sim_out: dict) -> dict:
     """Deterministic overview from countable facts — no model call.
 
-    CON-102 bake path: when Anthropic is unavailable (or for a first-pass bake),
+    bake path: when Anthropic is unavailable (or for a first-pass bake),
     write the same shape generate_overview returns, citing only diagnostics,
     signal lines, and sim curve percentages. Combos stay empty — pairing
     oracle texts is a judgment call the model owns.
@@ -335,7 +335,7 @@ def facts_block(commander: str, cmdr_card: dict, deck: list, brief: dict,
             "points": pts,
         })
 
-    # CON-79: type breakdown is a first-class fact so cons can cite
+    # type breakdown is a first-class fact so cons can cite
     # "only 12 creatures" without the model inventing a count.
     type_counts = {}
     for key in ("creatures", "instants_sorceries", "artifacts",
@@ -366,7 +366,7 @@ async def generate_overview(client, model: str, commander: str, cmdr_card: dict,
     """Call the model and verify card names against the deck."""
     facts = facts_block(commander, cmdr_card, deck, brief, signals, sim_out, for_model)
     if partner_card:
-        # CON-118: both halves of a partner pair are nameable in the write-up.
+        # both halves of a partner pair are nameable in the write-up.
         facts = facts + "\nPARTNER:\n" + json.dumps(for_model(partner_card), indent=1)
     response = await client.messages.create(
         # The object grew: strategy, beats and per-role lines on top of the

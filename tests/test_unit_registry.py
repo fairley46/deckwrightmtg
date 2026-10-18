@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-273: every offline test_*.py is registered — or deliberately excluded.
+"""every offline test_*.py is registered — or deliberately excluded.
 
 Safe to list in check_all._UNIT_COMMANDS: this file only reads the registry.
 It never calls ca.main() or run_tier(), so run_unit() cannot recurse through it.
@@ -43,7 +43,7 @@ def eq(label, got, want):
 
 
 def test_unit_commands_cover_offline_files():
-    print("\nunit registry — offline coverage (CON-273)")
+    print("\nunit registry — offline coverage")
     missing = ca.unregistered_offline_tests()
     eq("no offline unit file missing from _UNIT_COMMANDS / _UNIT_EXCLUDED",
        missing, [])
@@ -65,15 +65,15 @@ def test_gap_is_detectable():
     root = Path(__file__).resolve().parent  # tests/
     # tests dir
     root = Path(__file__).resolve().parent
-    phantom = root / "test_con273_unregistered_phantom.py"
+    phantom = root / "test_unregistered_phantom.py"
     if phantom.exists():
         bad("phantom path clear", f"{phantom.name} already exists")
         return
     try:
-        phantom.write_text("# temporary CON-273 probe — should never stay\n", encoding="utf-8")
+        phantom.write_text("# temporary should never stay\n", encoding="utf-8")
         missing = ca.unregistered_offline_tests(root)
         eq("phantom appears in unregistered_offline_tests",
-           "test_con273_unregistered_phantom.py" in missing, True)
+           "test_unregistered_phantom.py" in missing, True)
     finally:
         phantom.unlink(missing_ok=True)
     eq("phantom removed after probe", phantom.exists(), False)

@@ -1,5 +1,5 @@
 """
-commanders.py — CON-190 commander knowledge base.
+commanders.py — commander knowledge base.
 
 Lookup over data/commanders.json. A missing name is ABSENT (not researched).
 An entry with ways_to_play: [] means we looked and found none. Those are
@@ -24,7 +24,7 @@ _KB: dict[str, Any] | None = None
 ALLOWED_METHODS = frozenset({"both", "community", "derived"})
 ALLOWED_CONFIDENCE = frozenset({"high", "medium", "low"})
 
-# CON-196: EDHREC tag_counts → playstyle allowlist only.
+# EDHREC tag_counts → playstyle allowlist only.
 # Creature-type tags (Elves, Zombies) are not playstyle ids — do not invent
 # tribal from type names. Synonyms (equipment→voltron, sacrifice→aristocrats)
 # are community labels for the same allowlisted playstyle.
@@ -51,13 +51,13 @@ EDHREC_TAG_TO_PLAYSTYLE: dict[str, str] = {
     "lifegain": "lifegain",
     "lifedrain": "lifegain",
     "artifacts": "artifacts",
-    # Treasure is an artifact token — not the creature-tokens playstyle (CON-213).
+    # Treasure is an artifact token — not the creature-tokens playstyle.
     "treasure": "artifacts",
     "treasures": "artifacts",
     "tribal": "tribal",
 }
 # Below this deck-count, a tag is noise on a thin page — not a playstyle claim.
-# Floor restored to 5 (CON-239): Akroma Voltron=4 / Arcades Auras=3 drop again —
+# Floor restored to 5: Akroma Voltron=4 / Arcades Auras=3 drop again —
 # Brad authorized the restore over keeping those thin tags.
 EDHREC_TAG_MIN_COUNT = 5
 WAYS_MAX = 5
@@ -185,7 +185,7 @@ def apply_edhrec_community(
     researched_at: str,
     vocab: dict[str, dict],
 ) -> dict:
-    """Merge EDHREC community labels onto an existing KB entry (CON-196 B grow).
+    """Merge EDHREC community labels onto an existing KB entry (B grow).
 
     Reuses derived playstyles already on the entry — KB rows do not store
     oracle text. Never invents playstyle ids outside vocab.
@@ -273,8 +273,8 @@ def lookup(name: str, store: dict[str, Any] | None = None) -> dict[str, Any] | N
 def coverage(store: dict[str, Any] | None = None) -> dict[str, Any]:
     """Mechanics, ways-to-play, and research — three fractions, never one.
 
-    CON-194: mechanics is free (oracle → demand_profile) and must be 100%.
-    CON-196: ways_to_play is the articulated middle — mechanics ran and at
+    mechanics is free (oracle → demand_profile) and must be 100%.
+    ways_to_play is the articulated middle — mechanics ran and at
     least one playstyle matched. Research is expensive and may be partial.
     Reporting only `researched` hid a complete free half behind a tiny
     expensive one; reporting only mechanics hid the empty-ways gap.
@@ -455,19 +455,19 @@ def _cap_ways(
     return kept
 
 
-# CON-229 / GA-PATH: junk from type-line tokenization that pollutes top-theme
+# Junk from type-line tokenization that pollutes top-theme
 # lists. Human is a real creature type, but at KB scale it drowns tribal signal.
 _TYPE_LINE_THEME_DROP = frozenset({
     "legendary", "creature", "artifact", "enchantment", "land",
     "planeswalker", "battle", "tribal", "kindred", "token", "basic", "snow",
     "world",
-    "human",  # GA path — drop from KB themes, not from deck briefs (CON-229)
+    "human",  # GA path — drop from KB themes, not from deck briefs
 })
 _PUNCT_THEME_FRAGMENTS = frozenset({"//", "/", "—", "-"})
 
 
 def filter_theme_tokens(tokens: list[str]) -> list[str]:
-    """Drop type-line pollution tokens (CON-229)."""
+    """Drop type-line pollution tokens."""
     out: list[str] = []
     for raw in tokens:
         t = (raw or "").strip().lower()
@@ -492,12 +492,12 @@ def themes_from_type_line(type_line: str) -> list[str]:
     return filter_theme_tokens(raw)
 
 
-# ── CON-191: theme fit + strategy fit + relational copy ──────────────────
+# ── theme fit + strategy fit + relational copy ──────────────────
 
 
 # Connectors / filler in conversational themes ("pirates that steal",
 # "horses and knights"). Same defect class as strategy #157 — the whole
-# phrase must not be the only term (CON-207).
+# phrase must not be the only term.
 _THEME_STOPWORDS = frozenset({
     "a", "an", "and", "for", "in", "my", "of", "on", "or", "our", "team",
     "that", "the", "to", "which", "who", "with",
@@ -546,7 +546,7 @@ _STRATEGY_STOPWORDS = frozenset({
     "abilities", "battlefield", "card", "cards", "creature", "creatures",
     "deck", "every", "permanent", "permanents", "pile", "play", "table",
     "turn", "turns", "win", "wins",
-    # CON-223 / Gate 1 BUG-2+6: fillers that live inside playstyle `says`
+    # fillers that live inside playstyle `says`
     # ("machines that feed each other", "build around…") and were printed
     # as her strategy label / false-matched artifacts.
     "each", "other", "around", "build", "feed", "feeds", "also", "into",
@@ -649,11 +649,11 @@ def strategy_fit(card: dict, brief: dict | None) -> dict[str, Any]:
     strategy words. score is a count. status empty = no strategy ask; unknown
     = could not read the commander. An unknown is never a zero.
 
-    CON-223 / Gate 1 BUG-6: do **not** match against `says` prose — marketing
+    do **not** match against `says` prose — marketing
     copy like "machines that feed each other" false-hit on filler words and
     seated every cavalry commander as artifacts.
 
-    CON-257: a mapped `way_playstyle` on the brief is a hard hit when the
+    a mapped `way_playstyle` on the brief is a hard hit when the
     commander detects that way — stated preference, not phrase guesswork.
     """
     from deckwright import playstyles
@@ -799,7 +799,7 @@ def relational_copy(
     if isinstance(s_score, int) and s_score > 0 and matched:
         lead = matched[0]
         says = (vocab.get(lead) or {}).get("says") or lead
-        # CON-257: quote the scene she picked when present.
+        # quote the scene she picked when present.
         way_pref = (brief.get("way_preference") or "").strip()
         her = way_pref or _her_strategy_label(brief, strategy_terms, lead, says)
         if isinstance(t_score, int) and t_score > 0 and theme_term:
@@ -808,7 +808,7 @@ def relational_copy(
             opener = f"Fits your {her} strategy"
         parts.append(f"{opener}: {says}")
         others = [p for p in (w.get("playstyle") for w in ways) if p and p != lead]
-        # Cap at two alternates — CON-179 will surface the full switcher.
+        # Cap at two alternates — will surface the full switcher.
         alts = []
         for pid in others[:2]:
             alt_says = (vocab.get(pid) or {}).get("says") or pid
@@ -875,7 +875,7 @@ def picker_differs(
 ) -> dict[str, Any]:
     """Facts that distinguish this commander from others on the same rung.
 
-    CON-286: derived from Scryfall + KB — type, colours, themes, signals, ways.
+    derived from Scryfall + KB — type, colours, themes, signals, ways.
     Never a prose template that only swaps the name. Empty lists mean we looked
     and found none; absent KB is themes/signals empty, not invented.
     """

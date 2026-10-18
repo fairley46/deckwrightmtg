@@ -1,5 +1,5 @@
 """
-test_commander_difficulty.py — CON-134: commander difficulty as one plain sentence.
+test_commander_difficulty.py — commander difficulty as one plain sentence.
 
     python test_commander_difficulty.py
 """
@@ -202,7 +202,7 @@ FIXTURES = [
 
 
 def test_fixed_commanders():
-    print("\ncommander difficulty  — CON-134 fixed sentences")
+    print("\ncommander difficulty  — fixed sentences")
     for name, card, want in FIXTURES:
         got = commander_difficulty.difficulty_sentence(card)
         eq(name, got, want)

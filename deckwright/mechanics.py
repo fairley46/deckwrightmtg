@@ -1,5 +1,5 @@
 """
-mechanics.py — Scryfall catalogs + family taxonomy + deck density (CON-130/131/133).
+mechanics.py — Scryfall catalogs + family taxonomy + deck density.
 
 This is the substrate for plan math, not a label printer.
 
@@ -605,7 +605,7 @@ def attach_mechanics(data: dict, families: dict[str, Any] | None = None) -> dict
 # ---------------------------------------------------------------- relations
 #
 # Lineage (Storied ← Ascend) and explicit family edges (tokens → go_wide) are
-# how plans compose. related_* helpers are what CON-122/134 read — never a
+# how plans compose. related_* helpers are what the token perception work / the commander difficulty sentence read — never a
 # free-text guess at "what synergizes."
 
 
@@ -652,7 +652,7 @@ def family_relations(family: str, families: dict[str, Any] | None = None) -> lis
 def related(name: str, families: dict[str, Any] | None = None) -> dict[str, Any]:
     """Full relation view for one mechanic: family, lineage, sibling families.
 
-    This is the unit CON-134 uses to expand a goal ("more tokens") into the
+    This is the unit the commander difficulty sentence uses to expand a goal ("more tokens") into the
     families and signals that actually feed or spend that plan.
     """
     families = families if families is not None else load_families()
@@ -707,7 +707,7 @@ def plan_role_coverage(
 ) -> dict[str, Any]:
     """How much of the taxonomy join carries a plan_role — for UI honesty.
 
-    CON-147: "3 engines" must not be read as "only 3 engines exist." The
+    "3 engines" must not be read as "only 3 engines exist." The
     calendar states this coverage next to the counts.
     """
     families = families if families is not None else load_families()
@@ -792,7 +792,7 @@ def _card_type_line(card: dict) -> str:
 def card_matches_taxonomy_query(card: dict, query: str) -> bool:
     """Evaluate one verified taxonomy query against a Scryfall card dict.
 
-    Supports the shapes CON-144 gates: keyword:, o:, t:, is:. Unknown shapes
+    Supports the shapes the taxonomy query verification gates: keyword:, o:, t:, is:. Unknown shapes
     are not matches — an unknown is not a zero, and a fallback is not a match.
     """
     q = (query or "").strip()

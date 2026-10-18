@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""CON-162: reproduce scoring-contract tables + probe extraction misses.
+"""reproduce scoring-contract tables + probe extraction misses.
 
 Not a gate. Prints measured numbers so the confidence readout can cite them.
 Every table in docs/SCORING-CONTRACT.md must be reproducible from this file.
 
-    python scripts/con162_audit_math.py                  # full audit
-    python scripts/con162_audit_math.py --tables-only    # scoring tables
-    python scripts/con162_audit_math.py --extract-only   # adversarial extraction
-    python scripts/con162_audit_math.py --keys-only      # THESIS_KEYS reachability
+    python scripts/audit_scoring_math.py                  # full audit
+    python scripts/audit_scoring_math.py --tables-only    # scoring tables
+    python scripts/audit_scoring_math.py --extract-only   # adversarial extraction
+    python scripts/audit_scoring_math.py --keys-only      # THESIS_KEYS reachability
 """
 from __future__ import annotations
 
@@ -385,7 +385,7 @@ ADVERSARIAL = [
                 "Search your library for a Plains, Island, Swamp, or Mountain card, "
                 "put it onto the battlefield tapped, then shuffle."),
      {"fetch": 1}),
-    # CON-163: activated land-search is not on-cast fetch.
+    # activated land-search is not on-cast fetch.
     ("fetch", C("Wayfarer's Bauble", "{1}", 1, "Artifact",
                 "{2}, {T}, Sacrifice Wayfarer's Bauble: Search your library for a "
                 "basic land card, put that card onto the battlefield tapped, then "
@@ -481,7 +481,7 @@ def key_reachability():
 
 # ── 4. Payoff query kind audit ───────────────────────────────────────────────
 
-UA = {"User-Agent": "Deckwright/1.0 (CON-162 QC)", "Accept": "application/json"}
+UA = {"User-Agent": "Deckwright/1.0", "Accept": "application/json"}
 
 
 def scry_top(q, n=8):

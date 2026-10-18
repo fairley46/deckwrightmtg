@@ -1,5 +1,5 @@
 """
-deck_state.py — match notes, pending change-sets, versions (CON-121/126/127/271).
+deck_state.py — match notes, pending change-sets, versions.
 
 D1: suggestions are a pending change set (MR-style). Staging never mutates
 the 99. Approve applies one set and forks version vN → vN+1 with a history
@@ -25,7 +25,7 @@ def _new_id() -> str:
     return uuid.uuid4().hex[:12]
 
 
-# ---------------------------------------------------------------- match notes (CON-121)
+# ---------------------------------------------------------------- match notes
 
 def list_match_notes(data: dict) -> list[dict]:
     notes = data.get("match_notes")
@@ -64,7 +64,7 @@ def delete_match_note(data: dict, note_id: str) -> bool:
     return True
 
 
-# ---------------------------------------------------------------- pending + versions (CON-126/127)
+# ---------------------------------------------------------------- pending + versions
 
 def ensure_version_fields(data: dict) -> dict:
     if "version" not in data:

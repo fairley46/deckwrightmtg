@@ -1,5 +1,5 @@
 """
-test_deck_accounting.py — CON-192 theme/strategy buckets on the 99.
+test_deck_accounting.py — theme/strategy buckets on the 99.
 
 Offline. Every card lands in exactly one bucket; unknown is never curve;
 counts are never padded.
@@ -233,7 +233,7 @@ def test_stamp_mutates_cards():
 
 
 def test_decidable_neither_is_curve():
-    """CON-223 / Gate 1 BUG-3: theme-slot filler with both axes False is curve,
+    """theme-slot filler with both axes False is curve,
     not unclassifiable. Unknown stays reserved for None (could not look)."""
     print("\naccounting — decidable-neither theme filler → curve_mana")
     filler = {
@@ -251,7 +251,7 @@ def test_decidable_neither_is_curve():
 
 
 def test_sibling_tribes_count():
-    """CON-223 / Gate 1 BUG-5: knight counts when tribes are horse+knight."""
+    """knight counts when tribes are horse+knight."""
     print("\naccounting — sibling tribes OR")
     knight = {
         "name": "Worthy Knight",

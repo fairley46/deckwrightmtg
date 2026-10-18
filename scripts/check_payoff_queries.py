@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gate every payoff pattern against live Scryfall (CON-139 / CON-144 shape).
+"""Gate every payoff pattern against live Scryfall (shape).
 
 A payoff query that returns nothing fails the build. But returning SOMETHING
 is not enough — these are hand-written patterns and four of the original nine
@@ -105,7 +105,7 @@ if dead:
     sys.exit(1)
 
 # Incomplete measurement is not a green gate. check_all maps exit 2 → SKIP
-# so a 429 cannot look like "all patterns live" (CON-169).
+# so a 429 cannot look like "all patterns live".
 if throttled:
     sys.exit(2)
 print(f"\nall {len(TARGETS)} payoff patterns live")

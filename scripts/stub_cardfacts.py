@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: write an empty-but-valid CardFacts store (no model, no scrape).
+"""write an empty-but-valid CardFacts store (no model, no scrape).
 
     python scripts/stub_cardfacts.py
     python scripts/stub_cardfacts.py --path /tmp/cardfacts.json

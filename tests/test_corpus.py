@@ -1,5 +1,5 @@
 """
-test_corpus.py — CON-294 local Scryfall corpus (offline).
+test_corpus.py — local Scryfall corpus (offline).
 
 Synthetic cards only. No network. Asserts:
 
@@ -86,7 +86,7 @@ def test_unsupported_is_not_empty():
     eq("detail names otag", "otag" in (r.detail or "").lower(), True)
 
     # Pure art: stays unsupported. art: next to a local content clause is
-    # incomplete (CON-308) — local served, not a smaller HIT.
+    # incomplete — local served, not a smaller HIT.
     r2 = c.serve_search("art:pirate")
     eq("pure art status unsupported", r2.status, corpus.UNSUPPORTED)
     r2b = c.serve_search("ft:treasure art:pirate")
@@ -301,8 +301,8 @@ def test_cadence_mentions_corpus():
 
 
 def test_partition_composite_queries():
-    """CON-308: AND-conjuncts split — local clauses stay local."""
-    print("\ncorpus — partition composite queries (CON-308)")
+    """AND-conjuncts split — local clauses stay local."""
+    print("\ncorpus — partition composite queries")
     p = corpus.partition_query(
         "(t:pirate OR t:treasure) otag:discard f:commander")
     eq("kind mixed", p["kind"], "mixed")
@@ -343,8 +343,8 @@ def test_partition_composite_queries():
 
 
 def test_composite_serve_incomplete_not_smaller_hit():
-    """CON-308: local conjuncts served; result is incomplete, not a smaller HIT."""
-    print("\ncorpus — composite incomplete ≠ smaller hit (CON-308)")
+    """local conjuncts served; result is incomplete, not a smaller HIT."""
+    print("\ncorpus — composite incomplete ≠ smaller hit")
     c = load_fixture()
     r = c.serve_search("(t:pirate OR t:treasure) otag:discard f:commander")
     eq("composite status incomplete", r.status, corpus.INCOMPLETE)
@@ -374,8 +374,8 @@ def test_composite_serve_incomplete_not_smaller_hit():
 
 
 def test_composite_live_refusal_unknown_not_complete():
-    """CON-308: live refusing a composite serves local, raises unknown-not-complete."""
-    print("\ncorpus — composite live refusal (CON-308)")
+    """live refusing a composite serves local, raises unknown-not-complete."""
+    print("\ncorpus — composite live refusal")
     import asyncio
     from unittest.mock import AsyncMock, patch
     from deckwright import app as deck_app

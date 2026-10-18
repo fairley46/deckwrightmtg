@@ -1,4 +1,4 @@
-# Candidate C — remaining implementation plan (CON-322)
+# Candidate C — remaining implementation plan
 
 Ceiling rung of the three-version bake-off. Design authority:
 commander-driven evaluation in the v2 design (Part B) — CardFacts →
@@ -8,7 +8,7 @@ CommanderStrategy → ServeReport.
 
 | Piece | State |
 |---|---|
-| CardFacts scaffold + extract + offline bake | Landed (CON-322 pipeline / ready) |
+| CardFacts scaffold + extract + offline bake | Landed (pipeline / ready) |
 | Candidate B (strategy + steer + stamps) | Shipped on `main` (Gate 4B) |
 | CardFacts → audit/steer behind `DECKWRIGHT_CANDIDATE=C` | **This PR — flag-gated only** |
 | Contestant C in harness registry | Registered (`:8003` / `DECKWRIGHT_GREEN_C_URL`) — **not default** |
@@ -30,7 +30,7 @@ default path. C runs only when green-c is installed or
 ```bash
 source .venv/bin/activate
 python scripts/bake_cardfacts.py          # resume/skip-existing by default
-python scripts/bake_cardfacts.py --force  # after extract changes (CON-322)
+python scripts/bake_cardfacts.py --force  # after extract changes
 python scripts/cardfacts_status.py        # ok / partial / unread / unknown
 python scripts/cardfacts_coverage.py --reextract   # live extract tallies
 ```
@@ -40,7 +40,7 @@ oracle text is `ok` or `partial`. Empty-oracle cards stay `unread` by design
 (~10% of the dump). Also report `ok` / `steer_usable` for C quality.
 100% *ok* on the full dump is not a goal — vanilla keywords stay partial.
 
-Share `otag_membership` harvest with CON-303 rather than a second tag cache
+Share `otag_membership` harvest with the live-Scryfall build note rather than a second tag cache
 (tier-1 rollups + tier-3 consistency).
 
 ### 2. Wire lookup into audit / steer (flag-gated) — done in this PR
@@ -61,8 +61,8 @@ Model never authors CardFacts. Deterministic extractors only.
 `data/benchmarks/contestants.json` slot `C` is `http_build` →
 `http://127.0.0.1:8003` (`DECKWRIGHT_GREEN_C_URL`). Green-c dual instance:
 `./config/install-green-c-launchd.sh`. Do not retune harness grading to flatter C.
-When the CON-319 harness branch merges, add `--green-c-url` the same way
-CON-330 scoped `--green-b-url` (CLI override for C only).
+When the V2 benchmark harness branch merges, add `--green-c-url` the same way
+scoped `--green-b-url` (CLI override for C only).
 
 ### 4. Bake-off: `E,BLUE,B,C`
 
@@ -70,14 +70,14 @@ Same commanders and metrics as Gate 4/5. Report wall-clock build cost, bake
 cost, cold-start when facts are missing, and bound-violation columns with
 unknown counted separately. Bello remains the illustration for MV-floor
 violation — not a named branch in code. Bound coverage must be SEEN before
-reading the bound-violation column (CON-331).
+reading the bound-violation column.
 
 ### 5. UI
 
 Per-concept breakdown on the clarity / audit surface. No single composite
 “grade.” Concepts 4 and 6 stay `computable: false`, weight 0 — surfaced as
 “we do not score this.” Concepts 1 and 8 stay structural/solitaire until
-CON-316 (table model).
+a table model exists.
 
 ---
 
@@ -90,8 +90,8 @@ CON-316 (table model).
 | **Unread long-tail** | Reminder-only / cryptic oracle → `unread` | Keep `status: unread` + honesty; never invent empty facts |
 | **Rules-engine creep** | Encoding Bello-granted abilities onto every MV≥4 artifact | Stay on “what the card says”; structural floor satisfaction only |
 | **Drift from B** | Duplicate bound/feeder logic | Share `card_bound_ok`; C adds CF fields, does not fork MV math |
-| **Harness pressure** | Temptation to change CON-319 to fit C | Register C; do not modify harness grading |
-| **Timeout wipe** | Reinstall green without CON-334 → 180s again | Templates carry 600; install prints it (CON-334) |
+| **Harness pressure** | Temptation to change the V2 benchmark harness to fit C | Register C; do not modify harness grading |
+| **Timeout wipe** | Reinstall green without the dual-floor and LLM-timeout fix → 180s again | Templates carry 600; install prints it |
 
 ---
 

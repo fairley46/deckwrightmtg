@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-169: tiered check_all entry point — house rules, not a green suite.
+"""tiered check_all entry point — house rules, not a green suite.
 
     python test_check_all.py
 """
@@ -60,7 +60,7 @@ def test_tier_selects_layers():
     t3 = [L.name for L in ca.layers_for(3)]
     OFFLINE = ["conflict_markers", "unit", "perception", "node_check"]
     NETWORK = ["scryfall_gates", "playwright", "schemathesis"]
-    # CON-204: e2e_flow is opt-in and deliberately NOT in the default tier 3.
+    # e2e_flow is opt-in and deliberately NOT in the default tier 3.
     # The ship gate is differential + Forge; e2e re-walks the chain differential
     # already covers, at model cost. It stays reachable via --with-optional.
     SHIP = ["differential", "forge_calibration"]
@@ -149,7 +149,7 @@ def test_node_check_layer_runs():
 
 
 def test_unit_commands_cover_offline_files():
-    """CON-188 / CON-273: every offline test_*.py is registered or excluded.
+    """every offline test_*.py is registered or excluded.
 
     The merge-gate copy of this assertion lives in test_unit_registry.py so
     tier 1 can run it without listing this file (which would recurse).
@@ -169,7 +169,7 @@ def test_unit_commands_cover_offline_files():
 
 def test_differential_missing_is_skip():
     print("\ncheck_all — missing differential harness is SKIP, not PASS")
-    # CON-168 has not landed; the layer must refuse to look green.
+    # has not landed; the layer must refuse to look green.
     # When that harness ships, this assertion retires — the runner will
     # exercise the real script instead of the absence path.
     candidates = [
@@ -178,7 +178,7 @@ def test_differential_missing_is_skip():
         Path(__file__).resolve().parents[1] / "scripts" / "diff_wishes.py",
     ]
     if any(p.is_file() for p in candidates):
-        # The harness HAS landed (CON-168). Do not call ca.run_differential()
+        # The harness HAS landed. Do not call ca.run_differential()
         # here: it drives the real thing -- live model calls and several
         # minutes -- and hung this file indefinitely once both PRs were on
         # main. Neither PR was wrong alone; the pair was. A Tier-1 unit test
@@ -190,7 +190,7 @@ def test_differential_missing_is_skip():
         return
     result = ca.run_differential()
     eq("differential status", result.status, ca.SKIP)
-    eq("differential names CON-168", "CON-168" in result.detail, True)
+    eq("differential names the harness", "differential harness" in result.detail, True)
 
 
 def test_cli_rejects_bad_tier():

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-307: backRow labels must not collide with the built-in Start over.
+"""backRow labels must not collide with the built-in Start over.
 
 Brad's playtest: import failure showed `← Start over` next to `Start over` —
 same words, different handlers (showLanding vs restart). A control says what
@@ -177,7 +177,7 @@ def collisions(html: str) -> list[str]:
 
 def test_backrow_source_contract():
     """The Python mirror is only honest if the JS still does these things."""
-    print("\nbackRow — source contract (CON-307)")
+    print("\nbackRow — source contract")
     src = backrow_source(extract_script())
     true("built-in Start over calls restart()",
          'onclick="restart()"' in src and ">Start over</button>" in src)
@@ -185,11 +185,11 @@ def test_backrow_source_contract():
         "omits duplicate when label is Start over",
         "=== 'start over'" in src or '=== "start over"' in src,
     )
-    true("CON-307 comment present", "CON-307" in src)
+    true("comment present", "the right slot is always restart()" in src)
 
 
 def test_call_sites_honest():
-    print("\nbackRow — call-site labels match handlers (CON-307)")
+    print("\nbackRow — call-site labels match handlers")
     script = extract_script()
     sites = call_sites(script)
     true("found backRow call sites", len(sites) >= 8, f"n={len(sites)}")

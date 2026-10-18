@@ -3,10 +3,10 @@
 Build data/behaviour_tags.json — verified Scryfall otag: behaviour vocabulary.
 
 otag: has no /catalog endpoint. A guessed tag 404s and the app reads that as
-empty (CON-110). Every candidate is probed live; the build fails on 404, zero
+empty. Every candidate is probed live; the build fails on 404, zero
 cards, or an unreachable probe. Unverified tags are never written.
 
-CON-151. Run: python scripts/build_behaviour_tags.py
+The verified otag vocabulary. Run: python scripts/build_behaviour_tags.py
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ OUT = ROOT / "data" / "behaviour_tags.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# Verified seed (probed live while writing CON-151). aliases share a card count
+# Verified seed (probed live while writing the verified otag vocabulary). aliases share a card count
 # with the canonical tag — recorded once, not as duplicate entries. synonyms are
 # player words that map onto the tag (steal → theft); they are not probed as tags.
 SEED: list[dict[str, Any]] = [
@@ -98,7 +98,7 @@ SEED: list[dict[str, Any]] = [
     {"tag": "extra-turn", "aliases": [], "synonyms": [
         "extra-turn", "extra turn", "extra turns",
     ]},
-    # otag:forcing was in the CON-151 seed table (52) but 404s live now —
+    # otag:forcing was in the verified otag vocabulary seed table (52) but 404s live now —
     # the gate correctly refuses it. Do not re-add without a fresh probe.
 ]
 
@@ -108,7 +108,7 @@ ProbeFn = Callable[[str], Awaitable[tuple[str, int | None]]]
 async def probe_tag(tag: str) -> tuple[str, int | None]:
     """Hit Scryfall for otag:<tag>. Returns (ok|zero|bad_request|unknown, cards).
 
-    Network/throttle failures are unknown — never scored as zero (CON-56).
+    Network/throttle failures are unknown — never scored as zero.
     """
     import time
 
@@ -249,7 +249,7 @@ async def build(
 
     payload = {
         "version": 1,
-        "source": "verified otag: probes — CON-151; no /catalog endpoint exists",
+        "source": "verified otag: probes — the verified otag vocabulary; no /catalog endpoint exists",
         "notes": [
             "Behaviour vocabulary for resolve_term() — checked before type/keyword catalogs.",
             "Every tag and alias was probed live; build fails on HTTP 404 or zero cards.",

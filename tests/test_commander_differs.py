@@ -1,9 +1,9 @@
 """
-test_commander_differs.py — CON-286 picker rows must differ without model prose.
+test_commander_differs.py — picker rows must differ without model prose.
 
 Offline.
 
-Paged commanders skip write-ups (CON-189). The fallback used to be KB fit
+Paged commanders skip write-ups. The fallback used to be KB fit
 lines that only swap the name — five angels all read the same. Differentiation
 comes from data we already have (type, colours, ways, themes, signals), and
 missing write-ups must not render as prose.
@@ -98,7 +98,7 @@ BRIEF = {
 
 def test_picker_differs_varies_by_card():
     """Five (or three) same-theme commanders must not share one fingerprint."""
-    print("\npicker_differs — fingerprints vary by construction (CON-286)")
+    print("\npicker_differs — fingerprints vary by construction")
     if (ROOT / "data" / "commanders.json").is_file():
         commanders.clear_cache()
     prints = []
@@ -119,7 +119,7 @@ def test_picker_differs_varies_by_card():
 
 def test_enrich_pick_no_fake_fits():
     """fits is model prose only. Template/KB lines are not a write-up."""
-    print("\nenrich_commander_pick — no fake fits prose (CON-286)")
+    print("\nenrich_commander_pick — no fake fits prose")
     theme = commanders.theme_fit(ANGEL_A, BRIEF)
     strat = commanders.strategy_fit(ANGEL_A, BRIEF)
     ways = []
@@ -168,7 +168,7 @@ def test_enrich_pick_no_fake_fits():
 
 def test_paged_skip_still_differentiates():
     """offset>0 skips model calls; enrichment must still yield distinct rows."""
-    print("\npaged picks — differs without write-ups (CON-286)")
+    print("\npaged picks — differs without write-ups")
     rows = []
     for card in (ANGEL_A, ANGEL_B, ANGEL_C):
         theme = commanders.theme_fit(card, BRIEF)
@@ -190,7 +190,7 @@ def test_paged_skip_still_differentiates():
 
 def test_ui_surfaces_differs_not_missing_prose():
     """Picker card shows type/colours/differs; gates fits on real write-up."""
-    print("\nUI — differs visible, missing write-up not faked (CON-286)")
+    print("\nUI — differs visible, missing write-up not faked")
     html = (ROOT / "index.html").read_text()
     true("renderCommanders shows type via differs or ctype",
          "differsBlock" in html or ("p.type" in html and "ctype" in html))

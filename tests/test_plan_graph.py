@@ -1,5 +1,5 @@
 """
-test_plan_graph.py — CON-136 deterministic plan graph from brief + commander.
+test_plan_graph.py — deterministic plan graph from brief + commander.
 
 Offline. No model calls. Run:
 
@@ -58,7 +58,7 @@ def _canonical(plan: dict) -> str:
 
 
 def test_no_model_imports():
-    """CON-136: plan_graph must not import or call the model layer."""
+    """plan_graph must not import or call the model layer."""
     print("\nplan_graph imports  — no anthropic / llm")
     src = Path(plan_graph.__file__).read_text()
     tree = ast.parse(src)
@@ -133,14 +133,14 @@ def test_commitments_vs_conditions():
 
 
 def test_hei_bai_commitments_from_demand_profile():
-    """CON-178: commitments come from the commander, not theme-word expansion.
+    """commitments come from the commander, not theme-word expansion.
 
     Hei Bai's oracle is sacrifice → +1/+1 counters → move them when he leaves.
     A brief that never says lifegain used to emit lifegain_density because
     dies_triggers expands to life_math. Counter synergies and re-entry were
     absent entirely. demand_profile already names what he needs — use it.
     """
-    print("\nplan_graph CON-178  — Hei Bai commitments from demand_profile")
+    print("\nplan_graph Hei Bai commitments from demand_profile")
     # Brief mirrored from the measured baseline (no lifegain words).
     brief = {
         "theme": "Hei Bai, Spirit of Balance sacrifice deck",
@@ -186,7 +186,7 @@ def test_hei_bai_commitments_from_demand_profile():
         "payoff search covers counters", queries)
     (ok if "blink" in queries else bad)(
         "payoff search covers blink/re-entry", queries)
-    # CON-195: relation neighbors (life_math via dies_triggers) may enter the
+    # relation neighbors (life_math via dies_triggers) may enter the
     # recall pool, but must not appear as a plan commitment.
     from deckwright import synergy
     neigh_fams = {n["family"] for n in synergy.synergy_neighbors(cmdr)}
@@ -266,13 +266,13 @@ def test_derive_provisional_no_commander():
 
 
 def test_archetype_changes_the_pool():
-    """CON-156: the archetype must change WHICH CARDS are searched.
+    """the archetype must change WHICH CARDS are searched.
 
-    CON-155's test passes on a threshold-only change — that is exactly the
+    The commander-aware plan work's test passes on a threshold-only change — that is exactly the
     shallowness Brad called out. This one asserts the payoff SEARCHES differ,
     so moving a number cannot satisfy it.
     """
-    print("\narchetype changes the pool — CON-156")
+    print("\narchetype changes the pool")
     vito = {"name": "Vito, Thorn of the Dusk Rose", "cost": "{3}{B}", "cmc": 4,
             "type": "Legendary Creature — Vampire Cleric",
             "text": "Whenever you gain life, target opponent loses that much life."}
@@ -291,7 +291,7 @@ def test_archetype_changes_the_pool():
         str({k: len(v) for k, v in sets.items()}))
     (ok if sets["burst"] - sets["incremental"] else bad)(
         "burst searches cards incremental does not", str(sets["burst"] - sets["incremental"]))
-    # Both halves of the Vito loop — gain→lose AND lose→gain. CON-159: the
+    # Both halves of the Vito loop — gain→lose AND lose→gain. the
     # lose→gain half (Exquisite Blood) was missing, so the combo piece never
     # entered the payoff pool.
     burst_q = " ".join(sets["burst"])
@@ -306,14 +306,14 @@ def test_archetype_changes_the_pool():
 
 
 def test_commander_shapes_the_plan():
-    """CON-155: different commanders on one brief must derive different plans.
+    """different commanders on one brief must derive different plans.
 
     Five WB lifegain commanders used to produce a byte-identical plan — the
     derivation read the brief and barely the commander. The goldens above
     passed the whole time, because none of them covered a commander that is
     itself a lifegain payoff. A golden can only certify what it looks at.
     """
-    print("\ncommander shapes the plan — CON-155")
+    print("\ncommander shapes the plan")
     brief = {"theme": "lifegain", "colors": "WB",
              "strategy": "gain life every turn and turn that life into cards",
              "mechanics": ["lifegain", "drain"]}
@@ -353,15 +353,15 @@ def test_commander_shapes_the_plan():
                     f"{k} is measurable", k)
 
 
-def test_con171_fixture_briefs_discriminate_archetype():
-    """CON-171: the incremental/burst axis must hear the preserved briefs.
+def test_fixture_briefs_discriminate_archetype():
+    """the incremental/burst axis must hear the preserved briefs.
 
     The differential fixture is the measured failure: drain-burst's angle says
     "one explosive finishing turn" and mechanics name a "burst finisher", yet
     pick_archetype returned incremental/undecided. If this test fails, the
     strategy label is lying about a wish that already changed the deck.
     """
-    print("\nCON-171 fixture briefs discriminate archetype")
+    print("\nfixture briefs discriminate archetype")
     path = (Path(__file__).resolve().parents[1] / "testdata" / "review"
             / "differential-run-2026-08-06.json")
     data = json.loads(path.read_text())
@@ -396,15 +396,15 @@ def test_con171_fixture_briefs_discriminate_archetype():
         "fixture still carries the contrast clause", text)
 
 
-def test_con176_strategy_shape_beats_prose():
-    """CON-176: archetype is stated, not inferred from free-form angle prose.
+def test_strategy_shape_beats_prose():
+    """archetype is stated, not inferred from free-form angle prose.
 
     Run 4 collapsed both sides onto aggro because the model wrote 'board' and
     'combat' (and hyphenated 'one-turn'). Phrase matching cannot win that race.
     A structured strategy_shape field must decide, and the plan must report
     which path was used.
     """
-    print("\nCON-176 strategy_shape beats prose")
+    print("\nstrategy_shape beats prose")
     # Picker allowlist and chat schema must name the same enum.
     from deckwright import app as _app
     schema_enum = set(
@@ -476,8 +476,8 @@ def test_con176_strategy_shape_beats_prose():
 
 
 def test_commitment_labels_distinct_and_ui_uses_them():
-    """CON-210: plan rows show each commitment's own label, not role collapse."""
-    print("\nCON-210 — commitment labels stay distinct; UI reads c.label")
+    """plan rows show each commitment's own label, not role collapse."""
+    print("\ncommitment labels stay distinct; UI reads c.label")
     # Same role ("theme") with different ids must keep different labels —
     # the bug rendered both as the brief theme string.
     commits = plan_graph._build_commitments(
@@ -507,11 +507,11 @@ def test_commitment_labels_distinct_and_ui_uses_them():
 
 
 def test_activation_multiplier_links_combat_commander_to_timing():
-    """CON-222 C: Saheeli-like combat trigger ↔ Full Throttle is plan-relevant.
+    """C: Saheeli-like combat trigger ↔ Full Throttle is plan-relevant.
 
     No combat/turn synergy objects. Thin note on the plan graph only.
     """
-    print("\nplan_graph CON-222  — activation_multiplier")
+    print("\nplan_graph activation_multiplier")
     from deckwright import synergy
 
     saheeli = {
@@ -575,8 +575,8 @@ def test_activation_multiplier_links_combat_commander_to_timing():
        am.get("relevant"), True)
 
 
-def test_payoff_queries_honest_con228():
-    """CON-228: payoff patterns must not alias the wrong family."""
+def test_payoff_queries_honest():
+    """payoff patterns must not alias the wrong family."""
     print("\npayoff queries  — damage_mod ≠ life_math, go_wide needs +")
     life = plan_graph._PAYOFF_QUERIES["life_math"]
     dmg = plan_graph._PAYOFF_QUERIES["damage_modification"]
@@ -761,11 +761,11 @@ def main() -> int:
     test_derive_provisional_no_commander()
     test_commander_shapes_the_plan()
     test_archetype_changes_the_pool()
-    test_con171_fixture_briefs_discriminate_archetype()
-    test_con176_strategy_shape_beats_prose()
+    test_fixture_briefs_discriminate_archetype()
+    test_strategy_shape_beats_prose()
     test_commitment_labels_distinct_and_ui_uses_them()
     test_activation_multiplier_links_combat_commander_to_timing()
-    test_payoff_queries_honest_con228()
+    test_payoff_queries_honest()
     test_thesis_from_plan_any_shape()
     print(f"\n{GREEN}{passed} passed{OFF}"
           + (f", {RED}{failed} FAILED{OFF}" if failed else ""))

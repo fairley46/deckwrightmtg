@@ -1,5 +1,5 @@
 """
-test_oracle_coverage.py — CON-245 coverage instrument (offline).
+test_oracle_coverage.py — coverage instrument (offline).
 
 No network. Synthetic cards only.
 """
@@ -87,7 +87,7 @@ def test_normalize_and_analyze():
     eq("universe counts legal only", report["universe_commander_legal"], 3)
     eq("unknown counted separately", report["unknown_unreadable"], 1)
     eq("graded excludes unknown", report["graded"], 2)
-    # Blood Crypt fires pay_life_enter + enters_tapped after CON-245.
+    # Blood Crypt fires pay_life_enter + enters_tapped.
     eq("signal fires on shock land",
        report["at_least_one_signal"]["count"], 1)
     # Vigilance Bear has no keywords field here → truly unread.
@@ -99,7 +99,7 @@ def test_normalize_and_analyze():
     unread = {row["line"]: row["count"] for row in report["unread_lines_ranked"]}
     eq("vigilance appears on unread card", "vigilance" in unread, True)
 
-    # CON-251: Scryfall keywords catalog counts as readable without a signal.
+    # Scryfall keywords catalog counts as readable without a signal.
     flyer = {
         "name": "Storm Crow",
         "type_line": "Creature — Bird",

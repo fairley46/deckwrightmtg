@@ -1,5 +1,5 @@
 """
-test_commander_fit.py — CON-191 theme + strategy scores and relational copy.
+test_commander_fit.py — theme + strategy scores and relational copy.
 
 Offline. No model. No Scryfall.
 
@@ -116,7 +116,7 @@ def test_theme_and_strategy_are_separate():
 
 
 def test_theme_fit_tokenizes_multi_word():
-    """CON-207: multi-word themes must tokenize — same defect class as #157."""
+    """multi-word themes must tokenize — same defect class as #157."""
     print("\ntheme_fit — multi-word themes tokenize to real type hits")
     ragavan = {
         "name": "Ragavan, Nimble Pilferer",
@@ -204,8 +204,8 @@ def test_strategy_fit_reads_angle_sentences():
 
 
 def test_relational_copy_leads_with_her_words():
-    """CON-240: copy opens with her theme/strategy words, not machine ids."""
-    print("\nrelational copy — leads with her words (CON-240)")
+    """copy opens with her theme/strategy words, not machine ids."""
+    print("\nrelational copy — leads with her words")
     copy = commanders.relational_copy(TEYSA, SACRIFICE_BRIEF)
     low = copy.lower()
     true("leads with sacrifice not aristocrats id",
@@ -263,7 +263,7 @@ def test_relational_copy_restates_and_sources():
 
 
 def test_filler_each_not_strategy_label():
-    """CON-223 / Gate 1 BUG-2: 'each' must not print as her strategy."""
+    """'each' must not print as her strategy."""
     print("\nrelational_copy — filler stopwords")
     terms = commanders._brief_strategy_terms({
         "angle": "grow each attacker with combat keywords",
@@ -276,7 +276,7 @@ def test_filler_each_not_strategy_label():
 
 
 def test_artifacts_not_matched_on_cavalry_filler():
-    """CON-223 / Gate 1 BUG-6: cavalry brief must not match artifacts via says."""
+    """cavalry brief must not match artifacts via says."""
     print("\nstrategy_fit — no artifacts false positive from says prose")
     adeline = {
         "name": "Adeline, Resplendent Cathar",

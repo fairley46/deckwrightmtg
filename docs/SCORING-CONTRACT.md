@@ -1,9 +1,9 @@
-# The scoring contract — what "good" means (CON-138)
+# The scoring contract — what "good" means
 
 > Part of the derivation chain — see [`DERIVATION.md`](DERIVATION.md) for how this stage joins the others.
 
-**Owner:** Box. Consumed by CON-119/121/122/123 (perception fixtures), CON-139 (build
-selection), CON-136 (plan graph).
+**Owner:** Box. Consumed (perception fixtures), the payoff-pool work (build
+selection), the plan graph.
 
 Every number in this file was **measured**, not chosen. The measurement shell is stated so
 the numbers can be reproduced and argued with. Where perception cannot yet see a role, this
@@ -65,7 +65,7 @@ These are **acceptance bands for the perception fixtures**, on the shell describ
 They are direction-and-margin, deliberately: absolute percentages move with land count,
 commander cost, and run count, and a fixture asserting `56.5%` would be asserting the shell.
 
-### Draw (CON-119 — perception has landed)
+### Draw (perception has landed)
 
 Condition `cards_drawn >= 6`, measured at T10:
 
@@ -79,7 +79,7 @@ Condition `cards_drawn >= 6`, measured at T10:
 **The gate:** engines must beat one-shots by **≥ 20 points** at T10 on a `>= 6` condition.
 Measured margin is 33.9, so 20 is a floor with real headroom, not a number tuned to pass.
 
-### Lifegain and drain (CON-121 — perception landed)
+### Lifegain and drain (perception landed)
 
 Shell: 36 Swamps, 6 Sol Ring, filler to 99, `cmdr_cmc=3`, 600 runs, seed 121.
 Enabler = castable `{B}` "You gain 3 life." Engine = Blood Artist (whenever-proxy
@@ -123,7 +123,7 @@ lifegain engine from a pile of Salves.
 
 Sulfuric Vortex extracts all life fields as 0 (negation ≠ gain).
 
-### Tokens (CON-122 — perception landed)
+### Tokens (perception landed)
 
 Shell: 36 Mountains, 6 Sol Ring, enchantment filler to 99, `cmdr_cmc=3`,
 600 runs, seed 122. Engine = Krenko (`{T}: Create X` goblin tokens). One-shot =
@@ -138,7 +138,7 @@ sorcery "Create three 1/1 … creature tokens." Treasure Map = resource tokens o
 | `creatures_in_play >= 6` | 33.0% | **60.2%** | **+27.2 pts** |
 | `creatures_in_play >= 8` | 8.7% | **60.2%** | **+51.5 pts** |
 
-*(CON-162 remeasure: create-3 cells moved 0.1–0.2 pts from the original
+*(remeasure: create-3 cells moved 0.1–0.2 pts from the original
 shell run — within 600-run noise. Gates and floors unchanged.)*
 
 Same lesson as draw/life: a lazy threshold prefers one-shot token bursts.
@@ -162,9 +162,9 @@ creates → `creature_tokens` + bodies (one-shot) or `{T}`/whenever proxy (engin
 (each turn: create ≈ current bodies).
 
 Wide-vs-tall (`board_power` disagreeing with `creatures_in_play`) remains a
-**deck** property for the plan graph (CON-136), not a per-card taxonomy lookup.
+**deck** property for the plan graph, not a per-card taxonomy lookup.
 
-### Graveyard / flashback (CON-123 — perception landed)
+### Graveyard / flashback (perception landed)
 
 Shell: 36 Mountains, 6 Sol Ring, enchantment filler to 99, `cmdr_cmc=3`,
 600 runs, seed 123. Engine = Faithless Looting (`{R}`, draw 2 + flashback
@@ -252,12 +252,12 @@ was wrong — which is the ordinary case, and the reason every number here names
 
 ---
 
-## Forge calibration (CON-163)
+## Forge calibration
 
-Every table above was measured against `sim.py` (goldfish). CON-162 confirmed they
-reproduce. CON-163 asked Forge whether they are true. Full writeup:
-[`CON-163-FORGE-CALIBRATION.md`](CON-163-FORGE-CALIBRATION.md). Harness:
-`scripts/con163_calibrate_forge.py`. Only `forge_log.MEASURABLE` keys
+Every table above was measured against `sim.py` (goldfish). The scoring-math QC confirmed they
+reproduce. The Forge calibration asked Forge whether they are true. Data:
+[`calibration/`](calibration/). Harness:
+`scripts/calibrate_forge.py`. Only `forge_log.MEASURABLE` keys
 (`life_gained`, `life_drained`, `lands_in_play`) can be compared; everything in
 `NOT_MEASURABLE` is skipped, not zeroed.
 
@@ -285,5 +285,5 @@ Blood Rites (Clavileño) vs Ahoy Mateys; hero-turn clock; after SIM_VERSION 8:
 |---|---|
 | Draw / token / flashback tables | `cards_drawn` / `creatures_in_play` are NOT_MEASURABLE from a Forge log |
 | `life_drained` gate (`>= 4`, ≥20 pts over blank) | Forge signal includes combat; +60 pts at T6 is expected, not a drain-proxy bug. **Not Forge-validated.** |
-| Absolute % bands on the Artist / Krenko / Looting shells | Those shells were not the Forge hero this pass; margins stay CON-162 self-consistent |
+| Absolute % bands on the Artist / Krenko / Looting shells | Those shells were not the Forge hero this pass; margins stay the scoring-math QC self-consistent |
 | `by_turn` / T10 judgment horizon | Reasoned, not remeasured as a new number. Forge note: only 16/50 games reached hero-turn 10 under aggro — T10 bands are a goldfish horizon |

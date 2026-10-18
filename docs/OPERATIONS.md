@@ -34,7 +34,7 @@ that has nothing to do with the code.
 
 | Service | Used for | If it's down |
 |---|---|---|
-| **Scryfall** | Bulk corpus refresh; live `otag:`/`art:` (Tagger) and anything the local index cannot parse; images | Lookups and saved decks stay local with a warm corpus (CON-294). **Building a deck still needs the live API** — role ladders use `otag:`, which is not in bulk data (CON-303). Refusals are named (`challenge` / `maintenance` / …); the build stop says saved decks still open. See [OPERATING-MODEL.md § Access](OPERATING-MODEL.md#the-external-dependency--when-scryfall-says-no). |
+| **Scryfall** | Bulk corpus refresh; live `otag:`/`art:` (Tagger) and anything the local index cannot parse; images | Lookups and saved decks stay local with a warm corpus. **Building a deck still needs the live API** — role ladders use `otag:`, which is not in bulk data. Refusals are named (`challenge` / `maintenance` / …); the build stop says saved decks still open. See [OPERATING-MODEL.md § Access](OPERATING-MODEL.md#the-external-dependency--when-scryfall-says-no). |
 | **Archidekt** | Precon catalogue and lists (public read JSON API) | Precons fail; building and saved decks are fine. See below. |
 | **EDHREC** (`json.edhrec.com`) | Popularity, backfilling invented names | Deep cuts get less accurate; nothing fails. |
 | **Google Fonts** | Three typefaces | **Typography falls back to system fonts.** See below. |
@@ -102,16 +102,16 @@ python -m deckwright.check expensive R      # with a theme you actually care abo
 ```
 
 `check.py` tests each layer independently so you learn *which* is broken rather
-than staring at a blank page. It prints `model calls -> …` and probes that meter
-(CON-262). It reports the pressure-test engine too — that belongs to whoever set
+than staring at a blank page. It prints `model calls -> …` and probes that meter.
+It reports the pressure-test engine too — that belongs to whoever set
 the machine up, not to someone building a deck.
 
 ```bash
 python test_deckwright.py --unit   # offline suite, seconds
 python test_deckwright.py --live   # adds live Scryfall checks
 python test_deckwright.py --live --full   # every catalog term, ~880 queries, ~5 min
-python test_prompts.py             # the golden-set prompt harness (CON-78)
-python scripts/print_wave_reeval.py      # Know Magic print-wave path (CON-260)
+python test_prompts.py             # the golden-set prompt harness
+python scripts/print_wave_reeval.py      # Know Magic print-wave path
 ```
 
 **`--unit` green is not the same as working.** Nearly every real bug this
@@ -123,14 +123,14 @@ guard that passed on a fixture holding one Island, ramp queries "verified" by
 
 ## Updating
 
-**Default (CON-285):** every desktop launch updates itself — catalogs **and**
+**Default:** every desktop launch updates itself — catalogs **and**
 understanding remeasure when data is stale. New *reading rules* and *strategies*
 are not invented on boot; those stay an admit PR after the report names a gap.
 
 | Tier | What moves | When |
 |---|---|---|
 | **1. Launch / weekly** | Local card corpus (`python -m corpus` → `oracle_cards` + prices); Scryfall grammar; `synergy_objects`; commanders KB mechanics; oracle coverage + playstyles precision remeasure | Stale boot (`boot.py`) or Sunday cadence (`--kb --reeval`) |
-| **2. Named print wave** | Re-download oracle bulk; rewrite CON-260 report; list unread clusters | `./update.sh --print-wave NAME` after a set / precon dump |
+| **2. Named print wave** | Re-download oracle bulk; rewrite the print-wave re-eval report; list unread clusters | `./update.sh --print-wave NAME` after a set / precon dump |
 | **3. Admit** | New `oracle_signals`, playstyle maps, grammar expressions, strategy commitments | Human / farmed PR — [KNOW-MAGIC-MAINTENANCE.md](KNOW-MAGIC-MAINTENANCE.md) |
 
 Launch sequence:
@@ -179,7 +179,7 @@ with `DECKWRIGHT_SKIP_PULL=1`. Boot knobs: `DECKWRIGHT_BOOT_REFRESH=1`,
 ## Lifecycle
 
 ```bash
-./config/install-desktop.sh               # CON-285: server + weekly cadence (macOS)
+./config/install-desktop.sh               # server + weekly cadence (macOS)
 ./config/install-launchd.sh               # server only
 ./config/install-cadence-launchd.sh       # cadence only
 ./config/install-launchd.sh --uninstall
@@ -198,7 +198,7 @@ The demo host does not sleep on AC power (`pmset -c sleep 0`).
 
 ---
 
-## Blue / green (CON-315)
+## Blue / green
 
 Two processes. Blue is production. Green is staging. A second `PORT=8001`
 without a separate data dir writes the shared install saved decks — that is the
@@ -221,10 +221,10 @@ git worktree add ../deckwright-green v2
 cd ../deckwright-green
 ./config/install-green-launchd.sh          # :8001, candidate off
 ./config/install-green-b-launchd.sh        # :8002, candidate B (Gate 4 bake-off)
-./config/install-green-c-launchd.sh        # :8003, candidate C (CON-322; opt-in)
-# CON-334: templates carry DECKWRIGHT_LLM_TIMEOUT=600. Install prints it;
+./config/install-green-c-launchd.sh        # :8003, candidate C (opt-in)
+# Templates carry DECKWRIGHT_LLM_TIMEOUT=600. Install prints it;
 # missing → WARNING. Hand-edits under ~/Library/LaunchAgents/ alone do not
-# survive the next reinstall (that is how CON-333's fix was wiped).
+# Survive the next reinstall (that is how the floor-case measurement's fix was wiped).
 curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8000/
 curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8001/
 curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8002/
@@ -240,15 +240,15 @@ curl -sS -o /dev/null -w '%{http_code}\n' http://127.0.0.1:8003/
 with an ephemeral `HOME`; on the demo host, V2-in-flight checks are the green
 worktree.
 
-CON-323: `run.sh` prepends Homebrew to `PATH` **before** creating `.venv`,
+`run.sh` prepends Homebrew to `PATH` **before** creating `.venv`,
 and refuses a venv older than 3.10 instead of crash-looping. Cold re-test
 on the demo host: `rm -rf .venv` in the green worktree, then restart green.
 
-CON-324: `install-green-launchd.sh` refuses the primary clone (`.git` is a
+`install-green-launchd.sh` refuses the primary clone (`.git` is a
 directory) and refuses a `REPO_ROOT` that matches blue's installed
 WorkingDirectory.
 
-### Gate 2 — B clarity (CON-321)
+### Gate 2 — B clarity
 
 Green on `:8001` keeps `DECKWRIGHT_CANDIDATE=off` so contestant **BLUE** stays V1.
 The clarity audit block is visible on green-b (`:8002`, candidate `B`) or by
@@ -258,13 +258,13 @@ temporarily flipping the `:8001` plist — for bake-offs, run both processes.
 the deck page. Soft combos and hidden power print “we do not score this.”
 Unread commanders keep the V1 list and say so.
 
-### Gate 4 — B steer (CON-321)
+### Gate 4 — B steer
 
 When `DECKWRIGHT_CANDIDATE=B` and the commander reads (`ok`/`partial`), the build
 path soft-steers the 99: prefer cards feeding strategy inputs, deprioritise known
 bound violations. `bound_ok == unknown` is neutral. Unread commanders do not steer.
 
-**Bound vocabulary (CON-331):** `bounds[].op` is `leq` (ceiling), `geq`
+**Bound vocabulary:** `bounds[].op` is `leq` (ceiling), `geq`
 (floor), `in_set` (subtype), or `forbid` (oracle ban). Static MV floors/ceilings
 use `bound.mode=static` + numeric `value`. Life- and experience-capacity
 ceilings stay `event_capacity` (experience capacity is unknown from the 99 —
@@ -289,7 +289,7 @@ python scripts/v2_benchmark.py --contestants E,BLUE,B,C   # after C registered
 deploy commands live in [`docs/benchmarks/SHIP-B.md`](benchmarks/SHIP-B.md).
 Keep `:8001` candidate=`off`; do not flip blue. Do not make C the default.
 
-### Candidate C — CardFacts ServeReport (CON-322)
+### Candidate C — CardFacts ServeReport
 
 When `DECKWRIGHT_CANDIDATE=C` (green-c `:8003`), build attaches B clarity +
 steer **and** stamps per-card `serve_report` from `cardfacts.lookup` +
@@ -301,22 +301,22 @@ stay `computable: false`, weight 0.
 
 Plan + remaining bake-off/UI work: [`docs/product/C-REMAINING.md`](product/C-REMAINING.md).
 
-**LLM timeout (CON-334):** green and green-b plist templates set
+**LLM timeout:** green and green-b plist templates set
 `DECKWRIGHT_LLM_TIMEOUT=600`. Without it, `llm.py` defaults to 180s and Bello
 (BLUE ~571s) fails again after any by-the-book reinstall. Blue's template is
 unchanged — operator call. green-c (PR #314) must carry the same key when merged.
 
-**Bake-off readiness (after CON-334 + CON-331):** see
+**Bake-off readiness:** see
 [`docs/benchmarks/BAKEOFF-READY.md`](benchmarks/BAKEOFF-READY.md) and
 [`docs/product/C-REMAINING.md`](product/C-REMAINING.md). Bound coverage must
 be SEEN=6 before reading Gate 5/C bound columns. Do not pass `--green-url` on
-multi-contestant sweeps (CON-330). Do not promote B; do not enable C as default.
+multi-contestant sweeps. Do not promote B; do not enable C as default.
 
 ---
 
 ## Data cadence
 
-Grammar, commanders KB mechanics, and precon bakes rot without a schedule. CON-238
+Grammar, commanders KB mechanics, and precon bakes rot without a schedule. The data refresh cadence
 wires a chain separate from the KeepAlive server — do not overload
 `(local launchd label)`.
 
@@ -326,7 +326,7 @@ wires a chain separate from the KeepAlive server — do not overload
 source .venv/bin/activate   # optional; script activates when present
 ./scripts/refresh_data_cadence.sh              # corpus → grammar → synergy → staleness
 ./scripts/refresh_data_cadence.sh --kb         # + commanders mechanics-refresh
-./scripts/refresh_data_cadence.sh --kb --reeval    # + understanding remeasure (CON-285)
+./scripts/refresh_data_cadence.sh --kb --reeval    # + understanding remeasure
 ./scripts/refresh_data_cadence.sh --kb --precons   # + rebake stale precons (needs model)
 python -m corpus                               # corpus only (oracle_cards + prices)
 python -m corpus --status                      # age / card count
@@ -360,7 +360,7 @@ GA certifies this cadence exists; see `docs/`.
 
 ---
 
-## CardFacts pipeline (CON-322) — bake offline; serve only on candidate C
+## CardFacts pipeline — bake offline; serve only on candidate C
 
 `cardfacts.py` holds per-card clause facts. Path:
 `{DECKWRIGHT_HOME}/cardfacts.json` (schema + `extract()` in the module
@@ -420,9 +420,9 @@ Remaining C plan: `docs/product/C-REMAINING.md` (full bake, bake-off, UI).
 | Path | What | Safe to delete? |
 |---|---|---|
 | `~/.deckwright/*.json` | Saved decks — hers (exclude `vocab.json` / meta files) | **No.** This is the only irreplaceable thing here. |
-| `~/.deckwright/cardfacts.json` | CON-322 CardFacts bake (read on candidate C only) | Yes; `scripts/bake_cardfacts.py` (resume-safe) or stub. |
-| `~/.deckwright/bugs/*.json` | Footer bug reports (CON-293) | After triage — each file is one report, with `linear` or `linear_error`. |
-| `~/.deckwright/oracle_cards.jsonl` | CON-294 local card corpus (from Scryfall bulk) | Yes; `python -m corpus` re-downloads. Without it every lookup hits the live API. |
+| `~/.deckwright/cardfacts.json` | The CardFacts work bake (read on candidate C only) | Yes; `scripts/bake_cardfacts.py` (resume-safe) or stub. |
+| `~/.deckwright/bugs/*.json` | Footer bug reports | After triage — each file is one report, with `linear` or `linear_error`. |
+| `~/.deckwright/oracle_cards.jsonl` | The local card corpus (from Scryfall bulk) | Yes; `python -m corpus` re-downloads. Without it every lookup hits the live API. |
 | `~/.deckwright/prices.json` | Ballpark USD from `default_cards` | Yes; refreshed with the corpus. |
 | `~/.deckwright/corpus.meta.json` | When the corpus was last fetched | Yes; staleness check falls back to oracle meta / mtime. |
 | `data/precons/*.json` | 155 baked precons | Yes; recompute with `scripts/bake_precons.py`, slowly. |
@@ -457,7 +457,7 @@ What is not yours to touch casually, and why.
 |---|---|
 | The three verifiers (`/api/commanders`, `/api/build`, `/api/thesis`) | The only thing keeping card names real. The model writes Scryfall *queries*; the verifier drops any name that was not in the response. Remove one and the app starts inventing cards, silently. |
 | `INTERROGATOR` and `THESIS` prompt text | Product judgment expressed as prose. Changing a sentence changes what the app asks her and what it counts as working. Box only. |
-| `ROLES` and budget policy | Deck-construction judgment — live targets lands 0 (curve-filled) / 10 / 9 / 7 / 3 / 10 / 15 / 5. Live skeleton may *shape* counts (CON-216); cleanup does not invent new floors. |
+| `ROLES` and budget policy | Deck-construction judgment — live targets lands 0 (curve-filled) / 10 / 9 / 7 / 3 / 10 / 15 / 5. Live skeleton may *shape* counts; cleanup does not invent new floors. |
 | What `sim.py` models | Goldfish, no opponent. Extraction fixes need a stated expected value; changing what is measured changes every probability downstream. |
 | The #173 commander-flow seams | `strategy_fit` · `theme_fit` · `ways_to_play` → `way_to_play` → plan · `synergy_recall_queries` · `account_deck`. This is the judgment path, not plumbing. |
 
@@ -470,7 +470,7 @@ integration is fine; adding a new way to measure is not.
 
 Frozen specifically: `scripts/check_all.py` tiers · the Hei Bai cluster
 (extract → baseline → agreement / function_coverage) · `check_payoff_queries` ·
-Forge calibration (`forge_log` + `con163`) · `differential_harness` ·
+Forge calibration (`forge_log` + `calibrate_forge`) · `differential_harness` ·
 `check_playstyles` as a research instrument · fixtures under `testdata/review/`.
 
 ### Not frozen
@@ -488,7 +488,7 @@ fixtures exactly as hard as to output.
 **An unknown is not a zero, and a fallback is not a match.** Any layer that can
 return empty must distinguish "there are none" from "I could not look." This has
 been violated and caught more times than any other rule in the repo — most
-recently CON-188 F1, where `search()` swallowed transport failures into `[]` and
+recently the system audit F1, where `search()` swallowed transport failures into `[]` and
 the commander ladder walked past rungs it never saw.
 
 ### How this list changes
@@ -497,4 +497,4 @@ It does not change inside a cleanup PR. A card that needs to break one of these
 says so in the card, gets its own PR, and states the tradeoff in the PR body.
 
 Read-only audit of the boundary after GA prep: [SACRED-CORE-REVIEW.md](SACRED-CORE-REVIEW.md).
-**Backend GA wrapped 2026-08-09.** Post-tag Auto lane: (Linear CON-269). Freeze claims: .
+**Backend GA wrapped 2026-08-09.**

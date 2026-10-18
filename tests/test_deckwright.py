@@ -109,8 +109,8 @@ def test_budget_report():
 
 
 def test_budget_price_ceiling():
-    """CON-233: per-card price ceiling suffix for pool queries."""
-    print("\nbudget_price_ceiling()  — CON-233 payoff/synergy pool steer")
+    """per-card price ceiling suffix for pool queries."""
+    print("\nbudget_price_ceiling()  — payoff/synergy pool steer")
     eq("unset returns empty", app.budget_price_ceiling(0), "")
     eq("unset None returns empty", app.budget_price_ceiling(None), "")
     eq("formats usd ceiling", app.budget_price_ceiling(4.5), " usd<4.50")
@@ -120,7 +120,7 @@ def test_budget_price_ceiling():
 
 
 def test_tcgplayer_mass_entry():
-    """CON-66: mass-entry URL — commander + collapsed basics, under length cap."""
+    """mass-entry URL — commander + collapsed basics, under length cap."""
     print("\ntcgplayer_mass_entry()  — Buy this deck URL")
     deck = ([{"name": "Sol Ring"}, {"name": "Command Tower"}]
             + [{"name": "Island"} for _ in range(3)])
@@ -145,10 +145,10 @@ def test_tcgplayer_mass_entry():
 
 
 def test_commander_selection():
-    """CON-80 labels/Partner + CON-154 colour identity on the ladder."""
+    """labels/Partner + the colour-identity ladder scoping colour identity on the ladder."""
     print("\ncommander selection  — ladder, labels, Partner")
 
-    # CON-154: when she named colours, every search rung carries id<=.
+    # when she named colours, every search rung carries id<=.
     # Named-card exact lookup is exempt (same as the pool-filter exemption).
     ladder, generic = app.commander_ladder({
         "theme": "pirate", "colors": "UB",
@@ -179,7 +179,7 @@ def test_commander_selection():
     (ok if any("t:pirate" in q or "o:pirate" in q for q in bare) else bad)(
         "theme still on unscoped ladder", bare_joined)
 
-    # CON-157: composition leads even when the model wrote o: fragments.
+    # composition leads even when the model wrote o: fragments.
     brief_angels = {
         "theme": "angels that gain life",
         "commander_query": (
@@ -222,13 +222,13 @@ def test_commander_selection():
     (ok if 0 == first_composed < first_tk < generic_i else bad)(
         "compose → type → generic order",
         f"compose@{first_composed} tk@{first_tk} generic@{generic_i}")
-    # CON-161: with a model query present, composed still beats bare type.
+    # with a model query present, composed still beats bare type.
     # Assert indices — presence alone would miss the inversion that made
     # rung 4 (t:angel) fill before rung 5 (t:angel otag:lifegain).
-    eq("CON-161 composed index before bare-type index",
+    eq("composed index before bare-type index",
        first_composed < first_tk, True)
     no_model, _ = app.commander_ladder({"theme": "angels that gain life"})
-    eq("CON-161 no model query → composed still rung 0",
+    eq("no model query → composed still rung 0",
        "t:angel" in no_model[0] and "otag:lifegain" in no_model[0], True)
 
     # Partner: keywords and oracle text; not every card.
@@ -248,7 +248,7 @@ def test_commander_selection():
     eq("partnership is not Partner", app.has_partner({
         "keywords": [], "text": "Form a partnership with another player."}), False)
 
-    # CON-118: classify the three pairing mechanisms; generic Partner ≠ Partner with.
+    # classify the three pairing mechanisms; generic Partner ≠ Partner with.
     eq("kind Partner", app.partner_kind({
         "keywords": ["Partner"], "text": ""}), "partner")
     eq("kind Partner with", app.partner_kind({
@@ -315,9 +315,9 @@ def test_commander_selection():
        two[0][0]["name"] != two[1][0]["name"], True)
 
 
-async def test_commander_unscoped_note_con154():
-    """CON-154 offline: no colours → note says picks span colours; scoped stays quiet."""
-    print("\ncommander unscoped note CON-154  — mocked search, no inventing colours")
+async def test_commander_unscoped_note():
+    """offline: no colours → note says picks span colours; scoped stays quiet."""
+    print("\ncommander unscoped note mocked search, no inventing colours")
     from unittest.mock import AsyncMock, patch
 
     fake = []
@@ -392,11 +392,11 @@ def test_singulars():
     eq("'bless' not truncated", "bles" in app.singulars("bless"), False)
     eq("empty string", app.singulars(""), [])
     eq("whitespace only", app.singulars("   "), [])
-    # CON-64: terms() is gone — singulars() is the only variant helper.
+    # terms() is gone — singulars() is the only variant helper.
     eq("terms() removed", hasattr(app, "terms"), False)
     (ok if "dragon" in app.singulars("dragons") else bad)(
         "singulars covers former terms() plurals", str(app.singulars("dragons")))
-    # CON-111: conversational themes are phrases — pull the head noun out.
+    # conversational themes are phrases — pull the head noun out.
     phrase = app.singulars("angels that gain life")
     (ok if "angel" in phrase else bad)(
         "phrase singulars yields head noun", str(phrase))
@@ -421,7 +421,7 @@ def test_classify():
         ("scry",        "keyword", "Scry"),        # keyword action
         ("landfall",    "keyword", "Landfall"),    # ability word
         ("lifelink",    "keyword", "Lifelink"),
-        ("spiderman",   "set",     "spm"),         # CON-149: UB theme is a set
+        ("spiderman",   "set",     "spm"),         # UB theme is a set
         ("steal",       "otag",    "theft"),       # behaviour before keyword:steal
         ("ramp",        "otag",    "ramp"),
         ("heists",      "text",    "heists"),      # unresolved — not keyword:heist
@@ -445,16 +445,16 @@ def test_theme_clauses():
     eq("set -> set:",       app.theme_clauses("spiderman")[0], "set:spm")
     eq("steal -> otag:theft", app.theme_clauses("steal")[0], "otag:theft")
     eq("lifegain -> otag:", app.theme_clauses("lifegain")[0], "otag:lifegain")
-    # Integration ruling (CON-149 + CON-151 disagreed here).
+    # Integration ruling (disagreed here).
     # An unresolved word may still earn a rules-text rung — search_ladder
     # reports which rung it landed on, so an o: attempt is not a silent
     # fallback. What it must NEVER earn is an unverified otag:, because a
-    # dead tag 400s and reads as "no cards" (CON-144, one layer up).
+    # dead tag 400s and reads as "no cards" (one layer up).
     for unknown in ("qqzzxnothing", "heists", "stax", "aggro", "control"):
         cl = app.theme_clauses(unknown)
         (ok if not any(c.startswith("otag:") for c in cl) else bad)(
             f"{unknown} invents no otag:", str(cl))
-    # CON-113: function words are player vocabulary — otag: first, never bare o:.
+    # function words are player vocabulary — otag: first, never bare o:.
     ramp_clauses = app.theme_clauses("ramp")
     eq("ramp leads with otag:", ramp_clauses[0] if ramp_clauses else "", "otag:ramp")
     (ok if not any(c == "o:ramp" for c in ramp_clauses) else bad)(
@@ -469,16 +469,16 @@ def test_theme_clauses():
             f"{term} leads with otag:{'/'.join(want)}", str(clauses))
         (ok if not any(c == f"o:{term}" for c in clauses) else bad)(
             f"{term} has no bare o:{term}", str(clauses))
-    # CON-151: wipe is an alias of boardwipe (same 934-card pool).
+    # wipe is an alias of boardwipe (same 934-card pool).
     wipe = app.theme_clauses("wipe")
     (ok if wipe and wipe[0] in ("otag:wipe","otag:boardwipe","otag:sweeper") else bad)(
         "wipe → the 934-card boardwipe pool", str(wipe))
     (ok if not any(c == "o:wipe" for c in wipe) else bad)(
         "wipe has no bare o:wipe", str(wipe))
-    # CON-151: steal maps to theft — never the one-card keyword:steal.
+    # steal maps to theft — never the one-card keyword:steal.
     steal = app.theme_clauses("steal")
     eq("steal → otag:theft", steal[0] if steal else "", "otag:theft")
-    # CON-157: phrase themes compose thing + behaviour before the type alone.
+    # phrase themes compose thing + behaviour before the type alone.
     phrase = app.theme_clauses("angels that gain life")
     eq("phrase composes", phrase[0] if phrase else "", "t:angel otag:lifegain")
     (ok if not any(c == 'o:"angels that gain life"' for c in phrase) else bad)(
@@ -816,7 +816,7 @@ def test_validate_deck():
     eq("trim keeps color_identity", t.get("color_identity"), [])
     eq("trim keeps legal", t.get("legal"), "legal")
     eq("trim keeps gc from game_changer", t.get("gc"), False)
-    # CON-71: Game Changer status comes from the boolean field, never legalities.
+    # Game Changer status comes from the boolean field, never legalities.
     # The old bug read something like "gamechanger" in legalities and silently
     # failed closed — bracket-2 filtering looked like it worked and didn't.
     poisoned = {**raw, "game_changer": False,
@@ -826,12 +826,12 @@ def test_validate_deck():
                "legalities": {"commander": "legal"}}
     eq("gc follows game_changer=True", app.trim_card(flagged)["gc"], True)
 
-    # CON-80 truncation: full oracle text — Yuriko is 367 chars and used to lose 147.
+    # truncation: full oracle text — Yuriko is 367 chars and used to lose 147.
     long = "x" * 367
     raw_long = {**raw, "name": "Long Text", "oracle_text": long}
     eq("trim keeps full oracle text", len(app.trim_card(raw_long)["text"]), 367)
 
-    # CON-73 contract fields
+    # contract fields
     raw_full = {
         **raw,
         "keywords": ["Flying"],
@@ -861,7 +861,7 @@ def test_validate_deck():
     eq("for_model keeps keywords", fm.get("keywords"), ["Flying"])
     eq("for_model keeps power", fm.get("power"), "*")
 
-    # CON-65: buy link helper — missing uri → None (basics); present → tcgplayer URL.
+    # buy link helper — missing uri → None (basics); present → tcgplayer URL.
     eq("tcgplayer_url from trim", app.tcgplayer_url(tf), "https://example.com/tcg")
     eq("tcgplayer_url empty uris", app.tcgplayer_url({"purchase_uris": {}}), None)
     eq("tcgplayer_url missing", app.tcgplayer_url({}), None)
@@ -909,9 +909,9 @@ def test_validate_deck():
     (ok if "-is:gamechanger" not in q3 else bad)("bracket 3 keeps game changers", q3)
 
 
-def test_partner_commanders_con118():
-    """CON-118: pair compatibility, CI union, 98-card main deck."""
-    print("\npartner commanders  — CON-118 pair, CI union, 98+2")
+def test_partner_commanders():
+    """pair compatibility, CI union, 98-card main deck."""
+    print("\npartner commanders  — pair, CI union, 98+2")
 
     thrasios = _card(
         "Thrasios, Triton Hero", typ="Legendary Creature — Merfolk Wizard",
@@ -1036,7 +1036,7 @@ def test_partner_commanders_con118():
 
 
 def test_card_pool_modes():
-    """CON-82: tournament legal vs casual card pool."""
+    """tournament legal vs casual card pool."""
     print("\ncard pool modes  — f:commander filter and banned-card handling")
 
     brief_legal = {"theme": "pirate", "card_pool": app.CARD_POOL_TOURNAMENT}
@@ -1089,8 +1089,8 @@ def test_card_pool_modes():
 
 
 def test_persist_deck():
-    """CON-67: unique save ids; vocab.json never listed; no silent overwrite."""
-    print("\npersist_deck()  — CON-67 saved decks")
+    """unique save ids; vocab.json never listed; no silent overwrite."""
+    print("\npersist_deck()  — saved decks")
     import tempfile
     from pathlib import Path
     from datetime import datetime, timezone
@@ -1123,7 +1123,7 @@ def test_persist_deck():
         eq("two decks listed", len(listed), 2)
         eq("newest first", listed[0]["id"], out2["id"])
         eq("commander preserved", listed[0]["commander"], "Yuriko, the Tiger's Shadow")
-        # CON-227: unnamed builds are auto-saved playtest rows until she names them.
+        # unnamed builds are auto-saved playtest rows until she names them.
         eq("unnamed build is auto_saved", listed[0]["auto_saved"], True)
         out2["name"] = "Night raids"
         app.write_saved_deck(out2["id"], out2, d)
@@ -1190,7 +1190,7 @@ async def test_suggested_name_never_overwrites_hers():
             eq("and the name is written", stored("a")["name"], "Dawn of the Charge")
             eq("marked as ours", stored("a")["named_by"], "auto")
 
-            # CON-227's sort must survive the name — otherwise every playtest
+            # The playtest sort fix's sort must survive the name — otherwise every playtest
             # starts looking like a deck she kept.
             eq("an auto-named deck is still an auto-save",
                app.is_auto_saved_deck(stored("a")), True)
@@ -1237,8 +1237,8 @@ async def test_suggested_name_never_overwrites_hers():
 
 
 def test_saved_deck_brief_name_delete():
-    """CON-99: brief travels with deck; player name; delete."""
-    print("\nsaved deck API  — CON-99 brief, name, delete")
+    """brief travels with deck; player name; delete."""
+    print("\nsaved deck API  — brief, name, delete")
     import tempfile
     from pathlib import Path
 
@@ -1271,14 +1271,14 @@ def test_saved_deck_brief_name_delete():
         eq("vocab slug rejected", app.delete_saved_deck("vocab", d), False)
 
 
-def test_build_returns_plan_con158():
-    """CON-158: the plan that chose the cards rides on the build and saves.
+def test_build_returns_plan():
+    """the plan that chose the cards rides on the build and saves.
 
     /api/build already calls plan_graph.derive() for payoff_searches(); this
     asserts the result is not discarded. decided:false must survive — a guess
     presented as a decision is the bug the archetype layer exists to prevent.
     """
-    print("\nbuild returns plan  — CON-158")
+    print("\nbuild returns plan")
     import tempfile
     from pathlib import Path
     from deckwright import plan_graph
@@ -1331,8 +1331,8 @@ def test_build_returns_plan_con158():
 
 
 def test_conversation_on_saved_deck():
-    """CON-109: interrogation transcript rides with the deck, verbatim."""
-    print("\nconversation on saved deck  — CON-109")
+    """interrogation transcript rides with the deck, verbatim."""
+    print("\nconversation on saved deck")
     import tempfile
     from pathlib import Path
 
@@ -1401,14 +1401,14 @@ def test_conversation_on_saved_deck():
            "conversation" in app.load_saved_deck(bare["id"], d), False)
 
 
-def test_match_notes_on_saved_deck_con270():
-    """CON-270: post-game notes persist on a saved deck. No model.
+def test_match_notes_on_saved_deck():
+    """post-game notes persist on a saved deck. No model.
 
-    Backend + thin UI already shipped as CON-121/128. This gate keeps the
+    Backend + thin UI already shipped earlier. This gate keeps the
     HTTP path honest: add / list / delete round-trip through disk, missing
     deck and missing note are 404s, and a rename does not wipe notes.
     """
-    print("\nmatch notes on saved deck  — CON-270")
+    print("\nmatch notes on saved deck")
     import tempfile
     from pathlib import Path
     from fastapi.testclient import TestClient
@@ -1507,8 +1507,8 @@ def test_match_notes_on_saved_deck_con270():
 
 
 def test_sim_baseline_cache():
-    """CON-108: baseline sim rides with the saved deck; stamps invalidate it."""
-    print("\nsim baseline cache  — CON-108")
+    """baseline sim rides with the saved deck; stamps invalidate it."""
+    print("\nsim baseline cache")
     import tempfile
     from pathlib import Path
 
@@ -1535,7 +1535,7 @@ def test_sim_baseline_cache():
         "review": {"sound": True, "caveat": ""},
     }
 
-    # bake.fresh is the shared gate CON-102 will reuse.
+    # bake.fresh is the shared gate the precon bake will reuse.
     stamped = bake.stamp({"curves": sim_out["curves"]}, deck_a, 1)
     eq("fresh when stamps match", bake.fresh(stamped, deck_a, 1), True)
     eq("stale on hash mismatch", bake.fresh(stamped, deck_b, 1), False)
@@ -1600,8 +1600,8 @@ def test_sim_baseline_cache():
 
 
 def test_finish_mana_base():
-    """CON-92: total lands is decided; flex absorbs role-target changes."""
-    print("\nfinish_mana_base()  — CON-92 total lands not residue")
+    """total lands is decided; flex absorbs role-target changes."""
+    print("\nfinish_mana_base()  — total lands not residue")
 
     def skeleton(n_spells, n_nonbasic=36):
         d = [_card(f"L{i}", typ="Land", role="lands", text="{T}: Add {U}.")
@@ -1640,15 +1640,15 @@ def test_finish_mana_base():
     eq("flex shrank", r3["flex_added"], 0)
 
 
-def test_no_land_padding_con110():
-    """CON-110: short roles must not push total_lands above the plan target.
+def test_no_land_padding():
+    """short roles must not push total_lands above the plan target.
 
     Reproduces the finish_mana_base table from the issue: with a 36-land target
     and a thin/empty flex pool, the old basics loop padded past the target.
     Surplus from other role pools fills first; if still short, the deck stays
     under 99 with lands at the planned count — never padded basics.
     """
-    print("\nfinish_mana_base()  — CON-110 no pad past land target")
+    print("\nfinish_mana_base()  — no pad past land target")
 
     def skeleton(n_spells, n_nonbasic=36):
         d = [_card(f"L{i}", typ="Land", role="lands", text="{T}: Add {U}.")
@@ -1757,8 +1757,8 @@ def _finish_like_build(spells, cmdr, identity):
 
 
 def test_mana_sizing():
-    """CON-70: land count follows curve; under-sourced bases are reported."""
-    print("\nmana.plan()  — CON-70 curve sizing and source verdict")
+    """land count follows curve; under-sourced bases are reported."""
+    print("\nmana.plan()  — curve sizing and source verdict")
 
     def low_curve_spells():
         return [{"name": f"C{i}", "type": "Creature", "cmc": 2,
@@ -1782,7 +1782,7 @@ def test_mana_sizing():
         f"{low_plan['total_lands']} vs {high_plan['total_lands']}")
     (ok if "Karsten" in low_plan["basis"] else bad)("basis cites Karsten", low_plan["basis"])
 
-    # CON-70 done criteria (post empty-role fix): on two different curves,
+    # done criteria (post empty-role fix): on two different curves,
     # total_lands == leading number in basis == land-type cards in the 99.
     # The 66-land bug was padding after empty roles; that path must not fire here.
     low_fill = _finish_like_build(low_curve_spells(), cmdr_low, ["U"])
@@ -1842,8 +1842,8 @@ def test_mana_sizing():
 
 
 def test_deck_signals():
-    """CON-76: strong/watch lines are countable facts from the decklist only."""
-    print("\ndeck_signals()  — CON-76 countable only")
+    """strong/watch lines are countable facts from the decklist only."""
+    print("\ndeck_signals()  — countable only")
 
     def base_deck():
         # 36 lands + filler creatures; roles layered on below.
@@ -1905,8 +1905,8 @@ def test_deck_signals():
 
 
 def test_overview_verifier():
-    """CON-68: overview card names must come from the deck; combos verified."""
-    print("\noverview verifier  — CON-68 grounded in sim")
+    """overview card names must come from the deck; combos verified."""
+    print("\noverview verifier  — grounded in sim")
 
     commander = "Thrasios, Triton Hero"
     deck_names = {"Sol Ring", "Lightning Bolt", "Counterspell", "Island"}
@@ -1967,7 +1967,7 @@ def test_overview_verifier():
     (ok if not overview.MATCHUP_BANNED.search(all_text) else bad)(
         "no matchup language in fixture overview", all_text)
 
-    # CON-102: countable overview for API-free precon bake.
+    # countable overview for API-free precon bake.
     counted = overview.from_counts(commander, fixture, signals, sim_out)
     eq("from_counts has strategy", bool(counted.get("strategy")), True)
     eq("from_counts names commander", "Thrasios" in counted["strategy"], True)
@@ -1986,8 +1986,8 @@ def test_overview_verifier():
 
 
 def test_substitution():
-    """CON-100: per-card role, replaceability, and validated alternates."""
-    print("\nsubstitution  — CON-100 shopping guidance")
+    """per-card role, replaceability, and validated alternates."""
+    print("\nsubstitution  — shopping guidance")
 
     def pool_card(name, *, cmc=2, ci=None, rank=100):
         return {"name": name, "cost": f"{{{cmc}}}", "cmc": cmc,
@@ -2054,9 +2054,9 @@ def test_substitution():
 
 
 def test_land_ramp_policy():
-    """CON-61: any land-type pick counts against the land slot, for every role."""
-    print("\nland-slot policy  — CON-61 (all roles)")
-    land_target = 36  # fixture size for CON-61 slot policy, not curve-derived
+    """any land-type pick counts against the land slot, for every role."""
+    print("\nland-slot policy  — (all roles)")
+    land_target = 36  # fixture size for the land-slot policy slot policy, not curve-derived
     ramp_target = next(t for r, t, _ in app.ROLES if r == "ramp")
     draw_target = next(t for r, t, _ in app.ROLES if r == "draw")
 
@@ -2138,8 +2138,8 @@ def test_land_ramp_policy():
 
 
 def test_strategy_role_queries():
-    """CON-91: ramp/draw/spot queries follow the chosen strategy, not one generic ladder."""
-    print("\nstrategy role queries  — CON-91")
+    """ramp/draw/spot queries follow the chosen strategy, not one generic ladder."""
+    print("\nstrategy role queries")
 
     aggro = {
         "theme": "pirate",
@@ -2168,7 +2168,7 @@ def test_strategy_role_queries():
         "aggro ramp caps cmc", ramp_aggro[0])
     (ok if any("cmc<=5" in q or "put a land" in q.lower() for q in ramp_bombs) else bad)(
         "haymaker ramp allows bigger / land ramp", ramp_bombs[0])
-    # CON-113: player-vocab mechanics must not emit bare o:ramp (incidental text).
+    # player-vocab mechanics must not emit bare o:ramp (incidental text).
     (ok if not any(re.search(r"(^|\s)o:ramp(\s|$)", q) for q in ramp_bombs) else bad)(
         "haymaker ramp ladder has no bare o:ramp", ramp_bombs[0])
     (ok if any(re.search(r"(^|\s)otag:ramp(\s|$)", q) for q in ramp_bombs) else bad)(
@@ -2199,9 +2199,9 @@ def test_strategy_role_queries():
     eq("bombs draw accumulate", app.strategy_profile(bombs)["draw"], "accumulate")
 
 
-def test_type_targets_con79():
-    """CON-79: type floors live inside roles; strategy picks which floors."""
-    print("\ntype targets inside roles  — CON-79")
+def test_type_targets():
+    """type floors live inside roles; strategy picks which floors."""
+    print("\ntype targets inside roles")
 
     combat = {
         "theme": "pirate",
@@ -2298,7 +2298,7 @@ def test_type_targets_con79():
     (ok if "creature" in watch.lower() and "3" in watch else bad)(
         "combat deck with 3 creatures is a cons signal", watch)
 
-    # facts_block surfaces the breakdown for CON-68.
+    # facts_block surfaces the breakdown for the deck overview.
     facts = overview.facts_block(
         "Malcolm", {"name": "Malcolm"}, thin, combat, sig,
         {"curves": [], "diagnostics": {}, "assumptions": []},
@@ -2308,7 +2308,7 @@ def test_type_targets_con79():
 
 
 async def test_ramp_query_no_lands():
-    """Ramp Scryfall pool must not return lands (CON-61)."""
+    """Ramp Scryfall pool must not return lands."""
     print("\nramp query pool  — no lands in results")
     try:
         q = app.role_query("ramp", "UB", {"theme": "pirate", "bracket": 2}, 5.0)[0]
@@ -2324,9 +2324,9 @@ async def test_ramp_query_no_lands():
         live_skip("ramp query pool", e)
 
 
-async def test_strategy_ramp_pools_con113():
-    """CON-113: haymaker ramp is rocks/land-fetch, not Embercleave from o:ramp."""
-    print("\nstrategy ramp pools  — CON-113 live Scryfall")
+async def test_strategy_ramp_pools():
+    """haymaker ramp is rocks/land-fetch, not Embercleave from o:ramp."""
+    print("\nstrategy ramp pools  — live Scryfall")
     await app.load_vocab()
     aggro = {
         "theme": "pirate",
@@ -2396,17 +2396,17 @@ def test_sim_baseline():
     eq("diagnostics.lands", d["lands"], 36)
     eq("diagnostics.mana_rocks", d["mana_rocks"], 10)
     eq("diagnostics.payoffs", d["payoffs"], 12)
-    # CON-71: goldfish assumptions travel with the curves (commander tax stated, not modelled).
+    # goldfish assumptions travel with the curves (commander tax stated, not modelled).
     eq("assumptions present", out.get("assumptions"), sim.ASSUMPTIONS)
     (ok if "cast once and stays" in sim.ASSUMPTIONS else bad)(
         "assumptions state commander tax", sim.ASSUMPTIONS)
     (ok if "on cast" in sim.ASSUMPTIONS.lower() else bad)(
-        "assumptions state commander on-cast effects (CON-268)", sim.ASSUMPTIONS)
+        "assumptions state commander on-cast effects", sim.ASSUMPTIONS)
     (ok if "exchange" in sim.ASSUMPTIONS.lower() else bad)(
-        "assumptions deny inventing life exchange (CON-268)", sim.ASSUMPTIONS)
+        "assumptions deny inventing life exchange", sim.ASSUMPTIONS)
     (ok if "no colour screw" not in sim.ASSUMPTIONS.lower()
           and "no color screw" not in sim.ASSUMPTIONS.lower() else bad)(
-        "assumptions do not deny colour (CON-69 models it)", sim.ASSUMPTIONS)
+        "assumptions do not deny colour (models it)", sim.ASSUMPTIONS)
     c1, c2 = out["curves"]
     for label, pts, lo, hi in (("commander by T5", c1["points"][4], 60, 80),
                                ("seven mana by T5", c2["points"][4], 4, 20)):
@@ -2421,7 +2421,7 @@ def test_sim_baseline():
 
 def test_sim_colored_mana():
     """UB spells on a white-only mana base must fail to cast — not match a proper base."""
-    print("\nsim.run()  — colored mana (CON-69)")
+    print("\nsim.run()  — colored mana")
     random.seed(1)
 
     def _fixing_rocks():
@@ -2469,8 +2469,8 @@ def test_sim_colored_mana():
 
 
 def test_sim_sample_hands():
-    """CON-104: sample hands are real deals from the run, every card in the deck."""
-    print("\nsim.run()  — sample good/bad hands (CON-104)")
+    """sample hands are real deals from the run, every card in the deck."""
+    print("\nsim.run()  — sample good/bad hands")
     random.seed(1)
     deck = ([{"name": f"L{i}", "type": "Land", "cmc": 0, "text": "{T}: Add {G}."} for i in range(36)]
             + [{"name": f"R{i}", "type": "Artifact", "cmc": 2,
@@ -2514,7 +2514,7 @@ def test_launchd_plist():
     (ok if not plist.is_file() else bad)("no personal launchd plist committed")
 
 
-async def test_desktop_install_update_con285():
+async def test_desktop_install_update():
     """Pull-on-launch is opt-in; boot veil and update.sh still matter."""
     import os
     import stat
@@ -2579,12 +2579,12 @@ async def test_desktop_install_update_con285():
     (ok if boot_mod.data_is_stale(limit_days=-1) is True else bad)(
         "negative limit treats current data as stale")
 
-    # CON-296 re-sign-off: a missing local corpus must trigger boot refresh.
+    # re-sign-off: a missing local corpus must trigger boot refresh.
     # Grammar/KB can be fresh while ~/.deckwright/oracle_cards.jsonl is absent —
     # that left every lookup on live Scryfall (the afternoon outage exposure).
     # data_is_stale() stays about committed catalogs; corpus absence is separate.
     real_oracle = corpus_mod.ORACLE_JSONL
-    corpus_mod.ORACLE_JSONL = Path("/tmp/deckwright-con296-missing-oracle.jsonl")
+    corpus_mod.ORACLE_JSONL = Path("/tmp/deckwright-missing-oracle.jsonl")
     old_skip_refresh = os.environ.pop("DECKWRIGHT_SKIP_BOOT_REFRESH", None)
     old_force_refresh = os.environ.pop("DECKWRIGHT_BOOT_REFRESH", None)
     try:
@@ -2640,7 +2640,7 @@ async def test_desktop_install_update_con285():
 
 
 def test_import_deck_parser():
-    """CON-97: pasted list formats parse to name/qty/section."""
+    """pasted list formats parse to name/qty/section."""
     print("\nimport_deck.parse_decklist()  — Archidekt/Moxfield/plain formats")
 
     text = """
@@ -2676,7 +2676,7 @@ Sol Ring
 
 
 def test_pick_commander():
-    """CON-97: commander from section, singleton legendary, or ambiguous."""
+    """commander from section, singleton legendary, or ambiguous."""
     print("\nimport_deck.pick_commander()  — section / CI / ambiguity")
 
     brass = _card("Admiral Beckett Brass",
@@ -2717,9 +2717,9 @@ def test_pick_commander():
     (ok if len(amb["candidates"]) >= 2 else bad)("ambiguous lists candidates")
 
 
-def test_pick_commander_partners_con305():
-    """CON-305: import recognises Partner / Partner with pairs for CI cover."""
-    print("\nimport_deck.pick_commander()  — partner pairs (CON-305)")
+def test_pick_commander_partners():
+    """import recognises Partner / Partner with pairs for CI cover."""
+    print("\nimport_deck.pick_commander()  — partner pairs")
 
     malcolm = _card(
         "Malcolm, Keen-Eyed Navigator",
@@ -2885,7 +2885,7 @@ def test_pick_commander_partners_con305():
 
 
 def test_infer_role():
-    """CON-97: imported cards get roles for signals/sim."""
+    """imported cards get roles for signals/sim."""
     print("\nimport_deck.infer_role()  — heuristic classification")
     eq("land", import_deck.infer_role(_card("Island", typ="Basic Land — Island")), "basic")
     eq("wipe", import_deck.infer_role(
@@ -2897,7 +2897,7 @@ def test_infer_role():
 # ---------------------------------------------------------------- runner
 
 def test_saved_deck_slugs():
-    """CON-99: every deck already on disk must still open after the shape change."""
+    """every deck already on disk must still open after the shape change."""
     print("\nsaved decks — slugs and legacy files")
     eq("hyphenated commander resolves", bool(app._SLUG_RE.fullmatch("Niv-Mizzet")), True)
     eq("underscored commander resolves", bool(app._SLUG_RE.fullmatch("Lyra_Dawnbringer")), True)
@@ -2910,7 +2910,7 @@ def test_saved_deck_slugs():
 
 
 def test_precons_archidekt_conversion():
-    """CON-98: Archidekt deck JSON → decklist text, including DFC names."""
+    """Archidekt deck JSON → decklist text, including DFC names."""
     print("\nprecons — Archidekt deck conversion")
     sample = {
         "id": 1,
@@ -2958,7 +2958,7 @@ def test_precons_archidekt_conversion():
 
 
 async def test_precons_cache_fallback():
-    """CON-98: stale remote falls back to on-disk catalog."""
+    """stale remote falls back to on-disk catalog."""
     print("\nprecons — cache fallback")
     import tempfile
     from pathlib import Path
@@ -2982,8 +2982,8 @@ async def test_precons_cache_fallback():
 
 
 def test_precon_brief_from_analysis():
-    """CON-116: a precon brief is read off the baked analysis, not asked for."""
-    print("\nprecon brief from analysis  — CON-116")
+    """a precon brief is read off the baked analysis, not asked for."""
+    print("\nprecon brief from analysis")
     from deckwright import precon_bake
 
     # Tribal wizards — theme comes from creature subtypes on plan cards.
@@ -3090,8 +3090,8 @@ def test_precon_brief_from_analysis():
 
 
 def test_precon_bake_stamps():
-    """CON-102: baked analysis is keyed by list hash + analysis/sim versions."""
-    print("\nprecon bake stamps  — CON-102")
+    """baked analysis is keyed by list hash + analysis/sim versions."""
+    print("\nprecon bake stamps")
     import tempfile
     from pathlib import Path
     from deckwright import precon_bake
@@ -3207,8 +3207,8 @@ def test_precon_bake_stamps():
 
 
 def test_sim_seed_reproducible():
-    """CON-102: fixed seed makes precon goldfish bit-identical across runs."""
-    print("\nsim seed  — CON-102")
+    """fixed seed makes precon goldfish bit-identical across runs."""
+    print("\nsim seed")
     deck = [
         {"name": "Sol Ring", "cmc": 1, "cost": "{1}", "type": "Artifact",
          "text": "{T}: Add {C}{C}.", "role": "ramp"},
@@ -3233,8 +3233,8 @@ def test_sim_seed_reproducible():
 
 
 async def test_load_precon_serves_bake():
-    """CON-102: fresh bake is served with no model call and no simulation."""
-    print("\nprecon load serves bake  — CON-102")
+    """fresh bake is served with no model call and no simulation."""
+    print("\nprecon load serves bake")
     import tempfile
     from pathlib import Path
     from unittest.mock import AsyncMock, patch
@@ -3291,7 +3291,7 @@ async def test_load_precon_serves_bake():
         precon_bake.write_bake(payload, d)
         async def fake_upgrades(commander_card, deck, brief, *, card_pool="tournament_legal",
                                 limit=8, way_playstyle=None):
-            # CON-259 added way_playstyle=; a stale stub TypeErrors, and
+            # added way_playstyle=; a stale stub TypeErrors, and
             # attach_precon_upgrade correctly returns unknown on that failure.
             # Status empty here means "looked, nothing to invent" — not unknown.
             return {"status": "empty", "cards": [],
@@ -3318,7 +3318,7 @@ async def test_load_precon_serves_bake():
             eq("signals served", out["signals"]["counts"]["mana_rocks"], 1)
             eq("live price on card", out["deck"][0]["usd"], "1.00")
             eq("price total", out["price"] > 0, True)
-            # CON-217: ways stamped offline; upgrades from stub (not invented).
+            # ways stamped offline; upgrades from stub (not invented).
             eq("ways_to_play present",
                isinstance(out.get("ways_to_play"), list), True)
             eq("ways_status present",
@@ -3337,7 +3337,7 @@ async def test_load_precon_serves_bake():
 
 
 def test_import_double_faced():
-    """CON-97: Deckwright must be able to re-import its own export.
+    """Deckwright must be able to re-import its own export.
 
     Scryfall writes double-faced cards as "Front // Back" and every exporter,
     ours included, puts that whole string in the decklist — but
@@ -3359,7 +3359,7 @@ def test_import_double_faced():
 
 
 def test_substitution_price_band():
-    """CON-100: an alternate has to be affordable, not just castable.
+    """an alternate has to be affordable, not just castable.
 
     Matching on mana value alone offered Mana Vault ($118) and Chrome Mox
     ($165) as replacements for Sol Ring ($1.43) — all cheap to cast, all
@@ -3391,7 +3391,7 @@ def test_substitution_price_band():
 
 
 def test_christen_guard():
-    """CON-101: the primer is flavour writing, which is where the model is most
+    """the primer is flavour writing, which is where the model is most
     tempted to name a card it remembers rather than one we fetched."""
     print("\nchristening — the one rule holds in prose")
     deck = {"Righteous Valkyrie", "Angelic Accord", "Well of Lost Dreams"}
@@ -3410,7 +3410,7 @@ def test_christen_guard():
 
 
 def test_thesis_review():
-    """CON-84: nothing checked the layer that decides what \"working\" means.
+    """nothing checked the layer that decides what \"working\" means.
 
     A thesis grading the wrong plan produces a simulation that faithfully
     measures the wrong thing and an overview that confidently explains it —
@@ -3447,7 +3447,7 @@ def test_thesis_review():
 
 
 def test_why_card():
-    """CON-87: why a card is here is the query that found it, read back."""
+    """why a card is here is the query that found it, read back."""
     print("\nwhy this card — provenance, not invention")
     eq("a creature type is the theme",
        why.explain("id<=W t:angel usd<=4.5", "theme"), "It's an angel — your theme.")
@@ -3465,8 +3465,8 @@ def test_why_card():
 
 
 def test_deck_context():
-    """CON-115: one assembled record — why + conversation reach the ask prompt."""
-    print("\ndeck_context()  — CON-115 assembled record for ask")
+    """one assembled record — why + conversation reach the ask prompt."""
+    print("\ndeck_context()  — assembled record for ask")
     reason = "Tagged by the community as sacrifice outlet."
     wanted = "I want a commander that does the work itself"
     data = {
@@ -3598,7 +3598,7 @@ def test_sim_sees_card_draw():
     eq("a vanilla card reports none",
        sim.mechanics(vanilla, set())["draws"], 0)
 
-    # CON-146: "target player draws" is black's draw suite. Goldfish: you choose
+    # "target player draws" is black's draw suite. Goldfish: you choose
     # yourself. Scoring 0 made Arena-vs-Sign pass as 6>0 — wrong reason.
     sign = {"name": "Sign in Blood", "type": "Sorcery", "cmc": 2, "cost": "{B}{B}",
             "text": "Target player draws two cards and loses 2 life."}
@@ -3633,8 +3633,8 @@ def test_sim_sees_card_draw():
 
 
 def test_sim_sees_life_math():
-    """CON-121: drain ≠ lifelink; lifegain payoff ≠ one-shot gain; Vortex ≠ gain."""
-    print("\nsim — lifegain / drain perception (CON-121)")
+    """drain ≠ lifelink; lifegain payoff ≠ one-shot gain; Vortex ≠ gain."""
+    print("\nsim — lifegain / drain perception")
     artist = {"name": "Blood Artist", "type": "Creature", "cmc": 2, "cost": "{1}{B}",
               "text": "Whenever Blood Artist or another creature dies, target player "
                       "loses 1 life and you gain 1 life."}
@@ -3717,8 +3717,8 @@ def test_sim_sees_bodies():
 
 
 def test_sim_sees_token_types():
-    """CON-122: Treasure ≠ Soldier; Krenko X/{T} grows the board; Map does not."""
-    print("\nsim — creature tokens vs resource tokens (CON-122)")
+    """Treasure ≠ Soldier; Krenko X/{T} grows the board; Map does not."""
+    print("\nsim — creature tokens vs resource tokens")
     krenko = {
         "name": "Krenko, Mob Boss", "type": "Creature — Goblin Warrior",
         "cmc": 4, "cost": "{2}{R}{R}",
@@ -3784,8 +3784,8 @@ def test_sim_sees_token_types():
 
 
 def test_sim_sees_graveyard():
-    """CON-123: flashback ≠ one-shot; self-mill / gy_return / delirium visible."""
-    print("\nsim — graveyard / flashback perception (CON-123)")
+    """flashback ≠ one-shot; self-mill / gy_return / delirium visible."""
+    print("\nsim — graveyard / flashback perception")
     looting = {
         "name": "Faithless Looting", "type": "Sorcery", "cmc": 1, "cost": "{R}",
         "keywords": ["Flashback"],
@@ -3864,7 +3864,7 @@ def test_sim_sees_anthems():
     b = sim.run(without, 3, set(), cond, runs=400)["curves"][0]["points"][4]
     (ok if a > b else bad)("anthems raise board power", f"{a}% vs {b}%")
 def test_card_score_marginal():
-    """CON-103: same candidate, different marginal lift in different decks."""
+    """same candidate, different marginal lift in different decks."""
     print("\ncard_score — marginal sim lift")
     random.seed(7)
 
@@ -3882,7 +3882,7 @@ def test_card_score_marginal():
                 "text": "Big creature.", "role": "theme"}
 
     # Score against payoffs — harder floors keep headroom at TARGET_TURN=10
-    # (CON-225); "3 payoffs" saturates by T10 on these scaffolds.
+    #; "3 payoffs" saturates by T10 on these scaffolds.
     conds = [
         {"label": "Commander out", "check": {"commander_in_play": True}},
         {"label": "5 payoffs", "check": {"payoffs_in_play": 5}},
@@ -3912,7 +3912,7 @@ def test_card_score_marginal():
 
 
 def test_card_score_skips_saturated():
-    """CON-103: saturated baselines skip scoring — no +0.0 sim_pick notes."""
+    """saturated baselines skip scoring — no +0.0 sim_pick notes."""
     print("\ncard_score — skip saturated conditions")
     random.seed(3)
 
@@ -3943,7 +3943,7 @@ def test_card_score_skips_saturated():
 
 
 def test_card_score_provisional_conditions():
-    """CON-103: strategy prose shapes which conditions get scored."""
+    """strategy prose shapes which conditions get scored."""
     print("\ncard_score — provisional conditions from strategy")
     aggro = {"strategy": "Low-to-the-ground aggro with cheap creatures and refill your hand.",
              "mechanics": ["treasure"]}
@@ -3958,7 +3958,7 @@ def test_card_score_provisional_conditions():
 
 
 def test_card_score_zero_delta_preserves_model_order():
-    """CON-103: interaction cards that score 0 are not demoted below model picks."""
+    """interaction cards that score 0 are not demoted below model picks."""
     print("\ncard_score — zero-score cards keep model order")
     picks = [
         {"name": "First Pick", "type": "Instant", "cmc": 2,
@@ -3973,7 +3973,7 @@ def test_card_score_zero_delta_preserves_model_order():
 
 
 def test_card_score_sim_pick_note():
-    """CON-103: chosen cards carry a measurable claim on the response."""
+    """chosen cards carry a measurable claim on the response."""
     print("\ncard_score — sim_pick metadata")
     meta = {
         "Sol Ring": {
@@ -3996,7 +3996,7 @@ def test_card_score_sim_pick_note():
 
 
 async def test_card_score_derive_failed_reported():
-    """CON-228: plan derive failure is visible in score_info, not silent fallback."""
+    """plan derive failure is visible in score_info, not silent fallback."""
     print("\ncard_score — plan derive failure is reported")
     from unittest.mock import patch
     from deckwright import plan_graph
@@ -4030,7 +4030,7 @@ async def test_card_score_derive_failed_reported():
 
 
 async def test_partners_unknown_not_empty():
-    """CON-228: Scryfall failure on partner lookup is unknown, not a real zero."""
+    """Scryfall failure on partner lookup is unknown, not a real zero."""
     print("\npartners — Scryfall failure is unknown")
     from unittest.mock import AsyncMock, patch
 
@@ -4047,7 +4047,7 @@ async def test_partners_unknown_not_empty():
 
 
 async def test_card_score_gate_failed_open_reported():
-    """CON-188: orphan-gate fail-open is visible in score_info, not only stdout."""
+    """orphan-gate fail-open is visible in score_info, not only stdout."""
     print("\ncard_score — synergy gate failed-open is reported")
     from unittest.mock import patch
     from deckwright import synergy as syn
@@ -4080,8 +4080,8 @@ async def test_card_score_gate_failed_open_reported():
     eq("failed open did not claim drops", info.get("synergy_dropped"), 0)
 
 
-async def test_card_score_skip_prefers_glued_con214():
-    """CON-214: when sim scoring is skipped, edged cards still beat orphans."""
+async def test_card_score_skip_prefers_glued():
+    """when sim scoring is skipped, edged cards still beat orphans."""
     print("\ncard_score — skipped scoring still soft-prefers glued cards")
     from unittest.mock import patch
 
@@ -4136,14 +4136,14 @@ async def test_card_score_skip_prefers_glued_con214():
        (chosen[0] or {}).get("name"), "Cloudshift")
 
 
-def test_enforce_payoff_floors_con159():
-    """CON-159: an archetype-extra card that scores zero still reaches the deck.
+def test_enforce_payoff_floors():
+    """an archetype-extra card that scores zero still reaches the deck.
 
     Burst loop halves (Exquisite Blood) score 0 in a goldfish — no opponent to
     lose life — and lose a 249-wide theme contest. The plan's min on the
     archetype search is a floor; honour it the way type floors are honoured.
     """
-    print("\nenforce_payoff_floors  — CON-159 zero-score archetype extra")
+    print("\nenforce_payoff_floors  — zero-score archetype extra")
     # Fifteen zero-score theme picks the scorer preferred. None is the loop piece.
     chosen = [_card(f"Generic{i}", typ="Enchantment",
                     text="At the beginning of your upkeep, you gain 1 life.")
@@ -4160,7 +4160,7 @@ def test_enforce_payoff_floors_con159():
         _card("Filler Spell", typ="Instant", text="Draw a card."),
     ]
     # Two separate floors — Bond half alone must not satisfy the Exquisite half.
-    # A single OR floor with min:6 was the CON-156 miss that let Bond clones
+    # A single OR floor with min:6 was the archetype-search fix miss that let Bond clones
     # fill the quota and drop the card that closes the loop.
     floors = [
         {"id": "archetype_burst", "min": 6,
@@ -4191,16 +4191,16 @@ def test_enforce_payoff_floors_con159():
        "Not A Real Card" in {c["name"] for c in ghost}, False)
 
 
-def test_enforce_tribe_floor_con172():
-    """CON-172: payoff pool/floors must not erase the named creature type.
+def test_enforce_tribe_floor():
+    """payoff pool/floors must not erase the named creature type.
 
     Angels+lifegain found the tribe at commander select, then filled theme with
     behaviour payoffs (`o:"whenever you gain life"`) that are not angels. The
     vampire twin kept its tribe because drain payoffs *are* vampires. Honour a
-    tribe floor the way CON-159 honours archetype floors — after payoffs, without
+    tribe floor the way the archetype payoff floors honours archetype floors — after payoffs, without
     inventing cards, without stealing protected loop pieces.
     """
-    print("\nenforce_tribe_floor  — CON-172 tribe survives payoff reservation")
+    print("\nenforce_tribe_floor  — tribe survives payoff reservation")
     eq("angel theme → angel",
        app.theme_creature_type({"theme": "angels lifegain"}), "angel")
     eq("vampire theme → vampire",
@@ -4235,7 +4235,7 @@ def test_enforce_tribe_floor_con172():
         text="Whenever an opponent loses life, you gain that much life.")
     pool = list(chosen) + angels + [loop]
 
-    # Payoff floor first (CON-159), then tribe — protected loop piece stays.
+    # Payoff floor first, then tribe — protected loop piece stays.
     after_payoff = app.enforce_payoff_floors(
         chosen, pool,
         [{"id": "archetype_burst", "min": 1, "names": {"Exquisite Blood"}}], 15)
@@ -4266,9 +4266,9 @@ def test_enforce_tribe_floor_con172():
 
 
 
-def test_brief_extract_states_con166():
-    """CON-166: brief present · still asking · extraction failed — never silent null."""
-    print("\nextract_brief_payload()  — CON-166 three states, no swallowed parse")
+def test_brief_extract_states():
+    """brief present · still asking · extraction failed — never silent null."""
+    print("\nextract_brief_payload()  — three states, no swallowed parse")
 
     good = (
         '{"reply": "Pirates that steal treasure — sound right?", '
@@ -4344,7 +4344,7 @@ def test_brief_extract_states_con166():
     eq("legacy fence → still_asking false", got["still_asking"], False)
 
 
-    # CON-232: CLI sometimes emits prose then a trailing envelope — peel it.
+    # CLI sometimes emits prose then a trailing envelope — peel it.
     prose_then_asking = (
         "What colors are you thinking?\n\n"
         '{"reply": "What colors are you thinking?", '
@@ -4375,7 +4375,7 @@ def test_brief_extract_states_con166():
     eq("prose+envelope brief → no error", got["brief_error"], None)
     eq("prose+envelope brief → theme", (got["brief"] or {}).get("theme"), "pirate")
 
-    # CON-304: prose then a fenced envelope — peel must accept the closing ```
+    # prose then a fenced envelope — peel must accept the closing ```
     # and recover still_asking / brief. Prompt already forbids fences; model
     # fences anyway.
     fenced_json = (
@@ -4515,15 +4515,15 @@ def test_llm_backend_choice():
         os.environ.update(real_env)
 
 
-async def test_llm_cli_stdin_and_timeout_con206():
-    """CON-206: CLI path must not inherit stdin or wait forever.
+async def test_llm_cli_stdin_and_timeout():
+    """CLI path must not inherit stdin or wait forever.
 
     /api/build hung with two asyncio tasks in subprocess._read_stream — the
     signature of communicate() on a child that never exits. Forge is not on
-    the build path; llm.py's `claude -p` is. Same class as CON-23: a CLI that
+    the build path; llm.py's `claude -p` is. Same class as a CLI that
     also reads stdin blocks when the parent's stdin never EOFs.
     """
-    print("\nllm.py CON-206  — stdin closed, hung CLI times out")
+    print("\nllm.py stdin closed, hung CLI times out")
     import os, stat, tempfile, pathlib
     from deckwright import llm
 
@@ -4738,7 +4738,7 @@ def test_coverage():
 
 
 async def test_coverage_role_count_unknown_aborts():
-    """CON-188: a failed role count is unknown, not an empty role."""
+    """a failed role count is unknown, not an empty role."""
     print("\ncoverage  — role count None aborts, never becomes 0")
     from unittest.mock import AsyncMock, patch
 
@@ -4775,7 +4775,7 @@ async def test_coverage_role_count_unknown_aborts():
 
 
 def test_calendar():
-    """CON-137/218: overlay merge, future unknowns, debut filter honesty."""
+    """overlay merge, future unknowns, debut filter honesty."""
     print("\ncalendar.py  — release calendar data layer")
     from datetime import date
 
@@ -4800,7 +4800,7 @@ def test_calendar():
     eq("released set not future", release_calendar.is_future_set(
         {"released_at": "2026-06-01"}, today), False)
 
-    # CON-218: Warp debuts with EOE; Flying does not; Station same-day EOC counts.
+    # Warp debuts with EOE; Flying does not; Station same-day EOC counts.
     eq("same set is debut", release_calendar.is_debut_for_set(
         "eoe", "2025-08-01", "eoe", "2025-08-01"), True)
     eq("same-day companion is debut", release_calendar.is_debut_for_set(
@@ -4926,7 +4926,7 @@ async def test_calendar_scry_failure_not_zero():
 
 
 def panel_kind(row):
-    """Mirrors index.html calPanelKind — CON-218 mechanics panel."""
+    """Mirrors index.html calPanelKind — mechanics panel."""
     m = row.get("mechanics") or {}
     status = m.get("status") or "pending"
     names = m.get("names") or []
@@ -4944,7 +4944,7 @@ def panel_kind(row):
 
 
 def test_calendar_panel_states():
-    """CON-218: future / announced / pending / unknown / empty / hits must not collapse."""
+    """future / announced / pending / unknown / empty / hits must not collapse."""
 
     eq("future without overlay is future", panel_kind({"future": True}), "future")
     eq("future with Storied is announced", panel_kind({
@@ -5225,8 +5225,8 @@ async def test_calendar_endpoint_returns():
 
 
 def test_playstyle_skeleton():
-    """CON-74: how she wants to play moves the skeleton, not just the flavour."""
-    print("\nskeleton_for()  — CON-74 playstyle shapes the deck")
+    """how she wants to play moves the skeleton, not just the flavour."""
+    print("\nskeleton_for()  — playstyle shapes the deck")
 
     base = {n: c for n, c, _ in app.ROLES if n != "lands"}
     base_total = sum(base.values())
@@ -5261,8 +5261,8 @@ def test_playstyle_skeleton():
         f"{shapes['grindy']['draw']} vs {shapes['proactive']['draw']}")
 
 def test_apply_tweak():
-    """CON-75: sliders swap real pool cards by type — never invent or duplicate."""
-    print("\napply_tweak()  — CON-75 real composition swaps")
+    """sliders swap real pool cards by type — never invent or duplicate."""
+    print("\napply_tweak()  — real composition swaps")
     from deckwright import tweak as tw
 
     def full(name, typ, role="theme", text="", usd="1.00", cmc=2):
@@ -5359,7 +5359,7 @@ def test_apply_tweak():
         (ok if c.get("name") and c.get("type") else bad)(
             "no blank stand-in", c)
 
-    # Composition target is the seam for CON-77 / CON-95 rebuilds.
+    # Composition target is the seam for the single-card swap / the rebuild work rebuilds.
     for axis in tw.COMPOSITION_AXES:
         (ok if axis in after else bad)(f"composition has {axis}", after)
 
@@ -5437,8 +5437,8 @@ def test_apply_tweak():
     eq("app.apply_tweak singleton",
        len({c["name"] for c in via_app["deck"]}), len(via_app["deck"]))
 def test_card_swap():
-    """CON-77: replace one card with a verified pool alternate; refuse fiction."""
-    print("\ncard swap  — CON-77")
+    """replace one card with a verified pool alternate; refuse fiction."""
+    print("\ncard swap")
     import tempfile
     from pathlib import Path
 
@@ -5604,8 +5604,8 @@ def test_card_swap():
 
 
 def test_plain_commander_reason():
-    """CON-112: write-up fallback is name + type + label — facts, not prose."""
-    print("\nplain_commander_reason()  — CON-112")
+    """write-up fallback is name + type + label — facts, not prose."""
+    print("\nplain_commander_reason()")
     card = {"name": "Lyra Dawnbringer",
             "type": "Legendary Creature — Angel"}
     got = app.plain_commander_reason(
@@ -5621,9 +5621,9 @@ def test_plain_commander_reason():
     eq("no invented strategy voice", "you would" in got.lower(), False)
 
 
-async def test_commander_writeup_fallback_con112():
-    """CON-112: forced write-up failure still returns five choosable commanders."""
-    print("\ncommander write-up fallback CON-112  — stub raises, picks survive")
+async def test_commander_writeup_fallback():
+    """forced write-up failure still returns five choosable commanders."""
+    print("\ncommander write-up fallback stub raises, picks survive")
     from unittest.mock import AsyncMock, patch
 
     brief = {
@@ -5662,9 +5662,9 @@ def _ci_subset(card: dict, allowed: str) -> bool:
     return set(card.get("color_identity") or []).issubset(set(allowed.upper()))
 
 
-async def test_commander_ladder_colors_con154():
-    """CON-154: named colours scope every rung; absent colours stay unscoped."""
-    print("\ncommander ladder colours CON-154  — UB / WB / GW legality + unscoped")
+async def test_commander_ladder_colors():
+    """named colours scope every rung; absent colours stay unscoped."""
+    print("\ncommander ladder colours UB / WB / GW legality + unscoped")
     await app.load_vocab()
 
     fixtures = [
@@ -5756,14 +5756,14 @@ async def test_commander_ladder_colors_con154():
         "response says picks are unscoped / span colours", resp.get("note"))
 
 
-async def test_commander_ladder_compose_con157():
-    """CON-157: commander ladder composes thing + behaviour before type alone.
+async def test_commander_ladder_compose():
+    """commander ladder composes thing + behaviour before type alone.
 
     Asserts the *rung used*, not merely that cards came back. Fixtures cover
     angels (compose), vampires (already composed), pirates (no invented
     behaviour), and a thin composition that degrades to the type rung.
     """
-    print("\ncommander ladder compose CON-157  — compose first, degrade honestly")
+    print("\ncommander ladder — compose first, degrade honestly")
     await app.load_vocab()
     from unittest.mock import AsyncMock, patch
 
@@ -5864,9 +5864,9 @@ async def test_commander_ladder_compose_con157():
         "thin composition does not pretend it matched", used_thin)
 
 
-async def test_commander_ladder_con111():
-    """CON-111: relax the model query; keep thin on-theme hits; generic stays honest."""
-    print("\ncommander ladder CON-111  — angels phrase + expensive fallback")
+async def test_commander_ladder():
+    """relax the model query; keep thin on-theme hits; generic stays honest."""
+    print("\ncommander ladder angels phrase + expensive fallback")
     await app.load_vocab()
 
     brief = {
@@ -5884,7 +5884,7 @@ async def test_commander_ladder_con111():
         cards, used = await app.search_ladder(
             ladder, limit=25, floor=app.COMMANDER_FLOOR)
     except app.ScryfallError as e:
-        live_skip("commander ladder CON-111", e)
+        live_skip("commander ladder the commander ladder fix", e)
         return
     names = [c["name"] for c in cards]
     types = " ".join(c.get("type") or "" for c in cards).lower()
@@ -5934,9 +5934,9 @@ async def test_commander_ladder_con111():
         bad("expensive ladder returned nothing", str(eladder[:3]))
 
 
-async def test_pressure_con114():
-    """CON-114: Forge pressure test — .dck export, parse, absent engine, progressive poll."""
-    print("\npressure CON-114  — dck / parse / absent / progressive")
+async def test_pressure():
+    """Forge pressure test — .dck export, parse, absent engine, progressive poll."""
+    print("\npressure dck / parse / absent / progressive")
     import tempfile
     import time as _time
     from pathlib import Path
@@ -6153,12 +6153,12 @@ async def test_pressure_con114():
 
 
 async def test_scry_rate_limit():
-    """CON-145: throttled Scryfall must raise, never masquerade as zero cards."""
+    """throttled Scryfall must raise, never masquerade as zero cards."""
     print("\nscry()  — rate limit is loud, 404 is a real zero")
     import os
     from unittest.mock import AsyncMock, MagicMock, patch
 
-    # CON-294: with a loaded local corpus, ordinary searches never reach httpx.
+    # with a loaded local corpus, ordinary searches never reach httpx.
     # Force the live path so this test still grades the rate-limit / 404 client.
     old_corpus = os.environ.get("DECKWRIGHT_CORPUS")
     os.environ["DECKWRIGHT_CORPUS"] = "off"
@@ -6204,8 +6204,8 @@ async def test_scry_rate_limit():
             os.environ["DECKWRIGHT_CORPUS"] = old_corpus
 
 
-async def test_search_transport_failure_is_not_empty_con188():
-    """CON-188 F1: could-not-look must never read as there-are-none.
+async def test_search_transport_failure_is_not_empty():
+    """could-not-look must never read as there-are-none.
 
     `search()` used to swallow every non-Scryfall exception into `[]`. The
     commander ladder reads `[]` as "this rung has no cards" and walks past a
@@ -6213,7 +6213,7 @@ async def test_search_transport_failure_is_not_empty_con188():
     An HTTP failure already raised ScryfallError, so callers tolerate it; a
     transport failure now raises the same thing.
     """
-    print("\nsearch()  — CON-188 F1: transport failure is unknown, not zero")
+    print("\nsearch()  — transport failure is unknown, not zero")
     real = app.scry
 
     async def boom(*a, **k):
@@ -6244,38 +6244,38 @@ async def test_search_transport_failure_is_not_empty_con188():
 
 
 async def main():
-    await test_search_transport_failure_is_not_empty_con188()
+    await test_search_transport_failure_is_not_empty()
     test_singulars()
     test_budget_report()
     test_budget_price_ceiling()
     test_tcgplayer_mass_entry()
     test_commander_selection()
-    await test_commander_unscoped_note_con154()
+    await test_commander_unscoped_note()
     test_plain_commander_reason()
     test_validate_deck()
-    test_partner_commanders_con118()
+    test_partner_commanders()
     test_card_pool_modes()
     test_persist_deck()
     test_saved_deck_brief_name_delete()
     await test_suggested_name_never_overwrites_hers()
-    test_build_returns_plan_con158()
+    test_build_returns_plan()
     test_conversation_on_saved_deck()
-    test_match_notes_on_saved_deck_con270()
+    test_match_notes_on_saved_deck()
     test_sim_baseline_cache()
     test_finish_mana_base()
-    test_no_land_padding_con110()
+    test_no_land_padding()
     test_mana_sizing()
     test_deck_signals()
     test_overview_verifier()
     test_substitution()
     test_land_ramp_policy()
     test_strategy_role_queries()
-    test_type_targets_con79()
+    test_type_targets()
     test_launchd_plist()
-    await test_desktop_install_update_con285()
+    await test_desktop_install_update()
     test_import_deck_parser()
     test_pick_commander()
-    test_pick_commander_partners_con305()
+    test_pick_commander_partners()
     test_infer_role()
     await test_scry_rate_limit()
     await app.load_vocab()
@@ -6288,14 +6288,14 @@ async def main():
         warn("vocab cache empty — skipping classify/theme_clauses")
     if LIVE:
         print(f"\n{DIM}--live: running Scryfall-backed tests{OFF}")
-        await test_commander_ladder_con111()
-        await test_commander_ladder_compose_con157()
-        await test_commander_ladder_colors_con154()
-        await test_commander_writeup_fallback_con112()
+        await test_commander_ladder()
+        await test_commander_ladder_compose()
+        await test_commander_ladder_colors()
+        await test_commander_writeup_fallback()
         await test_vocabulary_sweep()
         await test_mechanics()
         await test_ramp_query_no_lands()
-        await test_strategy_ramp_pools_con113()
+        await test_strategy_ramp_pools()
     else:
         print(f"\n{DIM}offline: skipping live Scryfall tests (pass --live to enable){OFF}")
     test_sim_baseline()
@@ -6328,12 +6328,12 @@ async def main():
     await test_card_score_derive_failed_reported()
     await test_card_score_gate_failed_open_reported()
     await test_partners_unknown_not_empty()
-    await test_card_score_skip_prefers_glued_con214()
-    test_enforce_payoff_floors_con159()
-    test_enforce_tribe_floor_con172()
-    test_brief_extract_states_con166()
+    await test_card_score_skip_prefers_glued()
+    test_enforce_payoff_floors()
+    test_enforce_tribe_floor()
+    test_brief_extract_states()
     test_llm_backend_choice()
-    await test_llm_cli_stdin_and_timeout_con206()
+    await test_llm_cli_stdin_and_timeout()
     test_sheet()
     test_coverage()
     await test_coverage_role_count_unknown_aborts()
@@ -6346,7 +6346,7 @@ async def main():
     test_playstyle_skeleton()
     test_apply_tweak()
     test_card_swap()
-    await test_pressure_con114()
+    await test_pressure()
 
     print(f"\n{GREEN}{passed} passed{OFF}"
           + (f", {YELLOW}{warned} warned{OFF}" if warned else "")

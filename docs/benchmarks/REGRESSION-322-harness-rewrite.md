@@ -1,4 +1,4 @@
-# Regression — PR #322 rewrote the frozen harness and reverted CON-328 + CON-330
+# Regression — PR #322 rewrote the frozen harness and reverted the build-timeout floor and the per-contestant URL scoping
 
 **Found:** 2026-09-02, validating the E/BLUE/D seed sweep.
 **Run affected:** `docs/benchmarks/runs/20260902T172439Z` — **VOID, do not read as a result.**
@@ -14,7 +14,7 @@ The seed sweep produced **BLUE 4 ok / 20 UNKNOWN, D 3 ok / 21 UNKNOWN** — seve
 
 PR #322 added `scripts/v2_benchmark.py` with **1,606 insertions** — it recreated the file rather than editing it. Two prior fixes were lost with no diff for a reviewer to catch.
 
-### CON-328 — build timeout (found 24 Aug, cost a full sweep)
+### Build timeout (found 24 Aug, cost a full sweep)
 
 ```python
 # harness @ 877b024 (working):
@@ -27,7 +27,7 @@ def build_http(req, url, *, timeout: float = 300.0) -> BuildResponse:
 
 Also gone: `--build-timeout`, the `DECKWRIGHT_BUILD_TIMEOUT` env override, and `build_timeout_s` in the report header. The header printed `None` for this run — that is how it was spotted.
 
-### CON-330 — per-contestant URL scoping (found 28 Aug)
+### Per-contestant URL scoping (found 28 Aug)
 
 `http_build_url()`, `--green-b-url` and `--green-c-url` are gone. Only the unscoped `--green-url` remains — the exact flag that silently pointed contestant B at BLUE's port and would have produced a "steer does nothing" result nobody could explain.
 

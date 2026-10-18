@@ -1,5 +1,5 @@
 """
-CON-149 — resolve_term() fixtures.
+resolve_term() fixtures.
 
 Resolution is a lookup against Scryfall's catalogs and set list, not a guess.
 These fixtures were verified live while the grammar was written
@@ -56,9 +56,9 @@ FIXTURES = [
     ("Spider-Man", "set:spm"),
     ("lord of the rings", "set:ltr"),
     ("fallout", "set:pip"),
-    ("fallouts", "set:pip"),             # CON-292: set rungs try singulars
+    ("fallouts", "set:pip"),             # set rungs try singulars
     ("hobbit", "set:hob"),
-    ("hobbits", "set:hob"),              # CON-292: plural of a UB set name
+    ("hobbits", "set:hob"),              # plural of a UB set name
     ("doctor who", "set:who"),
     ("ninja turtles", "set:tmt"),
     ("pirates", "t:pirate"),
@@ -71,7 +71,7 @@ FIXTURES = [
     ("stax", None),                      # no such tag — and says so
 ]
 
-# CON-212 — beginner phrases → verified operator, or unresolved (ask again).
+# beginner phrases → verified operator, or unresolved (ask again).
 # Never invent otag:; never revive dead tags; keywords stay strategy colour.
 BEGINNER_FIXTURES = [
     ("steal", "otag:theft"),
@@ -107,7 +107,7 @@ def test_normalize():
 
 
 def test_resolve_fixtures():
-    print("\nresolve_term()  — CON-149 fixtures")
+    print("\nresolve_term()  — fixtures")
     resolve.load_grammar()
     for word, want in FIXTURES:
         r = resolve.resolve_term(word)
@@ -174,7 +174,7 @@ def test_compose_pirates_that_steal():
 
 
 def test_compose_angels_that_gain_life():
-    """CON-157: multi-word behaviour ('gain life') composes with the type."""
+    """multi-word behaviour ('gain life') composes with the type."""
     print("\nresolve_theme()  — angels that gain life composes")
     resolve.load_grammar()
     hit = resolve.resolve_theme("angels that gain life")
@@ -194,7 +194,7 @@ def test_compose_angels_that_gain_life():
 
 
 def test_compose_sibling_types_or():
-    """CON-209: sibling tribes OR — horses and knights is a real pool, not 0."""
+    """sibling tribes OR — horses and knights is a real pool, not 0."""
     print("\nresolve_theme()  — sibling types OR together")
     resolve.load_grammar()
 
@@ -235,7 +235,7 @@ def test_compose_sibling_types_or():
     eq("theme_clauses leads with OR",
        clauses[0] if clauses else "", "(t:horse OR t:knight)")
 
-    # CON-308: echoed type terms must not duplicate OR arms.
+    # echoed type terms must not duplicate OR arms.
     echoed = resolve.resolve_theme("pirates pirates and treasure")
     eq("duplicate pirate collapsed",
        echoed.get("expression"), "(t:pirate OR t:treasure)")
@@ -246,8 +246,8 @@ def test_compose_sibling_types_or():
 
 
 def test_cavalry_horse_alias():
-    """CON-234: cavalry maps to t:horse so cavalry knights ORs both tribes."""
-    print("\nresolve_theme()  — CON-234 cavalry → horse alias")
+    """cavalry maps to t:horse so cavalry knights ORs both tribes."""
+    print("\nresolve_theme()  — cavalry → horse alias")
     resolve.load_grammar()
 
     eq("cavalry is t:horse", expr(resolve.resolve_term("cavalry")), "t:horse")
@@ -309,8 +309,8 @@ def test_steal_not_keyword_trap():
 
 
 def test_beginner_alias_pack():
-    """CON-212: feelings → verified behaviours/keywords, or honest unresolved."""
-    print("\nresolve_term()  — CON-212 beginner alias pack (≥20 phrases)")
+    """feelings → verified behaviours/keywords, or honest unresolved."""
+    print("\nresolve_term()  — beginner alias pack (≥20 phrases)")
     resolve.load_grammar(force=True)
     (ok if len(BEGINNER_FIXTURES) >= 20 else bad)(
         f"fixture has ≥20 phrases", f"got {len(BEGINNER_FIXTURES)}")
@@ -332,7 +332,7 @@ def test_beginner_alias_pack():
 
 
 def test_strategy_keywords_stay_off_theme_and():
-    """CON-212: horses + haste/trample are strategy, not AND'd onto the tribe."""
+    """horses + haste/trample are strategy, not AND'd onto the tribe."""
     print("\nresolve_theme()  — strategy keywords separate from tribe pool")
     resolve.load_grammar(force=True)
     hit = resolve.resolve_theme("horses haste trample")
@@ -348,7 +348,7 @@ def test_strategy_keywords_stay_off_theme_and():
 
 
 async def test_live_resolved_expressions():
-    """CON-144 gate on term resolution: every resolved expression finds cards."""
+    """gate on term resolution: every resolved expression finds cards."""
     print("\nlive Scryfall  — resolved expressions return ≥1 card")
     resolve.load_grammar()
     resolved = [(w, expr(resolve.resolve_term(w))) for w, want in FIXTURES if want]

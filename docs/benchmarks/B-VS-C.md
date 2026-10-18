@@ -1,4 +1,4 @@
-# B vs CardFacts (CON-322) — what C changes
+# B vs CardFacts — what C changes
 
 Offline compare of a **Candidate B** stamped build against **CardFacts**
 extract. Contestant **C** is flag-gated on green-c `:8003`
@@ -20,7 +20,7 @@ source .venv/bin/activate
 
 # 1) Build Bello on green B (:8002) and save the JSON, or copy a stamped
 #    /api/build response that includes per-card steer_vote / bound_ok /
-#    feeds_input (CON-321 stamp). Example path:
+#    Feeds_input (stamp). Example path:
 #    ~/Downloads/bello_b_build.json
 
 # 2) Bake CardFacts for those names (full corpus preferred):

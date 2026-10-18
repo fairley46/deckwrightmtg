@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""CON-163: calibrate sim.py curves against Forge game logs.
+"""calibrate sim.py curves against Forge game logs.
 
 Forge is ground truth. The goldfish is a model. This script measures the gap
 on the three keys forge_log can actually report (MEASURABLE), then the delta
 table is the input to a math fix — not a dashboard.
 
     # needs Java + DECKWRIGHT_FORGE (see issue setup notes)
-    python scripts/con163_calibrate_forge.py --games 50
-    python scripts/con163_calibrate_forge.py --games 50 --deck-id 5775225
-    python scripts/con163_calibrate_forge.py --from-logs /tmp/forge-cal-logs
+    python scripts/calibrate_forge.py --games 50
+    python scripts/calibrate_forge.py --games 50 --deck-id 5775225
+    python scripts/calibrate_forge.py --from-logs /tmp/forge-cal-logs
 
 Calibration, not selection. Win-rate is printed for context and ignored.
 """

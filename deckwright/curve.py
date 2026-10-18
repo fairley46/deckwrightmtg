@@ -23,13 +23,13 @@ from deckwright import sim
 # act rate. Callers must branch on status / UNKNOWN rather than on emptiness.
 UNKNOWN = "unknown"
 
-# CON-216: derived skeleton shapes live role counts. Kept as a named flag so
+# derived skeleton shapes live role counts. Kept as a named flag so
 # a regression can turn observation-only back on without rewriting callers.
 # Sum-zero within spell roles is the invariant; unknown preference stays mid
 # (never invents low/high from an empty brief).
 SKELETON_LIVE = True
 
-# Phrases that name a curve preference. Scored like CON-171's archetype
+# Phrases that name a curve preference. Scored like the fixture-brief archetype work's archetype
 # picker: every field that survives commander overwrite is in play, and a
 # nearby negation ("not cheap") does not elect the opposite.
 _LOW_PHRASES = (
@@ -80,7 +80,7 @@ _NORMAL_RAMP_PATTERNS = [
 def _brief_text(brief: dict | None) -> str | None:
     """Prose the curve picker may read.
 
-    CON-175 / CON-171: commander overwrite replaces strategy/plan/mechanics
+    commander overwrite replaces strategy/plan/mechanics
     with the pick write-up. angle, fantasy, theme, playstyle, and fits still
     carry her words — and `plan or angle` quietly dropped angle whenever plan
     was set. Join every field; do not let one shadow another.

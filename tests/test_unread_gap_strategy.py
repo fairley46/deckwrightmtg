@@ -1,4 +1,4 @@
-"""CON-249 — Phase 4 strategy hooks shape."""
+"""Phase 4 strategy hooks shape."""
 
 from __future__ import annotations
 

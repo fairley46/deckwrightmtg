@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-230: report age of committed data artifacts.
+"""report age of committed data artifacts.
 
 Exit 0 always for informational output (including STALE warnings).
 Exit 1 only when a required tracked file is missing (unknown).
@@ -153,7 +153,7 @@ def main() -> int:
         ts, age = _file_mtime(path, now)
         _print_row(rel.split("/", 1)[1], ts, age, limit, "mtime")
 
-    # CON-294: local Scryfall corpus — DECKWRIGHT_CORPUS_DIR or ~/.deckwright.
+    # local Scryfall corpus — DECKWRIGHT_CORPUS_DIR or ~/.deckwright.
     # Missing is UNKNOWN (could not look), never treated as fresh.
     try:
         sys.path.insert(0, str(REPO))

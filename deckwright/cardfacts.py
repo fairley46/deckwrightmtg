@@ -1,4 +1,4 @@
-"""CON-322 — CardFacts lookup + offline extract (contestant C bake path).
+"""CardFacts lookup + offline extract (contestant C bake path).
 
 Offline store of per-card clause facts for *any* card name (the 99, not only
 commanders). Lookup is read on the serve path **only** when
@@ -51,7 +51,7 @@ only), or ``unread`` (could not read clause facts). ``honesty`` appears on
 unread / partial when useful. Soft combo / hidden power stay listed under
 ``unscoreable`` at weight 0 — surfaced, not silently dropped.
 
-Bounds use ``op: geq|leq|in_set`` (CON-331 floor/ceiling). Static MV floors
+Bounds use ``op: geq|leq|in_set`` (floor/ceiling). Static MV floors
 (``N or greater`` / ``greater than or equal to N``) and ceilings
 (``N or less`` / ``less than or equal to N``) are first-class; dynamic
 life/experience tails are not coerced into static numbers.
@@ -130,7 +130,7 @@ _KEYWORD_SPECS: list[tuple[re.Pattern[str], str]] = [
     (re.compile(r"\benchant\b", re.I), "counters"),
 ]
 
-# --- extract patterns (mirror commander_strategy CON-321/331; local copy so
+# --- extract patterns (mirror commander_strategy the strategy steer work / the MV floor bounds; local copy so
 # this branch does not depend on the green B stack being merged) ----------------
 
 _TRIGGER_SPECS: list[tuple[re.Pattern[str], str, str]] = [
@@ -711,7 +711,7 @@ def _synthetic_inputs_from_card(
     text: str,
     outputs: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    """Activated / combat / one-shot spell / static aura inputs (CON-322)."""
+    """Activated / combat / one-shot spell / static aura inputs."""
     found: list[dict[str, Any]] = []
     if _ACTIVATED_COST.search(text) or re.search(r"\bequip \{", text, re.I):
         found.append({"event": "activate", "supplier": "self"})

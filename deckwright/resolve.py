@@ -1,7 +1,7 @@
 """
 resolve.py — one function that turns her words into the right Scryfall operator.
 
-CON-149 / docs/SCRYFALL-GRAMMAR.md
+The Scryfall grammar lookup / docs/SCRYFALL-GRAMMAR.md
 
 Scryfall publishes ~62k enumerable catalog terms and ~1k sets. Resolution is a
 lookup against that vocabulary, not a guess at whether a word is a creature
@@ -102,14 +102,14 @@ _set_list: list[dict] = []                         # for substring
 _behaviours: dict[str, str] = {}
 _behaviour_verified: set[str] = set()
 # Beginner strategy phrases → catalogued keywords ("go fast" → haste).
-# CON-212: strategy colour, not a tribe and not an invented otag.
+# strategy colour, not a tribe and not an invented otag.
 _keyword_aliases: dict[str, str] = {}
-# Beginner vocabulary → creature type when Scryfall has no catalog entry (CON-234).
+# Beginner vocabulary → creature type when Scryfall has no catalog entry.
 _type_aliases: dict[str, str] = {
     "cavalry": "Horse",
 }
 # Probed as behaviours and found dead. Must not fall through to word-bank
-# and present o:stax as if the strategy matched (CON-149 fixture).
+# and present o:stax as if the strategy matched.
 # Also beginner phrases with no verified tag (go wide, grow, aggro).
 _dead_behaviours: set[str] = set()
 
@@ -191,7 +191,7 @@ def compose_expressions(parts: list[dict[str, Any]]) -> str | None:
             return None
         op = p.get("operator")
         if op == "t":
-            # CON-308: "pirates pirates and treasure" must not emit
+            # "pirates pirates and treasure" must not emit
             # (t:pirate OR t:pirate OR t:treasure).
             if e not in seen_types:
                 seen_types.add(e)
@@ -334,7 +334,7 @@ def load_behaviours(path: pathlib.Path | None = None) -> dict[str, str]:
         # Only keep aliases whose target was probed and returned cards.
         if tag_l in _behaviour_verified:
             _behaviours[normalize(str(alias))] = tag_l
-    # Strategy phrases → real keyword catalog entries only (CON-212).
+    # Strategy phrases → real keyword catalog entries only.
     for alias, kw in (data.get("keyword_aliases") or {}).items():
         kn = normalize(str(kw))
         if kn and kn in _keyword_index:
@@ -493,7 +493,7 @@ def resolve_term(word: str) -> dict[str, Any]:
             "catalog": "otag",
             "confidence": "exact",
         }
-    # 0b. Beginner strategy → keyword (CON-212). Before sets so "go fast"
+    # 0b. Beginner strategy → keyword. Before sets so "go fast"
     # cannot fall through, and before type catalogs so it stays strategy.
     if needle in _keyword_aliases:
         canon = _keyword_aliases[needle]
@@ -512,7 +512,7 @@ def resolve_term(word: str) -> dict[str, Any]:
         return dict(_UNRESOLVED)
 
     # 1. Exact set name (normalised), including stripped licensor/article keys.
-    # CON-292: try morphological singulars too — "hobbits" must hit "The Hobbit"
+    # try morphological singulars too — "hobbits" must hit "The Hobbit"
     # the same way "pirates" hits t:pirate. Types still win collisions below
     # only when no set key matches any form.
     for form in _morph_singulars(raw):
@@ -600,7 +600,7 @@ def resolve_term(word: str) -> dict[str, Any]:
 
     # 6. Substring on a set name — largest playable set wins.
     # Require a meaningful needle so "a" / "the" residue cannot match.
-    # CON-292: singular forms too (fallouts → Fallout) — after types/keywords
+    # singular forms too (fallouts → Fallout) — after types/keywords
     # so angels/ninjas/doctors stay t:.
     seen_sub: set[str] = set()
     for form in _morph_singulars(raw):
@@ -745,7 +745,7 @@ def resolve_theme(theme: str) -> dict[str, Any]:
     used = [False] * len(words)
 
     # Multi-word spans before per-word lookup — "gain life" is otag:lifegain,
-    # "go fast" is keyword:haste, "go wide" is dead/ask (CON-157 / CON-212).
+    # "go fast" is keyword:haste, "go wide" is dead/ask.
     # Longest match first so "card draw" beats "card".
     for length in range(len(words), 1, -1):
         for i in range(len(words) - length + 1):
@@ -781,7 +781,7 @@ def resolve_theme(theme: str) -> dict[str, Any]:
         elif op == "keyword":
             # Combat-keyword menus ("trample, first strike, haste") are
             # strategy colour, not a second tribe. Keep them out of the
-            # type pool so they cannot AND the theme to zero (CON-209 / CON-212).
+            # type pool so they cannot AND the theme to zero.
             keywords.append(rw)
         elif op in ("set", "wm"):
             sets.append(rw)
@@ -790,8 +790,8 @@ def resolve_theme(theme: str) -> dict[str, Any]:
         else:
             unresolved.append(w)
 
-    # CON-209: every named tribe stays in parts — compose_expressions ORs them.
-    # CON-212 kept [primary_types[0]] here; that is the pre-CON-209 behaviour
+    # every named tribe stays in parts — compose_expressions ORs them.
+    # kept [primary_types[0]] here; that is the pre- behaviour
     # and would drop sibling tribes ("horses and knights" -> horses only), so
     # main's list form wins. The alias pack feeds this, it does not narrow it.
     primary_types = type_things or broad
@@ -813,7 +813,7 @@ def resolve_theme(theme: str) -> dict[str, Any]:
     elif whole.get("operator"):
         parts = [whole]
 
-    # CON-234: weak hits dropped for a type pool are not silent.
+    # weak hits dropped for a type pool are not silent.
     if primary_types and weak:
         for w, _rw in weak:
             if w not in unresolved:
@@ -823,7 +823,7 @@ def resolve_theme(theme: str) -> dict[str, Any]:
         "parts": parts,
         "expression": compose_expressions(parts) if parts else None,
         "unresolved": unresolved,
-        # CON-212: callers that want strategy colour read this; theme pool
+        # callers that want strategy colour read this; theme pool
         # expression above deliberately omits keywords when a type is present.
         "keywords": keywords,
     }

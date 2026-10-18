@@ -1,5 +1,5 @@
 """
-test_saved_ask_instrument.py — CON-261 saved-deck ask consumes instrument.
+test_saved_ask_instrument.py — saved-deck ask consumes instrument.
 
 Offline where possible. No model.
 
@@ -139,7 +139,7 @@ def test_ask_prompt_facts_instrument_block():
          "steal their stuff" in facts and "not mapped" in facts.lower(),
          facts)
 
-    # CON-272: unread/unknown improve rows must not print edges=0.
+    # unread/unknown improve rows must not print edges=0.
     ctx2 = {
         **ctx,
         "improve_candidates": [

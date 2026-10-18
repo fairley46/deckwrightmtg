@@ -1,10 +1,10 @@
-# Unread gap research (CON-247)
+# Unread gap research
 
-Phase 2 of CON-246 — Know Magic.
+Phase 2 of Know Magic.
 
 **Artifact:** [`data/unread_gap_research.json`](../data/unread_gap_research.json)
 
-Source instrument: [`data/oracle_coverage_report.md`](../data/oracle_coverage_report.md) (CON-245).
+Source instrument: [`data/oracle_coverage_report.md`](../data/oracle_coverage_report.md).
 
 ## What this is
 

@@ -1,11 +1,11 @@
 """
-corpus.py — CON-294 local Scryfall card corpus.
+corpus.py — local Scryfall card corpus.
 
 Serve card lookups from ~/.deckwright bulk files first. The network is the
 exception: otag: / art: (Tagger fields absent from bulk) and anything else we
 cannot evaluate go through the live rate-gated client.
 
-CON-308: composite queries are split on AND-conjuncts. Local content clauses
+composite queries are split on AND-conjuncts. Local content clauses
 (t:/o:/…) answer from disk; otag:/art: still need live. A partial local answer
 is INCOMPLETE — unknown-not-complete, never a smaller HIT. Pure otag:/art:
 (with only format/CI wrappers) stays UNSUPPORTED.
@@ -38,7 +38,7 @@ CORPUS_META = CACHE_DIR / "corpus.meta.json"
 
 
 def reload_paths() -> None:
-    """Rebind bulk-file paths from DECKWRIGHT_CORPUS_DIR (CON-315)."""
+    """Rebind bulk-file paths from DECKWRIGHT_CORPUS_DIR."""
     global CACHE_DIR, ORACLE_JSONL, ORACLE_META, PRICES_JSON, PRICES_META, CORPUS_META
     CACHE_DIR = instance.corpus_dir()
     ORACLE_JSONL = CACHE_DIR / "oracle_cards.jsonl"
@@ -50,7 +50,7 @@ def reload_paths() -> None:
 
 reload_paths()
 
-UA = "Deckwright/1.0 (local; CON-294 corpus)"
+UA = "Deckwright/1.0 (local; the local card corpus)"
 BULK_INDEX = "https://api.scryfall.com/bulk-data"
 PAGE_SIZE = 175
 
@@ -61,7 +61,7 @@ HIT = "hit"
 EMPTY = "empty"
 UNSUPPORTED = "unsupported"
 MISSING = "missing"
-# CON-308: local AND-conjuncts answered; live-only conjuncts were not evaluated.
+# local AND-conjuncts answered; live-only conjuncts were not evaluated.
 # Distinct from HIT (complete) and UNSUPPORTED (nothing local to serve).
 INCOMPLETE = "incomplete"
 
@@ -213,7 +213,7 @@ def _and_nodes(nodes: list[Any]) -> Any | None:
 def partition_query(q: str) -> dict[str, Any]:
     """Split a query into locally-servable AND-conjuncts vs live-only remainder.
 
-    CON-308: `needs_live()` on the whole string used to send every conjunct —
+    `needs_live()` on the whole string used to send every conjunct —
     including `t:` / `f:` already on disk — to the live client. Peel top-level
     AND conjuncts. An OR that mixes live and local stays live as a unit
     (cannot serve half an OR and call it a match).
@@ -240,7 +240,7 @@ def partition_query(q: str) -> dict[str, Any]:
     live_nodes = [n for n in conjuncts if _node_needs_live(n)]
 
     # f:commander otag:draw is still pure-live: format wrappers alone are not
-    # a local answer worth serving (CON-308 — pure otag: → UNSUPPORTED).
+    # a local answer worth serving (pure otag: → UNSUPPORTED).
     content_local = [n for n in local_nodes if not _node_is_filter_only(n)]
     if live_nodes and not content_local:
         live_tree = _and_nodes(live_nodes + local_nodes) or _and_nodes(live_nodes)
@@ -301,7 +301,7 @@ def _bulk_entry(index: dict, bulk_type: str) -> dict:
 def ensure_oracle_cards(*, offline: bool = False) -> dict[str, Any]:
     """Ensure ~/.deckwright/oracle_cards.jsonl exists; return meta.
 
-    CON-315: DECKWRIGHT_CORPUS_READONLY skips fetch and write. Missing bulk
+    DECKWRIGHT_CORPUS_READONLY skips fetch and write. Missing bulk
     stays missing — unknown, not a fake empty corpus.
     """
     if instance.corpus_readonly():
@@ -928,7 +928,7 @@ class Corpus:
         if not self.loaded:
             return ServeResult(MISSING, {}, "local corpus not loaded")
 
-        # CON-308: peel AND-conjuncts. Pure otag:/art: stays UNSUPPORTED.
+        # peel AND-conjuncts. Pure otag:/art: stays UNSUPPORTED.
         # Mixed → evaluate local conjuncts; mark INCOMPLETE (not a smaller HIT).
         # Local-empty AND short-circuits to a real EMPTY without live.
         if needs_live(q):
@@ -1178,7 +1178,7 @@ def corpus_disabled() -> bool:
 
 def main() -> int:
     import argparse
-    p = argparse.ArgumentParser(description="CON-294 refresh local Scryfall corpus")
+    p = argparse.ArgumentParser(description="refresh local Scryfall corpus")
     p.add_argument("--offline", action="store_true",
                    help="reuse cached files; do not download")
     p.add_argument("--status", action="store_true",

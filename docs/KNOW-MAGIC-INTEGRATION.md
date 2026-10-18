@@ -1,6 +1,6 @@
 # Know Magic → live app — how comprehension joins the funnel
 
-This is the join document for CON-246's vocabulary work and the existing wish→99 path in [`DERIVATION.md`](DERIVATION.md).
+This is the join document for the Know Magic loop's vocabulary work and the existing wish→99 path in [`DERIVATION.md`](DERIVATION.md).
 
 Comprehension does **not** replace selection. It makes every later stage honest about what a card *is*.
 
@@ -13,7 +13,7 @@ Comprehension does **not** replace selection. It makes every later stage honest 
 | `synergy.demand_profile(commander)` | What the commander asks the 99 to supply |
 | `synergy.cohesion` / `prefer_glued` | Card–card glue from directed object edges |
 | `scripts/oracle_coverage.py` | Full-corpus instrument: signal %, signal∨keyword %, consumes %, ranked unread |
-| `data/unread_gap_research.json` | Researched mid-tail (CON-247) |
+| `data/unread_gap_research.json` | Researched mid-tail |
 | `playstyles` + `scripts/check_playstyles.py` | Ways-to-play precision floor (88%) |
 
 **Rules that stay:** model never invents card names; unknown ≠ zero; precision is not currency.
@@ -40,7 +40,7 @@ Concrete call sites today:
 2. **Commander ways-to-play** — `playstyles` detect from signals/keywords. Wider vocabulary shrinks "signals but no name" when the playstyle mapping exists; empty ways still need **sourced** playstyle rows, not bare ETB gates.
 3. **Explain / cohesion surfaces** — edges are only as good as produce/consume. Lap work that adds honest `consumes` (bounce, shrink, discard cost, …) makes "why this card" cite real objects.
 4. **Coverage honesty** — `oracle_coverage_report` is the QC for "do we know Magic?" before anyone claims a picker or plan improvement.
-5. **Conversation layer (CON-255, shipped)** — `/api/chat` instrumented readback; brief `way_preference` → mapped `way_playstyle` soft-prefer; `/api/thesis` glued payoff allowlist; precon beef prefers readable+edged cards. Same rule: queries → Scryfall → verify. Spec: [SACRED-CORE-NEXT.md](SACRED-CORE-NEXT.md).
+5. **Conversation layer (shipped)** — `/api/chat` instrumented readback; brief `way_preference` → mapped `way_playstyle` soft-prefer; `/api/thesis` glued payoff allowlist; precon beef prefers readable+edged cards. Same rule: queries → Scryfall → verify. Spec: [SACRED-CORE-NEXT.md](SACRED-CORE-NEXT.md).
 
 ## The funnel with comprehension made explicit
 
@@ -69,7 +69,7 @@ The star is the only new join. Everything sacred stays. Comprehension changes **
 
 Do these as small farmable cards. Each step is falsifiable. None rewrite verifiers.
 
-### 1. Readback uses profile status (honesty) — CON-272
+### 1. Readback uses profile status (honesty)
 
 When a candidate is `status: unknown` (no oracle text) or unread (no signal ∧ no keyword), the UI/API must say **we could not read it**, not score it as zero synergy. Same house rule as coverage.
 
@@ -91,7 +91,7 @@ Where `PLAN-GRAPH-SCHEMA` conditions already key off objects (`creature`, `land`
 
 ### 4. Grammar queries stay Scryfall-shaped
 
-Unread research that produced verified `o:` / `otag:` expressions belongs in `theme_clauses` / role ladders the same way CON-248 verified counts. The model still writes queries; the app still verifies names against the response.
+Unread research that produced verified `o:` / `otag:` expressions belongs in `theme_clauses` / role ladders the same way the unread-gap signals verified counts. The model still writes queries; the app still verifies names against the response.
 
 ### 5. Commander KB refresh stays weekly research
 
@@ -99,7 +99,7 @@ Know Magic reading and the commander knowledge base are parallel: KB says how a 
 
 ### 6. Print-wave cadence
 
-On each major set: `python scripts/print_wave_reeval.py --refresh --fetch --wave <name>` ([`KNOW-MAGIC-MAINTENANCE.md`](KNOW-MAGIC-MAINTENANCE.md)). If unread spikes on a new pattern, one small signal PR — not a new epic. Card: CON-260.
+On each major set: `python scripts/print_wave_reeval.py --refresh --fetch --wave <name>` ([`KNOW-MAGIC-MAINTENANCE.md`](KNOW-MAGIC-MAINTENANCE.md)). If unread spikes on a new pattern, one small signal PR — not a new epic. Card: the print-wave re-eval.
 
 ## What "successful integration" looks like in product terms
 

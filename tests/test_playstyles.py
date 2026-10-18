@@ -1,5 +1,5 @@
 """
-test_playstyles.py — CON-180/181 playstyle vocabulary and detector.
+test_playstyles.py — playstyle vocabulary and detector.
 
     python test_playstyles.py
 
@@ -76,12 +76,12 @@ def test_vocab_contract():
         # A detector that can never fire must say why. The invariant is
         # unchanged; what counts as "can fire" widened.
         #
-        # CON-184 added requires_any for mechanics with more than one shape
+        # added requires_any for mechanics with more than one shape
         # (Atraxa only proliferates, so counters could not require
         # counter_placement). A playstyle detected solely through requires_any
         # has an empty `requires` and is fully detectable, so testing
         # `requires` alone failed ten working playstyles. Same shape as the
-        # CON-178 test correction: the assertion encoded the older semantics.
+        # test correction: the assertion encoded the older semantics.
         if not (det.get("requires") or det.get("requires_any")):
             true(f"{pid} empty requires explains missing_signals",
                  bool(entry.get("missing_signals")))
@@ -103,7 +103,7 @@ def test_detect_empty_requires_never_matches():
     print("\ndetect — a detectable playstyle matches; an undetectable one never defaults")
     # Grand Arbiter is classic stax. This test used to assert he matched
     # NOTHING, because stax had empty requires and could not fire — it was
-    # documenting a limitation, not a desired behaviour. CON-184 added
+    # documenting a limitation, not a desired behaviour. The playstyle signal work added
     # tax_opponent_spells ("spells your opponents cast cost {1} more"), so the
     # textbook stax commander now matches stax, which is the fix working.
     #
@@ -124,7 +124,7 @@ def test_detect_empty_requires_never_matches():
     true("stax now matched — tax_opponent_spells fires", "stax" in r["matched"])
 
     # The half that must never regress: no signal at all means no match, not
-    # a sensible-looking default. CON-167 — a fallback is not a match.
+    # a sensible-looking default. a fallback is not a match.
     blank = {"name": "Vanilla Bear", "type_line": "Legendary Creature — Bear",
              "oracle_text": "Trample"}
     rb = playstyles.detect(blank)
@@ -166,10 +166,10 @@ def test_hei_bai_detectable_slice():
 
 
 def test_treasure_maker_is_not_creature_tokens():
-    print("\ndetect — CON-213: Treasure makers are not the creature-tokens way")
+    print("\ndetect — Treasure makers are not the creature-tokens way")
     # Lannery creates Treasure tokens. Bare token_create used to put her on
     # the "wide board of creature tokens" playstyle. Resource tokens are not
-    # creature tokens (CON-122 / CON-208).
+    # creature tokens.
     lannery = {
         "name": "Captain Lannery Storm",
         "type_line": "Legendary Creature — Human Pirate",
@@ -209,9 +209,9 @@ def test_treasure_maker_is_not_creature_tokens():
     }
     k = playstyles.detect(krenko)
     true("creature-token maker still matches tokens", "tokens" in k["matched"])
-def test_con196_giada_enters_with_counters():
-    """CON-196: 'enters with +1/+1 counters' is counter_placement, unlocks counters."""
-    print("\ndetect — Giada enters-with counters (CON-196)")
+def test_giada_enters_with_counters():
+    """'enters with +1/+1 counters' is counter_placement, unlocks counters."""
+    print("\ndetect — Giada enters-with counters")
     giada = {
         "name": "Giada, Font of Hope",
         "type_line": "Legendary Creature — Angel",
@@ -242,13 +242,13 @@ def test_con196_giada_enters_with_counters():
          "counter_placement" not in er["signals"])
 
 
-def test_con196_lifegain_source_drain_not_auto_match():
-    """CON-196: lifegain_source/drain in requires_any tanks precision — reverted.
+def test_lifegain_source_drain_not_auto_match():
+    """lifegain_source/drain in requires_any tanks precision — reverted.
 
     Fill those empties via EDHREC research (B), not by inventing lifegain from
     incidental gain/drain riders.
     """
-    print("\ndetect — lifegain_source/drain do not auto-match (CON-196)")
+    print("\ndetect — lifegain_source/drain do not auto-match")
     elas = {
         "name": "Elas il-Kor, Sadistic Pilgrim",
         "type_line": "Legendary Creature — Phyrexian Kor Cleric",
@@ -276,9 +276,9 @@ def test_con196_lifegain_source_drain_not_auto_match():
     true("Tatyova is not lifegain", "lifegain" not in tr["matched"])
 
 
-def test_con196_bare_enters_attacks_do_not_invent():
-    """CON-196: do not map bare enters/attacks to blink/voltron."""
-    print("\ndetect — bare enters/attacks invent nothing (CON-196)")
+def test_bare_enters_attacks_do_not_invent():
+    """do not map bare enters/attacks to blink/voltron."""
+    print("\ndetect — bare enters/attacks invent nothing")
     enters_only = {
         "name": "Vanilla Enterer",
         "type_line": "Legendary Creature — Human",
@@ -295,9 +295,9 @@ def test_con196_bare_enters_attacks_do_not_invent():
     true("bare attacks is not voltron", "voltron" not in ar["matched"])
 
 
-def test_con241_treasure_maps_artifacts_not_tokens():
-    """CON-241: Treasure makers map to artifacts, not creature-tokens."""
-    print("\ndetect — CON-241 treasure → artifacts, not tokens")
+def test_treasure_maps_artifacts_not_tokens():
+    """Treasure makers map to artifacts, not creature-tokens."""
+    print("\ndetect — treasure → artifacts, not tokens")
     malcolm = {
         "name": "Malcolm, Keen-Eyed Navigator",
         "type_line": "Legendary Creature — Human Pirate",
@@ -314,9 +314,9 @@ def test_con241_treasure_maps_artifacts_not_tokens():
     true("not creature-tokens playstyle", "tokens" not in r["matched"])
 
 
-def test_con241_go_tall_eot_pump_not_counters():
-    """CON-241: until-end-of-turn pumps are not go_tall or counters."""
-    print("\ndetect — CON-241 EOT pump is not counters")
+def test_go_tall_eot_pump_not_counters():
+    """until-end-of-turn pumps are not go_tall or counters."""
+    print("\ndetect — EOT pump is not counters")
     lannery = {
         "name": "Captain Lannery Storm",
         "type_line": "Legendary Creature — Human Pirate",
@@ -332,9 +332,9 @@ def test_con241_go_tall_eot_pump_not_counters():
     true("not counters from pump alone", "counters" not in r["matched"])
 
 
-def test_con241_blink_exile_until_leaves():
-    """CON-241: exile-until-leaves is blink, not bare enters."""
-    print("\ndetect — CON-241 exile until leaves → blink")
+def test_blink_exile_until_leaves():
+    """exile-until-leaves is blink, not bare enters."""
+    print("\ndetect — exile until leaves → blink")
     sigrid = {
         "name": "Sigrid, God-Favored",
         "type_line": "Legendary Creature — Human Warrior",
@@ -349,9 +349,9 @@ def test_con241_blink_exile_until_leaves():
     true("blink playstyle", "blink" in r["matched"])
 
 
-def test_con241_go_tall_counters_from_counter_text():
-    """CON-241: go_tall_payoff from +1/+1 text unlocks counters."""
-    print("\ndetect — CON-241 go_tall counter text → counters")
+def test_go_tall_counters_from_counter_text():
+    """go_tall_payoff from +1/+1 text unlocks counters."""
+    print("\ndetect — go_tall counter text → counters")
     hardened = {
         "name": "Hardened Scales",
         "type_line": "Enchantment",
@@ -366,7 +366,7 @@ def test_con241_go_tall_counters_from_counter_text():
 
 
 def test_match_signals_offline_kb_count():
-    """CON-241: offline signal-set matching for empty_ways accounting."""
+    """offline signal-set matching for empty_ways accounting."""
     print("\nmatch_signals — offline KB empty_ways count")
     r = playstyles.match_signals(["treasure_tokens", "resource_tokens", "token_create"])
     true("treasure matches artifacts", "artifacts" in r["matched"])
@@ -376,9 +376,9 @@ def test_match_signals_offline_kb_count():
     true("bare enters matches nothing", r2["matched"] == [])
 
 
-def test_con196_fixture_precision_floor():
-    """CON-196: precision on the validated 57 stays ≥88%."""
-    print("\ndetect — fixture precision floor (CON-196)")
+def test_fixture_precision_floor():
+    """precision on the validated 57 stays ≥88%."""
+    print("\ndetect — fixture precision floor")
     rows = json.loads(FIXTURE.read_text()).get("commanders") or []
     hits = extras = 0
     for row in rows:
@@ -402,9 +402,9 @@ def test_con196_fixture_precision_floor():
          prec >= 0.88)
 
 
-def test_con242_detector_recall_gaps():
-    """CON-242: pattern expansion for voltron, artifacts, tribal recall gaps."""
-    print("\ndetect — CON-242 Wyleth/Sharuum/Giada recall gaps")
+def test_detector_recall_gaps():
+    """pattern expansion for voltron, artifacts, tribal recall gaps."""
+    print("\ndetect — Wyleth/Sharuum/Giada recall gaps")
 
     wyleth = {
         "name": "Wyleth, Soul of Steel",
@@ -495,7 +495,7 @@ def test_near_miss_aristocrats_vs_blink():
 
 
 def test_fixture_shape():
-    print("\ncommander-playstyles.json — CON-181 shape and diversity")
+    print("\ncommander-playstyles.json — shape and diversity")
     fix = json.loads(FIXTURE.read_text())
     rows = fix.get("commanders") or []
     true("≥30 commanders", len(rows) >= 30)
@@ -509,7 +509,7 @@ def test_fixture_shape():
         for k in ("commander", "playstyles", "source", "why", "oracle_text"):
             true(f"{row.get('commander')} has {k}", bool(row.get(k)))
         styles_seen.update(row.get("playstyles") or [])
-    # Structural diversity guard — same spirit as CON-173's unlike commanders.
+    # Structural diversity guard — same spirit as the fixture-brief diversity work's unlike commanders.
     for need in ("aristocrats", "blink", "counters", "voltron", "spellslinger",
                  "landfall", "tokens", "reanimator", "stax", "group_hug",
                  "lifegain", "artifacts", "tribal"):
@@ -526,16 +526,16 @@ def main() -> int:
     test_detect_unknown_commander()
     test_hei_bai_detectable_slice()
     test_treasure_maker_is_not_creature_tokens()
-    test_con196_giada_enters_with_counters()
-    test_con196_lifegain_source_drain_not_auto_match()
-    test_con196_bare_enters_attacks_do_not_invent()
-    test_con242_detector_recall_gaps()
-    test_con241_treasure_maps_artifacts_not_tokens()
-    test_con241_go_tall_eot_pump_not_counters()
-    test_con241_blink_exile_until_leaves()
-    test_con241_go_tall_counters_from_counter_text()
+    test_giada_enters_with_counters()
+    test_lifegain_source_drain_not_auto_match()
+    test_bare_enters_attacks_do_not_invent()
+    test_detector_recall_gaps()
+    test_treasure_maps_artifacts_not_tokens()
+    test_go_tall_eot_pump_not_counters()
+    test_blink_exile_until_leaves()
+    test_go_tall_counters_from_counter_text()
     test_match_signals_offline_kb_count()
-    test_con196_fixture_precision_floor()
+    test_fixture_precision_floor()
     test_near_miss_aristocrats_vs_blink()
     test_fixture_shape()
     print()

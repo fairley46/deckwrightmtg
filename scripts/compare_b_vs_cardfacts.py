@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: compare a Candidate-B stamped deck against CardFacts extract.
+"""compare a Candidate-B stamped deck against CardFacts extract.
 
 Offline observability for the bake-off — what would change when contestant C
 is fully implemented. Does **not** enable contestant C, and does **not** wire

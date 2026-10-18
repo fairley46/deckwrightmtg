@@ -1,12 +1,12 @@
 """
-suggest.py — goal-scoped swap plans grounded in mechanic relations (CON-122/134).
+suggest.py — goal-scoped swap plans grounded in mechanic relations.
 
 The model does not name cards. We pick cuts/adds from the saved deck's verified
 role_pools, scored by whether a card hits the goal's families/signals — expanded
 through mechanics.related / expand_goal_families so "more tokens" also wants
 go-wide payoffs that spend those tokens.
 
-Plans are proposals only. Caller stages them into pending (CON-126); nothing
+Plans are proposals only. Caller stages them into pending; nothing
 mutates the 99 here.
 """
 

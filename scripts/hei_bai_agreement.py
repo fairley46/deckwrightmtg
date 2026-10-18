@@ -1,7 +1,7 @@
 """
 hei_bai_agreement.py — Close and Better against the expert's chosen cards.
 
-CON-177: name overlap against the contaminated 50 understates us. Score only
+name overlap against the contaminated 50 understates us. Score only
 against `chosen`. Two numbers, both falsifiable:
 
   Close   of his chosen cards, how many did we independently pick — and, for

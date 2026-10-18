@@ -32,7 +32,7 @@ SOURCES = {
 # counter kind the rules give structurally -- +1/+1 -- and let oracle patterns
 # in mechanic_families.json name any others. An object we cannot source is an
 # object we do not ship.
-# energy + player resources (CON-221/224): no Scryfall catalog enumerates them.
+# energy + player resources: no Scryfall catalog enumerates them.
 # Same shape as life/card — rules-structural resources with produce/consume
 # (or become/if-you-are) oracle patterns only. No word-bank dump.
 STRUCTURAL = {

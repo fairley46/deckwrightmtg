@@ -1,5 +1,5 @@
 """
-test_behaviour_tags.py — CON-151 verified otag: behaviour vocabulary.
+test_behaviour_tags.py — verified otag: behaviour vocabulary.
 
 Offline unit tests for the build gate shape and resolve_term() behaviour
 branch. Live Scryfall probes belong in scripts/build_behaviour_tags.py.
@@ -56,7 +56,7 @@ def _load_builder():
 
 def test_checked_in_file_shape():
     """data/behaviour_tags.json carries verified tags, aliases, synonyms."""
-    print("\nbehaviour_tags.json  — CON-151 shape")
+    print("\nbehaviour_tags.json  — shape")
     path = Path(__file__).resolve().parents[1] / "data" / "behaviour_tags.json"
     eq("file exists", path.is_file(), True)
     data = json.loads(path.read_text())
@@ -84,7 +84,7 @@ def test_checked_in_file_shape():
 
 def test_resolve_term_behaviour_before_catalogs():
     """steal → otag:theft; stax unresolved; ramp verified."""
-    print("\nresolve_term()  — CON-151 behaviour branch")
+    print("\nresolve_term()  — behaviour branch")
     app.load_behaviour_tags(force=True)
 
     steal = app.resolve_term("steal")
@@ -122,7 +122,7 @@ def test_resolve_term_behaviour_before_catalogs():
 
 def test_theme_clauses_uses_behaviour_map():
     """theme_clauses emits the verified tag, not a guessed otag:steal."""
-    print("\ntheme_clauses + behaviour  — CON-151")
+    print("\ntheme_clauses + behaviour")
     app.load_behaviour_tags(force=True)
     clauses = app.theme_clauses("steal")
     eq("steal leads with otag:theft", clauses[0] if clauses else "", "otag:theft")
@@ -140,7 +140,7 @@ def test_theme_clauses_uses_behaviour_map():
 
 def test_build_gate_refuses_dead_and_zero():
     """Build fails loudly on 404/zero; never writes unverified tags."""
-    print("\nbuild gate  — CON-151 refuse dead tags")
+    print("\nbuild gate  — refuse dead tags")
     mod = _load_builder()
 
     async def fake_probe(tag: str):
@@ -202,7 +202,7 @@ def test_build_gate_refuses_dead_and_zero():
 
 
 def test_norm_term():
-    """Lookup keys strip punctuation the same way CON-149 will."""
+    """Lookup keys strip punctuation the same way the Scryfall grammar lookup will."""
     print("\nnorm_term  — shared normalisation")
     eq("board wipe", app.norm_term("board wipe"), "boardwipe")
     eq("extra-turn", app.norm_term("extra-turn"), "extraturn")

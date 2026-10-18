@@ -1,4 +1,4 @@
-"""CON-217/219/220: precon ways + beef-it-up ranking — offline, no invented names."""
+"""precon ways + beef-it-up ranking — offline, no invented names."""
 from __future__ import annotations
 
 
@@ -132,9 +132,9 @@ def test_rank_upgrades_never_invents():
         _true(f"{row['name']} has why", bool(row.get("why")))
 
 
-def test_already_in_deck_group_con220():
-    """CON-220: synergistic cards already in the 99 are named, not silently dropped."""
-    print("\nprecon_upgrade.rank_upgrades — CON-220 already_in group")
+def test_already_in_deck_group():
+    """synergistic cards already in the 99 are named, not silently dropped."""
+    print("\nprecon_upgrade.rank_upgrades — already_in group")
     commander = _brass_commander()
     in_box = _animate_dead()
     deck = [
@@ -199,9 +199,9 @@ def test_already_in_deck_group_con220():
     _eq("already_in empty when genuinely empty", only_new.get("already_in"), [])
 
 
-def test_already_in_never_cut_con235():
-    """CON-235: already_in overlap must not also appear as a cut suggestion."""
-    print("\nprecon_upgrade.rank_upgrades — CON-235 already_in not cuttable")
+def test_already_in_never_cut():
+    """already_in overlap must not also appear as a cut suggestion."""
+    print("\nprecon_upgrade.rank_upgrades — already_in not cuttable")
     commander = {
         "name": "Saheeli, Radiant Creator",
         "type": "Legendary Creature — Human Artificer",
@@ -300,9 +300,9 @@ def test_already_in_never_cut_con235():
             _true(f"{row['name']} explains missing cut", bool(row.get("cut_note")))
 
 
-def test_cut_pairs_con219():
-    """CON-219: every add pairs with a cut suggestion, or says why not."""
-    print("\nprecon_upgrade.rank_upgrades — CON-219 cut pairs")
+def test_cut_pairs():
+    """every add pairs with a cut suggestion, or says why not."""
+    print("\nprecon_upgrade.rank_upgrades — cut pairs")
     commander = {
         "name": "Saheeli, Radiant Creator",
         "type": "Legendary Creature — Human Artificer",
@@ -460,9 +460,9 @@ def test_attach_ways_on_response():
     _true("chosen key", "chosen_playstyle" in out)
 
 
-def test_readable_prefer_con259():
-    """CON-259: at equal edges, readable (signal∨keyword) ranks above unread."""
-    print("\nprecon_upgrade.rank_upgrades — CON-259 readable prefer")
+def test_readable_prefer():
+    """at equal edges, readable (signal∨keyword) ranks above unread."""
+    print("\nprecon_upgrade.rank_upgrades — readable prefer")
     commander = {
         "name": "Token Boss",
         "type": "Legendary Creature",
@@ -524,8 +524,8 @@ def test_readable_prefer_con259():
         _true("rank looked (status not unknown)", ranked["status"] != "unknown")
 
 
-def test_way_playstyle_reorders_queries_con259():
-    print("\nprecon_upgrade.upgrade_queries — CON-259 way soft-order")
+def test_way_playstyle_reorders_queries():
+    print("\nprecon_upgrade.upgrade_queries — way soft-order")
     # Commander with multiple demand signals so recall is non-empty.
     card = {
         "name": "Multi Way",
@@ -551,11 +551,11 @@ if __name__ == "__main__":
     test_ways_for_precon_detect()
     test_ways_unknown_unreadable()
     test_rank_upgrades_never_invents()
-    test_already_in_deck_group_con220()
-    test_already_in_never_cut_con235()
-    test_cut_pairs_con219()
+    test_already_in_deck_group()
+    test_already_in_never_cut()
+    test_cut_pairs()
     test_upgrade_queries_unknown_demand()
     test_attach_ways_on_response()
-    test_readable_prefer_con259()
-    test_way_playstyle_reorders_queries_con259()
+    test_readable_prefer()
+    test_way_playstyle_reorders_queries()
     print("\nALL OK")

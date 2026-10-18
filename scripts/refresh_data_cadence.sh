@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# CON-238 / CON-285: weekly data refresh chain — grammar, synergy derive,
+# weekly data refresh chain — grammar, synergy derive,
 # staleness check. Optional: --kb, --precons, --reeval (understanding pulse).
 set -euo pipefail
 
@@ -69,7 +69,7 @@ fi
 PYTHON="${PYTHON:-python3}"
 
 log "repo: $REPO_ROOT"
-# CON-294: pull oracle_cards (+ prices from default_cards) before anything
+# pull oracle_cards (+ prices from default_cards) before anything
 # else asks Scryfall one card at a time.
 log "step 1/4: python -m corpus  (local Scryfall bulk)"
 "$PYTHON" -m corpus
@@ -94,7 +94,7 @@ log "step 4/4: check_data_staleness.py"
 "$PYTHON" scripts/check_data_staleness.py
 
 if [ "$RUN_REEVAL" -eq 1 ]; then
-  # CON-285: remeasure how cards read / which ways still fit. Detection only —
+  # remeasure how cards read / which ways still fit. Detection only —
   # admitting new signals or playstyles stays a named PR
   # (docs/KNOW-MAGIC-MAINTENANCE.md).
   wave="cadence-reeval-$(date -u '+%Y-%m-%d')"

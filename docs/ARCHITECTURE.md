@@ -155,7 +155,7 @@ real vocabulary before it becomes a query.
 
 **Wrong meter.** A Keychain API key with no credits, or a launchd PATH that hides
 the `claude` CLI, makes every model call look broken. `./run.sh` prefer the CLI and
-prints which meter is running. See CON-262.
+prints which meter is running. See the LLM meter note.
 
 **A backend with no caller.** Features have landed complete and done nothing
 because the frontend never called them. Green tests, shipped card, no effect.

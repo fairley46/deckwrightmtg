@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-291: API boundary — emitted keys must be consumed (or allowlisted).
+"""API boundary — emitted keys must be consumed (or allowlisted).
 
 Reports both directions at the seam that playtests keep finding:
 
@@ -44,7 +44,7 @@ ENDPOINTS: dict[str, dict] = {
         },
         "server_only": {
             "still_asking": (
-                "UI infers the three CON-166 states from brief / brief_error / "
+                "UI infers the three the chat envelope states from brief / brief_error / "
                 "readiness; still_asking stays on the wire for the model envelope"
             ),
             "instrument": (
@@ -112,7 +112,7 @@ ENDPOINTS: dict[str, dict] = {
         },
         "server_only": {
             "composition": (
-                "CON-75 rebuild target; UI recomputes axis counts from deck via "
+                "rebuild target; UI recomputes axis counts from deck via "
                 "axisCounts() rather than reading the stamp"
             ),
             "role_queries_raw": (
@@ -120,7 +120,7 @@ ENDPOINTS: dict[str, dict] = {
                 "explain_group text only"
             ),
             "sim_scoring": (
-                "Build-time candidate-scoring diagnostics (CON-103); not a "
+                "Build-time candidate-scoring diagnostics; not a "
                 "player-facing surface"
             ),
             "legality_mode": (
@@ -131,7 +131,7 @@ ENDPOINTS: dict[str, dict] = {
                 "as absent"
             ),
             "corpus": (
-                "CON-294 local-vs-live call meters + corpus age; ops diagnostic"
+                "local-vs-live call meters + corpus age; ops diagnostic"
             ),
         },
     },
@@ -146,19 +146,19 @@ ENDPOINTS: dict[str, dict] = {
         },
         "server_only": {
             "still_asking": (
-                "Same CON-166 envelope as chat; askChange branches on brief / "
+                "Same the chat envelope as chat; askChange branches on brief / "
                 "brief_error"
             ),
             "instrument": (
-                "CON-261: live improve surface for the page — emitted, not yet "
+                "live improve surface for the page — emitted, not yet "
                 "painted. Keep until the ask panel consumes it; do not delete"
             ),
             "improve_candidates": (
-                "CON-261 glued leftovers for the improve surface — emitted, not "
+                "glued leftovers for the improve surface — emitted, not "
                 "yet painted. Same hold as instrument"
             ),
             "glued_payoffs": (
-                "CON-261 payoff leftovers for the improve surface — emitted, "
+                "payoff leftovers for the improve surface — emitted, "
                 "not yet painted"
             ),
             "way_preference": (
@@ -222,11 +222,11 @@ ENDPOINTS: dict[str, dict] = {
             "reevaluated": "Whether print-wave reeval ran; not painted",
             "stale": "Staleness flag for ops; veil only needs ready/detail",
             "error": "Structured boot error; detail string is what the veil shows",
-            "understanding": "Boot remeasure payload (CON-285); veil uses detail",
+            "understanding": "Boot remeasure payload; veil uses detail",
             "elapsed_ms": "Boot timing; not painted",
-            "corpus": "CON-294 corpus status on every boot poll; ops/veil detail",
-            "env": "CON-315 blue/green identity; badge comes from HTML inject",
-            "candidate": "CON-315/321 A/B/C flag; not painted on boot veil",
+            "corpus": "corpus status on every boot poll; ops/veil detail",
+            "env": "blue/green identity; badge comes from HTML inject",
+            "candidate": "A/B/C flag; not painted on boot veil",
         },
     },
     "/api/saved": {
@@ -268,7 +268,7 @@ CARD_KEYS = {
         "gc": "Game Changer flag used server-side for bracket filter; not painted",
         "layout": "Scryfall layout; DFC handling uses image_uris server-side",
         "edhrec_rank": "Backfill / ranking; not a player-facing field",
-        "edhrec_synergy": "CON-336 deep-dive payload; shopping list shows inclusion only",
+        "edhrec_synergy": "deep-dive payload; shopping list shows inclusion only",
         "purchase_uris": "tcgplayer_url() reads this server-side into exports",
     },
 }
@@ -276,11 +276,11 @@ CARD_KEYS = {
 # Fields the UI may read defensively even when an older save omits them.
 UI_OPTIONAL: dict[str, str] = {
     "simulation": "Absent on fresh builds until goldfish runs; page guards",
-    "match_notes": "CON-270; absent until first note",
-    "pending": "CON-271; absent until a change set stages",
-    "version": "CON-271; defaults to 1 when absent",
-    "parent_version": "CON-271 fork pointer; absent on v1",
-    "history": "CON-271; absent until first approve",
+    "match_notes": "the match notes; absent until first note",
+    "pending": "the pending change sets; absent until a change set stages",
+    "version": "the pending change sets; defaults to 1 when absent",
+    "parent_version": "fork pointer; absent on v1",
+    "history": "the pending change sets; absent until first approve",
     "favorite": "PATCH may set; older saves omit",
     "theme": "Christen / PATCH; older saves omit",
     "primer": "Christen; older saves omit",
@@ -293,7 +293,7 @@ UI_OPTIONAL: dict[str, str] = {
     "upgrades": "Precon beef-it-up; page guards",
     "precon": "Import path marker; page guards",
     "partner_notice": "Optional commander pick notice",
-    "writeups_missing": "Commander paging honesty flag (CON-286)",
+    "writeups_missing": "Commander paging honesty flag",
 }
 
 # Persisted / summarised fields. written ⊆ full save; list_reads are summary.
@@ -312,17 +312,17 @@ DATA_ATTR_KEEP: dict[str, str] = {
     "bucket": (
         "Per-card accounting provenance (theme_strategy / theme_only / …). "
         "Aggregate counts paint in renderAccountingBlock; row filter by "
-        "bucket is the same shape as data-axis before CON-276 — keep the "
+        "bucket is the same shape as data-axis keep the "
         "attribute so a filter can land without re-plumbing the row"
     ),
-    "tilt": "Landing / masthead parallax amplitude (CON-284)",
+    "tilt": "Landing / masthead parallax amplitude",
     "id": "Saved-list row load/delete handlers",
     "name": "Saved-list delete confirm + editor add pick",
     "mode": "Workbench mode toggle",
     "nav": "Masthead nav current-page mark",
     "way": "Precon / ways-to-play selection",
     "role": "System fold + keyword filter restore",
-    "axis": "CON-276 type tint + type-chip filter",
+    "axis": "type tint + type-chip filter",
     "keywords": "Keyword-chip filter",
     "img": "Card-name hover preview source",
     "to": "Count-up animation target",
@@ -583,7 +583,7 @@ def all_gaps() -> dict[str, list[str]]:
 def report() -> int:
     gaps = all_gaps()
     n = sum(len(v) for v in gaps.values())
-    print("CON-291 api boundary")
+    print("api boundary")
     for name, items in gaps.items():
         status = "PASS" if not items else "FAIL"
         print(f"  {status}  {name}: {len(items)}")

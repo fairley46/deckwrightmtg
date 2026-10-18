@@ -1,5 +1,5 @@
 """
-precon_delta.py — what changes if you add/cut cards on a precon (CON-125).
+precon_delta.py — what changes if you add/cut cards on a precon.
 
 No model. Compares mechanic density + sim diagnostics before/after. Each added
 card gets help/hurt from whether it lands on families/signals the precon
