@@ -50,6 +50,8 @@ First public release.
 - Regular expressions that read pasted decklists, themes, and card text were
   rewritten to avoid heavy backtracking on hostile input, with the same results
   on real input.
+- Regular expressions that could backtrack heavily on crafted input were
+  rewritten so matching time stays linear.
 - The CI workflow token is limited to read-only repository contents.
 
 [Unreleased]: https://github.com/fairley46/deckwrightmtg/compare/v1.0.0...HEAD
