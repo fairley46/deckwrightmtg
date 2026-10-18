@@ -4,7 +4,7 @@
 # surprise rewrite. Requires Python 3.12+ (same floor as README and run.sh).
 
 anthropic>=1.14.0,<2.0        # 0.120.2
-fastapi>=0.115,<1.0         # 0.141.1
+fastapi>=0.143.1,<1.0         # 0.141.1
 uvicorn>=0.32,<1.0          # 0.52.1
 httpx>=0.28.1,<1.0            # 0.28.1
 
