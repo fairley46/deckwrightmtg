@@ -46,6 +46,8 @@ flowchart LR
 
    The **How to play** door opens a short primer on Commander for new players.
 
+   <img src="docs/assets/how-to-play.png" alt="How to play: Commander in about five minutes" width="720">
+
 2. **Chat.** You describe the deck in plain words ("something with dragons", "I want to durdle and gain life"). The app asks a few follow-up questions and keeps asking until it understands the theme well enough to search for it.
 
 3. **Readback.** The app repeats back what it understood, term by term, with the Scryfall search behind each one. It flags terms that found nothing or could not be checked instead of pretending they are fine.
