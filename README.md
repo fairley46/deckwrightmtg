@@ -169,6 +169,7 @@ See [docs/STATUS.md](docs/STATUS.md) and the [changelog](CHANGELOG.md) for what 
 - **[Scryfall](https://scryfall.com/)**: card data, legality, prices, and images. Required for builds. Requests use a descriptive `User-Agent` and stay under Scryfall's rate limit.
 - **[EDHREC](https://edhrec.com/)**: optional popularity hints. If it is unreachable, deep-cut picks get less accurate and nothing fails.
 - **[Archidekt](https://archidekt.com/)**: the precon catalogue and lists, read from its public JSON API at runtime and cached for 30 days. Please link back to Archidekt if you republish deck data.
+- **[Forge](https://github.com/Card-Forge/forge)**: the open-source MTG rules engine, by the Forge team. DeckWright can call a Forge install you provide for the optional pressure test. Forge is a separate GPL-3.0 project; none of its code is included in this repo.
 
 DeckWright is unofficial fan content. It is not approved or endorsed by Wizards of the Coast. Magic: The Gathering is a trademark of Wizards of the Coast.
 
