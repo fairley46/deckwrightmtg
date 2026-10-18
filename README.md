@@ -11,7 +11,7 @@ DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. You 
 
 It runs on your own machine: one FastAPI process and one HTML page, with no build step and no database. It is not a hosted service.
 
-![Mister Negative deck page: commander art, legality and price, and how the deck plays](docs/assets/hero.png)
+<img src="docs/assets/deck-page.png" alt="Deck page for Meren of Clan Nel Toth: commander card, legality, price, and how the deck plays" width="720">
 
 ## Features
 
@@ -42,35 +42,47 @@ flowchart LR
 
 1. **Landing.** You see a short pitch, a few starter ideas, your saved decks, and doors to precons, pasting a list, and the release calendar. Nothing is built until you say what you want.
 
-   <img src="docs/assets/landing.png" alt="Landing page with starter prompts and saved decks" width="640">
+   <img src="docs/assets/landing.png" alt="Landing page with the brief box and starter ideas" width="720">
 
-   The **How to play** door opens a short primer on Commander for new players:
+   The **How to play** door opens a short primer on Commander for new players, including how to read a card:
 
-   ![The in-app How to play primer](docs/assets/ui-walkthrough.gif)
+   <img src="docs/assets/how-to-play.png" alt="The How to play primer: Commander in about five minutes" width="720">
+
+   <img src="docs/assets/reading-a-card.png" alt="How to play: reading a card, with each part of the card explained" width="720">
 
 2. **Chat.** You describe the deck in plain words ("something with dragons", "I want to durdle and gain life"). The app asks a few follow-up questions and keeps asking until it understands the theme well enough to search for it.
 
+   <img src="docs/assets/chat.png" alt="Chat: a Golgari graveyard brief and the app's follow-up question" width="720">
+
 3. **Readback.** The app repeats back what it understood, term by term, with the Scryfall search behind each one. It flags terms that found nothing or could not be checked instead of pretending they are fine.
+
+   <img src="docs/assets/readback.png" alt="Readback: the theme with the Scryfall search behind it, and commander directions" width="720">
 
 4. **Commanders.** You get five real commanders that fit, each with its colours, themes, and the ways it likes to play. "Show me more" pages through further matches, and partner pairs are offered where the rules allow.
 
+   <img src="docs/assets/commanders.png" alt="Commander pick: card pool choice and a commander with ways to play" width="720">
+
 5. **Build 99.** The app builds the 99 role by role (lands, ramp, draw, removal, the plan, the theme, a few deep cuts). Every card comes from a Scryfall search result, and any name the model suggests that is not in those results is dropped.
+
+   <img src="docs/assets/build.png" alt="Build progress: pulling cards for each role, checking legality, pricing, and playing games" width="720">
 
 6. **Thesis.** The app states the plan in a few lines: what the deck is trying to do and which cards in this 99 carry it. Payoff cards must be in the deck, and the plan's conditions must be things the simulator can measure.
 
+   <img src="docs/assets/thesis.png" alt="How this deck does it: the plan, turn by turn, naming the cards that carry it" width="720">
+
 7. **Simulate.** The app plays thousands of solitaire goldfish games and reports how often the plan comes together and by which turn. It also calls out what it cannot model, such as effects that depend on opponents.
 
-   ![Turn plan and solitaire odds for whether the plan happens](docs/assets/plan.png)
+   <img src="docs/assets/odds.png" alt="Does the plan happen: odds per condition from 3,000 games, with a game that worked and one that didn't" width="720">
 
 8. **Deck page.** You see the commander, legality and price, the plan, the odds, and the 99 grouped by role. The deck is saved to `~/.deckwright/` as soon as it is built. (The screenshot at the top of this README is a deck page.)
 
 9. **Ask / save / export.** You can ask questions about the deck, stage card swaps from the same real card pools and approve or reject them, rename and keep notes, and export the list as text, an Archidekt import, or a shopping list.
 
-   ![The 99 grouped by role, with prices and export actions](docs/assets/decklist.png)
+   <img src="docs/assets/decklist.png" alt="The 99 grouped by role with prices, export actions, and naming" width="720">
 
 **Side door: Precon / import.** From the landing page you can open a preconstructed Commander deck or paste a list you already own. The app analyzes it the same way and lands on the same deck page, with suggested upgrades.
 
-<img src="docs/assets/precons.png" alt="Precon catalogue" width="640">
+<img src="docs/assets/precons.png" alt="Precon catalogue" width="720">
 
 ## Quick start
 
