@@ -1,5 +1,5 @@
 """
-precon_bake.py — static precon analysis shipped in the repo (CON-102).
+precon_bake.py — static precon analysis shipped in the repo.
 
 A precon is the same 100 cards forever. Overview, signals, simulation, and the
 resolved list are deterministic — compute once, commit the result, serve it
@@ -13,7 +13,7 @@ Each entry is keyed by Archidekt deck id. Stamps:
 Either stamp mismatch marks the entry stale. Stale entries are not served —
 we refuse to stand behind numbers from an engine we no longer run.
 
-CON-116: every bake also carries a `brief` derived from the analysis so the
+every bake also carries a `brief` derived from the analysis so the
 plan half of the page — thesis, beat sheet, simulation — has something to
 read. `source: "precon"` marks that she did not ask for this; she bought it.
 """

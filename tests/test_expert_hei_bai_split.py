@@ -1,5 +1,5 @@
 """
-Offline tests for CON-177: chosen vs mentioned split, Close/Better scores.
+Offline tests for chosen vs mentioned split, Close/Better scores.
 
 The 50-name fixture is "cards named in the video", not "cards in his deck".
 Classification must come from transcript position + card type, with the rule
@@ -58,7 +58,7 @@ def _load(name: str):
 
 
 def test_fixture_is_split():
-    print("\nexpert fixture — chosen / mentioned split (CON-177)")
+    print("\nexpert fixture — chosen / mentioned split")
     payload = json.loads(
         (ROOT / "testdata/review/expert-hei-bai-cards.json").read_text())
     eq("has chosen list", isinstance(payload.get("chosen"), list), True)
@@ -162,7 +162,7 @@ def test_classify_is_derived_not_memorized():
 
 
 def test_close_and_better_scores():
-    print("\nagreement — Close and Better scores (CON-177)")
+    print("\nagreement — Close and Better scores")
     agree = _load("hei_bai_agreement.py")
     # Real Hei Bai oracle. A fake sacrifice-outlet text made Know Magic's
     # richer edge counts inflate his-chosen median above Angel of Indemnity;
@@ -238,7 +238,7 @@ def test_reproducibility_band():
 
 
 def test_blink_floor_shape():
-    print("\nleave-enabler floor — blink reserved like CON-159 payoffs")
+    print("\nleave-enabler floor — blink reserved like archetype payoffs")
     # The build path must expose blink names as a payoff floor so a card that
     # is only in the pool can still be forced into theme. Pure unit check on
     # the helper that builds that floor — no live Scryfall.
@@ -262,7 +262,7 @@ def test_blink_floor_shape():
 
 
 def test_synergy_enabler_floor_shape():
-    print("\nsynergy enabler floor — tokens reserved like blink (CON-195)")
+    print("\nsynergy enabler floor — tokens reserved like blink")
     from deckwright import app
     got = [
         {"name": "Raise the Alarm", "type": "Instant"},

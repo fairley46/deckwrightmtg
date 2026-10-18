@@ -1,7 +1,7 @@
-"""CON-336 — EDHREC-seeded build (product path).
+"""EDHREC-seeded build (product path).
 
 Thin live client for commander page + average deck (~2 GETs per build).
-CON-194 semantics: ok / missing / unknown — never `{}` on failure.
+semantics: ok / missing / unknown — never `{}` on failure.
 
 Pool injection happens before the model shortlist (not steer-only). Seed lands
 are ignored; V1 curve / mana base unchanged.
@@ -271,7 +271,7 @@ async def load_for_commander(
         status = classify_seed(cmd_status, avg_status, num_decks, average_names)
         # Inclusion % is a finding only when we seeded. Thin samples (e.g. 1.4%
         # of 139) must not paint the same visual as 77% of 43k — unknown≠zero
-        # in a new costume (Box review after green-d band probe).
+        # in a new costume (found in review after a staging probe).
         meta: dict[str, dict] = {}
         if status == "seeded" and cmd_status == "ok":
             meta = parse_card_meta(cmd_data, num_decks=num_decks)

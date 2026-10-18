@@ -1,5 +1,5 @@
 """
-test_edhrec_sanity.py — CON-194 transport vs catalogue for EDHREC 403s.
+test_edhrec_sanity.py — transport vs catalogue for EDHREC 403s.
 
 EDHREC serves static JSON from S3. A 403 AccessDenied is "no page" for a
 missing key — correct. Across thousands of requests, a throttle that also
@@ -62,7 +62,7 @@ def test_missing_rate():
     eq("small sample is skip", v["status"], "ok")
     eq("small sample not suspicious", v["suspicious"], False)
 
-    # Measured CON-194 shape: ~6% missing is catalogue, not throttle.
+    # Measured on the commander knowledge base: ~6% missing is catalogue, not throttle.
     v = bkb.edhrec_transport_check(ok=3113, missing=208, failed=0)
     eq("6% missing is ok", v["status"], "ok")
     eq("6% not suspicious", v["suspicious"], False)

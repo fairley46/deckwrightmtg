@@ -1,5 +1,5 @@
 """
-test_readback.py — CON-150 readback before commander selection.
+test_readback.py — readback before commander selection.
 
     python test_readback.py           # unit + live Scryfall counts
     python test_readback.py --unit    # offline only
@@ -55,7 +55,7 @@ def test_theme_segments():
 
 
 def test_compose_pool_query_unit():
-    """CON-209: composed pool ORs sibling types; keywords do not AND in."""
+    """composed pool ORs sibling types; keywords do not AND in."""
     print("\ncompose_pool_query()  — translate her words into a real pool")
     eq("dual tribe ORs",
        app.compose_pool_query([
@@ -100,7 +100,7 @@ async def test_place_theme_word_unit():
     eq("steal is otag:theft", steal and steal.get("operator"), "otag:theft")
     eq("steal resolved", steal and steal.get("resolved"), True)
 
-    # CON-149/150 fixture: heists is unresolved — never keyword:heist, never 0.
+    # heists is unresolved — never keyword:heist, never 0.
     heists = app.place_theme_word("heists")
     eq("heists unresolved", heists and heists.get("resolved"), False)
     eq("heists has no operator", heists and heists.get("operator"), None)
@@ -117,7 +117,7 @@ async def test_place_theme_word_unit():
     eq("that steal operator", that_steal and that_steal.get("operator"), "otag:theft")
     eq("that steal said preserved", that_steal and that_steal.get("said"), "that steal")
 
-    # CON-170: multi-word spans compose the same way resolve_theme does.
+    # multi-word spans compose the same way resolve_theme does.
     composed = app.place_theme_word("vampire lifegain")
     eq("vampire lifegain resolved", composed.get("resolved"), True)
     eq("vampire lifegain query", composed.get("query"), "t:vampire otag:lifegain")
@@ -134,13 +134,13 @@ async def test_place_theme_word_unit():
     stax_pirates = app.place_theme_word("stax pirates")
     eq("stax pirates unresolved", stax_pirates.get("resolved"), False)
 
-    # CON-212: "keep me alive" now resolves, and that is the alias pack working
+    # "keep me alive" now resolves, and that is the alias pack working
     # rather than a regression. This assertion was written when the only way a
     # prose span could resolve was a word-bank o: guess — a fallback wearing
     # success. It now returns otag:lifegain at confidence "exact" from the
     # verified otag catalog, which is a real behaviour match, so the old
     # expectation encoded a limitation instead of the rule. Same shape as the
-    # CON-178 correction: the code got better and the test had to say so.
+    # correction: the code got better and the test had to say so.
     keep = app.place_theme_word("keep me alive")
     eq("keep me alive resolves via alias", keep.get("resolved"), True)
     eq("keep me alive is lifegain", keep.get("query"), "otag:lifegain")
@@ -209,7 +209,7 @@ async def test_build_readback_live():
 
 
 async def test_sibling_types_live():
-    """CON-209: horses and knights is a real pool — never AND to 0."""
+    """horses and knights is a real pool — never AND to 0."""
     print("\nbuild_readback()  — sibling tribes OR (live)")
     await app.load_vocab()
 

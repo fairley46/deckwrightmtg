@@ -1,9 +1,9 @@
 """
 swap.py — replace one card in a finished 99 with a real pool alternate.
 
-CON-77: the player rejects a card and picks a replacement from the same role's
+the player rejects a card and picks a replacement from the same role's
 candidate pool. The replacement must already have been fetched from Scryfall
-(role_pools / the CON-100 ladder) — never invented. Singleton holds. The
+(role_pools / the substitution ladder) — never invented. Singleton holds. The
 caller re-runs the simulation; this module only mutates the list.
 """
 
@@ -43,7 +43,7 @@ def alternatives(card: dict, role_pools: dict[str, list[dict]], deck: list[dict]
                  ci: str, *, count: int = substitution.MAX_ALTERNATES) -> list[dict]:
     """Full pool cards the player may swap this one for.
 
-    Names are filtered the same way CON-100 filters shopping alternates, then
+    Names are filtered the same way the substitution ladder filters shopping alternates, then
     the matching full records are returned from the pool (so the sim gets text,
     type, produced_mana — not just a shopping stub).
     """

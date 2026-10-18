@@ -1,9 +1,9 @@
-"""CON-321 Gate 4 — soft steer from CommanderStrategy. Audit always; steer on B/C.
+"""soft steer from CommanderStrategy. Audit always; steer on B/C.
 
 Deprioritise bound_ok == false, prefer cards feeding strategy.inputs.
 bound_ok == unknown is neither a violation nor a steer pass (unknown ≠ zero).
 
-CON-322 Candidate C: when ``DECKWRIGHT_CANDIDATE=C``, CardFacts may enrich
+Candidate C (experimental): when ``DECKWRIGHT_CANDIDATE=C``, CardFacts may enrich
 feeder detection and stamp ServeReport fields. Bound math stays shared via
 ``strategy_audit.card_bound_ok``. Missing CardFacts → fall back to B oracle
 feeders (C includes B); ServeReport marks CF fields unknown, never zero.
@@ -44,7 +44,7 @@ def bound_ok(card: dict, strategy: dict, deck_so_far: list[dict]) -> str:
     """Per-card bound check against deck built so far.
 
     Returns 'ok', 'false', or 'unknown'. Delegates to strategy_audit so
-    type guards and op (leq/geq) cannot drift (CON-329 / CON-331).
+    type guards and op (leq/geq) cannot drift.
     """
     return strategy_audit.card_bound_ok(card, strategy or {}, list(deck_so_far or []))
 
@@ -92,9 +92,9 @@ def steer_vote(
 
 
 def cmp_votes(va: int | None, vb: int | None) -> int:
-    """Compare strategy steer votes for ranking (CON-334 caveat 2).
+    """Compare strategy steer votes for ranking (caveat 2).
 
-    None (bound unknown) sorts as neutral 0 — not as CON-222 edge 'no vote'.
+    None (bound unknown) sorts as neutral 0 — not as the timing-multiplier edge 'no vote'.
     Hard violators (-1) demote; among non-violators, feeder (+1) beats
     neutral and unknown. Bound demotion must not outrank feeder prefer
     except when bound_ok is actually false.

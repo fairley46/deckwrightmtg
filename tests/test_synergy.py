@@ -81,7 +81,7 @@ def test_profile():
     eq("missing oracle text is unknown", blank["status"], synergy.UNKNOWN)
     eq("unknown has no produces", blank["produces"], set())
 
-    # CON-194: Scryfall returns oracle_text="" for vanilla legendaries
+    # Scryfall returns oracle_text="" for vanilla legendaries
     # (Isamaru, Barktooth Warbeard, …). Present empty string means we looked
     # and the card has no rules text — not "could not look".
     vanilla = synergy.profile({
@@ -146,7 +146,7 @@ def test_unknown_forms_no_edge():
 # The tutorial (YJ8X8bO8jeY) states these aloud. We did not choose them, which
 # is the point -- an expectation we wrote ourselves would just agree with our
 # own extractor. Same reason Forge, not an internal audit, caught sim.py
-# inventing free lands (CON-162/CON-163).
+# inventing free lands.
 HEI_BAI_KEYWORDS = {
     "enters", "attacks", "sacrifice creature", "sacrifice artifact",
     "+1/+1 counters", "leaves the battlefield", "counters",
@@ -205,7 +205,7 @@ def test_cohesion():
     print("\nsynergy — deck cohesion")
     hei = _card("Hei Bai, Spirit of Balance")
     # Keyword-readable instants with no object overlap — true orphans.
-    # Shock/Negate without keywords are unread (CON-272); Flash makes these ok.
+    # Shock/Negate without keywords are unread; Flash makes these ok.
     # No Angel in the deck: draw cards peer-glue to Angel via `card`.
     bolt = {
         "name": "Lightning Bolt",
@@ -241,8 +241,8 @@ def test_cohesion_reports_unknown_separately():
 
 
 def test_annotate_wires_explain_edges():
-    """CON-199: annotate calls explain_edges for theme/plan; unknown ≠ orphan."""
-    print("\nwhy.annotate — CON-199 wires explain_edges into why text")
+    """annotate calls explain_edges for theme/plan; unknown ≠ orphan."""
+    print("\nwhy.annotate — wires explain_edges into why text")
     from deckwright import why
     hei = {**_card("Hei Bai, Spirit of Balance"),
            "name": "Hei Bai, Spirit of Balance"}
@@ -270,7 +270,7 @@ def test_annotate_wires_explain_edges():
     # Orphan: offer reason may exist; edge clause must not invent a connection.
     orphan_edge = why.explain_edges(orphan, hei, deck)
     eq("orphan has no edge clause", orphan_edge, "")
-    # CON-272: unknown must say could-not-read — never look like zero synergy.
+    # unknown must say could-not-read — never look like zero synergy.
     unk_edge = why.explain_edges(unknown, hei, deck)
     (ok if unk_edge and "could not read" in unk_edge.lower() else bad)(
         "unknown edge note says could not read", f"got {unk_edge!r}")
@@ -325,7 +325,7 @@ def test_no_weighted_sum_exists():
 
 
 def test_blink_patterns_match_real_oracle():
-    print("\nsynergy — blink patterns match real oracle text (CON-174)")
+    print("\nsynergy — blink patterns match real oracle text")
     # The first draft required "then return it/them". Real cards say
     # "return that card" (Cloudshift, Felidar Guardian, Conjurer's Closet)
     # and often delay the return to the end step. A pattern that misses those
@@ -338,7 +338,7 @@ def test_blink_patterns_match_real_oracle():
 
 
 def test_hei_bai_demands_leave_causes():
-    print("\nsynergy — Hei Bai consumes leave-causes, not the leave phrase (CON-174)")
+    print("\nsynergy — Hei Bai consumes leave-causes, not the leave phrase")
     # He triggers WHEN he leaves. Sac outlets and blink CAUSE leaving.
     # The phrase "leaves the battlefield" is on him, not on the enablers.
     hei_card = _card("Hei Bai, Spirit of Balance")
@@ -362,8 +362,8 @@ def test_hei_bai_demands_leave_causes():
 
 
 def test_leave_enabler_queries():
-    print("\nsynergy — leave-enabler recall queries (CON-174)")
-    # Same failure mode as CON-159: the piece exists and the graph can see it,
+    print("\nsynergy — leave-enabler recall queries")
+    # Same failure mode as the archetype payoff floors: the piece exists and the graph can see it,
     # but the role ladder never searched for it. Ranking cannot fix absence.
     hei = _card("Hei Bai, Spirit of Balance")
     qs = synergy.leave_enabler_queries(hei)
@@ -375,9 +375,9 @@ def test_leave_enabler_queries():
 
 
 def test_synergy_neighbors():
-    print("\nsynergy — one-hop relation neighbors for recall (CON-195)")
+    print("\nsynergy — one-hop relation neighbors for recall")
     # demand signals → families → one-hop relations → queries.
-    # Recall into the card pool, never into plan commitments (CON-178).
+    # Recall into the card pool, never into plan commitments.
     hei = _card("Hei Bai, Spirit of Balance")
     neighbors = synergy.synergy_neighbors(hei)
     fams = {n["family"] for n in neighbors}
@@ -407,7 +407,7 @@ def test_synergy_neighbors():
 
 
 def test_synergy_recall_queries():
-    print("\nsynergy — flattened recall queries (CON-195)")
+    print("\nsynergy — flattened recall queries")
     hei = _card("Hei Bai, Spirit of Balance")
     qs = synergy.synergy_recall_queries(hei)
     joined = " ".join(qs)
@@ -431,8 +431,8 @@ def test_synergy_recall_queries():
 
 
 def test_prefer_glued_steers_without_dropping():
-    """CON-214: edged cards before orphans; orphans stay; STEER off = identity."""
-    print("\nsynergy — CON-214 prefer_glued soft steer")
+    """edged cards before orphans; orphans stay; STEER off = identity."""
+    print("\nsynergy — prefer_glued soft steer")
     hei = {**_card("Hei Bai, Spirit of Balance"),
            "name": "Hei Bai, Spirit of Balance"}
     angel = {**_card("Angel of Indemnity"), "name": "Angel of Indemnity"}
@@ -470,8 +470,8 @@ def test_prefer_glued_steers_without_dropping():
 
 
 def test_prefer_glued_cheaper_among_equal_edges():
-    """CON-233: equal edge votes break on lower usd; priced before missing."""
-    print("\nsynergy — CON-233 prefer_glued price tertiary")
+    """equal edge votes break on lower usd; priced before missing."""
+    print("\nsynergy — prefer_glued price tertiary")
     hei = {**_card("Hei Bai, Spirit of Balance"),
            "name": "Hei Bai, Spirit of Balance"}
     cheap = {**_card("Shock"), "name": "Cheap Bolt", "usd": "0.25"}
@@ -516,8 +516,8 @@ def _unstoppable_plan() -> dict:
 
 
 def test_timing_multiplier_exempt_from_steer_edge_key():
-    """CON-222: timing cards are unrepresentable, not orphans under STEER."""
-    print("\nsynergy — CON-222 timing_multiplier STEER carve-out")
+    """timing cards are unrepresentable, not orphans under STEER."""
+    print("\nsynergy — timing_multiplier STEER carve-out")
     hei = {**_card("Hei Bai, Spirit of Balance"),
            "name": "Hei Bai, Spirit of Balance"}
     throttle = _full_throttle()
@@ -576,7 +576,7 @@ PRECON_LIVING_ENERGY = (
 
 
 def _living_energy_card(name: str) -> dict:
-    """Real oracle from the Living Energy precon (CON-221)."""
+    """Real oracle from the Living Energy precon."""
     payload = json.loads(PRECON_LIVING_ENERGY.read_text())
     if name == payload.get("commander") or (
             (payload.get("commander_card") or {}).get("name") == name):
@@ -590,8 +590,8 @@ def _living_energy_card(name: str) -> dict:
 
 
 def test_energy_object_and_edges():
-    """CON-221: energy is a produce/consume object; Living Energy is visible."""
-    print("\nsynergy — CON-221 energy object (Living Energy precon)")
+    """energy is a produce/consume object; Living Energy is visible."""
+    print("\nsynergy — energy object (Living Energy precon)")
     synergy.clear_cache()
 
     objs = synergy.load_objects()
@@ -652,9 +652,9 @@ def test_resource_tokens_are_honest():
        "artifact" in plunderer["produces"], True)
 
 
-def test_player_resource_pack_con224():
-    """CON-224: poison/rad/experience/speed/monarch/initiative/blessing/ring."""
-    print("\nsynergy — CON-224 player-resource pack")
+def test_player_resource_pack():
+    """poison/rad/experience/speed/monarch/initiative/blessing/ring."""
+    print("\nsynergy — player-resource pack")
     synergy.clear_cache()
 
     objs = synergy.load_objects()
@@ -785,9 +785,9 @@ def test_player_resource_pack_con224():
         eq(f"Storm Crow consumes no {obj}", obj in crow_p["consumes"], False)
 
 
-def test_mana_land_signals_con245():
-    """CON-245: land/mana reading — exemplar fires, near-miss does not."""
-    print("\nsynergy — CON-245 mana/land oracle_signals")
+def test_mana_land_signals():
+    """land/mana reading — exemplar fires, near-miss does not."""
+    print("\nsynergy — mana/land oracle_signals")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -939,9 +939,9 @@ def test_mana_land_signals_con245():
        "land_sacrifice_value" in synergy.profile(war_room)["signals"], False)
 
 
-def test_commander_and_aura_signals_con245():
-    """CON-245 batch 2: commander-matters + enchant creature + hand size."""
-    print("\nsynergy — CON-245 commander-matters / aura / hand size")
+def test_commander_and_aura_signals():
+    """batch 2: commander-matters + enchant creature + hand size."""
+    print("\nsynergy — commander-matters / aura / hand size")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -1030,13 +1030,13 @@ def test_commander_and_aura_signals_con245():
        False)
 
 
-def test_unread_gap_signals_con248():
-    """CON-248: Phase 3 signals for researched unread gaps.
+def test_unread_gap_signals():
+    """Phase 3 signals for researched unread gaps.
 
     Exemplar fires; near-miss does not. Keywords stay on Scryfall catalogs —
     these are the non-catalog lines Phase 2 recommended for oracle_signals.
     """
-    print("\nsynergy — CON-248 unread-gap signals")
+    print("\nsynergy — unread-gap signals")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -1233,9 +1233,9 @@ def test_unread_gap_signals_con248():
        "must_attack" in synergy.profile(propaganda)["signals"], False)
 
 
-def test_keyword_catalog_on_profile_con251():
-    """CON-251: Scryfall keywords surface on profile, never as signals."""
-    print("\nsynergy — CON-251 keyword catalog on profile")
+def test_keyword_catalog_on_profile():
+    """Scryfall keywords surface on profile, never as signals."""
+    print("\nsynergy — keyword catalog on profile")
     synergy.clear_cache()
     crow = {
         "name": "Storm Crow",
@@ -1249,9 +1249,9 @@ def test_keyword_catalog_on_profile_con251():
        "flying" in p["signals"] or "Flying" in p["signals"], False)
 
 
-def test_residual_unread_signals_con251():
-    """CON-251: residual non-keyword unread patterns — exemplar / near-miss."""
-    print("\nsynergy — CON-251 residual unread signals")
+def test_residual_unread_signals():
+    """residual non-keyword unread patterns — exemplar / near-miss."""
+    print("\nsynergy — residual unread signals")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -1367,9 +1367,9 @@ def test_residual_unread_signals_con251():
 
 
 
-def test_midtail_signals_con252():
-    """CON-252 lap 3: mid-tail grant/tap/exile/type/freeze — exemplar / near-miss."""
-    print("\nsynergy — CON-252 mid-tail signals")
+def test_midtail_signals():
+    """mid-tail grant/tap/exile/type/freeze — exemplar / near-miss."""
+    print("\nsynergy — mid-tail signals")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -1488,9 +1488,9 @@ def test_midtail_signals_con252():
        "activated_ping" in synergy.profile(bolt)["signals"], False)
 
 
-def test_cleanup_signals_con253():
-    """CON-253 lap 4: thin unread cleanup — exemplar / near-miss."""
-    print("\nsynergy — CON-253 cleanup signals")
+def test_cleanup_signals():
+    """thin unread cleanup — exemplar / near-miss."""
+    print("\nsynergy — cleanup signals")
     synergy.clear_cache()
 
     def card(name, type_line, oracle_text):
@@ -1643,9 +1643,9 @@ def test_cleanup_signals_con253():
        "graveyard_recursion" in synergy.profile(gy_hand)["signals"], True)
 
 
-def test_readback_honesty_unknown_vs_none_con272():
-    """CON-272: unknown/unread copy says could-not-read; readable none stays none."""
-    print("\nsynergy/why — CON-272 readback honesty unknown vs none")
+def test_readback_honesty_unknown_vs_none():
+    """unknown/unread copy says could-not-read; readable none stays none."""
+    print("\nsynergy/why — readback honesty unknown vs none")
     from deckwright import why
 
     hei = _card("Hei Bai, Spirit of Balance")
@@ -1710,7 +1710,7 @@ def main():
     test_cohesion()
     test_cohesion_reports_unknown_separately()
     test_annotate_wires_explain_edges()
-    test_readback_honesty_unknown_vs_none_con272()
+    test_readback_honesty_unknown_vs_none()
     test_orphan_gate()
     test_no_weighted_sum_exists()
     test_expert_hei_bai_deck_is_coherent()
@@ -1724,14 +1724,14 @@ def main():
     test_timing_multiplier_exempt_from_steer_edge_key()
     test_energy_object_and_edges()
     test_resource_tokens_are_honest()
-    test_player_resource_pack_con224()
-    test_mana_land_signals_con245()
-    test_commander_and_aura_signals_con245()
-    test_unread_gap_signals_con248()
-    test_keyword_catalog_on_profile_con251()
-    test_residual_unread_signals_con251()
-    test_midtail_signals_con252()
-    test_cleanup_signals_con253()
+    test_player_resource_pack()
+    test_mana_land_signals()
+    test_commander_and_aura_signals()
+    test_unread_gap_signals()
+    test_keyword_catalog_on_profile()
+    test_residual_unread_signals()
+    test_midtail_signals()
+    test_cleanup_signals()
     print(f"\n{passed} passed" + (f", {RED}{failed} failed{OFF}" if failed else ""))
     sys.exit(1 if failed else 0)
 

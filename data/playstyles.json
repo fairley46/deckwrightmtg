@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "CON-180. Community-named Commander playstyles as detectable compositions of oracle_signals. Names and exemplars are sourced; inventing neither. An entry with missing_signals cannot be detected until those signals exist \u2014 that is a finding, not a match.",
+  "note": "the playstyle vocabulary. Community-named Commander playstyles as detectable compositions of oracle_signals. Names and exemplars are sourced; inventing neither. An entry with missing_signals cannot be detected until those signals exist \u2014 that is a finding, not a match.",
   "playstyles": {
     "aristocrats": {
       "name": "aristocrats",

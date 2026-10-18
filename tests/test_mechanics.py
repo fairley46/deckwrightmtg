@@ -1,5 +1,5 @@
 """
-test_mechanics.py — CON-130 / CON-131 / CON-133 mechanics substrate.
+test_mechanics.py — mechanics substrate.
 
 Offline unit tests. No Scryfall network. Run:
 
@@ -54,8 +54,8 @@ def eq(label, got, want):
 
 
 def test_catalog_round_trip():
-    """CON-130: catalogs persist with fetch date; empty write refused."""
-    print("\ncatalog round-trip  — CON-130")
+    """catalogs persist with fetch date; empty write refused."""
+    print("\ncatalog round-trip")
     payload = {
         "fetched_at": "2026-08-06T00:00:00Z",
         "keyword_abilities": ["Flying", "Lifelink"],
@@ -76,8 +76,8 @@ def test_catalog_round_trip():
 
 
 def test_families_load_and_lookup():
-    """CON-131: family taxonomy carries structural math roles."""
-    print("\nfamilies  — CON-131 structural roles")
+    """family taxonomy carries structural math roles."""
+    print("\nfamilies  — structural roles")
     fam = mechanics.load_families()
     eq("has families", isinstance(fam.get("families"), dict) and bool(fam["families"]), True)
     # Thresholds are conditions — the math is "are we over N?"
@@ -101,7 +101,7 @@ def test_families_load_and_lookup():
 
 def test_unreviewed_diff():
     """Catalog names missing from the family file are unreviewed, not failures."""
-    print("\nunreviewed diff  — CON-131")
+    print("\nunreviewed diff")
     catalog = {
         "keyword_abilities": ["Flying", "Brand New Keyword"],
         "keyword_actions": ["Scry"],
@@ -127,8 +127,8 @@ def test_unreviewed_diff():
 
 
 def test_tag_deck_density_and_roles():
-    """CON-133: density by mechanic + family; role buckets for plan math."""
-    print("\ntag_deck  — CON-133 density + plan roles")
+    """density by mechanic + family; role buckets for plan math."""
+    print("\ntag_deck  — density + plan roles")
     families = mechanics.load_families()
     deck = [
         {"name": "Serra Angel", "type": "Creature — Angel",
@@ -159,7 +159,7 @@ def test_tag_deck_density_and_roles():
 
 def test_attach_on_persist():
     """Saved decks carry a mechanics block; expose keeps it."""
-    print("\nattach on persist  — CON-133")
+    print("\nattach on persist")
     from deckwright import app
 
     with tempfile.TemporaryDirectory() as tmp:
@@ -189,7 +189,7 @@ def test_attach_on_persist():
 
 def test_lineage_edges():
     """Lineage is data, not prose — Storied/Ascend style edges load."""
-    print("\nlineage  — CON-131")
+    print("\nlineage")
     fam = mechanics.load_families()
     edges = fam.get("lineage") or []
     (ok if any(e.get("from") and e.get("to") for e in edges) else bad)(
@@ -197,8 +197,8 @@ def test_lineage_edges():
 
 
 def test_pairing_relations():
-    """CON-125: play-derived pairing edges expand goals and related()."""
-    print("\npairing relations  — CON-125")
+    """play-derived pairing edges expand goals and related()."""
+    print("\npairing relations")
     fam = mechanics.load_families()
     pair_edges = [
         e for e in (fam.get("relations") or [])
@@ -233,7 +233,7 @@ def test_pairing_relations():
 
 
 def test_legacy_saved_deck_loads_without_mechanics():
-    """Box 2026-08-06: old saves without a mechanics stamp must still load."""
+    """Old saves without a mechanics stamp must still load."""
     print("\nlegacy saved deck  — no mechanics stamp")
     import tempfile
     from pathlib import Path
@@ -263,7 +263,7 @@ def test_legacy_saved_deck_loads_without_mechanics():
 
 
 def test_signal_fixtures_known_tricky():
-    """Box: every signal needs a known-tricky fixture — Azusa-class misses.
+    """Every signal needs a known-tricky fixture — Azusa-class misses.
 
     These are the silent-wrong cases: near-miss wording, negations, and
     Treasure-vs-creature splits.
@@ -283,7 +283,7 @@ def test_signal_fixtures_known_tricky():
          {"name": "Sulfuric Vortex", "type": "Enchantment", "keywords": [],
           "text": "If a player would gain life, that player gains no life instead."},
          "lifegain_source", False),
-        # CON-188: "gains lifelink" is not a lifegain trigger. CON-183 fixed the
+        # "gains lifelink" is not a lifegain trigger. An earlier lifelink fix covered the
         # greedy .* pattern; the two literal patterns still prefix-matched.
         ("gains lifelink is not a lifegain trigger",
          {"name": "False Lifegain", "type": "Creature", "keywords": [],
@@ -321,7 +321,7 @@ def test_signal_fixtures_known_tricky():
          {"name": "Hardened Scales", "type": "Enchantment", "keywords": [],
           "text": "If one or more +1/+1 counters would be put on a creature you control, that many plus one +1/+1 counters are put on it instead."},
          "go_tall_payoff", True),
-        # CON-196: enters-with is counter placement, not only go_tall.
+        # enters-with is counter placement, not only go_tall.
         ("Giada enters-with is counter_placement",
          {"name": "Giada, Font of Hope", "type": "Legendary Creature — Angel",
           "keywords": ["Flying", "Vigilance"],
@@ -436,8 +436,8 @@ def test_oracle_signals_life_math():
 
 
 def test_taxonomy_map_load_and_reason():
-    """CON-130: play taxonomy is a reasoning map — what / how / supports."""
-    print("\ntaxonomy map  — CON-130 reasoning substrate")
+    """play taxonomy is a reasoning map — what / how / supports."""
+    print("\ntaxonomy map  — reasoning substrate")
     tax = mechanics.load_taxonomy()
     eq("version present", isinstance(tax.get("version"), int) and tax["version"] >= 1, True)
     leaves = mechanics.taxonomy_leaves(tax)
@@ -463,8 +463,8 @@ def test_taxonomy_map_load_and_reason():
 
 
 def test_merge_preserves_reviewed_and_adds_map():
-    """CON-130: map merges into families; reviewed plan_role/math_kind win."""
-    print("\nmerge taxonomy  — CON-130 adapter, no replace")
+    """map merges into families; reviewed plan_role/math_kind win."""
+    print("\nmerge taxonomy  — adapter, no replace")
     reviewed = mechanics.load_families()
     merged = mechanics.merge_families(reviewed)
     # Reviewed Delirium placement must not move or lose role.
@@ -535,8 +535,8 @@ def test_merge_preserves_reviewed_and_adds_map():
 
 
 def test_taxonomy_query_emit_and_gate():
-    """CON-143 / #69: right operator, apostrophes kept, heal path exists."""
-    print("\ntaxonomy query emit  — CON-143 / Box #69 gate")
+    """Taxonomy query emit: right operator, apostrophes kept, heal path exists."""
+    print("\ntaxonomy query emit  — build gate")
     mod = _load_taxonomy_builder()
     vocab = {
         "keyword": {
@@ -581,7 +581,7 @@ def test_taxonomy_query_emit_and_gate():
     eq("heal t:gold → oracle",
        mod.heal_candidates("t:gold")[0].startswith("o:"), True)
 
-    # Checked-in map matches the three classes Box named.
+    # Checked-in map matches the three named classes.
     tax = mechanics.load_taxonomy()
     by = {m["name"].lower(): m for m in mechanics.taxonomy_leaves(tax)}
     for name, prefix in (
@@ -596,8 +596,8 @@ def test_taxonomy_query_emit_and_gate():
        any("council's" in q for q in cd), True)
     eq("no stripped councils dilemma",
        any("councils dilemma" in q for q in cd), False)
-# CON-120 chunk 1 — Scryfall catalog casing, placed into existing families only.
-CON120_PLACED = [
+# chunk 1 — Scryfall catalog casing, placed into existing families only.
+FIRST_CHUNK_PLACED = [
     "Absorb", "Regenerate", "Hexproof from", "Umbra armor",
     "Afflict", "Banding", "Bushido", "Flanking", "Frenzy", "Rampage", "Decayed",
     "Provoke", "Firebending", "Exert", "Boast",
@@ -611,8 +611,8 @@ CON120_PLACED = [
 ]
 
 
-# CON-124 chunk 2 — next 40 unreviewed catalog names (alphabetical order in queue).
-CON124_PLACED = [
+# chunk 2 — next 40 unreviewed catalog names (alphabetical order in queue).
+SECOND_CHUNK_PLACED = [
     "Abandon", "Activate", "Adamant", "Airbend", "Assemble", "Assimilate", "Attach",
     "Augment", "Aura Swap", "Behold", "Blight", "Cast", "Champion", "Changeling",
     "Choose a background", "Cohort", "Commander ninjutsu", "Companion", "Conjure",
@@ -623,8 +623,8 @@ CON124_PLACED = [
 ]
 
 
-# CON-129 remainder — final 91 unreviewed catalog names (alphabetical queue tail).
-CON129_PLACED = [
+# remainder — final 91 unreviewed catalog names (alphabetical queue tail).
+REMAINDER_PLACED = [
     "Eminence", "Enchant", "Enrage", "Exchange", "Exhaust", "Exile", "Exploit",
     "Face a dilemma", "Fading", "Fateful hour", "Fight", "Food", "Freerunning",
     "Friends forever", "Goad", "Grandeur", "Harness", "Heal", "Heist",
@@ -644,13 +644,13 @@ CON129_PLACED = [
 ]
 
 
-def test_con129_triage_remainder():
-    """CON-129: remainder catalog names placed; catalog fully reviewed."""
-    print("\ntriage remainder  — CON-129")
-    eq("remainder size 91", len(CON129_PLACED), 91)
+def test_triage_remainder():
+    """remainder catalog names placed; catalog fully reviewed."""
+    print("\ntriage remainder")
+    eq("remainder size 91", len(REMAINDER_PLACED), 91)
     fam = mechanics.load_families()
     known = {n.lower() for n in mechanics.reviewed_names(fam)}
-    for n in CON129_PLACED:
+    for n in REMAINDER_PLACED:
         eq(f"{n} reviewed", n.lower() in known, True)
     # Spot-check placements; structural roles must not drift.
     eq("Delirium still condition",
@@ -667,20 +667,20 @@ def test_con129_triage_remainder():
     cat = mechanics.load_catalog()
     if mechanics.all_catalog_names(cat):
         miss = mechanics.unreviewed(cat, fam)
-        still = [n for n in CON129_PLACED if n in miss]
+        still = [n for n in REMAINDER_PLACED if n in miss]
         eq("none of remainder still unreviewed", still, [])
         eq("unreviewed cleared", miss, [])
     else:
         ok("no catalog cache — skipped live unreviewed count")
 
 
-def test_con124_triage_chunk():
-    """CON-124: ~40 catalog names placed; no invented names; roles intact."""
-    print("\ntriage chunk  — CON-124")
-    eq("chunk size 40", len(CON124_PLACED), 40)
+def test_triage_second_chunk():
+    """~40 catalog names placed; no invented names; roles intact."""
+    print("\ntriage chunk")
+    eq("chunk size 40", len(SECOND_CHUNK_PLACED), 40)
     fam = mechanics.load_families()
     known = {n.lower() for n in mechanics.reviewed_names(fam)}
-    for n in CON124_PLACED:
+    for n in SECOND_CHUNK_PLACED:
         eq(f"{n} reviewed", n.lower() in known, True)
     # Spot-check placements; structural roles must not drift.
     eq("Delirium still condition",
@@ -697,7 +697,7 @@ def test_con124_triage_chunk():
     cat = mechanics.load_catalog()
     if mechanics.all_catalog_names(cat):
         miss = mechanics.unreviewed(cat, fam)
-        still = [n for n in CON124_PLACED if n in miss]
+        still = [n for n in SECOND_CHUNK_PLACED if n in miss]
         eq("none of chunk still unreviewed", still, [])
         (ok if len(miss) <= 100 else bad)(
             "unreviewed ≤100 after chunk", str(len(miss)))
@@ -705,13 +705,13 @@ def test_con124_triage_chunk():
         ok("no catalog cache — skipped live unreviewed count")
 
 
-def test_con120_triage_chunk():
-    """CON-120: ~40 catalog names placed; no invented names; roles intact."""
-    print("\ntriage chunk  — CON-120")
-    eq("chunk size 40", len(CON120_PLACED), 40)
+def test_triage_first_chunk():
+    """~40 catalog names placed; no invented names; roles intact."""
+    print("\ntriage chunk")
+    eq("chunk size 40", len(FIRST_CHUNK_PLACED), 40)
     fam = mechanics.load_families()
     known = {n.lower() for n in mechanics.reviewed_names(fam)}
-    for n in CON120_PLACED:
+    for n in FIRST_CHUNK_PLACED:
         eq(f"{n} reviewed", n.lower() in known, True)
     # Structural roles must not drift while placing names.
     eq("Delirium still condition",
@@ -726,7 +726,7 @@ def test_con120_triage_chunk():
     cat = mechanics.load_catalog()
     if mechanics.all_catalog_names(cat):
         miss = mechanics.unreviewed(cat, fam)
-        still = [n for n in CON120_PLACED if n in miss]
+        still = [n for n in FIRST_CHUNK_PLACED if n in miss]
         eq("none of chunk still unreviewed", still, [])
         (ok if len(miss) <= 140 else bad)(
             "unreviewed ≤140 after chunk", str(len(miss)))
@@ -735,8 +735,8 @@ def test_con120_triage_chunk():
 
 
 def test_plan_role_coverage_and_query_match():
-    """CON-147: coverage is countable; taxonomy queries classify cards locally."""
-    print("\nplan_role coverage + query match  — CON-147")
+    """coverage is countable; taxonomy queries classify cards locally."""
+    print("\nplan_role coverage + query match")
     cov = mechanics.plan_role_coverage()
     eq("taxonomy leaves > 0", cov["taxonomy"] > 0, True)
     eq("mapped + unmapped = taxonomy",
@@ -793,9 +793,9 @@ def main() -> int:
     test_taxonomy_map_load_and_reason()
     test_merge_preserves_reviewed_and_adds_map()
     test_taxonomy_query_emit_and_gate()
-    test_con120_triage_chunk()
-    test_con124_triage_chunk()
-    test_con129_triage_remainder()
+    test_triage_first_chunk()
+    test_triage_second_chunk()
+    test_triage_remainder()
     test_plan_role_coverage_and_query_match()
     print(f"\n{GREEN}{passed} passed{OFF}"
           + (f", {RED}{failed} FAILED{OFF}" if failed else ""))

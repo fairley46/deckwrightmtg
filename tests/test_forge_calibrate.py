@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-163: calibration harness compares MEASURABLE keys only, on hero turns."""
+"""calibration harness compares MEASURABLE keys only, on hero turns."""
 
 import sys
 from pathlib import Path
@@ -12,7 +12,7 @@ if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 
 from deckwright import forge_log
-import con163_calibrate_forge as cal
+import calibrate_forge as cal
 
 G, R, OFF = "\033[32m", "\033[31m", "\033[0m"
 _p, _f = [], []

@@ -87,7 +87,7 @@ def metric(case_id: str, name: str, value):
 # ---------------------------------------------------------------- brief parsing
 
 def parse_brief(text: str) -> dict | None:
-    """Brief from a model reply — delegates to app.extract_brief_payload (CON-166)."""
+    """Brief from a model reply — delegates to app.extract_brief_payload."""
     from deckwright import app
     return app.extract_brief_payload(text).get("brief")
 
@@ -353,7 +353,7 @@ def test_offline_verifiers():
     parsed = parse_brief(text)
     (ok if parsed and parsed["theme"] == "pirate" else bad)("parse_brief extracts fenced json")
 
-    # CON-258: key discipline goldens (offline — no model).
+    # key discipline goldens (offline — no model).
     (ok if app.thesis_key_fit(
         "angels that gain life",
         {"conditions": [{"check": {"life_gained": 10}}]},
@@ -408,7 +408,7 @@ def compare_baseline(current: dict, baseline: dict):
 # ---------------------------------------------------------------- runner
 
 async def main():
-    print("test_prompts.py  — golden-set prompt eval (CON-78)")
+    print("test_prompts.py  — golden-set prompt eval")
     if OFFLINE:
         test_offline_verifiers()
         print(f"\n{GREEN}{passed} passed{OFF}"

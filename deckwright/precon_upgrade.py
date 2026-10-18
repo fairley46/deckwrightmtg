@@ -1,14 +1,14 @@
 """
-precon_upgrade.py — ways-to-play + synergistic beef-it-up for bought precons (CON-217).
+precon_upgrade.py — ways-to-play + synergistic beef-it-up for bought precons.
 
 Someone who bought a precon already owns the 99. They need the same computed
 ways the commander picker shows, plus upgrade candidates that connect to the
 commander — Scryfall-verified names only. Never invent a card name. An unknown
 (could not look) is never reported as an empty match.
 
-CON-219: every add pairs with a cut suggestion (never auto-applied). Unknown
+every add pairs with a cut suggestion (never auto-applied). Unknown
 is never a cut. Lands and ramp are never cut, so role floors survive.
-CON-220: synergistic skips already in the 99 are disclosed, not silent.
+synergistic skips already in the 99 are disclosed, not silent.
 """
 
 from __future__ import annotations
@@ -28,7 +28,7 @@ _CUT_PROTECTED_ROLES = frozenset({"lands", "basic", "ramp"})
 
 
 def ways_for_precon(commander_card: dict | None, *, limit: int = 3) -> dict[str, Any]:
-    """Ways-to-play for a precon commander — same merge/detect path as CON-179.
+    """Ways-to-play for a precon commander — same merge/detect path as the commander picker.
 
     Returns:
       {
@@ -97,9 +97,9 @@ def ways_for_precon(commander_card: dict | None, *, limit: int = 3) -> dict[str,
 def card_is_readable(card: dict) -> bool:
     """Know Magic readability: at least one oracle_signal or catalog keyword.
 
-    CON-259: soft-prefer these among upgrade hits. Unreadable cards stay in
+    soft-prefer these among upgrade hits. Unreadable cards stay in
     the pool — never dropped to manufacture a number.
-    CON-272: same gate as synergy.card_read_status == ok.
+    same gate as synergy.card_read_status == ok.
     """
     return synergy.card_read_status(card) == "ok"
 
@@ -137,7 +137,7 @@ def upgrade_queries(commander: dict, brief: dict | None = None,
     the precon brief carries a creature-type theme. Empty when we could not
     look (unknown demand) — caller must not treat that as "no upgrades exist".
 
-    CON-259: optional `way_playstyle` (one of the 13 detectable ids) soft-orders
+    optional `way_playstyle` (one of the 13 detectable ids) soft-orders
     recall queries so fragments that touch that style's detect signals lead.
     Unknown / invalid ids are ignored — never invent a 14th playstyle.
     """
@@ -163,7 +163,7 @@ def upgrade_queries(commander: dict, brief: dict | None = None,
     prefer_fams = _families_for_way_playstyle(way_playstyle)
     if prefer_fams:
         # Neighbors in families the chosen playstyle detects lead the search
-        # list — same Scryfall fragments, different order (CON-259).
+        # list — same Scryfall fragments, different order.
         boosted: list[str] = []
         rest: list[str] = []
         for neigh in synergy.synergy_neighbors(commander):
@@ -201,7 +201,7 @@ def rank_upgrades(
 
     Each card row: name, usd, edhrec_rank, why, edges, verdict.
 
-    CON-220: synergistic candidates already in the 99 return as `already_in`
+    synergistic candidates already in the 99 return as `already_in`
     — their own group — so a silent exclusion cannot send her to buy a card
     that is already in the box. Copy says "in this deck", never collection.
     """
@@ -242,7 +242,7 @@ def rank_upgrades(
             continue
         sort_key, row = score_row
         if owned:
-            # CON-220: name it — do not mix into buys, do not drop.
+            # name it — do not mix into buys, do not drop.
             already_scored.append((*sort_key, row))
         else:
             scored.append((*sort_key, row))
@@ -271,7 +271,7 @@ def rank_upgrades(
                 else "The strongest fits are already in this deck."
             ),
         }
-    # CON-219: every add is a swap — pair a cut, or say why we could not.
+    # every add is a swap — pair a cut, or say why we could not.
     _pair_cuts(cards, deck, commander)
     return {
         "status": "ok",
@@ -291,10 +291,10 @@ def _score_upgrade_candidate(
 ) -> tuple[tuple[int, int, int, int, int], dict] | None:
     """Synergy bar + row, or None when the card does not clear it.
 
-    Shared by upgrade ranking and CON-220 already-in disclosure so a card
+    Shared by upgrade ranking and the already-in disclosure so a card
     skipped only because it is in the 99 is judged by the same bar.
 
-    Sort (desc): edges → readable (CON-259) → helps → demand overlap → EDHREC.
+    Sort (desc): edges → readable → helps → demand overlap → EDHREC.
     """
     name = card.get("name")
     if not name:
@@ -388,7 +388,7 @@ def rank_cut_candidates(deck: list[dict], commander: dict) -> list[dict]:
     Never returns unknown profiles (could not read ≠ does nothing). Never
     returns lands or ramp. Ranking reuses edge counts + CMC; no new weights.
 
-    CON-235: cards sharing commander demand signals are not cuttable — same
+    cards sharing commander demand signals are not cuttable — same
     overlap that puts them in already_in when they are upgrade candidates.
     """
     cmdr_name = commander.get("name")
@@ -397,7 +397,7 @@ def rank_cut_candidates(deck: list[dict], commander: dict) -> list[dict]:
         name = card.get("name")
         if not name or name == cmdr_name:
             continue
-        # CON-272: unknown and unread are not cuts — could not read ≠ no glue.
+        # unknown and unread are not cuts — could not read ≠ no glue.
         if synergy.card_read_status(card) in (synergy.UNKNOWN, synergy.UNREAD):
             continue
         if _cut_protected(card):
@@ -409,7 +409,7 @@ def rank_cut_candidates(deck: list[dict], commander: dict) -> list[dict]:
         if _edge_count(card, commander):
             continue  # glued to the commander — not a cut
         if _demand_signal_overlap(card, commander):
-            continue  # shares commander plan signals — not a cut (CON-235)
+            continue  # shares commander plan signals — not a cut
         cmc = _card_cmc(card)
         row = {
             "name": name,
@@ -467,7 +467,7 @@ def _cut_why(card: dict, cmc: float) -> str:
     """Plain-language cut reason — never 'orphan' / 'plan role' jargon.
 
     Only called for readable cut candidates. Unknown/unread never reach here
-    (CON-272); if they did, say could-not-read rather than no connection.
+   ; if they did, say could-not-read rather than no connection.
     """
     if synergy.card_read_status(card) in (synergy.UNKNOWN, synergy.UNREAD):
         return synergy.COULD_NOT_READ + "."

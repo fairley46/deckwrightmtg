@@ -1,4 +1,4 @@
-"""CON-247 — Phase 2 research artifact shape.
+"""Phase 2 research artifact shape.
 
 No detectors. Assert every researched unread pattern carries method,
 exemplar, near-miss, grammar candidate, and strategy candidate — and that
@@ -70,8 +70,8 @@ class UnreadGapResearch(unittest.TestCase):
         self.assertEqual(draw["exemplar"], "Mind Stone")
         self.assertEqual(draw["near_miss"], "Path of Ancestry")
 
-    def test_con245_closures_listed(self):
-        closed = set(DOC["already_closed_in_con245"])
+    def test_closures_listed(self):
+        closed = set(DOC["already_closed_in"])
         for name in ("enters_tapped", "commander_matters", "enchant_creature"):
             self.assertIn(name, closed)
 

@@ -1,4 +1,4 @@
-# Gate C — Candidate C dual instance (CON-322)
+# Gate C — Candidate C dual instance
 
 Flag-gated CardFacts ServeReport + CF-informed steer. **Not the default.**
 Do not promote B. Do not flip blue. Do not set `DECKWRIGHT_CANDIDATE=C` on
@@ -49,12 +49,12 @@ Missing CardFacts → `serve_report.cardfacts_status == "unknown"` (not zero).
 ## Bake-off
 
 Full `E,BLUE,B,C` is a separate Gate run — not part of this wiring PR.
-Harness checkout needs `--green-c-url` scoped like CON-330's `--green-b-url`
+Harness checkout needs `--green-c-url` scoped like the per-contestant URL scoping's `--green-b-url`
 when that branch merges onto a tip that has this registry.
 
-**Prereqs:** CON-334 (`DECKWRIGHT_LLM_TIMEOUT=600` on all green plists, including
-this green-c template) and CON-331 (bound coverage SEEN=6). See
+**Prereqs:** the dual-floor and LLM-timeout fix (`DECKWRIGHT_LLM_TIMEOUT=600` on all green plists, including
+this green-c template) and the MV floor bounds (bound coverage SEEN=6). See
 `docs/benchmarks/BAKEOFF-READY.md` / `docs/product/C-REMAINING.md`. Do not pass
-`--green-url` on multi-contestant sweeps (CON-330).
+`--green-url` on multi-contestant sweeps.
 
 See `docs/product/C-REMAINING.md`.

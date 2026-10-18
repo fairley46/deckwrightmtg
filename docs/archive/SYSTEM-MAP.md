@@ -2,23 +2,22 @@
 
 > **Secondary map.** For the live connection spine (chat → build → thesis → ask,
 > through-line, verifiers, frozen vs recomputed) read
-> **[`HOW-IT-CONNECTS.md`](HOW-IT-CONNECTS.md)** first. This file is a deep
+> **[`HOW-IT-CONNECTS.md`](../HOW-IT-CONNECTS.md)** first. This file is a deep
 > inventory / harness catalogue. Where it disagrees with HOW-IT-CONNECTS or the
 > code, **the code wins**, then HOW-IT-CONNECTS.
 
-CON-193. Read from the code on 2026-08-07; **re-check code before trusting a row**.
+Read from the code on 2026-08-07; **re-check code before trusting a row**.
 
 > **2026-08-09 note.** Backend GA is **wrapped**. Wiring gaps that still say
 > “NOT wired / KB unused / `SKELETON_LIVE=False` / explain_edges unwired” are
 > **stale**. Corrections table and the CLOSED list later in this file are right:
-> KB on-path, cohesion / `explain_edges` wired (CON-199), `SKELETON_LIVE=True`
-> (CON-216), CON-214 glue steer on the build path. Product claims:
-> [``](). Open work: [``]().
-> Prefer [`HOW-IT-CONNECTS.md`](HOW-IT-CONNECTS.md) for the live spine.
+> KB on-path, cohesion / `explain_edges` wired, `SKELETON_LIVE=True`,
+> and the glue steer is on the build path.
+> Prefer [`HOW-IT-CONNECTS.md`](../HOW-IT-CONNECTS.md) for the live spine.
 
-Related docs (do not duplicate them): [`ARCHITECTURE.md`](ARCHITECTURE.md) shape,
-[`DERIVATION.md`](DERIVATION.md) stage joins, [`SCORING-CONTRACT.md`](SCORING-CONTRACT.md)
-scoring math, [`PLAN-GRAPH-SCHEMA.md`](PLAN-GRAPH-SCHEMA.md) plan shape.
+Related docs (do not duplicate them): [`ARCHITECTURE.md`](../ARCHITECTURE.md) shape,
+[`DERIVATION.md`](../DERIVATION.md) stage joins, [`SCORING-CONTRACT.md`](../SCORING-CONTRACT.md)
+scoring math, [`PLAN-GRAPH-SCHEMA.md`](../PLAN-GRAPH-SCHEMA.md) plan shape.
 
 ---
 
@@ -29,12 +28,12 @@ scoring math, [`PLAN-GRAPH-SCHEMA.md`](PLAN-GRAPH-SCHEMA.md) plan shape.
          →  /api/build  →  /api/thesis  →  /api/simulate  →  /api/christen
 ```
 
-Corrections to the phase list in CON-193:
+Corrections to the original phase list:
 
 | Proposed | Code says |
 |---|---|
 | 2. resolution as a standalone step | Embedded in readiness, commander ladder, role queries; UI surface is `/api/readback`. `/api/resolve` is **decklist import**, not theme resolution. |
-| 4. commander knowledge | **On the main path since #173.** `app.py` imports both; the picker scores theme/strategy and offers `ways_to_play`. (This row read "off the main path" until CON-200 — correct when written, stale after #173.) |
+| 4. commander knowledge | **On the main path since #173.** `app.py` imports both; the picker scores theme/strategy and offers `ways_to_play`. (This row read "off the main path" correct when written, stale after #173.) |
 | 9→10 curve after simulation | Curve report is computed **inside `/api/build`**, after mana + why, before persist. Thesis sim is post-build. |
 | (missing) mana base | In the build path, between scoring and overview. |
 | (missing) thesis | Separate post-build endpoint; feeds `/api/simulate`. |
@@ -254,7 +253,7 @@ or none, and says so. `check_playstyles.py` always exits 0 (research instrument)
 **How it fails.** Exception in build’s try → payoff pool skipped, roles still
 fill (`plan` key omitted — unknown, not invented). Decided-but-empty → 422.
 
-**Finding (historical, fixed in code).** CON-185: `archetypes_for` used to
+**Finding (historical, fixed in code).** `archetypes_for` used to
 return `[]` unless `life_math` was in families — archetype axis dead for twelve
 of thirteen playstyles. Current code opens on any non-empty `families` list.
 
@@ -324,12 +323,12 @@ shortfalls.
 **Governing rule.** No weighted sum into sim score. Unknown ≠ orphan. Gate
 emptying the pool → fail-open (`synergy_gate_failed_open=True` on score_info).
 
-**Timing blindness (CON-222).** The graph is object-typed: an edge exists when
+**Timing blindness.** The graph is object-typed: an edge exists when
 `A.produces ∩ B.consumes`. Extra combat phases, extra turns, and untap-all
 multiply *how often* abilities fire without producing a material object — so
 they correctly score 0 edges. That zero means “cannot see,” not “no synergy.”
 `combat` / `turn` are not synergy objects and must not be invented. Since
-CON-214 made `edge_count` a live STEER key, a carve-out applies: timing
+made `edge_count` a live STEER key, a carve-out applies: timing
 multipliers with 0 material edges cast **no vote** on the edge sort key
 (`edge_steer_vote` → `None`) rather than sorting last as orphans. Activation
 multipliers that matter to a combat-triggered commander live in `plan_graph`
@@ -370,7 +369,7 @@ Saturated baselines skip scoring rather than emit +0.0 as signal.
 **How it fails.** Saturated → skip + `sim_skips` note; order by curve CMC +
 model rank. Plan-derive exception → `provisional_conditions(brief)`.
 
-**History.** CON-162 documented engine signal lost at T5; CON-225 raised
+**History.** the scoring-math QC documented engine signal lost at T5; the later-turn scoring change raised
 `TARGET_TURN` to 10 so ranking sees engines that come online later.
 
 ---
@@ -393,7 +392,7 @@ block (basics / flex / surplus / shortfall / supported / shortages / sources_*).
 **Consumed by.** Land slot size; land scoring pass; `deck_signals`; notes;
 legality.
 
-**Governing rule.** Never pad basics past the land target (CON-110).
+**Governing rule.** Never pad basics past the land target.
 
 **How it fails.** Shortfall reported in notes; possible legality warning.
 Does not invent off-identity lands.
@@ -458,7 +457,7 @@ a skeleton — **reporting only**.
 ```
 
 **Where it lives.** `curve.py`: `preference()`, `castable_curve()`,
-`missed_land_drops()`, `ramp_split()`, `skeleton_for()`. `SKELETON_LIVE = True` (CON-216).
+`missed_land_drops()`, `ramp_split()`, `skeleton_for()`. `SKELETON_LIVE = True`.
 
 **Consumed by.** Build response / UI. Selection impact: `preference` as CMC
 **tiebreak** in scoring only. **`skeleton_for` does not replace `ROLES`.**
@@ -543,7 +542,7 @@ extraction misses shift probabilities silently — check diagnostics first.
 | Suggest | `/api/suggest` + `suggest.py` | Goal swaps → `deck_state` pending; does not apply |
 | Pressure | `/api/pressure*` + `pressure.py` | Opt-in Forge AI; never on build |
 | Coverage | `/api/coverage` + `coverage.py` | Counted pool facts before rebuild (**product**, name collision with code coverage) |
-| Import | `/api/import` (canonical) · `/api/resolve` (kept) | Paste list → shared analyze tail. One handler, two routes — CON-203. |
+| Import | `/api/import` (canonical) · `/api/resolve` (kept) | Paste list → shared analyze tail. One handler, two routes. |
 | Precons | `/api/precons*` | Baked overview path |
 | Sheet | `sheet.py` | Offline HTML sheet; no HTTP API |
 | Partners | `/api/partners` | Between commanders and build |
@@ -555,30 +554,30 @@ extraction misses shift probabilities silently — check diagnostics first.
 1. ~~**Commander KB unused on product path**~~ — **CLOSED by #173.** `app.py`
    imports `commanders` and `playstyles`; phase 4 feeds phase 5 through
    `theme_fit` / `strategy_fit` / `ways_to_play` → `brief.way_to_play` → plan.
-2. ~~**`cohesion` computed, dropped**~~ — **CLOSED by #182 (CON-199).** Cohesion
+2. ~~**`cohesion` computed, dropped**~~ — **CLOSED by #182.** Cohesion
    is on the build response. Note it is *visible*, not yet *steering*: orphans
-   still do not block selection. That is CON-214, and it is open.
+   still do not block selection. That is the cohesion steer, and it is open.
 3. ~~**`why.explain_edges` unwired**~~ — **CLOSED by #182.** `annotate` calls it,
    so card `why` carries synergy reasons and not only query provenance.
-4. ~~**Curve skeleton reporting-only**~~ — **CLOSED by #186 (CON-216).**
+4. ~~**Curve skeleton reporting-only**~~ — **CLOSED by #186.**
    `SKELETON_LIVE=True`; the derived skeleton shapes role counts.
-5. **Two sims, now named apart (CON-205).** `overview.run_overview_sim` uses
+5. **Two sims, now named apart.** `overview.run_overview_sim` uses
    `OVERVIEW_CONDITIONS` (generic, ~1500 runs) and feeds the overview prose
    only. The curves she sees come from `/api/simulate` against the thesis
    conditions for that deck. Same engine, different question — an overview
    percentage is not a thesis percentage and must never be quoted as one.
    Old names `BUILD_CONDITIONS` / `run_build_sim` are aliases for one release.
-6. **Two playstyle vocabularies — both live, deliberately not merged (CON-202).**
+6. **Two playstyle vocabularies — both live, deliberately not merged.**
    See `docs/VOCABULARIES.md`. `brief.playstyle` (proactive/reactive/grindy)
    shifts role counts; `brief.way_to_play` (aristocrats/blink/…) binds plan
    commitments. Different questions, different sources, different consumers.
    This is a documented split, not a gap to close.
-7. ~~**`/api/resolve` name collision**~~ — **CLOSED by CON-203.** `/api/import`
+7. ~~**`/api/resolve` name collision**~~ — **CLOSED.** `/api/import`
    is the canonical route for decklist import; `/api/resolve` stays registered
    on the same handler so nothing breaks. Theme resolution is `resolve.py` via
    `/api/readback`.
 8. **THESIS prompt ⊂ `THESIS_KEYS`** — verifier is wider than the prompt.
-9. ~~**`search()` non-Scryfall exceptions → `[]`**~~ — **CLOSED.** CON-188 F1:
+9. ~~**`search()` non-Scryfall exceptions → `[]`**~~ — **CLOSED.** The system audit found that
    transport failures raise `ScryfallError` (unknown), not `[]`. Ladder and
    count paths treat that as unknown, never a real zero.
 
@@ -604,18 +603,18 @@ an opinion for freeze decisions, not a delete order.
 
 ## Orchestrators
 
-### `scripts/check_all.py` (CON-169) — **KEEP**
+### `scripts/check_all.py` — **KEEP**
 - **Measures.** Three tiers: T1 offline units, T2 network (payoffs + Playwright
   + Schemathesis), T3 ship (e2e + differential + Forge calibration). SKIP fails
   the tier.
 - **Found.** Recursion trap if `test_check_all.py` is inside `_UNIT_COMMANDS`
   (~10 min hang). Exit-2 for incomplete.
 - **Cost.** T1 seconds; T2 minutes + network; T3 model + Forge, tens of minutes.
-- **Finding vs CON-188 D2.** Audit claimed the duplicate
+- **Finding vs the system audit D2.** Audit claimed the duplicate
   `test_expert_hei_bai_split.py` was dropped; **code still lists it twice**
   (lines 121 and 125). `test_differential_harness.py` *was* added.
 - **Redundancy.** Wraps most tests; does **not** run `check.py`, Hei Bai live
-  scripts, `function_coverage`, `check_playstyles`, or `con162_audit_math`.
+  scripts, `function_coverage`, `check_playstyles`, or `audit_scoring_math`.
 
 ### `check.py` — **KEEP**
 - **Measures.** Preflight for one theme/CI: live `role_query` / commander ladder
@@ -631,7 +630,7 @@ an opinion for freeze decisions, not a delete order.
 
 ## Ship / behaviour scripts
 
-### `scripts/differential_harness.py` (CON-168) — **KEEP**
+### `scripts/differential_harness.py` — **KEEP**
 - **Measures.** Adjacent wishes → different decks *for the plan’s claimed
   reason* (Jaccard, archetype, commitments, membership, budget). Unknown if
   brief/build refuses.
@@ -656,11 +655,11 @@ an opinion for freeze decisions, not a delete order.
   (produces/consumes), not name overlap. `FRAGILE_AT=2`.
 - **Found.** Cache bug that scored 100% by including his cards in "ours."
   Fragile `lifegain_trigger` flipped the headline ~6 points across identical
-  runs (CON-183 / CON-188). Nothing else measures function gap vs name-recall.
+  runs. Nothing else measures function gap vs name-recall.
 - **Cost.** Offline if oracle cache warm; else Scryfall. Seconds–1 min. No model.
 - **Redundancy.** Complements `hei_bai_agreement` — different question; do not merge.
 
-### `scripts/hei_bai_agreement.py` (CON-177) — **KEEP**
+### `scripts/hei_bai_agreement.py` — **KEEP**
 - **Measures.** Close (name overlap + connected-not-picked) and Better (extras
   ≥ his median edges, on-plan). Three-run stability band.
 - **Found.** Contaminated-50 (named-in-video ≠ in-deck) understated us — score
@@ -672,7 +671,7 @@ an opinion for freeze decisions, not a delete order.
 - **Measures.** Full chat+build for Hei Bai; oracle-text probe counts.
 - **Found.** Fixture `hei-bai-baseline-2026-08-06.json`: attacks trigger 0,
   leave phrase 0, plan skewed to lifegain/token while commander is sac/counters.
-  CON-174: leave-*phrase* ≠ leave-*cause*. Snapshot probe keys lag current PROBES.
+  leave-*phrase* ≠ leave-*cause*. Snapshot probe keys lag current PROBES.
 - **Cost.** Running server + model + Scryfall; several minutes.
 - **Redundancy.** Overlaps e2e on the build path; unique as fixed-commander
   ground truth + probes. Offline probe contracts live in
@@ -686,11 +685,11 @@ an opinion for freeze decisions, not a delete order.
 - **Cost.** Offline seconds.
 - **Redundancy.** Feeds agreement / function_coverage; not a gate.
 
-### `scripts/check_playstyles.py` (CON-181) — **KEEP as research; do not gate**
+### `scripts/check_playstyles.py` — **KEEP as research; do not gate**
 - **Measures.** Community fixture (57) vs `playstyles.detect()` — hit/miss/extra.
   Exit 0 always; no pass bar.
-- **Found.** Gap to the "95%" named in CURSOR-BRIEF (Wyleth, Winota, Purphoros,
-  …). CON-184 false "NOT DETECTABLE." CON-188 F7: exemplars ≠ acceptance tests.
+- **Found.** Gap to the "95%" named in the original brief (Wyleth, Winota, Purphoros,
+  …). The playstyle signal work false "NOT DETECTABLE." exemplars ≠ acceptance tests.
 - **Cost.** Offline seconds.
 - **Redundancy.** `test_playstyles.py` = vocabulary contracts; this = community
   falsification; `build_commanders_kb.py` records the same disagreement into data.
@@ -699,24 +698,24 @@ an opinion for freeze decisions, not a delete order.
 - **Measures.** Every `_PAYOFF_QUERIES` + archetype `extra_payoffs` against live
   Scryfall (floors, top hits, `id<=` precedence).
 - **Found.** Four of nine original patterns returned lands/cantrips; burst
-  included alt-wincons; `q OR r id<=WB` precedence bug. CON-162: count gate can
-  pass on wrong *kind*. CON-188 F3: non-429 HTTP still scored as dead.
+  included alt-wincons; `q OR r id<=WB` precedence bug. count gate can
+  pass on wrong *kind*. non-429 HTTP still scored as dead.
 - **Cost.** Network ~1–3 min.
-- **Redundancy.** Pair with `con162 --payoffs-only` for kind audit; this is the build gate.
+- **Redundancy.** Pair with `audit_scoring_math --payoffs-only` for kind audit; this is the build gate.
 
-### `scripts/con162_audit_math.py` — **KEEP as research; not a gate**
+### `scripts/audit_scoring_math.py` — **KEEP as research; not a gate**
 - **Measures.** SCORING-CONTRACT remeasure, adversarial extracts, THESIS_KEYS
   reachability, live payoff kind audit.
-- **Found.** Documented in `docs/CON-162-MATH-QC.md`: extract misses;
-  **pre-CON-225 `TARGET_TURN=5` killed engine signal**; Exquisite Blood Δ=0;
-  hollow gates. Live constant is 10 (CON-225).
+- **Found.** Documented in the scoring-math QC notes (not in this tree): extract misses;
+  **the old `TARGET_TURN=5` killed engine signal**; Exquisite Blood Δ=0;
+  hollow gates. Live constant is 10.
 - **Cost.** Offline heavy sim; `--payoffs-only` network.
 - **Redundancy.** Extract pairs overlap `test_perception`; the tables are unique here.
 
-### `scripts/con163_calibrate_forge.py` — **KEEP**
+### `scripts/calibrate_forge.py` — **KEEP**
 - **Measures.** sim vs Forge on `forge_log.MEASURABLE` only (lands, life_gained,
   life_drained), hero turns.
-- **Found.** `docs/CON-163-FORGE-CALIBRATION.md`: Wayfarer’s Bauble free-land
+- **Found.** Forge calibration notes (not in this tree): Wayfarer’s Bauble free-land
   bug (`SIM_VERSION` 8); life_drained combat confound (**not Forge-calibratable**);
   16/50 games reached hero T10; lands @T6 confirmed.
 - **Cost.** Java + Forge; tens of minutes (or `--from-logs` offline).
@@ -729,8 +728,8 @@ an opinion for freeze decisions, not a delete order.
 | Script | What | Unique find | Cost | Opinion |
 |---|---|---|---|---|
 | `refresh_scryfall_grammar.py` | Refreshes `data/scryfall_grammar.json` | `heists` → None (honest miss) | network | **KEEP** |
-| `build_behaviour_tags.py` | Probes otag: tags; fails on 404/0/unreachable | CON-110: guessed otag → empty | network | **KEEP** |
-| `build_mechanic_taxonomy.py` | Emits taxonomy; fails if keyword absent | CON-143 emission discipline | network | **KEEP** |
+| `build_behaviour_tags.py` | Probes otag: tags; fails on 404/0/unreachable | guessed otag → empty | network | **KEEP** |
+| `build_mechanic_taxonomy.py` | Emits taxonomy; fails if keyword absent | The taxonomy apostrophe fix emission discipline | network | **KEEP** |
 | `build_commanders_kb.py` | Community + derived playstyles into KB | Disagreements recorded, not resolved | network optional | **KEEP** (product data; unused on main path today) |
 | `derive_synergy_objects.py` | Closed object set from catalogs | Spec forbids hand-authoring | offline | **KEEP** |
 
@@ -751,11 +750,11 @@ an opinion for freeze decisions, not a delete order.
 
 | File | Measures | Unique / note | Cost | Opinion |
 |---|---|---|---|---|
-| `test_deckwright.py` | Broad offline + opt-in live vocab | CON-56 unreachable ≠ 0; kitchen-sink gate | offline s; `--live` ~3–4 min | **KEEP** |
-| `test_perception.py` | Engine vs one-shot direction; adversarial extracts | Sacred perception gate (CON-119/162) | offline | **KEEP** |
+| `test_deckwright.py` | Broad offline + opt-in live vocab | The full-sweep vocabulary grading unreachable ≠ 0; kitchen-sink gate | offline s; `--live` ~3–4 min | **KEEP** |
+| `test_perception.py` | Engine vs one-shot direction; adversarial extracts | Sacred perception gate | offline | **KEEP** |
 | `test_prompts.py` | Golden prompt eval | Verifier offline; live costs model | offline / model | **KEEP**; run on prompt changes |
-| `test_mechanics.py` | Families / signals / near-misses | CON-188 D1 lifelink false positive | offline | **KEEP** |
-| `test_plan_graph.py` | Plan derive goldens | Watch hollow goldens (CON-188) | offline | **KEEP** |
+| `test_mechanics.py` | Families / signals / near-misses | The system audit D1 lifelink false positive | offline | **KEEP** |
+| `test_plan_graph.py` | Plan derive goldens | Watch hollow goldens | offline | **KEEP** |
 | `test_synergy.py` | Edges / objects / Hei Bai cohesion | Object-typed edges; expert falsification | offline | **KEEP** |
 | `test_curve.py` | Castability / playability | Expert Hei Bai reference band; asserts `SKELETON_LIVE=False` | offline | **KEEP** |
 | `test_resolve.py` | `resolve_term` fixtures + live ≥1 | Grammar verified when written | offline / live | **KEEP** |
@@ -765,13 +764,13 @@ an opinion for freeze decisions, not a delete order.
 | `test_behaviour_tags.py` | Build-gate shape + behaviour branch | Live probes stay in build script | offline | **KEEP** |
 | `test_commanders_kb.py` | KB contract | Offline only | offline | **KEEP** |
 | `test_commander_difficulty.py` | One plain difficulty sentence | Thin; merge candidate into spine | offline | **KEEP or merge** |
-| `test_backend_spine.py` | Suggest/swap/deck_state/precon_delta | CON-121–140 grab bag | offline | **KEEP** (sprawling) |
-| `test_con167_empty_brief.py` | Empty brief must refuse | Tier 1 once missed this (CON-178) | offline | **KEEP** |
-| `test_differential_harness.py` | Comparison / UNKNOWN rules | Was missing from Tier 1 (CON-188) | offline | **KEEP** |
+| `test_backend_spine.py` | Suggest/swap/deck_state/precon_delta | Backend grab bag | offline | **KEEP** (sprawling) |
+| `test_empty_brief_refusal.py` | Empty brief must refuse | Tier 1 once missed this | offline | **KEEP** |
+| `test_differential_harness.py` | Comparison / UNKNOWN rules | Was missing from Tier 1 | offline | **KEEP** |
 | `test_expert_hei_bai_split.py` | chosen/mentioned + Close/Better | Contaminated-50 fix; **still duplicated in check_all** | offline | **KEEP**; drop the duplicate list entry |
-| `test_hei_bai_baseline_probes.py` | Leave-cause vs leave-phrase | CON-174 without server | offline | **KEEP** |
+| `test_hei_bai_baseline_probes.py` | Leave-cause vs leave-phrase | The leave-causation probe without server | offline | **KEEP** |
 | `test_forge_log.py` | Parse fixture log without Java | Zone Change never for ETB → board counts NOT_MEASURABLE | offline | **KEEP** |
-| `test_con163_calibrate.py` | Calibration compares MEASURABLE only | Guards against calibrating NOT_MEASURABLE | offline | **KEEP** |
+| `test_forge_calibrate.py` | Calibration compares MEASURABLE only | Guards against calibrating NOT_MEASURABLE | offline | **KEEP** |
 | `test_check_all.py` | Tier house rules / SKIP≠PASS | Must not run inside unit list | offline | **KEEP**; run separately |
 
 ---
@@ -782,9 +781,7 @@ an opinion for freeze decisions, not a delete order.
 |---|---|---|
 | API property audit artifacts | API property audit: `/api/simulate` 500 on missing commander; 22 untyped bodies; local-network+no-auth | **KEEP** artifact; re-run via check_all T2 |
 | `testdata/review/*` | Hei Bai / differential / Forge / playstyles ground truth | **KEEP** |
-| `docs/CON-162-MATH-QC.md` | Confidence readout for scoring math | **KEEP** with con162 script |
-| `docs/CON-163-FORGE-CALIBRATION.md` + `docs/calibration/` | Forge delta table | **KEEP** |
-| `docs/CON-188-AUDIT.md` | Session audit D1–D6 / F1–F7 | **KEEP**; note D2 vs live duplicate drift |
+| `docs/calibration/` | Forge delta table | **KEEP** |
 | `docs/review/design-review/REPORT.md` | UI layout/token measurement | **KEEP** as UI harness (T2 Playwright); not deck math |
 
 ---
@@ -794,12 +791,12 @@ an opinion for freeze decisions, not a delete order.
 ```
 check_all ──┬─ T1: almost all test_*.py (+ perception, node)
             ├─ T2: check_payoff_queries · playwright · schemathesis
-            └─ T3: e2e_flow · differential · con163
+            └─ T3: e2e_flow · differential · calibrate_forge
 
-Perception math:  test_perception ≈ con162 --extract  ⊂ con162 full
-                  con163 = only external (Forge) arm
+Perception math:  test_perception ≈ audit_scoring_math --extract  ⊂ audit_scoring_math full
+                  calibrate_forge = only external (Forge) arm
 
-Payoffs:          check_payoff_queries (gate) + con162 --payoffs (kind audit)
+Payoffs:          check_payoff_queries (gate) + audit_scoring_math --payoffs (kind audit)
 
 Wish→99:          e2e_flow ⊂ differential_harness ⊂ (manual Hei Bai baseline)
 
@@ -817,9 +814,9 @@ Scryfall depth:   check.py (roles) ≠ test_deckwright --live (vocab)
 `check_playstyles`, `function_coverage`, or `check.py`. "Did we listen / cover
 his functions / hit playstyles" is still a checklist, not `check_all`.
 
-**Nothing safe to delete outright.** Closest demotions: treat `con162` and Hei
+**Nothing safe to delete outright.** Closest demotions: treat `audit_scoring_math` and Hei
 Bai live scripts as research (already mostly true); fix the check_all duplicate;
-refresh hei-bai-baseline probe keys to match CON-174 PROBES.
+refresh hei-bai-baseline probe keys to match the leave-causation probe PROBES.
 
 ---
 
@@ -855,7 +852,7 @@ Code that only ever runs to check the product:
 - `scripts/function_coverage.py`, `hei_bai_agreement.py`, `hei_bai_baseline.py`,
   `extract_expert_deck.py`
 - `scripts/check_playstyles.py`, `check_payoff_queries.py`
-- `scripts/con162_audit_math.py`, `con163_calibrate_forge.py`
+- `scripts/audit_scoring_math.py`, `calibrate_forge.py`
 - `forge_log.py`
 - All `test_*.py` listed above
 - `testdata/review/*`, `_(removed)_` (measurement artifacts)
@@ -869,7 +866,7 @@ Code that only ever runs to check the product:
 | Piece | Why both |
 |---|---|
 | `sim.py` | Selects cards (marginal lift) **and** is the calibration target |
-| `pressure.py` | Product button for her **and** Forge arm for con163 |
+| `pressure.py` | Product button for her **and** Forge arm for calibrate_forge |
 | ~~`commanders.py` / `playstyles.py` / `data/commanders.json`~~ | **No longer ambiguous — product.** #173 gave them callers on the product path (picker fit, ways, plan binding). Kept in this table only to record the move. |
 | `curve.py` | Tiebreak in scoring (product) + castability report that does not reshape the 99 |
 | `synergy.cohesion` | Computed on the product path; only the differential harness reads the summary |
@@ -881,14 +878,14 @@ Code that only ever runs to check the product:
 
 **"The harness" means:** the measurement ladder in `scripts/check_all.py` (T1–T3),
 the Hei Bai cluster (extract → baseline → agreement / function_coverage),
-`check_payoff_queries`, Forge calibration (`forge_log` + `con163`),
+`check_payoff_queries`, Forge calibration (`forge_log` + `calibrate_forge`),
 `differential_harness` / `e2e_flow`, `check_playstyles` as a research instrument,
 and the offline unit files those tiers already run — plus the audit fixtures
 under `testdata/review/`. Freeze means: do not add new measurement
 scripts, do not widen Tier 1, do not retune Forge calibration targets, until the
 commander flow ships and actually **calls** `commanders.py` / `playstyles.py`.
 **That condition is now met** (#173) — the freeze held through the commander
-flow and stays in force; see `OPERATIONS.md` sanctity section (CON-198).
+flow and stays in force; see `OPERATIONS.md` sanctity section.
 
 **Not frozen:** the product spine on the main path — interrogation, resolve,
 commander ladder, plan_graph, role recall, synergy gate, card_score, mana, why,

@@ -1,12 +1,12 @@
 """
-forge_log.py — turn a Forge game log into a per-turn timeline (CON-160).
+forge_log.py — turn a Forge game log into a per-turn timeline.
 
 Forge plays real games. `sim.py` is a goldfish with no opponent, no removal
 and no interaction. Every threshold in `docs/SCORING-CONTRACT.md` was measured
 against the goldfish, so the numbers are self-consistent and unvalidated —
 **the gap between the two is the correction signal.**
 
-`pressure.py` has been receiving the whole log since CON-114 and throwing it
+`pressure.py` had been receiving the whole log and throwing it
 away one line into parsing:
 
     def parse_sim_output(text, hero_name):
@@ -19,7 +19,7 @@ This module is a pure function: log text in, timeline out. No Java, no
 subprocess, no network. `backend-review/fixtures/forge-game-log.txt` is a real
 game so the parser can be tested and changed without Forge installed.
 
-CALIBRATION, NOT SELECTION. Brad's call, and the right one: tuning decks by
+CALIBRATION, NOT SELECTION. A deliberate choice: tuning decks by
 Forge win-rate would quietly replace her goal with the AI's. We are asking
 whether our *math* is right, not whether the deck wins. Nothing here belongs
 on the build path.

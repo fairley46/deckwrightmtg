@@ -1,5 +1,5 @@
 """
-test_differential_harness.py — CON-168 offline checks for the differential harness.
+test_differential_harness.py — offline checks for the differential harness.
 
 No model calls. No Scryfall. Pure comparison logic and report shape.
 
@@ -252,7 +252,7 @@ def _deck_with_cmc(prefix: str, cmcs: list[float], role: str = "theme"):
 
 
 def test_curve_binds():
-    """CON-172: 'cheap' means mana value, not dollars — assert on the curve."""
+    """'cheap' means mana value, not dollars — assert on the curve."""
     print("\ncurve  — low-MV wish must actually shape the curve")
     low = _deck_with_cmc("L", [1] * 40 + [2] * 30 + [3] * 10)  # avg ~1.6, ≤2: 70
     high = _deck_with_cmc("H", [4] * 40 + [5] * 30 + [6] * 10)  # avg ~4.6, ≤2: 0
@@ -301,7 +301,7 @@ def test_curve_binds():
 
 
 def test_no_price_assertions():
-    """CON-172: harness must not assert on dollars anywhere."""
+    """harness must not assert on dollars anywhere."""
     print("\nno price assertions  — dollars are ballparks, never a gate")
     eq("budget_binds expect gone from PAIRS",
        any((p.get("expect") or {}).get("budget_binds") for p in dh.PAIRS), False)
@@ -354,7 +354,7 @@ def test_scryfall_headers():
 
 
 def test_format_readiness_blockers():
-    """CON-170: UNKNOWN reason must name the term, not just 'terms'."""
+    """UNKNOWN reason must name the term, not just 'terms'."""
     print("\nformat_readiness_blockers  — names the cause")
     got = dh.format_readiness_blockers([
         {"signal": "terms", "detail": {"term": "drain the table"}},

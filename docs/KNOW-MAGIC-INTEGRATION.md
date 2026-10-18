@@ -1,10 +1,10 @@
-# Know Magic → live app — how comprehension joins the funnel
+# Card understanding ("Know Magic") in the live app
 
-This is the join document for CON-246's vocabulary work and the existing wish→99 path in [`DERIVATION.md`](DERIVATION.md).
+How the card-reading vocabulary ("Know Magic") connects to the wish → 99 path described in [`DERIVATION.md`](DERIVATION.md).
 
 Comprehension does **not** replace selection. It makes every later stage honest about what a card *is*.
 
-## What we built (upstream)
+## The pieces
 
 | artifact | job |
 |---|---|
@@ -13,7 +13,7 @@ Comprehension does **not** replace selection. It makes every later stage honest 
 | `synergy.demand_profile(commander)` | What the commander asks the 99 to supply |
 | `synergy.cohesion` / `prefer_glued` | Card–card glue from directed object edges |
 | `scripts/oracle_coverage.py` | Full-corpus instrument: signal %, signal∨keyword %, consumes %, ranked unread |
-| `data/unread_gap_research.json` | Researched mid-tail (CON-247) |
+| `data/unread_gap_research.json` | Researched mid-tail |
 | `playstyles` + `scripts/check_playstyles.py` | Ways-to-play precision floor (88%) |
 
 **Rules that stay:** model never invents card names; unknown ≠ zero; precision is not currency.
@@ -38,14 +38,14 @@ Concrete call sites today:
 
 1. **`/api/build`** — `synergy.prefer_glued` ranks remaining candidates by directed edges to the commander/scaffold (`app.py`). Better reading → more real edges → fewer orphan fills. Selection queries and verifiers stay as they are.
 2. **Commander ways-to-play** — `playstyles` detect from signals/keywords. Wider vocabulary shrinks "signals but no name" when the playstyle mapping exists; empty ways still need **sourced** playstyle rows, not bare ETB gates.
-3. **Explain / cohesion surfaces** — edges are only as good as produce/consume. Lap work that adds honest `consumes` (bounce, shrink, discard cost, …) makes "why this card" cite real objects.
+3. **Explain / cohesion surfaces** — edges are only as good as produce/consume. Vocabulary work that adds honest `consumes` (bounce, shrink, discard cost, …) makes "why this card" cite real objects.
 4. **Coverage honesty** — `oracle_coverage_report` is the QC for "do we know Magic?" before anyone claims a picker or plan improvement.
-5. **Conversation layer (CON-255, shipped)** — `/api/chat` instrumented readback; brief `way_preference` → mapped `way_playstyle` soft-prefer; `/api/thesis` glued payoff allowlist; precon beef prefers readable+edged cards. Same rule: queries → Scryfall → verify. Spec: [SACRED-CORE-NEXT.md](SACRED-CORE-NEXT.md).
+5. **Conversation layer (shipped)** — `/api/chat` instrumented readback; brief `way_preference` → mapped `way_playstyle` soft-prefer; `/api/thesis` glued payoff allowlist; precon upgrades prefer cards the app can read and that connect to the deck. Same rule: queries → Scryfall → verify.
 
 ## The funnel with comprehension made explicit
 
 ```
-her words
+the player's words
    │  INTERROGATOR                         (sacred — do not touch here)
    ▼
 brief { theme, strategy, playstyle, … }
@@ -65,11 +65,11 @@ plan commitments + skeleton               (ROLES / budget — sacred)
 
 The star is the only new join. Everything sacred stays. Comprehension changes **what the math can see**, not who is allowed to name a card.
 
-## How to integrate further — successful path (ordered)
+## Further integration, in order
 
-Do these as small farmable cards. Each step is falsifiable. None rewrite verifiers.
+Each step is a small, testable change. None rewrite the verifiers.
 
-### 1. Readback uses profile status (honesty) — CON-272
+### 1. Readback uses profile status (honesty)
 
 When a candidate is `status: unknown` (no oracle text) or unread (no signal ∧ no keyword), the UI/API must say **we could not read it**, not score it as zero synergy. Same house rule as coverage.
 
@@ -87,19 +87,19 @@ For each researched gap in `unread_gap_research.json` that has a shipped signal:
 
 ### 3. Plan commitments consume objects, not vibes
 
-Where `PLAN-GRAPH-SCHEMA` conditions already key off objects (`creature`, `land`, `card`, …), new `consumes`/`produces` from lap signals start counting automatically once the plan keys exist. Add a `THESIS_KEYS` / plan key **only** with a matching `play_one()` computation — that is a separate card, not a silent widen.
+Where `PLAN-GRAPH-SCHEMA` conditions already key off objects (`creature`, `land`, `card`, …), new `consumes`/`produces` from added signals start counting automatically once the plan keys exist. Add a `THESIS_KEYS` / plan key **only** with a matching `play_one()` computation — that is a separate change, not a silent widening.
 
 ### 4. Grammar queries stay Scryfall-shaped
 
-Unread research that produced verified `o:` / `otag:` expressions belongs in `theme_clauses` / role ladders the same way CON-248 verified counts. The model still writes queries; the app still verifies names against the response.
+Unread research that produced verified `o:` / `otag:` expressions belongs in `theme_clauses` / role ladders the same way the unread-gap signals verified counts. The model still writes queries; the app still verifies names against the response.
 
-### 5. Commander KB refresh stays weekly research
+### 5. Commander knowledge base refresh stays separate
 
 Know Magic reading and the commander knowledge base are parallel: KB says how a legend is played; signals say what lines of text we can detect. Refresh KB with community method; refresh signals with the maintenance loop. Do not merge them into one blob.
 
 ### 6. Print-wave cadence
 
-On each major set: `python scripts/print_wave_reeval.py --refresh --fetch --wave <name>` ([`KNOW-MAGIC-MAINTENANCE.md`](KNOW-MAGIC-MAINTENANCE.md)). If unread spikes on a new pattern, one small signal PR — not a new epic. Card: CON-260.
+On each major set: `python scripts/print_wave_reeval.py --refresh --fetch --wave <name>` ([`KNOW-MAGIC-MAINTENANCE.md`](KNOW-MAGIC-MAINTENANCE.md)). If unread spikes on a new pattern, add one small signal PR rather than a large rewrite.
 
 ## What "successful integration" looks like in product terms
 
@@ -123,8 +123,8 @@ On each major set: `python scripts/print_wave_reeval.py --refresh --fetch --wave
 ```
 python scripts/oracle_coverage.py --write data/oracle_coverage_report.json
 python scripts/check_playstyles.py
-python test_synergy.py          # or the focused CON-* tests
-python test_deckwright.py       # when touching query / build paths
+python tests/test_synergy.py          # or the focused tests for the change
+python tests/test_deckwright.py       # when touching query / build paths
 ```
 
 If coverage did not move and precision did not hold, the join did not land — revert.

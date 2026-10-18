@@ -1,5 +1,5 @@
 """
-test_commanders_kb.py — CON-190 / CON-194 commander knowledge base contract.
+test_commanders_kb.py — commander knowledge base contract.
 
 Offline. No model. No Scryfall (build script may use network; this file does not).
 
@@ -32,7 +32,7 @@ VOCAB = ROOT / "data" / "playstyles.json"
 KB_PATH = ROOT / "data" / "commanders.json"
 GRAMMAR = ROOT / "data" / "scryfall_grammar.json"
 
-# App's own legal-commander definition — matches legal_commanders_only() / CON-194.
+# App's own legal-commander definition — matches legal_commanders_only() in the commander knowledge base.
 LEGAL_QUERY = '((t:legendary t:creature) or o:"can be your commander") f:commander'
 
 
@@ -56,9 +56,9 @@ def true(label, cond, extra=""):
     (ok if cond else bad)(label, extra)
 
 
-def test_themes_from_type_line_con229():
-    """CON-229: drop human / // / legendary and card-type junk from KB themes."""
-    print("\ncommanders.themes_from_type_line — CON-229 pollution filter")
+def test_themes_from_type_line():
+    """drop human / // / legendary and card-type junk from KB themes."""
+    print("\ncommanders.themes_from_type_line — pollution filter")
     eq("creature types kept",
        commanders.themes_from_type_line("Legendary Creature — Bear Spirit"),
        ["bear", "spirit"])
@@ -87,7 +87,7 @@ def test_themes_from_type_line_con229():
 
 
 def test_edhrec_tag_mapping_allowlist_only():
-    """CON-196: EDHREC tags map onto playstyles.json — never invent ids."""
+    """EDHREC tags map onto playstyles.json — never invent ids."""
     print("\ncommanders.playstyles_from_edhrec_tags — allowlist + min count")
     tags = [
         {"value": "Blink", "count": 260, "slug": "blink"},
@@ -110,7 +110,7 @@ def test_edhrec_tag_mapping_allowlist_only():
     # Auras=2 is below floor; Equipment already supplied voltron — no second row.
     eq("voltron once (equipment, not sub-min auras)",
        got.count("voltron"), 1)
-    # CON-239: counts 3–4 drop at restored floor=5 (Akroma Voltron=4, Arcades Auras=3).
+    # counts 3–4 drop at restored floor=5 (Akroma Voltron=4, Arcades Auras=3).
     eq("voltron=4 alone dropped at min_count=5",
        commanders.playstyles_from_edhrec_tags(
            [{"value": "Voltron", "count": 4, "slug": "voltron"}]), [])
@@ -139,7 +139,7 @@ def test_edhrec_tag_mapping_allowlist_only():
 
 
 def test_research_grow_merges_community_onto_derived():
-    """CON-196 B grow: EDHREC tags merge onto derived-only ways as both."""
+    """B grow: EDHREC tags merge onto derived-only ways as both."""
     print("\ncommanders.apply_edhrec_community — grow research onto derived")
     vocab = playstyles.load_playstyles()
     entry = {
@@ -204,7 +204,7 @@ def test_merge_ways_records_disagreement():
     eq("aristocrats is both", by["aristocrats"]["method"], "both")
     eq("aristocrats confidence high", by["aristocrats"]["confidence"], "high")
     eq("blink is community-only", by["blink"]["method"], "community")
-    eq("blink community-only confidence medium (CON-239)",
+    eq("blink community-only confidence medium",
        by["blink"]["confidence"], "medium")
     true("blink notes mechanics miss",
          "mechanics" in (by["blink"].get("note") or "").lower())
@@ -268,7 +268,7 @@ def test_absent_vs_empty():
 
 
 def test_merge_ways_caps_at_five():
-    """CON-239: keep both+derived, then top community by EDHREC order."""
+    """keep both+derived, then top community by EDHREC order."""
     print("\ncommanders.merge_ways — cap at 5")
     vocab = playstyles.load_playstyles()
     # community list is EDHREC count order (strongest first).
@@ -317,7 +317,7 @@ def test_disagreement_rate():
 
 
 def test_coverage_reports_both_halves():
-    """CON-194/196: mechanics, ways-to-play, and research — three numbers, always."""
+    """mechanics, ways-to-play, and research — three numbers, always."""
     print("\ncommanders.coverage — three coverage numbers")
     store = {
         "legal_estimate": 3321,
@@ -358,7 +358,7 @@ def test_coverage_reports_both_halves():
 
 def test_kb_file_contract():
     """Generated KB: full mechanics, partial research, verified names."""
-    print("\ndata/commanders.json — CON-194 contract when present")
+    print("\ndata/commanders.json — contract when present")
     if not KB_PATH.is_file():
         bad("data/commanders.json missing — run scripts/build_commanders_kb.py")
         return
@@ -382,7 +382,7 @@ def test_kb_file_contract():
     eq("mechanics coverage is 100%", mechanics, legal)
     true("research is a counted cohort",
          0 < researched <= len(entries))
-    # CON-196 B grow may fetch EDHREC for every commander (research → 100%).
+    # B grow may fetch EDHREC for every commander (research → 100%).
     # That is not a collapse into mechanics — the three fields stay separate,
     # and ways-to-play remains a different number (allowlist hits ≠ fetches).
     ways_n = int(payload.get("ways_to_play")
@@ -425,7 +425,7 @@ def test_kb_file_contract():
         if has_community and entry.get("mechanics_status") != "ok":
             community_without_mechanics.append(name)
 
-    eq("zero community-without-mechanics (CON-194)",
+    eq("zero community-without-mechanics",
        community_without_mechanics, [])
     eq("empty ways tagged method=derived", missing_method_on_empty, [])
 
@@ -452,9 +452,9 @@ def test_kb_file_contract():
     eq("no community playstyle silently dropped", dropped_community, [])
 
 
-def test_con241_empty_ways_signals_offline_count():
-    """CON-241: offline empty_ways_signals_no_playstyle from stored KB signals."""
-    print("\ncommanders KB — CON-241 empty_ways_signals_no_playstyle offline count")
+def test_empty_ways_signals_offline_count():
+    """offline empty_ways_signals_no_playstyle from stored KB signals."""
+    print("\ncommanders KB — empty_ways_signals_no_playstyle offline count")
     if not KB_PATH.is_file():
         bad("commanders.json present", "missing")
         return
@@ -475,17 +475,17 @@ def test_con241_empty_ways_signals_offline_count():
         offline += 1
     true("offline count ≤ KB header (fetch_miss may lag)",
          offline <= header, f"offline={offline} header={header}")
-    # CON-241 cut the pre-Know-Magic floor 195→165. CON-249 then taught more
+    # cut the pre-Know-Magic floor 195→165. The unread-gap strategy hooks then taught more
     # residual signals: 44 commanders moved no-signal → signals-no-playstyle
     # (header 165→209). That is honesty, not a detection regression —
     # requires_any was deliberately not widened for bare enters/attacks.
     # Freeze the post-Know-Magic floor; further drops need new community
     # playstyles, not invented bare-signal matches.
     KNOW_MAGIC_SIGNALS_NO_PLAYSTYLE_FLOOR = 209
-    true("CON-241 signals-no-playstyle at post-Know-Magic floor",
+    true("signals-no-playstyle at post-Know-Magic floor",
          header <= KNOW_MAGIC_SIGNALS_NO_PLAYSTYLE_FLOOR,
          f"header={header}")
-    true("CON-241 offline count at post-Know-Magic floor",
+    true("offline count at post-Know-Magic floor",
          offline <= KNOW_MAGIC_SIGNALS_NO_PLAYSTYLE_FLOOR,
          f"offline={offline}")
     if stale_would_match:
@@ -494,7 +494,7 @@ def test_con241_empty_ways_signals_offline_count():
 
 
 def main() -> int:
-    test_themes_from_type_line_con229()
+    test_themes_from_type_line()
     test_edhrec_tag_mapping_allowlist_only()
     test_research_grow_merges_community_onto_derived()
     test_merge_ways_records_disagreement()
@@ -503,7 +503,7 @@ def main() -> int:
     test_disagreement_rate()
     test_coverage_reports_both_halves()
     test_kb_file_contract()
-    test_con241_empty_ways_signals_offline_count()
+    test_empty_ways_signals_offline_count()
     print(f"\n{GREEN}{passed} passed{OFF}"
           + (f", {RED}{failed} FAILED{OFF}" if failed else ""))
     return 1 if failed else 0

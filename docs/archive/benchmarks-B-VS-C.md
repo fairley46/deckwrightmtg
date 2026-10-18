@@ -1,10 +1,10 @@
-# B vs CardFacts (CON-322) — what C changes
+# B vs CardFacts — what C changes
 
 Offline compare of a **Candidate B** stamped build against **CardFacts**
 extract. Contestant **C** is flag-gated on green-c `:8003`
 (`DECKWRIGHT_CANDIDATE=C`) — not the default. BLUE / B paths unchanged.
 
-B tip validated: `box/gate4b-integration-validated` @ `e44e92d`
+B tip validated: the validated B build
 (Bello BLUE 17 → B 8 violations; steer removed cheap rocks).
 
 CardFacts tip: bake pipeline + ready harden
@@ -20,7 +20,7 @@ source .venv/bin/activate
 
 # 1) Build Bello on green B (:8002) and save the JSON, or copy a stamped
 #    /api/build response that includes per-card steer_vote / bound_ok /
-#    feeds_input (CON-321 stamp). Example path:
+#    Feeds_input (stamp). Example path:
 #    ~/Downloads/bello_b_build.json
 
 # 2) Bake CardFacts for those names (full corpus preferred):
@@ -98,7 +98,7 @@ House rule: missing store or missing card → `status: "unknown"`,
 
 ## What C wiring does (flag-gated)
 
-See [`docs/product/C-REMAINING.md`](../product/C-REMAINING.md):
+See [`docs/product/C-REMAINING.md`](product-C-REMAINING.md):
 
 1. **Bake** full corpus CardFacts (already scriptable; preferred before C builds).
 2. **Wire lookup** into audit/steer behind `DECKWRIGHT_CANDIDATE=C` —

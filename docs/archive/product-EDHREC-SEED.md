@@ -1,7 +1,7 @@
-# EDHREC-seeded build (CON-336)
+# EDHREC-seeded build
 
 **Status:** V2 green product on `:8004`. Blue `:8000` stays V1 until the
-promotion PR in [`SHIP-V2.md`](SHIP-V2.md).  
+promotion PR in [`SHIP-V2.md`](product-SHIP-V2.md).  
 **Supersedes:** candidate B/C selection (measured; neither wins).
 
 ## Split
@@ -21,7 +21,7 @@ and legality.
 | `:8004` | **V2 green product** | `CANDIDATE=off`, `EDHREC_SEED=1` |
 
 Putting seed on `:8001` would silently change the frozen BLUE baseline and
-invalidate every prior sweep (same class as CON-330).
+invalidate every prior sweep (same class as the per-contestant URL scoping).
 
 ## Implementation
 
@@ -32,7 +32,7 @@ invalidate every prior sweep (same class as CON-330).
 | Provenance + inclusion on deck page | `index.html` |
 | Green-d instance | `(local launchd label)` + `install-green-d-launchd.sh` |
 | Harness contestant D | `data/benchmarks/contestants.json` |
-| Ship gate | [`SHIP-V2.md`](SHIP-V2.md) |
+| Ship gate | [`SHIP-V2.md`](product-SHIP-V2.md) |
 
 ## Deploy (demo host — green worktree)
 

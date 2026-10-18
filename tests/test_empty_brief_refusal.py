@@ -1,11 +1,11 @@
 """
-test_con167_empty_brief.py — CON-167 refusal of an unusable brief.
+test_empty_brief_refusal.py — refusal of an unusable brief.
 
 An empty brief must not produce commanders, a 99, or a plan that pretends it
 decided something. The 1,044 existing tests all start from a good brief; this
 is the class that was missing.
 
-    python test_con167_empty_brief.py
+    python test_empty_brief_refusal.py
 """
 from __future__ import annotations
 
@@ -125,13 +125,13 @@ def test_queries_never_contain_none_substring():
 
 
 def test_decided_requires_label():
-    print("\nplan_graph  — decided:true requires a label (CON-167)")
+    print("\nplan_graph  — decided:true requires a label")
     empty = plan_graph.derive({}, CMDR)
     arch = empty["archetype"]
     eq("empty brief decided is false", arch.get("decided"), False)
     eq("empty brief has no label", arch.get("label"), None)
 
-    # CON-178 changed what "no basis" means, and this assertion had to follow.
+    # changed what "no basis" means, and this assertion had to follow.
     # It used to read "empty brief has no commitments" while passing a real
     # CMDR. That encoded the old rule -- commitments came only from the brief --
     # so once commitments derive from the commander's demand profile it failed,
@@ -139,7 +139,7 @@ def test_decided_requires_label():
     # Deriving "sacrifice fodder" from a commander that eats creatures is the
     # opposite of fabrication.
     #
-    # What CON-167 actually forbids is a commitment with NO basis in either
+    # What the empty-brief refusal actually forbids is a commitment with NO basis in either
     # input, so that is what gets asserted now.
     nothing = plan_graph.derive({}, None)
     (ok if not (nothing.get("commitments") or []) else bad)(
@@ -228,7 +228,7 @@ def test_empty_commitments_not_a_success():
 
 def test_chain_refuses_empty_brief():
     """Whole chain: empty brief refused at the first stage that can tell."""
-    print("\n/api/commanders + /api/build  — refuse empty brief (CON-167)")
+    print("\n/api/commanders + /api/build  — refuse empty brief")
     client = TestClient(app.app)
 
     for payload, path in (

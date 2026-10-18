@@ -1,7 +1,7 @@
 """
 substitution.py — per-card shopping guidance for the build response.
 
-CON-100: every card in the 99 carries its deck role, how replaceable that slot
+every card in the 99 carries its deck role, how replaceable that slot
 is, and two or three validated alternates from the same role_query() ladder.
 Alternates are never recalled — they are other cards the ladder already fetched.
 """

@@ -1,5 +1,4 @@
 {
-  "issue": "CON-260",
   "measured_on": "2026-10-11",
   "measured_at": "2026-10-11T09:00:47Z",
   "wave": "cadence-reeval-2026-10-11",
@@ -134,6 +133,6 @@
   "next_actions": [
     "Name the gap: 12\u00d7 unread line \"this creature can't attack unless defending player controls an island\" (see unread_lines_top).",
     "If a real unread cluster moved after a named set dump: one small admit PR (exemplar + near-miss in test_synergy.py). Refuse keyword-catalog oracle_signals.",
-    "Update docs/KNOW-MAGIC-MAINTENANCE.md and docs/GA-FREEZE.md with these dated numbers \u2014 do not silently bump."
+    "Update docs/KNOW-MAGIC-MAINTENANCE.md with these dated numbers \u2014 do not silently bump."
   ]
 }

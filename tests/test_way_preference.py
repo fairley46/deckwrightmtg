@@ -1,5 +1,5 @@
 """
-test_way_preference.py — CON-257 brief way_preference → way_playstyle.
+test_way_preference.py — brief way_preference → way_playstyle.
 
 Offline. No model. No Scryfall.
 
@@ -103,7 +103,7 @@ VOLTRON_CMDR = {
 
 
 def test_alias_map():
-    print("\nmap_way_playstyle() — CON-257 alias / honest unmapped")
+    print("\nmap_way_playstyle() — alias / honest unmapped")
     resolve.load_grammar()
     vocab = set(playstyles.load_playstyles())
 

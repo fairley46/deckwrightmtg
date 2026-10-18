@@ -1,9 +1,9 @@
-# Unread gap grammar (CON-248)
+# Unread gap grammar
 
-Phase 3 of CON-246 — Know Magic.
+Phase 3 of Know Magic.
 
-**Artifact:** [`data/unread_gap_grammar.json`](../data/unread_gap_grammar.json)  
-**Research:** [`data/unread_gap_research.json`](../data/unread_gap_research.json)
+**Artifact:** [`data/unread_gap_grammar.json`](../../data/unread_gap_grammar.json)  
+**Research:** [`data/unread_gap_research.json`](../../data/unread_gap_research.json)
 
 ## What this is
 
@@ -32,7 +32,7 @@ Keywords stay on `keyword:` catalogs — no invented `oracle_signals`.
 ## Check
 
 ```
-python -c "import test_synergy; test_synergy.test_unread_gap_signals_con248()"
+python -c "import test_synergy; test_synergy.test_unread_gap_signals()"
 python -m unittest test_unread_gap_research.py
 python scripts/check_playstyles.py          # precision must hold ≥88%
 python scripts/oracle_coverage.py --offline --write data/oracle_coverage_report.json

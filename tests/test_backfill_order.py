@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-230 / CON-243: offline tests for role backfill ordering and singleton placement."""
+"""offline tests for role backfill ordering and singleton placement."""
 from __future__ import annotations
 
 
@@ -55,7 +55,7 @@ def _nonbasic_dupes(cards: list[dict]) -> list[str]:
 
 def test_backfill_prefers_glued_over_orphan():
     """Glued candidate wins backfill slot when both are in the pool."""
-    print("\nbackfill — CON-230 glued before orphan")
+    print("\nbackfill — glued before orphan")
     hei = _card(
         "Hei Bai, Spirit of Balance",
         type_line="Legendary Creature — Spirit",
@@ -113,8 +113,8 @@ def test_backfill_fail_open_unreadable_commander():
 
 
 def test_backfill_dedupes_duplicate_pool_names():
-    """CON-243: prefer_glued can surface two copies of one name — backfill keeps one."""
-    print("\nbackfill — CON-243 singleton against duplicate pool")
+    """prefer_glued can surface two copies of one name — backfill keeps one."""
+    print("\nbackfill — singleton against duplicate pool")
     adeline = _card(
         "Adeline, Resplendent Cathar",
         type_line="Legendary Creature — Human Knight",
@@ -146,8 +146,8 @@ def test_backfill_dedupes_duplicate_pool_names():
 
 
 def test_place_role_cards_dedupes_at_entry():
-    """CON-243: cards enter the 99 once — duplicate chosen/pool names do not."""
-    print("\nplace_role_cards — CON-243 singleton at placement")
+    """cards enter the 99 once — duplicate chosen/pool names do not."""
+    print("\nplace_role_cards — singleton at placement")
     adeline = _card(
         "Adeline, Resplendent Cathar",
         type_line="Legendary Creature — Human Knight",
@@ -183,12 +183,12 @@ def test_place_role_cards_dedupes_at_entry():
 
 
 def test_assembled_deck_singleton_outside_basics():
-    """CON-243: assemble across roles; validate_deck sees no non-basic dupes.
+    """assemble across roles; validate_deck sees no non-basic dupes.
 
     Basics may repeat. Non-basics must not — including when the theme pool
     carries the same glued card twice and prefer_glued promotes both copies.
     """
-    print("\nassembled deck — CON-243 singleton-outside-basics")
+    print("\nassembled deck — singleton-outside-basics")
     cmdr = _card(
         "Adeline, Resplendent Cathar",
         type_line="Legendary Creature — Human Knight",

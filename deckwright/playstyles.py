@@ -1,14 +1,14 @@
 """
 playstyles.py — community archetypes as compositions of oracle_signals.
 
-CON-180 lands the vocabulary in data/playstyles.json. This module loads it and
+lands the vocabulary in data/playstyles.json. This module loads it and
 matches a commander's synergy.demand_profile() against each entry's detect
 rules. No model. No network. No invented card names.
 
 A playstyle with empty requires cannot match — that is the missing_signals
 case, not a free pass. An unknown demand profile matches nothing.
 
-CON-257: map_way_playstyle() turns her scene words into one of the 13 ids, or
+map_way_playstyle() turns her scene words into one of the 13 ids, or
 null when we cannot map. Theft/bounce/etc. stay honestly unmapped — an otag
 is not a playstyle. Never invent a 14th id.
 """
@@ -27,7 +27,7 @@ PLAYSTYLES_PATH = REPO / "data" / "playstyles.json"
 
 _VOCAB: dict[str, dict] | None = None
 
-# Verified otag tags (CON-212) → playstyle when the tag *is* that way.
+# Verified otag tags → playstyle when the tag *is* that way.
 # Absent tags (theft, bounce, ramp, …) stay unmapped — not a freestyle guess.
 _OTAG_TO_PLAYSTYLE: dict[str, str] = {
     "lifegain": "lifegain",
@@ -37,7 +37,7 @@ _OTAG_TO_PLAYSTYLE: dict[str, str] = {
     "reanimate": "reanimator",
 }
 
-# Phrases she says → playstyle. Includes CON-212 dead behaviours that still
+# Phrases she says → playstyle. Includes beginner-alias dead behaviours that still
 # name a detectable way (go wide → tokens) and direct id/community labels.
 # Longer keys win. Never invent an id outside playstyles.json.
 _PHRASE_TO_PLAYSTYLE: dict[str, str] = {
@@ -163,14 +163,14 @@ def detect(commander: dict, path: pathlib.Path | None = None) -> dict[str, Any]:
     for pid, entry in load_playstyles(path).items():
         det = entry.get("detect") or {}
         requires = list(det.get("requires") or [])
-        # CON-184: a mechanic often has more than one shape, and `requires`
+        # a mechanic often has more than one shape, and `requires`
         # as a pure AND could not express that. Atraxa is the poster counters
         # commander and only proliferates, so requiring counter_placement
         # missed her entirely. requires_any lists alternatives — any one
         # satisfies it — and is ANDed with requires when both are present.
         requires_any = list(det.get("requires_any") or [])
         # Neither = not detectable with current vocabulary. Never
-        # default-match; CON-167 — a fallback is not a match.
+        # default-match; a fallback is not a match.
         if not requires and not requires_any:
             continue
         if requires and not all(r in signals for r in requires):
@@ -202,7 +202,7 @@ def map_way_playstyle(way_preference: str | None,
                       path: pathlib.Path | None = None) -> str | None:
     """Her scene words → one detectable playstyle id, or None.
 
-    Deterministic. Uses phrase aliases, then CON-212 otag resolution, then
+    Deterministic. Uses phrase aliases, then beginner-alias otag resolution, then
     exact playstyle id. Never invents an id outside playstyles.json.
     otag:theft and friends with no playstyle mapping stay None — unknown is
     not a guess.

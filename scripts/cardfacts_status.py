@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: thin CardFacts store status (offline; no bake, no model).
+"""thin CardFacts store status (offline; no bake, no model).
 
     python scripts/cardfacts_status.py
     python scripts/cardfacts_status.py --lookup "Sol Ring"

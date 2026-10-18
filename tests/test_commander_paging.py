@@ -1,5 +1,5 @@
 """
-test_commander_paging.py — CON-189 show-me-more from the same rung.
+test_commander_paging.py — show-me-more from the same rung.
 
 Offline.
 
@@ -47,7 +47,7 @@ def true(label, cond, extra=""):
 
 
 def test_true_total_not_fetch_cap():
-    """CON-189: rung_total is the real set size (479), not a fetch cap (85)."""
+    """rung_total is the real set size (479), not a fetch cap (85)."""
     print("\npaging — true total outranks fetch-cap length")
     pool = [{"name": f"C{i}"} for i in range(85)]
     page = app.page_commanders(pool, offset=0, n=5, rung_total=479)

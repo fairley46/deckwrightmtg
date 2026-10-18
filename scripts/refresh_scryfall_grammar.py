@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch Scryfall catalogs + /sets into data/scryfall_grammar.json (CON-149)."""
+"""Fetch Scryfall catalogs + /sets into data/scryfall_grammar.json."""
 
 import asyncio
 import sys

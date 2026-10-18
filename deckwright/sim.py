@@ -15,7 +15,7 @@ import re, random
 MAX_TURN = 10
 SAMPLE_DRAW_CAP = 5  # opening seven plus draws through this turn for sample hands
 
-# CON-108: bump when play_one / mechanics / THESIS_KEYS change what the numbers
+# bump when play_one / mechanics / THESIS_KEYS change what the numbers
 # mean. Saved decks stamp their baseline with this; a mismatch forces recompute
 # so we never serve odds from an engine we no longer run.
 SIM_VERSION = 11  # attack-trigger token creates get a once-per-turn goldfish proxy
@@ -35,10 +35,10 @@ THESIS_KEYS = [
     "life_drained",          # >= n  opponent life lost to drain effects
 ]
 
-# CON-71: stated next to the curves. We do not model commander tax — nothing
+# stated next to the curves. We do not model commander tax — nothing
 # removes the commander in a goldfish, so a recast never happens. Modelling the
 # tax without a threat would invent a punishment the simulation cannot produce.
-# Colour requirements ARE modelled (CON-69); do not claim "no colour screw."
+# Colour requirements ARE modelled; do not claim "no colour screw."
 ASSUMPTIONS = (
     "No opponent, no removal, no blockers. Your commander is cast once and "
     "stays — real games tax every recast by 2 more. On cast, extractable "
@@ -59,7 +59,7 @@ WORD_NUM = {
     "a": 1, "an": 1, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
     "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "x": 1,
 }
-# "that many" floors to 1 — same Azusa-class rule as X (CON-267). Magnitude is
+# "that many" floors to 1 — same Azusa-class rule as X. Magnitude is
 # game-state-dependent; silently returning 0 because the regex missed the
 # phrase invents a dead engine (Mister Negative, variable ETB draw).
 _DRAW_NUM = (
@@ -132,7 +132,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
         # land ramp: lands that enter the battlefield from a library search
         # on resolve / ETB. Activated-only searches ({T}/Sacrifice:…) are not
         # on-cast — the goldfish has no activation step, and counting them on
-        # cast invents a free land (CON-163: Wayfarer's Bauble drove lands>=6
+        # cast invents a free land (Wayfarer's Bauble drove lands>=6
         # +12 pts optimistic vs Forge n=50).
         land_search = (
             re.search(r"search your library for .{0,80}?land", t)
@@ -164,7 +164,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
     if d:
         m["drop"] = WORD_NUM.get(d.group(1), 1)
 
-    # Card draw — CON-119 eyes, not a dictionary; CON-146 target-player phrasing.
+    # Card draw — eyes, not a dictionary; includes "target player draws" phrasing.
     #
     # Three fields:
     #   draws        — cards drawn on resolution (Divination, cantrips)
@@ -172,7 +172,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
     #   draw         — perception *rate* for ranking engines vs one-shots
     #                  (test_perception.py key). Upkeep/triggers beat one-shots.
     #
-    # Goldfish ownership (CON-146):
+    # Goldfish ownership:
     #   - "You draw" / bare "Draw N cards" → yours.
     #   - "Target player draws" → yours. You cast it; you choose yourself.
     #     Black's draw suite is written this way (Sign in Blood). Scoring 0
@@ -190,13 +190,13 @@ def mechanics(card: dict, payoff_names: set) -> dict:
 
     def _word_n(raw: str) -> int:
         if raw in ("x", "that many"):
-            return 1  # CON-146 / CON-267: deliberate floor, not a miss
+            return 1  # deliberate floor, not a miss
         return WORD_NUM.get(raw, 1)
 
     def _owned_draw_amount(text: str) -> int:
         """Best draw count that is yours — not an opponent's clause.
 
-        CON-162: Consecrated Sphinx says "whenever an opponent draws a card,
+        Consecrated Sphinx says "whenever an opponent draws a card,
         you may draw two cards." Taking the first `draws?` hit scored the
         opponent's one-card draw and ignored yours. Scan every clause.
         """
@@ -240,9 +240,9 @@ def mechanics(card: dict, payoff_names: set) -> dict:
             m["draw"] = amount
 
 
-    # Graveyard / flashback-family — CON-123. Extraction rates for eyes;
+    # Graveyard / flashback-family. Extraction rates for eyes;
     # flashback's second cast feeds existing cards_drawn (no new THESIS_KEY —
-    # delirium type-counts need Box approval before they become conditions).
+    # delirium type-counts need a reviewed THESIS_KEY before they become conditions).
     kw = " ".join(card.get("keywords") or []).lower()
     m["flashback"] = 0
     m["flashback_draws"] = 0
@@ -277,7 +277,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
                 t)):
         m["delirium"] = 5
 
-    # Lifegain / drain — CON-121. Oracle text, not taxonomy keywords.
+    # Lifegain / drain. Oracle text, not taxonomy keywords.
     # Taxonomy only has extort/lifelink; Blood Artist vs Nighthawk and Well vs
     # Salve are invisible to a keyword map. Perception keys:
     #   drain            — rate: repeatable opponent life loss (Artist, Bond)
@@ -324,7 +324,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
             m["life_gain_proxy_per_turn"] = 1
             # Not drain — this card does not cause the loss.
 
-        # CON-162: whenever-triggered gain that is NOT a lifegain-payoff watch
+        # whenever-triggered gain that is NOT a lifegain-payoff watch
         # (Aetherflux, Authority of the Consuls). Without this, engines that
         # say "whenever you cast / a creature enters, you gain life" extract
         # as zero — the Azusa miss for life sources.
@@ -334,7 +334,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
 
         # Drain: you cause opponent/player life loss (Artist, Bond, Extort…).
         # Exclude pure "whenever opponent loses life, you gain" watchers.
-        # CON-162: "loses X life" (Gray Merchant) is a real drain amount — X
+        # "loses X life" (Gray Merchant) is a real drain amount — X
         # floors to 1 the same way draw-X does.
         causes_loss = bool(re.search(
             r"(?:target (?:player|opponent)|each opponent|opponent) loses?"
@@ -366,7 +366,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
     # combat model. Most Commander decks are built around having creatures, and
     # the simulation had no concept of one.
     #
-    # CON-122: Treasure/Clue/Food are resource tokens — mana/card/life, not
+    # Treasure/Clue/Food are resource tokens — mana/card/life, not
     # bodies. Creature-token creation feeds creatures_in_play; resource tokens
     # must not.
     #
@@ -392,7 +392,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
 
     activated = bool(re.search(r"\{t\}:", t))
     whenever = bool(re.search(r"\bwhenever\b", t))
-    # CON-162: upkeep creates (Bitterblossom) are engines, not one-shots.
+    # upkeep creates (Bitterblossom) are engines, not one-shots.
     # Matching only {T}/whenever scored Bitterblossom as a one-shot create-1.
     upkeep = bool(re.search(
         r"at the beginning of (?:your |each (?:player's )?)?upkeep", t))
@@ -441,7 +441,7 @@ def mechanics(card: dict, payoff_names: set) -> dict:
     #
     # "Creatures you control get +N/+N" only. A pump aimed at one creature is a
     # combat trick, and combat is not modelled.
-    # CON-162: "until end of turn" anywhere in the same clause is a combat
+    # "until end of turn" anywhere in the same clause is a combat
     # trick (Elesh Norn activated), not a lasting anthem. Negative lookahead
     # right after +N/+N misses "get +1/+1 and have flying until end of turn".
     m["anthem"] = 0
@@ -562,7 +562,7 @@ def play_one(cards, cmdr_cmc, conditions, commander_mech=None):
     thesis curves mean. Third element is additive; callers that only need
     fired/log keep working by ignoring it.
 
-    CON-268: when `commander_mech` is the precomputed mechanics() profile for
+    when `commander_mech` is the precomputed mechanics() profile for
     the commander, on-cast extractable effects apply the same as casting a 99
     card. Opponent-only text (life exchange) stays inert — no opponent invented.
     """
@@ -600,7 +600,7 @@ def play_one(cards, cmdr_cmc, conditions, commander_mech=None):
     pending_flashback_draws: list[int] = []
     fired = {c["label"]: None for c in conditions}
     deck_lands = [c for c in cards if c["land"]]
-    # CON-175: curve measurement. Land-drop opportunities = drops she was
+    # curve measurement. Land-drop opportunities = drops she was
     # entitled to; missed = entitlement she could not take (no land in hand).
     # acted_turns = turns she cast a non-land spell (or the commander).
     missed_land_drops = 0
@@ -736,7 +736,7 @@ def play_one(cards, cmdr_cmc, conditions, commander_mech=None):
                 cmdr = True
                 payoffs += 1  # commander itself always counts as a payoff body
                 acted_this_turn = True
-                # CON-268: run extractable commander oracle (draws/bodies/…);
+                # run extractable commander oracle (draws/bodies/…);
                 # count_payoff=False — the +1 above already covers the commander.
                 if commander_mech:
                     _resolve_cast(commander_mech, turn, count_payoff=False)
@@ -798,11 +798,11 @@ def play_one(cards, cmdr_cmc, conditions, commander_mech=None):
 
 def run(deck, cmdr_cmc, payoff_names, conditions, runs=3000, seed=None,
         commander_card=None):
-    """Goldfish N games. seed makes the shuffle sequence reproducible (CON-102).
+    """Goldfish N games. seed makes the shuffle sequence reproducible.
 
-    CON-268: pass `commander_card` (Scryfall-shaped dict) so on-cast commander
+    pass `commander_card` (Scryfall-shaped dict) so on-cast commander
     oracle applies. Omit it and commander cast only flips commander_in_play —
-    the pre-CON-268 behaviour, kept for callers that have no oracle.
+    the earlier behaviour, kept for callers that have no oracle.
     """
     rng_state = None
     if seed is not None:

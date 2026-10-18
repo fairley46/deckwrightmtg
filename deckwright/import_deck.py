@@ -1,7 +1,7 @@
 """
 import_deck.py — parse pasted decklists and resolve names against Scryfall.
 
-CON-97: second way in alongside build. Accepts Archidekt/Moxfield/plain text,
+second way in alongside build. Accepts Archidekt/Moxfield/plain text,
 bulk-resolves via /cards/collection, reports unresolved lines by line number.
 """
 
@@ -12,7 +12,7 @@ from deckwright import sim
 
 COLLECTION_BATCH = 75
 
-# CON-310: iOS/macOS/Word/web paste emit smart punctuation; Scryfall names use
+# iOS/macOS/Word/web paste emit smart punctuation; Scryfall names use
 # ASCII. Map for lookup only — never rewrite the typed entry or the display name.
 _LOOKUP_PUNCT = str.maketrans({
     "\u2018": "'",  # LEFT SINGLE QUOTATION MARK
@@ -184,7 +184,7 @@ def _covering_partner_pairs(
     """Legal Partner / Partner with / Friends forever pairs that cover deck CI.
 
     Uses app.partners_compatible — one source of truth with /api/build.
-    Background / Doctor's companion stay out of scope (CON-80).
+    Background / Doctor's companion stay out of scope.
     """
     # Late import: app imports this module at load time.
     from deckwright.app import partners_compatible, union_color_identity
@@ -218,7 +218,7 @@ def pick_commander(
     Returns {status, commander, partner, commanders, candidates, reason}.
     status: found | ambiguous | missing
 
-    CON-305: when no single legendary covers colour identity, look for exactly
+    when no single legendary covers colour identity, look for exactly
     one legal Partner / Partner with / Friends forever pair whose combined
     identity does. Multiple covering pairs are ambiguous — candidates are the
     pairs, not the individuals.

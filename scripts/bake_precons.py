@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-bake_precons.py — one-shot batch job for CON-102.
+bake_precons.py — one-shot batch job for the precon bake.
 
 Computes overview + signals + seeded simulation + resolved list for each
 Archidekt precon and writes data/precons/{id}.json. Prices are stripped;
@@ -74,7 +74,7 @@ async def bake_one(precon_id: str, *, force: bool = False,
     signals = app.deck_signals(deck)
     cmc = int(cmdr_card.get("cmc") or 5)
     # Bootstrap sim feeds overview curves; the served sim re-runs against the
-    # brief-derived thesis conditions once the overview exists (CON-116).
+    # brief-derived thesis conditions once the overview exists.
     boot = await asyncio.to_thread(
         precon_bake.run_precon_sim, deck, cmc, overview.BUILD_CONDITIONS)
 
@@ -129,7 +129,7 @@ async def bake_one(precon_id: str, *, force: bool = False,
 
 
 def refresh_local(precon_id: str, *, force: bool = False) -> str:
-    """CON-116: rewrite brief + strategy-aware sim from an existing bake.
+    """rewrite brief + strategy-aware sim from an existing bake.
 
     Keeps the shipped overview and card list — no Archidekt, no model. Used to
     bump analysis_version across the 155 without a full remote rebake.
@@ -188,7 +188,7 @@ async def main(argv: list[str] | None = None) -> int:
                    help="Skip the model; write overview.from_counts() from "
                         "signals + sim (serveable, no Anthropic key needed)")
     p.add_argument("--refresh-local", action="store_true",
-                   help="CON-116: add brief + re-sim from on-disk bakes only "
+                   help="add brief + re-sim from on-disk bakes only "
                         "(no Archidekt, no model)")
     args = p.parse_args(argv)
 

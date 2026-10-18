@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "CON-194/196 commander knowledge base. Mechanics from playstyles.detect() over every legal commander; community classifications from backend-review/fixtures/commander-playstyles.json plus EDHREC-ranked research cohort. Disagreement is data. Absent ≠ empty. Mechanics coverage must be 100%; ways-to-play and research may be partial and are reported separately.",
+  "note": "commander knowledge base. Mechanics from playstyles.detect() over every legal commander; community classifications from backend-review/fixtures/commander-playstyles.json plus EDHREC-ranked research cohort. Disagreement is data. Absent ≠ empty. Mechanics coverage must be 100%; ways-to-play and research may be partial and are reported separately.",
   "researched_at_run": "2026-08-08",
   "legal_estimate": 3321,
   "legal_estimate_query": "((t:legendary t:creature) or o:\"can be your commander\") f:commander",
@@ -61918,14 +61918,14 @@
           "confidence": "high",
           "method": "both",
           "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
-          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; CON-180 vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
+          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
         },
         {
           "playstyle": "aristocrats",
           "confidence": "high",
           "method": "both",
           "why": "Forces sacrifices and grows with +1/+1 counters and card draw",
-          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; CON-180 vocab has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
+          "source": "EDHREC aristocrats 865 + treasure 1612 (https://edhrec.com/themes/aristocrats, https://edhrec.com/themes/treasure). Treasure outranks aristocrats on EDHREC; the playstyle vocabulary has no treasure key, so fixture keeps aristocrats+counters from oracle and records the treasure gap here."
         }
       ],
       "themes": [

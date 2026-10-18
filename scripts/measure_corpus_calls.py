@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-294: measure how many build-path queries stay local vs need live.
+"""measure how many build-path queries stay local vs need live.
 
 Uses the fixture corpus (or ~/.deckwright when present) and the real
 role_query / commander ladders — no network. Counts:
@@ -113,7 +113,7 @@ def main() -> int:
     else:
         print(
             "\nLive remainder is almost entirely otag:/art: (Tagger) — "
-            "option 1 in CON-294. Materialise those tags (option 2) to cut further."
+            "option 1. Materialise those tags (option 2) to cut further."
         )
     return 0
 

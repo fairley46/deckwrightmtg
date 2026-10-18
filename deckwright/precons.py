@@ -1,7 +1,7 @@
 """
 precons.py — Commander precon catalog from Archidekt's public JSON API.
 
-CON-98: curated entry into the CON-97 resolve pipeline. Archidekt's
+curated entry into the decklist resolve pipeline. Archidekt's
 Archidekt_Precons account publishes official precon lists; we cache the catalog
 and fetch one deck on demand.
 

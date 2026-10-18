@@ -1,7 +1,7 @@
 """
 card_score.py — pick cards by marginal simulation lift, not vibes.
 
-CON-103: for each role, score candidates against the deck being built. The model
+for each role, score candidates against the deck being built. The model
 still proposes a reasonable shortlist; the sim ranks within it. Zero-score cards
 (interaction, flavour) keep model order — they are not dropped for scoring zero.
 
@@ -28,7 +28,7 @@ from deckwright import thesis_check
 # Faster than the 1500-run build report; issue budgets ~30s across all roles.
 SCORE_RUNS = 400
 SAMPLE_SIZE = 20
-# CON-225: judge at T10 so engine edges (CON-162) are visible; T5 muted them to Δ=0.
+# judge at T10 so engine edges are visible; T5 muted them to Δ=0.
 TARGET_TURN = 10
 
 _BASIC = {
@@ -43,7 +43,7 @@ _BASIC = {
 def _cmp_edge_votes(va: int | None, vb: int | None) -> int:
     """Compare STEER edge votes. 0 means omit / tie on this key.
 
-    None = timing-unrepresentable (CON-222 no vote). Against a true orphan
+    None = timing-unrepresentable (no vote). Against a true orphan
     zero, None sorts higher so STEER does not punish timing as Shock. Against
     a positive edge count, None is equal — compete on cmc / model_rank only.
     """
@@ -340,7 +340,7 @@ async def rank_for_role(
     t0 = time.perf_counter()
     candidates = sample_candidates(pool, model_picks)
 
-    # CON-173: the graph decides which cards are ELIGIBLE; the sim still decides
+    # the graph decides which cards are ELIGIBLE; the sim still decides
     # how good they are. Gate only theme/plan -- ramp and removal earn their
     # slots on their own merits.
     synergy_dropped = 0
@@ -355,7 +355,7 @@ async def rank_for_role(
             synergy_dropped = len(candidates) - len(kept)
             candidates = kept
         else:
-            # CON-188: callers must see fail-open. synergy_dropped stays 0 when
+            # callers must see fail-open. synergy_dropped stays 0 when
             # nothing was dropped; the flag is what distinguishes that from
             # "gate kept everyone because everyone was eligible."
             synergy_gate_failed_open = True
@@ -367,7 +367,7 @@ async def rank_for_role(
         cmdr_card=cmdr_card, ci=ci, land_pool=land_pool,
     )
     model_rank = {c["name"]: i for i, c in enumerate(model_picks)}
-    # CON-139: score against the PLAN, not a keyword guess. plan_graph.derive()
+    # score against the PLAN, not a keyword guess. plan_graph.derive()
     # knows the commander and emits conditions in live THESIS_KEYS — including
     # life_gained, which provisional_conditions() has no way to reach. Without
     # this a lifegain deck is scored on mana and the scorer has no reason to
@@ -396,14 +396,14 @@ async def rank_for_role(
     if not scoring:
         spread = thesis_check.spread(baseline_out.get("curves") or [])
         reason = spread.get("reason") or "no condition had measurable headroom"
-        # CON-214: when the sim cannot rank, edged cards still beat orphans —
-        # same soft prefer as the scored path, never a weight. CON-175 curve
+        # when the sim cannot rank, edged cards still beat orphans —
+        # same soft prefer as the scored path, never a weight. The curve report
         # preference stays the next key so low-MV wishes still apply.
         pref = curve.preference(brief or {})
         cmdr_for_edges = cmdr_card or {}
 
         def _skip_cmp(a: dict, b: dict) -> int:
-            # CON-222: timing multipliers with 0 material edges cast no edge
+            # timing multipliers with 0 material edges cast no edge
             # vote — omit that key rather than sorting them as orphans.
             if synergy.STEER:
                 va = synergy.edge_steer_vote(a, cmdr_for_edges, deck_so_far)
@@ -458,12 +458,12 @@ async def rank_for_role(
 
     results = await asyncio.gather(*[scored(c) for c in candidates])
     # Tiebreak within a sim-score band. Most candidates score near-identically
-    # (CON-159: recall mattered far more than ranking), so this is where the
+    # (recall mattered far more than ranking), so this is where the
     # tutorial's "not one synergy, but multiple overlapping synergies" lands.
     # BAND is a tiebreak WIDTH, not a weight — it decides when two scores count
     # as equal, never how much synergy is worth.
     #
-    # CON-175: curve preference is the next tiebreak — mana value, not dollars.
+    # curve preference is the next tiebreak — mana value, not dollars.
     # Not a theme-role cmc filter (the curve spec forbids bolting that on). Same
     # shape as synergy's edge_count: a key inside the band, never a coefficient
     # added to the sim score.
@@ -476,8 +476,8 @@ async def rank_for_role(
         sb = round(b["delta_pct"] / BAND)
         if sa != sb:
             return 1 if sa > sb else -1
-        # CON-214: STEER off keeps orphans equal inside the band (tests).
-        # CON-222: timing-unrepresentable zeros omit the edge key (no vote).
+        # STEER off keeps orphans equal inside the band (tests).
+        # timing-unrepresentable zeros omit the edge key (no vote).
         if synergy.STEER:
             va = synergy.edge_steer_vote(
                 a["card"], cmdr_for_edges, deck_so_far)

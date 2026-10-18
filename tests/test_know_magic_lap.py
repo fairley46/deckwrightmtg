@@ -35,7 +35,7 @@ class KnowMagicLap(unittest.TestCase):
 
     def test_coverage_moved(self):
         after = LAP["coverage"]["after_lap"]
-        delta = LAP["coverage"]["delta_vs_pre_con245_full"]
+        delta = LAP["coverage"]["delta_vs_pre_lap1_full"]
         self.assertGreaterEqual(after["at_least_one_signal_pct"], 64.0)
         self.assertGreaterEqual(delta["at_least_one_signal_pp"], 13.0)
         self.assertEqual(after["unknown_unreadable"], 0)

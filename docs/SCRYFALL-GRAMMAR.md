@@ -1,10 +1,9 @@
-# The Scryfall grammar, and how her words become a query
+# The Scryfall grammar, and how the player's words become a query
 
 > Part of the derivation chain — see [`DERIVATION.md`](DERIVATION.md) for how this stage joins the others.
 
-**Owner:** Box (the grammar and the precedence). Cursor implements.
 Consumed by `role_query()`, `commander_ladder()`, `search_ladder()`, suggest, and any
-future path that turns something she said into a search.
+future path that turns something the player said into a search.
 
 ---
 
@@ -16,12 +15,12 @@ We have been **guessing which operator a word belongs to.**
 own commander comes from the Spider-Man set. Every one of these is the same bug wearing a
 different hat:
 
-| card | symptom | same disease |
+| defect | symptom | same disease |
 |---|---|---|
-| CON-110 | a theme Scryfall can't search becomes basic lands | guessed `t:` |
-| CON-111 | the ladder skips the rung that would have worked | no way to say what the rung is |
-| CON-144 | 63 taxonomy queries named things Scryfall doesn't index | guessed `keyword:` |
-| CON-148 | "spiderman" finds 0 next to a Spider-Man commander | guessed `t:`, never tried `set:` |
+| Basic-land padding | a theme Scryfall can't search becomes basic lands | guessed `t:` |
+| Commander ladder | the ladder skips the rung that would have worked | no way to say what the rung is |
+| Taxonomy queries | 63 taxonomy queries named things Scryfall doesn't index | guessed `keyword:` |
+| Set search | "spiderman" finds 0 next to a Spider-Man commander | guessed `t:`, never tried `set:` |
 
 Patching them one at a time is hunting in the dark. **The fix is to know the option space.**
 
@@ -88,14 +87,14 @@ Nine. That is a **hand-written precedence table, not a heuristic** — and it is
 important consequence of doing this measurement instead of guessing. We were about to build
 disambiguation machinery for a problem with nine instances.
 
-Ruling for each, by what she would have meant:
+Ruling for each, by what the player would have meant:
 
 | term | resolves as | because |
 |---|---|---|
-| `treasure`, `food` | `t:` (artifact type) | she means the tokens, not the rules action |
+| `treasure`, `food` | `t:` (artifact type) | the player means the tokens, not the rules action |
 | `conspiracy`, `transformers` | `set:` | nobody asks for a watermark |
 | `phyrexian` | `t:` (creature type) | the tribe, not the watermark |
-| `hero`, `dungeon`, `planeswalker` | `t:` (card type) | the broader reading is the one she means |
+| `hero`, `dungeon`, `planeswalker` | `t:` (card type) | the broader reading is the one the player means |
 | `foretell` | `keyword:` | the mechanic, not the watermark |
 
 ## Two vocabularies, not one — things and behaviours
@@ -131,14 +130,14 @@ becomes a real query instead of two half-answers:
 ```
 t:pirate                 180 cards     the thing
 otag:theft               716 cards     the behaviour
-t:pirate otag:theft       15 cards     what she asked for
+t:pirate otag:theft       15 cards     what the player asked for
 ```
 
 Those 15 are Admiral Beckett Brass, Breeches, Captivating Crew, Coercive Recruiter, Edward
 Kenway — the actual steal-pirates deck. The `o:"gain control"` phrasing finds only 4 of them.
 
 This is also where the mechanic taxonomy meets the grammar: `otag:` supplies the behaviour
-term, and `plan_role` says whether that behaviour is an engine, a payoff or an enabler for her
+term, and `plan_role` says whether that behaviour is an engine, a payoff or an enabler for the player's
 plan. Grammar finds the cards; the math ranks them.
 
 ### `otag:` names are not guessable
@@ -153,7 +152,7 @@ Probed live — several plausible tags do not exist:
 ```
 
 A wrong tag returns HTTP 404, which the app reads as an empty result and pads around. So every
-`otag:` we emit needs the **same build-time verification as CON-144** — probe it once, fail
+`otag:` we emit needs the **same build-time verification as the taxonomy queries** — probe it once, fail
 loudly, cache the ones that work. Build the behaviour vocabulary by verifying candidates, not
 by guessing them at query time.
 
@@ -178,15 +177,15 @@ Set-name **exact** match sits above types deliberately: a set named after a thin
 stronger signal than a coincidental type. Set-name **substring** sits below keywords so
 "angel" reaches `t:angel` and not some set with Angel in its title.
 
-## Normalisation — her words are not Scryfall's words
+## Normalisation — the player's words are not Scryfall's words
 
-She types "spiderman". Scryfall has "Marvel's Spider-Man". Lowercase, strip everything that is
+The player types "spiderman". Scryfall has "Marvel's Spider-Man". Lowercase, strip everything that is
 not a letter or digit, then match. Also index each set under its name with a leading licensor
 or article removed (`Marvel's `, `The `), so "spiderman" and "lord of the rings" both land.
 
 Verified against the live set list:
 
-| she types | resolves to |
+| the player types | resolves to |
 |---|---|
 | `spiderman` / `spider-man` / `Spider-Man` | Marvel's Spider-Man (`spm`) |
 | `lord of the rings` | The Lord of the Rings: Tales of Middle-earth (`ltr`) |
@@ -208,7 +207,7 @@ are creature types.
 expressions and they are not the same question:
 
 - `set:spm` — *this product*. 286 cards.
-- `is:ub` — *all crossover cards*. Use when she says "Universes Beyond" rather than naming one.
+- `is:ub` — *all crossover cards*. Use when the player says "Universes Beyond" rather than naming one.
 
 The 47 sets are enumerable in 60 paged requests, one time, cacheable. This is the "pull the
 list down and convert it" move rather than a per-theme guess.
@@ -216,8 +215,8 @@ list down and convert it" move rather than a per-theme guess.
 ## The rule that must not be lost
 
 **A term that resolves to nothing must say so.** Never silently degrade to a generic query and
-present the result as if it matched. That is CON-110's failure and CON-148's copy bug, and it
-is the same shape as `scry()` returning empty for a throttled request (CON-145):
+present the result as if it matched. That is how an unsearchable theme once became basic lands, and how a set search once reported
+0 cards next to a Spider-Man commander. It is the same shape as `scry()` returning empty for a throttled request:
 
 > An unknown is not a zero, and a fallback is not a match.
 

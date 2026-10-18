@@ -257,10 +257,10 @@
       "feeds_input": false
     }
   ],
-  "fixture_note": "Synthetic B-stamped mini deck for CON-322 B-vs-C compare. NOT a full Bello B build \u2014 re-run on the demo host against real B output JSON (box/gate4b-integration-validated @ e44e92d). Stamps applied via strategy_steer.stamp_votes under DECKWRIGHT_CANDIDATE=B.",
+  "fixture_note": "Synthetic B-stamped mini deck for B-vs-C compare. NOT a full Bello B build \u2014 re-run on the demo host against real B output JSON (box/gate4b-integration-validated @ e44e92d). Stamps applied via strategy_steer.stamp_votes under DECKWRIGHT_CANDIDATE=B.",
   "source": {
     "precon_id": "8497473",
     "b_tip": "box/gate4b-integration-validated@e44e92d",
-    "cardfacts_tip": "cursor/con-322-cardfacts-ready-3a49"
+    "cardfacts_tip": "cardfacts-ready"
   }
 }

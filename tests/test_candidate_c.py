@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322 Candidate C — CardFacts wired into audit/steer behind flag only.
+"""Candidate C (experimental) — CardFacts wired into audit/steer behind a flag only.
 
     python test_candidate_c.py
 
@@ -108,7 +108,7 @@ def _restore(old: str | None):
 
 
 def test_c_enables_clarity_and_steer_b_unchanged():
-    print("\nCON-322 C — clarity/steer on C; off stays inert; B still on")
+    print("\nC — clarity/steer on C; off stays inert; B still on")
     from deckwright import strategy_audit as sa
     from deckwright import strategy_steer as ss
 
@@ -133,7 +133,7 @@ def test_c_enables_clarity_and_steer_b_unchanged():
 
 
 def test_c_serve_report_unknown_when_store_missing():
-    print("\nCON-322 C — missing CardFacts store → unknown, not zero")
+    print("\nC — missing CardFacts store → unknown, not zero")
     from deckwright import cardfacts as cf
     from deckwright import commander_strategy as cs
     from deckwright import serve_report as sr
@@ -164,7 +164,7 @@ def test_c_serve_report_unknown_when_store_missing():
 
 
 def test_c_serve_report_from_baked_facts():
-    print("\nCON-322 C — ServeReport from baked CardFacts + strategy")
+    print("\nC — ServeReport from baked CardFacts + strategy")
     from deckwright import cardfacts as cf
     from deckwright import commander_strategy as cs
     from deckwright import serve_report as sr
@@ -215,7 +215,7 @@ def test_c_serve_report_from_baked_facts():
 
 
 def test_c_stamp_votes_adds_serve_report_b_does_not():
-    print("\nCON-322 C — stamp_votes ServeReport on C only")
+    print("\nC — stamp_votes ServeReport on C only")
     from deckwright import cardfacts as cf
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
@@ -283,7 +283,7 @@ def test_c_stamp_votes_adds_serve_report_b_does_not():
 
 
 def test_c_cf_feeder_steers_when_oracle_silent():
-    print("\nCON-322 C — CF-informed feeder vote when oracle text is silent")
+    print("\nC — CF-informed feeder vote when oracle text is silent")
     from deckwright import cardfacts as cf
     from deckwright import commander_strategy as cs
     from deckwright import strategy_steer as ss
@@ -370,13 +370,13 @@ def test_green_c_plist_and_install_script():
         eq("PORT", got.get("PORT"), "8003")
         eq("CANDIDATE", got.get("DECKWRIGHT_CANDIDATE"), "C")
         eq("ENV", got.get("DECKWRIGHT_ENV"), "green")
-        eq("CON-334 LLM timeout", got.get("DECKWRIGHT_LLM_TIMEOUT"), "600")
+        eq("LLM timeout", got.get("DECKWRIGHT_LLM_TIMEOUT"), "600")
         true("PORT is not 8002", got.get("PORT") != "8002")
     true("install-c warns on missing timeout", "DECKWRIGHT_LLM_TIMEOUT" in sh)
 
 
 def test_harness_contestant_c_registered():
-    print("\nCON-322 C — harness contestants.json registers C as http_build")
+    print("\nC — harness contestants.json registers C as http_build")
     sys.path.insert(0, str(REPO / "scripts"))
     import v2_benchmark as vb  # noqa: E402
 

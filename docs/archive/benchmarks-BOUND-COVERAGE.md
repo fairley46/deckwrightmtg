@@ -1,4 +1,4 @@
-# Bound coverage (CON-331)
+# Bound coverage
 
 Sign-off before reading Gate 5 `E,BLUE,B` bound-violation columns.
 
@@ -9,7 +9,7 @@ python scripts/bound_coverage.py
 python scripts/bound_coverage.py --commanders /path/to/data/benchmarks/commanders.json
 ```
 
-**When:** AFTER CON-331 bound extract lands. Floor commanders (Bello MV ≥ 4,
+**When:** AFTER the MV floor bounds bound extract lands. Floor commanders (Bello MV ≥ 4,
 Tayam MV ≤ 3) and the remaining four (Shirei power ≤ 1, Maralen forbid-draw,
 Sliver subtype, Meren experience capacity) should show `SEEN`.
 

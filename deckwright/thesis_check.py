@@ -20,7 +20,7 @@ stack than before.
 
 Everything here is arithmetic over data we already have — the simulation's own
 curve points, the roles the builder assigned, the strategy the player chose,
-and `sim.mechanics()` over oracle text. Same discipline as CON-76: a claim
+and `sim.mechanics()` over oracle text. Same discipline as a claim
 about the deck has to be countable from the deck. A check that cannot be
 counted is not a check.
 
@@ -29,7 +29,7 @@ counted is not a check.
 It cannot tell you the thesis is *right*. It can tell you when the thesis is
 measuring nothing, measuring something the deck never attempted, grading a
 creature deck on its mana base, or narrating the commander's oracle for a key
-the goldfish cannot see on that card (CON-267). Those are the failures that
+the goldfish cannot see on that card. Those are the failures that
 look like success.
 """
 
@@ -138,7 +138,7 @@ def condition_focus(conditions: list) -> dict:
 
 def _mechanics_of(card: dict) -> dict:
     name = card.get("name") or ""
-    # Same text/type normalization as sim.run(commander_card=…) — CON-268.
+    # Same text/type normalization as sim.run(commander_card=…).
     c = dict(card)
     if not (c.get("text") or "").strip() and c.get("oracle_text"):
         c["text"] = c["oracle_text"]
@@ -169,7 +169,7 @@ def _contributes(key: str, m: dict) -> bool:
     return True  # structural keys — not gated here
 
 
-# Opponent-required language — still unmodelled after CON-268.
+# Opponent-required language — still unmodelled.
 _OPPONENT_STORY = re.compile(
     r"\b(exchange|life totals?)\b", re.I,
 )
@@ -179,8 +179,8 @@ def key_support(conditions: list, deck: list,
                 commander_card: dict | None = None) -> dict[str, Any]:
     """Do engine keys have at least one extractable contributor?
 
-    CON-267/268: a `life_drained` condition with no drain text is grading a
-    question the goldfish will answer 0% forever. CON-268 applies commander
+    a `life_drained` condition with no drain text is grading a
+    question the goldfish will answer 0% forever. Commander on-cast modelling applies commander
     oracle on cast, so the commander counts as support when its mechanics
     contribute — except opponent-only effects (life exchange), which still
     extract as zeros.
@@ -219,7 +219,7 @@ def commander_story_mismatch(conditions: list,
                              commander_card: dict | None) -> dict[str, Any]:
     """Catch notes that narrate commander oracle the goldfish still cannot see.
 
-    CON-268: on-cast extractable effects (draws, bodies, drain proxies) fire.
+    on-cast extractable effects (draws, bodies, drain proxies) fire.
     Opponent life-exchange still does not. So "refuel off the flip" +
     `cards_drawn` is sound when the commander’s mechanics contribute draws;
     "life exchange padded you" + `life_gained` stays a mismatch when the
@@ -266,7 +266,7 @@ def stability(a: dict, b: dict) -> dict:
     Cheapest and most revealing check in the file. If the same deck produces
     wildly different conditions run to run, the percentages are not
     reproducible, and every claim built on them is weaker than it looks.
-    Belongs in the eval harness (CON-78) rather than the request path.
+    Belongs in the eval harness rather than the request path.
     """
     ka = {k for c in (a.get("conditions") or []) for k in (c.get("check") or {})}
     kb = {k for c in (b.get("conditions") or []) for k in (c.get("check") or {})}

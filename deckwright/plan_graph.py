@@ -1,5 +1,5 @@
 """
-plan_graph.py — deterministic plan graph from brief + commander (CON-136).
+plan_graph.py — deterministic plan graph from brief + commander.
 
 Joins interrogation brief fields with commander oracle via sim.mechanics() and
 the mechanic family taxonomy. No model call — fixture-testable and repeatable.
@@ -18,7 +18,7 @@ from deckwright import sim
 from deckwright import synergy
 
 # Commander oracle that fires once per combat (or on attack). Extra combats
-# multiply these activations — a plan fact, not a synergy object (CON-222).
+# multiply these activations — a plan fact, not a synergy object.
 # Include "whenever you attack" (collective), not only "whenever ~ attacks".
 _COMBAT_ACTIVATION_RE = re.compile(
     r"at the beginning of (?:each |your )?combat"
@@ -42,7 +42,7 @@ _FAMILY_ALIASES = {
 }
 
 # Brief phrase → seed family ids. Explicit match only — relation expand was
-# removed in CON-178 because it invented commitments with no basis in the
+# was removed because it invented commitments with no basis in the
 # commander or the brief.
 _PHRASE_FAMILIES: dict[str, tuple[str, ...]] = {
     "lifegain": ("life_math",),
@@ -136,7 +136,7 @@ _COMMITMENT_TEMPLATES: dict[str, tuple[str, str, str, int, str]] = {
         7,
         "Grindy plans need to see the right cards more than once.",
     ),
-    # CON-178: counter producers had no commitment template, so Hei Bai's only
+    # counter producers had no commitment template, so Hei Bai's only
     # payoff never became a floor on the 99.
     "counters_plus": (
         "counter_payoff_density",
@@ -193,7 +193,7 @@ def _normalize_family(fam: str) -> str:
 def _explicit_brief_families(text: str, mechanics_list: list[str]) -> list[str]:
     """Phrase/mechanic hits only — no relation expand.
 
-    CON-178: dies_triggers→life_math used to invent a lifegain commitment for a
+    dies_triggers→life_math used to invent a lifegain commitment for a
     sacrifice brief that never said lifegain. A fallback is not a match; only
     words present in the brief count as brief basis.
     """
@@ -282,9 +282,9 @@ def _basis_families(brief: dict, commander_card: dict | None) -> list[str]:
     """Commander demand first; brief theme modulates; neither may invent.
 
     Union of demand_profile families and explicit brief phrases. No relation
-    expand — that path fabricated lifegain for Hei Bai (CON-178).
+    expand — that path fabricated lifegain for Hei Bai.
 
-    CON-179: a chosen way_to_play (playstyles.json id) adds that playstyle's
+    a chosen way_to_play (playstyles.json id) adds that playstyle's
     signal families so switching aristocrats↔blink changes commitments.
     """
     text = _brief_text(brief)
@@ -428,7 +428,7 @@ def _build_conditions(
             "weight": "supporting",
         })
     elif "life_math" in families and cmdr_mech.get("lifegain_payoff", 0) > 0:
-        # CON-155: the commander IS the payoff (Vito, Heliod, Aerith). The deck
+        # the commander IS the payoff (Vito, Heliod, Aerith). The deck
         # does not need more payoffs — it needs gain EVENTS to feed this one.
         # Vito drains on every gain, so many small triggers beat one big gain,
         # and the condition has to count events rather than a life total.
@@ -443,7 +443,7 @@ def _build_conditions(
             "weight": "core",
         })
     elif "life_math" in families:
-        # CON-139: lifegain perception landed with CON-121 and life_gained /
+        # lifegain perception landed and life_gained /
         # life_drained are live THESIS_KEYS, but no condition used them — so a
         # lifegain deck was scored on mana and the scorer had no reason to
         # prefer a payoff over an enabler. A real build came back 26 enablers
@@ -477,14 +477,14 @@ def _build_conditions(
     return out[:4]
 
 
-# CON-186: tempo changes HOW MUCH the plan asks for, never WHICH families it
-# asks for. The commander decides what the deck needs (CON-178); the archetype
+# tempo changes HOW MUCH the plan asks for, never WHICH families it
+# asks for. The commander decides what the deck needs; the archetype
 # decides how demanding each ask is. Keeping that split is what stops this
-# becoming the theme-word expansion CON-178 removed.
+# becoming the theme-word expansion the commitment derivation removed.
 #
 # Measured: two wishes differing only in tempo produced a different archetype
 # and a 38.5%-Jaccard-different 99, but an IDENTICAL plan -- because the
-# archetype was not an input here at all. CON-138 put 34 points on this axis,
+# archetype was not an input here at all. The scoring contract put 34 points on this axis,
 # and the mechanism was what the plan asks for, not just how cards score.
 #
 # A burst plan wants fewer, larger payoffs; a grind plan wants more, smaller,
@@ -519,7 +519,7 @@ def _build_commitments(
     archetype: str | None = None,
 ) -> list[dict]:
     fams = list(families)
-    # CON-178: sac outlets need fodder on the 99. Emit token_density without
+    # sac outlets need fodder on the 99. Emit token_density without
     # putting "tokens" into plan families — that would make every aristocrat
     # condition prefer board_width over the life/engine check the brief named.
     if commander_card:
@@ -599,7 +599,7 @@ def serves_activation_multiplier(
 ) -> bool:
     """Card is plan-relevant as a tempo/activation multiplier for commander.
 
-    Thin CON-222 link: combat-triggered commander + timing_multiplier card.
+    Thin timing-multiplier link: combat-triggered commander + timing_multiplier card.
     Does not add combat/turn as synergy objects or invent produce→consume edges.
     """
     if not wants_activation_multiplier(commander_card):
@@ -634,7 +634,7 @@ def _derive_core(
     partner_card: dict | None,
 ) -> dict[str, Any]:
     text = _brief_text(brief)
-    # CON-178: demand_profile(commander) ∪ explicit brief phrases. Theme
+    # demand_profile(commander) ∪ explicit brief phrases. Theme
     # modulates the commander; relation expand must not replace either.
     families = _basis_families(brief, commander_card)
 
@@ -650,14 +650,14 @@ def _derive_core(
             if key not in sim.THESIS_KEYS:
                 raise ValueError(f"plan condition uses unknown THESIS_KEY: {key}")
 
-    # CON-156: the commander opens a fan of archetypes; her brief picks the
+    # the commander opens a fan of archetypes; her brief picks the
     # line. decided=False means her words did not choose — the caller should
     # say the commander supports several rather than pretending she did.
     #
-    # CON-167: decided:true is structurally impossible without a label. An
+    # decided:true is structurally impossible without a label. An
     # empty candidate list used to return decided=True with id/label None.
     #
-    # CON-176: prefer brief.strategy_shape (stated) over phrase matching
+    # prefer brief.strategy_shape (stated) over phrase matching
     # (inferred). source reports which path decided — an unknown path is not
     # a silent phrases win.
     _cands = archetypes_for(cmdr_mech, families)
@@ -666,7 +666,7 @@ def _derive_core(
     if not _label:
         _decided = False
         _arch = None if not _cands else _arch
-    # CON-185: the implication runs BOTH ways. decided:true requires a label
+    # the implication runs BOTH ways. decided:true requires a label
     # (above), and an undecided archetype must not carry one either.
     #
     # pick_archetype returns candidates[0] as its undecided fallback, so a
@@ -675,7 +675,7 @@ def _derive_core(
     # back no candidates for most commanders — generalising the gate surfaced
     # it immediately as "decided=False, label='grind it out'".
     #
-    # Candidates stay populated: CON-164's header shows her what the commander
+    # Candidates stay populated: the plan header shows her what the commander
     # supports when we could not choose. A label would read as a choice.
     if not _decided:
         _label = None
@@ -683,7 +683,7 @@ def _derive_core(
     # A decision with nothing committed is not a decision.
     if _decided and not commitments:
         _decided = False
-    # CON-175: curve preference is a first-class plan axis, same as archetype.
+    # curve preference is a first-class plan axis, same as archetype.
     # Heard from the brief fields that survive commander overwrite; consumed by
     # card_score's CMC tiebreak and (reporting-only) curve.skeleton_for.
     _curve = curve.preference(brief)
@@ -707,7 +707,7 @@ def _derive_core(
         "commitments": commitments,
         "load_bearing": _load_bearing(commander_card, partner_card),
         "theme": _theme_block(brief),
-        # CON-222: plan-level note only — not a floor, not a synergy object.
+        # plan-level note only — not a floor, not a synergy object.
         "activation_multiplier": _activation_multiplier_block(commander_card),
     }
 
@@ -726,7 +726,7 @@ def derive_provisional(brief: dict) -> dict[str, Any]:
     return _derive_core(brief or {}, None, None)
 
 
-# Family → the query that finds its PAYOFFS (CON-139).
+# Family → the query that finds its PAYOFFS.
 #
 # The role ladder searches for the theme — o:"gain life" returns 211 cards that
 # GAIN life. It never searches o:"whenever you gain life", which is the 67 cards
@@ -739,7 +739,7 @@ def derive_provisional(brief: dict) -> dict[str, Any]:
 # A small honest map beats an elegant one that returns nothing.
 #
 # Every pattern is probed at build time (scripts/check_payoff_queries.py) the
-# way CON-144 gates the taxonomy: a dead pattern fails loudly rather than
+# way the taxonomy query gate checks the taxonomy: a dead pattern fails loudly rather than
 # returning an empty pool the builder silently pads around.
 _PAYOFF_QUERIES: dict[str, str] = {
     "life_math":             'o:"whenever you gain life"',
@@ -758,7 +758,7 @@ _PAYOFF_QUERIES: dict[str, str] = {
     # fill normally, which is honest. A wrong pattern would quietly fill the
     # 99 with lands and look like it worked.
     "library_manipulation":  'o:"whenever you draw" or o:"if you would draw"',
-    # CON-178: counter and re-entry floors need candidates in the pool.
+    # counter and re-entry floors need candidates in the pool.
     # otag:counters-matter / otag:blink are gated by check_payoff_queries.py.
     "counters_plus":         "otag:counters-matter",
     "go_tall_payoffs":       "otag:counters-matter",
@@ -766,11 +766,11 @@ _PAYOFF_QUERIES: dict[str, str] = {
 }
 
 
-# Archetype: the strategy a commander ENABLES, not the one it is (CON-156).
+# Archetype: the strategy a commander ENABLES, not the one it is.
 #
 # A commander is a seed, not a plan. Vito supports three decks that share
 # almost no cards: incremental drain (many small gain triggers), burst combo
-# (one huge gain converted to lethal), and lifelink aggro. CON-155 made the
+# (one huge gain converted to lethal), and lifelink aggro. Commander-aware plans made the
 # plan read the commander but only moved a threshold — same strategy, different
 # number. This is the layer where a different strategy means different CARDS.
 #
@@ -787,7 +787,7 @@ _ARCHETYPES: dict[str, dict] = {
     },
     "burst": {
         "label": "one big turn",
-        # CON-171: the preserved drain-burst brief said "one explosive finishing
+        # the preserved drain-burst brief said "one explosive finishing
         # turn" / "burst finisher", never "one big" or the contiguous "one turn".
         # First-match against the old list scored zero and fell through to
         # incremental/undecided while the deck itself had already moved.
@@ -797,7 +797,7 @@ _ARCHETYPES: dict[str, dict] = {
         # Burst wants what a grindy deck does not: both halves of the loop, life
         # doublers, and drains that scale with a big life total.
         #
-        # Kept as SEPARATE entries, not one OR (CON-159): a combined arm let the
+        # Kept as SEPARATE entries, not one OR: a combined arm let the
         # Bond half alone satisfy min:6 and drop Exquisite Blood — the half that
         # actually closes the Vito loop and scores zero in a goldfish.
         #
@@ -843,10 +843,10 @@ def archetypes_for(commander_mech: dict | None, families: list[str]) -> list[str
     out: list[str] = []
     mech = commander_mech or {}
 
-    # CON-185: this used to open with `if "life_math" not in families: return
+    # this used to open with `if "life_math" not in families: return
     # []`, so the archetype axis was live for lifegain decks and DEAD for
     # everything else — sacrifice, tokens, counters, spellslinger, artifacts,
-    # blink, tribal all got no tempo decision at all. CON-138 measured that
+    # blink, tribal all got no tempo decision at all. The scoring contract measured that
     # axis at 34 points, so it was 34 points of scoring that twelve of our
     # thirteen playstyles never reached.
     #
@@ -859,9 +859,9 @@ def archetypes_for(commander_mech: dict | None, families: list[str]) -> list[str
     if not families:
         # No plan is no basis, even with a readable commander. My first cut
         # allowed a commander body alone to yield candidates, and that broke
-        # CON-167 immediately: Tatyova and an empty brief both came back
+        # immediately: Tatyova and an empty brief both came back
         # decided=False while carrying id='incremental' and the label "grind
-        # it out". A label without a decision is exactly the lie CON-167
+        # it out". A label without a decision is exactly the lie the empty-brief refusal guards against
         # exists to prevent. The archetype answers "how does this PLAN win",
         # so no plan means no answer.
         return out
@@ -888,7 +888,7 @@ def archetypes_for(commander_mech: dict | None, families: list[str]) -> list[str
 def _brief_archetype_text(brief: dict) -> str:
     """Prose the picker may read. Mechanics are part of the brief signal.
 
-    CON-171: drain-burst's decisive "burst finisher" lived only in mechanics;
+    drain-burst's decisive "burst finisher" lived only in mechanics;
     scanning angle/strategy alone left the picker with nothing to hear.
     """
     parts = [str(brief.get(k) or "") for k in
@@ -916,7 +916,7 @@ def _positive_phrase_hits(phrase: str, text: str) -> int:
         start = i + step
 
 
-# Values the interrogator may put in brief.strategy_shape (CON-176).
+# Values the interrogator may put in brief.strategy_shape.
 # Kept wider than _ARCHETYPES on purpose: "control" is a real wish even when
 # the current commander fan cannot support it. Stated-but-unsupported is
 # decided=False with source="strategy_shape", never a silent phrase guess.
@@ -937,15 +937,15 @@ def pick_archetype(
     candidate with decided=False so the caller can say the commander supports
     several rather than pretending she picked.
 
-    CON-167: no candidates means undecided, not a silent decision. decided:true
+    no candidates means undecided, not a silent decision. decided:true
     with id/label None was the lie an empty brief used to ship.
 
-    CON-171: score every candidate and ignore negated contrast phrases. The old
+    score every candidate and ignore negated contrast phrases. The old
     first-match walk returned whichever candidate was listed first as soon as
     any of its words appeared — so "not a combo" could never elect burst, and a
     burst brief that used "explosive" instead of "one big" scored zero.
 
-    CON-176: prefer the structured strategy_shape field. Phrase matching is a
+    prefer the structured strategy_shape field. Phrase matching is a
     fallback for null only — racing the model's vocabulary with more substrings
     is how run 4 collapsed both sides onto aggro after run 3 passed.
     """
@@ -955,7 +955,7 @@ def pick_archetype(
     raw = brief.get("strategy_shape")
     if raw is not None and str(raw).strip():
         shape = str(raw).strip().lower()
-        # Non-empty is "stated". Phrase fallback is null-only (CON-176).
+        # Non-empty is "stated". Phrase fallback is null-only.
         # Values come from _STRATEGY_SHAPES (CHAT schema); candidates is the
         # narrower commander fan. control is valid to state and may still be
         # unsupported here — that is decided=False, not a silent phrase path.
@@ -980,7 +980,7 @@ def pick_archetype(
 
 
 def plan_is_success(plan: dict | None) -> bool:
-    """Whether a plan is an honest, finished decision (CON-167).
+    """Whether a plan is an honest, finished decision.
 
     decided:true requires a label. Empty commitments are an error state, never
     a silent success — the UI already renders the undecided case.
@@ -1018,7 +1018,7 @@ def payoff_searches(plan: dict) -> list[dict]:
         out.append({"id": c.get("id"), "query": q,
                     "min": int(c.get("counts", {}).get("min") or 8)})
 
-    # CON-156: the archetype changes WHICH cards are candidates, not just a
+    # the archetype changes WHICH cards are candidates, not just a
     # threshold. A burst plan searches the loop halves; an aggro plan searches
     # lifelink bodies. Same commander, same brief family, different 99.
     arch = (plan.get("archetype") or {}).get("id")

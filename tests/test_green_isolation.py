@@ -1,4 +1,4 @@
-"""CON-315: green sandbox must not write blue's saved decks.
+"""green sandbox must not write blue's saved decks.
 
 Offline. No network. Unset env = today's ~/.deckwright paths.
 """
@@ -75,7 +75,7 @@ def _restore_env(saved: dict[str, str | None]):
 
 
 def test_unset_defaults_match_today():
-    print("\nCON-315 — unset env is blue ~/.deckwright")
+    print("\nunset env is blue ~/.deckwright")
     saved = _clear_env()
     try:
         import importlib
@@ -97,7 +97,7 @@ def test_unset_defaults_match_today():
 
 
 def test_home_override_and_readonly():
-    print("\nCON-315 — DECKWRIGHT_HOME / CORPUS_DIR / READONLY")
+    print("\nDECKWRIGHT_HOME / CORPUS_DIR / READONLY")
     saved = _clear_env()
     try:
         with tempfile.TemporaryDirectory(prefix="dw-g0-") as tmp:
@@ -123,7 +123,7 @@ def test_home_override_and_readonly():
 
 
 def test_blue_refuses_candidate():
-    print("\nCON-315 — blue + candidate refuses boot")
+    print("\nblue + candidate refuses boot")
     saved = _clear_env()
     try:
         import importlib
@@ -152,7 +152,7 @@ def test_blue_refuses_candidate():
 
 
 def test_subprocess_green_save_leaves_blue_untouched():
-    print("\nCON-315 — persist_deck under DECKWRIGHT_HOME does not touch blue")
+    print("\npersist_deck under DECKWRIGHT_HOME does not touch blue")
     with tempfile.TemporaryDirectory(prefix="dw-g0-iso-") as tmp:
         tmp_p = Path(tmp)
         blue = tmp_p / "blue"
@@ -203,7 +203,7 @@ def test_subprocess_green_save_leaves_blue_untouched():
 
 
 def test_corpus_readonly_does_not_fetch_or_write():
-    print("\nCON-315 — corpus readonly skips rewrite")
+    print("\ncorpus readonly skips rewrite")
     saved = _clear_env()
     try:
         with tempfile.TemporaryDirectory(prefix="dw-g0-corp-") as tmp:
@@ -271,14 +271,14 @@ def test_green_plist_and_install_script():
     true("not blue log path", "/tmp/deckwright.log" not in text)
     true("WorkingDirectory placeholder", "__REPO_ROOT__" in text)
     true("HOME placeholder", "__HOME__" in text)
-    true("CON-334 LLM timeout 600",
+    true("LLM timeout 600",
          "DECKWRIGHT_LLM_TIMEOUT" in text and "<string>600</string>" in text)
-    true("CON-336 no EDHREC seed on BLUE baseline",
+    true("no EDHREC seed on BLUE baseline",
          "DECKWRIGHT_EDHREC_SEED" not in text)
     true("blue plist unchanged label",
          "com.deckwright</string>" in blue_text)
     true("blue still :8000 default (no 8001)", "8001" not in blue_text)
-    # Blue production timeout is Brad's call (CON-334); do not require it here.
+    # The production timeout is an operator choice; do not require it here.
 
     root = ET.parse(plist).getroot()
     d = root.find("dict")
@@ -293,10 +293,10 @@ def test_green_plist_and_install_script():
     true("install substitutes REPO", "__REPO_ROOT__" in sh and "sed" in sh)
     true("install substitutes HOME", "__HOME__" in sh)
     true("install label green", "com.deckwright.green" in sh)
-    true("CON-324 refuses primary clone",
+    true("refuses primary clone",
          '-d "$REPO_ROOT/.git"' in sh or '-d "$REPO_ROOT/.git"' in sh.replace("'", '"'))
-    true("CON-324 names worktree", "worktree" in sh.lower())
-    true("CON-324 refuses blue WorkingDirectory",
+    true("names worktree", "worktree" in sh.lower())
+    true("refuses blue WorkingDirectory",
          "com.deckwright.plist" in sh and "WorkingDirectory" in sh)
     true("install warns on missing timeout", "DECKWRIGHT_LLM_TIMEOUT" in sh)
     mode = install.stat().st_mode
@@ -318,7 +318,7 @@ def test_green_b_plist_and_install_script():
     true("candidate B", "<string>B</string>" in text)
     true("green-b home dir", ".deckwright-green-b" in text)
     true("green-b log path", "/tmp/deckwright-green-b.log" in text)
-    true("CON-334 LLM timeout 600",
+    true("LLM timeout 600",
          "DECKWRIGHT_LLM_TIMEOUT" in text and "<string>600</string>" in text)
     sh = install.read_text()
     true("install-b label", "com.deckwright.green-b" in sh)
@@ -374,7 +374,7 @@ exit 0
         true("old venv mentioned", "309" in (proc.stdout + proc.stderr))
 
 def test_green_index_badge():
-    print("\nCON-315 — staging badge on GET / when green")
+    print("\nstaging badge on GET / when green")
     saved = _clear_env()
     try:
         import asyncio
@@ -408,7 +408,7 @@ def test_green_index_badge():
 
 
 def test_boot_status_exposes_env():
-    print("\nCON-315 — /api/boot names env")
+    print("\n/api/boot names env")
     saved = _clear_env()
     try:
         import asyncio

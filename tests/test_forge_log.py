@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-160: forge_log parses a real game without Java in the loop."""
+"""forge_log parses a real game without Java in the loop."""
 
 import sys
 from pathlib import Path
@@ -32,7 +32,7 @@ rows = forge_log.cumulative(tl, tl["hero"])
 eq("one row per turn", len(rows), 30)
 (ok if rows[-1]["life_gained"] > 0 else bad)("life gained moves", str(rows[-1]))
 (ok if rows[-1]["life_drained"] > 0 else bad)("life drained moves", str(rows[-1]))
-# CON-163: life_drained is opponent life lost (THESIS), not damage the hero took.
+# life_drained is opponent life lost (THESIS), not damage the hero took.
 # Hero won this fixture; opponent lost far more than the 6 life the hero lost.
 (ok if rows[-1]["life_drained"] >= 20 else bad)(
     "life_drained is opponent loss, not hero damage taken", str(rows[-1]))

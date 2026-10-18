@@ -1,5 +1,5 @@
 """
-test_readiness.py — CON-152 readiness gate before readback/commanders.
+test_readiness.py — readiness gate before readback/commanders.
 
 Confidence is countable facts, never a model percentage.
 An unknown is not a zero; a blocked brief does not reach commanders.
@@ -135,9 +135,9 @@ async def test_budget_warn_not_block():
 
 
 async def test_colors_do_not_block():
-    """CON-142 / INTERROGATOR: colours come from the commander. Missing colours
+    """INTERROGATOR: colours come from the commander. Missing colours
     must not force a question — that would fight the sacred prompt."""
-    print("\ncheck_readiness()  — missing colours do not block (CON-142)")
+    print("\ncheck_readiness()  — missing colours do not block")
     await app.load_vocab()
     brief = {**COMPLETE}
     brief.pop("colors", None)
@@ -201,7 +201,7 @@ async def test_thin_pool_discloses_live():
 
 
 async def test_thin_pool_discloses_unit():
-    """CON-192: 5 on-theme cards → warn + disclose, not block."""
+    """5 on-theme cards → warn + disclose, not block."""
     print("\ncheck_readiness()  — thin non-zero is disclosure (unit)")
     await app.load_vocab()
 
@@ -293,15 +293,15 @@ async def test_commander_named_without_theme():
     eq("no question", r.get("question"), None)
 
 
-async def test_con170_composed_and_behaviour_phrases_ready():
-    """CON-170: model theme phrasing must not non-deterministically block on terms.
+async def test_composed_and_behaviour_phrases_ready():
+    """model theme phrasing must not non-deterministically block on terms.
 
     resolve_theme places these; readiness used to demand each display segment
     resolve as a single catalog term, so 'vampire lifegain' and 'drain the
     table' blocked while 'vampires that drain' passed — same wish, different
     brief wording.
     """
-    print("\ncheck_readiness()  — CON-170 composed / behaviour phrases proceed")
+    print("\ncheck_readiness()  — composed / behaviour phrases proceed")
     await app.load_vocab()
     cases = [
         "vampire lifegain",
@@ -321,9 +321,9 @@ async def test_con170_composed_and_behaviour_phrases_ready():
             eq(f"ready for {theme!r}", r.get("ready"), True)
 
 
-async def test_con170_dead_behaviour_still_blocks():
+async def test_dead_behaviour_still_blocks():
     """stax is a known-dead behaviour — still load-bearing, still blocks."""
-    print("\ncheck_readiness()  — CON-170 dead behaviour still blocks")
+    print("\ncheck_readiness()  — dead behaviour still blocks")
     await app.load_vocab()
     r = await app.check_readiness({**COMPLETE, "theme": "stax pirates"})
     eq("not ready", r.get("ready"), False)
@@ -336,9 +336,9 @@ async def test_con170_dead_behaviour_still_blocks():
         "blocker names stax", str(terms))
 
 
-async def test_con170_blocker_detail_names_term():
+async def test_blocker_detail_names_term():
     """Harness (and UI) need the term, not just signal='terms'."""
-    print("\ncheck_readiness()  — CON-170 terms blocker carries the word")
+    print("\ncheck_readiness()  — terms blocker carries the word")
     await app.load_vocab()
     r = await app.check_readiness({**COMPLETE, "theme": "heists"})
     blockers = r.get("blockers") or []
@@ -360,9 +360,9 @@ async def main():
     await test_stuck_degrades_honestly()
     await test_unreachable_pool_is_not_a_zero()
     await test_commander_named_without_theme()
-    await test_con170_composed_and_behaviour_phrases_ready()
-    await test_con170_dead_behaviour_still_blocks()
-    await test_con170_blocker_detail_names_term()
+    await test_composed_and_behaviour_phrases_ready()
+    await test_dead_behaviour_still_blocks()
+    await test_blocker_detail_names_term()
     await test_complete_brief_proceeds()
     await test_thin_pool_discloses_unit()
     await test_zero_pool_still_blocks_unit()

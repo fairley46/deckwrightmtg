@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CON-119 gate: can the simulator tell two cards apart?
+gate: can the simulator tell two cards apart?
 
 This is the contract for the mechanics/perception work. It is not a test of
 whether the app is nice — it is the single question that decides whether the
@@ -21,15 +21,15 @@ Every pair below is: same cost, same stated effect, genuinely different value.
 No trick cards, no corner cases — if the perception layer cannot separate these
 it cannot separate anything.
 
-The pairs are ordered by the sequence Cursor is farming: draw, then lifegain and
+The pairs are ordered by the sequence perception was built in: draw, then lifegain and
 drain, then tokens. Each pair asserts a DIRECTION, never a magnitude, because
 magnitudes are a scoring decision and this file must not quietly become the
-scoring contract (that is CON-138, and it belongs to Box).
+scoring contract (that lives in docs/SCORING-CONTRACT.md).
 
     python test_perception.py            # run the gate
     python test_perception.py --verbose  # show every extracted mechanic
 
-CON-162 added an adversarial section — one card per signal the regex was getting
+added an adversarial section — one card per signal the regex was getting
 wrong. Those pairs must stay green; a silent zero on a new phrasing is how Azusa
 and "target player draws" shipped.
 """
@@ -97,8 +97,8 @@ differs(
     "the whole ramp axis depends on this and it is the one thing that works",
 )
 
-# ── draw: CON-119 ────────────────────────────────────────────────────────────
-section("draw — CON-119")
+# ── draw perception ────────────────────────────────────────────────────────────
+section("draw")
 
 differs(
     "Phyrexian Arena draws more than Sign in Blood",
@@ -176,7 +176,7 @@ differs(
 )
 
 
-# ── graveyard / flashback: CON-123 ───────────────────────────────────────────
+# ── graveyard / flashback perception ───────────────────────────────────────────
 section("graveyard — flashback family")
 
 differs(
@@ -190,7 +190,7 @@ differs(
 )
 
 # ── condition lift: engines move cards_drawn % on a fixed deck ───────────────
-section("condition lift — CON-119 (fixed deck, cards_drawn)")
+section("condition lift — (fixed deck, cards_drawn)")
 
 
 def _lift_deck(extra):
@@ -214,7 +214,7 @@ def condition_lift(label, better, worse, why):
     """better must fire cards_drawn>=2 by turn 8 more often than worse.
 
     Turn 8, not 5: a 3-mana engine has to resolve and then tick. Direction
-    only — magnitudes are Box (scoring contract).
+    only — magnitudes belong to the scoring contract.
     """
     # Threshold 4, not 2 — and this is the whole point of the scoring contract.
     # At >=2 the one-shot legitimately WINS (Arena 7.3% vs Sign 11.0% @T8):
@@ -248,7 +248,7 @@ condition_lift(
          "At the beginning of your upkeep, you draw a card and you lose 1 life."),
     card("Sign in Blood", "{B}{B}", 2, "Sorcery",
          "Target player draws two cards and loses 2 life."),
-    # CON-146: Sign is visible now (draws=2). At cards_drawn>=2 @T8 a cheap
+    # Sign is visible now (draws=2). At cards_drawn>=2 @T8 a cheap
     # one-shot can beat a 3-mana engine — that is the scoring-contract finding,
     # not a reason to zero Sign again. Extraction pair above is 6>2; this lift
     # is a separate question. BLIND here is honest.
@@ -271,8 +271,8 @@ differs(
 )
 
 
-# ── CON-162 adversarial misses (one wrong card per signal) ───────────────────
-section("CON-162 adversarial — cards the regex got wrong")
+# ── adversarial extraction misses from the scoring-math audit (one wrong card per signal) ───────────────────
+section("adversarial — cards the regex got wrong")
 
 differs(
     "Wheel of Fortune draws seven; a burn spell draws zero",
@@ -394,7 +394,7 @@ differs(
          "basic land card, put that card onto the battlefield tapped, then "
          "shuffle."),
     "fetch", ">",
-    "CON-163: activated land-search was counted as on-cast fetch — goldfish "
+    "activated land-search was counted as on-cast fetch — goldfish "
     "invented a free land the turn after Bauble resolved (+12 pts optimistic "
     "on lands>=6 vs Forge n=50)",
 )
@@ -409,6 +409,6 @@ if _failed:
     print(f"card_score.py is ordering those roles by noise.{OFF}")
 else:
     print(f"{GREEN}all {total} pairs distinguished{OFF}")
-    print(f"{DIM}The perception layer can see. Scoring magnitudes are CON-138.{OFF}")
+    print(f"{DIM}The perception layer can see. Scoring magnitudes are the scoring contract.{OFF}")
 
 sys.exit(1 if _failed else 0)

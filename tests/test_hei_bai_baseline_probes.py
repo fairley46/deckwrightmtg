@@ -1,5 +1,5 @@
 """
-Offline probes for scripts/hei_bai_baseline.py (CON-174).
+Offline probes for scripts/hei_bai_baseline.py.
 
 The live script needs a running server. These assert the measurement itself:
 causation of leaving, not the leave phrase.
@@ -59,7 +59,7 @@ def _count(label, cards):
 
 
 def main() -> int:
-    print("\nhei_bai_baseline probes — causation, not phrasing (CON-174)")
+    print("\nhei_bai_baseline probes — causation, not phrasing")
     labels = [p[0] for p in mod.PROBES]
     eq("has sac-outlet cause probe",
        "CAUSES leaving: sac outlet" in labels, True)

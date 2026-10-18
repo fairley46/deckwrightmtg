@@ -1,4 +1,4 @@
-# How Deckwright is put together
+# How DeckWright is put together
 
 One FastAPI process, one HTML file, no build step, no database. Everything below
 is a consequence of that.
@@ -53,7 +53,7 @@ flowchart TB
 
     subgraph disk["on disk"]
         saved[("~/.deckwright/<br>saved decks + sim baselines")]
-        bakes[("data/precons/<br>155 baked analyses")]
+        bakes[("data/precons/<br>optional local precon bakes")]
     end
 
     browser <--> api
@@ -122,7 +122,7 @@ spec for everything after it.**
 
 | Stage | Reads | Decides |
 |---|---|---|
-| Interrogation | her words | theme, mechanics, playstyle, **way_preference**, table |
+| Interrogation | the player's words | theme, mechanics, playstyle, **way_preference**, table |
 | Instrument / readback | theme spans | live Scryfall counts (ok / empty / unknown) |
 | Commander | brief + ways | five candidates; soft-prefer mapped way |
 | Skeleton | playstyle + curve | role slot counts (`SKELETON_LIVE`) |
@@ -154,17 +154,17 @@ Anything derived from prose must resolve through `classify()` against Scryfall's
 real vocabulary before it becomes a query.
 
 **Wrong meter.** A Keychain API key with no credits, or a launchd PATH that hides
-the `claude` CLI, makes every model call look broken. `./run.sh` prefer the CLI and
-prints which meter is running. See CON-262.
+the `claude` CLI, makes every model call look broken. `./run.sh` prefers the CLI, and
+`python -m deckwright.check` prints which one is in use.
 
 **A backend with no caller.** Features have landed complete and done nothing
-because the frontend never called them. Green tests, shipped card, no effect.
+because the frontend never called them. Green tests, merged change, no effect.
 Check the call site.
 
 ## Deliberately absent
 
-No database, no auth, no Docker, no frontend build, no multi-user. Two people on
-a small local install; every one of those adds work for users who do not exist.
+No database, no auth, no Docker, no frontend build, no multi-user. It is a
+single-user local app; each of those would add work for users it does not have.
 
 A saved deck is a JSON file. Older ones simply lack newer fields, and the app
 checks rather than assuming — which is the entire migration story. Ask recomputes

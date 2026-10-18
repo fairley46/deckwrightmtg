@@ -1,4 +1,4 @@
-"""CON-285: process boot — warm, refresh catalogs, remeasure understanding.
+"""process boot — warm, refresh catalogs, remeasure understanding.
 
 Three tiers (do not collapse them):
 
@@ -9,7 +9,7 @@ Three tiers (do not collapse them):
    (`print_wave_reeval.py`, offline bulk).
 
 2. **Named print wave (semi-automatic)** — `./update.sh --print-wave NAME`
-   re-downloads oracle bulk and writes the CON-260 report. Detection only.
+   re-downloads oracle bulk and writes the print-wave re-eval report. Detection only.
 
 3. **Admit (human / farmed PR)** — new `oracle_signals`, playstyle maps, grammar
    expressions, strategy commitments. Never invented on boot. See
@@ -51,14 +51,14 @@ class BootStatus:
     stale: bool = False
     error: str | None = None
     understanding: dict[str, Any] | None = None
-    # CON-295: live Scryfall preflight. None until probed. ok:false names a
+    # live Scryfall preflight. None until probed. ok:false names a
     # challenge / rate limit / timeout without blocking local pages.
     card_source: dict[str, Any] | None = None
     started_at: float = field(default_factory=time.time)
     finished_at: float | None = None
 
     def as_dict(self) -> dict[str, Any]:
-        # CON-294: corpus age is visible on every boot poll — a stale or
+        # corpus age is visible on every boot poll — a stale or
         # missing bulk file must not be silent.
         try:
             from deckwright import corpus as _corpus
@@ -79,8 +79,8 @@ class BootStatus:
             "error": self.error,
             "understanding": self.understanding,
             # Two different questions, both worth answering on boot: can we
-            # reach the card source at all (CON-295), and how fresh is the
-            # local corpus we would rather read instead (CON-294).
+            # reach the card source at all, and how fresh is the
+            # local corpus we would rather read instead.
             "card_source": self.card_source,
             "corpus": corpus_status,
             "env": instance.env_name(),
@@ -158,7 +158,7 @@ def data_is_stale(limit_days: int = STALE_DAYS) -> bool:
 def corpus_is_missing() -> bool:
     """True when the local bulk file is absent.
 
-    CON-296: grammar/KB can be fresh while oracle_cards.jsonl was never
+    grammar/KB can be fresh while oracle_cards.jsonl was never
     downloaded. That is not "fresh enough" — every lookup then hits live
     Scryfall, which is the exposure that took the app down. Unknown ≠ fine.
     """
@@ -345,7 +345,7 @@ _CARD_SOURCE_COPY = {
 async def _run_card_source_probe(
     probe: Callable[[], Awaitable[Any]] | None,
 ) -> dict[str, Any] | None:
-    """CON-295: one look at the live card source. Failure is a named state."""
+    """one look at the live card source. Failure is a named state."""
     if probe is None:
         return None
     try:

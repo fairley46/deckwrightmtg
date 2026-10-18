@@ -1,19 +1,17 @@
-# Know Magic — maintenance (after lap 4)
+# Card understanding ("Know Magic") — maintenance
 
-Comprehension laps are closed. Coverage is **stated with a number**, unread is **named**, precision held. Not 100% — and that is the exit condition CON-246 asked for.
+"Know Magic" is the project's name for how well DeckWright can read card text: which oracle lines map to a known signal or keyword, and which are still unread. Coverage is **stated with a number**, unread lines are **named**, and playstyle precision is held above a floor. It is not 100%, and the docs say so.
 
-Broader post-GA Auto lane (picker, ways maps, honesty joins): .
+## How this relates to boot
 
-## How this relates to desktop boot (CON-285)
-
-| Automatic on stale launch / Sunday cadence | Still this doc (admit PR) |
+| Automatic on a stale launch or scheduled refresh | Still this doc (admit PR) |
 |---|---|
 | Grammar catalogs (new words, types, keywords, sets) | New `oracle_signals` for unread oracle lines |
 | `synergy_objects` re-derive | New playstyle / strategy maps |
 | Commanders KB `--mechanics-refresh` | New grammar expressions with verified counts |
 | `print_wave_reeval.py` remeasure (coverage + precision) | Touching verifiers / INTERROGATOR / THESIS / ROLES / sim model |
 
-Boot and weekly cadence **detect and refresh**; they do **not** invent reading rules
+Boot and the scheduled refresh **detect and refresh**; they do **not** invent reading rules
 or ways-to-play. When the report’s `next_steps` or unread cluster moves after a
 named set, run the admit loop below.
 
@@ -21,15 +19,14 @@ named set, run the admit loop below.
 
 After a major Magic print wave (set / commander precon dump), or when someone claims a new mechanic is "missing" from reading.
 
-Linear card: CON-260. One command
-(also `./update.sh --print-wave NAME` on the demo host):
+One command (or `./update.sh --print-wave NAME`):
 
 ```bash
 source .venv/bin/activate
 python scripts/print_wave_reeval.py                  # offline bulk + precision + spot-checks
-python scripts/print_wave_reeval.py --refresh        # also run weekly cadence first
+python scripts/print_wave_reeval.py --refresh        # run the data refresh first
 python scripts/print_wave_reeval.py --fetch --wave NAME   # new set dump: re-download bulk
-python test_print_wave_reeval.py                     # offline harness for the path itself
+python tests/test_print_wave_reeval.py               # offline harness for the path itself
 ```
 
 Writes `data/print_wave_reeval.json` + `.md`. Still readable underneath:
@@ -37,11 +34,11 @@ Writes `data/print_wave_reeval.json` + `.md`. Still readable underneath:
 - `data/oracle_coverage_report.md` — especially `unread_lines_ranked`
 - `python scripts/check_playstyles.py` — precision floor 88% (also `--json`)
 
-Gate 1 live Playwright retest stays Claude-owned; the script records the last retest doc (`0/0/0` as of 2026-08-08) and will not invent green.
+The report also reads the last recorded live UI retest (`testdata/review/2026-08-08-gate1-RETEST.md`) and will not report green that was never measured.
 
 ## What to do with a new unread cluster
 
-Same loop as CON-246, smaller:
+The same loop used to build card understanding, at a smaller scale:
 
 1. **Name the gap** — count + exemplar line from the report.
 2. **Research** — what it does, who plays it (`method: both | community | derived`).
@@ -57,7 +54,7 @@ Refuse:
 
 ## Current band
 
-**Restated 2026-08-08** via `scripts/print_wave_reeval.py` (`wave=baseline-reeval-2026-08-08`, overall `ok`). Same band as end of CON-253 — no new admit this run.
+Last measured with `scripts/print_wave_reeval.py` (`wave=baseline-reeval-2026-08-08`, overall `ok`):
 
 | metric | value |
 |---|---:|

@@ -2673,7 +2673,7 @@
         {
           "name": "jaccard overlap",
           "status": "PASS",
-          "detail": "Jaccard 41.7% (shared 48 / union 115) \u2014 upper bar not yet calibrated (CON-168: publish first)"
+          "detail": "Jaccard 41.7% (shared 48 / union 115) \u2014 upper bar not yet calibrated (publish first)"
         },
         {
           "name": "archetype differs",

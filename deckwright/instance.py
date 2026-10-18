@@ -1,4 +1,4 @@
-"""CON-315: blue/green instance identity and data directories.
+"""blue/green instance identity and data directories.
 
 Unset environment = production today: saved decks and the Scryfall bulk
 corpus both live in ~/.deckwright.

@@ -59,7 +59,7 @@ def _cheap_ramp_draw(deck: list) -> int:
 
 
 def _commander_cards(cmdr_card) -> list[dict]:
-    """Accept one commander dict or a list (CON-118 partner pairs)."""
+    """Accept one commander dict or a list (partner pairs)."""
     if not cmdr_card:
         return []
     if isinstance(cmdr_card, (list, tuple)):
@@ -213,7 +213,7 @@ def plan(spell_deck: list, cmdr_card, identity: list,
     """Size the mana base before nonbasic lands are filled.
 
     spell_deck: cards placed so far (no lands/basic). cmdr_card: trimmed
-    commander, or a list when the deck has partners (CON-118).
+    commander, or a list when the deck has partners.
     Source verdict runs on the finished deck in /api/build — not here.
     """
     total, land_basis = total_lands_target(spell_deck, cmdr_card)

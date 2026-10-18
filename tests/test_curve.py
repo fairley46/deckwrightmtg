@@ -1,5 +1,5 @@
 """
-test_curve.py — can she actually play the plan? (CON-175 / curve spec)
+test_curve.py — can she actually play the plan?
 
 Offline. No model calls, no network. Run:
 
@@ -99,7 +99,7 @@ def _dense_deck(n_lands=36, cheap=True):
 
 
 # ---------------------------------------------------------------------------
-# CON-175 diagnosis: the brief carries the words; the picker could not hear.
+# diagnosis: the brief carries the words; the picker could not hear.
 # ---------------------------------------------------------------------------
 
 def test_preference_hears_surviving_brief_fields():
@@ -230,8 +230,8 @@ def test_ramp_split_separates_explosive():
 
 
 def test_skeleton_live_shapes_role_counts():
-    """CON-216: SKELETON_LIVE — derived counts are applied, not observation-only."""
-    print("\ncurve — skeleton_for is live (CON-216)")
+    """SKELETON_LIVE — derived counts are applied, not observation-only."""
+    print("\ncurve — skeleton_for is live")
     cmdr = {"name": "Test", "cmc": 4, "type_line": "Legendary Creature — Test"}
     plan = {"archetype": {"id": "incremental", "decided": True},
             "commitments": [], "curve": "low"}
@@ -251,11 +251,11 @@ def test_skeleton_live_shapes_role_counts():
 
 
 def test_skeleton_live_low_vs_high_differential():
-    """CON-216 / CON-175: cheap-and-fast vs big-spells move counts the right way."""
+    """cheap-and-fast vs big-spells move counts the right way."""
     print("\ncurve — live skeleton differential low vs high")
     cmdr = {"name": "Vito, Thorn of the Dusk Rose", "cmc": 3,
             "type_line": "Legendary Creature — Vampire Cleric"}
-    # Same playstyle so the delta is curve preference alone (CON-175 re-gate).
+    # Same playstyle so the delta is curve preference alone (re-gate).
     low_brief = {
         "theme": "vampire lifegain drain",
         "angle": "cheap and fast, low mana costs, I want to be doing things early",
@@ -283,7 +283,7 @@ def test_skeleton_live_low_vs_high_differential():
        sum(c for n, c in low.items() if n != "lands"),
        app._spell_role_sum(list(app.ROLES)))
 
-    # Playstyle still stacks on the derived curve (CON-74).
+    # Playstyle still stacks on the derived curve.
     grindy = {n: c for n, c, _ in app.skeleton_for(
         {**high_brief, "playstyle": "grindy"}, commander=cmdr)}
     eq("grindy stacks more wipe than proactive high",
@@ -297,7 +297,7 @@ def test_skeleton_live_low_vs_high_differential():
 
 
 def test_ui_curve_report_matches_live_flag():
-    """CON-201/216: UI copy matches whether the skeleton rewrote role counts."""
+    """UI copy matches whether the skeleton rewrote role counts."""
     print("\ncurve — UI curve_report honesty matches SKELETON_LIVE")
     html = Path(__file__).resolve().parents[1].joinpath("index.html").read_text()
     (ok if "renderCurveReportBlock" in html else fail)(

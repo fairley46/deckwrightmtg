@@ -1,4 +1,4 @@
-"""CON-287 — drop unlabelled pool size; narrowing turn toward commanders.
+"""drop unlabelled pool size; narrowing turn toward commanders.
 
     python test_narrowing.py
 """

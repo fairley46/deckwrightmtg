@@ -1,4 +1,4 @@
-"""CON-321 Gate 4 — soft steer + otag rollup tests. Pattern fixtures only."""
+"""soft steer + otag rollup tests. Pattern fixtures only."""
 
 from __future__ import annotations
 
@@ -106,8 +106,8 @@ def test_no_named_commander_branches():
 
 
 def test_artifact_mv_bound_skips_non_artifacts():
-    """CON-329: steer bound_ok must match audit type guards on artifact_mv."""
-    print("\nGate 4 / CON-329 — artifact_mv bound skips creatures and sorceries")
+    """steer bound_ok must match audit type guards on artifact_mv."""
+    print("\nGate 4 / artifact_mv bound skips creatures and sorceries")
     import os
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
@@ -204,8 +204,8 @@ MV_FLOOR_OR_GREATER = {
 
 
 def test_steer_floor_demotes_below_not_above():
-    """CON-331: floor bound demotes cheap subjects; expensive ones stay ok."""
-    print("\nGate 4 / CON-331 — steer demotes below-floor, not above-floor")
+    """floor bound demotes cheap subjects; expensive ones stay ok."""
+    print("\nGate 4 / steer demotes below-floor, not above-floor")
     import os
     from deckwright import commander_strategy as cs
     from deckwright import strategy_audit as sa
@@ -263,7 +263,7 @@ BELLO_SHAPED_FLOOR = {
 
 
 def test_steer_equipment_ok_under_bello_floor():
-    print("\nGate 4 / CON-334 — Equipment not demoted on Bello-shaped floor")
+    print("\nGate 4 / Equipment not demoted on Bello-shaped floor")
     import os
     from deckwright import commander_strategy as cs
     from deckwright import strategy_steer as ss
@@ -296,8 +296,8 @@ def test_steer_equipment_ok_under_bello_floor():
 
 
 def test_cmp_votes_feeder_beats_unknown():
-    """CON-334 caveat 2: unknown bound is neutral; must not tie with feeder."""
-    print("\nGate 4 / CON-334 — cmp_votes: feeder beats unknown/neutral")
+    """caveat 2: unknown bound is neutral; must not tie with feeder."""
+    print("\nGate 4 / cmp_votes: feeder beats unknown/neutral")
     from deckwright import strategy_steer as ss
 
     eq("feeder vs unknown", ss.cmp_votes(1, None), 1)
@@ -310,7 +310,7 @@ def test_cmp_votes_feeder_beats_unknown():
 
 
 def test_prefer_strategy_feeder_before_unknown_bound():
-    print("\nGate 4 / CON-334 — prefer_strategy: feeder before unknown-bound card")
+    print("\nGate 4 / prefer_strategy: feeder before unknown-bound card")
     import os
     from deckwright import strategy_steer as ss
 

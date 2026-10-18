@@ -1,5 +1,5 @@
 """
-CON-187: parse_json_list peels trailing prose after a complete JSON value.
+parse_json_list peels trailing prose after a complete JSON value.
 
 The write-up path was burning both retries on
 `Extra data: line 13 column 1` — valid JSON, then more text. A retry that
@@ -61,7 +61,7 @@ def _resp(text: str, stop_reason: str = "end_turn"):
 
 
 def test_peels_trailing_prose_object():
-    print("\nCON-187 — Extra data after object is peeled, not empty")
+    print("\nExtra data after object is peeled, not empty")
     payload = {
         "name": "Etali, Primal Storm",
         "does": "Cast free spells off the top.",
@@ -87,14 +87,14 @@ def test_peels_trailing_prose_object():
 
 
 def test_peels_trailing_prose_list():
-    print("\nCON-187 — Extra data after array is peeled")
+    print("\nExtra data after array is peeled")
     raw = '["a", "b"]\nThanks!'
     got = app.parse_json_list(_resp(raw), "list-test", expect="list")
     eq("peeled list", got, ["a", "b"])
 
 
 def test_clean_json_still_works():
-    print("\nCON-187 — clean JSON unchanged")
+    print("\nclean JSON unchanged")
     got = app.parse_json_list(
         _resp('{"name": "Nazar, the Velvet Fang", "does": "drain"}'),
         "clean", expect="object")
@@ -102,7 +102,7 @@ def test_clean_json_still_works():
 
 
 def test_truncated_still_empty():
-    print("\nCON-187 — truncated mid-object stays empty (retry may help)")
+    print("\ntruncated mid-object stays empty (retry may help)")
     raw = '{"name": "Half", "does": "still writ'
     got = app.parse_json_list(
         _resp(raw, stop_reason="max_tokens"), "trunc", expect="object")
@@ -110,7 +110,7 @@ def test_truncated_still_empty():
 
 
 def test_fenced_json_with_trailer():
-    print("\nCON-187 — fenced JSON + trailer peels")
+    print("\nfenced JSON + trailer peels")
     body = '{"name": "Yargle", "does": "big frog"}'
     raw = f"```json\n{body}\n```\nAnd that is why."
     got = app.parse_json_list(_resp(raw), "fence", expect="object")

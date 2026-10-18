@@ -1,12 +1,12 @@
 """
-release_calendar.py — release calendar data: Scryfall /sets + hand overlay (CON-137)
-and **debut mechanics** per released set (CON-218).
+release_calendar.py — release calendar data: Scryfall /sets + hand overlay
+and **debut mechanics** per released set.
 
 No model. Paced Scryfall via the caller's scry() — same gate and User-Agent as
 app.py. Failed requests are unknowns, never zeros. Future sets are never counted
 and never invent mechanics.
 
-CON-218: What's coming answers what a set *introduces*, not what it does for
+What's coming answers what a set *introduces*, not what it does for
 saved decks. First paint returns the set list; mechanics are `pending` until
 cache/enrich. Enrich loads keywords from cards in the set, then keeps those
 whose earliest print is this set or the same release day (companion products).
@@ -32,7 +32,7 @@ from deckwright import mechanics
 SAVE_DIR = instance.home_dir()
 OVERLAY_PATH = pathlib.Path(__file__).resolve().parents[1] / "data" / "release_overlay.json"
 SETS_CACHE_PATH = SAVE_DIR / "calendar_sets.json"
-COUNTS_CACHE_PATH = SAVE_DIR / "calendar_counts.json"  # legacy CON-147; unused by CON-218 path
+COUNTS_CACHE_PATH = SAVE_DIR / "calendar_counts.json"  # legacy calendar counts; unused path
 MECHANICS_CACHE_PATH = SAVE_DIR / "calendar_mechanics.json"
 
 SETS_MAX_AGE = 7 * 86400          # set list changes on release, not daily
@@ -447,7 +447,7 @@ def _entry_fresh(entry: dict | None, max_age: float) -> bool:
 def cached_hit_entry(counts_cache: dict, set_code: str, identity: str):
     """Return a hit cache dict, None (cached unknown), or _MISSING.
 
-    CON-147 entries carry `roles`. Legacy colour-only entries (bare int or
+    entries carry `roles`. Legacy colour-only entries (bare int or
     dict without `roles`) are treated as missing so enrich reclassifies.
     """
     key = count_cache_key(set_code, identity)
@@ -459,7 +459,7 @@ def cached_hit_entry(counts_cache: dict, set_code: str, identity: str):
             return _MISSING
         if entry.get("status") == "unknown":
             return None
-        # Pre-CON-147 cache: known colour count without roles — not reusable.
+        # Older cache format: known colour count without roles — not reusable.
         if "roles" not in entry:
             return _MISSING
         return entry
@@ -804,7 +804,7 @@ def _slice_released(released_rows: list[dict], limit: int, offset: int) -> tuple
 def _set_shell(row: dict, *, future: bool, art_url: str | None = None,
                mechanics: dict | None = None,
                decks: list[dict] | None = None) -> dict:
-    # decks kept empty for back-compat with old clients; CON-218 content is mechanics.
+    # decks kept empty for back-compat with old clients; the panel content is mechanics.
     return {
         "name": row.get("name"),
         "code": row.get("code") or "",
@@ -1001,9 +1001,9 @@ async def enrich_released_counts(
     *,
     fetch_art: bool = True,
 ) -> dict[str, dict]:
-    """Deprecated CON-147 path — kept for callers/tests; prefer mechanics.
+    """Deprecated calendar counts path — kept for callers/tests; prefer mechanics.
 
-    CON-218 calendar no longer uses this. Still honest: unknown ≠ zero.
+    calendar no longer uses this. Still honest: unknown ≠ zero.
     """
     codes = [c.lower() for c in set_codes if c]
     if not codes:
@@ -1067,13 +1067,13 @@ async def build_calendar(
 
     First paint: `/sets` (or disk cache), released page capped, debut mechanics
     only from cache. Misses are `pending`, never an invented empty debut list.
-    `decks` is ignored (CON-218). `fetch_counts` is accepted as an alias for
+    `decks` is ignored. `fetch_counts` is accepted as an alias for
     `fetch_mechanics` so old query params keep working.
     """
     today = today or _today()
     merged = await get_merged_sets(scry, force=force_sets)
     overlay = load_overlay()
-    _ = decks  # CON-218: saved decks no longer drive the panel
+    _ = decks  # saved decks no longer drive the panel
 
     eligible = [s for s in merged if calendar_eligible(s, today)]
     future_rows = sorted(
@@ -1134,7 +1134,7 @@ async def build_calendar(
                     mech = mechanics_payload(status="pending", set_code=code)
             else:
                 mech = cached  # type: ignore[assignment]
-        # CON-218 review: warm unknown / empty cache must not bury overlay.
+        # review: warm unknown / empty cache must not bury overlay.
         mech = merge_overlay_mechanics(mech, announced, set_code=code)
         released_out.append(
             _set_shell(row, future=False, art_url=art, mechanics=mech))

@@ -1,13 +1,13 @@
-# CON-336 seed sweep — E / BLUE / D
+# Seed sweep — E / BLUE / D
 
 Three-way bake-off over the frozen 24. **Not** a five-way — B and C are
 disabled in `contestants.json` (measured no-better-than-V1).
 
-Ship design: [`docs/product/SHIP-V2.md`](../product/SHIP-V2.md).
+Ship design: [`docs/product/SHIP-V2.md`](product-SHIP-V2.md).
 
 ## Harness
 
-On `main` after the CON-328/330 restore PR. `DEFAULT_BUILD_TIMEOUT` must be
+On `main` after the build-timeout floor / the per-contestant URL scoping restore PR. `DEFAULT_BUILD_TIMEOUT` must be
 **1800**. `--validate` prints it. `20260902T172439Z` is VOID — do not cite.
 
 ## Ports (do not move seed to :8001)
@@ -52,7 +52,7 @@ python test_v2_benchmark.py
 
 ## Launch (~5h, 24 × 3)
 
-**Do not pass `--green-url`** (CON-330 — collapses ports). Per-contestant
+**Do not pass `--green-url`** (collapses ports). Per-contestant
 overrides are `--green-b-url` / `--green-c-url` / `--green-d-url` only.
 
 ```bash

@@ -113,7 +113,7 @@ def explain_edges(card: dict, commander: dict, deck: list) -> str:
     Reads the objects off real edges. No model: the object flowing across the
     edge is the reason, already in the data.
 
-    CON-272: unknown / unread with no edges say could-not-read — never look
+    unknown / unread with no edges say could-not-read — never look
     like a readable card with none. Real none stays silent (no invented claim).
     """
     from deckwright import synergy
@@ -138,7 +138,7 @@ def annotate(
 ) -> None:
     """Stamp each card with why it was offered (and chosen, when edges exist).
 
-    CON-199: `explain_edges` is the chosen half — wire it here. Does not change
+    `explain_edges` is the chosen half — wire it here. Does not change
     which cards are in the 99; only the why text.
     """
     for card in deck:
@@ -154,7 +154,7 @@ def annotate(
             card["why"] = " ".join(parts)
 
 
-# ---------------------------------------------------------------- CON-192 accounting
+# ---------------------------------------------------------------- accounting
 # Third question: what *job* is this card doing? why.py already answers offered
 # (annotate) and chosen (explain_edges). Buckets are provenance, not quality.
 # Never pad. Unknown is its own line — never absorbed into curve_mana.
@@ -196,7 +196,7 @@ def _on_theme(
 ) -> bool | None:
     """True / False when decidable; None when we could not look.
 
-    CON-223 / Gate 1 BUG-5: sibling tribes (horse OR knight) must all count.
+    sibling tribes (horse OR knight) must all count.
     `tribes` is the full list; `tribe` remains the first for older callers.
     """
     typ = _type_line(card)
@@ -255,7 +255,7 @@ def _bucket_for(
 ) -> str:
     """Exclusive assignment.
 
-    CON-192 / CON-223: `unknown` is only for an undecided axis (None) — we
+    `unknown` is only for an undecided axis (None) — we
     could not look. Both axes decided False is residual curve/mana fill, even
     when the card sat in a theme or deepcut *slot*. Hiding a real None inside
     curve_mana is forbidden; filing a decidable-neither theme filler as
@@ -288,7 +288,7 @@ def theme_noun(theme_label: str = "", tribes: list[str] | None = None,
                tribe: str | None = None) -> str:
     """Short noun for bucket copy — never the model's full paraphrase.
 
-    CON-223 / Gate 1 BUG-4: "strategy only, not pirate raiders — combat…"
+    "strategy only, not pirate raiders — combat…"
     is broken English. Prefer tribe word(s), else first short token.
     """
     tribe_list = [t for t in (tribes or ([tribe] if tribe else [])) if t]
@@ -316,7 +316,7 @@ def account_deck(
     tribes: list[str] | None = None,
     theme_legal_count: int | None = None,
 ) -> dict:
-    """Partition the 99 into exclusive theme/strategy buckets (CON-192).
+    """Partition the 99 into exclusive theme/strategy buckets.
 
     theme_legal_count is the composed Scryfall pool size (from readback), or
     None when unknown. Never invent a count. Stamps card["bucket"] in place.

@@ -52,7 +52,7 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
 
   --focus:#E8DCC0;
-  /* CON-276. Card type, as a tint. cardAxis() has classified every card by
+  /* Card type, as a tint. cardAxis() has classified every card by
      element type since the composition sliders shipped, and every row in the
      99 has carried data-axis ever since — with no CSS reading it. The
      classification was fully wired and painted nothing.
@@ -68,13 +68,13 @@
   --ax-lands:#8A8158; --ax-creatures:#A98A52; --ax-instants_sorceries:#6E8FA6;
   --ax-artifacts:#9A9AA6; --ax-enchantments:#9A7FA6; --ax-planeswalkers:#C08A5E;
   --ax-other:#8C8175;
-  /* DW-9: the positive counterpart to --warn. Three greens all meant "this
+  /* the positive counterpart to --warn. Three greens all meant "this
      worked" — 8FBF9A, 7FBF92 and 6FBF77 — differing by amounts nobody can see,
      so the difference carried no meaning while making the success colour
      impossible to grep for or change in one place. --warn already existed, so
      the negative case was tokenised and the positive one was not. */
   --ok:#7FBF92;
-  /* DW-7. Sizes were fully tokenised and leading was not: nine ratios in play,
+  /* Sizes were fully tokenised and leading was not: nine ratios in play,
      with 14px rendering at 1.45/1.6/1.65/1.7/unset and 11px at
      1.5/1.55/1.6/1.65/unset. The 1.5-1.7 cluster separates by 0.05 — too small
      to read as intent, large enough to stop blocks sharing a rhythm.
@@ -126,7 +126,7 @@ body.landing #art{will-change:transform,opacity}
    The reason it was dimmed was readability. That is solved by giving the text
    something to sit on instead of taking the art away: the panels below are
    translucent and blurred, so the art reads through them without competing. */
-/* Brad: "lost the picture in the back of this page". It was never gone, but at
+/* Playtest note: "lost the picture in the back of this page". It was never gone, but at
    .82 behind opaque panels it had stopped reading as art. Brighter and less
    blurred so the deck's own card is visibly back there. */
 /* .82 read as no art at all behind opaque panels; .95 read as art competing with
@@ -146,7 +146,7 @@ body.landing #veil{background:
 /* inset:-32px, not 0. The veil drifts with the pointer like the art does, but
    unlike the art it has no overscan to spend — #art is scale(1.12), so it can
    move 14px and still cover the viewport, while a veil pinned at inset:0
-   uncovers a strip the moment it moves at all. That strip is the bleed Brad
+   uncovers a strip the moment it moves at all. That strip is the bleed playtesting
    saw: unveiled art at the window edge, worst on a narrow window where there
    is least margin anywhere. 32px is more than double the largest drift. */
 #veil{position:fixed;inset:-32px;z-index:-1;pointer-events:none;
@@ -226,7 +226,7 @@ body.landing #veil{will-change:transform}
    `.bar-inner` shares the wrap's 1120 / 24px so the wordmark sits on the same
    left edge as the headline below — misalignment you feel before you can name.
 
-   --a1 is the DOMINANT colour by card count (DW-13), so a black deck reads
+   --a1 is the DOMINANT colour by card count, so a black deck reads
    black here rather than whichever colour happens to sort first. */
 .bar{position:sticky;top:0;z-index:40;margin:0 0 var(--s3);
   /* Settle onto the page — no hard foot rule. */
@@ -260,7 +260,7 @@ body.landing #veil{will-change:transform}
   padding-left:var(--s3);margin-left:var(--s1);
   border-left:1px solid color-mix(in srgb,var(--a1,#C6A46A) 28%,transparent);
   letter-spacing:.01em}
-/* CON-315: green staging — a shopper must not take this list to a store. */
+/* green staging — a shopper must not take this list to a store. */
 .env-badge{flex:0 0 auto;font:600 var(--t2)/1.15 var(--sans);letter-spacing:.08em;
   text-transform:uppercase;color:#1a1208;background:#e8b84a;padding:5px 10px;
   border-radius:2px;white-space:nowrap}
@@ -278,7 +278,7 @@ body.landing #veil{will-change:transform}
 /* Masthead depth is parallax between layers, not tilt. Chrome that rotates
    under the pointer feels loose; a few pixels of differential shift between
    the wordmark and the tray reads as a pane with thickness. Pointer only —
-   nothing on scroll (CON-284). */
+   nothing on scroll. */
 .bar .home{font:600 var(--d1)/1 var(--serif);letter-spacing:.01em;
   /* Tiled, not stretched — and this is the second attempt at the same bug.
      Round one changed the sweep from -200% to 100%, because a negative
@@ -339,7 +339,7 @@ body.landing #veil{will-change:transform}
   .ways{transform:none;transition:none;will-change:auto}
 }
 /* Masthead destinations only. (Calendar's "Show older sets" is .ghost — do
-   not reuse .way outside the bar; CON-179 already burned that once.) */
+   not reuse .way outside the bar; the ways-to-play picker already burned that once.) */
 .bar .way{position:relative;background:transparent;border:1px solid transparent;
   /* Bone mixed toward mute — pure --mute on the glass washed out; this still
      reads secondary to the lit cell without falling below ~4.5:1 on the bar. */
@@ -356,7 +356,7 @@ body.landing #veil{will-change:transform}
 .bar .way.on:hover{color:#14100C;background:var(--foil,var(--gold))}
 @media (prefers-reduced-motion:reduce){.bar .way{transition:none}}
 
-/* CON-280. At 375 the bar was 174px — 21% of an 812px phone viewport. Wordmark
+/* At 375 the bar was 174px — 21% of an 812px phone viewport. Wordmark
    steps down; the tray scrolls on one row instead of wrapping to two. Tap
    targets stay ≥24px. */
 @media (max-width:640px){
@@ -457,7 +457,7 @@ input,button,select{font:inherit}
   font:400 var(--t5) var(--serif);backdrop-filter:blur(10px)}
 #box::placeholder{color:var(--mute);font-style:italic}
 #box:focus{outline:2px solid var(--a1);outline-offset:-1px}
-/* DW-6: the filled button wears the deck's colour, lifted so dark ink clears.
+/* the filled button wears the deck's colour, lifted so dark ink clears.
    Falls back to gold before any deck is painted. */
 button{background:linear-gradient(180deg,var(--btn,#E6CF9C),var(--btn-lo,#C6A46A));
   color:#1A1208;border:0;
@@ -465,7 +465,7 @@ button{background:linear-gradient(180deg,var(--btn,#E6CF9C),var(--btn-lo,#C6A46A
   letter-spacing:.01em;box-shadow:0 1px 6px color-mix(in srgb,var(--btn,#C6A46A) 30%,transparent)}
 button:hover:not(:disabled){filter:brightness(1.15)}
 button:disabled{opacity:.35;cursor:default}
-/* DW-6: outlined buttons take the accent as a tint. Text stays bone on a ground
+/* outlined buttons take the accent as a tint. Text stays bone on a ground
    that barely moves, so contrast cannot fail whatever the deck is. */
 button.ghost{background:color-mix(in srgb,var(--a1,#C6A46A) 8%,transparent);
   color:var(--bone);border:1px solid color-mix(in srgb,var(--a1,#C6A46A) 38%,transparent)}
@@ -474,8 +474,8 @@ button.ghost:hover:not(:disabled){border-color:var(--a1);
   color:var(--bone);filter:none}
 button.link{background:none;border:0;color:var(--mute);padding:6px 0;font-size:var(--t2);
   text-decoration:underline;text-underline-offset:3px;letter-spacing:0}
-button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked the deck */
-/* DW-2. This was `2px solid var(--a1)` — the deck's own colour, because paint()
+button.link:hover{color:var(--a1-text);filter:none}   /* already tracked the deck */
+/* This was `2px solid var(--a1)` — the deck's own colour, because paint()
    sets --a1 from the commander's first colour. So the keyboard focus indicator
    inherited deck identity, and its contrast varied with what you built:
 
@@ -513,7 +513,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked t
 
 /* ── starters ─────────────────────────────────────────────────────────── */
 /* These are example prompts you click to use, and they looked like nothing else
-   on the page — dark boxes in italic serif, so Brad's question was fair: what do
+   on the page — dark boxes in italic serif, so the playtest question was fair: what do
    they do? They are buttons, so they now look like the ghost buttons everywhere
    else (same tint, same border, same sans face) and carry a mark that says the
    text goes into the box. */
@@ -562,7 +562,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked t
 .plan p{margin:0}
 .plan.match{border-left:2px solid var(--gold);padding-left:13px}
 .plan.match .pc-h{color:var(--gold)}
-/* DW-15: the plan reads as a sequence of moves, not a slab. The opening
+/* the plan reads as a sequence of moves, not a slab. The opening
    paragraph carries the thesis and is set a step up; the rest indent slightly so
    the eye has a left edge to return to on a long read. */
 .planbody{max-width:66ch}
@@ -570,7 +570,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked t
    bare `.planp` on specificity, so the whole block rendered at one size and the
    lead paragraph never led. Measured the winning rule rather than guessing why
    the size would not take. */
-/* CON-291: .planp is composed in the plan prose renderer — keep; not static markup. */
+/* .planp is composed in the plan prose renderer — keep; not static markup. */
 .theplan .planp{margin:0 0 var(--s3);
   font:400 var(--t4)/var(--lh-body) var(--serif);color:var(--bone)}
 .theplan .planp.lead{font-size:var(--t5)}
@@ -578,7 +578,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked t
   border-left:1px solid rgba(198,164,106,.14)}
 .theplan .planp:last-child{margin-bottom:0}
 @media (max-width:820px){.theplan .planp:not(.lead){padding-left:var(--s2)}}
-/* DW-16: deep cuts are a list of things, so they look like one. */
+/* deep cuts are a list of things, so they look like one. */
 .offmeta{list-style:none;margin:0;padding:0;display:grid;
   grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:var(--s1) var(--s3)}
 .offmeta li{position:relative;padding-left:var(--s3)}
@@ -592,7 +592,7 @@ button.link:hover{color:var(--a1-text);filter:none}   /* DW-6: already tracked t
 tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transparent);
   transition:background 400ms ease}
 @media (prefers-reduced-motion:reduce){tr.cardrow.found > td{transition:none}}
-/* DW-18: the naming panel explains what each box is for. */
+/* the naming panel explains what each box is for. */
 .namehint{margin:var(--s3) 0 var(--s1)}
 .namerow{margin-top:var(--s4);align-items:center}
 .savehint{margin-top:var(--s2);line-height:var(--lh-snug)}
@@ -613,12 +613,12 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
   color:#1A1208;background:linear-gradient(180deg,#E6CF9C,var(--gold));padding:3px var(--s2);
   border-radius:2px;margin-bottom:var(--s2);box-shadow:0 1px 5px rgba(198,164,106,.28)}
 .catch{color:var(--mute);font-size:var(--t2);font-family:var(--serif);font-style:italic}
-/* CON-179 ways-to-play. Named .wtp, NOT .ways/.way — those are the nav bar's
+/* Ways to play. Named .wtp, NOT .ways/.way — those are the nav bar's
    (line ~192), and redefining them here set the nav to flex-direction:column,
    stacking the five nav items down the right edge and inflating the header to
    267px. Later rule wins; the nav lost. Generic names are already claimed. */
 .wtp{display:flex;flex-direction:column;gap:var(--s2);margin-top:var(--s1)}
-/* CON-291: .wtp-row is composed in waysBlock() — keep; not static markup. */
+/* .wtp-row is composed in waysBlock() — keep; not static markup. */
 .wtp-row{display:flex;gap:var(--s2);align-items:flex-start;font:400 var(--t3)/var(--lh-body) var(--serif);
   color:var(--bone);cursor:pointer}
 .wtp-row input{margin-top:var(--s1);accent-color:var(--gold)}
@@ -631,7 +631,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
 .fit-axis{margin-left:var(--s2)}
 .wtp-hint{margin:0 0 var(--s1)}
 .pickcost{margin-left:var(--s1)}
-/* CON-286: type + colours + KB facts distinguish picks without model prose. */
+/* type + colours + KB facts distinguish picks without model prose. */
 .pick .identity{margin:2px 0 var(--s2)}
 .pick-differs{margin:0 0 var(--s2);font:400 var(--t2)/var(--lh-snug) var(--sans);color:var(--mute)}
 .pick-differs .diff-k{letter-spacing:.12em;text-transform:uppercase;font-size:var(--t0);margin-right:var(--s1)}
@@ -647,7 +647,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
 .pick-name{font:500 var(--t4)/var(--lh-tight) var(--serif)}
 .pick-body{flex:1;min-width:0}
 .partner-foot{margin-top:var(--s4);gap:var(--s3);flex-wrap:wrap;align-items:center}
-/* CON-217: precon ways + beef-it-up. Own classes — nav already owns .ways/.way. */
+/* precon ways + beef-it-up. Own classes — nav already owns .ways/.way. */
 .precon-play{margin:var(--s5) 0 var(--s4);padding:var(--s4) 0 0;border-top:1px solid var(--line)}
 .precon-play .pc-h{margin-bottom:var(--s2)}
 .pway-list{list-style:none;margin:0 0 var(--s4);padding:0;display:flex;flex-direction:column;gap:8px}
@@ -673,8 +673,8 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
 /* The swap arrow carries the direction so the sentence does not have to. */
 .beef-list .beef-swap .beef-out{color:var(--warn);font-style:normal;padding-right:2px}
 /* A buy link had no rule at all here, so it fell through to the browser's blue
-   underline — the one colour in the app that belongs to no token. The 99 has
-   answered this since CON-70: bone, no underline, hover to the deck's accent.
+   underline — the one colour in the app that belongs to no token. The 99 has long
+   answered this: bone, no underline, hover to the deck's accent.
    No border-bottom, because the peek under it already draws the dotted rule
    that says "there is a card behind this word". */
 .beef-list a{color:var(--bone);text-decoration:none}
@@ -824,7 +824,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
    x-height makes 12.5px italic read a size smaller than it measures. One step
    up the scale with the leading pulled in reads as an aside without asking
    anyone to squint at six lines of it. */
-/* DW-14: the commander's own name leads its block — it was the same weight as
+/* the commander's own name leads its block — it was the same weight as
    the rules text under it, so the card you built the deck around read as just
    another paragraph. */
 .cmdname{display:block;font:600 var(--t6)/var(--lh-tight) var(--serif);
@@ -834,12 +834,12 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
    the rules text as two unexplained words. */
 .abilrow{display:flex;flex-wrap:wrap;gap:var(--s1);margin:0 0 var(--s3)}
 /* The text takes the LIFTED accent, not the raw one. Using --a1 here repeated
-   exactly the mistake DW-2 removed from the focus ring: the raw deck colours are
+   exactly the mistake an earlier fix removed from the focus ring: the raw deck colours are
    dark, so on a dark chip they measured 3.37 (blue), 3.27 (black), 3.18 (red)
    and 2.93 (green) against a 4.5 floor — four of five decks shipped chips you
    could barely read. --btn is the same hue with the lightness raised, so the
    chip still says "green deck" and can also be read on one. */
-/* CON-291: .abil is composed in JS (`class="abil…"`) — a string sweep that
+/* .abil is composed in JS (`class="abil…"`) — a string sweep that
    only greps static markup will call it dead. It is not. */
 .abil{position:relative;font:600 var(--t0)/1 var(--sans);letter-spacing:.14em;
   text-transform:uppercase;color:var(--btn,var(--gold));
@@ -861,7 +861,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
    chip lifts, and its popover rides with it. */
 .kwchip:hover,.kwchip:focus-visible,.abil:hover,.abil:focus-visible{z-index:60}
 .kwchip:hover .kwpop,.kwchip:focus-visible .kwpop{opacity:1;visibility:visible;transform:none}
-/* Fallback only — placeKwpops() overwrites from real geometry (CON-165). */
+/* Fallback only — placeKwpops() overwrites from real geometry. */
 .kwchip:nth-last-child(-n+3) .kwpop,.abil:nth-last-child(-n+2) .kwpop{left:auto;right:0}
 /* A card name you can look at. The name stays text — it is part of a sentence —
    and the card appears above it on hover or focus. */
@@ -875,7 +875,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
   opacity:0;visibility:hidden;transition:opacity 130ms ease,transform 130ms ease,visibility 130ms}
 .peekimg img{width:100%;display:block;border-radius:6px}
 .peek:hover .peekimg,.peek:focus-visible .peekimg{opacity:1;visibility:visible;transform:translate(-50%,0)}
-/* CON-182: once placePopovers() has measured a peek, X comes from `left` and
+/* once placePopovers() has measured a peek, X comes from `left` and
    the transform carries only the Y reveal. Centring via translate(-50%) and
    clamping via left cannot both be true, and the transform is load-bearing
    for the animation — so the placed state drops the X half, not the Y. */
@@ -901,7 +901,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
   transition:opacity 120ms ease,transform 120ms ease,visibility 120ms}
 .abil:hover .kwpop,.abil:focus-visible .kwpop{opacity:1;visibility:visible;transform:none}
 @media (prefers-reduced-motion:reduce){.kwpop{transition:none}}
-/* DW-17: the opening screen gets room to speak, and takes the width it has.
+/* the opening screen gets room to speak, and takes the width it has.
    The old copy sat in one dense block at --t3 in a 500px column with the rest of
    the screen empty beside it — fine print on the one screen that has to explain
    the whole product, crammed into a corner of its own page.
@@ -909,7 +909,7 @@ tr.cardrow.found > td{background:color-mix(in srgb,var(--a1,#C6A46A) 16%,transpa
    The statement runs at display size across the measure; the three steps run
    ACROSS rather than down, so the shape of the process is visible before you
    read a word of it. */
-/* DW-19: the opening statement is the LANDING's header. It sat in static markup
+/* the opening statement is the LANDING's header. It sat in static markup
    with nothing scoping it, so "Say what you want your deck to feel like"
    followed you onto Precons and Paste — two screens where you are doing the
    opposite of describing a deck, because you already have one. */
@@ -918,7 +918,7 @@ body:not(.landing) .sub{display:none}
 /* Landing hero: copy left, the ambient commander right. The blurred wall IS
    that card's art — object in front, its own world behind. No second fetch.
    Hidden entirely when ambientArt fails; a blank rectangle is worse than
-   the text-only hero (CON-284). */
+   the text-only hero. */
 .land-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;
   gap:var(--s5) var(--s7);align-items:start;margin:0 0 var(--s6)}
 .land-copy{min-width:0}
@@ -981,7 +981,7 @@ body:not(.landing) .sub{display:none}
   .land-card-credit{min-width:0;text-align:left}
 }
 
-/* DW-19: import screens are their own destination, so they get a header rather
+/* import screens are their own destination, so they get a header rather
    than borrowing the landing's. Same register, one size down — this is a room
    you walked into, not the front door. */
 .importhead{margin:0 0 var(--s5);max-width:64ch}
@@ -1053,7 +1053,7 @@ body:not(.landing) .sub{display:none}
    tight space below, and the same gap between every block. */
 #overview{padding:var(--s5) 28px}
 #overview .eyebrow{margin-bottom:var(--s4)}
-/* CON-321 Gate 2: commander strategy audit — same card rhythm as overview. */
+/* commander strategy audit — same card rhythm as overview. */
 .clarity{padding:var(--s5) 28px;margin:0 0 var(--s4)}
 .clarity .clarity-list{margin:0 0 var(--s3);padding-left:20px;font-size:var(--t3)}
 .clarity .clarity-list li{margin-bottom:var(--s2);line-height:var(--lh-body)}
@@ -1109,7 +1109,7 @@ body:not(.landing) .sub{display:none}
 .asksuggest{margin-top:var(--s4)}
 .asksuggest .start{font-size:var(--t3);padding:10px var(--s3)}
 @media (max-width:600px){#change{padding:var(--s5) 20px}}
-/* CON-164: deck workbench — five modules become three (CON-153 mock).
+/* deck workbench — five modules become three (mock).
    Existing tokens only; the bench is the card register, modes swap the body. */
 /* The squint test found the deck page had no visible structure: blur(6px)
    and everything below the facts bar became one undifferentiated grey field —
@@ -1211,7 +1211,7 @@ body:not(.landing) .sub{display:none}
   .benchhead,.bench .modes,.bench .panel{padding-left:var(--s4);padding-right:var(--s4)}
 }
 
-/* CON-133: manual cut/add — body lives inside the workbench Pick-a-swap mode. */
+/* manual cut/add — body lives inside the workbench Pick-a-swap mode. */
 #editorpanel .ed-head{display:flex;align-items:center;justify-content:space-between;
   gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s4)}
 #editorpanel .ed-ver{font-size:var(--t2);color:var(--mute)}
@@ -1244,7 +1244,7 @@ body:not(.landing) .sub{display:none}
   padding-top:var(--s3);border-top:1px solid var(--line)}
 #editorpanel .ed-bulk[hidden]{display:none}
 
-/* CON-128: match notes — collapsed bench; body is the form + list. */
+/* match notes — collapsed bench; body is the form + list. */
 #matchnotes .mn-list{display:flex;flex-direction:column;gap:var(--s3);margin:0 0 var(--s5)}
 #matchnotes .mn-list:empty{display:none}
 #matchnotes .mn-empty{margin:0 0 var(--s5);font-size:var(--t3);color:var(--mute);
@@ -1282,7 +1282,7 @@ body:not(.landing) .sub{display:none}
   #matchnotes .mn-fields{grid-template-columns:minmax(0,1fr)}
 }
 
-/* CON-126: pending swap ideas — Ask-for-ideas mode body. */
+/* pending swap ideas — Ask-for-ideas mode body. */
 #suggestpanel .sg-head{display:flex;align-items:center;justify-content:space-between;
   gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s4)}
 #suggestpanel .sg-ver{font-size:var(--t2);color:var(--mute)}
@@ -1309,7 +1309,7 @@ body:not(.landing) .sub{display:none}
 #suggestpanel .sg-bulk[hidden]{display:none}
 #suggestpanel .sg-head .ghost,#suggestpanel .sg-head button{min-height:26px}
 
-/* CON-127: version history — collapsed What-changed bench. */
+/* version history — collapsed What-changed bench. */
 #versionpanel .vh-head{display:flex;align-items:baseline;justify-content:space-between;
   gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s4)}
 #versionpanel .vh-ver{font:600 var(--t5)/var(--lh-tight) var(--serif);color:var(--bone)}
@@ -1336,7 +1336,7 @@ body:not(.landing) .sub{display:none}
 #versionpanel .vh-current{margin-bottom:var(--s4);padding-bottom:var(--s3);
   border-bottom:1px solid var(--line)}
 #versionpanel .vh-current[hidden]{display:none}
-/* CON-291: .doors / .sep removed — landing entry points moved to the sticky
+/* .doors / .sep removed — landing entry points moved to the sticky
    bar (de957ef); nothing rendered those classes after the polish pass. */
 #import textarea{width:100%;background:var(--stone);border:1px solid var(--line);
   color:var(--bone);padding:var(--s3);border-radius:3px;
@@ -1356,7 +1356,7 @@ body:not(.landing) .sub{display:none}
 .preconrow .pn{flex:1;font-family:var(--serif);font-size:var(--t3)}
 .preconrow .pc-colors{flex:none;display:inline-flex;gap:3px;align-items:center}
 .preconrow .pc-colors .pip{width:16px;height:16px}
-/* CON-131: Scryfall browse — Browse-cards mode body inside the workbench. */
+/* Scryfall browse — Browse-cards mode body inside the workbench. */
 #cardsearch input.wide{width:100%;background:rgba(10,8,6,.55);border:1px solid var(--edge);
   color:var(--bone);padding:var(--s2) 14px;border-radius:2px;font-size:var(--t3);min-height:34px}
 #cardsearch input.wide:focus{outline:2px solid var(--gold);outline-offset:-1px}
@@ -1400,7 +1400,7 @@ body:not(.landing) .sub{display:none}
    glyph for "this follows from" (the landing page's starter chips use it),
    so it separates the two without adding words back. */
 .swapmark{color:var(--gold-mid);margin-right:var(--s1)}
-/* CON-291: .swap.core removed — core cards skip the swap row entirely
+/* .swap.core removed — core cards skip the swap row entirely
    (`replaceability !== 'core'`), so the class could never apply. */
 /* Read by a screen reader, never shown. The substitute rows carry their
    context on the role heading above them, which a sighted reader takes in
@@ -1410,7 +1410,7 @@ body:not(.landing) .sub{display:none}
 
 .subtle{font:600 var(--t0) var(--sans);letter-spacing:.2em;text-transform:uppercase;
   color:var(--mute);margin-bottom:6px}
-/* DW-4: two of these were divs and are now real labels, so clicking the text
+/* two of these were divs and are now real labels, so clicking the text
    focuses the field. A label is inline by default — keep the block box the
    div had, or the input jumps up onto the same line. */
 label.subtle{display:block}
@@ -1554,7 +1554,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
    narrower than the viewport — so the scroll container clipped the last one and
    you "lost cards". Flex-shrink sizes them off the COLUMN instead: they give way
    until all seven fit, and the scroll is only reached at genuinely tiny widths. */
-.hcard{position:relative;flex:0 1 74px;min-width:34px;margin-left:-18px;   /* DW-8b: an optical overlap, not a scale step */
+.hcard{position:relative;flex:0 1 74px;min-width:34px;margin-left:-18px;   /* an optical overlap, not a scale step */
   transform-origin:50% 100%;transition:transform 160ms ease}
 .hcard:nth-child(1){transform:rotate(-4.5deg) translateY(5px)}
 .hcard:nth-child(2){transform:rotate(-3deg)   translateY(2px)}
@@ -1570,7 +1570,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
   z-index:5;filter:none}
 .hcard img{width:100%;border-radius:5px;display:block;
   box-shadow:0 4px 14px rgba(0,0,0,.6),0 0 0 1px rgba(198,164,106,.28)}
-/* DW-1. Seven 74px cards overlapped at -18px need ~410px. On a phone the column
+/* Seven 74px cards overlapped at -18px need ~410px. On a phone the column
    is ~269px, and .hcards had no containment, so the hand pushed the whole
    document to 500px: every section below slid sideways while being read and the
    seventh card was clipped off the edge.
@@ -1582,7 +1582,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
    overflow-x:auto forces overflow-y to auto too, which would clip the -14px
    hover lift. The padding/negative-margin pair gives that lift somewhere to go
    without moving the block. */
-/* DW-1 contained this below 820px on the assumption that desktop always had
+/* An earlier phone-scroll fix contained this below 820px on the assumption that desktop always had
    room for seven cards. It does not: at 1185px the second hand ran 88px past its
    own column, so cards sat on top of the neighbouring text. The containment is
    unconditional now, and the cards shrink with the column so the scroll is a
@@ -1622,7 +1622,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
   font:400 var(--t2)/var(--lh-snug) var(--sans);color:var(--bone)}
 .latt{font-family:var(--mono);font-size:var(--t1);font-weight:600;
   color:var(--foil,var(--gold));flex:none}
-/* DW-5. The two hands are columns at desktop, and `.hand + .hand` gives the
+/* The two hands are columns at desktop, and `.hand + .hand` gives the
    second one a left pad and a left border — that border IS the divider between
    the columns. Once the grid collapses to a single column those become a stray
    28px indent and a rule down the side of the second block only, so a matched
@@ -1657,7 +1657,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
 .deckacts{display:flex;align-items:center;gap:var(--s1);flex-wrap:wrap;
   margin-bottom:var(--s3)}
 .deckacts .ghost{padding:var(--s1) 13px;font-size:var(--t2)}
-/* DW-6: the star is a button too — it wears the deck's colour when set. */
+/* the star is a button too — it wears the deck's colour when set. */
 .fav{margin-left:auto;background:none;
   border:1px solid color-mix(in srgb,var(--a1,#C6A46A) 30%,transparent);
   color:var(--mute);
@@ -1673,7 +1673,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
   padding:var(--s2) 0;border-bottom:1px solid var(--line);font-size:var(--t2);color:var(--mute)}
 .made b{font:600 var(--t4) var(--mono);color:var(--bone);text-align:right}
 .made .ml{grid-column:1}
-/* DW-3. These are the most consequential controls on the page — they reshape the
+/* These are the most consequential controls on the page — they reshape the
    deck and re-run the odds — and they were the hardest thing on it to grab. The
    element was 3px tall; the browser pads range inputs out to about 16px of
    hittable band, still under the 24px WCAG 2.5.8 asks for.
@@ -1715,7 +1715,7 @@ ul.moved li.out{color:var(--mute);text-decoration:line-through;
    something below the content by sizing and colouring it that way, once. */
 .notes{font-size:var(--t1);line-height:var(--lh-body);border-top:1px solid var(--line);
   padding-top:var(--s3)}
-/* CON-336: EDHREC seed provenance — one line, not a score. */
+/* EDHREC seed provenance — one line, not a score. */
 .edhrec-prov{margin:var(--s3) 0 0;font-size:var(--t2);color:var(--gold);font-style:italic}
 .edhrec{font-size:var(--t1);color:var(--mute);margin-top:var(--s1)}
 .edhrec .rise{color:var(--gold)}
@@ -1735,10 +1735,10 @@ table{width:100%;border-collapse:collapse;font-size:var(--t3)}
    were sitting 5px under the name inside 10px of row padding, so the name and
    its footnotes read as one block while the rows themselves floated apart —
    the grouping was inverted. Tighter rows, more air under the name. */
-/* DW-8a. This was `9px 8px 10px` — the vertical rhythm of the densest, most-read
+/* This was `9px 8px 10px` — the vertical rhythm of the densest, most-read
    surface in the app, on 61 rows, and neither number on the scale (--s2 is 10).
    It was also asymmetric top-to-bottom by 1px for no reason anyone could state.
-   Horizontal padding stays at 8 for now; that is DW-8b's problem. */
+   Horizontal padding stays at 8 for now. */
 td{padding:var(--s2) var(--s2);border-bottom:1px solid var(--line);vertical-align:top;line-height:var(--lh-snug)}
 td.r{color:var(--mute);font:500 var(--t1) var(--sans);text-transform:uppercase;letter-spacing:.09em;
   width:78px;padding-top:13px}
@@ -1778,7 +1778,7 @@ td.p{text-align:right;color:var(--mute);font-family:var(--mono);font-variant-num
 /* Must agree with SAVED_PREVIEW in the script: n+5 hides from the fifth row
    on, so this is a preview of four. */
 .savedlist.clipped .savedrow:nth-child(n+5){display:none}
-/* DW-10: folds to its own header rather than vanishing. */
+/* folds to its own header rather than vanishing. */
 .savedlist{overflow:hidden;transition:height 200ms ease,opacity 160ms ease}
 .eyebrow.foldable{cursor:pointer;user-select:none}
 .eyebrow.foldable::before{content:"\25B8 ";color:var(--gold);display:inline-block;
@@ -1903,7 +1903,7 @@ a.oppchip:hover{border-color:var(--edge)}
   background-size:cover;background-position:center;background-color:var(--stone-2)}
 .chipn{font-family:var(--serif);font-size:var(--t4);line-height:var(--lh-tight);display:block}
 
-/* Brad: the explanation runs the same width as the three boxes above it. */
+/* The explanation runs the same width as the three boxes above it. */
 .fineprint{margin-top:var(--s5);padding-top:var(--s3);
   border-top:1px dashed var(--line);color:var(--mute);
   font-size:var(--t2);line-height:var(--lh-body)}
@@ -2007,7 +2007,7 @@ a.oppchip:hover{border-color:var(--edge)}
   .typerow{grid-template-columns:84px minmax(0,1fr)}
   .ruleart{width:84px}
 }
-/* ── release calendar (CON-132) ────────────────────────────────────────────
+/* ── release calendar ────────────────────────────────────────────
    Sets as the axis, her saved decks as the content. Glass tiles match the
    matchup boxes — art under glass, data on a hard break beneath. Unreleased
    sets carry no art and say "not spoiled yet", never zero. */
@@ -2057,7 +2057,7 @@ a.oppchip:hover{border-color:var(--edge)}
 #calendar .set.soon .glass{background:var(--stone)}
 #calendar .data{position:relative;background:rgba(10,8,6,.92);
   border-top:1px solid var(--line);padding:var(--s3) var(--s4) var(--s4)}
-/* CON-291: .hit / .cpip / .hit .deck / .hit .roles removed — CON-218 replaced
+/* .hit / .cpip / .hit .deck / .hit .roles removed — replaced
    sets×decks enrich with debut mechanics; calPipColor died with the colour
    pips and nothing rendered those classes after. */
 /* The mechanics a set introduces, as a wrapped list. Serif because these are
@@ -2070,7 +2070,7 @@ a.oppchip:hover{border-color:var(--edge)}
 #calendar .mechsep{color:var(--mute);opacity:.8}
 #calendar a.mechlink{color:var(--gold-mid);text-decoration:none;border-bottom:1px solid transparent}
 #calendar a.mechlink:hover{border-bottom-color:var(--gold-mid)}
-/* CON-291: .hit.more removed with the sets×decks hit list. */
+/* .hit.more removed with the sets×decks hit list. */
 #calendar .unknown{margin:0;font:italic 400 var(--t3) var(--serif);color:var(--mute)}
 #calendar .unknown b{font-style:normal;font-weight:500;color:var(--gold-mid);
   font-family:var(--mono);font-size:var(--t2)}
@@ -2124,7 +2124,7 @@ a.oppchip:hover{border-color:var(--edge)}
   padding:var(--s2) 0;border-top:1px solid var(--line)}
 .noterole{color:var(--gold);font-size:var(--t2);letter-spacing:.06em;
   text-transform:uppercase;padding-top:2px}
-/* CON-291: .notetext is composed in the notes renderer — keep; not static markup. */
+/* .notetext is composed in the notes renderer — keep; not static markup. */
 .notetext{color:var(--mute);font-size:var(--t3);line-height:var(--lh-body)}
 /* A note without a role has no label cell rendered, so it auto-placed into the
    88px label column and wrapped at eight characters inside a 700px panel — the
@@ -2134,7 +2134,7 @@ a.oppchip:hover{border-color:var(--edge)}
 .notetext.wide{grid-column:1 / -1}
 @media (max-width:640px){.noterow{grid-template-columns:minmax(0,1fr);gap:2px}}
 @media (prefers-reduced-motion:reduce){.filternote{transition:none}}
-/* CON-291: tr.grouphead.* removed — CON-105 replaced grouphead rows with
+/* tr.grouphead.* removed — replaced grouphead rows with
    .system blocks; only tr.cardrow.hidden remains load-bearing. */
 /* Card rows had no rule, so filtering set .hidden on ninety rows and every one
    of them stayed on screen. The chip lit up, the count was right, nothing
@@ -2196,7 +2196,7 @@ tr.cardrow.hidden{display:none}
   .sysname{text-align:left;padding:0 0 var(--s2)}
   .sysname::after{display:none}
 }
-/* CON-291: tr.grouphead:first-child removed with the grouphead table. */
+/* tr.grouphead:first-child removed with the grouphead table. */
 .gname{font:600 var(--t1) var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
 .gct{margin-left:var(--s2);font-size:var(--t1);color:var(--mute)}
 /* One preview, following the cursor, instead of 99 absolutely-positioned
@@ -2256,7 +2256,7 @@ svg .grid{stroke:var(--line)}
   .you,.bot{margin-left:0;margin-right:0}
 }
 
-/* ── readback (CON-150) — her words left, what we did right ─────────────
+/* ── readback — her words left, what we did right ─────────────
    Built to design-review/mockups/readback.html. Scoped under .readback so the
    existing .row flex helper is not disturbed. */
 .readback{max-width:620px}
@@ -2282,7 +2282,7 @@ svg .grid{stroke:var(--line)}
 .rb .rbrow.unres .said{color:var(--mute)}
 .rb .rbrow.unres .count{font:italic 400 var(--t3) var(--serif);color:var(--warn)}
 .rb .thin{margin:var(--s3) 0 0;font:italic 400 var(--t3) var(--serif);color:var(--warn)}
-/* CON-287: commander forks between understanding and the picker */
+/* commander forks between understanding and the picker */
 .readback .narrowing{margin-top:var(--s5)}
 .readback .narrowing .eyebrow{margin:0 0 var(--s3)}
 .readback .narrowing ol{margin:0;padding:0;list-style:none}
@@ -2308,7 +2308,7 @@ svg .grid{stroke:var(--line)}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* CON-285: progressive boot veil — brand only while /api/boot is not ready.
+/* progressive boot veil — brand only while /api/boot is not ready.
    Skipped entirely when the KeepAlive server is already warm (no flash). */
 .boot{
   position:fixed;inset:0;z-index:80;display:flex;flex-direction:column;
@@ -2338,7 +2338,7 @@ svg .grid{stroke:var(--line)}
 </style>
 </head>
 <body>
-<!-- CON-285: shown only while process boot is still running. -->
+<!-- shown only while process boot is still running. -->
 <div id="boot" class="boot" hidden aria-live="polite" aria-busy="true">
   <p class="bootmark">Deck<span class="w">wright</span></p>
   <p class="bootline" id="bootline">Starting…</p>
@@ -2379,7 +2379,7 @@ svg .grid{stroke:var(--line)}
 <main>
 
 
-<!-- DW-17. This was one dense paragraph in a 500px box: it said what the app
+<!-- This was one dense paragraph in a 500px box: it said what the app
      produces but never what it IS or how using it goes, so the first screen
      asked you to type into a box without telling you what happens next.
 
@@ -2388,7 +2388,7 @@ svg .grid{stroke:var(--line)}
      shape of the process. The steps are numbered because they genuinely are a
      sequence — you cannot pick a commander before it has found you any.
 
-     CON-284: the ambient commander sits in the hero's right half — same card
+     the ambient commander sits in the hero's right half — same card
      that paints #art — so the pitch has a real object instead of empty blur. -->
 <div class="sub">
   <div class="land-hero">
@@ -2408,7 +2408,7 @@ svg .grid{stroke:var(--line)}
 </div>
 
 <div id="chat"></div>
-<!-- CON-295: live card-source refusal (challenge / rate limit / timeout).
+<!-- live card-source refusal (challenge / rate limit / timeout).
      Local pages still work; this names why a new build cannot pull cards. -->
 <div id="cardSourceNote" class="err" hidden role="status"></div>
 <div id="inputRow">
@@ -2546,11 +2546,11 @@ let messages = [], brief = null, commander = null, partner = null, deckData = nu
    auto-naming that is actually rude. The server refuses anything she named;
    this refuses anything she has already seen. */
 let deckIsFreshBuild = false;
-let readinessAsked = null;  /* CON-152: last readiness blocker id we asked about */
+let readinessAsked = null;  /* last readiness blocker id we asked about */
 let thesisSpec = null, baseline = null, lastPicks = null, lastPartners = null;
 const CARD_POOL_TOURNAMENT = 'tournament_legal';
 const CARD_POOL_CASUAL = 'casual';
-/* The composition axes she can steer. Backed by apply_tweak, which CON-75 is
+/* The composition axes she can steer. Backed by apply_tweak, which the composition-axis swap is
    making swap real cards rather than fabricate them. */
 const tweak = {lands:0, ramp:0, creatures:0, spells:0, artifacts:0, enchantments:0};
 
@@ -2644,7 +2644,7 @@ function setArt(url){
    one measurement. The rect is read fresh rather than cached because the page
    scrolls under the pointer. Latest x/y/target win inside the frame.
 
-   Surfaces that stay flat on purpose (CON-284):
+   Surfaces that stay flat on purpose:
    - .peekimg — reveal already owns its transform; the pointer sits on the
      name, not the card face.
    - #peek — pointer-events:none and follows the cursor, so relative position
@@ -2756,7 +2756,7 @@ async function ambientArt(){
   }catch(e){ /* no art is the old behaviour, not a failure worth showing */ }
 }
 
-/* DW-6. The deck already paints the background and the accents; the buttons
+/* The deck already paints the background and the accents; the buttons
    stayed gold no matter what you built, so the page read as a gold app that
    happened to contain your deck. Now they carry the deck's colour too.
 
@@ -2820,7 +2820,7 @@ function liftForInk(hex){
   }
   return hslToHex(h, s2, 0.96);
 }
-/* DW-13. Colour identity comes back in WUBRG order, not importance order, so
+/* Colour identity comes back in WUBRG order, not importance order, so
    painting from identity[0] means a white-black deck is always "white". Mister
    Negative is a black deck with a white splash and the whole interface came out
    gold, because W sorts first.
@@ -2841,7 +2841,7 @@ function dominantFirst(identity, deck){
   return ci.slice().sort((a, b) => (votes[b] || 0) - (votes[a] || 0));
 }
 
-/* CON-89. Gather the identity the signature paints from. Same field the
+/* Gather the identity the signature paints from. Same field the
    validator reads — never invent a colour. Empty means "look it up" or
    colourless, not "guess from the name". */
 function colorIdentityOf(d){
@@ -2857,7 +2857,7 @@ function colorIdentityOf(d){
 /* Older saves (and a few import paths) ship a commander name with no
    color_identity. Without it the page paints colourless and the colour line
    claims Malcolm has no colour — which is wrong, and which kills the
-   signature CON-89 is for. Ask Scryfall once; stamp what comes back onto the
+   signature this backfill is for. Ask Scryfall once; stamp what comes back onto the
    in-memory deck so paint/renderDeck/colourLine all see the same field. */
 async function ensureIdentity(d){
   const have = colorIdentityOf(d);
@@ -2922,7 +2922,7 @@ function paint(identity, forDeck, deck){
   /* --foil always tracks whatever colour the page is wearing, including the
      ambient card art on the opening screen. --btn stays deck-only, because that
      one drives BUTTON faces and a random card should not repaint the primary
-     call to action on every visit (DW-6). Two different jobs, two tokens: the
+     call to action on every visit. Two different jobs, two tokens: the
      logo shimmers with the page, the buttons wait for a deck. */
   root.setProperty('--foil', liftForInk(base));
   if(!forDeck){
@@ -2936,7 +2936,7 @@ function paint(identity, forDeck, deck){
   root.setProperty('--btn-lo', hslToHex(lh, ls, Math.max(0, ll - 0.10)));
 }
 
-/* DW-3. accent-color used to draw the filled half of these tracks for free, but
+/* accent-color used to draw the filled half of these tracks for free, but
    it only works while the input keeps its native appearance — and the 24px hit
    area needs appearance:none. So the fill is drawn explicitly instead. Without
    this the track renders one flat tone and you lose the read of "how far along
@@ -2950,7 +2950,7 @@ function paintFill(el){
     sliderFill(+el.value, +el.min, +el.max));
 }
 
-/* DW-14. Every card carries Scryfall's `keywords` array, but Scryfall does not
+/* Every card carries Scryfall's `keywords` array, but Scryfall does not
    publish what they MEAN — so the names sat in the oracle text as jargon.
    "Vigilance, lifelink" tells someone new to Commander exactly nothing, and
    they are the two words doing the most work on that card.
@@ -3227,7 +3227,7 @@ function bubble(who, text){
   if(who === 'user'){ d.textContent = text; }
   else {
     d.innerHTML = mdish(text);
-    /* Brad: a reply "is just response" — nothing marks the moment the answer
+    /* Playtest note: a reply "is just response" — nothing marks the moment the answer
        arrived. One bloom in the deck's own accent, then it settles and stops.
        Momentary on purpose: this is an instrument, and anything still moving
        while she reads competes with what it is trying to show her. */
@@ -3239,7 +3239,7 @@ function bubble(who, text){
 }
 
 /* Staged progress — a build is ~8 model calls and 3,000 simulated games.
-   An unchanging spinner reads as broken. CON-223/227: map elapsed time onto
+   An unchanging spinner reads as broken. map elapsed time onto
    the ladder against the known 5–9 minute budget so stages keep moving
    instead of stalling mid-list after a few 45s ticks. */
 function steps(list, activeIdx, opts){
@@ -3269,7 +3269,7 @@ function clearBuildProgress(){
 }
 /* The stages promise something real — pulling cards, checking legality,
    playing 3,000 games — and then the old code just stopped: clearBuildProgress()
-   and the deck was suddenly there. Brad: "it just kind of like cut from that
+   and the deck was suddenly there. Playtest note: "it just kind of like cut from that
    screen right over." After being told the app is playing three thousand games
    on her behalf, the games never visibly finished.
 
@@ -3307,7 +3307,7 @@ function runBuildProgress(stageList){
   _buildProgressTimer = setInterval(tick, 8000);
 }
 
-/* CON-295 / CON-296: named Scryfall refusals. Challenge, maintenance, rate
+/* named Scryfall refusals. Challenge, maintenance, rate
    limit, and timeout each get their own sentence — a robot check that clears
    in hours is not a planned outage, and neither is a 429. Prefer structured
    `e.kind` from the API; fall back to message sniffing only when the body
@@ -3402,7 +3402,7 @@ function restart(){
   paint([]); renderStarters(); showChat();
   document.body.classList.add('landing'); ambientArt();
 }
-/* CON-83: the last stage with no way out. The moment the interrogator emitted a
+/* the last stage with no way out. The moment the interrogator emitted a
    brief the input was hidden for good, so if it misread her — or all five
    commanders were wrong — the only recourse was reloading and starting from
    nothing. The conversation is still in `messages` and the bubbles are still in
@@ -3486,13 +3486,13 @@ function savedSubtitle(s){
   return bits.join(' · ');
 }
 
-/* CON-67: shopping lists survive closing the tab. */
+/* shopping lists survive closing the tab. */
 async function loadSavedList(){
   const el = $('#saved');
   if(!el) return;
   try{
     let items = await fetch('/api/saved').then(r => r.json());
-    // Favourites, then decks she named, then auto-saved playtest builds (CON-227).
+    // Favourites, then decks she named, then auto-saved playtest builds.
     if(Array.isArray(items)) items = items.slice().sort((a, b) => {
       const af = a.favorite ? 1 : 0, bf = b.favorite ? 1 : 0;
       if(af !== bf) return bf - af;
@@ -3602,14 +3602,14 @@ async function loadSavedDeck(id){
     deckData = d;
     deckIsFreshBuild = false;  // Reopened from the saved list — she has lived with this one.
     /* The deck's own brief, not an empty stub. Builds have carried strategy and
-       mechanics since CON-91, and this line threw them away on every saved-deck
+       mechanics, and this line threw them away on every saved-deck
        load — so the page told her the deck predated the reasoning, refused to
        simulate, and offered "Simulate it anyway" on a deck built an hour ago.
        Falls back to the stub only for lists that genuinely have no brief:
-       pasted decklists and, until CON-116 lands, precons. */
+       pasted decklists and precons without a baked brief. */
     brief = d.brief || brief
           || {theme: '', card_pool: d.card_pool || CARD_POOL_TOURNAMENT};
-    /* CON-89: older saves omit color_identity. Resolve it before paint so a
+    /* older saves omit color_identity. Resolve it before paint so a
        Dimir deck actually reads blue-black instead of colourless metal. */
     await ensureIdentity(d);
     paint(colorIdentityOf(d), true, d.deck);
@@ -3633,7 +3633,7 @@ $('#send').onclick = async () => {
   const v = $('#box').value.trim(); if(!v) return;
   $('#box').value = ''; $('#send').disabled = true;
   $('#starters').innerHTML = '';
-  collapseSaved(true);           /* DW-10: old decks stop competing with this one */
+  collapseSaved(true);           /* old decks stop competing with this one */
   const impanel = $('#import'); if(impanel) impanel.style.display = 'none';
   document.body.classList.remove('landing');
   setNav('build');
@@ -3646,7 +3646,7 @@ $('#send').onclick = async () => {
       readiness_asked: readinessAsked || null,
     });
     if(r.text){ bubble('bot', r.text); messages.push({role:'assistant', content:r.text}); }
-    /* CON-166: three states — brief present · still asking · extraction failed.
+    /* three states — brief present · still asking · extraction failed.
        A silent brief:null used to look identical to "still interrogating". */
     if(r.brief_error){
       bubble('bot',
@@ -3654,7 +3654,7 @@ $('#send').onclick = async () => {
         + 'Say that again in one sentence and I will try once more.');
     } else if(r.brief){
       const gate = r.readiness;
-      /* CON-152: countable readiness. Unresolved terms / thin pools keep us
+      /* countable readiness. Unresolved terms / thin pools keep us
          in chat — the check names the question; we do not proceed on a thin brief. */
       if(gate && gate.ready === false){
         readinessAsked = gate.asked_about || readinessAsked;
@@ -3665,7 +3665,7 @@ $('#send').onclick = async () => {
         brief = r.brief;
         if(!brief.card_pool) brief.card_pool = CARD_POOL_TOURNAMENT;
         $('#inputRow').style.display = 'none';
-        /* CON-150: verify what her words resolved to before the expensive pick. */
+        /* verify what her words resolved to before the expensive pick. */
         showReadback();
       }
     }
@@ -3678,7 +3678,7 @@ $('#send').onclick = async () => {
 };
 $('#box').addEventListener('keydown', e => { if(e.key === 'Enter') $('#send').click(); });
 
-/* ── readback (CON-150) ────────────────────────────────────────────────── */
+/* ── readback ────────────────────────────────────────────────── */
 async function showReadback(){
   if(!(brief && (brief.theme || '').trim())){
     findCommanders();
@@ -3700,7 +3700,7 @@ async function showReadback(){
 }
 
 function readbackCountHtml(display, unresolvedNote){
-  /* CON-287: healthy pool sizes are not shown. Every magnitude is labelled. */
+  /* healthy pool sizes are not shown. Every magnitude is labelled. */
   if(unresolvedNote){
     return `<span class="count">${esc(unresolvedNote)}</span>`;
   }
@@ -3801,17 +3801,17 @@ function renderReadback(r){
       <button class="edit" onclick="backToChat()">Change something</button>
     </div>
   </div>`;
-  /* CON-223: chat scroll buries the confirm — bring the panel up. */
+  /* chat scroll buries the confirm — bring the panel up. */
   requestAnimationFrame(() => {
     const el = $('#readback-panel');
     if(el && el.scrollIntoView) el.scrollIntoView({block: 'start', behavior: 'smooth'});
   });
 }
-/* CON-133: manual cut/add via /api/saved/{id}/edit — stages into pending;
+/* manual cut/add via /api/saved/{id}/edit — stages into pending;
    approve bumps version. Adds come from Browse Scryfall hits only. */
 let editorAddPick = null;
 
-/* CON-164: workbench mode + which benches are open. Survives re-render so
+/* workbench mode + which benches are open. Survives re-render so
    approving a swap does not slam her back to the default surface. */
 let workbenchMode = 'suggest'; /* suggest | edit | browse */
 let workbenchOpen = {change: true, notes: false, versions: false};
@@ -3859,7 +3859,7 @@ function versionHint(d){
    not a relapse of the squint finding, it is the reason for it. The group
    carries the mass now, and hairlines are the right weight for sub-structure
    inside something that already reads as a block. */
-/* Brad, playtesting: "I don't even know what that box is for, like, what the
+/* Playtest note: "I don't even know what that box is for, like, what the
    point is" — and, of the accounting, "you asked for this so we filled with
    that. The player doesn't know any of that stuff."
 
@@ -3900,7 +3900,7 @@ function renderSelectionBlock(d){
 }
 
 function renderPlanBlock(d){
-  /* CON-158 returns plan on the build; older saves omit it. Unknown ≠ guess. */
+  /* The build returns its plan; older saves omit it. Unknown ≠ guess. */
   const plan = d && d.plan;
   if(!plan) return '';
   const arch = plan.archetype || {};
@@ -3921,7 +3921,7 @@ function renderPlanBlock(d){
     const min = (c.counts || {}).min;
     if(!role || min == null) continue;
     const actual = deckRoleCount(d.deck, role);
-    /* CON-210: each commitment already has its own label (token density,
+    /* each commitment already has its own label (token density,
        combat pieces, …). Collapsing by role to themeLabel/"payoffs" made
        three floors share two sentences with contradicting wants. */
     const name = String(c.label || '').trim()
@@ -3942,7 +3942,7 @@ function renderPlanBlock(d){
   </div>`;
 }
 
-/* CON-223 UX: budget is advisory — say when we went over before she digs in. */
+/* Budget is advisory — say when we went over before she digs in. */
 function renderBudgetNote(d){
   const b = d && d.budget || {};
   const delta = Number(b.delta);
@@ -3956,8 +3956,8 @@ function renderBudgetNote(d){
   </div>`;
 }
 
-/* CON-199/214: cohesion steered the 99 — show it on the deck page.
-   CON-272: unknown + unread are "could not read", never scored as zero glue. */
+/* cohesion steered the 99 — show it on the deck page.
+   unknown + unread are "could not read", never scored as zero glue. */
 function renderCohesionBlock(d){
   const co = d && d.cohesion;
   if(!co || typeof co !== 'object') return '';
@@ -3984,13 +3984,13 @@ function renderCohesionBlock(d){
   </div>`;
 }
 
-/* CON-192: theme and strategy are separate — show where the 99 came from.
+/* theme and strategy are separate — show where the 99 came from.
    Counts are provenance, not a quality claim. Unknown stays its own line. */
 function renderAccountingBlock(d){
   const a = d && d.accounting;
   if(!a || !a.counts) return '';
   const c = a.counts;
-  /* CON-223 / Gate 1 BUG-4: bucket copy uses a short noun (pirate, horse and
+  /* bucket copy uses a short noun (pirate, horse and
      knight) — never the model's full theme paraphrase. */
   const noun = (a.theme_noun || a.tribe || a.theme_label || 'theme').trim();
   const label = (a.theme_label || 'theme').trim();
@@ -4019,7 +4019,7 @@ function renderAccountingBlock(d){
   </div>`;
 }
 
-/* CON-201 / CON-216: name whether the derived skeleton rewrote role counts.
+/* name whether the derived skeleton rewrote role counts.
    When SKELETON_LIVE, say so and show the applied targets — never imply
    observation-only after the build already searched those counts. */
 function renderCurveReportBlock(d){
@@ -4106,7 +4106,7 @@ function pendingBySource(pending, source){
 }
 
 function pendingEditRows(pending){
-  /* CON-271: editor panel only paints the editor change set. */
+  /* editor panel only paints the editor change set. */
   const list = pendingBySource(pending, 'editor');
   if(!list.length) return '';
   return list.map(p => {
@@ -4118,7 +4118,7 @@ function pendingEditRows(pending){
       ? `<div class="ed-meta">${meta.map(m => esc(m)).join(' · ')}</div>` : '';
     const reason = (p.reason || '').trim()
       ? `<div class="ed-reason">${esc(p.reason)}</div>` : '';
-    /* CON-291: pending id is passed to the handlers below — no data-* reader. */
+    /* pending id is passed to the handlers below — no data-* reader. */
     return `<div class="ed-row">
       <div class="ed-swap"><span class="ed-cut">${esc(p.cut)}</span>
         <span class="ed-arrow">→</span> <span class="ed-add">${esc(p.add)}</span></div>
@@ -4238,7 +4238,7 @@ async function editorStage(){
 async function approvePendingEdit(pendingId){
   const id = deckData && deckData.id;
   if(!id) return;
-  /* CON-271: bulk approve is source-scoped so suggest sets stay pending. */
+  /* bulk approve is source-scoped so suggest sets stay pending. */
   const body = pendingId ? {pending_ids: [pendingId]} : {source: 'editor'};
   const msg = $('#ed-msg');
   try{
@@ -4265,7 +4265,7 @@ async function approvePendingEdit(pendingId){
 async function rejectPendingEdit(pendingId){
   const id = deckData && deckData.id;
   if(!id) return;
-  /* CON-271: bulk reject drops only the editor change set. */
+  /* bulk reject drops only the editor change set. */
   const body = pendingId ? {pending_id: pendingId} : {source: 'editor'};
   const msg = $('#ed-msg');
   try{
@@ -4280,7 +4280,7 @@ async function rejectPendingEdit(pendingId){
   }
 }
 
-/* CON-128: after-game notes on a saved deck. Backend is /api/saved/{id}/notes.
+/* after-game notes on a saved deck. Backend is /api/saved/{id}/notes.
    Only renders when the deck has an id — unsaved builds have nowhere to write. */
 function matchNoteWhen(iso){
   if(!iso) return '';
@@ -4306,7 +4306,7 @@ function matchNoteRows(notes){
       ? `<div class="mn-text">${esc(n.text)}</div>`
       : `<div class="mn-text" style="color:var(--mute)">(no write-up)</div>`;
     const nid = JSON.stringify(String(n.id || '')).replace(/"/g, '&quot;');
-    /* CON-291: note id is passed to deleteMatchNote — no data-* reader. */
+    /* note id is passed to deleteMatchNote — no data-* reader. */
     return `<div class="mn-row">
       <div>${meta}${body}${tags}</div>
       <button type="button" class="ghost mn-del" onclick="deleteMatchNote(${nid})"
@@ -4467,7 +4467,7 @@ async function showMoreCommanders(){
 }
 
 function backRow(fn, label){
-  /* CON-307: the right slot is always restart(). Callers must name the left
+  /* the right slot is always restart(). Callers must name the left
      action for what it does — never "Start over", or both buttons read the
      same while one navigates and the other clears the deck. When the left
      label really is Start over (only restart() itself), skip the duplicate. */
@@ -4480,7 +4480,7 @@ function backRow(fn, label){
     <button class="link" onclick="restart()" style="margin-left:var(--s3)">Start over</button></div>`;
 }
 
-/* CON-191: theme and strategy are separate axes — both visible, never summed. */
+/* theme and strategy are separate axes — both visible, never summed. */
 function fitAxisLabel(p){
   const axis = (p.fit_axis || '').trim();
   if(!axis || axis === 'neither') return '';
@@ -4504,10 +4504,10 @@ function fitScores(p){
   };
   return `<p class="hint fit-scores">${axis('theme', t)} · ${axis('strategy', s)}</p>`;
 }
-/* CON-179: at most three ways on the card — most synergistic first.
+/* at most three ways on the card — most synergistic first.
    Player-language `says` is the row; machine id stays muted. Never pad. */
 const WAYS_ON_CARD = 3;
-/* CON-240: quiet source line — community vs derived, already on the payload. */
+/* quiet source line — community vs derived, already on the payload. */
 function wayHonesty(w){
   const parts = [];
   const m = w.method;
@@ -4544,7 +4544,7 @@ function waysBlock(p){
     }).join('')}</div></div>`;
 }
 
-/* CON-286: scannable facts from Scryfall + KB. Not a paragraph that only
+/* scannable facts from Scryfall + KB. Not a paragraph that only
    swaps the name. Signals/themes stay raw ids (readable with spaces). */
 function differsBlock(p){
   const d = p.differs || {};
@@ -4567,7 +4567,7 @@ function selectWay(name, playstyle){
   if(pick) pick.chosen_playstyle = playstyle;
 }
 
-/* CON-217: bought precon — show computed ways + synergistic adds, not a rebuild. */
+/* bought precon — show computed ways + synergistic adds, not a rebuild. */
 function renderPreconPlay(d){
   if(!d.precon) return '';
   const ways = d.ways_to_play || [];
@@ -4578,7 +4578,7 @@ function renderPreconPlay(d){
         const says = (w.says || w.why || pid).trim();
         const on = pid === chosen ? ' on' : '';
         const src = wayHonesty(w);
-        /* CON-259: picking a way reloads upgrades with that playstyle bias. */
+        /* picking a way reloads upgrades with that playstyle bias. */
         return `<li class="${on}" data-way="${esc(pid)}" role="button" tabindex="0"><b>${esc(pid)}</b> — ${esc(says)}${
           src ? `<span class="wtp-meta"> · ${esc(src)}</span>` : ''}</li>`;
       }).join('')}</ul>`
@@ -4602,7 +4602,7 @@ function renderPreconPlay(d){
     instHint = `<p class="hint">About ${esc(String(okHits))} Scryfall hits across upgrade searches — real cards only.</p>`;
   }
   /* Every card name here is a card she has not seen. The deck page already
-     answers "what is that" by showing the card on hover (.peek, CON-182), and
+     answers "what is that" by showing the card on hover (.peek), and
      an upgrade list that prints only names asks her to trust a name she cannot
      picture — the exact gap .peek was built to close. Same markup and the same
      positioner, so there is one behaviour rather than a lookalike: adds and
@@ -4624,7 +4624,7 @@ function renderPreconPlay(d){
       ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><b>${name}</b></a>`
       : `<b>${name}</b>`;
     const price = c.usd ? `$${esc(c.usd)}` : '';
-    /* CON-219: every add is a swap — show what comes out, suggestion only. */
+    /* every add is a swap — show what comes out, suggestion only. */
     let swapLine = '';
     if(swap){
       if(c.cut && c.cut.name){
@@ -4654,7 +4654,7 @@ function renderPreconPlay(d){
   }else{
     beefBody = `<ul class="beef-list">${cards.map(c => beefRow(c, {buy: true, swap: true})).join('')}</ul>`;
   }
-  /* CON-220: cards skipped only because they are already in the 99. Never
+  /* cards skipped only because they are already in the 99. Never
      a buy link — the point is she does not need to buy them. */
   let ownedBody = '';
   if(already.length){
@@ -4725,13 +4725,13 @@ function renderCommanders(r){
             ${p.reason ? `<span class="reason">${esc(p.reason)}</span>` : ''}
             ${fitAxisLabel(p)}
             <h3>${esc(p.name)} <span class="pickcost">${pips(p.cost, true)}</span></h3>
-            ${/* CON-286: type, colours, themes, signals — differ without prose. */
+            ${/* type, colours, themes, signals — differ without prose. */
               differsBlock(p)}
             ${fitScores(p)}
-            ${/* CON-179: ways sit on the offering — she compares how each
+            ${/* ways sit on the offering — she compares how each
                   commander plays, not five blurbs after a name. */
               waysBlock(p)}
-            ${/* CON-286: fits is model write-up only. writeup_missing must
+            ${/* fits is model write-up only. writeup_missing must
                   not render as a template paragraph. */
               (p.fits && !p.writeup_missing) ? `<div class="plan match">
               <div class="pc-h">Why this is your deck</div>
@@ -4739,7 +4739,7 @@ function renderCommanders(r){
             ${(p.writeup_missing && !(p.ways_to_play||[]).length)
               ? `<p class="hint writeup-missing">No write-up for this one — compare type, colours, and fit scores.</p>`
               : ''}
-            ${/* Model write-up only when no derived ways (CON-187 escape). */
+            ${/* Model write-up only when no derived ways (escape). */
               (!(p.ways_to_play||[]).length && p.strategy && !p.writeup_missing) ? `<div class="plan">
               <div class="pc-h">The deck you'd build</div>
               <p class="strategy">${prose(p.strategy)}</p></div>` : ''}
@@ -4775,7 +4775,7 @@ function renderCommanders(r){
 }
 function setPool(v){ brief.card_pool = v; findCommanders(0); }
 
-/* ── partner pick (CON-118) ───────────────────────────────────────────── */
+/* ── partner pick ───────────────────────────────────────────── */
 async function pickPartner(name){
   commander = name;
   partner = null;
@@ -4853,10 +4853,10 @@ function renderPartners(first, data){
 async function buildIt(name, partnerName){
   commander = name;
   partner = partnerName || null;
-  // CON-91: carry the chosen commander's strategy into the build so the cards
+  // carry the chosen commander's strategy into the build so the cards
   // that get searched for actually serve the plan she just read.
   const pick = (lastPicks?.picks || []).find(p => p.name === name) || {};
-  // CON-179: the way she (or we) selected drives commitments.
+  // the way she (or we) selected drives commitments.
   const way = chosenWays[name] || pick.chosen_playstyle || null;
   if(way){
     brief = {...brief, way_to_play: way};
@@ -4879,8 +4879,8 @@ async function buildIt(name, partnerName){
              chosen_playstyle: way || '',
              ways_to_play: pick.ways_to_play || []}});
   }catch(e){
-    /* CON-295: say it on the ladder. Stop the timer; do not run the
-       completion beat (CON-290). brief / commander / partner / way stay
+    /* say it on the ladder. Stop the timer; do not run the
+       completion beat. brief / commander / partner / way stay
        in memory for retry. */
     clearBuildProgress();
     const back = backRow(
@@ -4891,7 +4891,7 @@ async function buildIt(name, partnerName){
       <button onclick="buildIt(${JSON.stringify(name).replace(/"/g,'&quot;')}${
         partner ? ', ' + JSON.stringify(partner).replace(/"/g,'&quot;') : ''
       })">Try again</button></div>`;
-    /* CON-303: building uses otag: role ladders — live-only even with a warm
+    /* building uses otag: role ladders — live-only even with a warm
        corpus. Say that; do not imply the local card source failed. */
     $('#stage').innerHTML = steps(stages, 1, {
       note: 'Stopped — building needs live Scryfall for role tags. Saved decks still open.'})
@@ -4921,7 +4921,7 @@ async function buildIt(name, partnerName){
 
 /* Once a deck exists the conversation is history, not the main event. Collapse
    it to one line she can reopen — she should land on her deck, not her typing. */
-/* DW-10. The saved list is landing furniture: it answers "reopen something I
+/* The saved list is landing furniture: it answers "reopen something I
    already built". Once she starts describing a NEW deck it is 12 rows and 330px
    of old decks sitting under the conversation she is having — a third of the
    screen arguing with the thing she is doing.
@@ -4987,7 +4987,7 @@ function collapseChat(on){
   if(bar){ bar.style.display = on ? 'block' : 'none'; bar.textContent = '▸ Show the conversation'; }
 }
 
-/* CON-96 — why this deck is these colours. Colour identity is the single rule
+/* why this deck is these colours. Colour identity is the single rule
    that shapes a Commander deck most, and the app was applying it silently:
    the 99 came back mono-white and nothing said why. It reads as a choice the
    app made and won't explain. `validate_deck()` already enforces this; we are
@@ -5055,7 +5055,7 @@ function colourLine(commander, identity, opts){
 }
 
 function commanderZone(d){
-  /* CON-118: one or two commanders. Prefer the explicit list; fall back to scalars. */
+  /* one or two commanders. Prefer the explicit list; fall back to scalars. */
   const cards = (d.commander_cards && d.commander_cards.length)
     ? d.commander_cards
     : [d.commander_card, d.partner_card].filter(Boolean);
@@ -5070,7 +5070,7 @@ function commanderZone(d){
           partner: names.length > 1};
 }
 
-/* CON-68 — the overview the build now returns. Every claim in it was checked
+/* the overview the build now returns. Every claim in it was checked
    against the decklist server-side before it got here; a card named in this
    prose is a card in the 99. */
 /* Prose from the model quotes real costs — "Konrad's own {1}{B} ability" —
@@ -5081,7 +5081,7 @@ function prose(text){
   return esc(text || '').replace(/\{[^}\s]{1,4}\}/g, m => pips(m));
 }
 
-/* CON-182 / CON-237: one markup for "hover a name, see the card". Shared so
+/* one markup for "hover a name, see the card". Shared so
    How to play, suggest, version history and overview do not invent lookalikes.
    Image optional — look up the 99 / command zone when omitted. */
 function peekCard(name, img){
@@ -5164,7 +5164,7 @@ function renderOverview(o){
   </div>`;
 }
 
-/* CON-321 Gate 2 — commander-read + audit. Eight-lesson language, no steer.
+/* commander-read + audit. Eight-lesson language, no steer.
    Soft combo / hidden power print "we do not score this." Unread is honest. */
 function renderClarityBlock(d){
   const s = d && d.commander_strategy;
@@ -5179,7 +5179,7 @@ function renderClarityBlock(d){
       <p class="hint">The 99 is the usual build path. Soft combos and hidden power — we do not score this.</p>
     </div>`;
   }
-  /* Box: the extractor's field names are its own vocabulary — board_count,
+  /* The extractor's field names are its own vocabulary — board_count,
      recur_to_battlefield. A beginner reads the deck page, not the schema, so
      every value is spoken here. An unmapped key falls through to the raw key
      rather than disappearing: a gap should look like a gap. */
@@ -5250,7 +5250,7 @@ function renderClarityBlock(d){
     `${v.name} (mv ${v.cmc} > ${v.limit})`);
   const unk = (a.bound_unknown || []).map(u => u.reason || u.subject);
   const rate = s.rate || a.rate || {};
-  /* Box: who has to act decides what the goldfish can honestly measure.
+  /* Who has to act decides what the goldfish can honestly measure.
      Self-supplied triggers a solitaire game can produce; opponent-supplied
      ones it cannot, and we say so rather than scoring an imagined table. */
   const rateLine = rate.supplier === 'opponent'
@@ -5297,7 +5297,7 @@ function renderClarityBlock(d){
   </div>`;
 }
 
-/* ── CON-95: what would you change? ───────────────────────────────────────
+/* ── what would you change? ───────────────────────────────────────
    The flow used to end at a finished deck and stop. The only exits threw
    something away: "Different commander" lost the deck, "Start over" lost the
    conversation. There was no way to say *this, but more of that* — which is
@@ -5325,7 +5325,7 @@ function changeChips(d){
   return out.slice(0, 5);
 }
 
-/* CON-127: browse version history on a saved deck. No model — reads
+/* browse version history on a saved deck. No model — reads
    /api/saved/{id}/versions for parent link and diff summaries. */
 function versionWhen(iso){
   if(!iso) return '';
@@ -5353,7 +5353,7 @@ function versionHistoryRows(history){
     const ver = h.version != null ? h.version : '?';
     const when = versionWhen(h.at);
     const id = `vh-row-${ver}`;
-    /* CON-291: version is in the row id (`vh-row-N`) — no data-version reader. */
+    /* version is in the row id (`vh-row-N`) — no data-version reader. */
     return `<div class="vh-row" id="${id}">
       <div class="vh-meta">Version <b>${esc(String(ver))}</b>${when ? ` · ${esc(when)}` : ''}</div>
       ${versionDiffRows(h.diff)}
@@ -5491,12 +5491,12 @@ function renderChange(d){
   </div>`;
 }
 
-/* CON-126/271: goal-scoped swap suggestions on a saved deck. Backend stages a
+/* goal-scoped swap suggestions on a saved deck. Backend stages a
    change set; approve bumps version, reject drops the set and leaves the 99. */
 let suggestGoalsCache = null;
 
 function pendingSwapRows(pending){
-  /* CON-271: suggest panel only paints the suggest change set. */
+  /* suggest panel only paints the suggest change set. */
   const list = pendingBySource(pending, 'suggest');
   if(!list.length) return '';
   return list.map(p => {
@@ -5509,7 +5509,7 @@ function pendingSwapRows(pending){
     const reason = (p.reason || '').trim()
       ? `<div class="sg-reason">${esc(p.reason)}</div>` : '';
     const addImg = p.add_card && (p.add_card.image || p.add_card.art);
-    /* CON-291: pending id is passed to the handlers below — no data-* reader. */
+    /* pending id is passed to the handlers below — no data-* reader. */
     return `<div class="sg-row">
       <div class="sg-swap"><span class="sg-cut">${peekCard(p.cut)}</span>
         <span class="sg-arrow">→</span> <span class="sg-add">${peekCard(p.add, addImg)}</span></div>
@@ -5640,7 +5640,7 @@ async function requestSuggest(goal){
 async function approvePendingSwap(pendingId){
   const id = deckData && deckData.id;
   if(!id) return;
-  /* CON-271: bulk approve is source-scoped so editor sets stay pending. */
+  /* bulk approve is source-scoped so editor sets stay pending. */
   const body = pendingId ? {pending_ids: [pendingId]} : {source: 'suggest'};
   const msg = $('#sg-msg');
   try{
@@ -5666,7 +5666,7 @@ async function approvePendingSwap(pendingId){
 async function rejectPendingSwap(pendingId){
   const id = deckData && deckData.id;
   if(!id) return;
-  /* CON-271: bulk reject drops only the suggest change set; 99 untouched. */
+  /* bulk reject drops only the suggest change set; 99 untouched. */
   const body = pendingId ? {pending_id: pendingId} : {source: 'suggest'};
   const msg = $('#sg-msg');
   try{
@@ -5696,7 +5696,7 @@ async function askChange(text){
     /* One box, two outcomes. A question is answered from this deck's own cards
        and numbers; only a change request rebuilds. Rebuilding a deck because
        she asked what a percentage meant would be maddening. */
-    /* CON-115: send the durable record, not a hand-picked subset. Per-card
+    /* send the durable record, not a hand-picked subset. Per-card
        `why` rides on deck; conversation / notes / substitutions were the
        fields ask used to drop, so "why is this card here" had to be invented. */
     const r = await post('/api/ask', {
@@ -5723,7 +5723,7 @@ async function askChange(text){
        and ninety-nine cards moved under her without a word. Whatever she
        asked, she gets the answer and then decides. Nothing here rebuilds
        without her pressing something. */
-    /* CON-166: a broken change-brief is not "no change" — say so. */
+    /* a broken change-brief is not "no change" — say so. */
     let answer = r.text || '';
     if(r.brief_error){
       answer = (answer ? answer + '\n\n' : '')
@@ -5766,7 +5766,7 @@ function showChanged(before, want){
     <button class="ghost" onclick="$('#change').outerHTML = renderChange(deckData)">Change something else</button>`;
 }
 
-/* ── CON-93: the shopping list you take to the shop ───────────────────────
+/* ── the shopping list you take to the shop ───────────────────────
    Copy decklist, Archidekt and Buy-this-deck all hand the deck to another
    piece of software. This is the only export that hands it to the person.
 
@@ -5906,7 +5906,7 @@ function openSheet(){
   window.print();
 }
 
-/* ── CON-104: what a real game looks like ─────────────────────────────────
+/* ── what a real game looks like ─────────────────────────────────
    A percentage is a claim about a thousand games nobody watched. Seven cards
    is the same information in a form she can hold, so the hands sit beside the
    odds as the evidence for them rather than under the chart as a footnote.
@@ -6039,7 +6039,7 @@ function renderHands(r){
   </div>`;
 }
 
-/* ── CON-101: christening ─────────────────────────────────────────────────
+/* ── christening ─────────────────────────────────────────────────
    Everything else here is about being correct. This is the part that makes
    someone love the thing they built.
 
@@ -6165,7 +6165,7 @@ async function applySuggestedName(o){
   if(!deckIsFreshBuild || !deckData) return;
   const suggested = ((o.names || [])[0] || '').trim();
   if(!suggested) return;
-  /* CON-291: persist_deck stamps `id`, never `saved_as`. Reading the missing
+  /* persist_deck stamps `id`, never `saved_as`. Reading the missing
      field fell through to id — keep the real key so a missing id fails loud. */
   const id = deckData.id;
   if(!id) return;
@@ -6195,7 +6195,7 @@ function renderChristen(o){
        onclick="pickName(${JSON.stringify(n).replace(/"/g,'&quot;')})">${esc(n)}</button>`
   ).join('');
   el.innerHTML = `
-    ${/* DW-18. Three fields with no stated purpose: it said "this one's yours"
+    ${/* Three fields with no stated purpose: it said "this one's yours"
            and left you to work out what any of them were FOR. The name is how
            you find the deck again; the other two are what you say out loud when
            you put it on the table. Saying that turns three blank boxes into
@@ -6245,7 +6245,7 @@ function pickName(n){
     b.classList.toggle('on', b.textContent.trim() === n));
 }
 
-/* CON-309: a failed Save must say so. fetch does not throw on 404 — check ok
+/* a failed Save must say so. fetch does not throw on 404 — check ok
    and surface copy from evidence, not a silent button reset. */
 const SAVE_FAIL_WHAT = 'Couldn’t save this deck.';
 
@@ -6278,7 +6278,7 @@ function showSaveFailure(e){
 }
 
 async function saveIdentity(btn){
-  /* CON-291: `saved_as` was never written. The commander-slug fallback misses
+  /* `saved_as` was never written. The commander-slug fallback misses
      the timestamped id persist_deck actually uses — PATCH would 404 silently
      on a fresh build. Use the real stamp. */
   const id = deckData && deckData.id;
@@ -6319,7 +6319,7 @@ async function saveIdentity(btn){
   }
 }
 
-/* ── CON-97 / CON-98: the other two ways in ───────────────────────────────
+/* ── the other two ways in ───────────────────────────────
    The conversation stays primary — it is what this app is for. But two kinds
    of person arrive already holding a deck: someone who bought a precon, which
    is how nearly everyone starts, and someone with a list from Archidekt or a
@@ -6366,7 +6366,7 @@ function setNav(id){
 }
 
 function showLanding(){
-  document.body.classList.add('landing');     /* DW-19 */
+  document.body.classList.add('landing');
   clearSurfaces();
   setNav('build');
   $('#inputRow').style.display = '';
@@ -6564,7 +6564,7 @@ async function showRules(){
         rule disagree, the card wins — that is a real rule.</span>
     </div>
   </div>`;
-  /* CON-237: example names use .peek — clamp them the same way as the deck page. */
+  /* example names use .peek — clamp them the same way as the deck page. */
   requestAnimationFrame(placeKwpops);
 }
 
@@ -6590,7 +6590,7 @@ function hideCalendar(){
   PAGE_HID.forEach(sel => { const e = $(sel); if(e) e.style.display = ''; });
 }
 
-/* ── release calendar (CON-132 / CON-218) ─────────────────────────────────
+/* ── release calendar ─────────────────────────────────
    Sets on the axis, debut mechanics as the content. Future rows say "not
    spoiled yet" — never invent keywords. Released rows with a successful look
    and no debuts say "No new keywords." Failed looks say unavailable — not
@@ -6601,7 +6601,7 @@ const CAL_SET_TYPE = {
   expansion:'Expansion', commander:'Commander decks', masters:'Masters',
   core:'Core set', draft_innovation:'Draft innovation',
 };
-/* CON-291: CAL_PIP + calPipColor removed — colour pips died with CON-218's
+/* CAL_PIP + calPipColor removed — colour pips died with the mechanics calendar's
    sets×decks enrich; nothing called the helper after. */
 
 function calSetType(t){
@@ -6750,7 +6750,7 @@ function calRenderFeed(data){
 }
 
 function calMergeMechanics(prev, next){
-  /* CON-218: enrich unknown must not bury announced/known names already on the tile. */
+  /* enrich unknown must not bury announced/known names already on the tile. */
   if(!next) return prev || next;
   if(!prev) return next;
   const pNames = prev.names || [];
@@ -6861,7 +6861,7 @@ function showCalendar(){
 function showImport(mode){
   hideRules();
   hideCalendar();
-  /* DW-12. Precons and Paste open a panel and left the deck sitting underneath
+  /* Precons and Paste open a panel and left the deck sitting underneath
      it — clicking "Precons" while reading a deck gave you the precon picker
      with 85 card rows still scrolling below, so the page was two screens at
      once and neither was finished. The stage has to be cleared like every other
@@ -6877,7 +6877,7 @@ function showImport(mode){
   clearSurfaces({import: true});   /* the panel is built immediately below */
   messages = []; deckData = null; commander = null; partner = null;
   paint([]);
-  document.body.classList.remove('landing');   /* DW-19 */
+  document.body.classList.remove('landing');
   setNav(mode === 'paste' ? 'paste' : 'precon');
   $('#inputRow').style.display = 'none';
   $('#saved').innerHTML = '';
@@ -7006,7 +7006,7 @@ async function loadPrecon(id, wayPlaystyle){
 }
 
 function bindPreconWayClicks(root){
-  /* CON-259: way chips re-fetch upgrades with that playstyle bias. */
+  /* way chips re-fetch upgrades with that playstyle bias. */
   (root || document).querySelectorAll('.pway-list li[data-way]').forEach(li => {
     const go = () => {
       const way = li.getAttribute('data-way');
@@ -7028,7 +7028,7 @@ async function resolvePasted(){
     'Checking every card against Scryfall', 'Reading what it does'], 1);
   try{
     const d = await post('/api/resolve', {text});
-    /* CON-306: /api/resolve does not echo the paste. Keep it so a later
+    /* /api/resolve does not echo the paste. Keep it so a later
        commander pick can re-resolve the same list instead of an empty body. */
     d.text = text;
     afterImport(d, 'your deck');
@@ -7037,7 +7037,7 @@ async function resolvePasted(){
   }
 }
 
-/* CON-306: empty deck is several causes. Branch on evidence already in the
+/* empty deck is several causes. Branch on evidence already in the
    payload — never emit "nothing resolved" when the server said otherwise. */
 const IMPORT_NOTHING_RESOLVED = 'Nothing in that list resolved to a real card.';
 
@@ -7117,7 +7117,7 @@ function importEmptyFailure(d){
   };
 }
 
-/* CON-305: a candidate is either a name or a {commander, partner} pair. When
+/* a candidate is either a name or a {commander, partner} pair. When
    the answer is "these two", asking her to choose one of three legendaries is
    a question she cannot answer — so offer the pairs and say so in the eyebrow. */
 function showCommanderDisambiguation(d){
@@ -7146,7 +7146,7 @@ function showCommanderDisambiguation(d){
 /* Two things can come back that aren't a finished deck, and both have to be
    said out loud rather than swallowed: lines we couldn't resolve, and a deck
    with several legendary creatures where guessing the commander would rebuild
-   something she didn't ask for. CON-305: when the answer is a partner pair,
+   something she didn't ask for. when the answer is a partner pair,
    candidates are pairs ({commander, partner}), not individuals. */
 async function afterImport(d, label){
   if(importShouldDisambiguate(d)){
@@ -7191,7 +7191,7 @@ async function finishImport(d, label){
   deckIsFreshBuild = true;  // Freshly imported from a pasted list — new to the app.
   commander = d.commander;
   partner = d.partner || null;
-  /* CON-116: baked precons ship their own brief (source: "precon"). Prefer
+  /* baked precons ship their own brief (source: "precon"). Prefer
      that over inventing a theme from the product name — the name is not an ask. */
   if(d.brief){
     brief = {...(brief || {}), ...d.brief};
@@ -7217,7 +7217,7 @@ async function finishImport(d, label){
         `line ${esc(u.line)}: ${esc(u.text)}`).join('<br>')}</div>`;
     $('#stage').prepend(box);
   }
-  /* CON-102: baked precon analysis already has overview + sim. Draw the
+  /* baked precon analysis already has overview + sim. Draw the
      curves from what shipped; do not call the model or re-run goldfish. */
   if(d.baked && d.sim && (d.sim.curves || []).length){
     showBakedSim(d.sim);
@@ -7373,7 +7373,7 @@ function axisStory(deck, axis){
 /* The build's own account of what went wrong. This is the most honest thing on
    the page — it is where the deck admits a theme returned nothing and basics
    were padded in to reach 99 — and it was printed as an eight-line log dump
-   under the card table. Brad's words: "I dunno what this is."
+   under the card table. Playtest note: "I dunno what this is."
 
    Three kinds of line, and they are not equal. The padding warning changes what
    she should do; the per-role shortfalls explain why; the Karsten basis line is
@@ -7554,7 +7554,7 @@ async function toggleFav(){
   }
 }
 
-/* DW-16: a deep cut names a card that is already in the 99, so it should take
+/* a deep cut names a card that is already in the 99, so it should take
    you there instead of leaving you to scroll and search. Unfolds the group if
    the card is inside a collapsed one, otherwise the scroll lands on nothing. */
 function jumpToCard(name){
@@ -7578,8 +7578,8 @@ function toggleRole(el){
   const shut = el.closest('.system').classList.toggle('shut');
   el.setAttribute('aria-expanded', shut ? 'false' : 'true');
 }
-/* CON-131: browse Scryfall on a saved deck. No model — /api/search returns
-   trimmed, verified cards. Editor staging (cut/add) is CON-133; this panel
+/* browse Scryfall on a saved deck. No model — /api/search returns
+   trimmed, verified cards. Editor staging (cut/add) is a separate panel; this panel
    only surfaces the pool she would pick from. */
 let cardSearchTimer = null;
 let cardSearchSeq = 0;
@@ -7872,9 +7872,9 @@ function renderDeck(d){
           alts.map(a => `<b>${peekCard(a.name, a.image || altImages[a.name])
             }</b>`).join(' · ')}</div>`
       : '';
-    /* CON-291: data-bucket stays — accounting provenance per row. Aggregate
+    /* data-bucket stays — accounting provenance per row. Aggregate
        counts paint today; a click-to-filter (same shape as data-axis before
-       CON-276) needs the attribute on the row. Do not delete as "unused". */
+       The card-type tint) needs the attribute on the row. Do not delete as "unused". */
     return `<tr class="cardrow" data-role="${esc(c.role)}"
       data-name="${esc(c.name)}"
       data-bucket="${esc(c.bucket || '')}"
@@ -7936,7 +7936,7 @@ function renderDeck(d){
       bits.push("Can't find one? Substitutes are listed under the card.");
     }
     const aside = bits.join(' ');
-    /* CON-291: data-n is read by CSS attr(data-n) on .system.shut — keep. */
+    /* data-n is read by CSS attr(data-n) on .system.shut — keep. */
     return `<section class="system${shut ? ' shut' : ''}" data-role="${esc(role)}">
       <div class="sysname" data-n="${roleCount[role]}" onclick="toggleRole(this)"
         role="button" tabindex="0" aria-expanded="${shut ? 'false' : 'true'}"
@@ -7986,7 +7986,7 @@ function renderDeck(d){
         aria-pressed="${d.favorite ? 'true' : 'false'}">${d.favorite ? '★' : '☆'}</button>
     </div>
     ${typeLines}
-    ${/* Brad: this belongs up here. Legal, price, size and budget are the deck's
+    ${/* This belongs up here. Legal, price, size and budget are the deck's
           vital signs — the first things you check — and they were buried below
           the oracle text and the colour footnote, after everything you were
           reading to find out whether the deck was even valid. */''}
@@ -8007,14 +8007,14 @@ function renderDeck(d){
     ${/* The commander's own text, at the top, because it is the card the whole
           deck is built around and she was reading it off a 212px image. The
           plan sits under it — the card first, then what it lets her build.
-          CON-118: both partners get their oracle text. */
+          both partners get their oracle text. */
       texts}
     <div class="whycolour">${colourLine(d.commander, zone.identity, {
       partner: zone.partner, pairLabel: zone.label, deckSize: zone.deckSize,
       cards: zone.cards})}</div>
     ${(() => {
       /* A precon or a pasted list has no strategy she chose — but it still has
-         a plan, and CON-68 already derived it from the cards. Saying "no plan"
+         a plan, and the deck overview already derived it from the cards. Saying "no plan"
          over a deck the app just explained in four paragraphs is nonsense. */
       const stated = brief && brief.strategy;
       const derived = (d.overview || {}).strategy;
@@ -8023,7 +8023,7 @@ function renderDeck(d){
       if(!text) return '';
       /* Turns are the game's own structure, so the plan reads as turns. The
          same content as a paragraph was a wall nobody finishes. */
-/* DW-15. The plan came back from the model as one blob and rendered as one
+/* The plan came back from the model as one blob and rendered as one
    paragraph — twelve lines of unbroken serif that nobody finishes, on the
    section that is supposed to tell you what your deck actually does.
 
@@ -8074,10 +8074,10 @@ function planParagraphs(text){
       const fits = (brief || {}).fits;
       /* A precon was bought, not asked for. Saying "what you asked for" back at
          someone who picked a deck off a shelf and handing them its own product
-         name is the tool mishearing them out loud. CON-116 flags the source;
+         name is the tool mishearing them out loud. The precon bake flags the source;
          this reads it. */
       const bought = ((brief || {}).source === 'precon');
-      /* Her own turns, read back to her on the deck page. Brad: "the player
+      /* Her own turns, read back to her on the deck page. Playtest note: "the player
          doesn't know any of that stuff… you asked for Spiderman, and it's like
          Spiderman together." She said it minutes ago and the deck is named
          after it — repeating a transcript is the app talking about the
@@ -8086,7 +8086,7 @@ function planParagraphs(text){
          What survives is `fits`: why THIS commander answers what she wanted.
          That is about the deck and it is the one line here she did not write.
          A bought precon keeps its own framing, since she never asked for
-         anything and CON-116 flags that case. */
+         anything and the precon bake flags that case. */
       const wanted = fits ? `<div class="wanted">
         <div class="pc-h">${bought ? 'The deck you bought' : 'Why this one'}</div>
         <p class="fitline">${prose(fits)}</p>
@@ -8160,7 +8160,7 @@ function planParagraphs(text){
       ${/* The composition sliders moved to sit under the simulation — they
             change those numbers, so they belong beside them. */ ''}
       <textarea id="listbox" readonly aria-hidden="true" tabindex="-1" style="display:none">${esc(d.archidekt)}</textarea>
-      ${/* CON-89: the numbers you check while reading card 80 — price and land
+      ${/* the numbers you check while reading card 80 — price and land
             count — live on the sticky rail, not only in the hero strip she has
             already scrolled past. Composition sliders stay under the odds. */ ''}
       <div class="stat">Estimated<b class="num">$${esc(d.price)}</b></div>
@@ -8185,8 +8185,8 @@ function planParagraphs(text){
         ${(d.signals.strong||[]).map(s => `<div class="hint">✓ ${esc(s.text)}</div>`).join('')}
         ${(d.signals.watch||[]).map(s => `<div class="hint">! ${esc(s.text)}</div>`).join('')}
       ` : ''}
-      ${/* DW-16. This was a bare run of card names under "Almost nobody runs
-             these", and it read as a second, unexplained list of cards — Brad's
+      ${/* This was a bare run of card names under "Almost nobody runs
+             these", and it read as a second, unexplained list of cards — the playtest
              question was literally "why are they here". The answer was never on
              screen: they are ALREADY IN THE 99. That is the whole point, and it
              was the one fact the panel omitted.
@@ -8209,7 +8209,7 @@ function planParagraphs(text){
     </div>
   </div>
 
-  ${/* CON-164: tooling after the 99 — deck stays the hero; benches collapse. */
+  ${/* tooling after the 99 — deck stays the hero; benches collapse. */
     renderWorkbench(d)}
 `;
   window.scrollTo(0,0);
@@ -8241,7 +8241,7 @@ function planParagraphs(text){
      tab wrote, or empty on first paint of an older save. Refresh when present. */
   if(d && d.id) refreshMatchNotes();
   if(d && d.id) loadVersionHistory();
-  /* CON-165: after the chips exist, pin popovers to the viewport. */
+  /* after the chips exist, pin popovers to the viewport. */
   requestAnimationFrame(placeKwpops);
 }
 
@@ -8550,8 +8550,8 @@ async function runThesis(){
        what decides which conditions the thesis measures. Sending the module-level
        `brief` sent the version from before a commander existed — so the deck was
        graded against a generic plan rather than the one she picked, and on a
-       saved deck against nothing at all. Cursor flagged this seam when it
-       finished CON-91; the backend has been reading `strategy` since. */
+       saved deck against nothing at all. This seam was flagged when the
+       strategy-driven build landed; the backend has been reading `strategy` since. */
     /* Prefer the plan that built the 99. The server goldfishes those
        conditions against this list — any plan shape — instead of inventing
        a second thesis. Older saves without a plan still fall back to the
@@ -8620,7 +8620,7 @@ async function sim(){
          either. Storing the untweaked baseline turns every later visit into a
          read instead of a model call plus 3,000 games. Only the baseline —
          slider results describe a deck she has not saved.
-         The endpoint has existed since CON-108; nothing was calling it. */
+         The endpoint has existed; nothing was calling it. */
       if(deckData && deckData.id && !Object.values(tweak).some(v => v)){
         fetch('/api/saved/' + encodeURIComponent(deckData.id) + '/simulation', {
           method: 'PUT', headers: {'Content-Type': 'application/json'},
@@ -8722,7 +8722,7 @@ function drawCurves(r){
     </div>`;
   }).join('');
 
-  /* CON-84. The percentages are measured correctly either way — the question
+  /* The percentages are measured correctly either way — the question
      is whether they were the right questions. A thesis that grades a creature
      deck on its mana base produces numbers that look exactly like good ones,
      so when a check fails it is said out loud, above the numbers, before she
@@ -8771,12 +8771,12 @@ const syncScrollbarWidth = () => {
   const gap = Math.max(0, Math.round(vw - document.documentElement.clientWidth));
   document.documentElement.style.setProperty('--sbw', gap + 'px');
 };
-/* CON-165: the CSS nth-last-child flip is index-aware. When chips wrap, a
+/* the CSS nth-last-child flip is index-aware. When chips wrap, a
    mid-row chip can sit on the right edge with left:0 and push its 280px
    popover past the fold — even at opacity:0, which is enough to make the
    page scroll sideways. Measure each host against the viewport and open the
    popover toward the side that fits, capping width to the free space. */
-/* CON-165 solved this for keyword popovers; CON-182 found the identical bug on
+/* An earlier fix solved this for keyword popovers; the same bug turned up on
    card-image peeks (`left:50%` + `translate(-50%)`, nothing clamping it to the
    viewport — 11px of horizontal scroll at 390). Two independent positioners for
    one problem is how they drift, so the clamp takes a selector and a width. */
@@ -8844,7 +8844,7 @@ function placePopovers(selector, boxWidth){
   }
 })();
 
-/* CON-295: paint a challenged / rate-limited / timed-out card source on the
+/* paint a challenged / rate-limited / timed-out card source on the
    landing without blocking saved decks or local pages. */
 function showCardSourceNote(cardSource){
   const el = $('#cardSourceNote');
@@ -8862,7 +8862,7 @@ function showCardSourceNote(cardSource){
   el.hidden = false;
 }
 
-/* CON-285: wait on /api/boot only when the process is still warming. A warm
+/* wait on /api/boot only when the process is still warming. A warm
    KeepAlive server answers ready on the first poll — no splash flash. */
 async function ensureBoot(){
   const el = $('#boot');

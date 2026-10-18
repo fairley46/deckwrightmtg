@@ -1,4 +1,4 @@
-# CON-335 — bound violations: ramp vs payoff
+# Bound violations: ramp vs payoff
 
 Gate C bake-off showed the raw `violation_count` column is not rankable:
 cheap mana rocks count as MV-floor violations on Bello even though steer

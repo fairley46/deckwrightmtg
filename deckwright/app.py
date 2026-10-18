@@ -75,9 +75,9 @@ client, LLM_VIA = llm.make_client()
 @asynccontextmanager
 async def _lifespan(app_: FastAPI):
     instance.require_boot()
-    # CON-294: load the local card corpus before anything asks Scryfall.
+    # load the local card corpus before anything asks Scryfall.
     # Missing file → empty Corpus; lookups fall through to live until boot
-    # cadence runs `python -m corpus` (missing bulk triggers refresh — CON-296)
+    # cadence runs `python -m corpus` (missing bulk triggers refresh)
     # or Sunday cadence refreshes it.
     try:
         corp = corpus.load_default_corpus()
@@ -99,8 +99,8 @@ async def _lifespan(app_: FastAPI):
             )
     except Exception as e:
         print(f"  corpus -> load failed: {type(e).__name__}: {e}")
-    # CON-285: warm vocab (and refresh stale data) while the brand veil waits.
-    # CON-295: probe Scryfall once so a challenged card source is named before
+    # warm vocab (and refresh stale data) while the brand veil waits.
+    # probe Scryfall once so a challenged card source is named before
     # she types a wish. Local pages stay ready either way.
     boot.start_background(
         asyncio.get_running_loop(),
@@ -119,7 +119,7 @@ _last = [0.0]
 _SCRYFALL_MIN_GAP = 0.2          # headroom under 10 req/s under full-suite load
 _SCRYFALL_RETRIES = 5
 
-# CON-295: named refusals. Challenge / rate limit / timeout are different
+# named refusals. Challenge / rate limit / timeout are different
 # sentences — do not collapse them. Copy is declarative; the page paints it.
 SCRYFALL_REFUSAL_COPY = {
     "challenge": {
@@ -211,7 +211,7 @@ def _is_maintenance(response) -> bool:
     window costs three attempts and the full backoff before failing anyway.
     A planned outage will not clear inside seven seconds.
 
-    CON-302: match only Scryfall's phrase. A bare "maintenance" anywhere in the
+    match only Scryfall's phrase. A bare "maintenance" anywhere in the
     body (CDN boilerplate, upstream 503 pages) must still retry — wrongly
     refusing a two-second blip costs her the build; wrongly retrying a real
     outage costs seven seconds.
@@ -245,7 +245,7 @@ def _is_cloudflare_challenge(response) -> bool:
 async def _scryfall_request(method: str, path: str, **kwargs) -> dict:
     """Rate-gated Scryfall call. 404 → empty data; 429/5xx → retry then raise.
 
-    CON-295: a Cloudflare challenge raises immediately as kind=challenge.
+    a Cloudflare challenge raises immediately as kind=challenge.
     More requests extend a challenge — do not retry it. Rate limit and
     timeout keep today's budget and get their own kinds.
     """
@@ -265,7 +265,7 @@ async def _scryfall_request(method: str, path: str, **kwargs) -> dict:
                     else:
                         r = await c.post(url, headers=UA, **kwargs)
             except httpx.TimeoutException as e:
-                # No new retries — timeouts never retried before CON-295.
+                # No new retries — timeouts were never retried.
                 raise ScryfallError(0, "timed out", kind="timeout") from e
             except httpx.HTTPError as e:
                 raise ScryfallError(
@@ -291,10 +291,10 @@ async def _scryfall_request(method: str, path: str, **kwargs) -> dict:
             await asyncio.sleep(wait)
             delay = min(delay * 2, 30)
             continue
-        # CON-295 keeps the taxonomy: a caller has to be able to tell a
+        # keeps the taxonomy: a caller has to be able to tell a
         # challenge from a rate limit from a plain unreachable, because they
         # clear on completely different timescales and deserve different words.
-        # CON-294's separate 403 branch is not needed — _is_cloudflare_challenge
+        # The corpus path's separate 403 branch is not needed — _is_cloudflare_challenge
         # above already catches cf-mitigated before this point.
         raise ScryfallError(
             r.status_code, f"HTTP {r.status_code}", kind="unreachable")
@@ -309,10 +309,10 @@ def _corpus_refuse(detail: str) -> None:
 
 
 async def scry(path: str, **params) -> dict:
-    """GET card data — local corpus first (CON-294), live Scryfall as fallback.
+    """GET card data — local corpus first, live Scryfall as fallback.
 
     otag:/art: and any query the index cannot parse stay on the live path.
-    CON-308: a composite with local AND-conjuncts serves those locally; live is
+    a composite with local AND-conjuncts serves those locally; live is
     required only for the otag:/art: remainder. A partial local answer is
     incomplete — never returned as a complete smaller set when live refuses.
     A missing corpus falls through to live unless DECKWRIGHT_CORPUS=local-only.
@@ -337,7 +337,7 @@ async def scry(path: str, **params) -> dict:
 
 
 async def scry_post(path: str, json: dict) -> dict:
-    """POST to Scryfall (e.g. /cards/collection). Local corpus first (CON-294)."""
+    """POST to Scryfall (e.g. /cards/collection). Local corpus first."""
     if not corpus.corpus_disabled():
         r = corpus.route_post(
             corpus.get_corpus(), path, json, meters=corpus.meters(),
@@ -354,7 +354,7 @@ async def scry_post(path: str, json: dict) -> dict:
 
 
 async def probe_card_source() -> dict:
-    """One light Scryfall look for boot preflight (CON-295).
+    """One light Scryfall look for boot preflight.
 
     Saved decks and local pages stay available either way — this only names
     whether live card lookups will work before she types a wish.
@@ -396,7 +396,7 @@ async def probe_card_source() -> dict:
 
 @app.exception_handler(ScryfallError)
 async def _scryfall_error_handler(_request, exc: ScryfallError):
-    """CON-295: a refused card source is a named state, not a generic 500."""
+    """a refused card source is a named state, not a generic 500."""
     return JSONResponse(
         scryfall_refusal_payload(exc),
         status_code=_http_status_for_refusal(exc.kind),
@@ -405,7 +405,7 @@ async def _scryfall_error_handler(_request, exc: ScryfallError):
 
 # ---------------------------------------------------------------- vocabulary
 #
-# CON-149: resolution is resolve_term() against Scryfall's published catalogs
+# resolution is resolve_term() against Scryfall's published catalogs
 # and set list (docs/SCRYFALL-GRAMMAR.md). Guessing `t:` for every theme is how
 # "spiderman" found 0 cards next to a Spider-Man commander.
 #
@@ -420,7 +420,7 @@ VOCAB_CACHE = SAVE_DIR / "vocab.json"
 VOCAB_MAX_AGE = 7 * 86400          # catalogs only change when a set releases
 _vocab: dict[str, dict[str, str]] = {}
 
-# CON-151: verified otag: behaviour vocabulary (no Scryfall /catalog for these).
+# verified otag: behaviour vocabulary (no Scryfall /catalog for these).
 BEHAVIOUR_TAGS_PATH = pathlib.Path(__file__).resolve().parents[1] / "data" / "behaviour_tags.json"
 _behaviour_index: dict[str, dict[str, Any]] = {}  # norm_term → {tag, cards, …}
 _behaviour_loaded = False
@@ -458,7 +458,7 @@ async def load_vocab(force: bool = False) -> dict[str, dict[str, str]]:
 
 
 def norm_term(word: str) -> str:
-    """Lowercase and strip non-alphanumerics — shared with CON-149 set lookup."""
+    """Lowercase and strip non-alphanumerics — shared with the grammar's set lookup."""
     return "".join(ch for ch in (word or "").lower() if ch.isalnum())
 
 
@@ -499,9 +499,9 @@ def resolve_term(word: str) -> dict[str, Any]:
 
     Returns {operator, value, catalog, confidence, …}. Behaviour (otag:) is
     checked *before* type/keyword catalogs — otherwise "steal" becomes the
-    one-card Final Fantasy keyword instead of otag:theft (CON-151 / CON-149).
+    one-card Final Fantasy keyword instead of otag:theft.
 
-    Catalog fall-through beyond type/keyword is CON-149; until then an unknown
+    Catalog fall-through beyond type/keyword is resolve_term() in resolve.py; without it an unknown
     is unresolved, not a guessed o:/otag:.
     """
     load_behaviour_tags()
@@ -525,7 +525,7 @@ def resolve_term(word: str) -> dict[str, Any]:
             }
 
     # 2. Thing catalogs currently loaded (type / keyword). Full precedence
-    #    table (sets, watermarks, …) lands with CON-149.
+    #    table (sets, watermarks, …) is handled by resolve_term().
     for cand in _morph_singulars(raw):
         if cand in _vocab.get("type", {}):
             return {
@@ -547,11 +547,11 @@ def resolve_term(word: str) -> dict[str, Any]:
                 "confidence": "exact",
             }
 
-    # Fall through to the full grammar (CON-149). This function knows
+    # Fall through to the full grammar. This function knows
     # behaviours, types and keywords; resolve.py additionally knows SETS,
     # watermarks, card names and artists. Without this hand-off "spiderman"
     # reports "no match in Scryfall" while resolve.resolve_term places it on
-    # set:spm — two resolvers disagreeing, which is what CON-149 said not to
+    # set:spm — two resolvers disagreeing, which is what docs/SCRYFALL-GRAMMAR.md says not to
     # build. Behaviour-first ordering is preserved because it is checked above.
     # Only catalogs THIS function does not cover. Types and keywords are
     # handled above by exact form on purpose: resolve.py matches morphological
@@ -594,8 +594,8 @@ _BROAD_TYPES = frozenset({
 
 # Player-strategy words: they name what a card does for a player, not text it
 # prints. Bare o:ramp matches incidental substrings (Embercleave) and stops the
-# ladder before otag:ramp. Function tags are the right index (CON-113).
-# Verified behaviours also live in data/behaviour_tags.json (CON-151); this set
+# ladder before otag:ramp. Function tags are the right index.
+# Verified behaviours also live in data/behaviour_tags.json; this set
 # still blocks bare o: for a few unverified player words (aggro/control).
 _FUNCTION_TERMS = frozenset({
     "ramp", "draw", "removal", "wipe", "aggro", "control",
@@ -637,11 +637,11 @@ def singulars(term: str) -> list[str]:
     pluralization rules: `elves`->`elve` is wrong, but `elves`->`elf` is one of
     the candidates and it's the one that's actually in the creature-type list.
 
-    CON-111: conversational themes are phrases. Morphological variants of the
+    conversational themes are phrases. Morphological variants of the
     whole string come first (so "first strike" / "red dragons" still work), then
     each content word — that is what surfaces "angel" from "angels that gain life".
 
-    CON-167: non-strings (None) are absent. Never str(None) → "None".
+    non-strings (None) are absent. Never str(None) → "None".
     """
     if not isinstance(term, str):
         return []
@@ -664,7 +664,7 @@ def singulars(term: str) -> list[str]:
 
 
 def classify(term: str) -> tuple[str, str]:
-    """Resolve a theme word against Scryfall's vocabulary (CON-149).
+    """Resolve a theme word against Scryfall's vocabulary.
 
     Returns (kind, canonical) where kind is 'type', 'keyword', 'set', or 'text'.
     'text' means the grammar could not place the word — that is not a match,
@@ -746,10 +746,10 @@ def _clauses_from_resolution(r: dict) -> list[str]:
 def theme_clauses(theme: str) -> list[str]:
     """Scryfall clauses for a theme, most precise first.
 
-    Resolves through resolve_theme() (CON-149) first: behaviours (otag:) and
+    Resolves through resolve_theme() first: behaviours (otag:) and
     things (t:/set:/keyword:) compose, so "pirates that steal" becomes
     `t:pirate otag:theft`. When the resolver finds nothing, fall through to the
-    per-word ladder (CON-151), which carries the Scryfall quirks the resolver
+    per-word ladder, which carries the Scryfall quirks the resolver
     does not model — `keyword:play` returns HTTP 400 while `o:play` finds
     thousands, so a keyword rung always carries its rules-text twin.
 
@@ -757,7 +757,7 @@ def theme_clauses(theme: str) -> list[str]:
     an invented o:"..." rung — search_ladder reports the empty theme rather
     than padding around it.
 
-    CON-167: non-strings are absent — never interpolate the literal "None".
+    non-strings are absent — never interpolate the literal "None".
     """
     if not isinstance(theme, str):
         theme = ""
@@ -808,17 +808,17 @@ def theme_clauses(theme: str) -> list[str]:
             # remnant (aggro/control) plus genuine free text.
             # An unresolved word earns NOTHING. Not an otag: (otag:aggro and
             # otag:control 400, which reads as "no cards" and pads silently —
-            # CON-144 one layer up), and not an o: either.
+            # one layer up), and not an o: either.
             #
-            # I ruled the other way integrating #93, keeping an o: attempt on
+            # An earlier integration ruled the other way, keeping an o: attempt on
             # the grounds that search_ladder reports which rung it landed on.
-            # That was wrong twice over: it contradicted CON-149's own tests,
+            # That was wrong twice over: it contradicted the grammar's own tests,
             # and o:"heists" matches whatever happens to print that word, which
             # is not what she asked for. An unknown is not a zero AND a
             # fallback is not a match — the second half is this line.
             return
 
-    # CON-149 resolver first — it is the only path that composes a thing with
+    # resolver first — it is the only path that composes a thing with
     # a behaviour ("pirates that steal" -> t:pirate otag:theft).
     hit = resolve.resolve_theme(theme)
     if hit.get("expression"):
@@ -872,13 +872,13 @@ def theme_clauses(theme: str) -> list[str]:
     return clauses
 
 
-# ---------------------------------------------------------------- readback (CON-150)
+# ---------------------------------------------------------------- readback
 #
 # Intent verifier before commander selection. Her words on the left, the operator
 # we chose underneath, a live Scryfall count on the right. Unresolved says
 # "no match in Scryfall" — never 0, never silently dropped.
 #
-# Placement prefers CON-149's resolve_term when present. Until then a provisional
+# Placement prefers resolve_term when present. Without it, a provisional
 # placer covers types, exact keywords, and a small behaviour alias map so this
 # screen stays honest without owning role_query / theme_clauses / INTERROGATOR.
 
@@ -888,7 +888,7 @@ READBACK_THIN = 10
 # Kept on the display span; stripped before lookup ("that steal" → steal).
 _READBACK_CONNECTORS = frozenset({"that", "who", "which", "and", "with"})
 
-# Provisional behaviour aliases (CON-151 will replace this with a verified file).
+# Provisional behaviour aliases (to be replaced by a verified file).
 # Checked before catalogs so "steal" reaches otag:theft, not keyword:steal.
 _BEHAVIOUR_ALIASES = {
     "steal": "theft", "stealing": "theft", "theft": "theft",
@@ -955,7 +955,7 @@ def _lookup_text(said: str) -> str:
 
 
 def _place_provisional(word: str) -> dict | None:
-    """Provisional placement until CON-149 resolve_term lands.
+    """Provisional placement, used when resolve_term is unavailable.
 
     Returns {operator, query} or None. Behaviour first, then types (with morph),
     then keywords by exact form only — so 'heists' stays unresolved rather than
@@ -1017,10 +1017,10 @@ def _theme_parts_are_real(parts: list | None) -> bool:
 
 
 def place_theme_word(said: str) -> dict:
-    """Place one display span. Prefers resolve_term (CON-149) when available.
+    """Place one display span. Prefers resolve_term when available.
 
-    CON-167: non-strings are absent. Never stringify None into a query.
-    CON-170: when the whole span is not one catalog term, fall through to
+    non-strings are absent. Never stringify None into a query.
+    when the whole span is not one catalog term, fall through to
     resolve_theme so 'vampire lifegain' / 'drain the table' place the same
     way the build path does.
     """
@@ -1034,9 +1034,9 @@ def place_theme_word(said: str) -> dict:
 
     placed: dict | None = None
     rt = globals().get("resolve_term")
-    # When CON-149's resolve_term is present, trust a positive hit. An
+    # When resolve_term is present, trust a positive hit. An
     # unresolved single-term result may still compose via resolve_theme
-    # below (CON-170) — do not treat unresolved as final for multi-word spans.
+    # below — do not treat unresolved as final for multi-word spans.
     if callable(rt):
         try:
             r = rt(lookup)
@@ -1086,7 +1086,7 @@ def place_theme_word(said: str) -> dict:
 
 
 def compose_pool_query(resolved: list[dict]) -> str | None:
-    """Scryfall pool from placed readback terms (CON-209).
+    """Scryfall pool from placed readback terms.
 
     Sibling types OR — `horses and knights` → `(t:horse OR t:knight)`.
     One behaviour ANDs with that group. Keyword menus do not AND onto a
@@ -1192,7 +1192,7 @@ async def build_readback(theme: str, colors: str = "") -> dict:
             phrase = color_phrase(ci)
             if phrase:
                 said = f"{said}, in {phrase}"
-            # CON-223 / Gate 1 BUG-1: one resolved term already carries the
+            # one resolved term already carries the
             # operator + count. A second identical "together" row is noise.
             # Keep composed when multiple terms combine (pirates that steal).
             if len(resolved) >= 2:
@@ -1215,7 +1215,7 @@ async def build_readback(theme: str, colors: str = "") -> dict:
     }
 
 
-# ---------------------------------------------------------------- instrument (CON-256)
+# ---------------------------------------------------------------- instrument
 #
 # Live Scryfall counts shaped for INTERROGATOR. Same composition as readback;
 # status is ok | empty | unknown — never coerce unknown → 0. No card names.
@@ -1233,7 +1233,7 @@ def _count_status(count) -> str:
 
 async def build_instrument(theme: str, colors: str = "",
                            readiness: dict | None = None) -> dict:
-    """Deterministic instrument payload for chat (CON-256).
+    """Deterministic instrument payload for chat.
 
     Spans cover resolved readback terms only. Unresolved words are omitted
     (they are not empty pools). Failed counts are status=unknown.
@@ -1348,7 +1348,7 @@ def messages_with_instrument(messages: list, instrument: dict | None) -> list:
 
 
 def strip_pool_magnitudes_for_handoff(instrument: dict | None) -> dict | None:
-    """CON-287: ok pool sizes are builder diagnostics — suppress at handoff.
+    """ok pool sizes are builder diagnostics — suppress at handoff.
 
     Empty and unknown stay graded (honesty). Healthy counts become None with
     count_suppressed=True so a handoff cannot restate an unlabelled magnitude.
@@ -1377,9 +1377,9 @@ def strip_pool_magnitudes_for_handoff(instrument: dict | None) -> dict | None:
 
 def ensure_closing_instrument_readback(text: str, instrument: dict | None,
                                        *, still_asking: bool) -> str:
-    """Handoff honesty for empty/unknown instrument spans (CON-256 / CON-287).
+    """Handoff honesty for empty/unknown instrument spans.
 
-    CON-287: do **not** append healthy pool sizes. "278 cards matching the
+    do **not** append healthy pool sizes. "278 cards matching the
     theme" is a builder diagnostic — wrong beat, and unlabelled as commanders.
     Empty and unknown still surface: unknown is never zero.
     """
@@ -1402,7 +1402,7 @@ def ensure_closing_instrument_readback(text: str, instrument: dict | None,
                 continue
             st = span.get("status")
             if st == "ok":
-                continue  # CON-287: never force a healthy pool magnitude
+                continue  # never force a healthy pool magnitude
             if st in ("empty", "unknown") and status is None:
                 status = st
                 count = span.get("count")
@@ -1424,12 +1424,12 @@ def ensure_closing_instrument_readback(text: str, instrument: dict | None,
     return text
 
 
-# ---------------------------------------------------------------- narrowing (CON-287)
+# ---------------------------------------------------------------- narrowing
 #
 # Between "we understand your wish" and the picker, size the *commander* forks
 # she is about to choose among — not the theme card pool. Data comes from the
 # commanders KB (ways_to_play) + theme_fit / strategy_fit. Names only from
-# Scryfall cards we already fetched. INTERROGATOR prompt text stays Box-owned;
+# Scryfall cards we already fetched. INTERROGATOR prompt text is unchanged;
 # this is the payload a narrowing turn would consume.
 
 NARROWING_COUNT = 3
@@ -1437,7 +1437,7 @@ NARROWING_FETCH_CAP = 60  # enough to diversify ways; not the full rung
 
 
 def readback_count_display(count, *, thin: bool = False) -> dict | None:
-    """What the readback may show for a magnitude (CON-287).
+    """What the readback may show for a magnitude.
 
     Healthy pool sizes return None — not shown. Empty and unknown stay labelled.
     Thin pools stay visible and say they are cards in her colours.
@@ -1554,14 +1554,14 @@ async def build_narrowing_turn(
     rung_status: str | None = None,
     rung_total: int | None = None,
 ) -> dict:
-    """Payload for a pre-picker narrowing beat (CON-287).
+    """Payload for a pre-picker narrowing beat.
 
     status:
       ok       — candidates from real Scryfall commanders
       empty    — looked; none
       unknown  — could not look (commander_count is None, never 0)
 
-    INTERROGATOR does not consume this yet — Box owns that prompt edit.
+    INTERROGATOR does not consume this yet; that needs a deliberate prompt edit.
     Shape is stable for injection beside [instrument] later.
     """
     brief = brief if isinstance(brief, dict) else {}
@@ -1679,13 +1679,13 @@ def ensure_closing_narrowing(text: str, narrowing: dict | None) -> str:
     return f"{text}\n\n{bit}".strip() if text else bit
 
 
-# ---------------------------------------------------------------- readiness (CON-152)
+# ---------------------------------------------------------------- readiness
 #
 # Countable gate between brief and readback. The model does not decide it is
 # finished — the app does, from facts: terms resolve, pool has depth, strategy
 # is present. A self-reported confidence percentage never appears.
 #
-# Colours are intentionally not a blocker. INTERROGATOR / CON-142 leave colours
+# Colours are intentionally not a blocker. The INTERROGATOR prompt leaves colours
 # to the commander; forcing a colour question here would fight that rule. When
 # she volunteers colours, pool depth uses them.
 #
@@ -1745,7 +1745,7 @@ def _question_for_blocker(blocker: dict, *, stuck: bool = False,
 
 async def check_readiness(brief: dict,
                           previously_asked: str | None = None) -> dict:
-    """Measurable readiness before readback / commanders (CON-152).
+    """Measurable readiness before readback / commanders.
 
     Returns ready, blockers, warnings, the one question to ask if blocked,
     asked_about (stable id for the next pass), and stuck when the same
@@ -1760,7 +1760,7 @@ async def check_readiness(brief: dict,
     theme = brief_theme(brief)
 
     # --- terms resolve (blocking when theme is present) --------------------
-    # CON-170: authority is resolve_theme on the full theme — the same
+    # authority is resolve_theme on the full theme — the same
     # composition the build path uses — not per-segment resolve_term. A
     # behaviour-flavoured span the catalog cannot place ("keep me alive")
     # is not the same as a load-bearing term that does not exist (heists,
@@ -1810,7 +1810,7 @@ async def check_readiness(brief: dict,
     if not _brief_strategy(brief):
         blockers.append({"signal": "strategy", "detail": {}})
 
-    # --- pool depth (CON-192: thin but non-zero discloses; zero still blocks) ---
+    # --- pool depth (thin but non-zero discloses; zero still blocks) ---
     # Skip when there is nothing resolved to compose, or when the theme is
     # empty (commander-named path). Unknown counts warn — never become thin.
     # A composed pool of 5 is buildable — refusal hid the tradeoff; disclosure
@@ -1859,7 +1859,7 @@ async def check_readiness(brief: dict,
         warnings.append({"signal": "mechanics", "detail": {}})
 
     # --- way_preference unmapped (warn — do not invent a playstyle) --------
-    # CON-257: she named a scene we cannot seat on the 13 detectable ids.
+    # she named a scene we cannot seat on the 13 detectable ids.
     # Disclosure + clarifying question; not a blocker by default.
     apply_way_fields(brief)
     way_pref = (brief.get("way_preference") or "").strip()
@@ -1921,9 +1921,9 @@ async def check_readiness(brief: dict,
     }
 
 
-# CON-91: strategy prose names how the deck plays; utility roles should search for
+# strategy prose names how the deck plays; utility roles should search for
 # cards that fit that shape instead of one generic EDH package.
-# Curve phrases live in curve.py (CON-175) — one ear, used by preference() and
+# Curve phrases live in curve.py — one ear, used by preference() and
 # strategy_profile(). Do not re-list them here.
 _REFILL_DRAW = ("empty", "discard", "attack", "go wide", "refill", "hellbent",
                 "treasure", "aggressive")
@@ -1934,7 +1934,7 @@ _SURGICAL_REM = ("alive", "attack with", "go wide", "token", "protect",
 _MASS_REM = ("board clear", "wipe the board", "wipe", "wrath", "reset the board",
              "destroy all")
 
-# CON-79: which card types the plan wants inside theme/plan/deepcut — not a
+# which card types the plan wants inside theme/plan/deepcut — not a
 # second budget beside the skeleton. "creatures" = combat/tokens; "spells" =
 # spellslinger; "interaction" = control; "mixed" = no type floor.
 _CREATURE_BODIES = (
@@ -1973,7 +1973,7 @@ ROLE_TYPE_FRACTIONS = {
 }
 
 # Whole-deck soft floors for overview cons — below this, the type mix is a
-# checkable weakness for the chosen bodies shape (CON-68 / CON-79).
+# checkable weakness for the chosen bodies shape.
 DECK_TYPE_FLOORS = {
     "creatures": ("creatures", 20),
     "spells": ("instants_sorceries", 15),
@@ -1984,7 +1984,7 @@ DECK_TYPE_FLOORS = {
 def strategy_profile(brief: dict) -> dict:
     """Infer curve, draw, removal, and body shape from commander strategy prose.
 
-    CON-175: curve preference is curve.preference() — it reads every brief
+    curve preference is curve.preference() — it reads every brief
     field that survives commander overwrite (angle/fantasy/theme/playstyle),
     not just strategy/plan. The old `plan or angle` form dropped her curve
     words the moment the pick write-up filled plan.
@@ -2034,7 +2034,7 @@ def strategy_profile(brief: dict) -> dict:
 def role_type_floors(role: str, target: int, brief: dict) -> dict[str, int]:
     """Min counts per composition axis for one role under this strategy.
 
-    CON-79: floors compose with the skeleton — '9 of 15 theme cards are
+    floors compose with the skeleton — '9 of 15 theme cards are
     creatures' — they do not compete with ramp/draw slot counts.
     """
     if target <= 0:
@@ -2104,8 +2104,8 @@ def enforce_type_targets(role: str, chosen: list, pool: list, target: int,
 def leave_enabler_floor(blink_cards: list[dict], *, minimum: int = 1) -> dict:
     """Payoff-floor descriptor for cards that cause the commander to leave.
 
-    CON-174 put otag:blink into the theme pool; CON-177 measured that zero of
-    those candidates still reached the 99. Same shape as CON-159: recall into
+    put otag:blink into the theme pool; the expert-deck comparison measured that zero of
+    those candidates still reached the 99. Same shape as the archetype payoff floors: recall into
     the pool is not enough when the goldfish cannot see the card. Reserve at
     least `minimum` blink names via enforce_payoff_floors. Never invents a
     name — the floor's set is exactly the Scryfall response.
@@ -2120,7 +2120,7 @@ def leave_enabler_floor(blink_cards: list[dict], *, minimum: int = 1) -> dict:
 
 def synergy_enabler_floor(family: str, cards: list[dict], *,
                           minimum: int = 1) -> dict:
-    """Payoff-floor for a relation-neighbor enabler (CON-195).
+    """Payoff-floor for a relation-neighbor enabler.
 
     tokens feeding dies_triggers is the sac-fodder case: recall alone left
     the goldfish free to drop every token maker. Same shape as
@@ -2139,7 +2139,7 @@ def enforce_payoff_floors(chosen: list, pool: list, floors: list,
                           target: int) -> list:
     """Reserve slots for plan payoff floors. Never invents cards.
 
-    CON-159: archetype extras (and any future payoff floor) carry a min on the
+    archetype extras (and any future payoff floor) carry a min on the
     99. card_score ranks by goldfish lift, so a loop half that needs an
     opponent — Exquisite Blood — scores zero and loses the theme contest.
     Honour the floor the way type floors are honoured: keep higher-ranked
@@ -2194,7 +2194,7 @@ def enforce_payoff_floors(chosen: list, pool: list, floors: list,
 def theme_creature_types(brief: dict) -> list[str]:
     """All creature-type values from the brief theme (sibling OR tribes).
 
-    CON-223 / Gate 1 BUG-5: "horses and knights" must keep horse *and* knight
+    "horses and knights" must keep horse *and* knight
     in accounting and tribe floors — not only the first `t:` part.
     Broad card types (creature, artifact, …) are not a tribe.
     """
@@ -2265,14 +2265,14 @@ def enforce_tribe_floor(chosen: list, pool: list, tribe: str | None,
                         tribes: list[str] | None = None) -> list:
     """Reserve theme slots for the named creature type(s). Never invents cards.
 
-    CON-172: behaviour payoff searches (`o:"whenever you gain life"`) are not
+    behaviour payoff searches (`o:"whenever you gain life"`) are not
     tribe-matched. Prepended ahead of the theme pool they crowd angels out of
     a lifegain+angels deck while vampires survive (drain payoffs *are*
     vampires). Apply after payoff floors; do not steal cards already reserved
     for an archetype loop piece. A floor larger than the pool is capped by
     what exists — an unknown is not padded with fiction.
 
-    CON-223: when `tribes` has siblings, any of them satisfies the floor.
+    when `tribes` has siblings, any of them satisfies the floor.
     """
     tribe_list = [t for t in (tribes or ([tribe] if tribe else [])) if t]
     if not tribe_list or need <= 0 or target <= 0:
@@ -2341,7 +2341,7 @@ async def search_ladder(queries: list[str], limit: int = 60, floor: int = 10) ->
     asked for — and says nothing about it. The ladder degrades on purpose, and
     hands back which rung it landed on so the caller can say so.
 
-    CON-111: a rung with a few on-theme hits is better than a full page of
+    a rung with a few on-theme hits is better than a full page of
     unrelated ones. Keep those hits and widen from the next rung rather than
     discarding them. `query` is the first rung that contributed cards — so a
     theme hit topped up from generic still reports the theme rung, and a pure
@@ -2475,7 +2475,7 @@ def trim_card(c: dict) -> dict:
         "legal": (c.get("legalities") or {}).get("commander", "not_legal"),
         # Boolean field on the card object — not buried in legalities.
         "gc": bool(c.get("game_changer")),
-        # Model-facing (CON-73)
+        # Model-facing
         "keywords": list(c.get("keywords") or []),
         "produced_mana": list(c.get("produced_mana") or []),
         "layout": c.get("layout") or "normal",
@@ -2512,7 +2512,7 @@ async def count_matching(q: str) -> int | None:
 async def search(q: str, limit: int = 60) -> list[dict]:
     """Run a Scryfall query, return trimmed card dicts.
 
-    CON-188 F1: a transport failure used to `return []`, which every caller
+    a transport failure used to `return []`, which every caller
     reads as "Scryfall has no cards matching that" — the house rule violation
     in its purest form. The commander ladder then walked past a rung it never
     actually saw, and a thin pool got reported as a real one.
@@ -2532,7 +2532,7 @@ async def search(q: str, limit: int = 60) -> list[dict]:
     return [trim_card(c) for c in j.get("data", [])[:limit]]
 
 
-# Commander picker sizing (CON-189 pages within one rung). Defined here so
+# Commander picker sizing (pages within one rung). Defined here so
 # search_paginated defaults can see them; the commanders section re-exports.
 COMMANDER_FLOOR = 8
 COMMANDER_PICKS = 5
@@ -2550,7 +2550,7 @@ async def search_paginated(
       unknown  — a request failed; total_cards is None (never invent 0)
 
     len(cards) is not the total. A single page is 175; capping the fetch and
-    reporting that as the rung size is how "85" hid "479" (CON-189).
+    reporting that as the rung size is how "85" hid "479".
     """
     cards: list[dict] = []
     total: int | None = None
@@ -2580,7 +2580,7 @@ async def search_paginated(
 async def search_primary_rung(
     queries: list[str], limit: int = COMMANDER_FETCH_CAP
 ) -> tuple[list[dict], str, str, int | None]:
-    """First ladder rung with hits — for commander paging (CON-189).
+    """First ladder rung with hits — for commander paging.
 
     Returns (cards, query, status, total_cards) where status is:
       ok       — cards may be empty if every rung returned a real zero
@@ -2669,7 +2669,7 @@ def validate_deck(commander: dict, deck: list[dict], *,
     casual: ban list does not restrict the build; banned cards are still listed
     for the UI to mark on each row.
 
-    CON-118: `partner` or `commanders` makes colour identity the union and
+    `partner` or `commanders` makes colour identity the union and
     expects a 98-card main deck (100 − commanders in the zone).
     """
     if house_rules is not None:
@@ -2797,9 +2797,9 @@ def deck_signals(deck: list, mana_report: dict | None = None,
                  brief: dict | None = None) -> dict:
     """Strong-against / watch-out-for lines derived only from decklist counts.
 
-    CON-76: no opponent model, no recalled matchups. Every line carries the
+    no opponent model, no recalled matchups. Every line carries the
     numbers it came from so a reader can tell a fact from an opinion.
-    CON-79: type breakdown is always in counts; when brief carries a strategy,
+    type breakdown is always in counts; when brief carries a strategy,
     a thin creature (or spell) count against that plan is a watch line.
     """
     def role_n(role):
@@ -2920,7 +2920,7 @@ def deck_signals(deck: list, mana_report: dict | None = None,
             add(watch, s["text"],
                  {"sources_short": s["short"], "sources_need": s["need"]})
 
-    # CON-79: "only 12 creatures for a combat deck" — checkable from the list.
+    # "only 12 creatures for a combat deck" — checkable from the list.
     if brief and brief.get("strategy"):
         bodies = strategy_profile(brief).get("bodies") or "mixed"
         floor = DECK_TYPE_FLOORS.get(bodies)
@@ -2967,7 +2967,7 @@ different decks (treasure tokens, combat damage triggers, stealing opponents' st
 flavor) and they are wildly different to play. But a beginner cannot pick between options
 she cannot picture, and asking "which one?" cold is a quiz.
 
-## Live instrument counts (CON-256)
+## Live instrument counts
 
 The app may attach a final user message that starts with `[instrument]` and a JSON
 block of live Scryfall counts. That block is for you, not for her — never quote the
@@ -3085,7 +3085,7 @@ not a splash — say that instead.
 Before you hand off, say back what you heard in a sentence or two — the deck in plain
 language, so she can catch it if you got her wrong.
 
-## How your answer is shaped (CON-166)
+## How your answer is shaped
 
 Your entire reply is one JSON object — not prose with a JSON block taped on the end.
 The app parses that object; a fence inside free text is how briefs used to go missing.
@@ -3123,7 +3123,7 @@ Never claim ready with a null brief. Never put card names in `reply` that are no
 hers — `commander_name` is the only place a specific card belongs, and only when she
 named it.
 
-## Way preference — the scene she chose (CON-257)
+## Way preference — the scene she chose
 
 After a real fork with live counts, the picture she picks is `way_preference` —
 her words, not a jargon label. Leave `way_playstyle` null; the app fills it from
@@ -3131,7 +3131,7 @@ a verified alias table when it can. If she said something we cannot map, keep
 her words and leave the id null — do not invent an otag or a fourteenth
 playstyle. This is not the same field as `playstyle` (proactive/reactive/grindy).
 
-## Strategy shape — stated, not inferred from your prose (CON-176)
+## Strategy shape — stated, not inferred from your prose
 
 `strategy_shape` is how the deck wins. The app reads this field directly; it does
 **not** guess the archetype from the wording of `angle`. Fill it from what she
@@ -3202,12 +3202,12 @@ that would have been the right answer. Keep it broad enough to return 20+ hits."
 
 class Turn(BaseModel):
     messages: list[dict]
-    # CON-152: last readiness blocker id the app asked about. Same id on the
+    # last readiness blocker id the app asked about. Same id on the
     # next brief means the question did not resolve it — degrade honestly.
     readiness_asked: str | None = None
 
 
-# CON-166: structured chat output. Prose and the brief used to share one string;
+# structured chat output. Prose and the brief used to share one string;
 # a JSONDecodeError became brief=null with no signal. The schema keeps them
 # apart, and extract_brief_payload() names every failure mode on the wire.
 _BRIEF_OBJECT_SCHEMA: dict[str, Any] = {
@@ -3223,7 +3223,7 @@ _BRIEF_OBJECT_SCHEMA: dict[str, Any] = {
         "flavor_terms": {"type": "array", "items": {"type": "string"}},
         "fantasy": {"type": "string"},
         "playstyle": {"type": "string"},
-        # CON-176: archetype is stated here, not inferred from angle prose.
+        # archetype is stated here, not inferred from angle prose.
         # null = she has not chosen; phrase matching is the fallback only then.
         "strategy_shape": {
             "anyOf": [
@@ -3232,7 +3232,7 @@ _BRIEF_OBJECT_SCHEMA: dict[str, Any] = {
                 {"type": "null"},
             ],
         },
-        # CON-257: scene she picked (her words) + mapped detectable playstyle.
+        # scene she picked (her words) + mapped detectable playstyle.
         # way_playstyle is filled by the app from the alias map — model may
         # leave it null; freestyle ids outside the 13 are overwritten.
         "way_preference": {"type": "string"},
@@ -3293,7 +3293,7 @@ def _brief_looks_present(brief: Any) -> bool:
 def _peel_trailing_reply_envelope(text: str) -> dict | None:
     """Parse a trailing {reply, still_asking, brief} envelope after prose.
 
-    CON-232: bare trailing envelope. CON-304: same shape inside a trailing
+    bare trailing envelope. same shape inside a trailing
     ``` / ```json fence — the closing fence is not payload, so accept it.
     """
     decoder = json.JSONDecoder()
@@ -3323,7 +3323,7 @@ def extract_brief_payload(
 ) -> dict:
     """Pull prose + brief out of a model reply. Never a silent null.
 
-    Three states the caller can tell apart (CON-166 / DERIVATION.md):
+    Three states the caller can tell apart (see docs/DERIVATION.md):
       brief present      → brief is a dict, still_asking False, brief_error None
       still interrogating → brief None, still_asking True, brief_error None
       extraction failed   → brief None, still_asking False, brief_error set
@@ -3464,11 +3464,11 @@ def extract_brief_payload(
 
 @app.post("/api/chat")
 async def chat(t: Turn):
-    # CON-166: structured outputs on the API path so the brief cannot arrive as
+    # structured outputs on the API path so the brief cannot arrive as
     # malformed prose. CLI ignores output_config (llm.py **_ignored) and relies
     # on the INTERROGATOR envelope + extract_brief_payload().
     #
-    # CON-256: build a live instrument from theme hint *before* the model call
+    # build a live instrument from theme hint *before* the model call
     # so forks can cite real Scryfall counts. Injected messages are for the
     # model only — response.text never includes the [instrument] fence.
     theme_hint = theme_hint_for_instrument(t.messages, None)
@@ -3498,11 +3498,11 @@ async def chat(t: Turn):
     still_asking = got["still_asking"]
     brief_error = got["brief_error"]
 
-    # CON-257: map way_preference → way_playstyle before readiness / handoff.
+    # map way_preference → way_playstyle before readiness / handoff.
     if brief is not None:
         apply_way_fields(brief)
 
-    # CON-152: countable readiness before readback. The model emitting a brief
+    # countable readiness before readback. The model emitting a brief
     # is not permission to proceed — unresolved terms and thin pools block.
     readiness = None
     if brief is not None:
@@ -3524,7 +3524,7 @@ async def chat(t: Turn):
             except Exception as e:
                 print(f"  [instrument] post-brief failed: {type(e).__name__}: {e}")
 
-    # CON-287: at handoff, suppress healthy pool magnitudes (builder-only) and
+    # at handoff, suppress healthy pool magnitudes (builder-only) and
     # append a commander-narrowing beat instead of "278 cards for angels".
     narrowing = None
     if not still_asking and brief is not None and (
@@ -3739,7 +3739,7 @@ def identity_string(ci_list: list[str] | None) -> str:
 def brief_color_identity(brief: dict | None) -> str:
     """WUBRG letters she named on the brief, or '' when colours are unknown.
 
-    CON-154: an absent constraint is not id<=C. Empty means leave the
+    an absent constraint is not id<=C. Empty means leave the
     commander ladder unscoped — do not invent a colour filter.
     """
     raw = (brief or {}).get("colors")
@@ -3754,7 +3754,7 @@ def brief_color_identity(brief: dict | None) -> str:
 def brief_theme(brief: dict | None) -> str:
     """Theme string from a brief. Non-strings (None) are absent — never 'None'.
 
-    CON-167: `brief.get("theme", "")` returns None when the key is present with
+    `brief.get("theme", "")` returns None when the key is present with
     a null value (JSON null from a swallowed parse). Stringifying that into a
     Scryfall query searches for the card type "None". Guard at the boundary.
     """
@@ -3765,7 +3765,7 @@ def brief_theme(brief: dict | None) -> str:
 
 
 def apply_way_fields(brief: dict | None) -> dict:
-    """CON-257: keep her words; set way_playstyle only from the alias map.
+    """keep her words; set way_playstyle only from the alias map.
 
     Model freestyle outside the 13 is overwritten. Unmapped preference keeps
     the said string and nulls the id — never invents an otag or playstyle.
@@ -3802,7 +3802,7 @@ def prefer_way_playstyle(cards: list[dict], way_playstyle: str | None
 
 
 def brief_is_usable(brief: dict | None) -> tuple[bool, str]:
-    """Whether a brief can drive /api/commanders or /api/build (CON-167).
+    """Whether a brief can drive /api/commanders or /api/build.
 
     A missing theme is not a generic deck — it is an unknown. Refuse with a
     plain reason so the UI keeps asking rather than shipping an off-theme 99.
@@ -3896,7 +3896,7 @@ def label_commander_picks(cards: list[dict], brief: dict, n: int = COMMANDER_PIC
     """Pick n commanders and earn a reason tag for each from Scryfall data.
 
     Labels are assigned in code, never invented by the model. One card, one label.
-    CON-191: theme fit and strategy fit are separate axes — both can earn a
+    theme fit and strategy fit are separate axes — both can earn a
     seat. Ranking uses gates/tiebreaks (see commanders.fit_rank_key), never a
     weighted sum of the two scores.
     """
@@ -3924,7 +3924,7 @@ def label_commander_picks(cards: list[dict], brief: dict, n: int = COMMANDER_PIC
         return max(scored, key=lambda sc: (sc[0], -_edhrec_key(sc[1])[1]))[1]
 
     def best_strategy(pool):
-        # CON-191: strategy is its own axis. A commander that nails how she
+        # strategy is its own axis. A commander that nails how she
         # wants to play earns a seat even when the theme hit is weak — and is
         # labelled that way, not silently ranked down.
         from deckwright import commanders as cmd_kb
@@ -4006,7 +4006,7 @@ def _drop_clauses(query: str, drop: set[str]) -> str:
 def _query_has_behaviour(q: str) -> bool:
     """True when a query still carries a behaviour clause (o: / otag:), not bare type.
 
-    CON-161: model-query relaxations that have thrown away every behaviour
+    model-query relaxations that have thrown away every behaviour
     clause are less specific than the composed theme and must not outrank it.
     """
     if not q:
@@ -4017,12 +4017,12 @@ def _query_has_behaviour(q: str) -> bool:
 def commander_ladder(brief: dict) -> tuple[list[str], set[str]]:
     """Commander query ladder, plus the rungs that mean "we gave up on the theme".
 
-    CON-154: when she named colours on the brief, every search rung carries
+    when she named colours on the brief, every search rung carries
     id<=<identity>. When she has not, leave the ladder unscoped — an absent
     constraint is not id<=C. /api/build still derives ci from the chosen
     commander either way.
 
-    CON-161 / CON-157 / CON-111 rung order:
+    rung order:
       1. named commander (exact), when she gave one
       2. composed theme (thing + behaviour) — before any bare-type rung
       3. model commander_query and its o: relaxations, while they still
@@ -4068,13 +4068,13 @@ def commander_ladder(brief: dict) -> tuple[list[str], set[str]]:
         # found and then judged, not silently filtered out before she sees it.
         ladder.append(f'{IS_COMMANDER} !"{safe}"')
 
-    # CON-157 / CON-161: composition before the type alone. The model often
+    # composition before the type alone. The model often
     # writes t:angel (or t:angel plus loose o: fragments); its relaxation
     # chain used to land on bare t:angel *above* (t:angel otag:lifegain), so
     # search_ladder filled with tribe commanders and never reached the
     # behaviour half. Emit the composed rung first; keep model queries that
     # still carry behaviour next; defer bare type until after composition.
-    # CON-167: None is absent — never search t:None.
+    # None is absent — never search t:None.
     theme = brief_theme(brief)
     if resolve._grammar is None:
         resolve.load_grammar()
@@ -4130,7 +4130,7 @@ def commander_ladder(brief: dict) -> tuple[list[str], set[str]]:
 def _peel_first_json(text: str, expect: str = "list"):
     """First complete JSON value in text, or None.
 
-    CON-187: models often emit a valid object then a trailing sentence
+    models often emit a valid object then a trailing sentence
     (`Extra data: line N`). json.loads rejects the whole string; a retry
     reproduces the same shape. raw_decode keeps the value and drops the rest.
     Truncated mid-value still returns None — that case may need a retry.
@@ -4164,7 +4164,7 @@ def parse_json_list(response, what: str, expect: str = "list"):
     field arrives empty with nothing in the logs. Three separate calls have been
     bitten by this. Say which one broke and why.
 
-    CON-187: when loads fails with trailing prose after a complete value, peel
+    when loads fails with trailing prose after a complete value, peel
     that value before the caller burns a second identical attempt.
     """
     raw = "".join(b.text for b in response.content if b.type == "text")
@@ -4204,7 +4204,7 @@ def plain_commander_reason(card: dict, label: str, query: str = "") -> str:
     and the selection label cannot be wrong about what happened. A second model
     call to invent prose about a card we already have is how empty pickers start.
 
-    CON-286: the picker no longer puts this string in `fits`. It stays for
+    the picker no longer puts this string in `fits`. It stays for
     diagnostics and older call sites — rendering it as "Why this is your deck"
     made five same-theme commanders read identical.
     """
@@ -4234,11 +4234,11 @@ def enrich_commander_pick(
     query: str = "",
     vocab: dict | None = None,
 ) -> dict:
-    """Assemble one picker row. CON-286: differs from data; fits from write-up only.
+    """Assemble one picker row. differs from data; fits from write-up only.
 
     `fits` is model prose when a write-up landed. Ways, theme_fit, strategy_fit,
     and `differs` carry the comparison on every page — including offset > 0,
-    which never calls the model (CON-189). A missing write-up is
+    which never calls the model. A missing write-up is
     `writeup_missing`, not a template that only swaps the name.
     """
     del query  # kept for call-site symmetry with plain_commander_reason
@@ -4345,7 +4345,7 @@ def enrich_commander_pick(
 
 @app.post("/api/readback")
 async def readback(brief: dict):
-    """CON-150 / CON-287: intent rows + commander narrowing before the picker.
+    """intent rows + commander narrowing before the picker.
 
     Term rows still carry live counts for the app (thin / empty / unknown).
     Healthy pool magnitudes are builder diagnostics — the UI suppresses them.
@@ -4382,14 +4382,14 @@ async def readback(brief: dict):
 
 @app.post("/api/commanders")
 async def commanders(brief: dict):
-    # CON-167: a themeless brief is an unknown, not a generic commander pool.
+    # a themeless brief is an unknown, not a generic commander pool.
     usable, reason = brief_is_usable(brief)
     if not usable:
         raise HTTPException(422, reason)
     apply_way_fields(brief)
     await load_vocab()
 
-    # CON-189: page within one rung. "More" must not mean "worse."
+    # page within one rung. "More" must not mean "worse."
     try:
         offset = max(0, int(brief.get("offset") or 0))
     except (TypeError, ValueError):
@@ -4412,7 +4412,7 @@ async def commanders(brief: dict):
         }
 
     cards = legal_commanders_only(cards)
-    # CON-257: soft-prefer commanders that already detect her mapped way.
+    # soft-prefer commanders that already detect her mapped way.
     cards = prefer_way_playstyle(cards, brief.get("way_playstyle"))
     ranked = rank_commanders_pool(cards, brief)
     # If we hit the fetch cap short of Scryfall's total_cards, keep Scryfall's
@@ -4437,7 +4437,7 @@ async def commanders(brief: dict):
                 for c in page_cards]
     candidates = [c for c, _ in labelled]
 
-    # CON-179: ways-to-play are derived (KB / detect), not model-generated.
+    # ways-to-play are derived (KB / detect), not model-generated.
     # Precompute them once so we can skip the fragile write-up when present.
     # Cap at three most synergistic — never invent a fourth to fill the card.
     # Strategy-matched ways float to the front so the pre-select stays visible.
@@ -4481,11 +4481,11 @@ async def commanders(brief: dict):
     # and every field emptied. Per-commander calls cannot truncate, run in
     # parallel, and one failure costs one write-up instead of all of them.
     #
-    # CON-179: when derived ways exist, skip the model write-up entirely —
-    # CON-187 burns both retries on unparseable JSON, and the ways replace it.
+    # when derived ways exist, skip the model write-up entirely —
+    # burns both retries on unparseable JSON, and the ways replace it.
     # Keep the write-up only for commanders whose ways we cannot detect.
     #
-    # CON-189: later pages never call the model — paging must not multiply cost.
+    # later pages never call the model — paging must not multiply cost.
     async def write_up(card: dict) -> dict:
         prompt = f"""They want: {brief.get('angle')} (theme: {brief.get('theme')})
 Budget around ${brief.get('budget_total')}, bracket {brief.get('bracket')}.
@@ -4571,7 +4571,7 @@ gas after a board wipe because everything is small" describes the deck."""
             writeups_missing += 1
         picks.append(p)
 
-    # CON-257: soft-prefer final ordering without dropping seats.
+    # soft-prefer final ordering without dropping seats.
     if brief.get("way_playstyle") and picks:
         want = brief["way_playstyle"]
         hit = [p for p in picks
@@ -4594,7 +4594,7 @@ gas after a board wipe because everything is small" describes the deck."""
                f"Try naming a creature type (pirate, zombie, dragon) or a mechanic "
                f"that's printed on cards (treasure, sacrifice, graveyard).")
         note = f"{note} {off}".strip() if note else off
-    # CON-154: no colours on the brief → the ladder was unscoped. Say so —
+    # no colours on the brief → the ladder was unscoped. Say so —
     # silently mixing mono-red into a blue-black ask is how Ragavan got offered.
     if picks and not brief_color_identity(brief):
         unscoped = ("No colours were named, so these commanders span colour "
@@ -4625,7 +4625,7 @@ gas after a board wipe because everything is small" describes the deck."""
 # ---------------------------------------------------------------- build the 99
 
 def is_land_card(card: dict) -> bool:
-    """True when the card's type line is a land (CON-61: type line, not effect)."""
+    """True when the card's type line is a land (type line, not effect)."""
     return "land" in (card.get("type") or "").lower()
 
 
@@ -4648,19 +4648,19 @@ def backfill_chosen(
     scaffold: list | None = None,
     strategy: dict | None = None,
 ) -> list:
-    """Fill short model picks from pool order, preferring glued cards (CON-230).
+    """Fill short model picks from pool order, preferring glued cards.
 
     Model-valid names stay first. Remaining slots walk pool candidates sorted by
     synergy.prefer_glued (edge_steer_vote / edge_count, then EDHREC pool order).
     Fail-open when commander is unread — prefer_glued returns pool order.
 
-    CON-243: never emit the same non-unique name twice. prefer_glued reorders a
+    never emit the same non-unique name twice. prefer_glued reorders a
     pool that can carry duplicates (overlapping payoff searches); walking that
     list without a membership check re-picks a card already taken.
 
-    CON-321 Gate 4: when candidate B or C and the commander reads, strategy steer
+    when candidate B or C and the commander reads, strategy steer
     deprioritises bound violations and prefers feeders — never drops cards.
-    CON-322: candidate C may enrich feeders via CardFacts (union with oracle).
+    candidate C may enrich feeders via CardFacts (union with oracle).
     """
     out: list = []
     taken: set[str] = set()
@@ -4692,12 +4692,12 @@ def place_role_cards(role: str, deck: list, chosen: list, pool: list,
                      strategy: dict | None = None) -> None:
     """Add picks for a role. Any land-type card counts against the land slot.
 
-    CON-61: type line, not effect. Cultivate (sorcery that fetches a land) stays
+    type line, not effect. Cultivate (sorcery that fetches a land) stays
     in its role. Command Tower / Fountainport / Promising Vein are lands wherever
     the query found them — they displace a lands-slot card so the skeleton's land
     count holds. The role is then backfilled with non-land cards from the pool.
 
-    CON-243: dedupe by name at the point a card enters the 99. A duplicate in
+    dedupe by name at the point a card enters the 99. A duplicate in
     chosen or pool must not consume a second slot — backfill a different card
     instead. Basics are filled later and are allowed to repeat.
     """
@@ -4761,10 +4761,10 @@ def place_ramp_cards(deck: list, chosen: list, pool: list, target: int, seen: se
 
 
 # Ramp/draw/interaction counts are conventional EDH ratios, not a measured optimum.
-# `plan` is Deckwright-specific (CON-91): strategy-named mechanics get their own
-# slot. Land count is curve-derived at build time (CON-70); the lands role target
+# `plan` is Deckwright-specific: strategy-named mechanics get their own
+# slot. Land count is curve-derived at build time; the lands role target
 # is filled from mana.plan() after spells are placed.
-# CON-79: card-type targets are floors *inside* theme/plan/deepcut (see
+# card-type targets are floors *inside* theme/plan/deepcut (see
 # ROLE_TYPE_FRACTIONS), not a parallel creature/spell budget beside these counts.
 ROLES = [
     ("lands",        0, "Nonbasic lands and utility lands"),
@@ -4777,14 +4777,14 @@ ROLES = [
     ("deepcut",      5, "Flavor cards almost nobody plays"),
 ]
 
-# CON-92: total lands is a decision, not "whatever's left to 99." CON-70 sizes it
+# total lands is a decision, not "whatever's left to 99." sizes it
 # from the curve; basics make up total − nonbasics (floored at MIN_BASICS).
 MIN_BASICS = 2
 DEFAULT_TOTAL_LANDS = 38  # finish_mana_base fallback when no plan is passed
 FLEX_ROLES = ("theme", "deepcut")
 
 
-# CON-74: playstyle moves the skeleton, which is what the card asked for —
+# playstyle moves the skeleton, which is what the card asked for —
 # "visible in the skeleton, not just the flavor". Two people asking for goblins
 # get different decks if one wants to attack and the other wants to answer.
 #
@@ -4804,8 +4804,8 @@ PLAYSTYLE_SHIFT = {
 
 # A deck that never had a conversation still has a shape. Precons and pasted
 # lists carry no `playstyle` — it comes from the interrogation — but their own
-# analysis describes how they play, and these are the words it uses. Cursor
-# found this gap on CON-74; the phrase lists are its idea, narrowed to the one
+# analysis describes how they play, and these are the words it uses. This gap
+# was found while shaping the skeleton by play preference; the phrase lists are narrowed to the one
 # axis this codebase already tests.
 _PLAYSTYLE_HINTS = {
     # "counter" alone is a trap: +1/+1 counters are everywhere and mean the
@@ -4823,7 +4823,7 @@ _PLAYSTYLE_HINTS = {
 def infer_playstyle(brief: dict) -> str | None:
     """Read a playstyle off a deck that was never asked. Explicit always wins.
 
-    Deliberately not a query — CON-113. This picks between three slot-count
+    Deliberately not a query. This picks between three slot-count
     profiles, and a slot count cannot be mistaken for a Scryfall search term.
     """
     explicit = str((brief or {}).get("playstyle") or "").strip().lower()
@@ -4845,14 +4845,14 @@ def infer_playstyle(brief: dict) -> str | None:
 
 
 def _spell_role_sum(roles: list[tuple]) -> int:
-    """Non-land slot total — lands are sized separately (CON-70 / CON-92)."""
+    """Non-land slot total — lands are sized separately."""
     return sum(c for n, c, _ in roles if n != "lands")
 
 
 def skeleton_for(brief: dict, commander: dict | None = None) -> list[tuple]:
     """Role targets for the 99.
 
-    CON-74: playstyle shifts the skeleton. CON-216: when `curve.SKELETON_LIVE`,
+    playstyle shifts the skeleton. when `curve.SKELETON_LIVE`,
     commander CMC + curve preference reshape counts first; playstyle then
     shifts on top. Both shifts are designed sum-zero within spell roles.
     A brief with no playstyle and no readable curve preference keeps the
@@ -4886,7 +4886,7 @@ def skeleton_for(brief: dict, commander: dict | None = None) -> list[tuple]:
 def surplus_from_pools(role_pools: dict | None, deck_names: set[str]) -> list[dict]:
     """Unused non-land cards still sitting in role_pools, EDHREC-ranked.
 
-    CON-110: when theme/plan come back short, borrow these before basics.
+    when theme/plan come back short, borrow these before basics.
     Lands (by role or type line) stay out — they are not spell fillers.
     """
     seen = set(deck_names)
@@ -4911,7 +4911,7 @@ def finish_mana_base(deck: list, flex_pool: list, basic_cards: list,
                      surplus_pool: list | None = None) -> dict:
     """Add basics to hit total_lands, then flex/surplus non-lands toward deck_size.
 
-    Never pads with basics past total_lands (CON-110). If flex and surplus
+    Never pads with basics past total_lands. If flex and surplus
     cannot fill the rest, the deck stays short and shortfall is reported.
     Mutates deck in place. basic_cards is a non-empty list of trimmed basic
     land dicts to cycle through (Island/Swamp/…).
@@ -4942,7 +4942,7 @@ def finish_mana_base(deck: list, flex_pool: list, basic_cards: list,
         seen.add(c["name"])
         flex_added += 1
 
-    # CON-110 preference 1: unused cards from roles that still have pool left.
+    # preference 1: unused cards from roles that still have pool left.
     surplus_added = 0
     for c in surplus_pool or []:
         if len(deck) >= deck_size:
@@ -4953,7 +4953,7 @@ def finish_mana_base(deck: list, flex_pool: list, basic_cards: list,
         seen.add(c["name"])
         surplus_added += 1
 
-    # CON-110: do not pad with basics past the land target. An incomplete deck
+    # do not pad with basics past the land target. An incomplete deck
     # she can see is better than a legal-looking list that is two-thirds lands.
     shortfall = max(0, deck_size - len(deck))
     total = sum(1 for c in deck if is_land_card(c))
@@ -4973,7 +4973,7 @@ def finish_mana_base(deck: list, flex_pool: list, basic_cards: list,
 
 async def on_color_staples(ci: str, brief: dict, budget_each: float,
                            need: int, seen: set[str]) -> list[dict]:
-    """On-colour non-land staples by EDHREC rank (CON-110 preference 2)."""
+    """On-colour non-land staples by EDHREC rank (preference 2)."""
     if need <= 0 or not ci:
         return []
     price = budget_price_ceiling(budget_each)
@@ -5031,7 +5031,7 @@ def _role_query_base(role: str, ci: str, brief: dict, budget_each: float) -> lis
 
     Theme roles interpolate the user's theme. Utility roles (ramp, draw, spot,
     wipe) use a generic ladder when no commander strategy is present; with a
-    strategy they read curve and playstyle out of the prose (CON-91).
+    strategy they read curve and playstyle out of the prose.
 
     A brief carrying `pool_set` gets each rung tried inside that set first —
     see with_pool_set().
@@ -5043,7 +5043,7 @@ def _role_query_base(role: str, ci: str, brief: dict, budget_each: float) -> lis
     fmt = pool_format(parse_card_pool(brief))
     base = f"{fmt} {gc} id<={ci}".strip() if ci else f"{fmt} {gc}".strip()
     base = re.sub(r"\s+", " ", base).strip()
-    # CON-167: coerce at the boundary — None is absent, never the string "None".
+    # coerce at the boundary — None is absent, never the string "None".
     theme = brief_theme(brief)
     variants = singulars(theme)
     flavor_terms = brief.get("flavor_terms") or []
@@ -5053,7 +5053,7 @@ def _role_query_base(role: str, ci: str, brief: dict, budget_each: float) -> lis
         f"ft:{w}" for w in flavor_terms[:4] if isinstance(w, str) and w.strip())
 
     if role == "plan":
-        # CON-91: the strategy names mechanics; each becomes a real query. The
+        # the strategy names mechanics; each becomes a real query. The
         # model proposes the phrase, Scryfall decides whether it exists — same
         # discipline as every other search here.
         mech = brief.get("mechanics") or []
@@ -5063,7 +5063,7 @@ def _role_query_base(role: str, ci: str, brief: dict, budget_each: float) -> lis
             if not isinstance(m, str) or not m.strip():
                 continue
             for clause in theme_clauses(m):
-                # CON-79: type floor as an early rung inside the plan slot.
+                # type floor as an early rung inside the plan slot.
                 if type_bias:
                     ladder.append(f"{base} {clause} {type_bias}{price}")
                 ladder.append(f"{base} {clause}{price}")
@@ -5082,7 +5082,7 @@ def _role_query_base(role: str, ci: str, brief: dict, budget_each: float) -> lis
         clauses = theme_clauses(theme)
         type_bias = type_bias_clause(brief)
         ladder = []
-        # CON-79: prefer the type the strategy wants, then the untyped theme.
+        # prefer the type the strategy wants, then the untyped theme.
         if type_bias:
             ladder += [f"{base} {c} {type_bias}{price}" for c in clauses]
         ladder += [f"{base} {c}{price}" for c in clauses]
@@ -5260,7 +5260,7 @@ async def fetch_partner_options(card: dict) -> dict:
 
 @app.post("/api/partners")
 async def partners_endpoint(payload: dict):
-    """CON-118: legal partner seconds for a chosen first commander."""
+    """legal partner seconds for a chosen first commander."""
     await load_vocab()
     name = (payload.get("commander") or "").strip()
     if not name:
@@ -5305,7 +5305,7 @@ async def partners_endpoint(payload: dict):
 
 async def pair_strategy_writeup(brief: dict, a: dict, b: dict,
                                 pick: dict) -> dict:
-    """One write-up for what the two commanders do *together* (CON-118)."""
+    """One write-up for what the two commanders do *together*."""
     prompt = f"""They want: {brief.get('angle')} (theme: {brief.get('theme')})
 Budget around ${brief.get('budget_total')}, bracket {brief.get('bracket')}.
 
@@ -5389,7 +5389,7 @@ async def _resolve_edhrec_seed_cards(
 @app.post("/api/build")
 async def build(payload: dict):
     brief, cmdr = payload.get("brief") or {}, payload.get("commander")
-    # CON-167: refuse before any Scryfall work. An empty brief used to ship a
+    # refuse before any Scryfall work. An empty brief used to ship a
     # confident off-theme 99; that is worse than failing.
     usable, reason = brief_is_usable(brief)
     if not usable:
@@ -5397,7 +5397,7 @@ async def build(payload: dict):
     if not cmdr:
         raise HTTPException(400, "commander required")
     partner_name = (payload.get("partner") or "").strip() or None
-    # CON-91: the strategy written at commander-pick time is the spec for this
+    # the strategy written at commander-pick time is the spec for this
     # build. Without it the tool describes one deck and constructs another.
     pick = payload.get("pick") or {}
     if pick.get("strategy"):
@@ -5405,7 +5405,7 @@ async def build(payload: dict):
                  "plan": pick.get("does") or brief.get("angle"),
                  "fits": pick.get("fits") or "",
                  "mechanics": pick.get("mechanics") or []}
-    # CON-294: measure live vs local Scryfall calls for this build.
+    # measure live vs local Scryfall calls for this build.
     corpus.meters().reset()
     await load_vocab()
     card_pool = parse_card_pool({**brief, **payload})
@@ -5438,13 +5438,13 @@ async def build(payload: dict):
     cmdr_cmc = min(int(c.get("cmc") or 5) for c in zone)
     budget_each = max(1.0, float(brief.get("budget_total", 150)) / deck_size * 3)
     price = budget_price_ceiling(budget_each)
-    # CON-321 Gate 4: derive once for soft steer through the 99.
+    # derive once for soft steer through the 99.
     cmdr_strategy = (
         commander_strategy.derive(cmdr_card)
         if strategy_steer.steer_enabled() else None
     )
 
-    # CON-336: EDHREC average deck seeds role pools (green + flag only).
+    # EDHREC average deck seeds role pools (green + flag only).
     seed_bundle: edhrec_seed.SeedBundle | None = None
     seed_cards: list[dict] = []
     if edhrec_seed.enabled():
@@ -5466,7 +5466,7 @@ async def build(payload: dict):
             print(f"  [edhrec-seed] {seed_bundle.status} for {cmdr} "
                   f"(cmd={seed_bundle.commander_fetch} avg={seed_bundle.average_fetch})")
 
-    # CON-216: live curve skeleton needs the commander (CMC densify). Preference
+    # live curve skeleton needs the commander (CMC densify). Preference
     # is read off the brief — plan_graph.derive later carries the same ear.
     skeleton = skeleton_for(brief, commander=cmdr_card)
     spell_roles = [r for r in skeleton if r[0] != "lands"]
@@ -5483,12 +5483,12 @@ async def build(payload: dict):
     sim_scoring_ms = 0
     sim_skips: list[str] = []
     role_pools: dict[str, list[dict]] = {}
-    # CON-87. The query that returned a card is why that card is here — we knew
+    # The query that returned a card is why that card is here — we knew
     # it and were discarding it. Kept so the list can say so without inventing.
     role_query_used: dict[str, str] = {}
     flex_pool = []  # leftover theme/deepcut candidates absorb card-count remainder
 
-    # CON-139: the role ladder searches for the THEME, which for a behaviour
+    # the role ladder searches for the THEME, which for a behaviour
     # theme is the enablers. o:"gain life" returns 211 cards that gain life and
     # never the 67 that pay it off, so a lifegain deck came back 26 enablers
     # and 1 payoff — the payoffs were never candidates, not ranked low.
@@ -5496,11 +5496,11 @@ async def build(payload: dict):
     # search for them and put them in front of the theme pool so the scorer
     # has something to choose between.
     #
-    # CON-158: derive once, keep it. The plan used to choose cards must travel
+    # derive once, keep it. The plan used to choose cards must travel
     # with the build — archetype, conditions, commitments — not disappear after
     # payoff_searches(). An unknown (derive failed) omits the key; never invent.
     #
-    # CON-159: archetype extras also carry a min. Those cards enter the pool
+    # archetype extras also carry a min. Those cards enter the pool
     # below, but card_score drops any the goldfish cannot see (Exquisite Blood
     # needs an opponent). Track the floors so theme selection can reserve slots
     # after ranking — the min is a floor, not a search hint.
@@ -5517,7 +5517,7 @@ async def build(payload: dict):
             q = (f'({srch["query"]}) id<={ci}' if ci
                  else f'({srch["query"]})')
             got, _ = await search_ladder([f"{q} -t:land{price}"], limit=60, floor=1)
-            # CON-243: overlapping payoff searches can return the same name.
+            # overlapping payoff searches can return the same name.
             # A duplicated pool + prefer_glued reorders both copies into the
             # role window; placement must not see the name twice to begin with.
             have = {c["name"] for c in payoff_pool}
@@ -5528,11 +5528,11 @@ async def build(payload: dict):
                     "min": int(srch.get("min") or 0),
                     "names": {c["name"] for c in got},
                 })
-        # CON-195: commander demand → one-hop relations → Scryfall recall into
-        # the theme-facing payoff pool. Not into plan commitments (CON-178:
+        # commander demand → one-hop relations → Scryfall recall into
+        # the theme-facing payoff pool. Not into plan commitments (
         # dies_triggers→life_math invented lifegain for Hei Bai).
         # synergy_recall_queries calls through leave_enabler_queries so the
-        # CON-174/177 blink floor cannot drift off this path.
+        # blink floor cannot drift off this path.
         leave_qs = set(synergy.leave_enabler_queries(cmdr_card))
         leave_cards: list[dict] = []
         enabler_cards: dict[str, list[dict]] = {}
@@ -5588,7 +5588,7 @@ async def build(payload: dict):
                 f"{role}: we wanted {target} cards here and found {len(pool)}.")
         pool = [c for c in pool if c["name"] not in seen]
         # Non-land roles never offer lands to the model. Assembly still re-homes
-        # any that slip through (CON-61): a land is a land, wherever found.
+        # any that slip through: a land is a land, wherever found.
         if role != "lands":
             pool = [c for c in pool if not is_land_card(c)]
         if seed_cards and role != "lands":
@@ -5654,7 +5654,7 @@ Return only a json array of exact names."""
         # backfill if the model under-delivered or hallucinated
         chosen = backfill_chosen(
             chosen, pool, target, cmdr_card, deck, strategy=cmdr_strategy)
-        # CON-103: rank the model shortlist by marginal sim lift on this deck.
+        # rank the model shortlist by marginal sim lift on this deck.
         shortlist = chosen[:max(target, card_score.SAMPLE_SIZE)]
         chosen, sim_meta, ms, score_info = await card_score.rank_for_role(
             deck, pool, role, target, shortlist, cmdr_cmc,
@@ -5663,7 +5663,7 @@ Return only a json array of exact names."""
         sim_scoring_ms += ms
         if score_info.get("skipped"):
             sim_skips.append(f"{role}: {score_info['reason']}")
-        # CON-79: type floors inside the role, after ranking, before placement.
+        # type floors inside the role, after ranking, before placement.
         floors = role_type_floors(role, target, brief)
         chosen = enforce_type_targets(role, chosen, pool, target, brief)
         for axis, need in floors.items():
@@ -5672,7 +5672,7 @@ Return only a json array of exact names."""
                 notes.append(
                     f"{role}: type floor {axis} met {have}/{need} — "
                     f"the pool did not have enough matching cards.")
-        # CON-159: archetype payoff floors win over type mix — a zero-score
+        # archetype payoff floors win over type mix — a zero-score
         # loop piece must still land. Applied after type floors so a creature
         # bias cannot swap Exquisite Blood back out.
         protected_payoffs: set[str] = set()
@@ -5694,7 +5694,7 @@ Return only a json array of exact names."""
             added = {c["name"] for c in chosen} - before
             if added:
                 print(f"  [payoff-floors] reserved into theme: {sorted(added)}")
-        # CON-172: the named creature type must survive payoff reservation.
+        # the named creature type must survive payoff reservation.
         # Behaviour payoffs are not tribe-matched; without a floor, angels+lifegain
         # ships a lifegain deck with 2 angels while vampires+lifegain keeps 18.
         if role == "theme":
@@ -5730,7 +5730,7 @@ Return only a json array of exact names."""
             chosen_names = {c["name"] for c in chosen}
             flex_pool.extend(c for c in pool if c["name"] not in chosen_names)
 
-    # CON-70: size lands from the spell curve before filling the land slot.
+    # size lands from the spell curve before filling the land slot.
     mana_plan = mana.plan(deck, cmdr_for_mana, ci_list, min_basics=MIN_BASICS)
     land_target = mana_plan["nonbasic_lands"]
     land_desc = land_role[2]
@@ -5787,7 +5787,7 @@ Return only a json array of exact names."""
     else:
         notes.append("No results for lands — query came back empty.")
 
-    # CON-92: lands are a target, not residue. Basics hit mana_plan total; theme/
+    # lands are a target, not residue. Basics hit mana_plan total; theme/
     # deepcut leftovers fill to deck_size (99, or 98 with partners). Basics are
     # fetched so they carry art/buy links.
     basic_names = {"W": "Plains", "U": "Island", "B": "Swamp",
@@ -5807,7 +5807,7 @@ Return only a json array of exact names."""
                 "art": None, "edhrec_rank": None,
             })
 
-    # CON-110: borrow unused role-pool cards before asking Scryfall for staples,
+    # borrow unused role-pool cards before asking Scryfall for staples,
     # and never let basics push past the land target.
     surplus = surplus_from_pools(role_pools, {c["name"] for c in deck}
                                  | {c["name"] for c in flex_pool})
@@ -5832,7 +5832,7 @@ Return only a json array of exact names."""
                 f"Filled {staple_added} empty slot(s) with on-colour staples "
                 f"(EDHREC rank) after theme/role searches came up short.")
 
-    # CON-214: flex/surplus fill prefers cards glued to commander + deck so far.
+    # flex/surplus fill prefers cards glued to commander + deck so far.
     # Soft prefer only — never drops a card; thin themes still complete to 99.
     flex_pool = prefer_pool(flex_pool, cmdr_card, deck, cmdr_strategy)
     surplus = prefer_pool(surplus, cmdr_card, deck, cmdr_strategy)
@@ -5891,14 +5891,14 @@ Return only a json array of exact names."""
         for i, c in enumerate(deck):
             deck[i] = edhrec_seed.annotate_card(
                 c, seed_bundle.meta, status=seed_bundle.status)
-    # CON-199: cohesion was computed into score_info then dropped. Surface it
+    # cohesion was computed into score_info then dropped. Surface it
     # on the build response — honesty about the graph, not a selection change.
     cohesion = None
     try:
         cohesion = synergy.cohesion(deck, cmdr_card)
     except Exception as e:
         notes.append(f"cohesion: {type(e).__name__}: {e}")
-    # CON-192: theme/strategy accounting — every card names its job.
+    # theme/strategy accounting — every card names its job.
     theme_label = brief_theme(brief) or "theme"
     tribes = theme_creature_types(brief)
     tribe = tribes[0] if tribes else None
@@ -5955,31 +5955,31 @@ Return only a json array of exact names."""
            "budget": budget,
            "archidekt": text, "tcgplayer": mass,
            "off_meta": off_meta, "notes": notes,
-           "signals": signals,  # CON-76: countable only
-           "overview": overview_data,  # CON-68: sim-grounded explanation
-           "substitutions": subs,  # CON-100: role, replaceability, alternates
-           "accounting": accounting,  # CON-192: theme/strategy buckets
-           # CON-199/272: graph shape of the 99. Keys: edges, orphans, unknown,
+           "signals": signals,  # countable only
+           "overview": overview_data,  # sim-grounded explanation
+           "substitutions": subs,  # role, replaceability, alternates
+           "accounting": accounting,  # theme/strategy buckets
+           # graph shape of the 99. Keys: edges, orphans, unknown,
            # unread, hub_dependence. unknown/unread = could not read ≠ orphan.
            # None when we could not compute — unknown ≠ zero.
            "cohesion": cohesion,
-           # CON-75: unused ladder cards the sliders swap from. Persisted with
+           # unused ladder cards the sliders swap from. Persisted with
            # the deck so /api/simulate can move composition without inventing.
            "role_pools": role_pools,
-           # CON-75: card-type counts — the rebuild target seam for CON-77/95.
+           # card-type counts — the rebuild target for card swaps and composition rebuilds.
            "composition": tweak_mod.composition_of(deck),
-           # CON-87 at the group level. The query that filled a role is the
+           # at the group level. The query that filled a role is the
            # honest answer to "why these cards" for the whole group, and it was
            # being used for per-card lines then thrown away.
            "role_queries": {r: why_card.explain_group(q, r) or "" 
                             for r, q in role_query_used.items()},
            "role_queries_raw": role_query_used,
-           "lands": land_fill,  # CON-92: decided total, not residue
+           "lands": land_fill,  # decided total, not residue
            "legal": report["ok"], "buyable": report["buyable"],
            "violations": report["violations"], "banned": report["banned"],
            "card_pool": card_pool, "legality_mode": report["mode"],
-           "brief": brief,  # CON-99: reasoning travels with the list
-           "sim_scoring": {  # CON-103: build-time candidate scoring
+           "brief": brief,  # reasoning travels with the list
+           "sim_scoring": {  # build-time candidate scoring
                "latency_ms": sim_scoring_ms,
                "runs_per_candidate": card_score.SCORE_RUNS,
                "turn": card_score.TARGET_TURN,
@@ -5987,13 +5987,13 @@ Return only a json array of exact names."""
            }}
     if seed_bundle is not None:
         out["edhrec_seed"] = seed_bundle.as_response()
-    # CON-158: the plan that chose the cards. Explains; does not grade.
+    # the plan that chose the cards. Explains; does not grade.
     #
-    # Restored after a conflict resolution dropped it. CON-158 and CON-159 both
+    # Restored after a conflict resolution dropped it. Plan-on-build and the archetype payoff floors both
     # restructured the block above; composing them lost this line, and the only
-    # thing that caught it was CON-158's own test.
+    # thing that caught it was the plan-on-build test.
     #
-    # CON-167: decided:true with no label / empty commitments is a lie in data.
+    # decided:true with no label / empty commitments is a lie in data.
     # derive() makes that structurally impossible; refuse if it ever reappears.
     if plan_for_build is not None:
         arch = plan_for_build.get("archetype") or {}
@@ -6004,7 +6004,7 @@ Return only a json array of exact names."""
         out["plan"] = plan_for_build
     elif plan_derive_failed:
         out["plan_derive_failed"] = True
-    # CON-175 / CON-216: curve measurement + derived skeleton. When
+    # curve measurement + derived skeleton. When
     # SKELETON_LIVE the same roles already shaped the search targets above;
     # the report names what was applied (live=true) rather than observation.
     try:
@@ -6031,11 +6031,11 @@ Return only a json array of exact names."""
         }
     except Exception as e:
         notes.append(f"curve_report: {type(e).__name__}: {e}")
-    # CON-109: her interrogation turns, verbatim. Display already reads this.
+    # her interrogation turns, verbatim. Display already reads this.
     conversation = conversation_from_payload(payload)
     if conversation is not None:
         out["conversation"] = conversation
-    # CON-294: how many lookups stayed on disk vs hit the live API.
+    # how many lookups stayed on disk vs hit the live API.
     m = corpus.meters().as_dict()
     out["corpus"] = {
         **corpus.get_corpus().status(),
@@ -6045,12 +6045,12 @@ Return only a json array of exact names."""
         f"  [corpus] local={m['local']} live_needed={m['live_needed']} "
         f"live_done={m['live_done']} missing={m['missing']}"
     )
-    # CON-321 Gate 2: B/C clarity — commander-read + audit. Does not change deck names.
+    # B/C clarity — commander-read + audit. Does not change deck names.
     # Stamps out["commander_strategy"] and out["strategy_audit"] when candidate B or C.
     strategy_audit.attach_clarity(out, enabled=strategy_audit.clarity_enabled())
-    # CON-321: per-card steer votes. CON-322: C also stamps serve_report.
+    # per-card steer votes. C also stamps serve_report.
     strategy_steer.stamp_votes(out)
-    persist_deck(out)  # CON-67: unique id — never silently overwrite
+    persist_deck(out)  # unique id — never silently overwrite
     return out
 
 
@@ -6141,7 +6141,7 @@ async def analyze_imported_deck(
     out.update({
         "commander": cmdr_name,
         "commander_card": cmdr_card,
-        # Same shape as /api/build so the UI needs no new vocabulary (CON-305).
+        # Same shape as /api/build so the UI needs no new vocabulary.
         "partner": partner_card["name"] if partner_card else None,
         "partner_card": partner_card,
         "commanders": [c["name"] for c in zone],
@@ -6162,22 +6162,22 @@ async def analyze_imported_deck(
         "card_pool": card_pool,
         "legality_mode": report["mode"],
     })
-    # CON-116: a precon (or any import without an ask) still needs a brief so
+    # a precon (or any import without an ask) still needs a brief so
     # the plan half of the page has strategy/theme to hang thesis and sim on.
     if precon and not (brief or {}).get("strategy"):
         out["brief"] = precon_bake.brief_from_analysis(
             overview_data, deck, cmdr_card, signals)
     elif brief:
         out["brief"] = brief
-    # CON-217: ways + beef-it-up for a bought precon (not a pasted list).
+    # ways + beef-it-up for a bought precon (not a pasted list).
     if precon:
         out = await attach_precon_upgrade(
             out, card_pool=card_pool, way_playstyle=way_playstyle)
-    # CON-309: import/precon is a saved deck from the moment it resolves —
-    # same unique id as /api/build (CON-67). Catalog browse is GET /api/precons;
+    # import/precon is a saved deck from the moment it resolves —
+    # same unique id as /api/build. Catalog browse is GET /api/precons;
     # a POST that reaches this tail is a chosen list, so it persists. Illegal
     # lists still save; violations stay on the record.
-    # CON-321 Gate 2: B clarity on imports too — audit only, no steer.
+    # B clarity on imports too — audit only, no steer.
     strategy_audit.attach_clarity(out, enabled=strategy_audit.clarity_enabled())
     strategy_steer.stamp_votes(out)
     persist_deck(out)
@@ -6233,7 +6233,7 @@ async def compute_coverage(text: str, deck: list, brief: dict,
         # from that set".
         widest = rungs[-1] if rungs else ""
         n = await count_matching(f"{widest} set:{code}") if widest else 0
-        # CON-188: count_matching returns None on failure. `n or 0` turned that
+        # count_matching returns None on failure. `n or 0` turned that
         # unknown into an empty role — the same lie pool_total refuses above.
         if n is None:
             return None
@@ -6291,10 +6291,10 @@ async def cards_by_name(payload: dict):
     return {"cards": [trim_card(c) for c in (data.get("data") or [])]}
 
 
-# CON-203: two different things were called "resolve". `resolve.py` maps her
+# two different things were called "resolve". `resolve.py` maps her
 # WORDS onto Scryfall operators (theme resolution). This endpoint takes a pasted
 # DECKLIST and resolves card names against Scryfall. Same verb, unrelated jobs —
-# the SYSTEM-MAP recorded the collision as a finding.
+# an earlier system audit recorded the collision as a finding.
 #
 # /api/import is the honest name and the one to use. /api/resolve stays for the
 # frontend and any saved bookmark; both are the same handler, not a redirect, so
@@ -6302,7 +6302,7 @@ async def cards_by_name(payload: dict):
 @app.post("/api/import")
 @app.post("/api/resolve")
 async def resolve_deck(payload: dict):
-    """CON-97: paste a decklist, resolve against Scryfall, run analysis.
+    """paste a decklist, resolve against Scryfall, run analysis.
 
     Registered at /api/import (canonical) and /api/resolve (kept working).
     This is decklist import. Theme resolution is `resolve.py`, reached through
@@ -6324,7 +6324,7 @@ _PRECON_ID_RE = re.compile(r"^\d+$")
 
 @app.get("/api/precons")
 async def list_precons():
-    """CON-98: Commander precons from Archidekt's Archidekt_Precons account."""
+    """Commander precons from Archidekt's Archidekt_Precons account."""
     try:
         catalog = await precons.get_catalog()
     except precons.PreconsUnavailable as e:
@@ -6356,13 +6356,13 @@ async def fetch_precon_upgrades(
     limit: int = 8,
     way_playstyle: str | None = None,
 ) -> dict[str, Any]:
-    """Scryfall-verified beef-it-up candidates for a bought precon (CON-217).
+    """Scryfall-verified beef-it-up candidates for a bought precon.
 
     Queries come from synergy recall + optional tribe theme. Every name is
     read off a Scryfall response. Transport failure → status unknown, never
     a fake empty "no upgrades".
 
-    CON-259: per-query `instrument` (ok/empty/unknown) and soft-prefer cards
+    per-query `instrument` (ok/empty/unknown) and soft-prefer cards
     we can read (signal ∨ keyword) inside rank_upgrades.
     """
     queries = precon_upgrade.upgrade_queries(
@@ -6451,12 +6451,12 @@ async def fetch_precon_upgrades(
 async def attach_precon_upgrade(out: dict[str, Any],
                                 *, card_pool: str = DEFAULT_CARD_POOL,
                                 way_playstyle: str | None = None) -> dict:
-    """CON-217: stamp ways (offline) + beef-it-up (Scryfall) on a precon response."""
+    """stamp ways (offline) + beef-it-up (Scryfall) on a precon response."""
     if not out.get("precon"):
         return out
     precon_upgrade.attach_ways(out)
     brief = out.get("brief") or {}
-    # CON-259: explicit way pick wins when it is one of the detected ways.
+    # explicit way pick wins when it is one of the detected ways.
     way = way_playstyle if isinstance(way_playstyle, str) else None
     way = (way or "").strip() or None
     detected = {w.get("playstyle") for w in (out.get("ways_to_play") or [])}
@@ -6511,7 +6511,7 @@ async def serve_baked_precon(
         tcgplayer=mass,
         card_pool=card_pool,
     )
-    # CON-309: opening a precon is choosing it — same persist as paste import.
+    # opening a precon is choosing it — same persist as paste import.
     out = await attach_precon_upgrade(
         out, card_pool=card_pool, way_playstyle=way_playstyle)
     strategy_audit.attach_clarity(out, enabled=strategy_audit.clarity_enabled())
@@ -6522,7 +6522,7 @@ async def serve_baked_precon(
 
 @app.post("/api/precons/{precon_id}")
 async def load_precon(precon_id: str, payload: dict | None = None):
-    """CON-98/CON-102: load one precon — baked analysis when fresh, else live."""
+    """load one precon — baked analysis when fresh, else live."""
     if not _PRECON_ID_RE.fullmatch(precon_id):
         return JSONResponse(status_code=400, content={"error": "invalid precon id"})
     payload = payload or {}
@@ -6581,7 +6581,7 @@ async def load_precon(precon_id: str, payload: dict | None = None):
                     tcgplayer=tcgplayer_mass_entry(cmdr_name, live_deck),
                     card_pool=card_pool,
                 )
-                # CON-309: baked precon load is a chosen deck — persist like import.
+                # baked precon load is a chosen deck — persist like import.
                 baked_out = await attach_precon_upgrade(
                     baked_out, card_pool=card_pool,
                     way_playstyle=way_playstyle)
@@ -6667,7 +6667,7 @@ def persist_deck(out: dict, directory: pathlib.Path | None = None) -> pathlib.Pa
     out["saved_at"] = when.isoformat().replace("+00:00", "Z")
     if not out.get("name"):
         out["name"] = out.get("commander") or "deck"
-    # CON-133: stamp mechanic density from Scryfall keywords + family taxonomy.
+    # stamp mechanic density from Scryfall keywords + family taxonomy.
     # Recountable off the list — never a model opinion.
     mechanics.attach_mechanics(out)
     path = directory / f"{slug}.json"
@@ -6713,19 +6713,19 @@ def write_saved_deck(slug: str, data: dict, directory: pathlib.Path | None = Non
     p = saved_deck_path(slug, directory)
     if not p:
         return False
-    # CON-133: list edits (swaps, pending accepts) must refresh density.
+    # list edits (swaps, pending accepts) must refresh density.
     mechanics.attach_mechanics(data)
     p.write_text(json.dumps(data, indent=1))
     return True
 
 
-# ---------------------------------------------------------------- CON-108 sim cache
+# ---------------------------------------------------------------- sim cache
 #
 # The baseline thesis + simulation for a saved deck is written once and read
 # back on every open. Sliders re-run /api/simulate with a tweak and must never
 # overwrite this — only the deck's own untweaked result is stored.
 # Invalidation: deck_list_hash + sim.SIM_VERSION (see bake.py). Same stamps
-# CON-102 will use for precon analysis.
+# will use for precon analysis.
 
 
 def build_sim_baseline(deck: list, thesis: dict, sim_out: dict) -> dict:
@@ -6788,7 +6788,7 @@ def delete_saved_deck(slug: str, directory: pathlib.Path | None = None) -> bool:
 
 
 def is_auto_saved_deck(data: dict) -> bool:
-    """True when the list should mark this row as an unnamed auto-build (CON-227).
+    """True when the list should mark this row as an unnamed auto-build.
 
     Builds persist with name == commander. Playtests flooded the list with no
     way to tell those from decks she meant to keep. A favorite or a christened
@@ -6844,7 +6844,7 @@ def saved_deck_summary(data: dict, path: pathlib.Path) -> dict:
         "theme": data.get("theme") or "",
         "has_primer": bool(str(data.get("primer") or "").strip()),
         "favorite": bool(data.get("favorite")),
-        # CON-227: playtest builds vs decks she named or starred.
+        # playtest builds vs decks she named or starred.
         "auto_saved": is_auto_saved_deck(data),
         # An unnamed build's row was the commander's name and a timestamp, so
         # four Adeline playtests were four identical lines. What actually tells
@@ -6879,7 +6879,7 @@ def list_saved_decks(directory: pathlib.Path | None = None) -> list[dict]:
 
 # ---------------------------------------------------------------- the thesis
 
-# CON-226: prompt keys must match sim.THESIS_KEYS. Hiding draw/life/board
+# prompt keys must match sim.THESIS_KEYS. Hiding draw/life/board
 # keys made "working" under-ask for those plans even though the sim can check them.
 THESIS = """You define what "working" means for a specific Commander deck, so it can be
 tested by simulation.
@@ -6915,7 +6915,7 @@ demanding — a thesis where everything reads 90% is not measuring anything.
 When the deck is about draw, lifegain, drain, or a wide/tall board, use the matching
 keys above — do not force everything through payoffs_in_play alone.
 
-Anti-patterns (CON-258):
+Anti-patterns:
 - A lifegain / stay-alive plan must include `life_gained` (or `life_drained` when
   the win is drain) — not only `payoffs_in_play`.
 - A go-wide / token swarm plan must include `creatures_in_play` or `board_power`
@@ -6923,7 +6923,7 @@ Anti-patterns (CON-258):
 
 
 def thesis_key_fit(plan_text: str, spec: dict) -> bool:
-    """Whether thesis conditions use keys that match the plan shape (CON-258).
+    """Whether thesis conditions use keys that match the plan shape.
 
     Offline golden / live property helper. Does not invent keys; only checks
     that the stated plan is not forced through payoffs_in_play alone.
@@ -6957,7 +6957,7 @@ def build_thesis_user_message(
     *,
     commander_card: dict | None = None,
 ) -> str:
-    """Assemble the thesis user message with glued payoff allowlist (CON-258)."""
+    """Assemble the thesis user message with glued payoff allowlist."""
     listing = [for_model(c) for c in deck if c.get("role") not in ("basic", "lands")]
     cmdr_card = commander_card
     if cmdr_card is None:
@@ -7007,7 +7007,7 @@ async def christen_deck(payload: dict):
     without a name is still a deck, so a failure here returns empty fields and
     lets the player type her own rather than taking the screen down.
 
-    CON-115: same assembled record as /api/ask — brief, overview, and curves
+    same assembled record as /api/ask — brief, overview, and curves
     come from deck_context rather than a hand-picked subset.
     """
     data = deck_record_for_ask(payload)
@@ -7027,7 +7027,7 @@ async def christen_deck(payload: dict):
     return out
 
 
-# ---------------------------------------------------------------- CON-115 assembled context
+# ---------------------------------------------------------------- assembled context
 #
 # Every model call is stateless. The saved deck file is the durable memory —
 # but each endpoint used to hand-pick a different subset and throw the rest
@@ -7044,7 +7044,7 @@ def improve_candidates_from_pools(
     *,
     cap: int = 12,
 ) -> list[dict]:
-    """Scryfall-verified pool leftovers ranked by glue to the commander (CON-261).
+    """Scryfall-verified pool leftovers ranked by glue to the commander.
 
     Names only from role_pools, never invented. Already-in-99 skipped.
     Soft-prefer edged + readable; orphans stay available after.
@@ -7080,7 +7080,7 @@ def improve_candidates_from_pools(
             "read_status": read_status,
             "usd": c.get("usd"),
         }
-        # CON-272: unknown/unread with 0 edges — copy, not a silent zero.
+        # unknown/unread with 0 edges — copy, not a silent zero.
         if read_status in (synergy.UNKNOWN, synergy.UNREAD) and not n:
             row["synergy_note"] = synergy.COULD_NOT_READ
         out.append(row)
@@ -7092,9 +7092,9 @@ def deck_context(data: dict) -> dict:
 
     Accepts a saved-deck dict or a fresh build dict — same shape. Fields that
     were never written stay absent; the prompt layer says so rather than
-    inventing a fill. CON-115.
+    inventing a fill. Part of the shared ask context.
 
-    CON-261: projects way_preference / way_playstyle (remapped via alias table)
+    projects way_preference / way_playstyle (remapped via alias table)
     so ask/improve can steer from the scene she picked when the deck was built.
     """
     if not isinstance(data, dict):
@@ -7149,7 +7149,7 @@ def deck_context(data: dict) -> dict:
         ctx["signals"] = signals
 
     # Fresh ask payloads put curves at the top level; saved decks stash them
-    # under the CON-108 simulation baseline.
+    # under the saved simulation baseline.
     curves = data.get("curves")
     if not isinstance(curves, list):
         sim_block = data.get("simulation")
@@ -7166,7 +7166,7 @@ def deck_context(data: dict) -> dict:
     if isinstance(substitutions, (list, dict)) and substitutions:
         ctx["substitutions"] = substitutions
 
-    # CON-114: pressure-test record when one exists. Absent on most decks.
+    # pressure-test record when one exists. Absent on most decks.
     pressure = data.get("pressure")
     if pressure is None:
         pressure = data.get("pressure_test")
@@ -7197,7 +7197,7 @@ def deck_context(data: dict) -> dict:
 
 
 async def enrich_ask_context(data: dict) -> dict:
-    """Rebuild live instrument + glued improve facts for ask (CON-261).
+    """Rebuild live instrument + glued improve facts for ask.
 
     Never freezes Scryfall counts onto the saved file — recomputes each ask.
     Unknown counts stay unknown. Improve names come only from role_pools or
@@ -7256,7 +7256,7 @@ def ask_prompt_facts(ctx: dict) -> str:
     if brief.get("mechanics"):
         lines.append("MECHANICS: " + ", ".join(str(m) for m in brief["mechanics"]))
 
-    # CON-261: her scene + mapped way — ask/improve steers from these.
+    # her scene + mapped way — ask/improve steers from these.
     way_pref = (brief.get("way_preference") or "").strip()
     way_ps = brief.get("way_playstyle")
     if way_pref:
@@ -7313,7 +7313,7 @@ def ask_prompt_facts(ctx: dict) -> str:
             n = c.get("edge_count", 0)
             rs = c.get("read_status") or (
                 "ok" if c.get("readable") else "unread")
-            # CON-272: never print edges=0 for unknown/unread — that reads as none.
+            # never print edges=0 for unknown/unread — that reads as none.
             if note or (rs in ("unknown", "unread") and not n):
                 bits.append(
                     f"{c['name']} [could not read — not the same as no synergy]")
@@ -7406,7 +7406,7 @@ def deck_record_for_ask(payload: dict,
     # Live curves from the open page (slider run) overlay the stored baseline.
     if payload.get("curves"):
         data = {**data, "curves": payload["curves"]}
-    # A build that saved before CON-109 has no transcript on disk; the client
+    # A build saved by an older version has no transcript on disk; the client
     # may still hold her turns from this session.
     if not data.get("conversation") and payload.get("conversation"):
         data = {**data, "conversation": payload["conversation"]}
@@ -7426,7 +7426,7 @@ card that is not in the list — if the answer is "this deck doesn't have one of
 is a real and useful answer, and a made-up card name is the one thing that would make her
 stop trusting any of this.
 
-## Improve questions use the instrument (CON-261)
+## Improve questions use the instrument
 
 When she asks how to improve the deck, use WAY PREFERENCE, INSTRUMENT counts,
 GLUED PAYOFFS, and IMPROVE CANDIDATES from the fact block. Prefer improve
@@ -7481,11 +7481,11 @@ async def ask(payload: dict):
     this fast — had nowhere to go, and those are the questions someone new
     genuinely has once a deck exists.
 
-    CON-115: facts come from deck_context — role and why per card, her
+    facts come from deck_context — role and why per card, her
     interrogation, notes, substitutions, pressure test when present. A
     reconstructed reason where a recorded one exists is the failure mode.
 
-    CON-261: rebuild live instrument + glued improve candidates each ask —
+    rebuild live instrument + glued improve candidates each ask —
     never freeze Scryfall counts onto the save.
     """
     data = deck_record_for_ask(payload)
@@ -7552,7 +7552,7 @@ async def ask(payload: dict):
                                      thinking={"type": "disabled"},
                                      system=DECKTALK, messages=msgs)
     raw = "".join(b.text for b in r.content if getattr(b, "type", None) == "text")
-    # Same three states as /api/chat (CON-166). A change request with a broken
+    # Same three states as /api/chat. A change request with a broken
     # ```brief fence used to become brief=null with no reason — silent rebuild miss.
     got = extract_brief_payload(
         raw, stop_reason=getattr(r, "stop_reason", None), what="ask")
@@ -7561,7 +7561,7 @@ async def ask(payload: dict):
         "brief": got["brief"],
         "still_asking": got["still_asking"],
         "brief_error": got["brief_error"],
-        # CON-261: live improve surface for the page — never frozen on disk.
+        # live improve surface for the page — never frozen on disk.
         "instrument": ctx.get("instrument"),
         "improve_candidates": ctx.get("improve_candidates") or [],
         "glued_payoffs": ctx.get("glued_payoffs") or [],
@@ -7670,7 +7670,7 @@ async def thesis(payload: dict):
     return spec
 
 
-# ---------------------------------------------------------------- CON-114 pressure test
+# ---------------------------------------------------------------- pressure test
 #
 # Forge AI vs AI, opt-in from the deck page. Never on the build path. Absent
 # Java or Forge, both endpoints return available:false and nothing else changes.
@@ -7708,7 +7708,7 @@ async def pressure_start(payload: dict):
 
     games = int(payload.get("games") or pressure.DEFAULT_GAMES)
     if games < 1 or games > 10:
-        # Cap at ten until wall-clock is measured — see CON-114.
+        # Cap at ten games until wall-clock time is measured.
         games = min(max(games, 1), 10)
 
     return pressure.STORE.start(commander=commander, deck=deck, games=games)
@@ -7735,7 +7735,7 @@ async def pressure_status(run_id: str):
 async def simulate(payload: dict):
     deck = payload["deck"]
     tweak = payload.get("tweak") or {}
-    # CON-75: pools the build already fetched. Client passes them back so a
+    # pools the build already fetched. Client passes them back so a
     # slider move swaps real cards. Absent pools + non-zero tweak refuses to
     # invent stand-ins — see tweak.apply_tweak.
     role_pools = payload.get("role_pools") or payload.get("pools") or {}
@@ -7749,9 +7749,9 @@ async def simulate(payload: dict):
     out = await asyncio.to_thread(
         sim.run, deck, int(info.get("cmc") or 5),
         payload["payoff_cards"], payload["conditions"], 3000,
-        commander_card=info)  # CON-268: on-cast commander oracle
+        commander_card=info)  # on-cast commander oracle
 
-    # CON-84. Three model layers stack here — the thesis decides what "working"
+    # Three model layers stack here — the thesis decides what "working"
     # means, the simulation measures exactly that, the overview explains it —
     # and nothing checked the first. A thesis grading the wrong plan produces
     # numbers that are correct about the wrong question, which reads identically
@@ -7763,7 +7763,7 @@ async def simulate(payload: dict):
         commander_card=info)
 
     # Composition counts — always. Post-tweak this is the rebuild target for
-    # CON-77 / CON-95; without a tweak it is the deck as built.
+    # Composition tweak; without a tweak it is the deck as built.
     out["composition"] = (
         tweak_result["composition"] if tweak_result
         else tweak_mod.composition_of(deck))
@@ -7779,7 +7779,7 @@ async def simulate(payload: dict):
         # inventing names client-side.
         out["deck"] = deck
 
-    # CON-108: persist the untweaked baseline on the saved deck. Sliders pass
+    # persist the untweaked baseline on the saved deck. Sliders pass
     # tweak and must keep recomputing — never overwrite the stored baseline
     # with a sensitivity run.
     if not tweak and payload.get("id"):
@@ -7792,13 +7792,13 @@ async def simulate(payload: dict):
 
 
 def apply_tweak(deck: list, tweak: dict, role_pools: dict | None = None) -> dict:
-    """CON-75: swap real pool cards by composition axis. See tweak.apply_tweak."""
+    """swap real pool cards by composition axis. See tweak.apply_tweak."""
     return tweak_mod.apply_tweak(deck, tweak, role_pools)
 
 
-# ---------------------------------------------------------------- CON-77 card swap
+# ---------------------------------------------------------------- card swap
 #
-# Replace one card with a verified pool alternate. Brad decided 2026-08-03:
+# Replace one card with a verified pool alternate. Design decision:
 # every swap re-runs the simulation automatically — stale numbers are worse
 # than none. Overview / per-card rationale go stale and are marked, not left
 # describing a deck that changed.
@@ -7809,7 +7809,7 @@ def _ci_from_saved(data: dict) -> str:
     colors = brief.get("colors") or ""
     if colors:
         return "".join(c for c in colors.upper() if c in "WUBRG")
-    # Prefer the persisted union (CON-118); fall back to merging both cards.
+    # Prefer the persisted union; fall back to merging both cards.
     if data.get("color_identity"):
         return identity_string(list(data["color_identity"]))
     zone = data.get("commander_cards") or []
@@ -7970,8 +7970,7 @@ async def swap_card(payload: dict):
 
 
 # ---------------------------------------------------------------- backend spine
-# CON-121 notes · CON-122/134 suggest · CON-126/127 pending versions ·
-# CON-125 precon delta · CON-140 search · CON-141 editor
+# notes · suggest · pending versions · precon delta · search · editor
 
 
 @app.get("/api/mechanics/related/{name}")
@@ -7993,7 +7992,7 @@ async def list_goals():
 
 @app.post("/api/suggest")
 async def suggest_swaps(payload: dict):
-    """CON-122/134/271: goal-scoped swap plan. Stages a change set; does not apply."""
+    """goal-scoped swap plan. Stages a change set; does not apply."""
     slug = (payload.get("id") or "").strip()
     goal = (payload.get("goal") or "").strip()
     if not slug or not goal:
@@ -8060,7 +8059,7 @@ async def get_versions(name: str):
 
 @app.post("/api/saved/{name}/pending/reject")
 async def reject_pending(name: str, payload: dict | None = None):
-    """CON-271: drop a pending change set. Never mutates the 99 or version."""
+    """drop a pending change set. Never mutates the 99 or version."""
     data = load_saved_deck(name)
     if not data:
         return JSONResponse({"error": "not found"}, status_code=404)
@@ -8077,7 +8076,7 @@ async def reject_pending(name: str, payload: dict | None = None):
 
 @app.post("/api/saved/{name}/pending/approve")
 async def approve_pending_changes(name: str, payload: dict | None = None):
-    """CON-126/127/271: apply a pending set → new version. Old tip in history."""
+    """apply a pending set → new version. Old tip in history."""
     data = load_saved_deck(name)
     if not data:
         return JSONResponse({"error": "not found"}, status_code=404)
@@ -8128,7 +8127,7 @@ async def approve_pending_changes(name: str, payload: dict | None = None):
 
 @app.get("/api/search")
 async def api_search(q: str = "", limit: int = 20):
-    """CON-140: paced Scryfall card search. No model.
+    """paced Scryfall card search. No model.
 
     404 → real zero. Any other failure → 502 unknown — never score as 0 cards.
     """
@@ -8139,7 +8138,7 @@ async def api_search(q: str = "", limit: int = 20):
     try:
         j = await scry("/cards/search", q=q, order="edhrec", unique="cards")
     except ScryfallError as e:
-        # CON-295: named refusal (challenge / rate_limit / timeout / …).
+        # named refusal (challenge / rate_limit / timeout / …).
         return JSONResponse(
             scryfall_refusal_payload(e),
             status_code=_http_status_for_refusal(e.kind))
@@ -8164,7 +8163,7 @@ async def api_search(q: str = "", limit: int = 20):
 
 @app.post("/api/saved/{name}/edit")
 async def edit_saved_deck(name: str, payload: dict):
-    """CON-141: stage a Scryfall-verified cut/add into pending (does not apply)."""
+    """stage a Scryfall-verified cut/add into pending (does not apply)."""
     data = load_saved_deck(name)
     if not data:
         return JSONResponse({"error": "not found"}, status_code=404)
@@ -8227,7 +8226,7 @@ async def edit_saved_deck(name: str, payload: dict):
 
 @app.post("/api/precons/{precon_id}/delta")
 async def precon_strategy_delta(precon_id: str, payload: dict):
-    """CON-125: mechanic + diagnose delta for adds/cuts on a precon."""
+    """mechanic + diagnose delta for adds/cuts on a precon."""
     if not _PRECON_ID_RE.fullmatch(precon_id):
         return JSONResponse({"error": "bad id"}, status_code=400)
     baked = precon_bake.read_bake(precon_id)
@@ -8280,7 +8279,7 @@ async def precon_strategy_delta(precon_id: str, payload: dict):
 
 @app.get("/favicon.ico")
 async def favicon():
-    """DW-11. The only console error either page produced. A tiny inline SVG
+    """The only console error either page produced. A tiny inline SVG
     beats shipping a binary into a repo that has no other assets — and the mark
     is the same gold the header uses."""
     svg = (
@@ -8313,7 +8312,7 @@ async def calendar_feed(
 ):
     """Release calendar first paint: Scryfall /sets + hand overlay.
 
-    CON-218: content is debut mechanics, not saved-deck queries. Default path
+    content is debut mechanics, not saved-deck queries. Default path
     does not block on mechanics enrich — cache hits return, misses are
     `pending` (never an invented empty list). Pass counts=1 (legacy name) to
     wait for mechanics on this request. Future sets stay unspoiled.
@@ -8333,7 +8332,7 @@ async def calendar_feed(
 async def calendar_enrich(codes: str = ""):
     """Fill debut mechanics (and art) for released set codes.
 
-    CON-218: one paced card search per set for keywords, then debut checks
+    one paced card search per set for keywords, then debut checks
     against earliest print. Does not query saved decks. `codes` is
     comma-separated; empty means the current first page of released sets.
     Failures are unknown, never zero.
@@ -8373,7 +8372,7 @@ async def load(name: str):
     data = load_saved_deck(name)
     if not data:
         return JSONResponse({"error": "not found"}, status_code=404)
-    # CON-108: a stale baseline is omitted — presence means safe to show.
+    # a stale baseline is omitted — presence means safe to show.
     return expose_saved_deck(data)
 
 
@@ -8528,7 +8527,7 @@ async def ambient_card():
         card = await scry("/cards/random",
                           q=f"{query} is:commander has:art_crop -is:digital")
     except ScryfallError as e:
-        # CON-295: keep card:null honesty; name the refusal kind.
+        # keep card:null honesty; name the refusal kind.
         return {"card": None, **scryfall_refusal_payload(e)}
     except Exception as e:
         return {"card": None, "error": f"{type(e).__name__}"}
@@ -8552,7 +8551,7 @@ BUG_DIR = SAVE_DIR / "bugs"
 async def report_bug(payload: dict):
     """Take a bug report from the footer and put it somewhere we will find it.
 
-    Disk first, Linear second (CON-293). The write to ~/.deckwright/bugs/ is
+    Disk first, Linear second. The write to ~/.deckwright/bugs/ is
     the commitment — greppable, survives a restart, needs no credentials. The
     Linear card is enrichment that may fail (expired Keychain key, plan full,
     network down). If it fails, the file already has the report and records
@@ -8630,9 +8629,9 @@ async def remove_saved(name: str):
 # reason to cache anything here.
 @app.get("/api/boot")
 async def api_boot():
-    """CON-285: progressive boot status for the launch brand veil.
+    """progressive boot status for the launch brand veil.
 
-    CON-295: includes `card_source` — whether live Scryfall answers. A
+    includes `card_source` — whether live Scryfall answers. A
     challenge is a legitimate not-ready reason for building; local pages
     still open because `ready` stays true.
     """

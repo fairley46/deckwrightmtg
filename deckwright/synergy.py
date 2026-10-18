@@ -84,7 +84,7 @@ def _oracle(card: dict) -> str | None:
     Present empty string (Scryfall's shape for vanilla creatures — Isamaru,
     Barktooth Warbeard, …) is readable emptiness: we looked, the card has no
     rules text. That is a real zero, not UNKNOWN. None / missing field means
-    we could not look. CON-194: conflating the two left 21 legal commanders
+    we could not look. conflating the two left 21 legal commanders
     without a mechanics profile.
     """
     parts: list[str] = []
@@ -126,7 +126,7 @@ def _oracle(card: dict) -> str | None:
 def catalog_keywords(card: dict) -> list[str]:
     """Scryfall keyword catalog entries on the card — not oracle_signals.
 
-    CON-251: flying/trample/… are already indexed by Scryfall. Surfacing them
+    flying/trample/… are already indexed by Scryfall. Surfacing them
     here lets coverage and callers know we can *read* the card without inventing
     signal regexes that fake produce/consume edges.
     """
@@ -148,7 +148,7 @@ def profile(card: dict) -> dict[str, Any]:
     than on emptiness -- a readable card with no synergy objects (Sol Ring)
     and an unreadable card are different facts.
 
-    `keywords` are Scryfall catalog values (CON-251). They are never copied into
+    `keywords` are Scryfall catalog values. They are never copied into
     `signals` and do not create produce/consume objects by themselves.
     """
     text = _oracle(card)
@@ -217,7 +217,7 @@ def demand_profile(commander: dict) -> dict[str, Any]:
 
 
 def card_read_status(card: dict) -> str:
-    """ok | unread | unknown — Know Magic honesty for synergy copy (CON-272).
+    """ok | unread | unknown — Know Magic honesty for synergy copy.
 
     unknown: no oracle text (could not look).
     unread: oracle present but no signal ∧ no keyword (could not read).
@@ -235,7 +235,7 @@ def card_read_status(card: dict) -> str:
 def synergy_read_note(card: dict, commander: dict | None = None) -> str:
     """Copy for unknown/unread with no named edges. Empty when real none/connected.
 
-    CON-272: UI/API must say could-not-read, not score unread/unknown as zero
+    UI/API must say could-not-read, not score unread/unknown as zero
     synergy. When edges exist (type-line glue), return "" so callers keep the
     edge clause.
     """
@@ -260,7 +260,7 @@ def cohesion(deck: list[dict], commander: dict) -> dict[str, Any]:
 
     Cards we could not look at are `unknown`. Cards with oracle but no
     signal∧keyword and no edges are `unread`. Neither is an orphan — orphan
-    means readable with none we can name (CON-272).
+    means readable with none we can name.
     """
     graded = []
     unknown = 0
@@ -320,7 +320,7 @@ def edge_count(card: dict, commander: dict, scaffold: list[dict]) -> int:
     """How many objects connect this card to the commander and the scaffold.
 
     A COUNT, for tiebreaking within sim-score bands. Never multiplied by a
-    coefficient and added to a sim score: CON-138 showed a threshold's value
+    coefficient and added to a sim score: showed a threshold's value
     silently decides which KIND of card wins, and an invented weight here
     would silently choose a deck style.
     """
@@ -334,7 +334,7 @@ def edge_count(card: dict, commander: dict, scaffold: list[dict]) -> int:
 
 # Timing multipliers change how often abilities fire. They produce no material
 # object, so the graph correctly scores them 0 — and that 0 is "cannot see,"
-# not "no synergy." CON-222: STEER must not treat that unrepresentable zero
+# not "no synergy." STEER must not treat that unrepresentable zero
 # as an orphan vote.
 _TIMING_MULTIPLIER_PATTERNS = tuple(
     re.compile(p, re.IGNORECASE) for p in (
@@ -383,7 +383,7 @@ def edge_steer_vote(
     return n
 
 
-# CON-214: soft prefer glued cards when scores (or fill order) otherwise tie.
+# soft prefer glued cards when scores (or fill order) otherwise tie.
 # A flag — not a weight. Off = orphans and edged cards stay equal (tests).
 STEER = True
 
@@ -398,7 +398,7 @@ def glued_payoff_candidates(
     *,
     cap: int = 30,
 ) -> dict[str, Any]:
-    """Allowlist of deck cards glued to the commander (CON-258).
+    """Allowlist of deck cards glued to the commander.
 
     Seed: ≥1 directed edge to/from the commander. Grow: edges to any card
     already on the list. Cap is display-only; never pads with ungated names.
@@ -508,7 +508,7 @@ def prefer_glued(
       * unknown profile — could not look; scores 0 (eligible elsewhere)
       * orphan — readable, no shared produce/consume object; sorts last
       * unrepresentable timing — timing_multiplier with 0 material edges;
-        casts no edge vote (CON-222). Sorted in a neutral band above true
+        casts no edge vote. Sorted in a neutral band above true
         orphans so STEER does not punish Full Throttle-class cards as if
         they were Shock. Does not invent combat/turn objects or weights.
 
@@ -559,11 +559,11 @@ def leave_enabler_queries(commander: dict) -> list[str]:
 
     When the commander triggers on leaving the battlefield, sac outlets and
     blink both pay it off. Sac arrives via dies_triggers / sacrifice theme
-    search; blink does not. CON-174 measured zero blink in a Hei Bai 99 while
+    search; blink does not. A leave-causation probe measured zero blink in a Hei Bai 99 while
     otag:blink returns 102 cards in WB — recall, not ranking (same shape as
-    CON-159). An unknown commander asks for nothing; we could not look.
+    the archetype payoff floors). An unknown commander asks for nothing; we could not look.
 
-    CON-195: also reachable through synergy_recall_queries(); keep this entry
+    also reachable through synergy_recall_queries(); keep this entry
     point so the Hei Bai blink floor does not regress.
     """
     demand = demand_profile(commander)
@@ -664,7 +664,7 @@ def _is_enabler_floor(seed: str, neighbor: str, relation: str,
     """True when `neighbor` is an enabler the seed family needs on the 99.
 
     tokens feeds dies_triggers → floor (sac fodder). dies_triggers feeds
-    life_math → not a floor (payoff expansion; CON-178 must not force
+    life_math → not a floor (payoff expansion; the commitment derivation must not force
     lifegain into the 99). Blink leave-enablers are handled separately.
     """
     if direction != "from":
@@ -680,7 +680,7 @@ def _is_enabler_floor(seed: str, neighbor: str, relation: str,
 
 
 def synergy_neighbors(commander: dict) -> list[dict]:
-    """One-hop relation neighbors for candidate recall (CON-195).
+    """One-hop relation neighbors for candidate recall.
 
     Path: demand signals → families → one-hop `relations` → taxonomy
     `supports.queries` and family payoff queries where present.
@@ -691,7 +691,7 @@ def synergy_neighbors(commander: dict) -> list[dict]:
 
     Relations expand ONLY for candidate recall. plan_graph stays demand-only
     — expanding dies_triggers→life_math into commitments invented lifegain
-    for Hei Bai (CON-178).
+    for Hei Bai.
     """
     from deckwright import mechanics  # noqa: PLC0415
 

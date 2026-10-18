@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-322: bake CardFacts from the local corpus (no model, no live scrape).
+"""bake CardFacts from the local corpus (no model, no live scrape).
 
 Reads oracle rows from the local Scryfall bulk corpus (``corpus.py`` /
 ``oracle_cards.jsonl``), runs ``cardfacts.extract`` on each, and writes

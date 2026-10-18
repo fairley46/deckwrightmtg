@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CON-310: curly / smart punctuation must not drop import names.
+"""curly / smart punctuation must not drop import names.
 
 iOS, macOS, Word, and most web paste use U+2019 instead of ASCII apostrophe.
 Scryfall names use the straight form. Normalise for lookup only; the card
@@ -56,7 +56,7 @@ def true(label, cond, extra=""):
         bad(label, extra or "expected truthy")
 
 
-# Wild paste from CON-310 — every line that vanished had a curly apostrophe.
+# A real-world paste where every line that vanished had a curly apostrophe.
 WILD_CURLY = [
     f"Angrath{CURLY_APOS}s Marauders",
     f"Trailblazer{CURLY_APOS}s Boots",
@@ -227,7 +227,7 @@ async def test_resolve_decklist_shows_scryfall_name():
 
 
 def main() -> int:
-    print("CON-310 import punctuation")
+    print("import punctuation")
     test_normalize_name_for_lookup()
     test_parser_keeps_typed_form()
     asyncio.run(test_resolve_curly_and_straight())

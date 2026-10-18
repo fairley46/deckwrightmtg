@@ -1,8 +1,8 @@
-# Unread gap strategy (CON-249)
+# Unread gap strategy
 
-Phase 4 of CON-246 — Know Magic.
+Phase 4 of Know Magic.
 
-**Artifact:** [`data/unread_gap_strategy.json`](../data/unread_gap_strategy.json)
+**Artifact:** [`data/unread_gap_strategy.json`](../../data/unread_gap_strategy.json)
 
 ## What this is
 

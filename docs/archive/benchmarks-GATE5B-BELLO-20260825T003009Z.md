@@ -1,6 +1,6 @@
 # Gate 5B — Bello solo: the MV-floor arm, finally measured
 
-**Run:** `docs/benchmarks/runs/20260825T003009Z` · harness `3224c59` (CON-333)
+**Run:** `docs/benchmarks/runs/20260825T003009Z` · harness `3224c59`
 **Green:** `gate4b-integration` @ `e44e92d` — floors #305 + coverage #307 + steer stamps #304
 **Contestants:** E, BLUE (`:8001` off), B (`:8002` candidate=B) · filter `bello` · **3/3 ok, no UNKNOWN**
 
@@ -36,11 +36,11 @@ Bello animates only non-Equipment artifacts and non-Aura enchantments with **MV 
 
 Gate 5B's Bello rows were UNKNOWN on both ports: `claude cli exited 1` on `:8001`, `timed out after 180s` on `:8002`.
 
-**BLUE took 571 s in this run.** That is 3.2× the old 180 s `DECKWRIGHT_LLM_TIMEOUT`, so the timeout diagnosis in CON-333 was exactly right — Bello is simply the heaviest build in the frozen set, and the limit sat below it. Raising the green servers to 600 s resolved it. The harness's own 1800 s HTTP budget was never the constraint and was left alone.
+**BLUE took 571 s in this run.** That is 3.2× the old 180 s `DECKWRIGHT_LLM_TIMEOUT`, so the timeout diagnosis was exactly right — Bello is simply the heaviest build in the frozen set, and the limit sat below it. Raising the green servers to 600 s resolved it. The harness's own 1800 s HTTP budget was never the constraint and was left alone.
 
 Verified on the **running processes**, not just the plists — `ps eww` on both python PIDs showed `DECKWRIGHT_LLM_TIMEOUT=600`.
 
-**CON-334:** that 600 must live in the **repo plist templates**
+That 600 must live in the **repo plist templates**
 (`(local launchd label)` / `green-b.plist`). Hand-restoring
 `~/Library/LaunchAgents/` alone is wiped by the next `./install-green-*.sh`
 run — which is exactly how Ship B re-broke Bello.
@@ -59,9 +59,9 @@ run — which is exactly how Ship B re-broke Bello.
 
 ## What this does and does not unlock
 
-**Does:** closes CON-333. The floor case is measured. B's bound arm demonstrably works on both a ceiling (Tayam 10 → 7) and a floor (Bello 17 → 8).
+**Does:** closes the floor-case measurement. The floor case is measured. B's bound arm demonstrably works on both a ceiling (Tayam 10 → 7) and a floor (Bello 17 → 8).
 
-**Does not:** justify C. Four of six bound-declaring commanders still extract `NONE` (Meren, Sliver, Shirei, Maralen). The cheap next move remains extending bound vocabulary — CON-331 — not a CardFacts rewrite. The long tail is still 3-of-4 unread.
+**Does not:** justify C. Four of six bound-declaring commanders still extract `NONE` (Meren, Sliver, Shirei, Maralen). The cheap next move remains extending bound vocabulary — not a CardFacts rewrite. The long tail is still 3-of-4 unread.
 
 **Does not:** justify promotion. B trails E on the bound metric here and gave up a little feeder density. Blue stays.
 

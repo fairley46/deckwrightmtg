@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_commanders_kb.py — CON-190 / CON-194 commander knowledge base builder.
+build_commanders_kb.py — commander knowledge base builder.
 
 Two halves, reported separately:
 
@@ -20,10 +20,10 @@ hundreds.
     python scripts/build_commanders_kb.py --top 50     # research fills (default 50)
     python scripts/build_commanders_kb.py --offline    # fixture only (incomplete)
     python scripts/build_commanders_kb.py --research-patch
-        # CON-196 B grow: EDHREC tags onto existing KB (empties + derived-only).
+        # B grow: EDHREC tags onto existing KB (empties + derived-only).
         # No full Scryfall census — patches data/commanders.json in place.
     python scripts/build_commanders_kb.py --mechanics-refresh
-        # CON-229: re-run synergy/playstyles over existing KB entries.
+        # re-run synergy/playstyles over existing KB entries.
         # Fetches oracle/type from Scryfall; preserves EDHREC community ways.
         # No full legal census or EDHREC re-research.
 """
@@ -48,7 +48,7 @@ from deckwright import commanders  # noqa: E402
 from deckwright import playstyles  # noqa: E402
 
 EDHREC_UA = {
-    "User-Agent": "Deckwright/1.0 (local personal deckbuilder; CON-196 research)",
+    "User-Agent": "Deckwright/1.0 (local personal deckbuilder)",
     "Accept": "application/json",
 }
 
@@ -59,7 +59,7 @@ GRAMMAR = REPO / "data" / "scryfall_grammar.json"
 # Graded looks (ok + missing) below this are too small to judge a rate.
 _EDHREC_RATE_MIN_GRADED = 500
 # Above this missing fraction among graded looks, a 403-throttle is more
-# likely than EDHREC simply lacking pages. Measured CON-194 run was ~6%.
+# likely than EDHREC simply lacking pages. Measured on a full knowledge-base run: ~6%.
 _EDHREC_MISSING_RATE_FAIL = 0.25
 # Failed (unknown) fraction of attempted fetches that means the transport
 # did not complete — not a catalogue gap.
@@ -109,7 +109,7 @@ def edhrec_transport_check(
     }
 
 
-# Matches legal_commanders_only() — measured, not assumed (CON-194 / prior count).
+# Matches legal_commanders_only() — measured, not assumed (prior count).
 LEGAL_QUERY = '((t:legendary t:creature) or o:"can be your commander") f:commander'
 
 
@@ -241,7 +241,7 @@ async def research_edhrec_targets(
 
     Returns (researched, filled, unknown, transport). Unknown = fetch failed —
     not a zero. `transport` is edhrec_transport_check over ok/missing/failed
-    so a 403-throttle cannot masquerade as an empty catalogue (CON-194/#171).
+    so a 403-throttle cannot masquerade as an empty catalogue.
     """
     researched = filled = unknown = 0
     ok_n = missing_n = 0
@@ -325,7 +325,7 @@ async def fetch_edhrec_taglinks(
       ("missing", [])    — persistent 403/404 on every face; EDHREC has no page
       ("unknown", None)  — network/5xx after retries. Caller must not invent.
     Missing ≠ unknown. A throttle that 403s everything must not look like a
-    catalogue of empty pages (CON-194/#171).
+    catalogue of empty pages.
     """
     faces = ["front"]
     if " // " in (name or ""):
@@ -405,7 +405,7 @@ def build_entry(
     Entry-level method:
       * "both"    — community research present and mechanics ran
       * "derived" — mechanics only (including ways_to_play: [] = looked, none)
-    Community without mechanics is never returned — that is a bug (CON-194).
+    Community without mechanics is never returned — that is a bug.
     """
     card = {
         "name": name,
@@ -503,7 +503,7 @@ def _count_empty_ways(entries: dict) -> tuple[int, int, int]:
 
 
 async def mechanics_refresh_async(args: argparse.Namespace) -> int:
-    """CON-229: recompute mechanics signals/ways on existing KB without census."""
+    """recompute mechanics signals/ways on existing KB without census."""
     if not OUT.is_file():
         print(f"missing {OUT} — nothing to refresh")
         return 1
@@ -721,7 +721,7 @@ async def main_async(args: argparse.Namespace) -> int:
         row = community_by_name.get(name) or {}
         community = list(row.get("playstyles") or [])
         community_source = (
-            row.get("source") or ("CON-181 fixture" if row else "")
+            row.get("source") or ("fixture" if row else "")
         )
         community_why = row.get("why") or ""
         # Prefer live Scryfall oracle; fall back to fixture text.
@@ -777,7 +777,7 @@ async def main_async(args: argparse.Namespace) -> int:
             type_line=type_line,
             oracle_text=oracle if isinstance(oracle, str) else "",
             community=list(row.get("playstyles") or []),
-            community_source=row.get("source") or "CON-181 fixture",
+            community_source=row.get("source") or "fixture",
             community_why=row.get("why") or "",
             researched_at=today,
             vocab=vocab,
@@ -808,7 +808,7 @@ async def main_async(args: argparse.Namespace) -> int:
         for n in skipped_unreadable[:10]:
             print(f"  - {n}")
 
-    # CON-196 B: research pass — EDHREC tags for empties (+ derived-only grow).
+    # B: research pass — EDHREC tags for empties (+ derived-only grow).
     # Mechanics already ran; this only adds community labels. Fetch failure
     # is unknown (skip), not "no playstyles".
     edhrec_researched = 0
@@ -853,7 +853,7 @@ async def main_async(args: argparse.Namespace) -> int:
     else:
         fail = False
 
-    # Empty-ways split: no signals vs signals-but-no-playstyle (CON-196).
+    # Empty-ways split: no signals vs signals-but-no-playstyle.
     empty_no_signals = 0
     empty_signals_no_playstyle = 0
     for e in entries.values():
@@ -867,7 +867,7 @@ async def main_async(args: argparse.Namespace) -> int:
     payload = {
         "version": 1,
         "note": (
-            "CON-194/196 commander knowledge base. Mechanics from "
+            "commander knowledge base. Mechanics from "
             "playstyles.detect() over every legal commander; community "
             "classifications from testdata/review/commander-playstyles.json "
             "plus EDHREC-ranked research cohort. Disagreement is data. "
@@ -926,7 +926,7 @@ async def main_async(args: argparse.Namespace) -> int:
 
 
 async def research_patch_async(args: argparse.Namespace) -> int:
-    """CON-196 B grow: patch existing KB with EDHREC community tags only."""
+    """B grow: patch existing KB with EDHREC community tags only."""
     if not OUT.is_file():
         print(f"missing {OUT} — run a full build first")
         return 1
@@ -1011,10 +1011,10 @@ def main() -> int:
                     help="researched_at / mechanics_at stamp (default: today)")
     ap.add_argument("--research-empty", action=argparse.BooleanOptionalAction,
                     default=True,
-                    help="CON-196: pull EDHREC tags for empty-ways commanders")
+                    help="pull EDHREC tags for empty-ways commanders")
     ap.add_argument("--research-derived", action=argparse.BooleanOptionalAction,
                     default=True,
-                    help="CON-196 B grow: EDHREC tags for derived-only ways "
+                    help="B grow: EDHREC tags for derived-only ways "
                          "(no community yet) — merges as both/community")
     ap.add_argument("--research-empty-limit", type=int, default=0,
                     help="cap EDHREC research targets (0 = all)")
@@ -1022,7 +1022,7 @@ def main() -> int:
                     help="patch existing data/commanders.json only "
                          "(no Scryfall census)")
     ap.add_argument("--mechanics-refresh", action="store_true",
-                    help="CON-229: recompute mechanics on existing KB "
+                    help="recompute mechanics on existing KB "
                          "(collection fetch, no census/EDHREC)")
     args = ap.parse_args()
     if args.offline:

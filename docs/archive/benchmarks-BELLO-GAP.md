@@ -1,7 +1,7 @@
-# Bello gap — B 8 vs E 4 (CON-334)
+# Bello gap — B 8 vs E 4
 
 Source measurement: `GATE5B-BELLO-20260825T003009Z.md` on tip
-`box/gate4b-integration-validated` @ `e44e92d`. Harness metric: `mv_geq_4` on
+the validated B build. Harness metric: `mv_geq_4` on
 `bello_permanent` (non-Equipment artifacts and non-Aura enchantments).
 
 | contestant | violations | feeder density |
@@ -31,7 +31,7 @@ These are real harness violations. E is tighter than a perfect-zero floor on
 purpose: the average list still runs a few sub-4 enchantment pieces. **Do not
 fake B to match E's 4.**
 
-## Why B landed at 8 (pre-CON-334)
+## Why B landed at 8 (earlier)
 
 Bello's oracle:
 
@@ -57,7 +57,7 @@ Nine cards B *did* correctly remove (from the GATE5B note): Commander's Sphere,
 Everflowing Chalice, Mind Stone, Ichor Wellspring, Herd Heirloom, Klothys,
 Anax, Azusa's Many Journeys, Jugan Defends the Temple.
 
-## CON-334 code response (this branch)
+## Code response (this branch)
 
 - Extract dual floors + `excludes: equipment|aura` from non-X phrasing
   (`commander_strategy`).

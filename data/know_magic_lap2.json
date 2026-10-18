@@ -1,5 +1,4 @@
 {
-  "parent_loop": "CON-246",
   "title": "Know Magic \u2014 lap 2 admission + remeasure",
   "closed_at": "2026-08-08",
   "note": "Lap 2 admits Scryfall keyword catalogs into readability (signal\u2228keyword) without inventing keyword oracle_signals, and ships seven residual non-keyword signals from the new unread tail.",

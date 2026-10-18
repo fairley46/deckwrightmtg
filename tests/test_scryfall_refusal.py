@@ -1,4 +1,4 @@
-"""test_scryfall_refusal.py — CON-295: name Scryfall refusals plainly.
+"""test_scryfall_refusal.py — name Scryfall refusals plainly.
 
 Challenge, rate limit, and timeout must be distinguishable. A Cloudflare
 challenge is not a bug, and it must not look like one. Retries must not get
@@ -150,7 +150,7 @@ async def test_timeout_kind():
 async def test_maintenance_kind_no_retry():
     """503 Offline for Maintenance → kind=maintenance, no backoff retries.
 
-    CON-296: a planned outage must not burn the 429/5xx retry budget, and must
+    a planned outage must not burn the 429/5xx retry budget, and must
     not collapse into \"didn't answer.\"
     """
     print("\nscry()  — maintenance window is a named refusal")
@@ -180,7 +180,7 @@ async def test_maintenance_kind_no_retry():
 async def test_incidental_maintenance_word_is_retried():
     """503 body that mentions 'maintenance' in passing is not a planned outage.
 
-    CON-302: the predicate must require Scryfall's phrase. A generic Cloudflare /
+    the predicate must require Scryfall's phrase. A generic Cloudflare /
     upstream 503 that happens to contain the word must still exhaust the retry
     budget and land as unreachable — not skip retry as kind=maintenance.
     """
@@ -424,7 +424,7 @@ def test_ui_surfaces_kinds_on_ladder():
     (ok if "Try again" in catch_block else bad)(
         "build failure offers retry without restarting the brief")
 
-    # CON-303: build stop must say building needs live Scryfall, and that
+    # build stop must say building needs live Scryfall, and that
     # saved decks still open — not a vague "refused this look".
     (ok if re.search(
         r"building needs live Scryfall|needs the live card source",
@@ -445,15 +445,15 @@ def test_ui_surfaces_kinds_on_ladder():
 
 
 def test_docs_say_build_needs_live():
-    """CON-303: corpus resilience claims must not bury the build-path gap."""
+    """corpus resilience claims must not bury the build-path gap."""
     print("\ndocs  — build needs live Scryfall (otag:)")
     om = (ROOT / "docs" / "OPERATING-MODEL.md").read_text(encoding="utf-8")
     # Survival table: building is the product path and it does not survive.
     (ok if re.search(
         r"\|\s*\*\*Building a deck\*\*\s*\|\s*\*\*No\*\*", om) else bad)(
         "OPERATING-MODEL states building does not survive Scryfall down")
-    (ok if "CON-303" in om and "otag:" in om else bad)(
-        "OPERATING-MODEL names otag: and CON-303")
+    (ok if "live Scryfall" in om and "otag:" in om else bad)(
+        "OPERATING-MODEL names otag: and the live-Scryfall build gap")
     # Corpus-first must not read as broad protection with otag as an aside.
     corp_idx = om.find("Corpus-first")
     build_idx = om.find("**Building a deck**")
@@ -467,7 +467,7 @@ def test_docs_say_build_needs_live():
 
 
 def test_retry_budget_unchanged():
-    """CON-295 must not raise the retry count — more requests extend a challenge."""
+    """must not raise the retry count — more requests extend a challenge."""
     print("\nretry budget  — unchanged")
     eq("_SCRYFALL_RETRIES stays 5", app._SCRYFALL_RETRIES, 5)
     eq("_SCRYFALL_MIN_GAP stays 0.2", app._SCRYFALL_MIN_GAP, 0.2)
@@ -475,7 +475,7 @@ def test_retry_budget_unchanged():
 
 async def main() -> int:
     import os
-    # CON-294: a loaded local corpus answers ordinary searches without httpx.
+    # a loaded local corpus answers ordinary searches without httpx.
     # The live-client refusal cases below must force the network path.
     old_corpus = os.environ.get("DECKWRIGHT_CORPUS")
     os.environ["DECKWRIGHT_CORPUS"] = "off"

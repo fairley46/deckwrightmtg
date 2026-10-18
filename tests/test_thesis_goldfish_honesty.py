@@ -1,5 +1,5 @@
 """
-CON-267: thesis conditions the goldfish cannot see must not look like success.
+thesis conditions the goldfish cannot see must not look like success.
 
 Mister Negative shaped: drain/gain/draw stories that narrate the commander's
 oracle while sim.mechanics contributes zeros — and cards_drawn grading other
@@ -105,7 +105,7 @@ def _artist() -> dict:
 
 
 def test_mn_mechanics_baseline():
-    print("\nCON-267 — Mister Negative extraction baseline")
+    print("\nMister Negative extraction baseline")
     m = sim.mechanics(_mn_commander(), {"Mister Negative"})
     eq("MN draws after that-many floor", m.get("draws"), 1)
     eq("lifelink is not life_gain", m.get("life_gain"), 0)
@@ -114,7 +114,7 @@ def test_mn_mechanics_baseline():
 
 
 def test_draw_that_many_extraction():
-    print("\nCON-267 — draw that many cards floors to 1")
+    print("\ndraw that many cards floors to 1")
     card = {
         "name": "That Many Drawer",
         "text": "When this creature enters, draw that many cards.",
@@ -130,7 +130,7 @@ def test_draw_that_many_extraction():
 
 
 def test_key_support_drain_empty():
-    print("\nCON-267 — life_drained with no drainers is unsound")
+    print("\nlife_drained with no drainers is unsound")
     deck = [_cantrip()] + [
         {"name": f"Filler {i}", "role": "theme", "text": "Flying",
          "oracle_text": "Flying", "type": "Creature — Bird",
@@ -161,7 +161,7 @@ def test_key_support_drain_empty():
 
 
 def test_key_support_drain_present():
-    print("\nCON-267 — life_drained with Blood Artist is supported")
+    print("\nlife_drained with Blood Artist is supported")
     deck = [_artist(), _cantrip()]
     spec = {
         "payoff_cards": ["Blood Artist"],
@@ -184,7 +184,7 @@ def test_key_support_drain_present():
 
 
 def test_commander_story_exchange_life_lie():
-    print("\nCON-267/268 — exchange→life_gained is still a lie (no opponent)")
+    print("\nexchange→life_gained is still a lie (no opponent)")
     deck = [_cantrip()]
     spec = {
         "payoff_cards": ["Consider"],
@@ -212,7 +212,7 @@ def test_commander_story_exchange_life_lie():
 
 
 def test_honest_commander_in_play_ok():
-    print("\nCON-267 — commander_in_play story stays sound")
+    print("\ncommander_in_play story stays sound")
     deck = [_cantrip(), _artist()]
     spec = {
         "payoff_cards": ["Blood Artist", "Consider"],

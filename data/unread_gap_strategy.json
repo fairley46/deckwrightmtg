@@ -605,7 +605,7 @@
         "playstyle": null,
         "plan_commitment": null,
         "synergy_object": null,
-        "note": "CON-245 shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
+        "note": "shipped any_color / identity / pain; fixed-color tap-add remains unread. Command Tower (any color in identity) is near-miss. Do not confuse with type-line produces echoing \"land\"."
       },
       "playstyles_json_action": {
         "action": "none",
@@ -689,7 +689,7 @@
         "playstyle": "landfall",
         "plan_commitment": null,
         "synergy_object": null,
-        "note": "enchant_creature already shipped (CON-245). Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
+        "note": "enchant_creature already shipped. Animate Dead is near-miss. Land auras feed ramp/land strategies, not voltron."
       },
       "playstyles_json_action": {
         "action": "boost",
@@ -867,7 +867,7 @@
   },
   "empty_ways_finding": {
     "empty_ways_unchanged": true,
-    "reason": "New CON-248 signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback.",
+    "reason": "New unread-gap signals moved 44 commanders from no-signals into signals-but-no-playstyle (221\u2192177 / 165\u2192209). Total empty ways stayed 386 because those signals (card_draw, mana reading, evasion, \u2026) are not sufficient to name a community playstyle, and requires_any was not widened for generic enters/attacks \u2014 that would invent matches and burn precision. Shrink would require sourced new playstyles or genuine composition gates, not a fallback.",
     "top_signals_among_signals_no_playstyle": [
       [
         "enters",

@@ -1,4 +1,4 @@
-# CON-296: make the documented gate real on every PR and push to main.
+# make the documented gate real on every PR and push to main.
 # Authoritative command matches OPERATING-MODEL.md / AGENTS.md:
 #   python scripts/check_all.py --tier 1
 name: tier1

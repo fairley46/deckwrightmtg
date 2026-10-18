@@ -1,5 +1,5 @@
 """
-test_way_to_play.py — CON-179 chosen way binds the plan; no invented ways.
+test_way_to_play.py — chosen way binds the plan; no invented ways.
 
 Offline.
 
@@ -101,8 +101,8 @@ def test_preselect_from_strategy_match():
 
 
 def test_picker_surfaces_way_source():
-    """CON-240: ways show community vs derived quietly on the card."""
-    print("\npicker — way source honesty (CON-240)")
+    """ways show community vs derived quietly on the card."""
+    print("\npicker — way source honesty")
     html = (ROOT / "index.html").read_text()
     start = html.find("function wayHonesty")
     snippet = html[start:start + 600] if start >= 0 else ""
@@ -117,8 +117,8 @@ def test_picker_surfaces_way_source():
 
 
 def test_picker_shows_says_not_machine_id():
-    """CON-179: card rows are player-language says; CSS must not collide with nav."""
-    print("\npicker — ways on the card (CON-179 placement)")
+    """card rows are player-language says; CSS must not collide with nav."""
+    print("\npicker — ways on the card (placement)")
     html = (ROOT / "index.html").read_text()
     true("waysBlock exists", "function waysBlock" in html)
     true("says is the primary row text", "wtp-says" in html)
@@ -137,7 +137,7 @@ def test_picker_shows_says_not_machine_id():
 
 
 def test_treasure_maker_not_offered_as_creature_tokens():
-    """CON-213 / CON-208: Lannery Treasure ≠ creature-tokens way on the card."""
+    """Lannery Treasure ≠ creature-tokens way on the card."""
     print("\npicker precision — Treasure is not the tokens way")
     from deckwright import playstyles
     lannery = {
