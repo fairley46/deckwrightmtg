@@ -7,7 +7,9 @@
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. You describe the deck you want in plain English. It asks a few questions, offers real commanders, builds a legal 99 from Scryfall searches (never from card names the model remembers), and estimates how often the deck's plan comes together in solitaire goldfish games.
+DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. It starts with a conversation, not a card search. You say what you want the deck to feel like: a theme, a style, how you like to win, or just a vibe. The chat keeps asking until it understands. It narrows that down to legendary creatures that really do what you described. Then, from tens of thousands of legal cards, it picks the synergy pieces that serve that commander and that plan.
+
+Every card comes from a live Scryfall search, never from card names the model remembers. The result is a legal 99 built around your idea, with a plain statement of the plan and odds for how often it comes together.
 
 It runs on your own machine: one FastAPI process and one HTML page, with no build step and no database. It is not a hosted service.
 
@@ -15,8 +17,9 @@ It runs on your own machine: one FastAPI process and one HTML page, with no buil
 
 ## Features
 
-- **Plain-English brief.** Say what you want ("dragons", "durdle and gain life"); it asks follow-ups and reads back each term with the Scryfall search behind it.
-- **Real commanders.** Five legal picks that fit, with colours, themes, and ways to play, plus partner pairs where the rules allow.
+- **A chat that gets what you mean.** Start vague ("something sneaky", "I want to durdle and gain life") or specific ("Golgari aristocrats"). It asks follow-ups about theme, style, and how you like to play. Then it reads back each idea with the Scryfall search behind it, so you can see what it understood and correct it.
+- **The right commander for your idea.** Five real legendary creatures that do what you asked for, each with its colours, themes, and ways to play, plus partner pairs where the rules allow. Pick one, or ask for more.
+- **Synergy, not just staples.** The 99 is built around the commander and your plan: payoffs, enablers, and theme cards that work together, on top of the ramp, draw, and removal every deck needs.
 - **No invented cards.** The 99 is built role by role from Scryfall search results; any name the model suggests that Scryfall did not return is dropped.
 - **A plan you can check.** A short thesis names the cards that carry the plan, and thousands of solitaire goldfish games estimate how often it comes together.
 - **Edit with guard rails.** Ask about the deck, stage swaps from the same verified pools, approve or reject them, and keep notes.
@@ -50,7 +53,7 @@ flowchart LR
 
    <img src="docs/assets/reading-a-card.png" alt="How to play: reading a card, with each part of the card explained" width="720">
 
-2. **Chat.** You describe the deck in plain words ("something with dragons", "I want to durdle and gain life"). The app asks a few follow-up questions and keeps asking until it understands the theme well enough to search for it.
+2. **Chat.** You describe the deck in plain words: a creature type, a mechanic, a flavour, a way of winning, or how you want games to feel. The chat asks follow-up questions about theme, style, and play pattern. It keeps going until it can turn your words into real card searches. You can change direction at any point.
 
    <img src="docs/assets/chat.png" alt="Chat: a Golgari graveyard brief and the app's follow-up question" width="720">
 
@@ -58,11 +61,11 @@ flowchart LR
 
    <img src="docs/assets/readback.png" alt="Readback: the theme with the Scryfall search behind it, and commander directions" width="720">
 
-4. **Commanders.** You get five real commanders that fit, each with its colours, themes, and the ways it likes to play. "Show me more" pages through further matches, and partner pairs are offered where the rules allow.
+4. **Commanders.** The chat narrows your idea down to legendary creatures that really reward it. You get five that fit, each with its colours, themes, and the ways it likes to play. "Show me more" pages through further matches, and partner pairs are offered where the rules allow. The commander you pick anchors everything that follows.
 
    <img src="docs/assets/commanders.png" alt="Commander pick: card pool choice and a commander with ways to play" width="720">
 
-5. **Build 99.** The app builds the 99 role by role (lands, ramp, draw, removal, the plan, the theme, a few deep cuts). Every card comes from a Scryfall search result, and any name the model suggests that is not in those results is dropped.
+5. **Build 99.** The app builds the 99 role by role. First it fills the slots every deck needs: lands, ramp, draw, and removal. Then come the cards that make this deck yours: payoffs that win with the plan, enablers that set it up, theme cards for the style you asked for, and a few deep cuts. Each pick is chosen for how it works with the commander and the rest of the 99. Every card comes from a Scryfall search result, and any name the model suggests that is not in those results is dropped.
 
    <img src="docs/assets/build.png" alt="Build progress: pulling cards for each role, checking legality, pricing, and playing games" width="720">
 
@@ -79,6 +82,10 @@ flowchart LR
 9. **Ask / save / export.** You can ask questions about the deck, stage card swaps from the same real card pools and approve or reject them, rename and keep notes, and export the list as text, an Archidekt import, or a shopping list.
 
    <img src="docs/assets/decklist.png" alt="The 99 grouped by role with prices, export actions, and naming" width="720">
+
+   The conversation keeps going after the build. Ask why a card is there or what a number means, or ask for a change; swaps are shown first and wait for you to approve them.
+
+   <img src="docs/assets/ask.png" alt="Still talking: ask about the deck or request changes" width="720">
 
 **Side door: Precon / import.** From the landing page you can open a preconstructed Commander deck or paste a list you already own. The app analyzes it the same way and lands on the same deck page, with suggested upgrades.
 
@@ -174,6 +181,7 @@ See [docs/STATUS.md](docs/STATUS.md) and the [changelog](CHANGELOG.md) for what 
 - **[Scryfall](https://scryfall.com/)**: card data, legality, prices, and images. Required for builds. Requests use a descriptive `User-Agent` and stay under Scryfall's rate limit.
 - **[EDHREC](https://edhrec.com/)**: optional popularity hints. If it is unreachable, deep-cut picks get less accurate and nothing fails.
 - **[Archidekt](https://archidekt.com/)**: the precon catalogue and lists, read from its public JSON API at runtime and cached for 30 days. Please link back to Archidekt if you republish deck data.
+- **[Forge](https://github.com/Card-Forge/forge)**: the open-source MTG rules engine, by the Forge team. DeckWright can call a Forge install you provide for the optional pressure test. Forge is a separate GPL-3.0 project; none of its code is included in this repo.
 
 DeckWright is unofficial fan content. It is not approved or endorsed by Wizards of the Coast. Magic: The Gathering is a trademark of Wizards of the Coast.
 
