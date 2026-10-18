@@ -1,15 +1,17 @@
 # DeckWright
 
+![DeckWright: plain-English Commander deckbuilder](docs/assets/social-preview.png)
+
 [![tier1](https://github.com/fairley46/deckwrightmtg/actions/workflows/tier1.yml/badge.svg?branch=main)](https://github.com/fairley46/deckwrightmtg/actions/workflows/tier1.yml)
 [![Latest release](https://img.shields.io/github/v/release/fairley46/deckwrightmtg?label=release)](https://github.com/fairley46/deckwrightmtg/releases)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-![Mister Negative deck page: commander art, legality and price, and how the deck plays](docs/assets/hero.png)
-
 DeckWright is a local Commander (EDH) deckbuilder for Magic: The Gathering. You describe the deck you want in plain English. It asks a few questions, offers real commanders, builds a legal 99 from Scryfall searches (never from card names the model remembers), and estimates how often the deck's plan comes together in solitaire goldfish games.
 
 It runs on your own machine: one FastAPI process and one HTML page, with no build step and no database. It is not a hosted service.
+
+![Mister Negative deck page: commander art, legality and price, and how the deck plays](docs/assets/hero.png)
 
 ## Features
 
